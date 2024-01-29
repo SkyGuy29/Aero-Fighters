@@ -1,13 +1,17 @@
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 
 int main()
 {
 	sf::Clock clock;
-	int deltaTime = 0, ups = 30;
-
+	int deltaTime = 0;
+	
+	// Change later maybe
+	const int UPDATES_PER_SEC = 30, FRAMES_PER_SEC = 30;
 	int scale = 3;
+
 	sf::RenderWindow window(sf::VideoMode(320 * scale, 224 * scale), "Aero Fighters");
-	window.setFramerateLimit(30);
+	window.setFramerateLimit(FRAMES_PER_SEC);
 
 	while (window.isOpen())
 	{
@@ -17,9 +21,9 @@ int main()
 				window.close();
 
 		deltaTime += clock.restart().asMilliseconds();
-		while (deltaTime >= 1000 / ups)
+		while (deltaTime >= 1000 / UPDATES_PER_SEC)
 		{
-			deltaTime -= 1000 / ups;
+			deltaTime -= 1000 / UPDATES_PER_SEC;
 			
 			// update game here
 		}
