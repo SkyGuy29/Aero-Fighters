@@ -8,9 +8,9 @@ int main()
 	
 	// Change later maybe
 	const int UPDATES_PER_SEC = 30, FRAMES_PER_SEC = 30;
-	int scale = 3;
+	float scale = 2.f;
 
-	sf::RenderWindow window(sf::VideoMode(320 * scale, 224 * scale), "Aero Fighters");
+	sf::RenderWindow window(sf::VideoMode(224 * scale, 320 * scale), "Aero Fighters");
 	window.setFramerateLimit(FRAMES_PER_SEC);
 
 	while (window.isOpen())
