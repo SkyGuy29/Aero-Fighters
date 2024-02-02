@@ -27,7 +27,7 @@ bool Player::isAlive() const
 
 void Player::move(sf::Vector2f offset, sf::Vector2u winSize)
 {
-	pos += offset;
+	pos += offset * speed;
 
 	if (pos.x - size.x / 2.f < 0)
 		pos.x = size.x / 2.f;
