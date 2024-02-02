@@ -1,8 +1,9 @@
 #pragma once
 
-#include "Projectile.h"
+#include "../Object.h"
+#include "../Projectile/Projectile.h"
 
-class Player : public sf::Drawable
+class Player : public Object
 {
 public:
 	Player();
@@ -19,12 +20,7 @@ public:
 	void shoot(std::vector<Projectile*>& prog);
 
 private:
-	void draw(sf::RenderTarget& target, sf::RenderStates states) const;
-
-	sf::Vector2f pos, size = sf::Vector2f(100, 200);
 	float speed = 5.f;
-
-	sf::RectangleShape sprite = sf::RectangleShape(size);
 
 	int score = 0, lives = 0;
 

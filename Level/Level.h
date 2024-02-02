@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Player.h"
-#include "Enemy.h"
+#include "../Object/Player/Player.h"
+#include "../Object/Enemy/Enemy.h"
 
 #include <vector>
 

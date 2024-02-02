@@ -2,7 +2,7 @@
 
 #include <SFML/Audio.hpp>
 
-#include "Level.h"
+#include "../Level/Level.h"
 
 class Game
 {
