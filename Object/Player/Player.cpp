@@ -44,4 +44,5 @@ void Player::move(sf::Vector2f offset, sf::Vector2u winSize)
 
 void Player::shoot(std::vector<Projectile*>& prog)
 {
+
 }
