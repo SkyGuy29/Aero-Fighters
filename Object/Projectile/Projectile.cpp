@@ -2,4 +2,5 @@
 
 Projectile::Projectile()
 {
+	 
 }
