@@ -2,6 +2,9 @@
 
 Player::Player()
 {
+	size = sf::Vector2f(100, 200);
+	sprite = sf::RectangleShape(size);
+	sprite.setFillColor(sf::Color(rand() % 255, rand() % 255, rand() % 255));
 }
 
 Player::Player(sf::Vector2f position)

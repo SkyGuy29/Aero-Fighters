@@ -7,8 +7,7 @@ class Object : public sf::Drawable
 protected:
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
-	sf::Vector2f pos, size = sf::Vector2f(100, 200);
+	sf::Vector2f pos, size;
 
-	sf::RectangleShape sprite = sf::RectangleShape(size);
+	sf::RectangleShape sprite;
 };
-
