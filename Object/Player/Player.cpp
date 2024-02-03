@@ -2,7 +2,7 @@
 
 Player::Player()
 {
-	size = sf::Vector2f(100, 200);
+	size = sf::Vector2f(50, 100);
 	sprite = sf::RectangleShape(size);
 	sprite.setFillColor(sf::Color(rand() % 255, rand() % 255, rand() % 255));
 }
@@ -43,6 +43,11 @@ void Player::move(sf::Vector2f offset, sf::Vector2u winSize)
 		pos.y = winSize.y - size.y / 2.f;
 
 	sprite.setPosition(pos - size / 2.f);
+}
+
+void Player::setPos(sf::Vector2f newPos)
+{
+	pos = newPos;
 }
 
 void Player::shoot(std::vector<Projectile*>& prog)

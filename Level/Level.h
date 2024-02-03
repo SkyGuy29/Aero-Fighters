@@ -9,7 +9,8 @@ class Level : public sf::Drawable
 {
 public:
 	Level();
-	Level(int mapId);
+
+	void load(sf::Vector2u winSize, int mapId);
 
 	void update();
 
@@ -23,7 +24,11 @@ private:
 	Player p1, p2;
 	bool p2Joined = false;
 
+	sf::Vector2u bgSize;
 	sf::RectangleShape background;
-	sf::Texture backgroundImg;
+
+	sf::Texture bgImg;
+
+	int bgDist = 0;
 };
 

@@ -17,6 +17,8 @@ public:
 
 	void move(sf::Vector2f offset, sf::Vector2u winSize);
 
+	void setPos(sf::Vector2f newPos);
+
 	void shoot(std::vector<Projectile*>& prog);
 
 private:

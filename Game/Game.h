@@ -20,6 +20,7 @@ private:
 	int deltaTime = 0, updatesPSec = 30;
 
 	sf::RenderWindow win;
+	sf::View view;
 	sf::Vector2u winSize = sf::Vector2u(224, 320);
 	float winScale = 2.f;
 	int framesPSec = 30;
