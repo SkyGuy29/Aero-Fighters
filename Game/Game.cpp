@@ -16,7 +16,8 @@ void Game::run()
 	view = win.getDefaultView();
 	view.setSize(winSize.x, winSize.y);
 	view.setCenter(winSize.x / 2.f, winSize.y / 2.f);
-	win.setView(view);
+
+	resize();
 
 	// Due to the weirdness of deconstructors, the old way:
 	// level = Level(winSize, 0);
@@ -37,6 +38,8 @@ void Game::run()
 			case sf::Event::Closed:
 				win.close();
 				break;
+			case sf::Event::Resized:
+				resize();
 			}
 
 		deltaTime += clock.restart().asMilliseconds();
@@ -67,4 +70,17 @@ void Game::playerInput()
 bool Game::key(int k)
 {
 	return sf::Keyboard::isKeyPressed(static_cast<sf::Keyboard::Key>(k));
+}
+
+void Game::resize()
+{
+	winScale = std::fmin(win.getSize().x / winSize.x, win.getSize().y / winSize.y);
+
+	view.setViewport(sf::FloatRect(
+		0.5f - winScale * float(winSize.x) / float(win.getSize().x) / 2.f,
+		0.5f - winScale * float(winSize.y) / float(win.getSize().y) / 2.f,
+		winScale * float(winSize.x) / float(win.getSize().x),
+		winScale * float(winSize.y) / float(win.getSize().y)
+	));
+	win.setView(view);
 }

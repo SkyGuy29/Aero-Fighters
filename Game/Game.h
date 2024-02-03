@@ -16,6 +16,8 @@ private:
 
 	bool key(int k);
 
+	void resize();
+
 	sf::Clock clock;
 	int deltaTime = 0, updatesPSec = 30;
 
