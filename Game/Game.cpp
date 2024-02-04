@@ -74,7 +74,7 @@ bool Game::key(int k)
 
 void Game::resize()
 {
-	winScale = std::fmin(win.getSize().x / winSize.x, win.getSize().y / winSize.y);
+	winScale = std::fmin(static_cast<float>(win.getSize().x) / winSize.x, static_cast<float>(win.getSize().y) / winSize.y);
 
 	view.setViewport(sf::FloatRect(
 		0.5f - winScale * float(winSize.x) / float(win.getSize().x) / 2.f,
