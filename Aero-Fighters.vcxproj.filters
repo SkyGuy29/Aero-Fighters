@@ -62,5 +62,11 @@
     <ClInclude Include="Object\Projectile\StraightProjectile\StraightProjectile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Object\Projectile\CurvedProjectile\CurvedProjectile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Object\Projectile\HomingProjectile\HomingProjectile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
