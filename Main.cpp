@@ -1,3 +1,4 @@
+// the fun begins!
 #include "Game/Game.h"
 
 int main()

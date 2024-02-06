@@ -47,8 +47,7 @@ void Game::run()
 		{
 			deltaTime -= 1000 / updatesPSec;
 
-			playerInput();
-			level.update();
+			level.update(winSize);
 		}
 
 		win.clear();
@@ -57,19 +56,6 @@ void Game::run()
 
 		win.display();
 	}
-}
-
-void Game::playerInput()
-{
-	level.movePlayers(
-		sf::Vector2f(key(p1Ctrl[Right]) - key(p1Ctrl[Left]), key(p1Ctrl[Back]) - key(p1Ctrl[Forward])),
-		sf::Vector2f(key(p2Ctrl[Right]) - key(p2Ctrl[Left]), key(p2Ctrl[Back]) - key(p2Ctrl[Forward])),
-		winSize);
-}
-
-bool Game::key(int k)
-{
-	return sf::Keyboard::isKeyPressed(static_cast<sf::Keyboard::Key>(k));
 }
 
 void Game::resize()

@@ -50,7 +50,18 @@ void Player::setPos(sf::Vector2f newPos)
 	pos = newPos;
 }
 
-void Player::shoot(std::vector<Projectile*>& prog)
+void Player::shoot(std::vector<Projectile*>& proj)
 {
+	// The cooldown is needed, otherwise it shoots a constant stream
+	if (!shootCoolDown)
+	{
+		proj.push_back(new StraightProjectile(pos, 180.f, 5.f));
+		shootCoolDown = shootCoolDownVal;
+	}
+}
 
+void Player::update()
+{
+	if (shootCoolDown)
+		shootCoolDown--;
 }

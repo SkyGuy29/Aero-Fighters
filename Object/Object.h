@@ -4,6 +4,9 @@
 
 class Object : public sf::Drawable
 {
+public:
+	virtual void update(sf::Vector2u winSize);
+
 protected:
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 

@@ -154,6 +154,7 @@
     <ClCompile Include="Object\Object.cpp" />
     <ClCompile Include="Object\Player\Player.cpp" />
     <ClCompile Include="Object\Projectile\Projectile.cpp" />
+    <ClCompile Include="Object\Projectile\StraightProjectile\StraightProjectile.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Object\Enemy\Enemy.h" />
@@ -162,6 +163,7 @@
     <ClInclude Include="Object\Object.h" />
     <ClInclude Include="Object\Player\Player.h" />
     <ClInclude Include="Object\Projectile\Projectile.h" />
+    <ClInclude Include="Object\Projectile\StraightProjectile\StraightProjectile.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

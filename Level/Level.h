@@ -12,12 +12,12 @@ public:
 
 	void load(sf::Vector2u winSize, int mapId);
 
-	void update();
-
-	void movePlayers(sf::Vector2f p1Pos, sf::Vector2f p2Pos, sf::Vector2u winSize);
+	void update(sf::Vector2u winSize);
 
 private:
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const;
+
+	bool key(int k);
 
 	std::vector<Enemy*> enemies;
 	std::vector<Projectile*> projs;
@@ -29,6 +29,38 @@ private:
 
 	sf::Texture bgImg;
 
-	int bgDist = 0;
+	int bgDist = 0, bgSpeed = 1;
+
+	// TEMPORARY CONTROLS
+
+	enum Controls
+	{
+		Forward,
+		Left,
+		Back,
+		Right,
+		Shoot,
+		Special
+	};
+
+	int p1Ctrl[6] =
+	{
+		sf::Keyboard::W, // Forward
+		sf::Keyboard::A, // Left
+		sf::Keyboard::S, // Back
+		sf::Keyboard::D, // Right
+		sf::Keyboard::Q, // Shoot
+		sf::Keyboard::E  // Special
+	};
+
+	int p2Ctrl[6] =
+	{
+		sf::Keyboard::I, // Forward
+		sf::Keyboard::J, // Left
+		sf::Keyboard::K, // Back
+		sf::Keyboard::L, // Right
+		sf::Keyboard::U, // Shoot
+		sf::Keyboard::O  // Special
+	};
 };
 
