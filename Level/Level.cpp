@@ -6,15 +6,14 @@ Level::Level()
 
 void Level::load(sf::Vector2u winSize, int mapId)
 {
-	bgSize = winSize;
-	background.setSize(sf::Vector2f(bgSize));
+	background.setSize(sf::Vector2f(winSize));
 
-	p1.setPos(sf::Vector2f(bgSize.x * 0.33f, bgSize.y * 0.75f));
-	p2.setPos(sf::Vector2f(bgSize.x * 0.66f, bgSize.y * 0.75f));
+	p1.setPos(sf::Vector2f(winSize.x * 0.33f, winSize.y * 0.75f));
+	p2.setPos(sf::Vector2f(winSize.x * 0.66f, winSize.y * 0.75f));
 
 	bgImg.loadFromFile("Res/placeholder.jpg");
 	bgDist = bgImg.getSize().y;
-	background.setTextureRect(sf::IntRect(0, bgDist, bgSize.x, bgSize.y));
+	background.setTextureRect(sf::IntRect(0, bgDist, winSize.x, winSize.y));
 	background.setTexture(&bgImg);
 }
 
@@ -28,24 +27,36 @@ void Level::update(sf::Vector2u winSize)
 	p2.move(sf::Vector2f(key(p2Ctrl[Right]) - key(p2Ctrl[Left]), key(p2Ctrl[Back]) - key(p2Ctrl[Forward])),	winSize);
 
 	if (key(p1Ctrl[Shoot]))
-		p1.shoot(projs);
+		p1.shoot(playerProjs);
 	if (key(p2Ctrl[Shoot]))
-		p2.shoot(projs);
+		p2.shoot(playerProjs);
 
 	// update projs and delete if off screen
-	for (auto& proj : projs)
-		proj->update(winSize);
-
-	for (int i = projs.size() - 1; i >= 0; i--)
-		if (projs[i]->shouldDelete())
+	// Backwards loop so deleting elements doesn't mess up index numbers
+	// Deleting from the front first shifts everything after it down,
+	// skipping the element after the deleted one.
+	for (int i = enemyProjs.size() - 1; i >= 0; i--)
+	{
+		enemyProjs[i]->update(winSize);
+		if (enemyProjs[i]->shouldDelete())
 		{
-			delete projs[i];
-			projs.erase(projs.begin() + i);
+			delete enemyProjs[i];
+			enemyProjs.erase(enemyProjs.begin() + i);
 		}
+	}
+	for (int i = playerProjs.size() - 1; i >= 0; i--)
+	{
+		playerProjs[i]->update(winSize);
+		if (playerProjs[i]->shouldDelete())
+		{
+			delete playerProjs[i];
+			playerProjs.erase(playerProjs.begin() + i);
+		}
+	}
 
 	// Scrolling background
 	bgDist -= bgSpeed;
-	background.setTextureRect(sf::IntRect(0, bgDist, bgSize.x, bgSize.y));
+	background.setTextureRect(sf::IntRect(0, bgDist, winSize.x, winSize.y));
 }
 
 void Level::draw(sf::RenderTarget& target, sf::RenderStates states) const
@@ -58,7 +69,9 @@ void Level::draw(sf::RenderTarget& target, sf::RenderStates states) const
 	target.draw(p1, states);
 	target.draw(p2, states);
 
-	for (auto& proj : projs)
+	for (auto& proj : enemyProjs)
+		target.draw(*proj, states);
+	for (auto& proj : playerProjs)
 		target.draw(*proj, states);
 }
 

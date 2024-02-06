@@ -20,11 +20,10 @@ private:
 	bool key(int k);
 
 	std::vector<Enemy*> enemies;
-	std::vector<Projectile*> projs;
+	std::vector<Projectile*> playerProjs, enemyProjs;
 	Player p1, p2;
 	bool p2Joined = false;
 
-	sf::Vector2u bgSize;
 	sf::RectangleShape background;
 
 	sf::Texture bgImg;
