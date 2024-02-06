@@ -3,8 +3,8 @@
 StraightProjectile::StraightProjectile(sf::Vector2f pos, float angle, float speed)
 {
 	this->pos = pos;
-	this->angle = angle;
-	this->speed = speed;
+	this->velocity.x = speed * std::sin(angle);
+	this->velocity.y = speed * std::cos(angle);
 	size = sf::Vector2f(5, 10);
 
 	sprite.setOrigin(size / 2.f);
@@ -15,8 +15,8 @@ StraightProjectile::StraightProjectile(sf::Vector2f pos, float angle, float spee
 
 void StraightProjectile::update(sf::Vector2u winSize)
 {
-	pos.x += speed * std::sin(angle * TO_RAD);
-	pos.y -= speed * std::cos(angle * TO_RAD);
+	pos.x += velocity.x;
+	pos.y -= velocity.y;
 	sprite.setPosition(pos);
 
 	if (pos.x > winSize.x || pos.y > winSize.y || pos.x < 0 || pos.y < 0)

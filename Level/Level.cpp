@@ -35,24 +35,25 @@ void Level::update(sf::Vector2u winSize)
 	// Backwards loop so deleting elements doesn't mess up index numbersu
 	// Deleting from the front first shifts everything after it down,
 	// skipping the element after the deleted one.
-	for (int i = enemyProjs.size() - 1; i >= 0; i--)
+	for (int i = 0; i < enemyProjs.size(); i++)
 	{
-		enemyProjs[i]->update(winSize);
-		if (enemyProjs[i]->shouldDelete())
+		enemyProjs[enemyProjs.size() - 1 - i]->update(winSize);
+		if (enemyProjs[enemyProjs.size() - 1 - i]->shouldDelete())
 		{
-			delete enemyProjs[i];
-			enemyProjs.erase(enemyProjs.begin() + i);
+			delete enemyProjs[enemyProjs.size() - 1 - i];
+			enemyProjs.erase(enemyProjs.end() - i);
 		}
 	}
-	for (int i = playerProjs.size() - 1; i >= 0; i--)
+	for (int i = 0; i < playerProjs.size(); i++)
 	{
-		playerProjs[i]->update(winSize);
-		if (playerProjs[i]->shouldDelete())
+		playerProjs[playerProjs.size() - 1 - i]->update(winSize);
+		if (playerProjs[playerProjs.size() - 1 - i]->shouldDelete())
 		{
-			delete playerProjs[i];
-			playerProjs.erase(playerProjs.begin() + i);
+			delete playerProjs[playerProjs.size() - 1 - i];
+			playerProjs.erase(playerProjs.end() - i);
 		}
 	}
+
 
 	// Scrolling background
 	bgDist -= bgSpeed;

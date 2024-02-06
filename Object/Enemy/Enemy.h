@@ -6,11 +6,11 @@
 class Enemy : public Object
 {
 public:
-	Enemy();
+	Enemy(short);
 
 	int getHealth() const;
 
 private:
-	int health = 1;
+	int health;
 };
 

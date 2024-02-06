@@ -7,10 +7,18 @@ class Object : public sf::Drawable
 public:
 	virtual void update(sf::Vector2u winSize);
 
+	bool shouldDelete();
+
 protected:
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
-	sf::Vector2f pos, size;
+	bool intersect();
+
+	short id, rotation, cooldown;
+
+	bool del;
+
+	sf::Vector2f pos, size, velocity;
 
 	sf::RectangleShape sprite;
 };

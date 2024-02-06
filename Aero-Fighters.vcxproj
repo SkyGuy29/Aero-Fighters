@@ -147,6 +147,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Object\Enemy\Boss\Boss.cpp" />
+    <ClCompile Include="Object\Enemy\Air\Air.cpp" />
+    <ClCompile Include="Object\Enemy\Land\Land.cpp" />
     <ClCompile Include="Object\Enemy\Enemy.cpp" />
     <ClCompile Include="Game\Game.cpp" />
     <ClCompile Include="Level\Level.cpp" />
@@ -157,6 +160,9 @@
     <ClCompile Include="Object\Projectile\StraightProjectile\StraightProjectile.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Object\Enemy\Boss\Boss.h" />
+    <ClInclude Include="Object\Enemy\Air\Air.h" />
+    <ClInclude Include="Object\Enemy\Land\Land.h" />
     <ClInclude Include="Object\Enemy\Enemy.h" />
     <ClInclude Include="Game\Game.h" />
     <ClInclude Include="Level\Level.h" />
