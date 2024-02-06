@@ -5,7 +5,7 @@ StraightProjectile::StraightProjectile(sf::Vector2f pos, float angle, float spee
 	this->pos = pos;
 	this->angle = angle;
 	this->speed = speed;
-	size = sf::Vector2f(5, 10);
+	size = sf::Vector2f(2, 10);
 
 	sprite.setOrigin(size / 2.f);
 	sprite.setPosition(pos);

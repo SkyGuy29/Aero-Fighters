@@ -56,7 +56,9 @@ void Player::shoot(std::vector<Projectile*>& proj)
 	// The cooldown is needed, otherwise it shoots a constant stream
 	if (!shootCoolDown)
 	{
-		proj.push_back(new StraightProjectile(pos, 0.f, 5.f));
+		proj.push_back(new StraightProjectile(pos, 15.f, 15.f));
+		proj.push_back(new StraightProjectile(pos, 0.f, 15.f));
+		proj.push_back(new StraightProjectile(pos, -15.f, 15.f));
 		shootCoolDown = shootCoolDownVal;
 	}
 }

@@ -29,7 +29,7 @@ private:
 
 	int score = 0, lives = 0;
 
-	int shootCoolDown = 0, shootCoolDownVal = 5;
+	int shootCoolDown = 0, shootCoolDownVal = 2;
 
 	bool alive = true;
 };

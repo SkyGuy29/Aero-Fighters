@@ -162,6 +162,8 @@
     <ClInclude Include="Level\Level.h" />
     <ClInclude Include="Object\Object.h" />
     <ClInclude Include="Object\Player\Player.h" />
+    <ClInclude Include="Object\Projectile\CurvedProjectile\CurvedProjectile.h" />
+    <ClInclude Include="Object\Projectile\HomingProjectile\HomingProjectile.h" />
     <ClInclude Include="Object\Projectile\Projectile.h" />
     <ClInclude Include="Object\Projectile\StraightProjectile\StraightProjectile.h" />
   </ItemGroup>
