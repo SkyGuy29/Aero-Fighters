@@ -32,7 +32,7 @@ void Level::update(sf::Vector2u winSize)
 		p2.shoot(playerProjs);
 
 	// update projs and delete if off screen
-	// Backwards loop so deleting elements doesn't mess up index numbers
+	// Backwards loop so deleting elements doesn't mess up index numbersu
 	// Deleting from the front first shifts everything after it down,
 	// skipping the element after the deleted one.
 	for (int i = enemyProjs.size() - 1; i >= 0; i--)
