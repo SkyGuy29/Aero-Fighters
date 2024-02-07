@@ -10,6 +10,8 @@ void Game::run()
 	win.create(sf::VideoMode(winSize.x * winScale, winSize.y * winScale), "Aero Fighters");
 	win.setFramerateLimit(framesPSec);
 
+	p1.setPos(sf::Vector2f(winSize.x * 0.25f, winSize.y * 0.75f));
+	p2.setPos(sf::Vector2f(winSize.x * 0.75f, winSize.y * 0.75f));
 
 	// This view scales the 224x320 up to whatever the window size is.
 	// Just use winSize for calculations, no need to multiply by winScale
@@ -19,14 +21,6 @@ void Game::run()
 
 	resize();
 
-	// Due to the weirdness of deconstructors, the old way:
-	// level = Level(winSize, 0);
-	// would delete the texture before we could use it.
-	// I think thats whats happenning, but after 4 hours of debugging this idc it works now.
-	// Also for loading res after compiling, the starting directory is the one with the project files.
-	// This also was part of the 4 hours.
-
-	level = Level();
 	level.load(winSize, 0);
 
 	while (win.isOpen())
@@ -48,11 +42,15 @@ void Game::run()
 			deltaTime -= 1000 / updatesPSec;
 
 			level.update(winSize);
+			getInput();
 		}
 
 		win.clear();
 
 		win.draw(level);
+
+		win.draw(p1);
+		win.draw(p2);
 
 		win.display();
 	}
@@ -69,4 +67,15 @@ void Game::resize()
 		winScale * float(winSize.y) / float(win.getSize().y)
 	));
 	win.setView(view);
+}
+
+void Game::getInput()
+{
+	p1.move(key(p1Ctrl[Right]) - key(p1Ctrl[Left]), key(p1Ctrl[Back]) - key(p1Ctrl[Forward]), winSize);
+	p2.move(key(p2Ctrl[Right]) - key(p2Ctrl[Left]), key(p2Ctrl[Back]) - key(p2Ctrl[Forward]), winSize);
+}
+
+bool Game::key(int k)
+{
+	return sf::Keyboard::isKeyPressed(sf::Keyboard::Key(k));
 }

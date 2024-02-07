@@ -6,9 +6,8 @@ class Projectile : public Object
 {
 public:
 	Projectile();
+	Projectile(sf::Vector2f pos, float angle, float vel);
+	Projectile(float posX, float posY, float angle, float vel);
 
 	void update(sf::Vector2u winSize);
-
-protected:
-	const float PI = 3.14159, TO_RAD = PI / 180.f, TO_DEG = 180.f / PI;
 };

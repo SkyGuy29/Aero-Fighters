@@ -36,7 +36,19 @@
     <ClCompile Include="Object\Object.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Object\Projectile\StraightProjectile\StraightProjectile.cpp">
+    <ClCompile Include="Object\Enemy\Boss\Boss.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Object\Enemy\Air\Air.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Object\Enemy\Land\Land.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Animator\Animator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Object\Collectable\Collectable.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -59,13 +71,19 @@
     <ClInclude Include="Object\Object.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Object\Projectile\StraightProjectile\StraightProjectile.h">
+    <ClInclude Include="Object\Enemy\Boss\Boss.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Object\Projectile\CurvedProjectile\CurvedProjectile.h">
+    <ClInclude Include="Object\Enemy\Air\Air.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Object\Projectile\HomingProjectile\HomingProjectile.h">
+    <ClInclude Include="Object\Enemy\Land\Land.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Animator\Animator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Object\Collectable\Collectable.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

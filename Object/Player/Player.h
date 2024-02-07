@@ -1,36 +1,25 @@
 #pragma once
 
-#include "../Object.h"
+#include <vector>
+
 #include "../Projectile/Projectile.h"
-#include "../Projectile/StraightProjectile/StraightProjectile.h"
 
 class Player : public Object
 {
 public:
 	Player();
-	Player(sf::Vector2f position);
+	Player(sf::Vector2f pos, sf::Vector2u winSize);
+	Player(float posX, float posY, sf::Vector2u winSize);
 
-	int getScore() const;
+	void shoot();
 
-	int getLives() const;
+	void update(sf::Vector2u winSize);
 
-	bool isAlive() const;
-
-	void move(sf::Vector2f offset, sf::Vector2u winSize);
-
-	void setPos(sf::Vector2f newPos);
-
-	void shoot(std::vector<Projectile*>& proj);
-
-	void update();
 
 private:
-	float speed = 5.f;
+	std::vector<Projectile*> projs;
 
-	int score = 0, lives = 0;
-
-	int shootCoolDown = 0, shootCoolDownVal = 2;
-
-	bool alive = true;
+	float vel = 5.f;
+	short cooldownVal = 2, country = -1;
 };
 

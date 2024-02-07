@@ -1,9 +1,11 @@
 #pragma once
 
-#include "../Object/Player/Player.h"
-#include "../Object/Enemy/Enemy.h"
-
 #include <vector>
+#include <SFML/Graphics.hpp>
+
+#include "../Object/Enemy/Enemy.h"
+#include "../Object/Projectile/Projectile.h"
+#include "../Object/Collectable/Collectable.h"
 
 class Level : public sf::Drawable
 {
@@ -17,49 +19,13 @@ public:
 private:
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
-	bool key(int k);
-
 	std::vector<Enemy*> enemies;
-	std::vector<Projectile*> playerProjs, enemyProjs;
-	Player p1, p2;
-	bool p2Joined = false;
+	std::vector<Projectile*> projs;
+	std::vector<Collectable*> collectables;
 
-	sf::RectangleShape background;
-
+	sf::RectangleShape bg;
 	sf::Texture bgImg;
-
-	int bgDist = 0, bgSpeed = 1;
-
-	// TEMPORARY CONTROLS
-
-	enum Controls
-	{
-		Forward,
-		Left,
-		Back,
-		Right,
-		Shoot,
-		Special
-	};
-
-	int p1Ctrl[6] =
-	{
-		sf::Keyboard::W, // Forward
-		sf::Keyboard::A, // Left
-		sf::Keyboard::S, // Back
-		sf::Keyboard::D, // Right
-		sf::Keyboard::Q, // Shoot
-		sf::Keyboard::E  // Special
-	};
-
-	int p2Ctrl[6] =
-	{
-		sf::Keyboard::I, // Forward
-		sf::Keyboard::J, // Left
-		sf::Keyboard::K, // Back
-		sf::Keyboard::L, // Right
-		sf::Keyboard::U, // Shoot
-		sf::Keyboard::O  // Special
-	};
+	sf::IntRect rect;
+	int bgSpeed = 1, bgDist = 0;
 };
 
