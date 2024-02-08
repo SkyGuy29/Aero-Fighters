@@ -36,6 +36,9 @@ private:
 
 	// TEMPORARY CONTROLS
 
+	// Controller test
+	//https://hcidesign.com/gamepad/
+
 	enum Controller
 	{
 		A,
