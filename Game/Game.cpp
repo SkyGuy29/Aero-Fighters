@@ -10,8 +10,8 @@ void Game::run()
 	win.create(sf::VideoMode(winSize.x * winScale, winSize.y * winScale), "Aero Fighters");
 	win.setFramerateLimit(framesPSec);
 
-	p1.setPos(sf::Vector2f(winSize.x * 0.25f, winSize.y * 0.75f));
-	p2.setPos(sf::Vector2f(winSize.x * 0.75f, winSize.y * 0.75f));
+	for (int i = 0; i < 2; i++)
+		p[i].setPos(sf::Vector2f(winSize.x * (i ? 0.75f : 0.25f), winSize.y * 0.75f));
 
 	// This view scales the 224x320 up to whatever the window size is.
 	// Just use winSize for calculations, no need to multiply by winScale
@@ -44,16 +44,16 @@ void Game::run()
 			level.update(winSize);
 			getInput();
 
-			p1.update(winSize);
-			p2.update(winSize);
+			for (int i = 0; i < 2; i++)
+				p[i].update(winSize);
 		}
 
 		win.clear();
 
 		win.draw(level);
 
-		win.draw(p1);
-		win.draw(p2);
+		for (int i = 0; i < 2; i++)
+			win.draw(p[i]);
 
 		win.display();
 	}
@@ -74,16 +74,42 @@ void Game::resize()
 
 void Game::getInput()
 {
-	p1.move(key(p1Ctrl[Right]) - key(p1Ctrl[Left]), key(p1Ctrl[Back]) - key(p1Ctrl[Forward]), winSize);
-	p2.move(key(p2Ctrl[Right]) - key(p2Ctrl[Left]), key(p2Ctrl[Back]) - key(p2Ctrl[Forward]), winSize);
+	// controller controls
+	// sorry, I just have one controller right now, but it should work anyways
+	sf::Vector2f joy;
 
-	if (key(p1Ctrl[Shoot]))
-		p1.shoot();
-	if (key(p2Ctrl[Shoot]))
-		p2.shoot();
+	for (int i = 0; i < 2; i++)
+	{
+		joy.x = sf::Joystick::getAxisPosition(i, sf::Joystick::X) / 100.f;
+		joy.y = sf::Joystick::getAxisPosition(i, sf::Joystick::Y) / 100.f;
+
+		// fix drift under 15%
+		joy.x *= std::abs(joy.x) > 0.15f;
+		joy.y *= std::abs(joy.y) > 0.15f;
+		p[i].move(joy, winSize);
+
+	if (button(i, Y))
+		p[i].shoot();
+
+	if (button(i, B))
+		p[i].special();
+
+	// keyboard controls
+	p[i].move(key(i, Right) - key(i, Left), key(i, Back) - key(i, Forward), winSize);
+
+	if (key(i, Shoot))
+		p[i].shoot();
+	}
 }
 
-bool Game::key(int k)
+bool Game::key(int p, int k)
 {
-	return sf::Keyboard::isKeyPressed(sf::Keyboard::Key(k));
+	if (p)
+		return sf::Keyboard::isKeyPressed(sf::Keyboard::Key(p2Ctrl[k]));
+	return sf::Keyboard::isKeyPressed(sf::Keyboard::Key(p1Ctrl[k]));
+}
+
+bool Game::button(int p, int b)
+{
+	return sf::Joystick::isButtonPressed(p, b);
 }

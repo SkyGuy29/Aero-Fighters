@@ -17,7 +17,9 @@ private:
 
 	void getInput();
 
-	bool key(int k);
+	bool key(int p, int k);
+
+	bool button(int p, int b);
 
 	sf::Clock clock;
 	int deltaTime = 0, updatesPSec = 30;
@@ -30,9 +32,29 @@ private:
 
 	Level level;
 
-	Player p1, p2;
+	Player p[2];
 
 	// TEMPORARY CONTROLS
+
+	enum Controller
+	{
+		A,
+		B,
+		X,
+		Y,
+		L1,
+		R1,
+		L2,
+		R2,
+		Select,
+		Start,
+		L3,
+		R3,
+		D_Up,
+		D_Down,
+		D_Left,
+		D_Right
+	};
 
 	enum Controls
 	{

@@ -24,6 +24,10 @@ void Player::shoot()
 	}
 }
 
+void Player::special()
+{
+}
+
 void Player::update(sf::Vector2u winSize)
 {
 	if (cooldown)

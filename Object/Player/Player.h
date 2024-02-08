@@ -11,6 +11,8 @@ public:
 
 	void shoot();
 
+	void special();
+
 	void update(sf::Vector2u winSize);
 
 private:
