@@ -16,6 +16,7 @@ void Level::load(sf::Vector2u winSize, int mapId)
 
 	p[0].setPos(sf::Vector2f(winSize.x * 0.25f, winSize.y * 0.75f));
 	p[1].setPos(sf::Vector2f(winSize.x * 0.75f, winSize.y * 0.75f));
+	collectables.push_back(new Collectable(0));
 }
 
 void Level::update(sf::Vector2u winSize)
@@ -23,8 +24,17 @@ void Level::update(sf::Vector2u winSize)
 	bgDist -= bgSpeed;
 	rect.top = bgDist;
 	bg.setTextureRect(rect);
-	c.update(winSize);
-
+	for (auto& proj : playerProjs)
+		proj->update(winSize);
+	for (auto& proj : enemyProjs)
+		proj->update(winSize);
+	for (auto& collectable : collectables)
+		collectable->update(winSize);
+	for (auto& collectable : collectables)
+	{
+		if (collectable->shouldDelete() == true)
+			delete collectable;
+	}
 }
 
 void Level::draw(sf::RenderTarget& target, sf::RenderStates states) const
@@ -34,6 +44,8 @@ void Level::draw(sf::RenderTarget& target, sf::RenderStates states) const
 		target.draw(*proj);
 	for (auto& proj : enemyProjs)
 		target.draw(*proj);
+	for (auto& collectable : collectables)
+		target.draw(*collectable);
 	for (int i = 0; i < 2; i++)
 		target.draw(p[i]);
 }
