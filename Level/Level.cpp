@@ -20,6 +20,7 @@ void Level::load(sf::Vector2u winSize, int mapId)
 	test.loadFromFile("Res/AnimatorTest.png");
 	p[0].setTexture(&test);
 	p[1].setTexture(&test);
+	collectables.push_back(new Collectable(0));
 }
 
 void Level::update(sf::Vector2u winSize)
@@ -62,6 +63,8 @@ void Level::draw(sf::RenderTarget& target, sf::RenderStates states) const
 		target.draw(*proj);
 	for (auto& proj : enemyProjs)
 		target.draw(*proj);
+	for (auto& collectable : collectables)
+		target.draw(*collectable);
 	for (int i = 0; i < 2; i++)
 		target.draw(p[i]);
 }

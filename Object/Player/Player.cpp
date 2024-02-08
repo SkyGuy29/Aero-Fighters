@@ -5,7 +5,7 @@ Player::Player()
 	cooldownVal = 3;
 	vel = 5.f;
 	setSize(25, 50);
-
+	frameCount = 10;
 }
 
 void Player::shoot(std::vector<Projectile*>& projs)
