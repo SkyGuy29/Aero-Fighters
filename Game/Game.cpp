@@ -11,7 +11,10 @@ void Game::run()
 	win.setFramerateLimit(framesPSec);
 
 	for (int i = 0; i < 2; i++)
+	{
 		p[i].setPos(sf::Vector2f(winSize.x * (i ? 0.75f : 0.25f), winSize.y * 0.75f));
+		p[i].setRandColor();
+	}
 
 	// This view scales the 224x320 up to whatever the window size is.
 	// Just use winSize for calculations, no need to multiply by winScale

@@ -28,11 +28,11 @@ public:
 
 	bool shouldDelete();
 
-protected:
-	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
-
 	// I know it's temporary
 	void setRandColor();
+
+protected:
+	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
 	bool intersect();
 
@@ -47,5 +47,5 @@ protected:
 
 	Animator animation;
 
-	const float PI = 3.14159f, TO_RAD = PI * 180.f, TO_DEG = 180.f / PI;
+	const float PI = 3.14159f, TO_RAD = PI / 180.f, TO_DEG = 180.f / PI;
 };

@@ -23,6 +23,8 @@ Projectile::Projectile(float posX, float posY, float angle, float vel)
 
 void Projectile::update(sf::Vector2u winSize)
 {
+	setRandColor();
+
 	pos.x += std::sin(rot * TO_RAD) * vel;
 	pos.y -= std::cos(rot * TO_RAD) * vel;
 
