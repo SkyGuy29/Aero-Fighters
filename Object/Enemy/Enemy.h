@@ -10,6 +10,10 @@ public:
 
 	int getHealth() const;
 
+	int getType();
+
+	void intersect(Object*);
+
 private:
 	int health;
 };
