@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 
 #include "../Object/Enemy/Enemy.h"
+#include "../Object/Player/Player.h"
 #include "../Object/Projectile/Projectile.h"
 #include "../Object/Collectable/Collectable.h"
 
@@ -20,10 +21,16 @@ public:
 	void update(sf::Vector2u winSize);
 
 private:
+	void getInput(sf::Vector2u winSize);
+
+	bool key(int p, int k);
+
+	bool button(int p, int b);
+
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
 	std::vector<Enemy*> enemies;
-	std::vector<Projectile*> projs;
+	std::vector<Projectile*> playerProjs, enemyProjs;
 	std::vector<Collectable*> collectables;
 
 	sf::RectangleShape bg;
@@ -31,7 +38,61 @@ private:
 	sf::IntRect rect;
 	int bgSpeed = 1, bgDist = 0;
 
-	//Attempt at adding collectable (Doesn't work right now)
-	Collectable c = Collectable(0);
+	Player p[2];
+
+	// TEMPORARY CONTROLS
+
+	// Controller test
+	//https://hcidesign.com/gamepad/
+
+	enum Controller
+	{
+		A,
+		B,
+		X,
+		Y,
+		L1,
+		R1,
+		L2,
+		R2,
+		Select,
+		Start,
+		L3,
+		R3,
+		D_Up,
+		D_Down,
+		D_Left,
+		D_Right
+	};
+
+	enum Controls
+	{
+		Forward,
+		Left,
+		Back,
+		Right,
+		Shoot,
+		Special
+	};
+
+	int p1Ctrl[6] =
+	{
+		sf::Keyboard::W, // Forward
+		sf::Keyboard::A, // Left
+		sf::Keyboard::S, // Back
+		sf::Keyboard::D, // Right
+		sf::Keyboard::Q, // Shoot
+		sf::Keyboard::E  // Special
+	};
+
+	int p2Ctrl[6] =
+	{
+		sf::Keyboard::I, // Forward
+		sf::Keyboard::J, // Left
+		sf::Keyboard::K, // Back
+		sf::Keyboard::L, // Right
+		sf::Keyboard::U, // Shoot
+		sf::Keyboard::O  // Special
+	};
 };
 

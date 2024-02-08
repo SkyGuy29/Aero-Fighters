@@ -9,7 +9,7 @@ class Player : public Object
 public:
 	Player();
 
-	void shoot();
+	void shoot(std::vector<Projectile*>& projs);
 
 	void special();
 
@@ -21,8 +21,6 @@ public:
 
 private:
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const;
-
-	std::vector<Projectile*> projs;
 
 	short country = -1;
 };

@@ -9,7 +9,7 @@ Player::Player()
 	animation.set(10, &sprite, "Res/animatorTest.png");
 }
 
-void Player::shoot()
+void Player::shoot(std::vector<Projectile*>& projs)
 {
 	if (!cooldown)
 	{
@@ -35,16 +35,6 @@ void Player::update(sf::Vector2u winSize)
 		cooldown--;
 
 	animation.next();
-
-	for (int i = 0; i < projs.size(); i++)
-	{
-		projs[projs.size() - 1 - i]->update(winSize);
-		if (projs[projs.size() - 1 - i]->shouldDelete())
-		{
-			delete projs[projs.size() - 1 - i];
-			projs.erase(projs.end() - 1 - i);
-		}
-	}
 }
 
 void Player::intersect(Object* targetPtr)
@@ -64,7 +54,5 @@ int Player::getType()
 
 void Player::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
-	for (auto& proj : projs)
-		target.draw(*proj);
 	target.draw(sprite, states);
 }
