@@ -47,6 +47,21 @@ void Player::update(sf::Vector2u winSize)
 	}
 }
 
+void Player::intersect(Object* targetPtr)
+{
+	if ((abs(pos.x - targetPtr->getPos().x) <= (size.x / 2 + targetPtr->getSize().x / 2))
+		&& (abs(pos.y - targetPtr->getPos().y) <= (size.y / 2 + targetPtr->getSize().y / 2)))
+	{
+		if (targetPtr->getType() == 3)
+			del = true;
+	}
+}
+
+int Player::getType()
+{
+	return 0;
+}
+
 void Player::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
 	for (auto& proj : projs)

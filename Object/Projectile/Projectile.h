@@ -10,4 +10,8 @@ public:
 	Projectile(float posX, float posY, float angle, float vel);
 
 	void update(sf::Vector2u winSize);
+
+	int getType();
+
+	void intersect(Object*);
 };

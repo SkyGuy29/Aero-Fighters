@@ -21,6 +21,16 @@ Projectile::Projectile(float posX, float posY, float angle, float vel)
 	this->vel = vel;
 }
 
+int Projectile::getType()
+{
+	return 3;
+}
+
+void intersect(Object* targetPtr)
+{
+
+}
+
 void Projectile::update(sf::Vector2u winSize)
 {
 	setRandColor();

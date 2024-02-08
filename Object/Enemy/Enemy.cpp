@@ -17,3 +17,14 @@ int Enemy::getHealth() const
 {
 	return health;
 }
+
+
+int Enemy::getType()
+{
+	return 1;
+}
+
+void Enemy::intersect(Object*)
+{
+
+}

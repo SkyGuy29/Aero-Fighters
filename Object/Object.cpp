@@ -42,6 +42,15 @@ void Object::intersect(Object* targetPtr)
 	}
 }
 
+int Object::getType()
+{
+	return -1;
+	//Player is 0
+	//Enemy is 1
+	//Collectable is 2
+	//Projectile is 3
+}
+
 void Object::rotate(float angle)
 {
 	rot = angle;
