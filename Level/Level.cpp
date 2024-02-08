@@ -21,7 +21,7 @@ void Level::update(sf::Vector2u winSize)
 	rect.top = bgDist;
 	bg.setTextureRect(rect);
 
-	//Attempt at making collectable
+	//Attempt at making collectable update with level.
 	c.update(winSize);
 }
 
