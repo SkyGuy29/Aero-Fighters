@@ -8,15 +8,15 @@ void Level::load(sf::Vector2u winSize, int mapId)
 {
 	bg.setSize(sf::Vector2f(winSize));
 	bgImg.loadFromFile("Res/placeholder.jpg");
+	bgDist = bgImg.getSize().y - winSize.y;
+	rect = sf::IntRect(0, bgDist, winSize.x, winSize.y);
 	bg.setTexture(&bgImg);
-	bg.setTextureRect(sf::IntRect(0, bgDist, winSize.x, winSize.y));
-	bg.setScale(1.f, -1.f);
-	rect = bg.getTextureRect();
+	bg.setTextureRect(rect);
 }
 
 void Level::update(sf::Vector2u winSize)
 {
-	bgDist += bgSpeed;
+	bgDist -= bgSpeed;
 	rect.top = bgDist;
 	bg.setTextureRect(rect);
 }
