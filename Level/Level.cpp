@@ -1,4 +1,5 @@
 #include "Level.h"
+#include "../Object/Collectable/Collectable.h"
 
 Level::Level()
 {
