@@ -4,17 +4,17 @@ Animator::Animator()
 {
 }
 
-void Animator::set(int frameCount, sf::RectangleShape* spritePtr)
+void Animator::set(int frameCount, sf::RectangleShape* spritePtr, std::string imgPath)
 {
-	this->frameCount = frameCount;
+	this->frameCount = frameCount * updatesPFrame;
 	this->spritePtr = spritePtr;
 	if (spritePtr != nullptr)
 	{
-		size = spritePtr->getSize();
-		rect.width = size.x;
-		rect.height = size.y;
-		rect.left = 0;
-		rect.top = 0;
+		size = sf::Vector2i(spritePtr->getSize());
+		rect = sf::IntRect(sf::Vector2i(), size);
+		tex.loadFromFile(imgPath);
+		spritePtr->setTexture(&tex);
+		spritePtr->setTextureRect(rect);
 	}
 }
 
@@ -26,7 +26,7 @@ void Animator::next()
 		if (currentFrame >= frameCount)
 			currentFrame -= frameCount;
 
-		rect.top = currentFrame * size.y;
+		rect.top = (currentFrame / updatesPFrame) * size.y;
 		spritePtr->setTextureRect(rect);
 	}
 }

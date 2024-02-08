@@ -42,11 +42,11 @@ void Object::setRotation(float newAngle)
 
 void Object::move(sf::Vector2f offset, sf::Vector2u winSize)
 {
-	pos += offset;
+	pos += offset * vel;
 	if (pos.x - size.x / 2.f < 0)
-		pos.x = -size.x / 2.f;
+		pos.x = size.x / 2.f;
 	if (pos.y - size.y / 2.f < 0)
-		pos.y = -size.y / 2.f;
+		pos.y = size.y / 2.f;
 	if (pos.x + size.x / 2.f >= winSize.x)
 		pos.x = winSize.x - size.x / 2.f;
 	if (pos.y + size.y / 2.f >= winSize.y)

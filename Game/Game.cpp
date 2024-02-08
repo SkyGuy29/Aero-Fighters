@@ -43,6 +43,9 @@ void Game::run()
 
 			level.update(winSize);
 			getInput();
+
+			p1.update(winSize);
+			p2.update(winSize);
 		}
 
 		win.clear();

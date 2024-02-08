@@ -2,26 +2,12 @@
 
 Player::Player()
 {
+	cooldownVal = 2;
+	vel = 5.f;
 	setSize(25, 50);
-	setRandColor();
-}
-
-Player::Player(sf::Vector2f pos, sf::Vector2u winSize)
-{
-	setSize(25, 50);
-	setPos(pos);
-	setRandColor();
-
-	//animation.set(1, &sprite);
-}
-
-Player::Player(float posX, float posY, sf::Vector2u winSize)
-{
-	setSize(25, 50);
-	setPos(posX, posY);
-	setRandColor();
-
-	//animation.set(1, &sprite);
+	
+	//setRandColor();
+	animation.set(10, &sprite, "Res/animatorTest.png");
 }
 
 void Player::shoot()
