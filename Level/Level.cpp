@@ -16,6 +16,10 @@ void Level::load(sf::Vector2u winSize, int mapId)
 
 	p[0].setPos(sf::Vector2f(winSize.x * 0.25f, winSize.y * 0.75f));
 	p[1].setPos(sf::Vector2f(winSize.x * 0.75f, winSize.y * 0.75f));
+
+	test.loadFromFile("Res/AnimatorTest.png");
+	p[0].setTexture(&test);
+	p[1].setTexture(&test);
 }
 
 void Level::update(sf::Vector2u winSize)
@@ -23,7 +27,31 @@ void Level::update(sf::Vector2u winSize)
 	bgDist -= bgSpeed;
 	rect.top = bgDist;
 	bg.setTextureRect(rect);
-	c.update(winSize);
+	
+	getInput(winSize);
+
+	for (int i = 0; i < playerProjs.size(); i++)
+	{
+		playerProjs[playerProjs.size() - 1 - i]->update(winSize);
+		if (playerProjs[playerProjs.size() - 1 - i]->shouldDelete())
+		{
+			delete playerProjs[playerProjs.size() - 1 - i];
+			playerProjs.erase(playerProjs.end() - 1 - i);
+		}
+	}
+
+	for (int i = 0; i < collectables.size(); i++)
+	{
+		collectables[collectables.size() - 1 - i]->update(winSize);
+		if (collectables[collectables.size() - 1 - i]->shouldDelete())
+		{
+			delete collectables[collectables.size() - 1 - i];
+			collectables.erase(collectables.end() - 1 - i);
+		}
+	}
+
+	for (int i = 0; i < 2; i++)
+		p[i].update(winSize);
 
 }
 

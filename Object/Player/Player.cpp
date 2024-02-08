@@ -5,8 +5,7 @@ Player::Player()
 	cooldownVal = 3;
 	vel = 5.f;
 	setSize(25, 50);
-	
-	animation.set(10, &sprite, "Res/animatorTest.png");
+
 }
 
 void Player::shoot(std::vector<Projectile*>& projs)
@@ -34,7 +33,7 @@ void Player::update(sf::Vector2u winSize)
 	if (cooldown)
 		cooldown--;
 
-	animation.next();
+	nextFrame();
 }
 
 void Player::intersect(Object* targetPtr)

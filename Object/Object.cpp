@@ -14,6 +14,19 @@ void Object::draw(sf::RenderTarget& target, sf::RenderStates states) const
 	target.draw(sprite, states);
 }
 
+void Object::nextFrame()
+{
+	// Increases the image rectangle by its height and loops back when it reaches the end
+	currentFrame++;
+	if (currentFrame >= frameCount * updatesPFrame)
+		currentFrame -= frameCount * updatesPFrame;
+
+	// the dividing to an int is needed for the updates per frame delay.
+	sprite.setTextureRect(sf::IntRect(0, 
+		(currentFrame / updatesPFrame) * sprite.getSize().y,
+		sprite.getSize().x, sprite.getSize().y));
+}
+
 void Object::setRandColor()
 {
 	sf::Color c;
@@ -31,6 +44,11 @@ sf::Vector2f Object::getPos()
 sf::Vector2f Object::getSize()
 {
 	return size;
+}
+
+void Object::setTexture(sf::Texture* texPtr)
+{
+	sprite.setTexture(texPtr);
 }
 
 void Object::intersect(Object* targetPtr)

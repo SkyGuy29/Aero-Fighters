@@ -38,6 +38,9 @@ private:
 	sf::IntRect rect;
 	int bgSpeed = 1, bgDist = 0;
 
+	// Maybe put it in game or some other texture storage idk
+	sf::Texture test;
+
 	Player p[2];
 
 	// TEMPORARY CONTROLS

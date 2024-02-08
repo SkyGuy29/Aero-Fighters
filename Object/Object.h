@@ -4,8 +4,6 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "../Animator/Animator.h"
-
 class Object : public sf::Drawable
 {
 public:
@@ -33,6 +31,8 @@ public:
 	sf::Vector2f getPos();
 	sf::Vector2f getSize();
 
+	void setTexture(sf::Texture* texPtr);
+
 	// I know it's temporary
 	void setRandColor();
 	
@@ -43,6 +43,8 @@ public:
 protected:
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
+	void nextFrame();
+
 	short id, cooldown = 0, cooldownVal, health;
 
 	bool del = false;
@@ -52,7 +54,7 @@ protected:
 
 	sf::RectangleShape sprite;
 
-	Animator animation;
+	int frameCount = 0, updatesPFrame = 15, currentFrame = 0;
 
 	const float PI = 3.14159f, TO_RAD = PI / 180.f, TO_DEG = 180.f / PI;
 };
