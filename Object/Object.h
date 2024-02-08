@@ -1,3 +1,5 @@
+// The base class for everything that moves
+
 #pragma once
 
 #include <SFML/Graphics.hpp>
