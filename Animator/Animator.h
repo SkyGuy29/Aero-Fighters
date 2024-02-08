@@ -19,6 +19,6 @@ private:
 
 	sf::Texture tex;
 
-	int frameCount = 0, updatesPFrame = 3, currentFrame = 0;
+	int frameCount = 0, updatesPFrame = 15, currentFrame = 0;
 };
 
