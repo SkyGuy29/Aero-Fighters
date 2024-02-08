@@ -7,6 +7,7 @@ class Animator
 {
 public:
 	Animator();
+	void set(int frameCount, sf::RectangleShape* spritePtr);
 	void set(int frameCount, sf::RectangleShape* spritePtr, std::string imgPath);
 
 	void next();
