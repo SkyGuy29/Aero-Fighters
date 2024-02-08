@@ -1,13 +1,17 @@
 #include "Player.h"
 
-Player::Player(std::vector<Projectile*>* projs)
+Player::Player()
 {
 	cooldownVal = 3;
 	vel = 5.f;
 	setSize(25, 50);
-	this->projs = *projs;
 	
 	animation.set(10, &sprite, "Res/animatorTest.png");
+}
+
+void Player::setProjectiles(std::vector<Projectile*>* p)
+{
+	projs = *p;
 }
 
 void Player::shoot()

@@ -7,7 +7,9 @@
 class Player : public Object
 {
 public:
-	Player(std::vector<Projectile*>*);
+	Player();
+
+	void setProjectiles(std::vector<Projectile*>*);
 
 	void shoot();
 
