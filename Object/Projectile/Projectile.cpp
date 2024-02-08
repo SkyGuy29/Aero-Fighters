@@ -31,8 +31,11 @@ void Projectile::intersect(Object* targetPtr)
 
 }
 
+// Just moves in a straight line
 void Projectile::update(sf::Vector2u winSize)
 {
+	// | comment if you hate rainbows |
+	// V							  V
 	setRandColor();
 
 	pos.x += std::sin(rot * TO_RAD) * vel;

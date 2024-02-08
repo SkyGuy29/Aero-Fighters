@@ -33,15 +33,20 @@ void Game::run()
 				resize();
 			}
 
+		// Keeps constant update rate.
 		deltaTime += clock.restart().asMilliseconds();
 		while (deltaTime >= 1000 / updatesPSec)
 		{
 			deltaTime -= 1000 / updatesPSec;
 
+			// update stuff here
+
 			level.update(winSize);
 		}
 
 		win.clear();
+
+		// draw stuff here
 
 		win.draw(level);
 
@@ -51,6 +56,8 @@ void Game::run()
 
 void Game::resize()
 {
+	// Get the minimum scale from either x or y
+	// This fills the max space possible, then the view is centered on the window.
 	winScale = std::fmin(float(win.getSize().x) / winSize.x, float(win.getSize().y) / winSize.y);
 
 	view.setViewport(sf::FloatRect(

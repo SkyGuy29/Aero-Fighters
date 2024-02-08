@@ -8,8 +8,10 @@ Player::Player()
 	frameCount = 10;
 }
 
+// takes a pointer from Level's playerProjs so it can add Projectiles to it.
 void Player::shoot(std::vector<Projectile*>& projs)
 {
+	// cooldown is so a constant stream of projectiles isn't created
 	if (!cooldown)
 	{
 		switch (country)

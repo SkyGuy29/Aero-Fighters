@@ -14,23 +14,30 @@ void Level::load(sf::Vector2u winSize, int mapId)
 	bg.setTexture(&bgImg);
 	bg.setTextureRect(rect);
 
+	// Change later. This just spaces out the players
 	p[0].setPos(sf::Vector2f(winSize.x * 0.25f, winSize.y * 0.75f));
 	p[1].setPos(sf::Vector2f(winSize.x * 0.75f, winSize.y * 0.75f));
 
+	// just a test to try out the moved animator to object
 	test.loadFromFile("Res/AnimatorTest.png");
 	p[0].setTexture(&test);
 	p[1].setTexture(&test);
+
 	collectables.push_back(new Collectable(0));
 }
 
 void Level::update(sf::Vector2u winSize)
 {
+	// The background has to scroll backwards to get the effect that we want.
 	bgDist -= bgSpeed;
 	rect.top = bgDist;
 	bg.setTextureRect(rect);
 	
 	getInput(winSize);
 
+	// checking the back of the vector first is needed,
+	// so deleting doesn't shift everything down and mess up the for loop index
+	// delete first, then erase
 	for (int i = 0; i < playerProjs.size(); i++)
 	{
 		playerProjs[playerProjs.size() - 1 - i]->update(winSize);
@@ -99,6 +106,8 @@ void Level::getInput(sf::Vector2u winSize)
 	}
 }
 
+
+// These two are for shortening code
 bool Level::key(int p, int k)
 {
 	if (p)

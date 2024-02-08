@@ -14,6 +14,8 @@ void Object::draw(sf::RenderTarget& target, sf::RenderStates states) const
 	target.draw(sprite, states);
 }
 
+// for objects that need animations, DON'T FORGET TO SET frameCount
+// this is the new animator
 void Object::nextFrame()
 {
 	// Increases the image rectangle by its height and loops back when it reaches the end
@@ -27,6 +29,7 @@ void Object::nextFrame()
 		sprite.getSize().x, sprite.getSize().y));
 }
 
+// just a temporary method, idk why I remade it lol
 void Object::setRandColor()
 {
 	sf::Color c;
@@ -46,6 +49,7 @@ sf::Vector2f Object::getSize()
 	return size;
 }
 
+// The use of this method is to load a texture in Level or Game once, then cheaply load it again multiple times
 void Object::setTexture(sf::Texture* texPtr)
 {
 	sprite.setTexture(texPtr);
@@ -81,6 +85,7 @@ void Object::setRotation(float newAngle)
 	sprite.setRotation(rot);
 }
 
+// I was thinking move would need a boundry check, not setPos.
 void Object::move(sf::Vector2f offset, sf::Vector2u winSize)
 {
 	pos += offset * vel;
@@ -100,6 +105,7 @@ void Object::move(float offsetX, float offsetY, sf::Vector2u winSize)
 	move(sf::Vector2f(offsetX, offsetY), winSize);
 }
 
+// setPos was more of a setup thing, and you know exactly where it will be going.
 void Object::setPos(sf::Vector2f newPos)
 {
 	pos = newPos;
@@ -111,6 +117,7 @@ void Object::setPos(float newPosX, float newPosY)
 	setPos(sf::Vector2f(newPosX, newPosY));
 }
 
+// I just wanted to reduce code repitition for setting the sprite origin, so might as well make it useful
 void Object::setSize(sf::Vector2f newSize)
 {
 	size = newSize;
@@ -123,6 +130,7 @@ void Object::setSize(float newSizeX, float newSizeY)
 	setSize(sf::Vector2f(newSizeX, newSizeY));
 }
 
+// returns if any part of an object is outside the viewing area
 bool Object::outOfBounds(sf::Vector2u winSize)
 {
 	return (
