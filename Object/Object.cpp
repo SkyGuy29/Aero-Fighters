@@ -33,7 +33,7 @@ sf::Vector2f Object::getSize()
 	return size;
 }
 
-bool Object::intersect(Object* targetPtr)
+void Object::intersect(Object* targetPtr)
 {
 	if ((abs(pos.x - targetPtr->getPos().x) <= (size.x / 2 + targetPtr->getSize().x / 2))
 		&& (abs(pos.y - targetPtr->getPos().y) <= (size.y / 2 + targetPtr->getSize().y / 2)))

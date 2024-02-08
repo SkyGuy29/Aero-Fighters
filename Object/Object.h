@@ -34,7 +34,7 @@ public:
 	// I know it's temporary
 	void setRandColor();
 	
-	bool intersect(Object*);
+	void intersect(Object*);
 
 protected:
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
