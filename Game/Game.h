@@ -3,7 +3,6 @@
 #include <SFML/Audio.hpp>
 
 #include "../Level/Level.h"
-#include "../Object/Player/Player.h"
 
 class Game
 {
@@ -15,7 +14,7 @@ public:
 private:
 	void resize();
 
-	void getInput();
+	void getInput(Player, Player);
 
 	bool key(int p, int k);
 
@@ -31,8 +30,6 @@ private:
 	int framesPSec = 30;
 
 	Level level;
-
-	Player p[2];
 
 	// TEMPORARY CONTROLS
 

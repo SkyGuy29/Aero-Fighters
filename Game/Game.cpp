@@ -10,12 +10,6 @@ void Game::run()
 	win.create(sf::VideoMode(winSize.x * winScale, winSize.y * winScale), "Aero Fighters");
 	win.setFramerateLimit(framesPSec);
 
-	for (int i = 0; i < 2; i++)
-	{
-		p[i].setPos(sf::Vector2f(winSize.x * (i ? 0.75f : 0.25f), winSize.y * 0.75f));
-		p[i].setRandColor();
-	}
-
 	// This view scales the 224x320 up to whatever the window size is.
 	// Just use winSize for calculations, no need to multiply by winScale
 	view = win.getDefaultView();
@@ -45,18 +39,12 @@ void Game::run()
 			deltaTime -= 1000 / updatesPSec;
 
 			level.update(winSize);
-			getInput();
-
-			for (int i = 0; i < 2; i++)
-				p[i].update(winSize);
+			getInput(level.getPlayer(0), level.getPlayer(1));
 		}
 
 		win.clear();
 
 		win.draw(level);
-
-		for (int i = 0; i < 2; i++)
-			win.draw(p[i]);
 
 		win.display();
 	}
@@ -75,8 +63,10 @@ void Game::resize()
 	win.setView(view);
 }
 
-void Game::getInput()
+void Game::getInput(Player p1, Player p2)
 {
+	Player p[2] = { p1, p2 };
+
 	// controller controls
 	// sorry, I just have one controller right now, but it should work anyways
 	sf::Vector2f joy;

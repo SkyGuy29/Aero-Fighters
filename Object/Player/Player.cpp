@@ -1,10 +1,11 @@
 #include "Player.h"
 
-Player::Player()
+Player::Player(std::vector<Projectile*>* projs)
 {
 	cooldownVal = 3;
 	vel = 5.f;
 	setSize(25, 50);
+	this->projs = *projs;
 	
 	animation.set(10, &sprite, "Res/animatorTest.png");
 }
@@ -49,7 +50,5 @@ void Player::update(sf::Vector2u winSize)
 
 void Player::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
-	for (auto& proj : projs)
-		target.draw(*proj);
 	target.draw(sprite, states);
 }

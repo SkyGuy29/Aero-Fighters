@@ -2,6 +2,7 @@
 
 #include <SFML/Graphics.hpp>
 
+#include "../../Level/Level.h"
 #include "../Animator/Animator.h"
 
 class Object : public sf::Drawable
@@ -44,6 +45,8 @@ protected:
 	float rot, vel;
 
 	sf::RectangleShape sprite;
+
+	Level level;
 
 	Animator animation;
 
