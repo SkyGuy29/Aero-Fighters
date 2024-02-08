@@ -30,5 +30,8 @@ private:
 	sf::Texture bgImg;
 	sf::IntRect rect;
 	int bgSpeed = 1, bgDist = 0;
+
+	//Attempt at adding collectable (Doesn't work right now)
+	Collectable c = Collectable(0);
 };
 

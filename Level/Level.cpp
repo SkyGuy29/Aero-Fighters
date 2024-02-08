@@ -1,4 +1,5 @@
 #include "Level.h"
+#include "../Object/Collectable/Collectable.h"
 
 Level::Level()
 {
@@ -19,9 +20,15 @@ void Level::update(sf::Vector2u winSize)
 	bgDist -= bgSpeed;
 	rect.top = bgDist;
 	bg.setTextureRect(rect);
+
+	//Attempt at making collectable
+	c.update(winSize);
 }
 
 void Level::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
 	target.draw(bg, states);
+
+	//Trying to draw collectable when level draws.
+	target.draw(c, states);
 }

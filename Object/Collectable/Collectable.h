@@ -4,12 +4,13 @@
 
 class Collectable : public Object
 {
-	Collectable();
+public:
+	Collectable(short);
 
 	int getType();
 	
 	void intersect(Object*);
 
-	void update();
+	void update(sf::Vector2u winSize);
 };
 
