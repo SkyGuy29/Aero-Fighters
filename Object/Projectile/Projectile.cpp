@@ -26,7 +26,7 @@ int Projectile::getType()
 	return 3;
 }
 
-void intersect(Object* targetPtr)
+void Projectile::intersect(Object* targetPtr)
 {
 
 }
