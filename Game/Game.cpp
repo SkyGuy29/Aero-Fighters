@@ -76,6 +76,11 @@ void Game::getInput()
 {
 	p1.move(key(p1Ctrl[Right]) - key(p1Ctrl[Left]), key(p1Ctrl[Back]) - key(p1Ctrl[Forward]), winSize);
 	p2.move(key(p2Ctrl[Right]) - key(p2Ctrl[Left]), key(p2Ctrl[Back]) - key(p2Ctrl[Forward]), winSize);
+
+	if (key(p1Ctrl[Shoot]))
+		p1.shoot();
+	if (key(p2Ctrl[Shoot]))
+		p2.shoot();
 }
 
 bool Game::key(int k)

@@ -29,7 +29,7 @@ public:
 	bool shouldDelete();
 
 protected:
-	void draw(sf::RenderTarget& target, sf::RenderStates states) const;
+	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
 	// I know it's temporary
 	void setRandColor();

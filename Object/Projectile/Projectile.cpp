@@ -7,7 +7,7 @@ Projectile::Projectile()
 
 Projectile::Projectile(sf::Vector2f pos, float angle, float vel)
 {
-	setSize(10, 4);
+	setSize(4, 10);
 	setPos(pos);
 	setRotation(angle);
 	this->vel = vel;
@@ -15,7 +15,7 @@ Projectile::Projectile(sf::Vector2f pos, float angle, float vel)
 
 Projectile::Projectile(float posX, float posY, float angle, float vel)
 {
-	setSize(10, 4);
+	setSize(4, 10);
 	setPos(posX, posY);
 	setRotation(angle);
 	this->vel = vel;
@@ -23,5 +23,11 @@ Projectile::Projectile(float posX, float posY, float angle, float vel)
 
 void Projectile::update(sf::Vector2u winSize)
 {
-	move(std::sin(rot * TO_RAD) * vel, -std::cos(rot * TO_RAD) * vel, winSize);
+	pos.x += std::sin(rot * TO_RAD) * vel;
+	pos.y -= std::cos(rot * TO_RAD) * vel;
+
+	sprite.setPosition(pos);
+
+	if (outOfBounds(winSize))
+		del = true;
 }
