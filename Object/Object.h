@@ -28,13 +28,16 @@ public:
 
 	bool shouldDelete();
 
+	sf::Vector2f getPos();
+	sf::Vector2f getSize();
+
 	// I know it's temporary
 	void setRandColor();
+	
+	bool intersect(Object*);
 
 protected:
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
-
-	bool intersect();
 
 	short id, cooldown = 0, cooldownVal, health;
 

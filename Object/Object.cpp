@@ -23,9 +23,23 @@ void Object::setRandColor()
 	sprite.setFillColor(c);
 }
 
-bool Object::intersect()
+sf::Vector2f Object::getPos()
 {
-	return false;
+	return pos;
+}
+
+sf::Vector2f Object::getSize()
+{
+	return size;
+}
+
+bool Object::intersect(Object* targetPtr)
+{
+	if ((abs(pos.x - targetPtr->getPos().x) <= (size.x / 2 + targetPtr->getSize().x / 2))
+		&& (abs(pos.y - targetPtr->getPos().y) <= (size.y / 2 + targetPtr->getSize().y / 2)))
+	{
+		//Whatever they need to do on intersect
+	}
 }
 
 void Object::rotate(float angle)
