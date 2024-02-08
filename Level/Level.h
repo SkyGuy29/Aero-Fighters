@@ -7,6 +7,9 @@
 #include "../Object/Projectile/Projectile.h"
 #include "../Object/Collectable/Collectable.h"
 
+//This takes a file and interprets it to create the level.
+
+
 class Level : public sf::Drawable
 {
 public:
