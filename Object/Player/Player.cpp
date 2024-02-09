@@ -6,6 +6,7 @@ Player::Player()
 	vel = 5.f;
 	setSize(25, 50);
 	frameCount = 10;
+	type = 0;
 }
 
 // takes a pointer from Level's playerProjs so it can add Projectiles to it.
@@ -36,21 +37,6 @@ void Player::update(sf::Vector2u winSize)
 		cooldown--;
 
 	nextFrame();
-}
-
-void Player::intersect(Object* targetPtr)
-{
-	if ((abs(pos.x - targetPtr->getPos().x) <= (size.x / 2 + targetPtr->getSize().x / 2))
-		&& (abs(pos.y - targetPtr->getPos().y) <= (size.y / 2 + targetPtr->getSize().y / 2)))
-	{
-		if (targetPtr->getType() == 3)
-			del = true;
-	}
-}
-
-int Player::getType()
-{
-	return 0;
 }
 
 void Player::draw(sf::RenderTarget& target, sf::RenderStates states) const

@@ -2,7 +2,7 @@
 
 Projectile::Projectile()
 {
-	 
+	type = 3;
 }
 
 Projectile::Projectile(sf::Vector2f pos, float angle, float vel)
@@ -19,11 +19,6 @@ Projectile::Projectile(float posX, float posY, float angle, float vel)
 	setPos(posX, posY);
 	setRotation(angle);
 	this->vel = vel;
-}
-
-int Projectile::getType()
-{
-	return 3;
 }
 
 void Projectile::intersect(Object* targetPtr)

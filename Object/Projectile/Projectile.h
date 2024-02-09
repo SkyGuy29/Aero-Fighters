@@ -11,7 +11,7 @@ public:
 
 	void update(sf::Vector2u winSize);
 
-	int getType();
+	short getType();
 
 	void intersect(Object*);
 };

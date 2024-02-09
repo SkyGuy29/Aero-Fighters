@@ -3,6 +3,7 @@
 Enemy::Enemy(short id)
 {
 	this->id = id;
+	type = 1;
 
 	switch (id)
 	{
@@ -16,12 +17,6 @@ Enemy::Enemy(short id)
 int Enemy::getHealth() const
 {
 	return health;
-}
-
-
-int Enemy::getType()
-{
-	return 1;
 }
 
 void Enemy::intersect(Object*)

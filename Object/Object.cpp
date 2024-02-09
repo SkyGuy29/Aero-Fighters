@@ -55,18 +55,15 @@ void Object::setTexture(sf::Texture* texPtr)
 	sprite.setTexture(texPtr);
 }
 
-void Object::intersect(Object* targetPtr)
+bool Object::intersect(Object* targetPtr)
 {
-	if ((abs(pos.x - targetPtr->getPos().x) <= (size.x / 2 + targetPtr->getSize().x / 2))
-		&& (abs(pos.y - targetPtr->getPos().y) <= (size.y / 2 + targetPtr->getSize().y / 2)))
-	{
-		//Whatever they need to do on intersect
-	}
+	return (abs(pos.x - targetPtr->getPos().x) <= (size.x / 2 + targetPtr->getSize().x / 2))
+		&& (abs(pos.y - targetPtr->getPos().y) <= (size.y / 2 + targetPtr->getSize().y / 2));
 }
 
-int Object::getType()
+short Object::getType()
 {
-	return -1;
+	return type;
 	//Player is 0
 	//Enemy is 1
 	//Collectable is 2

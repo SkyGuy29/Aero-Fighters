@@ -3,18 +3,12 @@
 Collectable::Collectable(short id)
 {
 	this->id = id;
+	type = 2;
 	setSize(15, 30);
 	pos.y = 0;
 	pos.x = 100;
 	setRandColor();
 }
-
-
-int Collectable::getType()
-{
-	return 3;
-}
-
 
 void Collectable::update(sf::Vector2u winSize)
 {

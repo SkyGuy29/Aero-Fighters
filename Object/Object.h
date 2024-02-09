@@ -36,16 +36,16 @@ public:
 	// I know it's temporary
 	void setRandColor();
 	
-	virtual void intersect(Object*);
+	bool intersect(Object*);
 	
-	virtual int getType();
+	short getType();
 
 protected:
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
 	void nextFrame();
 
-	short id, cooldown = 0, cooldownVal, health;
+	short type, id, cooldown = 0, cooldownVal, health;
 
 	bool del = false;
 

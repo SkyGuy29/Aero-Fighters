@@ -10,7 +10,7 @@ public:
 
 	int getHealth() const;
 
-	int getType();
+	short getType();
 
 	void intersect(Object*);
 

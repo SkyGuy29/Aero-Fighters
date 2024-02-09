@@ -41,6 +41,14 @@ void Level::update(sf::Vector2u winSize)
 	for (int i = 0; i < playerProjs.size(); i++)
 	{
 		playerProjs[playerProjs.size() - 1 - i]->update(winSize);
+
+		//if a player gets
+		for (int j = 0; j < 2; j++)
+		{
+			if (p[j].intersect(playerProjs[i]))
+				p[j].setRandColor();
+		}
+
 		if (playerProjs[playerProjs.size() - 1 - i]->shouldDelete())
 		{
 			delete playerProjs[playerProjs.size() - 1 - i];
@@ -51,6 +59,7 @@ void Level::update(sf::Vector2u winSize)
 	for (int i = 0; i < collectables.size(); i++)
 	{
 		collectables[collectables.size() - 1 - i]->update(winSize);
+
 		if (collectables[collectables.size() - 1 - i]->shouldDelete())
 		{
 			delete collectables[collectables.size() - 1 - i];
@@ -60,7 +69,6 @@ void Level::update(sf::Vector2u winSize)
 
 	for (int i = 0; i < 2; i++)
 		p[i].update(winSize);
-
 }
 
 void Level::draw(sf::RenderTarget& target, sf::RenderStates states) const
