@@ -45,7 +45,7 @@ void Level::update(sf::Vector2u winSize)
 	//polymorphism
 	for (int i = 0; i < objects.size(); i++)
 	{
-		objects[objects.size() - 1 - i]->update(winSize);
+		objects[objects.size() - 1 - i]->update(winSize, &objects);
 
 		if (objects[objects.size() - 1 - i]->shouldDelete())
 		{
@@ -55,7 +55,7 @@ void Level::update(sf::Vector2u winSize)
 	}
 
 	for (int i = 0; i < 2; i++)
-		p[i].update(winSize);
+		p[i].update(winSize, &objects);
 }
 
 void Level::draw(sf::RenderTarget& target, sf::RenderStates states) const

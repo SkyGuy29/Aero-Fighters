@@ -11,6 +11,7 @@ Projectile::Projectile(sf::Vector2f pos, float angle, float vel)
 	setPos(pos);
 	setRotation(angle);
 	this->vel = vel;
+	type = 3;
 }
 
 Projectile::Projectile(float posX, float posY, float angle, float vel)
@@ -22,10 +23,13 @@ Projectile::Projectile(float posX, float posY, float angle, float vel)
 }
 
 // Just moves in a straight line
-void Projectile::update(sf::Vector2u winSize)
+void Projectile::update(sf::Vector2u winSize, std::vector<Object*>* objects)
 {
 	// | comment if you hate rainbows |
 	// V							  V
+
+	// I think rainbows are pretty cool -Gabe
+
 	setRandColor();
 
 	pos.x += std::sin(rot * TO_RAD) * vel;

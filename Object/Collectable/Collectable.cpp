@@ -10,7 +10,7 @@ Collectable::Collectable(short id)
 	setRandColor();
 }
 
-void Collectable::update(sf::Vector2u winSize)
+void Collectable::update(sf::Vector2u winSize, std::vector<Object*>* objects)
 {
 	pos.y++;
 	sprite.setPosition(pos);

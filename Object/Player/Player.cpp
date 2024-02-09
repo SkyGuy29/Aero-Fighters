@@ -31,8 +31,16 @@ void Player::special()
 {
 }
 
-void Player::update(sf::Vector2u winSize)
+void Player::update(sf::Vector2u winSize, std::vector<Object*>* objects)
 {
+	for (int i = 0; i < objects->size(); i++)
+	{
+		if (objects->at(i)->getType() == 3 && this->intersect(objects->at(i)))
+		{
+			setRandColor();
+		}
+	}
+
 	if (cooldown)
 		cooldown--;
 

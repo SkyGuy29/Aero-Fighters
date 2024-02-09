@@ -13,7 +13,7 @@ public:
 
 	void special();
 
-	void update(sf::Vector2u winSize);
+	void update(sf::Vector2u winSize, std::vector<Object*>* objects);
 
 private:
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const;

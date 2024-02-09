@@ -8,8 +8,9 @@ Enemy::Enemy(short id)
 	switch (id)
 	{
 	case 0:
-		health = 1;
+		health = 100;
 		setSize(25, 50);
+		setRandColor();
 		break;
 	}
 }
@@ -19,8 +20,17 @@ int Enemy::getHealth() const
 	return health;
 }
 
-void Enemy::update(sf::Vector2u winSize)
+void Enemy::update(sf::Vector2u winSize, std::vector<Object*>* objects)
 {
 	if (outOfBounds(winSize))
 		del = true;
+	for (int i = 0; i < objects->size(); i++)
+	{
+		if (objects->at(i)->getType() == 3 && this->intersect(objects->at(i)))
+		{
+			health--;
+		}
+		if (health <= 0)
+			del = true;
+	}
 }
