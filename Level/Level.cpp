@@ -42,7 +42,14 @@ void Level::update(sf::Vector2u winSize)
 	// so deleting doesn't shift everything down and mess up the for loop index
 	// delete first, then erase
 
-	//polymorphism
+	//polymorphism -- All objects are stored in this vector, they can be
+	//identified using getType()
+	// 
+	//Player is 0
+	//Enemy is 1
+	//Collectable is 2
+	//Projectile is 3
+
 	for (int i = 0; i < objects.size(); i++)
 	{
 		objects[objects.size() - 1 - i]->update(winSize, &objects);
