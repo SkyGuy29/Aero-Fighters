@@ -63,18 +63,6 @@ void Level::update(sf::Vector2u winSize)
 
 	for (int i = 0; i < 2; i++)
 		p[i].update(winSize, &objects);
-
-	//Goes through all objects and checks if they intersect
-	for (int originalObject = 0; originalObject < objects.size(); originalObject++)
-	{
-		for (int otherObject = 0; otherObject < objects.size(); otherObject++)
-		{
-			if (originalObject != otherObject)
-			{
-				objects[originalObject]->intersect(objects[otherObject]);
-			}
-		}
-	}
 }
 
 void Level::draw(sf::RenderTarget& target, sf::RenderStates states) const

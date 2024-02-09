@@ -20,6 +20,7 @@ Projectile::Projectile(float posX, float posY, float angle, float vel)
 	setPos(posX, posY);
 	setRotation(angle);
 	this->vel = vel;
+	type = 3;
 }
 
 // Just moves in a straight line
