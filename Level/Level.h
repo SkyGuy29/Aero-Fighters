@@ -29,9 +29,11 @@ private:
 
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
-	std::vector<Enemy*> enemies;
+	/*std::vector<Enemy*> enemies;
 	std::vector<Projectile*> playerProjs, enemyProjs;
-	std::vector<Collectable*> collectables;
+	std::vector<Collectable*> collectables;*/
+
+	std::vector<Object*> objects;
 
 	sf::RectangleShape bg;
 	sf::Texture bgImg;

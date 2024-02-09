@@ -23,7 +23,10 @@ void Level::load(sf::Vector2u winSize, int mapId)
 	p[0].setTexture(&test);
 	p[1].setTexture(&test);
 
-	collectables.push_back(new Collectable(0));
+	objects.push_back(new Collectable(0));
+
+	objects.push_back(new Enemy(0));
+	objects.back()->setPos(sf::Vector2f(winSize.x * 0.5f, winSize.y * 0.25f));
 }
 
 void Level::update(sf::Vector2u winSize)
@@ -38,32 +41,16 @@ void Level::update(sf::Vector2u winSize)
 	// checking the back of the vector first is needed,
 	// so deleting doesn't shift everything down and mess up the for loop index
 	// delete first, then erase
-	for (int i = 0; i < playerProjs.size(); i++)
+
+	//polymorphism
+	for (int i = 0; i < objects.size(); i++)
 	{
-		playerProjs[playerProjs.size() - 1 - i]->update(winSize);
+		objects[objects.size() - 1 - i]->update(winSize);
 
-		//if a player gets
-		for (int j = 0; j < 2; j++)
+		if (objects[objects.size() - 1 - i]->shouldDelete())
 		{
-			if (p[j].intersect(playerProjs[i]))
-				p[j].setRandColor();
-		}
-
-		if (playerProjs[playerProjs.size() - 1 - i]->shouldDelete())
-		{
-			delete playerProjs[playerProjs.size() - 1 - i];
-			playerProjs.erase(playerProjs.end() - 1 - i);
-		}
-	}
-
-	for (int i = 0; i < collectables.size(); i++)
-	{
-		collectables[collectables.size() - 1 - i]->update(winSize);
-
-		if (collectables[collectables.size() - 1 - i]->shouldDelete())
-		{
-			delete collectables[collectables.size() - 1 - i];
-			collectables.erase(collectables.end() - 1 - i);
+			delete objects[objects.size() - 1 - i];
+			objects.erase(objects.end() - 1 - i);
 		}
 	}
 
@@ -74,12 +61,10 @@ void Level::update(sf::Vector2u winSize)
 void Level::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
 	target.draw(bg, states);
-	for (auto& proj : playerProjs)
-		target.draw(*proj);
-	for (auto& proj : enemyProjs)
-		target.draw(*proj);
-	for (auto& collectable : collectables)
-		target.draw(*collectable);
+
+	for (auto& object : objects)
+		target.draw(*object);
+
 	for (int i = 0; i < 2; i++)
 		target.draw(p[i]);
 }
@@ -101,7 +86,7 @@ void Level::getInput(sf::Vector2u winSize)
 		p[i].move(joy, winSize);
 
 		if (button(i, Y))
-			p[i].shoot(playerProjs);
+			p[i].shoot(objects);
 
 		if (button(i, B))
 			p[i].special();
@@ -110,7 +95,7 @@ void Level::getInput(sf::Vector2u winSize)
 		p[i].move(key(i, Right) - key(i, Left), key(i, Back) - key(i, Forward), winSize);
 
 		if (key(i, Shoot))
-			p[i].shoot(playerProjs);
+			p[i].shoot(objects);
 	}
 }
 

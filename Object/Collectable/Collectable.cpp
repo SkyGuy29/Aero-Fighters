@@ -17,13 +17,3 @@ void Collectable::update(sf::Vector2u winSize)
 	if (outOfBounds(winSize))
 		del = true;
 }
-
-void Collectable::intersect(Object* targetPtr)
-{
-	if ((abs(pos.x - targetPtr->getPos().x) <= (size.x / 2 + targetPtr->getSize().x / 2))
-		&& (abs(pos.y - targetPtr->getPos().y) <= (size.y / 2 + targetPtr->getSize().y / 2)))
-	{
-		if (targetPtr->getType() == 0)
-			del = true;
-	}
-}

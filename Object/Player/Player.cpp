@@ -10,7 +10,7 @@ Player::Player()
 }
 
 // takes a pointer from Level's playerProjs so it can add Projectiles to it.
-void Player::shoot(std::vector<Projectile*>& projs)
+void Player::shoot(std::vector<Object*>& objects)
 {
 	// cooldown is so a constant stream of projectiles isn't created
 	if (!cooldown)
@@ -18,9 +18,9 @@ void Player::shoot(std::vector<Projectile*>& projs)
 		switch (country)
 		{
 		case -1:
-			projs.push_back(new Projectile(pos, -15.f, 10.f));
-			projs.push_back(new Projectile(pos,   0.f, 10.f));
-			projs.push_back(new Projectile(pos,  15.f, 10.f));
+			objects.push_back(new Projectile(pos, -15.f, 10.f));
+			objects.push_back(new Projectile(pos,   0.f, 10.f));
+			objects.push_back(new Projectile(pos,  15.f, 10.f));
 			break;
 		}
 		cooldown = cooldownVal;

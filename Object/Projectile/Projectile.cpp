@@ -21,11 +21,6 @@ Projectile::Projectile(float posX, float posY, float angle, float vel)
 	this->vel = vel;
 }
 
-void Projectile::intersect(Object* targetPtr)
-{
-
-}
-
 // Just moves in a straight line
 void Projectile::update(sf::Vector2u winSize)
 {

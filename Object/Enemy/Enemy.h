@@ -10,11 +10,8 @@ public:
 
 	int getHealth() const;
 
-	short getType();
-
-	void intersect(Object*);
-
+	void update(sf::Vector2u winSize);
 private:
-	int health;
+	int health = 1;
 };
 

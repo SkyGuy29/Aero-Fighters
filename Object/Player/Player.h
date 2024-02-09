@@ -9,7 +9,7 @@ class Player : public Object
 public:
 	Player();
 
-	void shoot(std::vector<Projectile*>& projs);
+	void shoot(std::vector<Object*>& objects);
 
 	void special();
 
