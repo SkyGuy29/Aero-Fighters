@@ -135,6 +135,11 @@ bool Object::outOfBounds(sf::Vector2u winSize)
 		pos.x + size.x / 2.f >= winSize.x || pos.y + size.y / 2.f >= winSize.y);
 }
 
+void Object::setDelete()
+{
+	del = true;
+}
+
 bool Object::shouldDelete()
 {
 	return del;

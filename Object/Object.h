@@ -26,6 +26,7 @@ public:
 
 	bool outOfBounds(sf::Vector2u winSize);
 
+	void setDelete();
 	bool shouldDelete();
 
 	sf::Vector2f getPos();

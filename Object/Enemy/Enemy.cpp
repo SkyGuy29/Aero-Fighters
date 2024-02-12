@@ -31,6 +31,8 @@ void Enemy::update(sf::Vector2u winSize, std::vector<Object*>* objects)
 		if (objects->at(i)->getType() == 3 && this->intersect(objects->at(i)))
 		{
 			health--;
+			objects->at(i)->setDelete();
+			setRandColor();
 		}
 		if (health <= 0)
 			del = true;
