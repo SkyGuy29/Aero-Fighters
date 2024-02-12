@@ -55,7 +55,7 @@ protected:
 
 	sf::RectangleShape sprite;
 
-	int frameCount = 0, currentFrame = 0;
+	short frameCount = 0, currentFrame = 0;
 
 	const float PI = 3.14159f, TO_RAD = PI / 180.f, TO_DEG = 180.f / PI;
 };
