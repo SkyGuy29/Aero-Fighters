@@ -35,7 +35,7 @@ private:
 
 	std::vector<Object*> objects;
 
-	sf::RectangleShape bg;
+	sf::RectangleShape background;
 	sf::Texture bgImg;
 	sf::IntRect rect;
 	int bgSpeed = 1, bgDist = 0;

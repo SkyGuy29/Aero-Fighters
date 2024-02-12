@@ -1,5 +1,4 @@
 #include "Level.h"
-#include "../Object/Collectable/Collectable.h"
 
 Level::Level()
 {
@@ -7,12 +6,12 @@ Level::Level()
 
 void Level::load(sf::Vector2u winSize, int mapId)
 {
-	bg.setSize(sf::Vector2f(winSize));
+	background.setSize(sf::Vector2f(winSize));
 	bgImg.loadFromFile("Res/placeholder.jpg");
 	bgDist = bgImg.getSize().y - winSize.y;
 	rect = sf::IntRect(0, bgDist, winSize.x, winSize.y);
-	bg.setTexture(&bgImg);
-	bg.setTextureRect(rect);
+	background.setTexture(&bgImg);
+	background.setTextureRect(rect);
 
 	// Change later. This just spaces out the players
 	p[0].setPos(sf::Vector2f(winSize.x * 0.25f, winSize.y * 0.75f));
@@ -34,7 +33,7 @@ void Level::update(sf::Vector2u winSize)
 	// The background has to scroll backwards to get the effect that we want.
 	bgDist -= bgSpeed;
 	rect.top = bgDist;
-	bg.setTextureRect(rect);
+	background.setTextureRect(rect);
 	
 	getInput(winSize);
 
@@ -67,7 +66,7 @@ void Level::update(sf::Vector2u winSize)
 
 void Level::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
-	target.draw(bg, states);
+	target.draw(background, states);
 
 	for (auto& object : objects)
 		target.draw(*object);
