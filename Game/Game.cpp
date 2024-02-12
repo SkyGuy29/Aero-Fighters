@@ -7,7 +7,7 @@ Game::Game()
 
 void Game::run()
 {
-	win.create(sf::VideoMode(winSize.x * winScale, winSize.y * winScale), "Aero Fighters");
+	win.create(sf::VideoMode(winSize.x * 2, winSize.y * 2), "Aero Fighters");
 	win.setFramerateLimit(framesPSec);
 
 	// This view scales the 224x320 up to whatever the window size is.
@@ -58,7 +58,7 @@ void Game::resize()
 {
 	// Get the minimum scale from either x or y
 	// This fills the max space possible, then the view is centered on the window.
-	winScale = std::fmin(float(win.getSize().x) / winSize.x, float(win.getSize().y) / winSize.y);
+	float winScale = std::fmin(float(win.getSize().x) / winSize.x, float(win.getSize().y) / winSize.y);
 
 	view.setViewport(sf::FloatRect(
 		0.5f - winScale * float(winSize.x) / float(win.getSize().x) / 2.f,
