@@ -6,7 +6,7 @@ Level::Level()
 
 Level::~Level()
 {
-	while (objects.size() > 0)
+	while (objects.size() > 2)
 	{
 		delete objects[objects.size() - 1];
 		objects.erase(objects.end() - 1);
@@ -30,6 +30,9 @@ void Level::load(sf::Vector2u winSize, int mapId)
 	test.loadFromFile("Res/AnimatorTest.png");
 	p[0].setTexture(&test);
 	p[1].setTexture(&test);
+
+	objects.push_back(&p[0]);
+	objects.push_back(&p[1]);
 
 	objects.push_back(new Collectable(0));
 	objects.back()->setPos(sf::Vector2f(winSize.x * 0.25f, winSize.y * 0.5f));
