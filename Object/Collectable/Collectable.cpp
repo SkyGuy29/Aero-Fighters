@@ -16,4 +16,9 @@ void Collectable::update(sf::Vector2u winSize, std::vector<Object*>* objects)
 	sprite.setPosition(pos);
 	if (outOfBounds(winSize))
 		del = true;
+	for (int index = 0; index < objects->size(); index++)
+	{
+		if ((objects->at(index)->getType() == 0) && (intersect(objects->at(index))))
+			del = true;
+	}
 }
