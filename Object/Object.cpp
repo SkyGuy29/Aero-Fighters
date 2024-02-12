@@ -20,12 +20,12 @@ void Object::nextFrame()
 {
 	// Increases the image rectangle by its height and loops back when it reaches the end
 	currentFrame++;
-	if (currentFrame >= frameCount * updatesPFrame)
-		currentFrame -= frameCount * updatesPFrame;
+	if (currentFrame >= frameCount * 15)
+		currentFrame -= frameCount * 15;
 
 	// the dividing to an int is needed for the updates per frame delay.
 	sprite.setTextureRect(sf::IntRect(0, 
-		(currentFrame / updatesPFrame) * sprite.getSize().y,
+		(currentFrame / 15) * sprite.getSize().y,
 		sprite.getSize().x, sprite.getSize().y));
 }
 
@@ -133,6 +133,11 @@ bool Object::outOfBounds(sf::Vector2u winSize)
 	return (
 		pos.x - size.x / 2.f < 0 || pos.y - size.y / 2.f < 0 || 
 		pos.x + size.x / 2.f >= winSize.x || pos.y + size.y / 2.f >= winSize.y);
+}
+
+void Object::setDelete()
+{
+	del = true;
 }
 
 bool Object::shouldDelete()

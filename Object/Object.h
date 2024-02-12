@@ -26,6 +26,7 @@ public:
 
 	bool outOfBounds(sf::Vector2u winSize);
 
+	void setDelete();
 	bool shouldDelete();
 
 	sf::Vector2f getPos();
@@ -45,7 +46,7 @@ protected:
 
 	void nextFrame();
 
-	short type, id, cooldown = 0, cooldownVal, health;
+	short type, id, cooldown = 0, health;
 
 	bool del = false;
 
@@ -54,7 +55,7 @@ protected:
 
 	sf::RectangleShape sprite;
 
-	int frameCount = 0, updatesPFrame = 15, currentFrame = 0;
+	short frameCount = 0, currentFrame = 0;
 
 	const float PI = 3.14159f, TO_RAD = PI / 180.f, TO_DEG = 180.f / PI;
 };

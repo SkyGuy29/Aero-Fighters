@@ -7,12 +7,12 @@ Game::Game()
 
 void Game::run()
 {
-	win.create(sf::VideoMode(winSize.x * winScale, winSize.y * winScale), "Aero Fighters");
-	win.setFramerateLimit(framesPSec);
+	window.create(sf::VideoMode(winSize.x * 2, winSize.y * 2), "Aero Fighters");
+	window.setFramerateLimit(framesPSec);
 
 	// This view scales the 224x320 up to whatever the window size is.
 	// Just use winSize for calculations, no need to multiply by winScale
-	view = win.getDefaultView();
+	view = window.getDefaultView();
 	view.setSize(winSize.x, winSize.y);
 	view.setCenter(winSize.x / 2.f, winSize.y / 2.f);
 
@@ -20,14 +20,14 @@ void Game::run()
 
 	level.load(winSize, 0);
 
-	while (win.isOpen())
+	while (window.isOpen())
 	{
 		sf::Event e;
-		while (win.pollEvent(e))
+		while (window.pollEvent(e))
 			switch (e.type)
 			{
 			case sf::Event::Closed:
-				win.close();
+				window.close();
 				break;
 			case sf::Event::Resized:
 				resize();
@@ -44,13 +44,13 @@ void Game::run()
 			level.update(winSize);
 		}
 
-		win.clear();
+		window.clear();
 
 		// draw stuff here
 
-		win.draw(level);
+		window.draw(level);
 
-		win.display();
+		window.display();
 	}
 }
 
@@ -58,13 +58,13 @@ void Game::resize()
 {
 	// Get the minimum scale from either x or y
 	// This fills the max space possible, then the view is centered on the window.
-	winScale = std::fmin(float(win.getSize().x) / winSize.x, float(win.getSize().y) / winSize.y);
+	float winScale = std::fmin(float(window.getSize().x) / winSize.x, float(window.getSize().y) / winSize.y);
 
 	view.setViewport(sf::FloatRect(
-		0.5f - winScale * float(winSize.x) / float(win.getSize().x) / 2.f,
-		0.5f - winScale * float(winSize.y) / float(win.getSize().y) / 2.f,
-		winScale * float(winSize.x) / float(win.getSize().x),
-		winScale * float(winSize.y) / float(win.getSize().y)
+		0.5f - winScale * float(winSize.x) / float(window.getSize().x) / 2.f,
+		0.5f - winScale * float(winSize.y) / float(window.getSize().y) / 2.f,
+		winScale * float(winSize.x) / float(window.getSize().x),
+		winScale * float(winSize.y) / float(window.getSize().y)
 	));
-	win.setView(view);
+	window.setView(view);
 }
