@@ -17,7 +17,7 @@ private:
 	sf::Clock clock;
 	int deltaTime = 0, updatesPSec = 30;
 
-	sf::RenderWindow win;
+	sf::RenderWindow window;
 	sf::View view;
 	sf::Vector2u winSize = sf::Vector2u(224, 320);
 	int framesPSec = 30;
