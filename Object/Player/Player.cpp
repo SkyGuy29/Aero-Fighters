@@ -2,7 +2,6 @@
 
 Player::Player()
 {
-	cooldownVal = 3;
 	vel = 5.f;
 	setSize(25, 50);
 	frameCount = 10;
@@ -23,7 +22,7 @@ void Player::shoot(std::vector<Object*>& objects)
 			objects.push_back(new Projectile(pos,  15.f, 10.f));
 			break;
 		}
-		cooldown = cooldownVal;
+		cooldown = 3;
 	}
 }
 
