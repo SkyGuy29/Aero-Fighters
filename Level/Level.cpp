@@ -4,6 +4,15 @@ Level::Level()
 {
 }
 
+Level::~Level()
+{
+	while (objects.size() > 0)
+	{
+		delete objects[objects.size() - 1];
+		objects.erase(objects.end() - 1);
+	}
+}
+
 void Level::load(sf::Vector2u winSize, int mapId)
 {
 	background.setSize(sf::Vector2f(winSize));
@@ -23,6 +32,7 @@ void Level::load(sf::Vector2u winSize, int mapId)
 	p[1].setTexture(&test);
 
 	objects.push_back(new Collectable(0));
+	objects.back()->setPos(sf::Vector2f(winSize.x * 0.25f, winSize.y * 0.5f));
 
 	objects.push_back(new Enemy(0));
 	objects.back()->setPos(sf::Vector2f(winSize.x * 0.5f, winSize.y * 0.25f));

@@ -16,6 +16,8 @@ class Level : public sf::Drawable
 public:
 	Level();
 
+	~Level();
+
 	void load(sf::Vector2u winSize, int mapId);
 
 	void update(sf::Vector2u winSize);

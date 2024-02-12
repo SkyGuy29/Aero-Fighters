@@ -18,7 +18,7 @@ void Collectable::update(sf::Vector2u winSize, std::vector<Object*>* objects)
 		del = true;
 	for (int index = 0; index < objects->size(); index++)
 	{
-		if ((objects->at(index)->getType() == 0) && (intersect(objects->at(index))))
+		if ((objects->at(index)->getType() == 3) && (intersect(objects->at(index))))
 			del = true;
 	}
 }
