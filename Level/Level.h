@@ -2,6 +2,7 @@
 
 #include <vector>
 #include <SFML/Graphics.hpp>
+#include <iostream>
 
 #include "../Object/Enemy/Enemy.h"
 #include "../Object/Player/Player.h"
@@ -31,10 +32,6 @@ private:
 
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
-	/*std::vector<Enemy*> enemies;
-	std::vector<Projectile*> playerProjs, enemyProjs;
-	std::vector<Collectable*> collectables;*/
-
 	std::vector<Object*> objects;
 
 	sf::RectangleShape background;
@@ -45,7 +42,7 @@ private:
 	// Maybe put it in game or some other texture storage idk
 	sf::Texture test;
 
-	Player p[2];
+	Player* p[2];
 
 	// TEMPORARY CONTROLS
 

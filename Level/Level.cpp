@@ -6,7 +6,7 @@ Level::Level()
 
 Level::~Level()
 {
-	while (objects.size() > 2)
+	while (objects.size() > 0)
 	{
 		delete objects[objects.size() - 1];
 		objects.erase(objects.end() - 1);
@@ -22,17 +22,20 @@ void Level::load(sf::Vector2u winSize, int mapId)
 	background.setTexture(&backgroundImg);
 	background.setTextureRect(rect);
 
+	
+	p[0] = new Player();
+	p[1] = new Player();
+	objects.push_back(p[0]);
+	objects.push_back(p[1]);
+
 	// Change later. This just spaces out the players
-	p[0].setPos(sf::Vector2f(winSize.x * 0.25f, winSize.y * 0.75f));
-	p[1].setPos(sf::Vector2f(winSize.x * 0.75f, winSize.y * 0.75f));
+	objects.at(0)->setPos(sf::Vector2f(winSize.x * 0.25f, winSize.y * 0.75f));
+	objects.at(1)->setPos(sf::Vector2f(winSize.x * 0.75f, winSize.y * 0.75f));
 
 	// just a test to try out the moved animator to object
 	test.loadFromFile("Res/AnimatorTest.png");
-	p[0].setTexture(&test);
-	p[1].setTexture(&test);
-
-	objects.push_back(&p[0]);
-	objects.push_back(&p[1]);
+	objects.at(0)->setTexture(&test);
+	objects.at(1)->setTexture(&test);
 
 	objects.push_back(new Collectable(0));
 	objects.back()->setPos(sf::Vector2f(winSize.x * 0.25f, winSize.y * 0.5f));
@@ -72,9 +75,6 @@ void Level::update(sf::Vector2u winSize)
 			objects.erase(objects.end() - 1 - i);
 		}
 	}
-
-	for (int i = 0; i < 2; i++)
-		p[i].update(winSize, &objects);
 }
 
 void Level::draw(sf::RenderTarget& target, sf::RenderStates states) const
@@ -83,9 +83,6 @@ void Level::draw(sf::RenderTarget& target, sf::RenderStates states) const
 
 	for (auto& object : objects)
 		target.draw(*object);
-
-	for (int i = 0; i < 2; i++)
-		target.draw(p[i]);
 }
 
 void Level::getInput(sf::Vector2u winSize)
@@ -102,19 +99,19 @@ void Level::getInput(sf::Vector2u winSize)
 		// fix drift under 15%
 		joy.x *= std::abs(joy.x) > 0.15f;
 		joy.y *= std::abs(joy.y) > 0.15f;
-		p[i].move(joy, winSize);
+		objects.at(i)->move(joy, winSize);
 
 		if (button(i, Y))
-			p[i].shoot(objects);
+			p[i]->shoot(objects);
 
 		if (button(i, B))
-			p[i].special();
+			p[i]->special();
 
 		// keyboard controls
-		p[i].move(key(i, Right) - key(i, Left), key(i, Back) - key(i, Forward), winSize);
+		objects.at(i)->move(key(i, Right) - key(i, Left), key(i, Back) - key(i, Forward), winSize);
 
 		if (key(i, Shoot))
-			p[i].shoot(objects);
+			p[i]->shoot(objects);
 	}
 }
 
