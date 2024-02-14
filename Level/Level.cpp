@@ -16,10 +16,10 @@ Level::~Level()
 void Level::load(sf::Vector2u winSize, int mapId)
 {
 	background.setSize(sf::Vector2f(winSize));
-	bgImg.loadFromFile("Res/placeholder.jpg");
-	bgDist = bgImg.getSize().y - winSize.y;
-	rect = sf::IntRect(0, bgDist, winSize.x, winSize.y);
-	background.setTexture(&bgImg);
+	backgroundImg.loadFromFile("Res/placeholder.jpg");
+	backgroundDist = backgroundImg.getSize().y - winSize.y;
+	rect = sf::IntRect(0, backgroundDist, winSize.x, winSize.y);
+	background.setTexture(&backgroundImg);
 	background.setTextureRect(rect);
 
 	// Change later. This just spaces out the players
@@ -44,8 +44,8 @@ void Level::load(sf::Vector2u winSize, int mapId)
 void Level::update(sf::Vector2u winSize)
 {
 	// The background has to scroll backwards to get the effect that we want.
-	bgDist -= bgSpeed;
-	rect.top = bgDist;
+	backgroundDist -= backgroundSpeed;
+	rect.top = backgroundDist;
 	background.setTextureRect(rect);
 	
 	getInput(winSize);

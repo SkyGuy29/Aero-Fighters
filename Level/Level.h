@@ -38,9 +38,9 @@ private:
 	std::vector<Object*> objects;
 
 	sf::RectangleShape background;
-	sf::Texture bgImg;
+	sf::Texture backgroundImg;
 	sf::IntRect rect;
-	int bgSpeed = 1, bgDist = 0;
+	int backgroundSpeed = 1, backgroundDist = 0;
 
 	// Maybe put it in game or some other texture storage idk
 	sf::Texture test;
