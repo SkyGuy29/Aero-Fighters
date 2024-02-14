@@ -58,4 +58,16 @@ protected:
 	short frameCount = 0, currentFrame = 0;
 
 	const float PI = 3.14159f, TO_RAD = PI / 180.f, TO_DEG = 180.f / PI;
+
+	enum Types
+	{
+		PLAYER = 0,
+		BOSS = 1,
+		BOSS_PIECE = 2,
+		AIR = 3,
+		LAND = 4,
+		COLLECTABLE = 5,
+		PLAYER_PROJECTILE = 6,
+		ENEMY_PROJECTILE = 7
+	};
 };

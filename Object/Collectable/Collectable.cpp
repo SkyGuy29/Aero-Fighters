@@ -3,7 +3,7 @@
 Collectable::Collectable(short id)
 {
 	this->id = id;
-	type = 2;
+	type = COLLECTABLE;
 	setSize(15, 30);
 	pos.y = 0;
 	pos.x = 100;
@@ -18,7 +18,7 @@ void Collectable::update(sf::Vector2u winSize, std::vector<Object*>* objects)
 		del = true;
 	for (int index = 0; index < objects->size(); index++)
 	{
-		if ((objects->at(index)->getType() == 0) && (intersect(objects->at(index))))
+		if ((objects->at(index)->getType() == PLAYER) && (intersect(objects->at(index))))
 			del = true;
 	}
 }

@@ -4,7 +4,9 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
-#include "../Object/Enemy/Enemy.h"
+#include "../Object/Enemy/Boss/Boss.h"
+#include "../Object/Enemy/Air/Air.h"
+#include "../Object/Enemy/Land/Land.h"
 #include "../Object/Player/Player.h"
 #include "../Object/Projectile/Projectile.h"
 #include "../Object/Collectable/Collectable.h"

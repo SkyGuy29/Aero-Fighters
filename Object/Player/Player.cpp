@@ -5,7 +5,7 @@ Player::Player()
 	vel = 5.f;
 	setSize(25, 50);
 	frameCount = 10;
-	type = 0;
+	type = PLAYER;
 }
 
 // takes a pointer from Level's playerProjs so it can add Projectiles to it.
@@ -35,7 +35,7 @@ void Player::update(sf::Vector2u winSize, std::vector<Object*>* objects)
 	//Am I being shot?
 	for (int i = 0; i < objects->size(); i++)
 	{
-		if (objects->at(i)->getType() == 3 && this->intersect(objects->at(i)))
+		if (objects->at(i)->getType() == ENEMY_PROJECTILE && this->intersect(objects->at(i)))
 		{
 			setRandColor();
 		}

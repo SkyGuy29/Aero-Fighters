@@ -40,7 +40,7 @@ void Level::load(sf::Vector2u winSize, int mapId)
 	objects.push_back(new Collectable(0));
 	objects.back()->setPos(sf::Vector2f(winSize.x * 0.25f, winSize.y * 0.5f));
 
-	objects.push_back(new Enemy(0));
+	objects.push_back(new Air(0));
 	objects.back()->setPos(sf::Vector2f(winSize.x * 0.5f, winSize.y * 0.25f));
 }
 
@@ -59,12 +59,6 @@ void Level::update(sf::Vector2u winSize)
 
 	//polymorphism -- All objects are stored in this vector, they can be
 	//identified using getType()
-	// 
-	//Player is 0
-	//Enemy is 1
-	//Collectable is 2
-	//Projectile is 3
-
 	for (int i = 0; i < objects.size(); i++)
 	{
 		objects[objects.size() - 1 - i]->update(winSize, &objects);

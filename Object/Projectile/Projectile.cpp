@@ -2,7 +2,7 @@
 
 Projectile::Projectile()
 {
-	type = 3;
+	type = PLAYER_PROJECTILE;
 }
 
 Projectile::Projectile(sf::Vector2f pos, float angle, float vel)
@@ -11,7 +11,7 @@ Projectile::Projectile(sf::Vector2f pos, float angle, float vel)
 	setPos(pos);
 	setRotation(angle);
 	this->vel = vel;
-	type = 3;
+	type = PLAYER_PROJECTILE;
 }
 
 Projectile::Projectile(float posX, float posY, float angle, float vel)
@@ -20,7 +20,7 @@ Projectile::Projectile(float posX, float posY, float angle, float vel)
 	setPos(posX, posY);
 	setRotation(angle);
 	this->vel = vel;
-	type = 3;
+	type = PLAYER_PROJECTILE;
 }
 
 // Just moves in a straight line
