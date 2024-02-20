@@ -14,6 +14,33 @@ Collectable::Collectable(short id)
 	setRandColor();
 }
 
+Collectable::Collectable(short id, sf::Vector2f position)
+{
+	this->id = id;
+	type = COLLECTABLE;
+	setSize(15, 30);
+	pos = position;
+	if (id == 0)
+		vel = sf::Vector2f(0, 1);
+	else
+		vel = sf::Vector2f(.707, .707);
+	setRandColor();
+}
+
+Collectable::Collectable(short id, float xPosition, float yPosition)
+{
+	this->id = id;
+	type = COLLECTABLE;
+	setSize(15, 30);
+	pos.x = xPosition;
+	pos.y = yPosition;
+	if (id == 0)
+		vel = sf::Vector2f(0, 1);
+	else
+		vel = sf::Vector2f(.707, .707);
+	setRandColor();
+}
+
 void Collectable::update(sf::Vector2u winSize, std::vector<Object*>* objects)
 {
 	if (outOfBounds(winSize) && (id == 0))
