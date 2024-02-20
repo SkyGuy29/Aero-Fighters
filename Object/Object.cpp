@@ -5,8 +5,13 @@ Object::Object()
 {
 }
 
-void Object::update(sf::Vector2u winSize, std::vector<Object*>* objects)
+void Object::update(sf::Vector2u winSize, std::vector<Object*>*)
 {
+}
+
+void Object::objectUpdate(sf::Vector2u winSize, std::vector<Object*>* objects)
+{
+	move(winSize);
 }
 
 void Object::draw(sf::RenderTarget& target, sf::RenderStates states) const
@@ -66,36 +71,22 @@ short Object::getType()
 	return type;
 }
 
-void Object::rotate(float angle)
-{
-	rot = angle;
-	sprite.setRotation(rot);
-}
-
-void Object::setRotation(float newAngle)
-{
-	rot = newAngle;
-	sprite.setRotation(rot);
-}
-
 // I was thinking move would need a boundry check, not setPos.
-void Object::move(sf::Vector2f offset, sf::Vector2u winSize)
+void Object::move(sf::Vector2u winSize)
 {
-	pos += offset * vel;
-	if (pos.x - size.x / 2.f < 0)
-		pos.x = size.x / 2.f;
-	if (pos.y - size.y / 2.f < 0)
-		pos.y = size.y / 2.f;
-	if (pos.x + size.x / 2.f >= winSize.x)
-		pos.x = winSize.x - size.x / 2.f;
-	if (pos.y + size.y / 2.f >= winSize.y)
-		pos.y = winSize.y - size.y / 2.f;
+	pos += vel;
+	if (type == PLAYER)
+	{
+		if (pos.x - size.x / 2.f < 0)
+			pos.x = size.x / 2.f;
+		if (pos.y - size.y / 2.f < 0)
+			pos.y = size.y / 2.f;
+		if (pos.x + size.x / 2.f >= winSize.x)
+			pos.x = winSize.x - size.x / 2.f;
+		if (pos.y + size.y / 2.f >= winSize.y)
+			pos.y = winSize.y - size.y / 2.f;
+	}
 	sprite.setPosition(pos);
-}
-
-void Object::move(float offsetX, float offsetY, sf::Vector2u winSize)
-{
-	move(sf::Vector2f(offsetX, offsetY), winSize);
 }
 
 // setPos was more of a setup thing, and you know exactly where it will be going.
@@ -121,6 +112,22 @@ void Object::setSize(sf::Vector2f newSize)
 void Object::setSize(float newSizeX, float newSizeY)
 {
 	setSize(sf::Vector2f(newSizeX, newSizeY));
+}
+
+sf::Vector2f Object::getVel()
+{
+	return vel;
+}
+
+void Object::setVel(sf::Vector2f newVel)
+{
+	vel = newVel;
+}
+
+void Object::setVel(float x, float y)
+{
+	vel.x = x;
+	vel.y = y;
 }
 
 // returns if any part of an object is outside the viewing area

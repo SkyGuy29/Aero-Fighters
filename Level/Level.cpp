@@ -37,7 +37,7 @@ void Level::load(sf::Vector2u winSize, int mapId)
 	objects.at(0)->setTexture(&test);
 	objects.at(1)->setTexture(&test);
 
-	objects.push_back(new Collectable(0));
+	objects.push_back(new Collectable(1));
 	objects.back()->setPos(sf::Vector2f(winSize.x * 0.25f, winSize.y * 0.5f));
 
 	objects.push_back(new Air(0));
@@ -60,15 +60,14 @@ void Level::update(sf::Vector2u winSize)
 	//polymorphism -- All objects are stored in this vector, they can be
 	//identified using getType()
 	for (int i = 0; i < objects.size(); i++)
-	{
 		objects[objects.size() - 1 - i]->update(winSize, &objects);
 
+	for (int i = 0; i < objects.size(); i++)
 		if (objects[objects.size() - 1 - i]->shouldDelete())
 		{
 			delete objects[objects.size() - 1 - i];
 			objects.erase(objects.end() - 1 - i);
 		}
-	}
 }
 
 void Level::draw(sf::RenderTarget& target, sf::RenderStates states) const
@@ -93,7 +92,7 @@ void Level::getInput(sf::Vector2u winSize)
 		// fix drift under 15%
 		joy.x *= std::abs(joy.x) > 0.15f;
 		joy.y *= std::abs(joy.y) > 0.15f;
-		objects.at(i)->move(joy, winSize);
+		objects.at(i)->setVel(joy);
 
 		if (button(i, Y))
 			p[i]->shoot(objects);
@@ -102,7 +101,8 @@ void Level::getInput(sf::Vector2u winSize)
 			p[i]->special();
 
 		// keyboard controls
-		objects.at(i)->move(key(i, Right) - key(i, Left), key(i, Back) - key(i, Forward), winSize);
+		objects.at(i)->setVel((key(i, Right) - key(i, Left)) * 5,
+		(key(i, Back) - key(i, Forward)) * 5);
 
 		if (key(i, Shoot))
 			p[i]->shoot(objects);

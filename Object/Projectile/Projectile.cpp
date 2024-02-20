@@ -5,20 +5,18 @@ Projectile::Projectile()
 	type = PLAYER_PROJECTILE;
 }
 
-Projectile::Projectile(sf::Vector2f pos, float angle, float vel)
+Projectile::Projectile(sf::Vector2f pos, sf::Vector2f vel)
 {
 	setSize(4, 10);
 	setPos(pos);
-	setRotation(angle);
 	this->vel = vel;
 	type = PLAYER_PROJECTILE;
 }
 
-Projectile::Projectile(float posX, float posY, float angle, float vel)
+Projectile::Projectile(float posX, float posY, sf::Vector2f vel)
 {
 	setSize(4, 10);
 	setPos(posX, posY);
-	setRotation(angle);
 	this->vel = vel;
 	type = PLAYER_PROJECTILE;
 }
@@ -30,11 +28,11 @@ void Projectile::update(sf::Vector2u winSize, std::vector<Object*>* objects)
 	// V							  V
 
 	// I think rainbows are pretty cool -Gabe
+	// Rainbows are fine -Matthew
+
+	objectUpdate(winSize, objects);
 
 	setRandColor();
-
-	pos.x += std::sin(rot * TO_RAD) * vel;
-	pos.y -= std::cos(rot * TO_RAD) * vel;
 
 	sprite.setPosition(pos);
 

@@ -11,18 +11,19 @@ public:
 
 	virtual void update(sf::Vector2u winSize, std::vector<Object*>*);
 
-	void rotate(float angle);
+	void objectUpdate(sf::Vector2u winSize, std::vector<Object*>*);
 
-	void setRotation(float newAngle);
-
-	void move(sf::Vector2f offset, sf::Vector2u winSize);
-	void move(float offsetX, float offsetY, sf::Vector2u winSize);
+	void move(sf::Vector2u winSize);
 
 	void setPos(sf::Vector2f newPos);
 	void setPos(float newPosX, float newPosY);
 
 	void setSize(sf::Vector2f newSize);
 	void setSize(float newSizeX, float newSizeY);
+
+	void setVel(sf::Vector2f);
+	void setVel(float, float);
+	sf::Vector2f getVel();
 
 	bool outOfBounds(sf::Vector2u winSize);
 
@@ -50,8 +51,7 @@ protected:
 
 	bool del = false;
 
-	sf::Vector2f pos, size;
-	float rot, vel;
+	sf::Vector2f pos, size, vel;
 
 	sf::RectangleShape sprite;
 

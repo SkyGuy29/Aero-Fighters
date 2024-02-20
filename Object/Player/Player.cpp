@@ -2,7 +2,6 @@
 
 Player::Player()
 {
-	vel = 5.f;
 	setSize(25, 50);
 	frameCount = 10;
 	type = PLAYER;
@@ -17,9 +16,9 @@ void Player::shoot(std::vector<Object*>& objects)
 		switch (country)
 		{
 		case -1:
-			objects.push_back(new Projectile(pos, -15.f, 10.f));
-			objects.push_back(new Projectile(pos,   0.f, 10.f));
-			objects.push_back(new Projectile(pos,  15.f, 10.f));
+			objects.push_back(new Projectile(pos, sf::Vector2f(-2.6, -9.7)));
+			objects.push_back(new Projectile(pos, sf::Vector2f(0, -10)));
+			objects.push_back(new Projectile(pos, sf::Vector2f(2.6, -9.7)));
 			break;
 		}
 		cooldown = 3;
@@ -32,6 +31,7 @@ void Player::special()
 
 void Player::update(sf::Vector2u winSize, std::vector<Object*>* objects)
 {
+
 	//Am I being shot?
 	for (int i = 0; i < objects->size(); i++)
 	{
@@ -45,6 +45,8 @@ void Player::update(sf::Vector2u winSize, std::vector<Object*>* objects)
 		cooldown--;
 
 	nextFrame();
+	
+	objectUpdate(winSize, objects);
 }
 
 void Player::draw(sf::RenderTarget& target, sf::RenderStates states) const
