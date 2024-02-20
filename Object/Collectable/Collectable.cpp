@@ -8,9 +8,9 @@ Collectable::Collectable(short id)
 	pos.y = 0;
 	pos.x = 100;
 	if (id == 0)
-		vel = sf::Vector2f(0, 1);
+		vel = sf::Vector2f(0, 10);
 	else
-		vel = sf::Vector2f(.707, .707);
+		vel = sf::Vector2f(7.07, 7.07);
 	setRandColor();
 }
 
@@ -21,9 +21,9 @@ Collectable::Collectable(short id, sf::Vector2f position)
 	setSize(15, 30);
 	pos = position;
 	if (id == 0)
-		vel = sf::Vector2f(0, 1);
+		vel = sf::Vector2f(0, 10);
 	else
-		vel = sf::Vector2f(.707, .707);
+		vel = sf::Vector2f(7.07, 7.07);
 	setRandColor();
 }
 
@@ -35,9 +35,9 @@ Collectable::Collectable(short id, float xPosition, float yPosition)
 	pos.x = xPosition;
 	pos.y = yPosition;
 	if (id == 0)
-		vel = sf::Vector2f(0, 1);
+		vel = sf::Vector2f(0, 10);
 	else
-		vel = sf::Vector2f(.707, .707);
+		vel = sf::Vector2f(7.07, 7.07);
 	setRandColor();
 }
 
