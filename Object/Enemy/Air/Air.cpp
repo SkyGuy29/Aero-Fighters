@@ -1,6 +1,6 @@
 #include "Air.h"
 
-Air::Air(short id)
+Air::Air(short id, sf::Vector2u winSize, std::vector<Object*>* objects)
 {
 	this->id = id;
 	type = AIR;
@@ -8,28 +8,33 @@ Air::Air(short id)
 	switch (id)
 	{
 	case 0:
-		health = 100;
-		setSize(25, 50);
+		//Fly straight down
+		health = 1;
+		setSize(15, 25);
 		setRandColor();
+		if (objects->at(objects->size() - 1)->getType() == AIR
+			&& objects->at(objects->size() - 1)->getId() == 0)
+		{
+			setPos(objects->at(objects->size() - 1)->getPos()
+				+ sf::Vector2f(0, -0.25f * winSize.y));
+		}
+		else
+			setPos(sf::Vector2f(winSize.x * 0.5f, winSize.y * -0.25f));
+		setVel(0, 4);
 		break;
 	}
 }
 
 void Air::update(sf::Vector2u winSize, std::vector<Object*>* objects)
 {
-	if (outOfBounds(winSize))
-		del = true;
+	int t;
 
-	//Am I being shot?
-	for (int i = 0; i < objects->size(); i++)
-	{
-		if (objects->at(i)->getType() == PLAYER_PROJECTILE && this->intersect(objects->at(i)))
-		{
-			health--;
-			objects->at(i)->setDelete();
-			setRandColor();
-		}
-		if (health <= 0)
-			del = true;
-	}
+	enemyUpdate(winSize, objects);
+
+	if (targetP1)
+		t = 0;
+	else
+		t = 1;
+
+	
 }

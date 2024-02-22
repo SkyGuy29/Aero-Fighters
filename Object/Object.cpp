@@ -54,6 +54,11 @@ sf::Vector2f Object::getSize()
 	return size;
 }
 
+short Object::getID()
+{
+	return id;
+}
+
 // The use of this method is to load a texture in Level or Game once, then cheaply load it again multiple times
 void Object::setTexture(sf::Texture* texPtr)
 {
@@ -69,6 +74,11 @@ bool Object::intersect(Object* targetPtr)
 short Object::getType()
 {
 	return type;
+}
+
+short Object::getId()
+{
+	return id;
 }
 
 // I was thinking move would need a boundry check, not setPos.
