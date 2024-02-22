@@ -21,6 +21,8 @@ private:
 	sf::View view;
 	sf::Vector2u winSize = sf::Vector2u(224, 320);
 	int framesPSec = 30;
+	int score, highScore;
+
 
 	Level level;
 };

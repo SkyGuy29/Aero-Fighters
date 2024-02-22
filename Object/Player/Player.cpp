@@ -39,6 +39,14 @@ void Player::update(sf::Vector2u winSize, std::vector<Object*>* objects)
 		{
 			setRandColor();
 		}
+		else if (objects->at(i)->getType() == COLLECTABLE && this->intersect(objects->at(i)))
+		{
+			switch (objects->at(i)->getID())
+			{
+			case 0:
+
+			}
+		}
 	}
 
 	if (cooldown)
