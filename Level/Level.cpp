@@ -40,8 +40,8 @@ void Level::load(sf::Vector2u winSize, int mapId)
 	objects.push_back(new Collectable(1));
 	objects.back()->setPos(sf::Vector2f(winSize.x * 0.25f, winSize.y * 0.5f));
 
-	objects.push_back(new Air(0));
-	objects.back()->setPos(sf::Vector2f(winSize.x * 0.5f, winSize.y * 0.25f));
+	for (int i = 0; i < 500; i++)
+		objects.push_back(new Air(0, winSize, &objects));
 }
 
 void Level::update(sf::Vector2u winSize)
@@ -74,8 +74,8 @@ void Level::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
 	target.draw(background, states);
 
-	for (auto& object : objects)
-		target.draw(*object);
+	for (int i = objects.size() - 1; i >= 0; i--)
+		target.draw(*objects[i]);
 }
 
 void Level::getInput(sf::Vector2u winSize)
