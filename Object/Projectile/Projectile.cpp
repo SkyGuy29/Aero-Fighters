@@ -21,6 +21,14 @@ Projectile::Projectile(float posX, float posY, sf::Vector2f vel)
 	type = PLAYER_PROJECTILE;
 }
 
+Projectile::Projectile(sf::Vector2f pos, sf::Vector2f vel, sf::Vector2f size)
+{
+	setSize(size);
+	setPos(pos);
+	this->vel = vel;
+	type = PLAYER_PROJECTILE;
+}
+
 // Just moves in a straight line
 void Projectile::update(sf::Vector2u winSize, std::vector<Object*>* objects)
 {
