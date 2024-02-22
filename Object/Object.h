@@ -41,6 +41,7 @@ public:
 	bool intersect(Object*);
 	
 	short getType();
+	short getId();
 
 protected:
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
