@@ -54,9 +54,11 @@ void Player::update(sf::Vector2u winSize, std::vector<Object*>* objects)
 	{
 		if ((objects->at(i)->getType() == ENEMY_PROJECTILE) 
 			|| (objects->at(i)->getType() == AIR)
-			&& this->intersect(objects->at(i)))
+			&& this->intersect(objects->at(i))
+			&& !invincibility)
 		{
 			health--;
+			pos = sf::Vector2f(winSize.x * 0.5f, winSize.y * 0.75f);
 			invincibility = 30;
 		}
 		else if (objects->at(i)->getType() == COLLECTABLE && this->intersect(objects->at(i)))
