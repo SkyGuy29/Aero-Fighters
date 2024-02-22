@@ -98,7 +98,7 @@ void Level::getInput(sf::Vector2u winSize)
 			p[i]->shoot(objects);
 
 		if (button(i, B))
-			p[i]->special();
+			p[i]->special(objects);
 
 		// keyboard controls
 		objects.at(i)->setVel((key(i, Right) - key(i, Left)) * 5,
@@ -106,6 +106,9 @@ void Level::getInput(sf::Vector2u winSize)
 
 		if (key(i, Shoot))
 			p[i]->shoot(objects);
+
+		if (key(i, Special))
+			p[i]->special(objects);
 	}
 }
 

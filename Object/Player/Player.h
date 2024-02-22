@@ -11,13 +11,16 @@ public:
 
 	void shoot(std::vector<Object*>& objects);
 
-	void special();
+	void special(std::vector<Object*>& objects);
 
 	void update(sf::Vector2u winSize, std::vector<Object*>* objects);
 
 private:
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
-	short country = -1;
+	short country = 0;
+	short specialCharge = 2;
+	short powerLevel = 0;
+	int invincibility = 0;
 };
 
