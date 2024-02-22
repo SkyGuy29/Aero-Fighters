@@ -54,6 +54,11 @@ sf::Vector2f Object::getSize()
 	return size;
 }
 
+short Object::getID()
+{
+	return id;
+}
+
 // The use of this method is to load a texture in Level or Game once, then cheaply load it again multiple times
 void Object::setTexture(sf::Texture* texPtr)
 {
