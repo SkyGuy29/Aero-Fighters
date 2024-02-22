@@ -144,8 +144,8 @@ void Object::setVel(float x, float y)
 bool Object::outOfBounds(sf::Vector2u winSize)
 {
 	return (
-		pos.x - size.x / 2.f < 0 || pos.y - size.y / 2.f < 0 || 
-		pos.x + size.x / 2.f >= winSize.x || pos.y + size.y / 2.f >= winSize.y);
+		pos.x + size.x / 2.f < 0 || pos.y + size.y / 2.f < 0 || 
+		pos.x - size.x / 2.f >= winSize.x || pos.y - size.y / 2.f >= winSize.y);
 }
 
 void Object::setDelete()

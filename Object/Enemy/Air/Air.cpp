@@ -8,18 +8,32 @@ Air::Air(short id, sf::Vector2u winSize, std::vector<Object*>* objects)
 	switch (id)
 	{
 	case 0:
-		//Fly straight down
+		//Fly straight down in formation of 6
 		health = 1;
 		setSize(15, 25);
 		setRandColor();
-		if (objects->at(objects->size() - 1)->getType() == AIR
-			&& objects->at(objects->size() - 1)->getId() == 0)
+
+		switch (numLikeMe(objects) % 6)
 		{
-			setPos(objects->at(objects->size() - 1)->getPos()
-				+ sf::Vector2f(0, -0.25f * winSize.y));
-		}
-		else
+		case 0:
 			setPos(sf::Vector2f(winSize.x * 0.5f, winSize.y * -0.25f));
+			break;
+		case 1:
+			setPos(objects->at(objects->size() - 1)->getPos()
+						+ sf::Vector2f(-0.05f * winSize.y, -0.1f * winSize.y));
+			break;
+		case 2:
+		case 4:
+		case 5:
+			setPos(objects->at(objects->size() - 1)->getPos()
+				+ sf::Vector2f(0.1f * winSize.y, 0));
+			break;
+		case 3:
+			setPos(objects->at(objects->size() - 1)->getPos()
+				+ sf::Vector2f(-0.15f * winSize.y, -0.1f * winSize.y));
+			break;
+		}
+
 		setVel(0, 4);
 		break;
 	}

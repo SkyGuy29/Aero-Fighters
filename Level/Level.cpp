@@ -39,9 +39,6 @@ void Level::load(sf::Vector2u winSize, int mapId)
 
 	objects.push_back(new Collectable(1));
 	objects.back()->setPos(sf::Vector2f(winSize.x * 0.25f, winSize.y * 0.5f));
-
-	for (int i = 0; i < 500; i++)
-		objects.push_back(new Air(0, winSize, &objects));
 }
 
 void Level::update(sf::Vector2u winSize)
@@ -68,6 +65,13 @@ void Level::update(sf::Vector2u winSize)
 			delete objects[objects.size() - 1 - i];
 			objects.erase(objects.end() - 1 - i);
 		}
+
+	//Random events!!!
+	if (rand() % 90 == 0)
+	{
+		for (int i = 0; i < 6; i++)
+			objects.push_back(new Air(0, winSize, &objects));
+	}
 }
 
 void Level::draw(sf::RenderTarget& target, sf::RenderStates states) const
