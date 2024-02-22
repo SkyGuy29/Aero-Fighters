@@ -44,7 +44,7 @@ void Player::update(sf::Vector2u winSize, std::vector<Object*>* objects)
 			switch (objects->at(i)->getID())
 			{
 			case 0:
-
+				break;
 			}
 		}
 	}
