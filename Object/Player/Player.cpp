@@ -56,7 +56,8 @@ void Player::special(std::vector<Object*>& objects, sf::Vector2u winSize)
 		{
 		case 0:
 			objects.push_back(new Projectile(winSize.x / 2, winSize.y / 2, 
-				sf::Vector2f(0, 0), sf::Vector2f(winSize.x / 3, winSize.y / 3)));
+				sf::Vector2f(0, 0), sf::Vector2f(winSize.x / 3, winSize.y / 3)
+				, 1, true));
 			break;
 		case 1:
 			break;
@@ -100,7 +101,8 @@ void Player::update(sf::Vector2u winSize, std::vector<Object*>* objects)
 					powerLevel++;
 				break;
 			case 2: //Interact with B
-				specialCharge++;
+				if(specialCharge < 5)
+					specialCharge++;
 				break;
 			case 3: //Interact with F
 				powerLevel = 3;

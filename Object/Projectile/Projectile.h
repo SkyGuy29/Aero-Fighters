@@ -10,6 +10,8 @@ public:
 	Projectile(float posX, float posY, sf::Vector2f vel);
 	Projectile(sf::Vector2f, sf::Vector2f, sf::Vector2f);
 	Projectile(float, float, sf::Vector2f, sf::Vector2f);
+	Projectile(float posX, float posY, sf::Vector2f vel,
+	sf::Vector2f size, short ID, bool player);
 
 	void update(sf::Vector2u winSize, std::vector<Object*>* objects);
 };

@@ -37,6 +37,21 @@ Projectile::Projectile(float posX, float posY, sf::Vector2f vel, sf::Vector2f si
 	type = PLAYER_PROJECTILE;
 }
 
+Projectile::Projectile(float posX, float posY, sf::Vector2f vel,
+sf::Vector2f size, short ID, bool player)
+{
+	id = ID;
+	setSize(size);
+	setPos(posX, posY);
+	this->vel = vel;
+	if (player)
+		type = PLAYER_PROJECTILE;
+	else
+		type = ENEMY_PROJECTILE;
+	if (id = 1)
+		cooldown = 120;
+}
+
 // Just moves in a straight line
 void Projectile::update(sf::Vector2u winSize, std::vector<Object*>* objects)
 {
@@ -52,6 +67,29 @@ void Projectile::update(sf::Vector2u winSize, std::vector<Object*>* objects)
 
 	sprite.setPosition(pos);
 
+	if (id = 1)
+		cooldown--;
+
+	if (!cooldown)
+		del = true;
+
 	if (outOfBounds(winSize))
 		del = true;
+
+	for (int i = 0; i < objects->size(); i++)
+	{
+		if (type == PLAYER_PROJECTILE
+			&& ((objects->at(i)->getType() == AIR
+			|| objects->at(i)->getType() == LAND)
+			&& this->intersect(objects->at(i))))
+		{
+			del = true;
+		}
+		else if (type == ENEMY_PROJECTILE
+			&& objects->at(i)->getType() == PLAYER
+			&& this->intersect(objects->at(i)))
+		{
+			del = true;
+		}
+	}
 }

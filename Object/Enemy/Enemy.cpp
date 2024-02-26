@@ -34,7 +34,6 @@ void Enemy::enemyUpdate(sf::Vector2u winSize, std::vector<Object*>* objects)
 		if (objects->at(i)->getType() == PLAYER_PROJECTILE && this->intersect(objects->at(i)))
 		{
 			health--;
-			objects->at(i)->setDelete();
 			setRandColor();
 		}
 		
