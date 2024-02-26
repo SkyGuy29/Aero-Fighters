@@ -11,7 +11,7 @@ public:
 
 	void shoot(std::vector<Object*>& objects);
 
-	void special(std::vector<Object*>& objects);
+	void special(std::vector<Object*>& objects, sf::Vector2u winSize);
 
 	void update(sf::Vector2u winSize, std::vector<Object*>* objects);
 

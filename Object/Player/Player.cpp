@@ -11,38 +11,65 @@ Player::Player()
 // takes a pointer from Level's playerProjs so it can add Projectiles to it.
 void Player::shoot(std::vector<Object*>& objects)
 {
+	int offset = 0;
 	// cooldown is so a constant stream of projectiles isn't created
 	if (!cooldown)
 	{
-		switch (powerLevel * 4 + country)
+		switch (country * 4 + powerLevel)
 		{
 		case 0:
-			objects.push_back(new Projectile(pos, sf::Vector2f(0, -10)));
+			objects.push_back(new Projectile(pos.x, pos.y - 25,
+				sf::Vector2f(0, -10), sf::Vector2f(15, 12)));
+			cooldown = 3;
+			break;
+		case 1:
+			objects.push_back(new Projectile(pos.x, pos.y - 25, 
+				sf::Vector2f(0, -10), sf::Vector2f(20, 14)));
+			cooldown = 3;
+			break;
+		case 2:
+			objects.push_back(new Projectile(pos.x, pos.y - 25,
+				sf::Vector2f(0, -10), sf::Vector2f(25, 15)));
+			cooldown = 2;
+			break;
+		case 3:
+			objects.push_back(new Projectile(pos.x, pos.y - 25,
+				sf::Vector2f(0, -10), sf::Vector2f(32, 18)));
+			cooldown = 2;
 			break;
 		default:
 			objects.push_back(new Projectile(pos, sf::Vector2f(-2.6, -9.7)));
 			objects.push_back(new Projectile(pos, sf::Vector2f(0, -10)));
 			objects.push_back(new Projectile(pos, sf::Vector2f(2.6, -9.7)));
+			cooldown = 3;
 			break;
 		}
-		cooldown = 3;
 	}
 }
 
-void Player::special(std::vector<Object*>& objects)
+void Player::special(std::vector<Object*>& objects, sf::Vector2u winSize)
 {
 	if (specialCharge > 0 && !cooldown)
 	{
+		specialCharge--;
 		switch (country)
 		{
+		case 0:
+			objects.push_back(new Projectile(winSize.x / 2, winSize.y / 2, 
+				sf::Vector2f(0, 0), sf::Vector2f(winSize.x / 3, winSize.y / 3)));
+			break;
+		case 1:
+			break;
+		case 2:
+			break;
+		case 3:
+			break;
 		default:
-			specialCharge--;
 			objects.push_back(new Projectile(pos, sf::Vector2f(0, -10),
-			sf::Vector2f(8, 20)));
+			sf::Vector2f(40, 100)));
 			cooldown = 10;
 			break;
 		}
-		
 	}
 }
 
@@ -69,13 +96,14 @@ void Player::update(sf::Vector2u winSize, std::vector<Object*>* objects)
 				//Increase score
 				break;
 			case 1: //Interact with P
-				powerLevel++;
+				if(powerLevel < 3)
+					powerLevel++;
 				break;
 			case 2: //Interact with B
 				specialCharge++;
 				break;
-			case 3: //Interact with S
-				//Special fire power thing
+			case 3: //Interact with F
+				powerLevel = 3;
 				break;
 			}
 		}
