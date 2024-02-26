@@ -15,8 +15,6 @@ public:
 
 	void update(sf::Vector2u winSize, std::vector<Object*>* objects);
 
-	void setCountry(short);
-
 private:
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 

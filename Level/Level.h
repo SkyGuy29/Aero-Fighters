@@ -18,7 +18,6 @@ class Level : public sf::Drawable
 {
 public:
 	Level();
-	Level(short);
 
 	~Level();
 

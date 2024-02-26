@@ -49,7 +49,7 @@ sf::Vector2f size, short ID, bool player)
 	else
 		type = ENEMY_PROJECTILE;
 	if (id = 1)
-		cooldown = 90;
+		cooldown = 120;
 }
 
 // Just moves in a straight line
