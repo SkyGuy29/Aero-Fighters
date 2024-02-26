@@ -72,6 +72,17 @@ void Level::update(sf::Vector2u winSize)
 		for (int i = 0; i < 6; i++)
 			objects.push_back(new Air(0, winSize, &objects));
 	}
+	if (rand() % 200 == 0)
+		objects.push_back(new Air(1, winSize, &objects));
+	if (rand() % 200 == 0)
+		objects.push_back(new Air(2, winSize, &objects));
+	if (rand() % 100 == 0)
+	{
+		for (int i = 0; i < 4; i++)
+			objects.push_back(new Air(3, winSize, &objects));
+	}
+	if (rand() % 100 == 0)
+		objects.push_back(new Air(4, winSize, &objects));
 }
 
 void Level::draw(sf::RenderTarget& target, sf::RenderStates states) const
