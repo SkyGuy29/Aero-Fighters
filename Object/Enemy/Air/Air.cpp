@@ -16,7 +16,7 @@ Air::Air(short id, sf::Vector2u winSize, std::vector<Object*>* objects)
 		switch (numLikeMe(objects) % 6)
 		{
 		case 0:
-			setPos(sf::Vector2f(winSize.x * 0.5f, winSize.y * -0.25f));
+			setPos(sf::Vector2f((rand() % 60 + 20) / 100. * winSize.x , winSize.y * -0.25f));
 			break;
 		case 1:
 			setPos(objects->at(objects->size() - 1)->getPos()
