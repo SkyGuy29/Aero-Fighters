@@ -37,7 +37,12 @@ void Enemy::enemyUpdate(sf::Vector2u winSize, std::vector<Object*>* objects)
 			objects->at(i)->setDelete();
 			setRandColor();
 		}
-		if (health <= 0)
-			del = true;
+		
+	}
+	if (health <= 0 && del == false)
+	{
+		del = true;
+	    objects->push_back(new Collectable(rand() % 4, pos));
+		//Crashes when an enemy dies
 	}
 }

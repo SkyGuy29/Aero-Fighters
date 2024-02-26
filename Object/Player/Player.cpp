@@ -38,11 +38,10 @@ void Player::special(std::vector<Object*>& objects)
 		default:
 			specialCharge--;
 			objects.push_back(new Projectile(pos, sf::Vector2f(0, -10),
-			sf::Vector2f(8, 20)));
+			sf::Vector2f(40, 100)));
 			cooldown = 10;
 			break;
 		}
-		
 	}
 }
 
@@ -74,8 +73,8 @@ void Player::update(sf::Vector2u winSize, std::vector<Object*>* objects)
 			case 2: //Interact with B
 				specialCharge++;
 				break;
-			case 3: //Interact with S
-				//Special fire power thing
+			case 3: //Interact with F
+				powerLevel = 5;
 				break;
 			}
 		}

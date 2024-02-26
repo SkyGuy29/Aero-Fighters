@@ -11,7 +11,7 @@ Collectable::Collectable(short id)
 		vel = sf::Vector2f(0, 1);
 	else
 		vel = sf::Vector2f(3.535, 3.535);
-	setRandColor();
+	setColor();
 }
 
 Collectable::Collectable(short id, sf::Vector2f position)
@@ -24,7 +24,7 @@ Collectable::Collectable(short id, sf::Vector2f position)
 		vel = sf::Vector2f(0, 1);
 	else
 		vel = sf::Vector2f(3.535, 3.535);
-	setRandColor();
+	setColor();
 }
 
 Collectable::Collectable(short id, float xPosition, float yPosition)
@@ -38,7 +38,26 @@ Collectable::Collectable(short id, float xPosition, float yPosition)
 		vel = sf::Vector2f(0, 10);
 	else
 		vel = sf::Vector2f(3.535, 3.535);
-	setRandColor();
+	setColor();
+}
+
+void Collectable::setColor()
+{
+	switch (id)
+	{
+	case 0:
+		sprite.setFillColor(sf::Color::Yellow);
+		break;
+	case 1:
+		sprite.setFillColor(sf::Color::Blue);
+		break;
+	case 2:
+		sprite.setFillColor(sf::Color::Black);
+		break;
+	default:
+		sprite.setFillColor(sf::Color::Green);
+		break;
+	}
 }
 
 void Collectable::update(sf::Vector2u winSize, std::vector<Object*>* objects)

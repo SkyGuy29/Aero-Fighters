@@ -10,5 +10,6 @@ public:
 	Collectable(short, float, float);
 
 	void update(sf::Vector2u winSize, std::vector<Object*>* objects);
+	void setColor();
 };
 

@@ -2,6 +2,7 @@
 
 #include "../Object.h"
 #include "../Projectile/Projectile.h"
+#include "../Collectable/Collectable.h"
 
 class Enemy : public Object
 {
