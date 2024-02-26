@@ -4,6 +4,12 @@ Level::Level()
 {
 }
 
+Level::Level(short country)
+{
+	p[0]->setCountry(country);
+	p[1]->setCountry(country);
+}
+
 Level::~Level()
 {
 	while (objects.size() > 0)

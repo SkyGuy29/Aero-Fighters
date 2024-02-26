@@ -18,6 +18,11 @@ void Game::run()
 
 	resize();
 
+	short country;
+	std::cout << "What country do you want? (short)";
+	std::cin >> country;
+
+	level = Level(country);
 	level.load(winSize, 0);
 
 	while (window.isOpen())
