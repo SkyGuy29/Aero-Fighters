@@ -46,6 +46,8 @@ private:
 
 	Player* p[2];
 
+	int country = 0;
+
 	// TEMPORARY CONTROLS
 
 	// Controller test
