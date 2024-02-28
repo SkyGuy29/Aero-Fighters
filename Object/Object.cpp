@@ -157,10 +157,3 @@ bool Object::shouldDelete()
 {
 	return del;
 }
-
-
-// Added communism. All objects get setCountry, not just one.
-void Object::setCountry(short c)
-{
-	country = c;
-}

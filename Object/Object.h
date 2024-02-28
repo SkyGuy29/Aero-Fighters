@@ -45,8 +45,6 @@ public:
 
 	short getID();
 
-	void setCountry(short c);
-
 protected:
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
@@ -61,8 +59,6 @@ protected:
 	sf::RectangleShape sprite;
 
 	short frameCount = 0, currentFrame = 0;
-
-	short country = 0;
 
 	const float PI = 3.14159f, TO_RAD = PI / 180.f, TO_DEG = 180.f / PI;
 
