@@ -48,8 +48,12 @@ sf::Vector2f size, short ID, bool player)
 		type = PLAYER_PROJECTILE;
 	else
 		type = ENEMY_PROJECTILE;
-	if (id = 1)
+	if (id == 1)
+		cooldown = 300;
+	else if (id == 2)
 		cooldown = 120;
+	else if (id == 3)
+		cooldown = 30;
 }
 
 // Just moves in a straight line
@@ -67,10 +71,15 @@ void Projectile::update(sf::Vector2u winSize, std::vector<Object*>* objects)
 
 	sprite.setPosition(pos);
 
-	if (id = 1)
+	if (id == 3)
+	{
+		setSize(sf::Vector2f(size.x += 15, size.y += 15));
+	}
+
+	if (id && cooldown)
 		cooldown--;
 
-	if (!cooldown)
+	if (!cooldown && id)
 		del = true;
 
 	if (outOfBounds(winSize))
@@ -79,6 +88,7 @@ void Projectile::update(sf::Vector2u winSize, std::vector<Object*>* objects)
 	for (int i = 0; i < objects->size(); i++)
 	{
 		if (type == PLAYER_PROJECTILE
+			&& !id
 			&& ((objects->at(i)->getType() == AIR
 			|| objects->at(i)->getType() == LAND)
 			&& this->intersect(objects->at(i))))

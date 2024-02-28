@@ -64,12 +64,29 @@ void Collectable::update(sf::Vector2u winSize, std::vector<Object*>* objects)
 {
 	if (outOfBounds(winSize) && (id == 0))
 		del = true;
-	else if (pos.y >= 240 || pos.y <= 30 || outOfBounds(winSize))
+	else if ((pos.y >= 240 || pos.y <= 30 || outOfBounds(winSize))
+			&& id != 0)
 	{
-		if (pos.x - size.x / 2 <= 0 || pos.x + size.x / 2 >= winSize.x)
+		if (pos.x <= 0)
+		{
+			pos.x = 0;
 			vel.x *= -1;
-		if (pos.y - size.y / 2 <= 30 || pos.y + size.y / 2 >= 240)
+		}
+		else if (pos.x >= winSize.x)
+		{
+			pos.x = winSize.x;
+			vel.x *= -1;
+		}
+		if (pos.y <= 30)
+		{
+			pos.y = 30;
 			vel.y *= -1;
+		}
+		else if (pos.y >= 240)
+		{
+			pos.y = 240;
+			vel.y *= -1;
+		}
 	}
 	for (int index = 0; index < objects->size(); index++)
 	{

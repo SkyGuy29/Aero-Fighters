@@ -50,7 +50,7 @@ protected:
 
 	void nextFrame();
 
-	short type, id, cooldown = 0, health;
+	short type, id = 0, cooldown = 0, health;
 
 	bool del = false;
 

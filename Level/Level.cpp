@@ -15,6 +15,10 @@ Level::~Level()
 
 void Level::load(sf::Vector2u winSize, int mapId)
 {
+	short c = -1;
+	std::cout << "Which country? (short)\n";
+	std::cin >> c;
+
 	background.setSize(sf::Vector2f(winSize));
 	backgroundImg.loadFromFile("Res/placeholder.jpg");
 	backgroundDist = backgroundImg.getSize().y - winSize.y;
@@ -22,9 +26,8 @@ void Level::load(sf::Vector2u winSize, int mapId)
 	background.setTexture(&backgroundImg);
 	background.setTextureRect(rect);
 
-	
-	p[0] = new Player();
-	p[1] = new Player();
+	p[0] = new Player(c, true);
+	p[1] = new Player(c, false);
 	objects.push_back(p[0]);
 	objects.push_back(p[1]);
 
