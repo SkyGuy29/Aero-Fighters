@@ -6,8 +6,7 @@ Level::Level()
 
 Level::Level(short country)
 {
-	p[0]->setCountry(country);
-	p[1]->setCountry(country);
+	this->country = country;
 }
 
 Level::~Level()
@@ -29,8 +28,8 @@ void Level::load(sf::Vector2u winSize, int mapId)
 	background.setTextureRect(rect);
 
 	
-	p[0] = new Player();
-	p[1] = new Player();
+	p[0] = new Player(country);
+	p[1] = new Player(country);
 	objects.push_back(p[0]);
 	objects.push_back(p[1]);
 

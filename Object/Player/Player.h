@@ -7,7 +7,7 @@
 class Player : public Object
 {
 public:
-	Player();
+	Player(int country);
 
 	void shoot(std::vector<Object*>& objects);
 

@@ -1,6 +1,6 @@
 #include "Player.h"
 
-Player::Player()
+Player::Player(int country)
 {
 	setSize(25, 50);
 	frameCount = 10;
