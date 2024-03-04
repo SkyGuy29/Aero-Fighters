@@ -12,6 +12,7 @@ Air::Air(short id, sf::Vector2u winSize, std::vector<Object*>* objects)
 		health = 1;
 		setSize(15, 25);
 		sprite.setSize(sf::Vector2f(15, 25));
+		sprite.setOrigin(sf::Vector2f(15, 25) / 2.f);
 		setRandColor();
 
 		switch (numLikeMe(objects) % 6)
@@ -41,6 +42,7 @@ Air::Air(short id, sf::Vector2u winSize, std::vector<Object*>* objects)
 		health = 1;
 		setSize(15, 25);
 		sprite.setSize(sf::Vector2f(15, 25));
+		sprite.setOrigin(sf::Vector2f(15, 25) / 2.f);
 		setRandColor();
 		setPos(sf::Vector2f((rand() % 60 + 20) / 100. * winSize.x, winSize.y * -0.25f));
 
@@ -50,6 +52,7 @@ Air::Air(short id, sf::Vector2u winSize, std::vector<Object*>* objects)
 		health = 1;
 		setSize(15, 25);
 		sprite.setSize(sf::Vector2f(15, 25));
+		sprite.setOrigin(sf::Vector2f(15, 25) / 2.f);
 		setRandColor();
 
 		switch (numLikeMe(objects) % 4)
@@ -70,6 +73,7 @@ Air::Air(short id, sf::Vector2u winSize, std::vector<Object*>* objects)
 		health = 1;
 		setSize(15, 25);
 		sprite.setSize(sf::Vector2f(15, 25));
+		sprite.setOrigin(sf::Vector2f(15, 25) / 2.f);
 		setRandColor();
 		setPos(0 * winSize.x, 0.15 * winSize.y);
 
