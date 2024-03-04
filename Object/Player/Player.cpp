@@ -5,7 +5,6 @@ Player::Player(short c, bool playerOne)
 	isPlayerTwo = !playerOne;
 	country = c;
 	setSize(25, 50);
-	frameCount = 10;
 	type = PLAYER;
 	health = 3; //Health is used for lives.
 }

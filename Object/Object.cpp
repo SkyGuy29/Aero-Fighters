@@ -29,9 +29,22 @@ void Object::nextFrame()
 		currentFrame -= frameCount * 15;
 
 	// the dividing to an int is needed for the updates per frame delay.
-	sprite.setTextureRect(sf::IntRect(0, 
-		(currentFrame / 15) * sprite.getSize().y,
-		sprite.getSize().x, sprite.getSize().y));
+	sprite.setTextureRect(sf::IntRect(
+		texOffset.x + (currentFrame / 15) * texSize.x * !verticalAnimation,
+		texOffset.y + (currentFrame / 15) * texSize.y *  verticalAnimation,
+		texSize.x, texSize.y));
+}
+
+// The use of this method is to load a texture in Level or Game once, then cheaply load it again multiple times
+void Object::setTexture(sf::Texture* texPtr, sf::Vector2i size, sf::Vector2i offset, int frameCount, bool vertAnimation)
+{
+	sprite.setTexture(texPtr);
+	texOffset = offset;
+	texSize = size;
+	this->frameCount = frameCount;
+	verticalAnimation = vertAnimation;
+	sprite.setSize(sf::Vector2f(size));
+	sprite.setOrigin(sf::Vector2f(size) / 2.f);
 }
 
 // just a temporary method, idk why I remade it lol
@@ -57,12 +70,6 @@ sf::Vector2f Object::getSize()
 short Object::getID()
 {
 	return id;
-}
-
-// The use of this method is to load a texture in Level or Game once, then cheaply load it again multiple times
-void Object::setTexture(sf::Texture* texPtr)
-{
-	sprite.setTexture(texPtr);
 }
 
 bool Object::intersect(Object* targetPtr)
@@ -115,8 +122,6 @@ void Object::setPos(float newPosX, float newPosY)
 void Object::setSize(sf::Vector2f newSize)
 {
 	size = newSize;
-	sprite.setSize(size);
-	sprite.setOrigin(size / 2.f);
 }
 
 void Object::setSize(float newSizeX, float newSizeY)

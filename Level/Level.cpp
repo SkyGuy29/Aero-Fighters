@@ -37,8 +37,9 @@ void Level::load(sf::Vector2u winSize, int mapId)
 
 	// just a test to try out the moved animator to object
 	test.loadFromFile("Res/AnimatorTest.png");
-	objects.at(0)->setTexture(&test);
-	objects.at(1)->setTexture(&test);
+	test2.loadFromFile("Res/Sprites/Arcade - Aero Fighters Sonic Wings - Fighters.png");
+	objects.at(0)->setTexture(&test2, sf::Vector2i(32, 32), sf::Vector2i(0, 16), 5, false);
+	objects.at(1)->setTexture(&test, sf::Vector2i(25, 50), sf::Vector2i(0, 0), 10, true);
 
 	objects.push_back(new Collectable(1));
 	objects.back()->setPos(sf::Vector2f(winSize.x * 0.25f, winSize.y * 0.5f));
