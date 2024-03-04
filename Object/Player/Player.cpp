@@ -14,45 +14,45 @@ void Player::shoot(std::vector<Object*>& objects)
 {
 	int offset = 0;
 	// cooldown is so a constant stream of projectiles isn't created
-	if (!cooldown)
+	if (cooldown)
+		return;
+
+	switch (country * 8 + powerLevel * 2 + isPlayerTwo)
 	{
-		switch (country * 8 + powerLevel * 2 + isPlayerTwo)
-		{
-		case 0:
-			objects.push_back(new Projectile(pos.x, pos.y - 25,
-				sf::Vector2f(0, -10), sf::Vector2f(15, 12)));
-			cooldown = 3;
-			break;
-		case 1:
-			break;
-		case 2:
-			objects.push_back(new Projectile(pos.x, pos.y - 25, 
-				sf::Vector2f(0, -10), sf::Vector2f(20, 14)));
-			cooldown = 3;
-			break;
-		case 3:
-			break;
-		case 4:
-			objects.push_back(new Projectile(pos.x, pos.y - 25,
-				sf::Vector2f(0, -10), sf::Vector2f(25, 15)));
-			cooldown = 2;
-			break;
-		case 5:
-			break;
-		case 6:
-			objects.push_back(new Projectile(pos.x, pos.y - 25,
-				sf::Vector2f(0, -10), sf::Vector2f(32, 18)));
-			cooldown = 2;
-			break;
-		case 7:
-			break;
-		default:
-			objects.push_back(new Projectile(pos, sf::Vector2f(-2.6, -9.7)));
-			objects.push_back(new Projectile(pos, sf::Vector2f(0, -10)));
-			objects.push_back(new Projectile(pos, sf::Vector2f(2.6, -9.7)));
-			cooldown = 3;
-			break;
-		}
+	case 0:
+		objects.push_back(new Projectile(pos.x, pos.y - 25,
+			sf::Vector2f(0, -10), sf::Vector2f(15, 12)));
+		cooldown = 3;
+		break;
+	case 1:
+		break;
+	case 2:
+		objects.push_back(new Projectile(pos.x, pos.y - 25, 
+			sf::Vector2f(0, -10), sf::Vector2f(20, 14)));
+		cooldown = 3;
+		break;
+	case 3:
+		break;
+	case 4:
+		objects.push_back(new Projectile(pos.x, pos.y - 25,
+			sf::Vector2f(0, -10), sf::Vector2f(25, 15)));
+		cooldown = 2;
+		break;
+	case 5:
+		break;
+	case 6:
+		objects.push_back(new Projectile(pos.x, pos.y - 25,
+			sf::Vector2f(0, -10), sf::Vector2f(32, 18)));
+		cooldown = 2;
+		break;
+	case 7:
+		break;
+	default:
+		objects.push_back(new Projectile(pos, sf::Vector2f(-2.6, -9.7)));
+		objects.push_back(new Projectile(pos, sf::Vector2f(0, -10)));
+		objects.push_back(new Projectile(pos, sf::Vector2f(2.6, -9.7)));
+		cooldown = 3;
+		break;
 	}
 }
 
@@ -66,7 +66,7 @@ void Player::special(std::vector<Object*>& objects, sf::Vector2u winSize)
 		case 0: //Create mini nuke in the middle of the screen
 			objects.push_back(new Projectile(winSize.x / 2, winSize.y / 2, 
 				sf::Vector2f(0, 0), sf::Vector2f(winSize.x / 3, winSize.y / 3)
-				, 1, true));
+				, 2, true));
 			cooldown = 30;
 			break;
 		case 1: //Rockets from bottom
@@ -78,11 +78,11 @@ void Player::special(std::vector<Object*>& objects, sf::Vector2u winSize)
 			cooldown = 30;
 			break;
 		case 2: //Big laser that follows player
-			if (movingProjectile == nullptr)
+			if (timer == 0)
 			{
 				movingProjectile = new Projectile(pos.x, winSize.y / 2,
 					sf::Vector2f(0, 0), sf::Vector2f(50, winSize.y)
-					, 2, true);
+					, 1, true);
 				objects.push_back(movingProjectile);
 				timer = 300;
 				cooldown = 30;
@@ -119,6 +119,7 @@ void Player::special(std::vector<Object*>& objects, sf::Vector2u winSize)
 			cooldown = 30;
 			break;
 		case 7: //Missile Circle
+
 			cooldown = 30;
 			break;
 		default:
@@ -178,7 +179,7 @@ void Player::update(sf::Vector2u winSize, std::vector<Object*>* objects)
 	if (timer > 0)
 	{
 		timer--;
-		if (timer == 0)
+		if (timer <= 0)
 			movingProjectile = nullptr;
 	}
 
@@ -193,7 +194,7 @@ void Player::update(sf::Vector2u winSize, std::vector<Object*>* objects)
 	objectUpdate(winSize, objects);
 	
 	if (movingProjectile != nullptr)
-		movingProjectile->setPos(pos.x, winSize.y / 2);
+		movingProjectile->setPos(pos.x, pos.y - winSize.y / 2);
 }
 
 void Player::draw(sf::RenderTarget& target, sf::RenderStates states) const

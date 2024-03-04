@@ -38,6 +38,7 @@ private:
 
 	sf::RectangleShape background;
 	sf::Texture backgroundImg;
+	sf::Texture playerImg;
 	sf::IntRect rect;
 	int backgroundSpeed = 1, backgroundDist = 0;
 

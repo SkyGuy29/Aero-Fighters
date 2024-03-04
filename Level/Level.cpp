@@ -26,6 +26,8 @@ void Level::load(sf::Vector2u winSize, int mapId)
 	background.setTexture(&backgroundImg);
 	background.setTextureRect(rect);
 
+	playerImg.loadFromFile("Res/Sprites/players.png");
+
 	p[0] = new Player(c, true);
 	p[1] = new Player(c, false);
 	objects.push_back(p[0]);
