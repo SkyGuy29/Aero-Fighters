@@ -33,8 +33,8 @@ public:
 	sf::Vector2f getPos();
 	sf::Vector2f getSize();
 
-	void setTexture(sf::Texture* texPtr);
 
+	void setTexture(sf::Texture* texPtr, sf::Vector2i size, sf::Vector2i offset, int frameCount, bool vertAnimation);
 	// I know it's temporary
 	void setRandColor();
 	
@@ -58,7 +58,9 @@ protected:
 
 	sf::RectangleShape sprite;
 
-	short frameCount = 0, currentFrame = 0;
+	short frameCount = 0, currentFrame = 0, image;
+	sf::Vector2i texSize, texOffset;
+	bool verticalAnimation = true;
 
 	const float PI = 3.14159f, TO_RAD = PI / 180.f, TO_DEG = 180.f / PI;
 
@@ -71,6 +73,7 @@ protected:
 		LAND = 4,
 		COLLECTABLE = 5,
 		PLAYER_PROJECTILE = 6,
-		ENEMY_PROJECTILE = 7
+		ENEMY_PROJECTILE = 7,
+		EXPLOSION = 8
 	};
 };

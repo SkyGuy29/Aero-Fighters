@@ -26,6 +26,8 @@ void Level::load(sf::Vector2u winSize, int mapId)
 	background.setTexture(&backgroundImg);
 	background.setTextureRect(rect);
 
+	playerImg.loadFromFile("Res/Sprites/players.png");
+
 	p[0] = new Player(c, true);
 	p[1] = new Player(c, false);
 	objects.push_back(p[0]);
@@ -36,9 +38,9 @@ void Level::load(sf::Vector2u winSize, int mapId)
 	objects.at(1)->setPos(sf::Vector2f(winSize.x * 0.75f, winSize.y * 0.75f));
 
 	// just a test to try out the moved animator to object
-	test.loadFromFile("Res/AnimatorTest.png");
-	objects.at(0)->setTexture(&test);
-	objects.at(1)->setTexture(&test);
+	test.loadFromFile("Res/Sprites/Players.png");
+	objects.at(0)->setTexture(&test, sf::Vector2i(32, 32), sf::Vector2i(0, 16), 5, false);
+	objects.at(1)->setTexture(&test, sf::Vector2i(32, 32), sf::Vector2i(0, 16), 5, false);
 
 	objects.push_back(new Collectable(1));
 	objects.back()->setPos(sf::Vector2f(winSize.x * 0.25f, winSize.y * 0.5f));

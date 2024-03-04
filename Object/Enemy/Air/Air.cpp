@@ -11,6 +11,8 @@ Air::Air(short id, sf::Vector2u winSize, std::vector<Object*>* objects)
 		//Fly straight down in formation of 6
 		health = 1;
 		setSize(15, 25);
+		sprite.setSize(sf::Vector2f(15, 25));
+		sprite.setOrigin(sf::Vector2f(15, 25) / 2.f);
 		setRandColor();
 
 		switch (numLikeMe(objects) % 6)
@@ -39,6 +41,8 @@ Air::Air(short id, sf::Vector2u winSize, std::vector<Object*>* objects)
 	case 2: //turn right
 		health = 1;
 		setSize(15, 25);
+		sprite.setSize(sf::Vector2f(15, 25));
+		sprite.setOrigin(sf::Vector2f(15, 25) / 2.f);
 		setRandColor();
 		setPos(sf::Vector2f((rand() % 60 + 20) / 100. * winSize.x, winSize.y * -0.25f));
 
@@ -47,6 +51,8 @@ Air::Air(short id, sf::Vector2u winSize, std::vector<Object*>* objects)
 	case 3: // Flip backwards formation of 4
 		health = 1;
 		setSize(15, 25);
+		sprite.setSize(sf::Vector2f(15, 25));
+		sprite.setOrigin(sf::Vector2f(15, 25) / 2.f);
 		setRandColor();
 
 		switch (numLikeMe(objects) % 4)
@@ -66,6 +72,8 @@ Air::Air(short id, sf::Vector2u winSize, std::vector<Object*>* objects)
 	case 4: //mini chopper left
 		health = 1;
 		setSize(15, 25);
+		sprite.setSize(sf::Vector2f(15, 25));
+		sprite.setOrigin(sf::Vector2f(15, 25) / 2.f);
 		setRandColor();
 		setPos(0 * winSize.x, 0.15 * winSize.y);
 
@@ -93,11 +101,11 @@ void Air::update(sf::Vector2u winSize, std::vector<Object*>* objects)
 			vel.y -= 0.75;
 		break;
 	case 4: //mini chopper left
-		if (vel.x > 0)
-			vel.x -= 0.1 * pos.x;
+		if (pos.x < 0.1 * winSize.x)
+			vel.x -= 0.1;
 		else
 		{
-			//vel.x += 0.1;
+			vel.x += 0.1;
 			vel.y += 0.4;
 		}
 		break;

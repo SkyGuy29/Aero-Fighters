@@ -38,11 +38,12 @@ private:
 
 	sf::RectangleShape background;
 	sf::Texture backgroundImg;
+	sf::Texture playerImg;
 	sf::IntRect rect;
 	int backgroundSpeed = 1, backgroundDist = 0;
 
 	// Maybe put it in game or some other texture storage idk
-	sf::Texture test;
+	sf::Texture test, test2;
 
 	Player* p[2];
 
