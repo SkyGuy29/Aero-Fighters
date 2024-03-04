@@ -97,11 +97,11 @@ void Air::update(sf::Vector2u winSize, std::vector<Object*>* objects)
 			vel.y -= 0.75;
 		break;
 	case 4: //mini chopper left
-		if (vel.x > 0)
-			vel.x -= 0.1 * pos.x;
+		if (pos.x < 0.1 * winSize.x)
+			vel.x -= 0.1;
 		else
 		{
-			//vel.x += 0.1;
+			vel.x += 0.1;
 			vel.y += 0.4;
 		}
 		break;
