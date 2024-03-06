@@ -9,6 +9,7 @@ Projectile::Projectile(sf::Vector2f pos, sf::Vector2f vel)
 {
 	setSize(4, 10);
 	sprite.setSize(sf::Vector2f(4, 10));
+	sprite.setOrigin(sprite.getSize() / 2.f);
 	setPos(pos);
 	this->vel = vel;
 	type = PLAYER_PROJECTILE;
@@ -18,6 +19,7 @@ Projectile::Projectile(float posX, float posY, sf::Vector2f vel)
 {
 	setSize(4, 10);
 	sprite.setSize(sf::Vector2f(4, 10));
+	sprite.setOrigin(sprite.getSize() / 2.f);
 	setPos(posX, posY);
 	this->vel = vel;
 	type = PLAYER_PROJECTILE;
@@ -27,6 +29,7 @@ Projectile::Projectile(sf::Vector2f pos, sf::Vector2f vel, sf::Vector2f size)
 {
 	setSize(size);
 	sprite.setSize(size);
+	sprite.setOrigin(sprite.getSize() / 2.f);
 	setPos(pos);
 	this->vel = vel;
 	type = PLAYER_PROJECTILE;
@@ -36,6 +39,7 @@ Projectile::Projectile(float posX, float posY, sf::Vector2f vel, sf::Vector2f si
 {
 	setSize(size);
 	sprite.setSize(size);
+	sprite.setOrigin(sprite.getSize() / 2.f);
 	setPos(posX, posY);
 	this->vel = vel;
 	type = PLAYER_PROJECTILE;
@@ -47,6 +51,7 @@ sf::Vector2f size, short ID, bool player)
 	id = ID;
 	setSize(size);
 	sprite.setSize(size);
+	sprite.setOrigin(sprite.getSize() / 2.f);
 	setPos(posX, posY);
 	this->vel = vel;
 	if (player)
@@ -80,6 +85,7 @@ void Projectile::update(sf::Vector2u winSize, std::vector<Object*>* objects)
 	{
 		setSize(sf::Vector2f(size.x += 15, size.y += 15));
 		sprite.setSize(sf::Vector2f(size.x += 15, size.y += 15));
+		sprite.setOrigin(sprite.getSize() / 2.f);
 	}
 
 	if (id && cooldown)
