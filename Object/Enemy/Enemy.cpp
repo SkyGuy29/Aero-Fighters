@@ -43,6 +43,5 @@ void Enemy::enemyUpdate(sf::Vector2u winSize, std::vector<Object*>* objects)
 		del = true;
 		if(rand() % 20 == 0)
 	    objects->push_back(new Collectable(rand() % 4, pos));
-		//Crashes when an enemy dies
 	}
 }
