@@ -5,6 +5,8 @@ Collectable::Collectable(short id)
 	this->id = id;
 	type = COLLECTABLE;
 	setSize(15, 20);
+	sprite.setSize(sf::Vector2f(15, 20));
+	sprite.setOrigin(sprite.getSize() / 2.f);
 	pos.y = 0;
 	pos.x = 100;
 	if (id == 0)
@@ -19,6 +21,8 @@ Collectable::Collectable(short id, sf::Vector2f position)
 	this->id = id;
 	type = COLLECTABLE;
 	setSize(15, 20);
+	sprite.setSize(sf::Vector2f(15, 20));
+	sprite.setOrigin(sprite.getSize() / 2.f);
 	pos = position;
 	if (id == 0)
 		vel = sf::Vector2f(0, 1);
@@ -32,6 +36,8 @@ Collectable::Collectable(short id, float xPosition, float yPosition)
 	this->id = id;
 	type = COLLECTABLE;
 	setSize(15, 20);
+	sprite.setSize(sf::Vector2f(15, 20));
+	sprite.setOrigin(sprite.getSize() / 2.f);
 	pos.x = xPosition;
 	pos.y = yPosition;
 	if (id == 0)
