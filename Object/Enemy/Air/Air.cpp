@@ -1,85 +1,19 @@
 #include "Air.h"
 
-Air::Air(short id, sf::Vector2u winSize, std::vector<Object*>* objects)
+Air::Air(short id, bool left, sf::Vector2u winSize, std::vector<Object*>* objects,
+	sf::Vector2f pos, sf::Vector2f vel)
 {
 	this->id = id;
+	this->left = left;
+	this->pos = pos;
+	this->vel = vel;
 	type = AIR;
 
-	switch (id)
-	{
-	case 0:
-		//Fly straight down in formation of 6
-		health = 1;
-		setSize(15, 25);
-		sprite.setSize(sf::Vector2f(15, 25));
-		sprite.setOrigin(sf::Vector2f(15, 25) / 2.f);
-		setRandColor();
-
-		switch (numLikeMe(objects) % 6)
-		{
-		case 0:
-			setPos(sf::Vector2f((rand() % 60 + 20) / 100. * winSize.x, winSize.y * -0.25f));
-			break;
-		case 1:
-			setPos(objects->at(objects->size() - 1)->getPos()
-				+ sf::Vector2f(-0.05f * winSize.y, -0.1f * winSize.y));
-			break;
-		case 2:
-		case 4:
-		case 5:
-			setPos(objects->at(objects->size() - 1)->getPos()
-				+ sf::Vector2f(0.1f * winSize.y, 0));
-			break;
-		case 3:
-			setPos(objects->at(objects->size() - 1)->getPos()
-				+ sf::Vector2f(-0.15f * winSize.y, -0.1f * winSize.y));
-		}
-
-		setVel(0, 4);
-		break;
-	case 1: //turn left
-	case 2: //turn right
-		health = 1;
-		setSize(15, 25);
-		sprite.setSize(sf::Vector2f(15, 25));
-		sprite.setOrigin(sf::Vector2f(15, 25) / 2.f);
-		setRandColor();
-		setPos(sf::Vector2f((rand() % 60 + 20) / 100. * winSize.x, winSize.y * -0.25f));
-
-		setVel(0, 4);
-		break;
-	case 3: // Flip backwards formation of 4
-		health = 1;
-		setSize(15, 25);
-		sprite.setSize(sf::Vector2f(15, 25));
-		sprite.setOrigin(sf::Vector2f(15, 25) / 2.f);
-		setRandColor();
-
-		switch (numLikeMe(objects) % 4)
-		{
-		case 0:
-			setPos(sf::Vector2f((rand() % 60 + 20) / 100. * winSize.x, winSize.y * -0.25f));
-			break;
-		case 1:
-		case 2:
-		case 3:
-			setPos(objects->at(objects->size() - 1)->getPos()
-				+ sf::Vector2f(-0.05f * winSize.y, -0.1f * winSize.y));
-		}
-
-		setVel(1, 7);
-		break;
-	case 4: //mini chopper left
-		health = 1;
-		setSize(15, 25);
-		sprite.setSize(sf::Vector2f(15, 25));
-		sprite.setOrigin(sf::Vector2f(15, 25) / 2.f);
-		setRandColor();
-		setPos(0 * winSize.x, 0.15 * winSize.y);
-
-		setVel(4, 0);
-		break;
-	}
+	health = 1;
+	setSize(15, 25);
+	sprite.setSize(sf::Vector2f(15, 25));
+	sprite.setOrigin(sf::Vector2f(15, 25) / 2.f);
+	setRandColor();
 }
 
 void Air::update(sf::Vector2u winSize, std::vector<Object*>* objects)
@@ -88,26 +22,38 @@ void Air::update(sf::Vector2u winSize, std::vector<Object*>* objects)
 
 	switch (id)
 	{
-	case 1: //turn left
+	case 1: //turning plane
 		if (pos.y >= 0.1f * winSize.y)
-			vel.x -= 0.1;
+		{
+			if (left)
+				vel.x -= 0.1;
+			else
+				vel.x += 0.1;
+		}
 		break;
-	case 2: //turn right
-		if (pos.y >= 0.1f * winSize.y)
-			vel.x += 0.1;
-		break;
-	case 3: //flip and turn around
+	case 2: //flip and turn around
 		if (pos.y >= 0.4f * winSize.y)
 			vel.y -= 0.75;
 		break;
-	case 4: //mini chopper left
-		if (pos.x < 0.1 * winSize.x)
-			vel.x -= 0.1;
-		else
+	case 3: //mini chopper
+		if (left)
 		{
-			vel.x += 0.1;
-			vel.y += 0.4;
+			if (pos.x < 0.1 * winSize.x)
+				vel.x *= 0.9;
+			else
+			{
+				vel.x += 0.1;
+				vel.y += 0.4;
+			}
 		}
+		else
+			if (pos.x > 0.9 * winSize.x)
+				vel.x *= 0.9;
+			else
+			{
+				vel.x -= 0.1;
+				vel.y += 0.4;
+			}
 		break;
 	}
 }

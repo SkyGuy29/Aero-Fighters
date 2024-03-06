@@ -15,5 +15,6 @@ public:
 protected:
 	int health;
 	bool entered = false;
+	bool left;
 };
 
