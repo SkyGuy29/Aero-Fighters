@@ -1,12 +1,8 @@
 #include "Air.h"
 
 Air::Air(short id, bool left, sf::Vector2u winSize, std::vector<Object*>* objects,
-	sf::Vector2f pos, sf::Vector2f vel)
+	sf::Vector2f pos, sf::Vector2f vel) : Enemy(id, left, pos, vel)
 {
-	this->id = id;
-	this->left = left;
-	this->pos = pos;
-	this->vel = vel;
 	type = AIR;
 
 	health = 1;

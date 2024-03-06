@@ -7,8 +7,9 @@
 class Enemy : public Object
 {
 public:
+	Enemy(short, bool, sf::Vector2f, sf::Vector2f);
+
 	int getHealth() const;
-	int numLikeMe(std::vector<Object*>* objects);
 
 	void enemyUpdate(sf::Vector2u winSize, std::vector<Object*>* objects);
 
