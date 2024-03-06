@@ -8,6 +8,7 @@ Projectile::Projectile()
 Projectile::Projectile(sf::Vector2f pos, sf::Vector2f vel)
 {
 	setSize(4, 10);
+	tempSize = size;
 	sprite.setSize(sf::Vector2f(4, 10));
 	sprite.setOrigin(sprite.getSize() / 2.f);
 	setPos(pos);
@@ -18,6 +19,7 @@ Projectile::Projectile(sf::Vector2f pos, sf::Vector2f vel)
 Projectile::Projectile(float posX, float posY, sf::Vector2f vel)
 {
 	setSize(4, 10);
+	tempSize = size;
 	sprite.setSize(sf::Vector2f(4, 10));
 	sprite.setOrigin(sprite.getSize() / 2.f);
 	setPos(posX, posY);
@@ -28,6 +30,7 @@ Projectile::Projectile(float posX, float posY, sf::Vector2f vel)
 Projectile::Projectile(sf::Vector2f pos, sf::Vector2f vel, sf::Vector2f size)
 {
 	setSize(size);
+	tempSize = size;
 	sprite.setSize(size);
 	sprite.setOrigin(sprite.getSize() / 2.f);
 	setPos(pos);
@@ -38,6 +41,7 @@ Projectile::Projectile(sf::Vector2f pos, sf::Vector2f vel, sf::Vector2f size)
 Projectile::Projectile(float posX, float posY, sf::Vector2f vel, sf::Vector2f size)
 {
 	setSize(size);
+	tempSize = size;
 	sprite.setSize(size);
 	sprite.setOrigin(sprite.getSize() / 2.f);
 	setPos(posX, posY);
@@ -50,6 +54,7 @@ sf::Vector2f size, short ID, bool player)
 {
 	id = ID;
 	setSize(size);
+	tempSize = size;
 	sprite.setSize(size);
 	sprite.setOrigin(sprite.getSize() / 2.f);
 	setPos(posX, posY);
@@ -61,9 +66,11 @@ sf::Vector2f size, short ID, bool player)
 	if (id == 1)
 		cooldown = 300;
 	else if (id == 2)
+		cooldown = 120;
+	else if (id == 3)
 		cooldown = 30; //Mao Mao's projectile
-	//id 3 is for piercing projectiles
-	//id 4 is for tracking projectiles
+	//id 4 is for piercing projectiles
+	//id 5 is for tracking projectiles
 }
 
 Projectile::Projectile(float posX, float posY, sf::Vector2f vel,
@@ -72,6 +79,7 @@ Projectile::Projectile(float posX, float posY, sf::Vector2f vel,
 	delay = dela;
 	id = ID;
 	setSize(size);
+	tempSize = size;
 	sprite.setSize(size);
 	sprite.setOrigin(sprite.getSize() / 2.f);
 	setPos(posX, posY);
@@ -81,11 +89,13 @@ Projectile::Projectile(float posX, float posY, sf::Vector2f vel,
 	else
 		type = ENEMY_PROJECTILE;
 	if (id == 1) //For the different types of projectiles
-		cooldown = dela;
-	else if (id == 2) //Mao Mao's special
+		cooldown = 300 + dela;
+	else if (id == 2)
+		cooldown = 120 + dela;
+	else if (id == 3) //Mao Mao's special
 		cooldown = 30; 
-	//id 3 is for piercing projectiles
-	//id 4 is for tracking projectiles
+	//id 4 is for piercing projectiles
+	//id 5 is for tracking projectiles
 }
 
 // Just moves in a straight line
@@ -99,12 +109,14 @@ void Projectile::update(sf::Vector2u winSize, std::vector<Object*>* objects)
 
 	if (delay)
 	{
-		sprite.setSize(sf::Vector2f(0, 0));
+		size = sf::Vector2f(0, 0);
+		sprite.setSize(size);
 		delay--;
 	}
 
 	if (delay == 0)
 	{
+		size = tempSize;
 		sprite.setSize(size);
 	}
 

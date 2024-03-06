@@ -148,14 +148,14 @@ void Player::special(std::vector<Object*>& objects, sf::Vector2u winSize)
 		case 0: //Create mini nuke in the middle of the screen
 			objects.push_back(new Projectile(winSize.x / 2, winSize.y / 2, 
 				sf::Vector2f(0, 0), sf::Vector2f(winSize.x / 3, winSize.y / 3)
-				, 1, true, 120));
+				, 2, true, 90));
 			cooldown = 120;
 			break;
 		case 1: //Rockets from bottom
 			for (int i = 0; i < 8; i++)
 			{
-				objects.push_back(new Projectile(winSize.x / 8 * i, winSize.y,
-				sf::Vector2f(0, -5), sf::Vector2f(18, 65), 3, true));
+				objects.push_back(new Projectile(winSize.x / 8 * i, winSize.y - 33,
+				sf::Vector2f(0, -5), sf::Vector2f(18, 65), 4, true));
 			}
 			cooldown = 120;
 			break;
@@ -172,7 +172,7 @@ void Player::special(std::vector<Object*>& objects, sf::Vector2u winSize)
 			break;
 		case 3: //Stop time wave
 			objects.push_back(new Projectile(pos.x, pos.y, 
-			sf::Vector2f(0, 0), sf::Vector2f(1, 1), 2, true));
+			sf::Vector2f(0, 0), sf::Vector2f(1, 1), 3, true));
 			cooldown = 120;
 			break;
 		case 4: //Tracking Rockets
@@ -184,7 +184,7 @@ void Player::special(std::vector<Object*>& objects, sf::Vector2u winSize)
 		case 6: //Many nukes
 			for(int i = 0; i < 8; i++)
 			objects.push_back(new Projectile(rand() % winSize.x, rand() % winSize.y,
-				sf::Vector2f(0, 0), sf::Vector2f(75, 75), 1, true, 120));
+				sf::Vector2f(0, 0), sf::Vector2f(75, 75), 2, true, 40 * i));
 			cooldown = 120;
 			break;
 		case 7: //Missile Circle
@@ -192,7 +192,7 @@ void Player::special(std::vector<Object*>& objects, sf::Vector2u winSize)
 			{
 				objects.push_back(new Projectile(pos.x + 80 * cos(num),
 					pos.y + 80 * sin(num), sf::Vector2f(0, 0), sf::Vector2f(25, 25),
-					1, true, 120));
+					2, true, 80));
 			}
 			cooldown = 120;
 			break;
