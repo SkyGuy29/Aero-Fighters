@@ -39,22 +39,22 @@ void Player::shoot(std::vector<Object*>& objects)
 			sf::Vector2f(0, -10), sf::Vector2f(25, 12)));
 		cooldown = 3;
 		break;
-	case 4:
+	case 4: //Fire
 		objects.push_back(new Projectile(pos.x, pos.y - 25,
 			sf::Vector2f(0, -10), sf::Vector2f(25, 15)));
 		cooldown = 2;
 		break;
-	case 5: case 20:
+	case 5: case 20: //Tracking Rockets
 		objects.push_back(new Projectile(pos.x, pos.y - 25,
 			sf::Vector2f(0, -10), sf::Vector2f(32, 12)));
 		cooldown = 3;
 		break;
-	case 6:
+	case 6: //Fire
 		objects.push_back(new Projectile(pos.x, pos.y - 25,
 			sf::Vector2f(0, -10), sf::Vector2f(32, 18)));
 		cooldown = 2;
 		break;
-	case 7: case 22:
+	case 7: case 22: //Tracking mini rockets, Sweden does not
 		objects.push_back(new Projectile(pos.x, pos.y - 25,
 			sf::Vector2f(0, -10), sf::Vector2f(48, 12)));
 		cooldown = 3;
@@ -79,22 +79,22 @@ void Player::shoot(std::vector<Object*>& objects)
 			sf::Vector2f(0, -15), sf::Vector2f(12, 40)));
 		cooldown = 1;
 		break;
-	case 17:
+	case 9: case 17: case 25:
 		objects.push_back(new Projectile(pos.x, pos.y - 25,
 			sf::Vector2f(0, -10), sf::Vector2f(15, 12)));
 		cooldown = 3;
 		break;
-	case 19:
+	case 11: case 19: case 27:
 		objects.push_back(new Projectile(pos.x, pos.y - 25,
 			sf::Vector2f(0, -10), sf::Vector2f(22, 12)));
 		cooldown = 3;
 		break;
-	case 21: //Tracking Mines
+	case 13: case 21: case 29: //Tracking Mines, Delayed Missiles for England Player 2
 		objects.push_back(new Projectile(pos.x, pos.y - 25,
 			sf::Vector2f(0, -10), sf::Vector2f(32, 12)));
 		cooldown = 2;
 		break;
-	case 23: //Tracking Mines
+	case 15: case 23: case 31: //Tracking Mines, Lasers for Japan Player 2
 		objects.push_back(new Projectile(pos.x, pos.y - 25,
 			sf::Vector2f(0, -10), sf::Vector2f(45, 12)));
 		cooldown = 2;
@@ -104,16 +104,12 @@ void Player::shoot(std::vector<Object*>& objects)
 			sf::Vector2f(0, -10), sf::Vector2f(10, 12)));
 		cooldown = 3;
 		break;
-	case 25:
-		break;
 	case 26:
 		objects.push_back(new Projectile(pos.x + 5, pos.y - 25,
 			sf::Vector2f(0, -10), sf::Vector2f(10, 12)));
 		objects.push_back(new Projectile(pos.x - 5, pos.y - 25,
 			sf::Vector2f(0, -10), sf::Vector2f(10, 12)));
 		cooldown = 3;
-		break;
-	case 27:
 		break;
 	case 28:
 		for (int num = 0; num < 3; num++)
@@ -124,8 +120,6 @@ void Player::shoot(std::vector<Object*>& objects)
 		}
 		cooldown = 3;
 		break;
-	case 29:
-		break;
 	case 30: //Tracking mini rockets
 		for (int num = 0; num < 5; num++)
 		{
@@ -134,8 +128,6 @@ void Player::shoot(std::vector<Object*>& objects)
 			-10 * sin((90 + 10 * (num - 2)) * PI / 180)), sf::Vector2f(10, 12)));
 		}
 		cooldown = 3;
-		break;
-	case 31:
 		break;
 	default:
 		objects.push_back(new Projectile(pos, sf::Vector2f(-2.6, -9.7)));
@@ -156,14 +148,14 @@ void Player::special(std::vector<Object*>& objects, sf::Vector2u winSize)
 		case 0: //Create mini nuke in the middle of the screen
 			objects.push_back(new Projectile(winSize.x / 2, winSize.y / 2, 
 				sf::Vector2f(0, 0), sf::Vector2f(winSize.x / 3, winSize.y / 3)
-				, 2, true));
+				, 1, true, 120));
 			cooldown = 120;
 			break;
 		case 1: //Rockets from bottom
 			for (int i = 0; i < 8; i++)
 			{
 				objects.push_back(new Projectile(winSize.x / 8 * i, winSize.y,
-				sf::Vector2f(0, -5), sf::Vector2f(18, 65), 0, true));
+				sf::Vector2f(0, -5), sf::Vector2f(18, 65), 3, true));
 			}
 			cooldown = 120;
 			break;
@@ -180,7 +172,7 @@ void Player::special(std::vector<Object*>& objects, sf::Vector2u winSize)
 			break;
 		case 3: //Stop time wave
 			objects.push_back(new Projectile(pos.x, pos.y, 
-			sf::Vector2f(0, 0), sf::Vector2f(1, 1), 3, true));
+			sf::Vector2f(0, 0), sf::Vector2f(1, 1), 2, true));
 			cooldown = 120;
 			break;
 		case 4: //Tracking Rockets
@@ -192,7 +184,7 @@ void Player::special(std::vector<Object*>& objects, sf::Vector2u winSize)
 		case 6: //Many nukes
 			for(int i = 0; i < 8; i++)
 			objects.push_back(new Projectile(rand() % winSize.x, rand() % winSize.y,
-				sf::Vector2f(0, 0), sf::Vector2f(75, 75), 2, true));
+				sf::Vector2f(0, 0), sf::Vector2f(75, 75), 1, true, 120));
 			cooldown = 120;
 			break;
 		case 7: //Missile Circle
@@ -200,7 +192,7 @@ void Player::special(std::vector<Object*>& objects, sf::Vector2u winSize)
 			{
 				objects.push_back(new Projectile(pos.x + 80 * cos(num),
 					pos.y + 80 * sin(num), sf::Vector2f(0, 0), sf::Vector2f(25, 25),
-					2, true));
+					1, true, 120));
 			}
 			cooldown = 120;
 			break;

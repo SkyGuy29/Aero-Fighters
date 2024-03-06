@@ -61,9 +61,31 @@ sf::Vector2f size, short ID, bool player)
 	if (id == 1)
 		cooldown = 300;
 	else if (id == 2)
-		cooldown = 120;
-	else if (id == 3)
-		cooldown = 30;
+		cooldown = 30; //Mao Mao's projectile
+	//id 3 is for piercing projectiles
+	//id 4 is for tracking projectiles
+}
+
+Projectile::Projectile(float posX, float posY, sf::Vector2f vel,
+	sf::Vector2f size, short ID, bool player, short dela)
+{
+	delay = dela;
+	id = ID;
+	setSize(size);
+	sprite.setSize(size);
+	sprite.setOrigin(sprite.getSize() / 2.f);
+	setPos(posX, posY);
+	this->vel = vel;
+	if (player)
+		type = PLAYER_PROJECTILE;
+	else
+		type = ENEMY_PROJECTILE;
+	if (id == 1) //For the different types of projectiles
+		cooldown = dela;
+	else if (id == 2) //Mao Mao's special
+		cooldown = 30; 
+	//id 3 is for piercing projectiles
+	//id 4 is for tracking projectiles
 }
 
 // Just moves in a straight line
@@ -74,6 +96,17 @@ void Projectile::update(sf::Vector2u winSize, std::vector<Object*>* objects)
 
 	// I think rainbows are pretty cool -Gabe
 	// Rainbows are fine -Matthew
+
+	if (delay)
+	{
+		sprite.setSize(sf::Vector2f(0, 0));
+		delay--;
+	}
+
+	if (delay == 0)
+	{
+		sprite.setSize(size);
+	}
 
 	objectUpdate(winSize, objects);
 
