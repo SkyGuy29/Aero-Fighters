@@ -93,7 +93,7 @@ Projectile::Projectile(float posX, float posY, sf::Vector2f vel,
 	else if (id == 2)
 		cooldown = 120 + dela;
 	else if (id == 3) //Mao Mao's special
-		cooldown = 30; 
+		cooldown = 30 + dela; 
 	//id 4 is for piercing projectiles
 	//id 5 is for tracking projectiles
 }
@@ -110,17 +110,17 @@ void Projectile::update(sf::Vector2u winSize, std::vector<Object*>* objects)
 	if (delay)
 	{
 		size = sf::Vector2f(0, 0);
-		sprite.setSize(size);
 		delay--;
 	}
 
-	if (delay == 0)
+	if (!delay)
 	{
-		size = tempSize;
-		sprite.setSize(size);
+		if(id != 3)
+			size = tempSize;
+		objectUpdate(winSize, objects);
 	}
 
-	objectUpdate(winSize, objects);
+	sprite.setSize(size);
 
 	setRandColor();
 

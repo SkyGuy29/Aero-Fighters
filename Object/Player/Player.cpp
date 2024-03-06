@@ -179,6 +179,12 @@ void Player::special(std::vector<Object*>& objects, sf::Vector2u winSize)
 			cooldown = 120;
 			break;
 		case 5: //Cluster Bomb?
+			for (int clusterNum = 0; clusterNum < 10; clusterNum++)
+			{
+				objects.push_back(new Projectile(pos.x + clusterNum * 30, 
+				pos.y - clusterNum * 60, sf::Vector2f(0, 0), 
+				sf::Vector2f(60, 30), 2, true, 60 * (clusterNum + 1)));
+			}
 			cooldown = 120;
 			break;
 		case 6: //Many nukes
