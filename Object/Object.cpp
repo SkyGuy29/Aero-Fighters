@@ -19,14 +19,16 @@ void Object::draw(sf::RenderTarget& target, sf::RenderStates states) const
 	target.draw(sprite, states);
 }
 
-// for objects that need animations, DON'T FORGET TO SET frameCount
 // this is the new animator
 void Object::nextFrame()
 {
 	// Increases the image rectangle by its height and loops back when it reaches the end
 	currentFrame++;
 	if (currentFrame >= frameCount * 15)
+	{
 		currentFrame -= frameCount * 15;
+		anDone = true;
+	}
 
 	// the dividing to an int is needed for the updates per frame delay.
 	sprite.setTextureRect(sf::IntRect(
@@ -38,6 +40,7 @@ void Object::nextFrame()
 // The use of this method is to load a texture in Level or Game once, then cheaply load it again multiple times
 void Object::setTexture(sf::Texture* texPtr, sf::Vector2i size, sf::Vector2i offset, int frameCount, bool vertAnimation)
 {
+	texInit = true;
 	sprite.setTexture(texPtr);
 	texOffset = offset;
 	texSize = size;
@@ -70,6 +73,11 @@ sf::Vector2f Object::getSize()
 short Object::getID()
 {
 	return id;
+}
+
+bool Object::isTexInit()
+{
+	return texInit;
 }
 
 bool Object::intersect(Object* targetPtr)

@@ -147,6 +147,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Object\Projectile\Explosion\Explosion.cpp" />
     <ClCompile Include="Object\Collectable\Collectable.cpp" />
     <ClCompile Include="Object\Enemy\Boss\Boss.cpp" />
     <ClCompile Include="Object\Enemy\Air\Air.cpp" />
@@ -160,6 +161,7 @@
     <ClCompile Include="Object\Projectile\Projectile.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Object\Projectile\Explosion\Explosion.h" />
     <ClInclude Include="Object\Collectable\Collectable.h" />
     <ClInclude Include="Object\Enemy\Boss\Boss.h" />
     <ClInclude Include="Object\Enemy\Air\Air.h" />
