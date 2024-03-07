@@ -4,11 +4,6 @@ Level::Level()
 {
 }
 
-Level::Level(short country)
-{
-	this->country = country;
-}
-
 Level::~Level()
 {
 	while (objects.size() > 0)
@@ -20,6 +15,10 @@ Level::~Level()
 
 void Level::load(sf::Vector2u winSize, int mapId)
 {
+	short c = -1;
+	std::cout << "Which country? (short)\n";
+	std::cin >> c;
+
 	background.setSize(sf::Vector2f(winSize));
 	backgroundImg.loadFromFile("Res/placeholder.jpg");
 	backgroundDist = backgroundImg.getSize().y - winSize.y;
@@ -27,9 +26,10 @@ void Level::load(sf::Vector2u winSize, int mapId)
 	background.setTexture(&backgroundImg);
 	background.setTextureRect(rect);
 
-	
-	p[0] = new Player(country);
-	p[1] = new Player(country);
+	playerImg.loadFromFile("Res/Sprites/players.png");
+
+	p[0] = new Player(c, true);
+	p[1] = new Player(c, false);
 	objects.push_back(p[0]);
 	objects.push_back(p[1]);
 
@@ -38,9 +38,9 @@ void Level::load(sf::Vector2u winSize, int mapId)
 	objects.at(1)->setPos(sf::Vector2f(winSize.x * 0.75f, winSize.y * 0.75f));
 
 	// just a test to try out the moved animator to object
-	test.loadFromFile("Res/AnimatorTest.png");
-	objects.at(0)->setTexture(&test);
-	objects.at(1)->setTexture(&test);
+	test.loadFromFile("Res/Sprites/Players.png");
+	objects.at(0)->setTexture(&test, sf::Vector2i(32, 32), sf::Vector2i(0, 16), 5, false);
+	objects.at(1)->setTexture(&test, sf::Vector2i(32, 32), sf::Vector2i(0, 16), 5, false);
 
 	objects.push_back(new Collectable(1));
 	objects.back()->setPos(sf::Vector2f(winSize.x * 0.25f, winSize.y * 0.5f));
@@ -62,7 +62,15 @@ void Level::update(sf::Vector2u winSize)
 	//polymorphism -- All objects are stored in this vector, they can be
 	//identified using getType()
 	for (int i = 0; i < objects.size(); i++)
+	{
+		if (!objects[objects.size() - 1 - i]->isTexInit())
+			switch (objects[objects.size() - 1 - i]->getType())
+			{
+			case Object::EXPLOSION:
+				objects[objects.size() - 1 - i]->setTexture(&test, sf::Vector2i(32, 32), sf::Vector2i(0, 16), 5, false);
+			}
 		objects[objects.size() - 1 - i]->update(winSize, &objects);
+	}
 
 	for (int i = 0; i < objects.size(); i++)
 		if (objects[objects.size() - 1 - i]->shouldDelete())
@@ -72,22 +80,79 @@ void Level::update(sf::Vector2u winSize)
 		}
 
 	//Random events!!!
-	if (rand() % 90 == 0)
+
+	//Fly straight in formation
+	if (rand() % 200 == 0)
 	{
+		sf::Vector2f pos = sf::Vector2f((rand() % 60 + 20) / 100. * winSize.x, winSize.y * -0.25f);
+		sf::Vector2f vel = sf::Vector2f(0, 4);
+
 		for (int i = 0; i < 6; i++)
-			objects.push_back(new Air(0, winSize, &objects));
+		{
+			switch (i)
+			{
+			case 0:
+				break;
+			case 1:
+				pos += sf::Vector2f(-0.05f * winSize.y, -0.1f * winSize.y);
+				break;
+			case 2:
+			case 4:
+			case 5:
+				pos += sf::Vector2f(0.1f * winSize.y, 0);
+				break;
+			case 3:
+				pos += sf::Vector2f(-0.15f * winSize.y, -0.1f * winSize.y);
+			}
+
+			objects.push_back(new Air(0, true, winSize, &objects, pos, vel));
+		}
 	}
+	//Turn left
 	if (rand() % 200 == 0)
-		objects.push_back(new Air(1, winSize, &objects));
-	if (rand() % 200 == 0)
-		objects.push_back(new Air(2, winSize, &objects));
-	if (rand() % 100 == 0)
 	{
-		for (int i = 0; i < 4; i++)
-			objects.push_back(new Air(3, winSize, &objects));
+		sf::Vector2f pos = sf::Vector2f((rand() % 60 + 20) / 100. * winSize.x, 
+			winSize.y * -0.25f);
+		sf::Vector2f vel = sf::Vector2f(0, 4);
+		objects.push_back(new Air(1, true, winSize, &objects, pos, vel));
 	}
-	if (rand() % 100 == 0)
-		objects.push_back(new Air(4, winSize, &objects));
+	//Turn Right
+	if (rand() % 200 == 0)
+	{
+		sf::Vector2f pos = sf::Vector2f((rand() % 60 + 20) / 100. * winSize.x,
+			winSize.y * -0.25f);
+		sf::Vector2f vel = sf::Vector2f(0, 4);
+		objects.push_back(new Air(1, true, winSize, &objects, pos, vel));
+	}
+	//Flipping planes
+	if (rand() % 200 == 0)
+	{
+		sf::Vector2f pos = sf::Vector2f((rand() % 60 + 20) / 100. * winSize.x,
+			winSize.y * -0.25f);
+		sf::Vector2f vel = sf::Vector2f(1, 7);
+
+		objects.push_back(new Air(2, true, winSize, &objects, pos, vel));
+
+		for (int i = 0; i < 3; i++)
+		{
+			pos += sf::Vector2f(-0.05f * winSize.y, -0.1f * winSize.y);
+			objects.push_back(new Air(2, true, winSize, &objects, pos, vel));
+		}
+	}
+	//Mini choppers left
+	if (rand() % 200 == 0)
+	{
+		sf::Vector2f pos = sf::Vector2f(0, 0.15 * winSize.y);
+		sf::Vector2f vel = sf::Vector2f(4, 0);
+		objects.push_back(new Air(3, true, winSize, &objects, pos, vel));
+	}
+	//Mini choppers right
+	if (rand() % 200 == 0)
+	{
+		sf::Vector2f pos = sf::Vector2f(winSize.x, 0.15 * winSize.y);
+		sf::Vector2f vel = sf::Vector2f(-4, 0);
+		objects.push_back(new Air(3, false, winSize, &objects, pos, vel));
+	}
 }
 
 void Level::draw(sf::RenderTarget& target, sf::RenderStates states) const

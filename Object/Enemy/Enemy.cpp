@@ -1,21 +1,16 @@
 #include "Enemy.h"
 
+Enemy::Enemy(short id, bool left, sf::Vector2f pos, sf::Vector2f vel)
+{
+	this->id = id;
+	this->left = left;
+	this->pos = pos;
+	this->vel = vel;
+}
+
 int Enemy::getHealth() const
 {
 	return health;
-}
-
-int Enemy::numLikeMe(std::vector<Object*>* objects)
-{
-	int count = 0;
-
-	while (objects->at(objects->size() - count - 1)->getType() == type
-		&& objects->at(objects->size() - count - 1)->getId() == id)
-	{
-		count++;
-	}
-
-	return count;
 }
 
 void Enemy::enemyUpdate(sf::Vector2u winSize, std::vector<Object*>* objects)
@@ -41,7 +36,9 @@ void Enemy::enemyUpdate(sf::Vector2u winSize, std::vector<Object*>* objects)
 	if (health <= 0 && del == false)
 	{
 		del = true;
-	    objects->push_back(new Collectable(rand() % 4, pos));
+		if(rand() % 20 == 0)
+			objects->push_back(new Collectable(rand() % 4, pos));
+	    objects->push_back(new Explosion(pos, 0));
 		//Crashes when an enemy dies
 	}
 }

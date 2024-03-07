@@ -1,9 +1,10 @@
 #include "Player.h"
 
-Player::Player(int country)
+Player::Player(short c, bool playerOne)
 {
+	isPlayerTwo = !playerOne;
+	country = c;
 	setSize(25, 50);
-	frameCount = 10;
 	type = PLAYER;
 	health = 3; //Health is used for lives.
 }
@@ -13,62 +14,198 @@ void Player::shoot(std::vector<Object*>& objects)
 {
 	int offset = 0;
 	// cooldown is so a constant stream of projectiles isn't created
-	if (!cooldown)
+	if (cooldown)
+		return;
+
+	switch (country * 8 + powerLevel * 2 + isPlayerTwo)
 	{
-		switch (country * 4 + powerLevel)
+	case 0:
+		objects.push_back(new Projectile(pos.x, pos.y - 25,
+			sf::Vector2f(0, -10), sf::Vector2f(15, 12)));
+		cooldown = 3;
+		break;
+	case 1: case 16: //Player 1 Sweden is the same as Player 2 America
+		objects.push_back(new Projectile(pos.x, pos.y - 25,
+			sf::Vector2f(0, -10), sf::Vector2f(20, 12)));
+		cooldown = 3;
+		break;
+	case 2:
+		objects.push_back(new Projectile(pos.x, pos.y - 25, 
+			sf::Vector2f(0, -10), sf::Vector2f(20, 14)));
+		cooldown = 3;
+		break;
+	case 3: case 18:
+		objects.push_back(new Projectile(pos.x, pos.y - 25,
+			sf::Vector2f(0, -10), sf::Vector2f(25, 12)));
+		cooldown = 3;
+		break;
+	case 4: //Fire
+		objects.push_back(new Projectile(pos.x, pos.y - 25,
+			sf::Vector2f(0, -10), sf::Vector2f(25, 15)));
+		cooldown = 2;
+		break;
+	case 5: case 20: //Tracking Rockets
+		objects.push_back(new Projectile(pos.x, pos.y - 25,
+			sf::Vector2f(0, -10), sf::Vector2f(32, 12)));
+		cooldown = 3;
+		break;
+	case 6: //Fire
+		objects.push_back(new Projectile(pos.x, pos.y - 25,
+			sf::Vector2f(0, -10), sf::Vector2f(32, 18)));
+		cooldown = 2;
+		break;
+	case 7: case 22: //Tracking mini rockets, Sweden does not
+		objects.push_back(new Projectile(pos.x, pos.y - 25,
+			sf::Vector2f(0, -10), sf::Vector2f(48, 12)));
+		cooldown = 3;
+		break;
+	case 8: 
+		objects.push_back(new Projectile(pos.x, pos.y - 25,
+			sf::Vector2f(0, -15), sf::Vector2f(12, 40)));
+		cooldown = 2;
+		break;
+	case 10: //Japan2 is epic lasers, no
+		objects.push_back(new Projectile(pos.x, pos.y - 25,
+			sf::Vector2f(0, -15), sf::Vector2f(12, 40)));
+		cooldown = 1;
+		break;
+	case 12: //Tracking mini Rockets
+		objects.push_back(new Projectile(pos.x, pos.y - 25,
+			sf::Vector2f(0, -15), sf::Vector2f(12, 40)));
+		cooldown = 1;
+		break;
+	case 14://Tracking mini Rockets
+		objects.push_back(new Projectile(pos.x, pos.y - 25,
+			sf::Vector2f(0, -15), sf::Vector2f(12, 40)));
+		cooldown = 1;
+		break;
+	case 9: case 17: case 25:
+		objects.push_back(new Projectile(pos.x, pos.y - 25,
+			sf::Vector2f(0, -10), sf::Vector2f(15, 12)));
+		cooldown = 3;
+		break;
+	case 11: case 19: case 27:
+		objects.push_back(new Projectile(pos.x, pos.y - 25,
+			sf::Vector2f(0, -10), sf::Vector2f(22, 12)));
+		cooldown = 3;
+		break;
+	case 13: case 21: case 29: //Tracking Mines, Delayed Missiles for England Player 2
+		objects.push_back(new Projectile(pos.x, pos.y - 25,
+			sf::Vector2f(0, -10), sf::Vector2f(32, 12)));
+		cooldown = 2;
+		break;
+	case 15: case 23: case 31: //Tracking Mines, Lasers for Japan Player 2
+		objects.push_back(new Projectile(pos.x, pos.y - 25,
+			sf::Vector2f(0, -10), sf::Vector2f(45, 12)));
+		cooldown = 2;
+		break;
+	case 24:
+		objects.push_back(new Projectile(pos.x, pos.y - 25,
+			sf::Vector2f(0, -10), sf::Vector2f(10, 12)));
+		cooldown = 3;
+		break;
+	case 26:
+		objects.push_back(new Projectile(pos.x + 5, pos.y - 25,
+			sf::Vector2f(0, -10), sf::Vector2f(10, 12)));
+		objects.push_back(new Projectile(pos.x - 5, pos.y - 25,
+			sf::Vector2f(0, -10), sf::Vector2f(10, 12)));
+		cooldown = 3;
+		break;
+	case 28:
+		for (int num = 0; num < 3; num++)
 		{
-		case 0:
-			objects.push_back(new Projectile(pos.x, pos.y - 25,
-				sf::Vector2f(0, -10), sf::Vector2f(15, 12)));
-			cooldown = 3;
-			break;
-		case 1:
-			objects.push_back(new Projectile(pos.x, pos.y - 25, 
-				sf::Vector2f(0, -10), sf::Vector2f(20, 14)));
-			cooldown = 3;
-			break;
-		case 2:
-			objects.push_back(new Projectile(pos.x, pos.y - 25,
-				sf::Vector2f(0, -10), sf::Vector2f(25, 15)));
-			cooldown = 2;
-			break;
-		case 3:
-			objects.push_back(new Projectile(pos.x, pos.y - 25,
-				sf::Vector2f(0, -10), sf::Vector2f(32, 18)));
-			cooldown = 2;
-			break;
-		default:
-			objects.push_back(new Projectile(pos, sf::Vector2f(-2.6, -9.7)));
-			objects.push_back(new Projectile(pos, sf::Vector2f(0, -10)));
-			objects.push_back(new Projectile(pos, sf::Vector2f(2.6, -9.7)));
-			cooldown = 3;
-			break;
+			objects.push_back(new Projectile(pos.x + 5, pos.y - 25,
+			sf::Vector2f(10 * cos((90 + 20 * (num - 1)) * PI / 180), 
+			-10 * sin((90 + 20 * (num - 1)) * PI / 180)), sf::Vector2f(10, 12)));
 		}
+		cooldown = 3;
+		break;
+	case 30: //Tracking mini rockets
+		for (int num = 0; num < 5; num++)
+		{
+			objects.push_back(new Projectile(pos.x + 5, pos.y - 25,
+			sf::Vector2f(10 * cos((90 + 10 * (num - 2)) * PI / 180),
+			-10 * sin((90 + 10 * (num - 2)) * PI / 180)), sf::Vector2f(10, 12)));
+		}
+		cooldown = 3;
+		break;
+	default:
+		objects.push_back(new Projectile(pos, sf::Vector2f(-2.6, -9.7)));
+		objects.push_back(new Projectile(pos, sf::Vector2f(0, -10)));
+		objects.push_back(new Projectile(pos, sf::Vector2f(2.6, -9.7)));
+		cooldown = 3;
+		break;
 	}
 }
 
 void Player::special(std::vector<Object*>& objects, sf::Vector2u winSize)
 {
-	if (specialCharge > 0 && !cooldown)
+	if (true) //specialCharge > 0 && !cooldown)
 	{
 		specialCharge--;
-		switch (country)
+		switch (country * 2 + isPlayerTwo)
 		{
-		case 0:
+		case 0: //Create mini nuke in the middle of the screen
 			objects.push_back(new Projectile(winSize.x / 2, winSize.y / 2, 
 				sf::Vector2f(0, 0), sf::Vector2f(winSize.x / 3, winSize.y / 3)
-				, 1, true));
+				, 2, true, 90));
+			cooldown = 120;
 			break;
-		case 1:
+		case 1: //Rockets from bottom
+			for (int i = 0; i < 8; i++)
+			{
+				objects.push_back(new Projectile(winSize.x / 8 * i, winSize.y - 33,
+				sf::Vector2f(0, -5), sf::Vector2f(18, 65), 4, true));
+			}
+			cooldown = 120;
 			break;
-		case 2:
+		case 2: //Big laser that follows player
+			if (timer == 0)
+			{
+				movingProjectile = new Projectile(pos.x, winSize.y / 2,
+					sf::Vector2f(0, 0), sf::Vector2f(50, winSize.y)
+					, 1, true);
+				objects.push_back(movingProjectile);
+				timer = 300;
+				cooldown = 30;
+			}
 			break;
-		case 3:
+		case 3: //Stop time wave
+			objects.push_back(new Projectile(pos.x, pos.y, 
+			sf::Vector2f(0, 0), sf::Vector2f(1, 1), 3, true));
+			cooldown = 120;
+			break;
+		case 4: //Tracking Rockets
+			cooldown = 120;
+			break;
+		case 5: //Cluster Bomb?
+			for (int clusterNum = 0; clusterNum < 10; clusterNum++)
+			{
+				objects.push_back(new Projectile(pos.x + clusterNum * 30, 
+				pos.y - clusterNum * 60, sf::Vector2f(0, 0), 
+				sf::Vector2f(60, 30), 2, true, 60 * (clusterNum + 1)));
+			}
+			cooldown = 120;
+			break;
+		case 6: //Many nukes
+			for(int i = 0; i < 8; i++)
+			objects.push_back(new Projectile(rand() % winSize.x, rand() % winSize.y,
+				sf::Vector2f(0, 0), sf::Vector2f(75, 75), 2, true, 40 * i));
+			cooldown = 120;
+			break;
+		case 7: //Missile Circle
+			for (int num = 0; num < 16; num++)
+			{
+				objects.push_back(new Projectile(pos.x + 80 * cos(num),
+					pos.y + 80 * sin(num), sf::Vector2f(0, 0), sf::Vector2f(25, 25),
+					2, true, 80));
+			}
+			cooldown = 120;
 			break;
 		default:
 			objects.push_back(new Projectile(pos, sf::Vector2f(0, -10),
 			sf::Vector2f(40, 100)));
-			cooldown = 10;
+			cooldown = 120;
 			break;
 		}
 	}
@@ -111,29 +248,36 @@ void Player::update(sf::Vector2u winSize, std::vector<Object*>* objects)
 		}
 	}
 
+	
+
 	if (cooldown)
 		cooldown--;
 
 	if (invincibility)
 		invincibility--;
 
+	if (timer > 0)
+	{
+		timer--;
+		if (timer <= 0)
+			movingProjectile = nullptr;
+	}
+
 	if (!health)
 	{
 		//Disappear
-		type = -1;
+		
 	}
 
 	nextFrame();
 	
 	objectUpdate(winSize, objects);
+	
+	if (movingProjectile != nullptr)
+		movingProjectile->setPos(pos.x, pos.y - winSize.y / 2);
 }
 
 void Player::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
 	target.draw(sprite, states);
-}
-
-void Player::setCountry(short c)
-{
-	country = c;
 }
