@@ -19,7 +19,7 @@ void Level::load(sf::Vector2u winSize, int mapId)
 	std::cin >> country;
 
 	background.setSize(sf::Vector2f(winSize));
-	backgroundImg.loadFromFile("Res/placeholder.jpg");
+	backgroundImg.loadFromFile("Res/Sweden/Sweden.png");
 	backgroundDist = backgroundImg.getSize().y - winSize.y;
 	rect = sf::IntRect(0, backgroundDist, winSize.x, winSize.y);
 	background.setTexture(&backgroundImg);
@@ -170,6 +170,9 @@ void Level::update(sf::Vector2u winSize)
 	case ENGLAND:
 		englandUpdate(winSize);
 	}
+
+	if (backgroundDist <= 0)
+		backgroundSpeed = 0;
 }
 
 void Level::statesUpdate(sf::Vector2u winSize)
