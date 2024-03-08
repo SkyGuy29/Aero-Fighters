@@ -7,8 +7,8 @@ Air::Air(short id, bool left, sf::Vector2u winSize, std::vector<Object*>* object
 
 	health = 1;
 	setSize(15, 25);
-	sprite.setSize(sf::Vector2f(15, 25));
-	sprite.setOrigin(sf::Vector2f(15, 25) / 2.f);
+	sprite.setSize(size);
+	sprite.setOrigin(size / 2.f);
 	setRandColor();
 }
 

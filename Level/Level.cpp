@@ -15,8 +15,19 @@ Level::~Level()
 
 void Level::load(sf::Vector2u winSize, short country, int mapId)
 {
+	std::cout << "Which country? (short)\n";
+	std::cin >> country;
+
+	switch (country)
+	{
+	case SWEDEN:
+		backgroundImg.loadFromFile("Res/Sweden/Sweden.png");
+		break;
+	default:
+		backgroundImg.loadFromFile("Res/placeholder.png");
+	}
+
 	background.setSize(sf::Vector2f(winSize));
-	backgroundImg.loadFromFile("Res/placeholder.jpg");
 	backgroundDist = backgroundImg.getSize().y - winSize.y;
 	rect = sf::IntRect(0, backgroundDist, winSize.x, winSize.y);
 	background.setTexture(&backgroundImg);
@@ -39,6 +50,10 @@ void Level::load(sf::Vector2u winSize, short country, int mapId)
 
 	objects.push_back(new Collectable(1));
 	objects.back()->setPos(sf::Vector2f(winSize.x * 0.25f, winSize.y * 0.5f));
+
+	sf::Vector2f pos = sf::Vector2f(winSize.x * 0.5, winSize.y * 0.1);
+	sf::Vector2f vel = sf::Vector2f(0, 0);
+	objects.push_back(new Land(0, true, &backgroundSpeed, winSize, &objects, pos, vel));
 }
 
 void Level::update(sf::Vector2u winSize)
@@ -77,7 +92,7 @@ void Level::update(sf::Vector2u winSize)
 	//Random events!!!
 
 	//Fly straight in formation
-	if (rand() % 200 == 0)
+	if (rand() % 200 == -1)
 	{
 		sf::Vector2f pos = sf::Vector2f((rand() % 60 + 20) / 100. * winSize.x, winSize.y * -0.25f);
 		sf::Vector2f vel = sf::Vector2f(0, 4);
@@ -104,7 +119,7 @@ void Level::update(sf::Vector2u winSize)
 		}
 	}
 	//Turn left
-	if (rand() % 200 == 0)
+	if (rand() % 200 == -1)
 	{
 		sf::Vector2f pos = sf::Vector2f((rand() % 60 + 20) / 100. * winSize.x, 
 			winSize.y * -0.25f);
@@ -112,7 +127,7 @@ void Level::update(sf::Vector2u winSize)
 		objects.push_back(new Air(1, true, winSize, &objects, pos, vel));
 	}
 	//Turn Right
-	if (rand() % 200 == 0)
+	if (rand() % 200 == -1)
 	{
 		sf::Vector2f pos = sf::Vector2f((rand() % 60 + 20) / 100. * winSize.x,
 			winSize.y * -0.25f);
@@ -120,7 +135,7 @@ void Level::update(sf::Vector2u winSize)
 		objects.push_back(new Air(1, true, winSize, &objects, pos, vel));
 	}
 	//Flipping planes
-	if (rand() % 200 == 0)
+	if (rand() % 200 == -1)
 	{
 		sf::Vector2f pos = sf::Vector2f((rand() % 60 + 20) / 100. * winSize.x,
 			winSize.y * -0.25f);
@@ -135,14 +150,14 @@ void Level::update(sf::Vector2u winSize)
 		}
 	}
 	//Mini choppers left
-	if (rand() % 200 == 0)
+	if (rand() % 200 == -1)
 	{
 		sf::Vector2f pos = sf::Vector2f(0, 0.15 * winSize.y);
 		sf::Vector2f vel = sf::Vector2f(4, 0);
 		objects.push_back(new Air(3, true, winSize, &objects, pos, vel));
 	}
 	//Mini choppers right
-	if (rand() % 200 == 0)
+	if (rand() % 200 == -1)
 	{
 		sf::Vector2f pos = sf::Vector2f(winSize.x, 0.15 * winSize.y);
 		sf::Vector2f vel = sf::Vector2f(-4, 0);
@@ -163,6 +178,9 @@ void Level::update(sf::Vector2u winSize)
 	case ENGLAND:
 		englandUpdate(winSize);
 	}
+
+	if (backgroundDist <= 0)
+		backgroundSpeed = 0;
 }
 
 void Level::statesUpdate(sf::Vector2u winSize)
