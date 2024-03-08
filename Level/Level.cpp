@@ -169,22 +169,22 @@ void Level::update(sf::Vector2u winSize)
 	}
 }
 
-void statesUpdate(sf::Vector2u winSize)
+void Level::statesUpdate(sf::Vector2u winSize)
 {
 	return;
 }
 
-void japanUpdate(sf::Vector2u winSize)
+void Level::japanUpdate(sf::Vector2u winSize)
 {
 	return;
 }
 
-void swedenUpdate(sf::Vector2u winSize)
+void Level::swedenUpdate(sf::Vector2u winSize)
 {
 	return;
 }
 
-void englandUpdate(sf::Vector2u winSize)
+void Level::englandUpdate(sf::Vector2u winSize)
 {
 	return;
 }
