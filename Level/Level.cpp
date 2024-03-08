@@ -15,9 +15,8 @@ Level::~Level()
 
 void Level::load(sf::Vector2u winSize, int mapId)
 {
-	short c = -1;
 	std::cout << "Which country? (short)\n";
-	std::cin >> c;
+	std::cin >> country;
 
 	background.setSize(sf::Vector2f(winSize));
 	backgroundImg.loadFromFile("Res/placeholder.jpg");
@@ -28,8 +27,8 @@ void Level::load(sf::Vector2u winSize, int mapId)
 
 	playerImg.loadFromFile("Res/Sprites/players.png");
 
-	p[0] = new Player(c, true);
-	p[1] = new Player(c, false);
+	p[0] = new Player(country, true);
+	p[1] = new Player(country, false);
 	objects.push_back(p[0]);
 	objects.push_back(p[1]);
 
@@ -153,6 +152,41 @@ void Level::update(sf::Vector2u winSize)
 		sf::Vector2f vel = sf::Vector2f(-4, 0);
 		objects.push_back(new Air(3, false, winSize, &objects, pos, vel));
 	}
+
+	switch (country)
+	{
+	case STATES:
+		statesUpdate(winSize);
+		break;
+	case JAPAN:
+		japanUpdate(winSize);
+		break;
+	case SWEDEN:
+		swedenUpdate(winSize);
+		break;
+	case ENGLAND:
+		englandUpdate(winSize);
+	}
+}
+
+void Level::statesUpdate(sf::Vector2u winSize)
+{
+	return;
+}
+
+void Level::japanUpdate(sf::Vector2u winSize)
+{
+	return;
+}
+
+void Level::swedenUpdate(sf::Vector2u winSize)
+{
+	return;
+}
+
+void Level::englandUpdate(sf::Vector2u winSize)
+{
+	return;
 }
 
 void Level::draw(sf::RenderTarget& target, sf::RenderStates states) const
