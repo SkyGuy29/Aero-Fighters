@@ -61,7 +61,15 @@ void Level::update(sf::Vector2u winSize)
 	//polymorphism -- All objects are stored in this vector, they can be
 	//identified using getType()
 	for (int i = 0; i < objects.size(); i++)
+	{
+		if (!objects[objects.size() - 1 - i]->isTexInit())
+			switch (objects[objects.size() - 1 - i]->getType())
+			{
+			case Object::EXPLOSION:
+				objects[objects.size() - 1 - i]->setTexture(&test, sf::Vector2i(32, 32), sf::Vector2i(0, 16), 5, false);
+			}
 		objects[objects.size() - 1 - i]->update(winSize, &objects);
+	}
 
 	for (int i = 0; i < objects.size(); i++)
 		if (objects[objects.size() - 1 - i]->shouldDelete())

@@ -45,10 +45,10 @@
     <ClCompile Include="Object\Enemy\Land\Land.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Animator\Animator.cpp">
+    <ClCompile Include="Object\Collectable\Collectable.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Object\Collectable\Collectable.cpp">
+    <ClCompile Include="Object\Projectile\Explosion\Explosion.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -80,10 +80,10 @@
     <ClInclude Include="Object\Enemy\Land\Land.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Animator\Animator.h">
+    <ClInclude Include="Object\Collectable\Collectable.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Object\Collectable\Collectable.h">
+    <ClInclude Include="Object\Projectile\Explosion\Explosion.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

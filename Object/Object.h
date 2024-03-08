@@ -45,27 +45,11 @@ public:
 
 	short getID();
 
-protected:
-	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
-
-	void nextFrame();
-
-	short type, id = 0, cooldown = 0, health;
-
-	bool del = false;
-
-	sf::Vector2f pos, size, vel;
-
-	sf::RectangleShape sprite;
-
-	short frameCount = 0, currentFrame = 0, image;
-	sf::Vector2i texSize, texOffset;
-	bool verticalAnimation = true;
-
-	const float PI = 3.14159f, TO_RAD = PI / 180.f, TO_DEG = 180.f / PI;
+	bool isTexInit();
 
 	enum Types
 	{
+		HIDDEN = -1,
 		PLAYER = 0,
 		BOSS = 1,
 		BOSS_PIECE = 2,
@@ -76,4 +60,24 @@ protected:
 		ENEMY_PROJECTILE = 7,
 		EXPLOSION = 8
 	};
+
+protected:
+	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
+
+	void nextFrame();
+
+	short type, id = 0, cooldown = 0, health;
+
+	bool del = false;
+	bool texInit = false;
+
+	sf::Vector2f pos, size, vel;
+
+	sf::RectangleShape sprite;
+
+	short frameCount = 0, currentFrame = 0, image;
+	sf::Vector2i texSize, texOffset;
+	bool verticalAnimation = true, anDone = false;
+
+	const float PI = 3.14159f, TO_RAD = PI / 180.f, TO_DEG = 180.f / PI;
 };
