@@ -155,13 +155,18 @@ void Level::update(sf::Vector2u winSize)
 
 	switch (country)
 	{
-
+	case STATES:
+		statesUpdate(winSize);
+		break;
+	case JAPAN:
+		japanUpdate(winSize);
+		break;
+	case SWEDEN:
+		swedenUpdate(winSize);
+		break;
+	case ENGLAND:
+		englandUpdate(winSize);
 	}
-}
-
-void swedenUpdate(sf::Vector2u winSize)
-{
-	return;
 }
 
 void statesUpdate(sf::Vector2u winSize)
@@ -170,6 +175,11 @@ void statesUpdate(sf::Vector2u winSize)
 }
 
 void japanUpdate(sf::Vector2u winSize)
+{
+	return;
+}
+
+void swedenUpdate(sf::Vector2u winSize)
 {
 	return;
 }
