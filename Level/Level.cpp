@@ -18,8 +18,16 @@ void Level::load(sf::Vector2u winSize, int mapId)
 	std::cout << "Which country? (short)\n";
 	std::cin >> country;
 
+	switch (country)
+	{
+	case SWEDEN:
+		backgroundImg.loadFromFile("Res/Sweden/Sweden.png");
+		break;
+	default:
+		backgroundImg.loadFromFile("Res/Sweden/placeholder.png");
+	}
+
 	background.setSize(sf::Vector2f(winSize));
-	backgroundImg.loadFromFile("Res/Sweden/Sweden.png");
 	backgroundDist = backgroundImg.getSize().y - winSize.y;
 	rect = sf::IntRect(0, backgroundDist, winSize.x, winSize.y);
 	background.setTexture(&backgroundImg);
