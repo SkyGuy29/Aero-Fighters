@@ -28,9 +28,9 @@ public:
 private:
 	void getInput(sf::Vector2u winSize);
 
-	void swedenUpdate(sf::Vector2u winSize);
 	void statesUpdate(sf::Vector2u winSize);
 	void japanUpdate(sf::Vector2u winSize);
+	void swedenUpdate(sf::Vector2u winSize);
 	void englandUpdate(sf::Vector2u winSize);
 
 	bool key(int p, int k);
@@ -45,7 +45,7 @@ private:
 	sf::Texture backgroundImg;
 	sf::Texture playerImg;
 	sf::IntRect rect;
-	int backgroundSpeed = 1, backgroundDist = 0;
+	float backgroundSpeed = 1, backgroundDist = 0;
 	short country;
 
 	// Maybe put it in game or some other texture storage idk
@@ -86,6 +86,14 @@ private:
 		Right,
 		Shoot,
 		Special
+	};
+
+	enum Countries
+	{
+		STATES,
+		JAPAN,
+		SWEDEN,
+		ENGLAND
 	};
 
 	int p1Ctrl[6] =

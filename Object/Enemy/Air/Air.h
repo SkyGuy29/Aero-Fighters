@@ -9,5 +9,4 @@ public:
 
     void update(sf::Vector2u winSize, std::vector<Object*>* objects);
 private:
-    bool targetP1 = true;
 };
