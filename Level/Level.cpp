@@ -25,7 +25,7 @@ void Level::load(sf::Vector2u winSize, int mapId)
 	background.setTexture(&backgroundImg);
 	background.setTextureRect(rect);
 
-	playerImg.loadFromFile("Res/Sprites/players.png");
+	playerImg.loadFromFile("Res/Misc/players.png");
 
 	p[0] = new Player(country, true);
 	p[1] = new Player(country, false);
@@ -37,9 +37,8 @@ void Level::load(sf::Vector2u winSize, int mapId)
 	objects.at(1)->setPos(sf::Vector2f(winSize.x * 0.75f, winSize.y * 0.75f));
 
 	// just a test to try out the moved animator to object
-	test.loadFromFile("Res/Sprites/Players.png");
-	objects.at(0)->setTexture(&test, sf::Vector2i(32, 32), sf::Vector2i(0, 16), 5, false);
-	objects.at(1)->setTexture(&test, sf::Vector2i(32, 32), sf::Vector2i(0, 16), 5, false);
+	objects.at(0)->setTexture(&playerImg, sf::Vector2i(32, 32), sf::Vector2i(0, 16), 5, false);
+	objects.at(1)->setTexture(&playerImg, sf::Vector2i(32, 32), sf::Vector2i(0, 16), 5, false);
 
 	objects.push_back(new Collectable(1));
 	objects.back()->setPos(sf::Vector2f(winSize.x * 0.25f, winSize.y * 0.5f));
@@ -66,7 +65,7 @@ void Level::update(sf::Vector2u winSize)
 			switch (objects[objects.size() - 1 - i]->getType())
 			{
 			case Object::EXPLOSION:
-				objects[objects.size() - 1 - i]->setTexture(&test, sf::Vector2i(32, 32), sf::Vector2i(0, 16), 5, false);
+				objects[objects.size() - 1 - i]->setTexture(&playerImg, sf::Vector2i(32, 32), sf::Vector2i(0, 16), 5, false);
 			}
 		objects[objects.size() - 1 - i]->update(winSize, &objects);
 	}
