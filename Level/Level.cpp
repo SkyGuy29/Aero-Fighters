@@ -24,7 +24,7 @@ void Level::load(sf::Vector2u winSize, int mapId)
 		backgroundImg.loadFromFile("Res/Sweden/Sweden.png");
 		break;
 	default:
-		backgroundImg.loadFromFile("Res/Sweden/placeholder.png");
+		backgroundImg.loadFromFile("Res/placeholder.png");
 	}
 
 	background.setSize(sf::Vector2f(winSize));
