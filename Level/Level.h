@@ -28,6 +28,11 @@ public:
 private:
 	void getInput(sf::Vector2u winSize);
 
+	void swedenUpdate(sf::Vector2u winSize);
+	void statesUpdate(sf::Vector2u winSize);
+	void japanUpdate(sf::Vector2u winSize);
+	void englandUpdate(sf::Vector2u winSize);
+
 	bool key(int p, int k);
 
 	bool button(int p, int b);
@@ -41,6 +46,7 @@ private:
 	sf::Texture playerImg;
 	sf::IntRect rect;
 	int backgroundSpeed = 1, backgroundDist = 0;
+	short country;
 
 	// Maybe put it in game or some other texture storage idk
 	sf::Texture test, test2;
