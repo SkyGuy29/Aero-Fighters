@@ -45,7 +45,7 @@ private:
 	sf::Texture backgroundImg;
 	sf::Texture playerImg;
 	sf::IntRect rect;
-	float backgroundSpeed = 0.5, backgroundDist = 0;
+	float backgroundSpeed = 1, backgroundDist = 0;
 	short country;
 
 	// Maybe put it in game or some other texture storage idk
