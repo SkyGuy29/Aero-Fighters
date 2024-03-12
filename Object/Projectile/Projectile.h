@@ -11,10 +11,9 @@ public:
 	Projectile(sf::Vector2f, sf::Vector2f, sf::Vector2f);
 	Projectile(float, float, sf::Vector2f, sf::Vector2f);
 	Projectile(float posX, float posY, sf::Vector2f vel,
-	sf::Vector2f size, short ID, bool player); //The end all be all of
-	//Projectile constructors
+	sf::Vector2f size, short ID, bool player, short cool); 
 	Projectile(float posX, float posY, sf::Vector2f vel,
-	sf::Vector2f size, short ID, bool player, short dela);
+	sf::Vector2f size, short ID, bool player, short cool, short dela);
 	//Adds delay
 
 	void update(sf::Vector2u winSize, std::vector<Object*>* objects);

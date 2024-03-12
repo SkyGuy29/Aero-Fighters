@@ -49,8 +49,14 @@ Projectile::Projectile(float posX, float posY, sf::Vector2f vel, sf::Vector2f si
 	type = PLAYER_PROJECTILE;
 }
 
+//id 0 is basic projectiles
+//id 1 is for projectiles on a timer that dont disappear when they hit an enemy
+//id 2 is for projectiles that pierce and go off screen
+//id 3 is Mao Mao's projectile
+//id 4 is for tracking projectiles
+//The best generic Projectile constructor
 Projectile::Projectile(float posX, float posY, sf::Vector2f vel,
-sf::Vector2f size, short ID, bool player)
+sf::Vector2f size, short ID, bool player, short cool)
 {
 	id = ID;
 	setSize(size);
@@ -63,18 +69,14 @@ sf::Vector2f size, short ID, bool player)
 		type = PLAYER_PROJECTILE;
 	else
 		type = ENEMY_PROJECTILE;
-	if (id == 1)
-		cooldown = 300;
-	else if (id == 2)
-		cooldown = 120;
-	else if (id == 3)
-		cooldown = 30; //Mao Mao's projectile
-	//id 4 is for piercing projectiles
-	//id 5 is for tracking projectiles
+	cooldown = cool;
+	
 }
 
+
+//Use when you want to delay the projectiles spawn
 Projectile::Projectile(float posX, float posY, sf::Vector2f vel,
-	sf::Vector2f size, short ID, bool player, short dela)
+	sf::Vector2f size, short ID, bool player, short cool, short dela)
 {
 	delay = dela;
 	id = ID;
@@ -88,14 +90,7 @@ Projectile::Projectile(float posX, float posY, sf::Vector2f vel,
 		type = PLAYER_PROJECTILE;
 	else
 		type = ENEMY_PROJECTILE;
-	if (id == 1) //For the different types of projectiles
-		cooldown = 300 + dela;
-	else if (id == 2)
-		cooldown = 120 + dela;
-	else if (id == 3) //Mao Mao's special
-		cooldown = 30 + dela; 
-	//id 4 is for piercing projectiles
-	//id 5 is for tracking projectiles
+	cooldown = cool + dela;
 }
 
 // Just moves in a straight line
@@ -142,6 +137,10 @@ void Projectile::update(sf::Vector2u winSize, std::vector<Object*>* objects)
 	if (outOfBounds(winSize))
 		del = true;
 
+	Object* closestEnemy = nullptr;
+	float newEnemyDistance;
+	float closestEnemyDistance = 999999999999;
+
 	for (int i = 0; i < objects->size(); i++)
 	{
 		if (type == PLAYER_PROJECTILE
@@ -157,6 +156,25 @@ void Projectile::update(sf::Vector2u winSize, std::vector<Object*>* objects)
 			&& this->intersect(objects->at(i)))
 		{
 			del = true;
+		}
+		if (id == 4 && (objects->at(i)->getType() == AIR 
+			|| objects->at(i)->getType() == LAND)
+			&& objects->at(i)->shouldDelete() == false)
+		{
+			newEnemyDistance = sqrt(objects->at(i)->getSize().x 
+			* objects->at(i)->getSize().x + objects->at(i)->getSize().y
+			* objects->at(i)->getSize().y);
+			if (closestEnemyDistance > newEnemyDistance)
+			{
+				closestEnemyDistance = newEnemyDistance;
+				closestEnemy = objects->at(i);
+			}
+			
+		}
+		if (closestEnemy != nullptr)
+		{
+			vel = sf::Vector2f((closestEnemy->getPos().x - pos.x) / closestEnemyDistance,
+			(closestEnemy->getPos().y - pos.y) / closestEnemyDistance);
 		}
 	}
 }

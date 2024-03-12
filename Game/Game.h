@@ -11,6 +11,9 @@ public:
 
 	void run();
 
+	void drawMenu();
+	void updateMenu();
+
 private:
 	void resize();
 
@@ -23,6 +26,12 @@ private:
 	int framesPSec = 30;
 	int score, highScore;
 
-
 	Level level;
+
+	bool keyLeft = 0, keyRight = 0, blinkState = 0;
+	short country = 0;
+	short playerChoose = 10 * updatesPSec;
+	short menuBlinkRate = 5, menuBlinkTimer = 0;
+	sf::Texture menuMap, menuFlags, menuCountDown;
+	sf::RectangleShape menuMapRect, menuFlagsRect, menuCountDownRect, menuSelectRect;
 };

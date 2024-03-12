@@ -21,7 +21,7 @@ public:
 
 	~Level();
 
-	void load(sf::Vector2u winSize, int mapId);
+	void load(sf::Vector2u winSize, short country, int mapId);
 
 	void update(sf::Vector2u winSize);
 
@@ -45,7 +45,7 @@ private:
 	sf::Texture backgroundImg;
 	sf::Texture playerImg;
 	sf::IntRect rect;
-	int backgroundSpeed = 1, backgroundDist = 0;
+	float backgroundSpeed = 1, backgroundDist = 0;
 	short country;
 
 	// Maybe put it in game or some other texture storage idk

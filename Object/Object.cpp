@@ -82,6 +82,9 @@ bool Object::isTexInit()
 
 bool Object::intersect(Object* targetPtr)
 {
+	if (size.x == 0 || size.y == 0 || targetPtr->getSize().x == 0 
+	|| targetPtr->getSize().y == 0)
+		return false;
 	return (abs(pos.x - targetPtr->getPos().x) <= (size.x / 2 + targetPtr->getSize().x / 2))
 		&& (abs(pos.y - targetPtr->getPos().y) <= (size.y / 2 + targetPtr->getSize().y / 2));
 }
