@@ -67,6 +67,10 @@ void Level::update(sf::Vector2u winSize)
 	backgroundDist -= backgroundSpeed;
 	rect.top = backgroundDist;
 	background.setTextureRect(rect);
+	// for smoothing out background. 
+	// I offset the the background by negative decapitating the background float. 
+	// SFML will smooth out not pixel aligned things.
+	background.setPosition(0, float(int(backgroundDist) - backgroundDist));
 	
 	getInput(winSize);
 
