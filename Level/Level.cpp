@@ -1,4 +1,6 @@
 #include "Level.h"
+#include <fstream>
+#include <string>
 
 Level::Level()
 {
@@ -57,9 +59,48 @@ void Level::load(sf::Vector2u winSize, short country, int mapId)
 	objects.push_back(new Collectable(1));
 	objects.back()->setPos(sf::Vector2f(winSize.x * 0.25f, winSize.y * 0.5f));
 
-	sf::Vector2f pos = sf::Vector2f(winSize.x * 0.5, winSize.y * 0.1);
+	//land enemy
+	/*sf::Vector2f pos = sf::Vector2f(winSize.x * 0.5, winSize.y * 0.1);
 	sf::Vector2f vel = sf::Vector2f(0, 0);
-	objects.push_back(new Land(0, true, &backgroundSpeed, winSize, &objects, pos, vel));
+	objects.push_back(new Land(0, true, &backgroundSpeed, winSize, &objects, pos, vel));*/
+
+	short type, id;
+	sf::Vector2f pos, vel;
+
+	std::fstream file;
+
+	switch (country)
+	{
+	case STATES:
+		break;
+	case JAPAN:
+		break;
+	case SWEDEN:
+		break;
+	case ENGLAND:
+		file.open("Res/England/enemies.txt");
+	}
+
+	while (file.is_open() && !file.eof())
+	{
+		file >> type;
+		file >> id;
+		file >> pos.x;
+		file >> pos.y;
+		file >> vel.x;
+		file >> vel.y;
+		
+
+		switch (type)
+		{
+		case 0: //land
+			objects.push_back(new Land(id, true, &backgroundSpeed, winSize, &objects, pos, vel));
+			break;
+		case 1: //air
+			objects.push_back(new Air(id, true, winSize, &objects, pos, vel));
+			break;
+		}
+	}
 }
 
 void Level::update(sf::Vector2u winSize)
@@ -198,14 +239,14 @@ void Level::update(sf::Vector2u winSize)
 void Level::statesUpdate(sf::Vector2u winSize)
 {
 	if (backgroundDist <= 0)
-		backgroundDist = backgroundImg.getSize().y - winSize.y;
+		backgroundSpeed = 0;
 	return;
 }
 
 void Level::japanUpdate(sf::Vector2u winSize)
 {
 	if (backgroundDist <= 0)
-		backgroundDist = backgroundImg.getSize().y - winSize.y;
+		backgroundSpeed = 0;
 	return;
 }
 
@@ -219,7 +260,7 @@ void Level::swedenUpdate(sf::Vector2u winSize)
 void Level::englandUpdate(sf::Vector2u winSize)
 {
 	if (backgroundDist <= 0)
-		backgroundDist = backgroundImg.getSize().y - winSize.y;
+		backgroundSpeed = 0;
 	return;
 }
 
