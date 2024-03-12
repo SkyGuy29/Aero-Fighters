@@ -271,8 +271,6 @@ void Player::update(sf::Vector2u winSize, std::vector<Object*>* objects)
 		//Disappear
 		
 	}
-
-	nextFrame();
 	
 	objectUpdate(winSize, objects);
 	
@@ -283,4 +281,40 @@ void Player::update(sf::Vector2u winSize, std::vector<Object*>* objects)
 void Player::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
 	target.draw(sprite, states);
+}
+
+void Player::move(sf::Vector2u winSize)
+{
+	if (vel.x > 0)
+		sideAnimation++;
+	else if (vel.x < 0)
+		sideAnimation--;
+	else
+	{
+		if (sideAnimation > 0)
+			sideAnimation--;
+		else if (sideAnimation < 0)
+			sideAnimation++;
+	}
+	if (sideAnimation > 14)
+		sideAnimation = 14;
+	if (sideAnimation < -14)
+		sideAnimation = -14;
+
+	// the dividing to an int is needed for the updates per frame delay.
+	sprite.setTextureRect(sf::IntRect(
+		texOffset.x + (sideAnimation / 5 + 2) * texSize.x * !verticalAnimation,
+		texOffset.y + (sideAnimation / 5 + 2) * texSize.y * verticalAnimation,
+		texSize.x, texSize.y));
+
+	if (pos.x - size.x / 2.f < 0)
+		pos.x = size.x / 2.f;
+	if (pos.y - size.y / 2.f < 0)
+		pos.y = size.y / 2.f;
+	if (pos.x + size.x / 2.f >= winSize.x)
+		pos.x = winSize.x - size.x / 2.f;
+	if (pos.y + size.y / 2.f >= winSize.y)
+		pos.y = winSize.y - size.y / 2.f;
+
+	Object::move(winSize);
 }

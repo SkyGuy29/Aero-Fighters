@@ -16,6 +16,8 @@ public:
 
 	void update(sf::Vector2u winSize, std::vector<Object*>* objects);
 
+	void move(sf::Vector2u winSize);
+
 private:
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
@@ -26,5 +28,6 @@ private:
 	short specialCharge = 2;
 	short powerLevel = 0;
 	short invincibility = 0;
+	short sideAnimation = 0;
 };
 

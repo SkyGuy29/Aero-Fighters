@@ -103,17 +103,6 @@ short Object::getId()
 void Object::move(sf::Vector2u winSize)
 {
 	pos += vel;
-	if (type == PLAYER)
-	{
-		if (pos.x - size.x / 2.f < 0)
-			pos.x = size.x / 2.f;
-		if (pos.y - size.y / 2.f < 0)
-			pos.y = size.y / 2.f;
-		if (pos.x + size.x / 2.f >= winSize.x)
-			pos.x = winSize.x - size.x / 2.f;
-		if (pos.y + size.y / 2.f >= winSize.y)
-			pos.y = winSize.y - size.y / 2.f;
-	}
 	sprite.setPosition(pos);
 }
 
