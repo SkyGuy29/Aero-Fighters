@@ -20,11 +20,17 @@ void Level::load(sf::Vector2u winSize, int mapId)
 
 	switch (country)
 	{
+	case STATES:
+		backgroundImg.loadFromFile("Res/States/States.png");
+		break;
+	case JAPAN:
+		backgroundImg.loadFromFile("Res/Japan/Japan.png");
+		break;
 	case SWEDEN:
 		backgroundImg.loadFromFile("Res/Sweden/Sweden.png");
 		break;
-	default:
-		backgroundImg.loadFromFile("Res/placeholder.png");
+	case ENGLAND:
+		backgroundImg.loadFromFile("Res/England/England.png");
 	}
 
 	background.setSize(sf::Vector2f(winSize));
@@ -178,28 +184,33 @@ void Level::update(sf::Vector2u winSize)
 	case ENGLAND:
 		englandUpdate(winSize);
 	}
-
-	if (backgroundDist <= 0)
-		backgroundSpeed = 0;
 }
 
 void Level::statesUpdate(sf::Vector2u winSize)
 {
+	if (backgroundDist <= 0)
+		backgroundDist = backgroundImg.getSize().y - winSize.y;
 	return;
 }
 
 void Level::japanUpdate(sf::Vector2u winSize)
 {
+	if (backgroundDist <= 0)
+		backgroundDist = backgroundImg.getSize().y - winSize.y;
 	return;
 }
 
 void Level::swedenUpdate(sf::Vector2u winSize)
 {
+	if (backgroundDist <= 0)
+		backgroundSpeed = 0;
 	return;
 }
 
 void Level::englandUpdate(sf::Vector2u winSize)
 {
+	if (backgroundDist <= 0)
+		backgroundDist = backgroundImg.getSize().y - winSize.y;
 	return;
 }
 
