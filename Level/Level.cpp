@@ -13,10 +13,9 @@ Level::~Level()
 	}
 }
 
-void Level::load(sf::Vector2u winSize, int mapId)
+void Level::load(sf::Vector2u winSize, short country, int mapId)
 {
-	std::cout << "Which country? (short)\n";
-	std::cin >> country;
+	this->country = country;
 
 	switch (country)
 	{
