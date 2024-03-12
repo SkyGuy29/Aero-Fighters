@@ -39,6 +39,7 @@ void Level::load(sf::Vector2u winSize, short country, int mapId)
 	background.setTextureRect(rect);
 
 	playerImg.loadFromFile("Res/Misc/players.png");
+	projectileImg.loadFromFile("Res/Misc/Projectiles.png");
 
 	p[0] = new Player(country, true);
 	p[1] = new Player(country, false);
@@ -89,7 +90,8 @@ void Level::update(sf::Vector2u winSize)
 				objects[objects.size() - 1 - i]->setTexture(&playerImg, sf::Vector2i(32, 32), sf::Vector2i(0, 16), 5, false);
 				break;
 			case Object::PLAYER_PROJECTILE: case Object::ENEMY_PROJECTILE:
-				objects[objects.size() - 1 - i]->setTexture(&playerImg, sf::Vector2i(objects[objects.size() - 1 - i]->getSize().x, objects[objects.size() - 1 - i]->getSize().y), sf::Vector2i(0, 16), 1, false);
+				//Keep commented while I figure out all the projectiles.
+				//objects[objects.size() - 1 - i]->setTexture(&projectileImg, sf::Vector2i(48, 64), sf::Vector2i(0, 0), 1, false);
 				break;
 			}
 		objects[objects.size() - 1 - i]->update(winSize, &objects);

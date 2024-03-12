@@ -24,7 +24,7 @@ private:
 	short timer = 0;
 	short country = -1;
 	short specialCharge = 2;
-	short powerLevel = 0;
+	short powerLevel = 2;
 	short invincibility = 0;
 };
 

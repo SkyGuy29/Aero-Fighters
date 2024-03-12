@@ -16,8 +16,6 @@ public:
 	sf::Vector2f size, short ID, bool player, short cool, short dela, int sprit);
 	//Adds delay
 
-	void setTextureSprite(int sprit); //So that there is one place to put the sprite stuff.
-
 	void update(sf::Vector2u winSize, std::vector<Object*>* objects);
 private:
 	short delay = 0;

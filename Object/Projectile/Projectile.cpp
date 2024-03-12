@@ -48,7 +48,6 @@ Projectile::Projectile(float posX, float posY, sf::Vector2f vel, sf::Vector2f si
 	setPos(posX, posY);
 	this->vel = vel;
 	type = PLAYER_PROJECTILE;
-	setTextureSprite(sprit);
 }
 
 //id 0 is basic projectiles
@@ -72,7 +71,6 @@ sf::Vector2f size, short ID, bool player, short cool, int sprit)
 	else
 		type = ENEMY_PROJECTILE;
 	cooldown = cool;
-	setTextureSprite(sprit);
 }
 
 
@@ -93,7 +91,6 @@ Projectile::Projectile(float posX, float posY, sf::Vector2f vel,
 	else
 		type = ENEMY_PROJECTILE;
 	cooldown = cool + dela;
-	setTextureSprite(sprit);
 }
 
 // Just moves in a straight line
@@ -119,6 +116,8 @@ void Projectile::update(sf::Vector2u winSize, std::vector<Object*>* objects)
 	}
 
 	sprite.setSize(size);
+
+	setRandColor();
 
 	sprite.setPosition(pos);
 
@@ -177,14 +176,5 @@ void Projectile::update(sf::Vector2u winSize, std::vector<Object*>* objects)
 	{
 		vel = sf::Vector2f( 5 * (closestEnemy->getPos().x - pos.x) / closestEnemyDistance,
 		5 * (closestEnemy->getPos().y - pos.y) / closestEnemyDistance);
-	}
-}
-
-void Projectile::setTextureSprite(int sprit)
-{
-	switch (sprit)
-	{
-	case 0:
-		break;
 	}
 }
