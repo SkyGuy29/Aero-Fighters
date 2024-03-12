@@ -38,7 +38,8 @@ Projectile::Projectile(sf::Vector2f pos, sf::Vector2f vel, sf::Vector2f size)
 	type = PLAYER_PROJECTILE;
 }
 
-Projectile::Projectile(float posX, float posY, sf::Vector2f vel, sf::Vector2f size)
+Projectile::Projectile(float posX, float posY, sf::Vector2f vel, sf::Vector2f size,
+	int sprit)
 {
 	setSize(size);
 	tempSize = size;
@@ -47,6 +48,7 @@ Projectile::Projectile(float posX, float posY, sf::Vector2f vel, sf::Vector2f si
 	setPos(posX, posY);
 	this->vel = vel;
 	type = PLAYER_PROJECTILE;
+	setTextureSprite(sprit);
 }
 
 //id 0 is basic projectiles
@@ -56,7 +58,7 @@ Projectile::Projectile(float posX, float posY, sf::Vector2f vel, sf::Vector2f si
 //id 4 is for tracking projectiles
 //The best generic Projectile constructor
 Projectile::Projectile(float posX, float posY, sf::Vector2f vel,
-sf::Vector2f size, short ID, bool player, short cool)
+sf::Vector2f size, short ID, bool player, short cool, int sprit)
 {
 	id = ID;
 	setSize(size);
@@ -70,13 +72,13 @@ sf::Vector2f size, short ID, bool player, short cool)
 	else
 		type = ENEMY_PROJECTILE;
 	cooldown = cool;
-	
+	setTextureSprite(sprit);
 }
 
 
 //Use when you want to delay the projectiles spawn
 Projectile::Projectile(float posX, float posY, sf::Vector2f vel,
-	sf::Vector2f size, short ID, bool player, short cool, short dela)
+	sf::Vector2f size, short ID, bool player, short cool, short dela, int sprit)
 {
 	delay = dela;
 	id = ID;
@@ -91,6 +93,7 @@ Projectile::Projectile(float posX, float posY, sf::Vector2f vel,
 	else
 		type = ENEMY_PROJECTILE;
 	cooldown = cool + dela;
+	setTextureSprite(sprit);
 }
 
 // Just moves in a straight line
@@ -117,8 +120,6 @@ void Projectile::update(sf::Vector2u winSize, std::vector<Object*>* objects)
 
 	sprite.setSize(size);
 
-	setRandColor();
-
 	sprite.setPosition(pos);
 
 	if (id == 3)
@@ -131,7 +132,7 @@ void Projectile::update(sf::Vector2u winSize, std::vector<Object*>* objects)
 	if (id && cooldown)
 		cooldown--;
 
-	if (!cooldown && id)
+	if (!cooldown && id && id != 4)
 		del = true;
 
 	if (outOfBounds(winSize))
@@ -144,10 +145,10 @@ void Projectile::update(sf::Vector2u winSize, std::vector<Object*>* objects)
 	for (int i = 0; i < objects->size(); i++)
 	{
 		if (type == PLAYER_PROJECTILE
-			&& !id
+			&& (!id || id == 4)
 			&& ((objects->at(i)->getType() == AIR
-			|| objects->at(i)->getType() == LAND)
-			&& this->intersect(objects->at(i))))
+				|| objects->at(i)->getType() == LAND)
+				&& this->intersect(objects->at(i))))
 		{
 			del = true;
 		}
@@ -157,24 +158,33 @@ void Projectile::update(sf::Vector2u winSize, std::vector<Object*>* objects)
 		{
 			del = true;
 		}
-		if (id == 4 && (objects->at(i)->getType() == AIR 
+		if (id == 4 && (objects->at(i)->getType() == AIR
 			|| objects->at(i)->getType() == LAND)
 			&& objects->at(i)->shouldDelete() == false)
 		{
-			newEnemyDistance = sqrt(objects->at(i)->getSize().x 
-			* objects->at(i)->getSize().x + objects->at(i)->getSize().y
-			* objects->at(i)->getSize().y);
+			newEnemyDistance = sqrt((objects->at(i)->getPos().x - pos.x)
+				* (objects->at(i)->getPos().x - pos.x) + (objects->at(i)->getPos().y - pos.y)
+				* (objects->at(i)->getPos().y - pos.y));
 			if (closestEnemyDistance > newEnemyDistance)
 			{
 				closestEnemyDistance = newEnemyDistance;
 				closestEnemy = objects->at(i);
 			}
-			
+
 		}
-		if (closestEnemy != nullptr)
-		{
-			vel = sf::Vector2f((closestEnemy->getPos().x - pos.x) / closestEnemyDistance,
-			(closestEnemy->getPos().y - pos.y) / closestEnemyDistance);
-		}
+	}
+	if (closestEnemy != nullptr)
+	{
+		vel = sf::Vector2f( 5 * (closestEnemy->getPos().x - pos.x) / closestEnemyDistance,
+		5 * (closestEnemy->getPos().y - pos.y) / closestEnemyDistance);
+	}
+}
+
+void Projectile::setTextureSprite(int sprit)
+{
+	switch (sprit)
+	{
+	case 0:
+		break;
 	}
 }

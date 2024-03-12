@@ -108,6 +108,10 @@ void Level::update(sf::Vector2u winSize)
 	backgroundDist -= backgroundSpeed;
 	rect.top = backgroundDist;
 	background.setTextureRect(rect);
+	// for smoothing out background. 
+	// I offset the the background by negative decapitating the background float. 
+	// SFML will smooth out not pixel aligned things.
+	background.setPosition(0, float(int(backgroundDist) - backgroundDist));
 	
 	getInput(winSize);
 
@@ -124,6 +128,10 @@ void Level::update(sf::Vector2u winSize)
 			{
 			case Object::EXPLOSION:
 				objects[objects.size() - 1 - i]->setTexture(&playerImg, sf::Vector2i(32, 32), sf::Vector2i(0, 16), 5, false);
+				break;
+			case Object::PLAYER_PROJECTILE: case Object::ENEMY_PROJECTILE:
+				objects[objects.size() - 1 - i]->setTexture(&playerImg, sf::Vector2i(objects[objects.size() - 1 - i]->getSize().x, objects[objects.size() - 1 - i]->getSize().y), sf::Vector2i(0, 16), 1, false);
+				break;
 			}
 		objects[objects.size() - 1 - i]->update(winSize, &objects);
 	}
