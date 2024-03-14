@@ -4,6 +4,7 @@
 
 Level::Level()
 {
+	//
 }
 
 Level::~Level()
