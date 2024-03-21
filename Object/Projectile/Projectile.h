@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../Object.h"
+#include <iostream>
 
 class Projectile : public Object
 {

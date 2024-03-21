@@ -26,8 +26,9 @@ private:
 	short timer = 0;
 	short country = -1;
 	short specialCharge = 2;
-	short powerLevel = 2;
+	short powerLevel = 3;
 	short invincibility = 0;
 	short sideAnimation = 0;
+	short cooldownSecondary = 0;
 };
 

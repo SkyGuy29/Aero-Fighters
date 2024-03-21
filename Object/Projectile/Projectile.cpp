@@ -51,10 +51,11 @@ Projectile::Projectile(float posX, float posY, sf::Vector2f vel, sf::Vector2f si
 }
 
 //id 0 is basic projectiles
-//id 1 is for projectiles on a timer that dont disappear when they hit an enemy
+//id 1 is for projectiles on a timer that pierce
 //id 2 is for projectiles that pierce and go off screen
-//id 3 is Mao Mao's projectile
+//id 3 is Mao Mao's super
 //id 4 is for tracking projectiles
+//id 5 is the tracking mines of sweden
 //The best generic Projectile constructor
 Projectile::Projectile(float posX, float posY, sf::Vector2f vel,
 sf::Vector2f size, short ID, bool player, short cool, int sprit)
@@ -131,7 +132,7 @@ void Projectile::update(sf::Vector2u winSize, std::vector<Object*>* objects)
 	if (id && cooldown)
 		cooldown--;
 
-	if (!cooldown && id && id != 4)
+	if (!cooldown && id && (id < 4))
 		del = true;
 
 	if (outOfBounds(winSize))
@@ -144,7 +145,7 @@ void Projectile::update(sf::Vector2u winSize, std::vector<Object*>* objects)
 	for (int i = 0; i < objects->size(); i++)
 	{
 		if (type == PLAYER_PROJECTILE
-			&& (!id || id == 4)
+			&& (!id || id >= 4)
 			&& ((objects->at(i)->getType() == AIR
 				|| objects->at(i)->getType() == LAND)
 				&& this->intersect(objects->at(i))))
@@ -157,7 +158,7 @@ void Projectile::update(sf::Vector2u winSize, std::vector<Object*>* objects)
 		{
 			del = true;
 		}
-		if (id == 4 && (objects->at(i)->getType() == AIR
+		if (id >= 4 && (objects->at(i)->getType() == AIR
 			|| objects->at(i)->getType() == LAND)
 			&& objects->at(i)->shouldDelete() == false)
 		{
@@ -176,5 +177,12 @@ void Projectile::update(sf::Vector2u winSize, std::vector<Object*>* objects)
 	{
 		vel = sf::Vector2f( 5 * (closestEnemy->getPos().x - pos.x) / closestEnemyDistance,
 		5 * (closestEnemy->getPos().y - pos.y) / closestEnemyDistance);
+	}
+	else if (id == 5)
+	{
+		std::cout << "Turning\n";
+		float angle = atan(vel.y / vel.x);
+		angle += PI / 36;
+		vel = sf::Vector2f(5 * cos(angle), -5 * sin(angle));
 	}
 }
