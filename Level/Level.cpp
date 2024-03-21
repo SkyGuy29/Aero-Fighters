@@ -137,7 +137,7 @@ void Level::update(sf::Vector2u winSize)
 				//objects[objects.size() - 1 - i]->setTexture(&projectileImg, sf::Vector2i(48, 64), sf::Vector2i(0, 0), 1, false);
 				break;
 			case Object::COLLECTABLE:
-				objects[objects.size() - 1 - i]->setTexture(&powerUpImg, sf::Vector2i(32, 32), sf::Vector2i(0, 0), 8, false);
+				objects[objects.size() - 1 - i]->setTexture(&powerUpImg, sf::Vector2i(16, 19), sf::Vector2i(0, 0), 8, false);
 			}
 		objects[objects.size() - 1 - i]->update(winSize, &objects);
 	}

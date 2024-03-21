@@ -31,6 +31,7 @@ Collectable::Collectable(short id, float xPosition, float yPosition)
 
 void Collectable::update(sf::Vector2u winSize, std::vector<Object*>* objects)
 {
+	nextFrame();
 	if (outOfBounds(winSize) && (id == 0))
 		del = true;
 	else if ((pos.y >= 240 || pos.y <= 30 || outOfBounds(winSize))
