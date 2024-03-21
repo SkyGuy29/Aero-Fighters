@@ -7,6 +7,8 @@ Land::Land(short id, bool left, float* backgroundSpeed, sf::Vector2u winSize, st
 
 	this->backgroundSpeed = backgroundSpeed;
 
+	setSize(15, 25);
+
 	switch (id)
 	{
 	case 0: //Weak Tank
@@ -14,9 +16,13 @@ Land::Land(short id, bool left, float* backgroundSpeed, sf::Vector2u winSize, st
 		break;
 	case 1: //STRONG Tank
 		health = 7;
+		break;
+	case 2: //fort building
+		health = 60;
+		setSize(60, 60);
+		break;
 	}
 
-	setSize(15, 25);
 	sprite.setSize(size);
 	sprite.setOrigin(size / 2.f);
 	setRandColor();
