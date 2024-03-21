@@ -261,6 +261,7 @@ void Level::englandUpdate(sf::Vector2u winSize)
 	if (backgroundDist <= 0)
 		backgroundSpeed = 0;
 
+	//Slow down for fort
 	if (backgroundDist <= 1405 && backgroundDist > 1264)
 		backgroundSpeed = 0.5;
 	else
