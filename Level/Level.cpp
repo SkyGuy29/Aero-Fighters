@@ -4,6 +4,8 @@
 
 Level::Level()
 {
+	//
+	/**/
 }
 
 Level::~Level()
@@ -41,6 +43,7 @@ void Level::load(sf::Vector2u winSize, short country, int mapId)
 	background.setTextureRect(rect);
 
 	playerImg.loadFromFile("Res/Misc/players.png");
+	projectileImg.loadFromFile("Res/Misc/Projectiles.png");
 
 	p[0] = new Player(country, true);
 	p[1] = new Player(country, false);
@@ -54,9 +57,6 @@ void Level::load(sf::Vector2u winSize, short country, int mapId)
 	// just a test to try out the moved animator to object
 	objects.at(0)->setTexture(&playerImg, sf::Vector2i(32, 32), sf::Vector2i(0, 16), 5, false);
 	objects.at(1)->setTexture(&playerImg, sf::Vector2i(32, 32), sf::Vector2i(0, 16), 5, false);
-
-	objects.push_back(new Collectable(1));
-	objects.back()->setPos(sf::Vector2f(winSize.x * 0.25f, winSize.y * 0.5f));
 
 	//land enemy
 	/*sf::Vector2f pos = sf::Vector2f(winSize.x * 0.5, winSize.y * 0.1);
@@ -130,7 +130,8 @@ void Level::update(sf::Vector2u winSize)
 				objects[objects.size() - 1 - i]->setTexture(&playerImg, sf::Vector2i(32, 32), sf::Vector2i(0, 16), 5, false);
 				break;
 			case Object::PLAYER_PROJECTILE: case Object::ENEMY_PROJECTILE:
-				objects[objects.size() - 1 - i]->setTexture(&playerImg, sf::Vector2i(objects[objects.size() - 1 - i]->getSize().x, objects[objects.size() - 1 - i]->getSize().y), sf::Vector2i(0, 16), 1, false);
+				//Keep commented while I figure out all the projectiles.
+				//objects[objects.size() - 1 - i]->setTexture(&projectileImg, sf::Vector2i(48, 64), sf::Vector2i(0, 0), 1, false);
 				break;
 			}
 		objects[objects.size() - 1 - i]->update(winSize, &objects);

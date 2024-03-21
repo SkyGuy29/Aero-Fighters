@@ -44,6 +44,7 @@ private:
 	sf::RectangleShape background;
 	sf::Texture backgroundImg;
 	sf::Texture playerImg;
+	sf::Texture projectileImg;
 	sf::IntRect rect;
 	float backgroundSpeed = 1, backgroundDist = 0;
 	short country;
