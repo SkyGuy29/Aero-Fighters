@@ -138,71 +138,82 @@ void Player::shoot(std::vector<Object*>& objects)
 		cooldown = 3;
 		break;
 	}
-	if (!cooldown)
+	switch (country * 8 + powerLevel * 2 + isPlayerTwo)
 	{
-		switch (country * 8 + powerLevel * 2 + isPlayerTwo)
+	case 4: case 6:
+		for (int fireNum = 0; fireNum < 7; fireNum++)
 		{
-		case 4: case 6:
-			for (int fireNum = 0; fireNum < 7; fireNum++)
-			{
-				objects.push_back(new Projectile(pos.x, pos.y - fireNum * 35,
-					sf::Vector2f(0, 0), sf::Vector2f(25, 35), 1, true, 10,
-					10 * fireNum, 1));
-			}
-			break;
-		case 5: case 7:
+			objects.push_back(new Projectile(pos.x, pos.y - fireNum * 35,
+				sf::Vector2f(0, 0), sf::Vector2f(25, 35), 1, true, 10,
+				10 * fireNum, 1));
+		}
+		break;
+	case 5: case 7:
+		objects.push_back(new Projectile(pos.x, pos.y,
+			sf::Vector2f(0, -10), sf::Vector2f(15, 15), 4, true, 0, 1));
+		break;
+	case 12:
+		for (int num = 0; num < 4; num++)
 			objects.push_back(new Projectile(pos.x, pos.y,
 				sf::Vector2f(0, -10), sf::Vector2f(15, 15), 4, true, 0, 1));
-			break;
-		case 12:
-			for (int num = 0; num < 4; num++)
-				objects.push_back(new Projectile(pos.x, pos.y,
-					sf::Vector2f(0, -10), sf::Vector2f(15, 15), 4, true, 0, 1));
-			break;
-		case 14:
-			for (int num = 0; num < 8; num++)
-				objects.push_back(new Projectile(pos.x, pos.y,
-					sf::Vector2f(0, -10), sf::Vector2f(15, 15), 4, true, 0, 1));
-			break;
-		case 13: //Lasers
-			break;
-		case 15:
-			break;
-		case 18:
+		break;
+	case 13: //Lasers
+		objects.push_back(new Projectile(pos.x - 25, pos.y, sf::Vector2f(0, -25),
+			sf::Vector2f(5, 50), 2, true, 0, 1));
+		objects.push_back(new Projectile(pos.x + 25, pos.y, sf::Vector2f(0, -25),
+			sf::Vector2f(5, 50), 2, true, 0, 1));
+		break;
+	case 14:
+		for (int num = 0; num < 8; num++)
 			objects.push_back(new Projectile(pos.x, pos.y,
-				sf::Vector2f(0, -10), sf::Vector2f(12, 22), 0, true, 0, 1));
-			break;
-		case 20:
+				sf::Vector2f(0, -10), sf::Vector2f(15, 15), 4, true, 0, 1));
+		break;
+	case 15:
+		objects.push_back(new Projectile(pos.x - 25, pos.y, sf::Vector2f(0, -25),
+			sf::Vector2f(5, 50), 2, true, 0, 1));
+		objects.push_back(new Projectile(pos.x + 25, pos.y, sf::Vector2f(0, -25),
+			sf::Vector2f(5, 50), 2, true, 0, 1));
+		objects.push_back(new Projectile(pos.x - 50, pos.y, sf::Vector2f(0, -25),
+			sf::Vector2f(5, 50), 2, true, 0, 1));
+		objects.push_back(new Projectile(pos.x + 50, pos.y, sf::Vector2f(0, -25),
+			sf::Vector2f(5, 50), 2, true, 0, 1));
+		break;
+	case 18:
+		objects.push_back(new Projectile(pos.x, pos.y,
+			sf::Vector2f(0, -10), sf::Vector2f(12, 22), 0, true, 0, 1));
+		break;
+	case 19: //Tracking Mines
+		for (int num = 0; num < 2; num++)
 			objects.push_back(new Projectile(pos.x, pos.y,
-				sf::Vector2f(0, -10), sf::Vector2f(12, 22), 0, true, 0, 1));
-			break;
-		case 19: //Tracking Mines
-			for (int num = 0; num < 2; num++)
-				objects.push_back(new Projectile(pos.x, pos.y,
-					sf::Vector2f(0, -10), sf::Vector2f(15, 15), 5, true, 100, 1));
-			break;
-		case 21:
-			for (int num = 0; num < 4; num++)
-				objects.push_back(new Projectile(pos.x, pos.y,
-					sf::Vector2f(0, -10), sf::Vector2f(15, 15), 5, true, 100, 1));
-			break;
-		case 28: //Weird rockets
-			objects.push_back(new Projectile(pos.x, pos.y, sf::Vector2f(0, -10),
-				sf::Vector2f(12, 22), 2, true, 2000, 1));
-			break;
-		case 30:
-			objects.push_back(new Projectile(pos.x, pos.y, sf::Vector2f(0, -10),
-				sf::Vector2f(12, 22), 2, true, 2000, 1));
-			break;
-		case 29: //Delayed nukes
+				sf::Vector2f(0, -10), sf::Vector2f(15, 15), 5, true, 100, 1));
+		break;
+	case 20:
+		objects.push_back(new Projectile(pos.x, pos.y,
+			sf::Vector2f(0, -10), sf::Vector2f(12, 22), 0, true, 0, 1));
+		break;
+		
+	case 21:
+		for (int num = 0; num < 4; num++)
 			objects.push_back(new Projectile(pos.x, pos.y,
-				sf::Vector2f(0, -10), sf::Vector2f(12, 22), 1, true, 20, 30, 1));
-			break;
-		case 31:
-			objects.push_back(new Projectile(pos.x, pos.y,
-				sf::Vector2f(0, -10), sf::Vector2f(12, 22), 1, true, 20, 30, 1));
-			break;
-		}
+				sf::Vector2f(0, -10), sf::Vector2f(15, 15), 5, true, 100, 1));
+		break;
+	case 28: //Weird rockets
+		objects.push_back(new Projectile(pos.x, pos.y, sf::Vector2f(0, -10),
+			sf::Vector2f(12, 22), 2, true, 2000, 1));
+		break;
+	case 29: //Delayed nukes
+		objects.push_back(new Projectile(pos.x, pos.y,
+			sf::Vector2f(0, -10), sf::Vector2f(12, 22), 1, true, 20, 30, 1));
+		break;
+	case 30:
+		objects.push_back(new Projectile(pos.x, pos.y, sf::Vector2f(0, -10),
+			sf::Vector2f(12, 22), 2, true, 2000, 1));
+		break;
+		
+	case 31:
+		objects.push_back(new Projectile(pos.x, pos.y,
+			sf::Vector2f(0, -10), sf::Vector2f(12, 22), 1, true, 20, 30, 1));
+		break;
 	}
 }
 

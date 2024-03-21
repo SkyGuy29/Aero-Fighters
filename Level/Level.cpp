@@ -58,9 +58,6 @@ void Level::load(sf::Vector2u winSize, short country, int mapId)
 	objects.at(0)->setTexture(&playerImg, sf::Vector2i(32, 32), sf::Vector2i(0, 16), 5, false);
 	objects.at(1)->setTexture(&playerImg, sf::Vector2i(32, 32), sf::Vector2i(0, 16), 5, false);
 
-	objects.push_back(new Collectable(1));
-	objects.back()->setPos(sf::Vector2f(winSize.x * 0.25f, winSize.y * 0.5f));
-
 	//land enemy
 	/*sf::Vector2f pos = sf::Vector2f(winSize.x * 0.5, winSize.y * 0.1);
 	sf::Vector2f vel = sf::Vector2f(0, 0);
