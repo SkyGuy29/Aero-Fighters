@@ -260,7 +260,11 @@ void Level::englandUpdate(sf::Vector2u winSize)
 {
 	if (backgroundDist <= 0)
 		backgroundSpeed = 0;
-	return;
+
+	if (backgroundDist <= 1405 && backgroundDist > 1264)
+		backgroundSpeed = 0.5;
+	else
+		backgroundSpeed = 1;
 }
 
 void Level::draw(sf::RenderTarget& target, sf::RenderStates states) const

@@ -7,7 +7,15 @@ Land::Land(short id, bool left, float* backgroundSpeed, sf::Vector2u winSize, st
 
 	this->backgroundSpeed = backgroundSpeed;
 
-	health = 1;
+	switch (id)
+	{
+	case 0: //Weak Tank
+		health = 1;
+		break;
+	case 1: //STRONG Tank
+		health = 7;
+	}
+
 	setSize(15, 25);
 	sprite.setSize(size);
 	sprite.setOrigin(size / 2.f);
