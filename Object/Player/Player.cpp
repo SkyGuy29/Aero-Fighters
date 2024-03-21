@@ -149,7 +149,7 @@ void Player::shoot(std::vector<Object*>& objects)
 					sf::Vector2f(0, 0), sf::Vector2f(25, 35), 1, true, 10,
 					10 * fireNum, 1));
 			}
-			cooldownSecondary = 15;
+			cooldownSecondary = 23;
 			break;
 		case 5: case 7:
 			objects.push_back(new Projectile(pos.x, pos.y,
@@ -160,7 +160,7 @@ void Player::shoot(std::vector<Object*>& objects)
 			for (int num = 0; num < 4; num++)
 				objects.push_back(new Projectile(pos.x, pos.y,
 				sf::Vector2f(0, -10), sf::Vector2f(15, 15), 4, true, 0, 1));
-			cooldownSecondary = 15;
+			cooldownSecondary = 30;
 			break;
 		case 13: //Lasers
 			objects.push_back(new Projectile(pos.x - 25, pos.y, sf::Vector2f(0, -25),
@@ -173,7 +173,7 @@ void Player::shoot(std::vector<Object*>& objects)
 			for (int num = 0; num < 8; num++)
 				objects.push_back(new Projectile(pos.x, pos.y,
 				sf::Vector2f(0, -10), sf::Vector2f(15, 15), 4, true, 0, 1));
-			cooldownSecondary = 15;
+			cooldownSecondary = 30;
 			break;
 		case 15:
 			objects.push_back(new Projectile(pos.x - 25, pos.y, sf::Vector2f(0, -25),
@@ -189,44 +189,46 @@ void Player::shoot(std::vector<Object*>& objects)
 		case 18:
 			objects.push_back(new Projectile(pos.x, pos.y,
 			sf::Vector2f(0, -10), sf::Vector2f(12, 22), 0, true, 0, 1));
-			cooldownSecondary = 15;
+			cooldownSecondary = 5;
 			break;
 		case 19: //Tracking Mines
 			for (int num = 0; num < 2; num++)
 				objects.push_back(new Projectile(pos.x, pos.y,
 				sf::Vector2f(0, -10), sf::Vector2f(15, 15), 5, true, 100, 1));
-			cooldownSecondary = 15;
+			cooldownSecondary = 100;
 			break;
 		case 20:
 			objects.push_back(new Projectile(pos.x, pos.y,
 			sf::Vector2f(0, -10), sf::Vector2f(12, 22), 0, true, 0, 1));
-			cooldownSecondary = 15;
+			cooldownSecondary = 5;
 			break;
 		case 21:
 			for (int num = 0; num < 4; num++)
 				objects.push_back(new Projectile(pos.x, pos.y,
 				sf::Vector2f(0, -10), sf::Vector2f(15, 15), 5, true, 100, 1));
-			cooldownSecondary = 15;
+			cooldownSecondary = 100;
 			break;
 		case 28: //Weird rockets
 			objects.push_back(new Projectile(pos.x, pos.y, sf::Vector2f(0, -10),
 			sf::Vector2f(12, 22), 2, true, 2000, 1));
-			cooldownSecondary = 15;
+			cooldownSecondary = 25;
 			break;
 		case 29: //Delayed nukes
 			objects.push_back(new Projectile(pos.x, pos.y,
 			sf::Vector2f(0, -10), sf::Vector2f(12, 22), 1, true, 20, 30, 1));
-			cooldownSecondary = 15;
+			objects.push_back(new Projectile(pos.x, pos.y,
+			sf::Vector2f(0, -10), sf::Vector2f(12, 22), 1, true, 20, 45, 1));
+			cooldownSecondary = 35;
 			break;
 		case 30:
 			objects.push_back(new Projectile(pos.x, pos.y, sf::Vector2f(0, -10),
 			sf::Vector2f(12, 22), 2, true, 2000, 1));
-			cooldownSecondary = 15;
+			cooldownSecondary = 25;
 			break;
 		case 31:
 			objects.push_back(new Projectile(pos.x, pos.y,
 			sf::Vector2f(0, -10), sf::Vector2f(12, 22), 1, true, 20, 30, 1));
-			cooldownSecondary = 15;
+			cooldownSecondary = 4;
 			break;
 		}
 	}
