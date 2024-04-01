@@ -9,7 +9,7 @@ class Object : public sf::Drawable
 public:
 	Object();
 
-	virtual void update(sf::Vector2u winSize, std::vector<Object*>*);
+	virtual void update(sf::Vector2u winSize, std::vector<Object*>*, bool time);
 
 	void objectUpdate(sf::Vector2u winSize, std::vector<Object*>*);
 

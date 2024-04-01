@@ -216,7 +216,7 @@ void Player::shoot(std::vector<Object*>& objects)
 
 void Player::special(std::vector<Object*>& objects, sf::Vector2u winSize)
 {
-	if (!cooldown) //&& specialCharge > 0)
+	if (!cooldown && specialCharge > 0)
 	{
 		specialCharge--;
 		switch (country * 2 + isPlayerTwo)
@@ -303,7 +303,7 @@ void Player::special(std::vector<Object*>& objects, sf::Vector2u winSize)
 	}
 }
 
-void Player::update(sf::Vector2u winSize, std::vector<Object*>* objects)
+void Player::update(sf::Vector2u winSize, std::vector<Object*>* objects, bool time)
 {
 
 	//Am I being shot?

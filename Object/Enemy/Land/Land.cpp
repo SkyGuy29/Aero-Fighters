@@ -45,9 +45,9 @@ Land::Land(short id, bool left, float* backgroundSpeed, sf::Vector2u winSize, st
 	setRandColor();
 }
 
-void Land::update(sf::Vector2u winSize, std::vector<Object*>* objects)
+void Land::update(sf::Vector2u winSize, std::vector<Object*>* objects, bool time)
 {
-	enemyUpdate(winSize, objects);
+	enemyUpdate(winSize, objects, time);
 	setPos(getPos().x, getPos().y + *backgroundSpeed);
 
 	switch (id)

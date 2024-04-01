@@ -5,7 +5,7 @@ Object::Object()
 {
 }
 
-void Object::update(sf::Vector2u winSize, std::vector<Object*>*)
+void Object::update(sf::Vector2u winSize, std::vector<Object*>*, bool time)
 {
 }
 

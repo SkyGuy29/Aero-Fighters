@@ -222,9 +222,8 @@ void Level::update(sf::Vector2u winSize)
 					sf::Vector2i(16, 19), sf::Vector2i(0, 40), 8, false);
 					break;
 				}
-				
 			}
-		objects[objects.size() - 1 - i]->update(winSize, &objects);
+		objects[objects.size() - 1 - i]->update(winSize, &objects, true);
 	}
 
 	for (int i = 0; i < objects.size(); i++)

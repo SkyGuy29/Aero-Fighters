@@ -97,7 +97,7 @@ Projectile::Projectile(float posX, float posY, sf::Vector2f vel,
 }
 
 // Just moves in a straight line
-void Projectile::update(sf::Vector2u winSize, std::vector<Object*>* objects)
+void Projectile::update(sf::Vector2u winSize, std::vector<Object*>* objects, bool time)
 {
 	// | comment if you hate rainbows |
 	// V							  V

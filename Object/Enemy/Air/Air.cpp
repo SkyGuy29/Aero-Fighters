@@ -12,7 +12,7 @@ Air::Air(short id, bool left, sf::Vector2u winSize, std::vector<Object*>* object
 	setRandColor();
 }
 
-void Air::update(sf::Vector2u winSize, std::vector<Object*>* objects)
+void Air::update(sf::Vector2u winSize, std::vector<Object*>* objects, bool time)
 {
 	enemyUpdate(winSize, objects);
 

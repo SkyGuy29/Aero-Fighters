@@ -17,8 +17,7 @@ public:
 	sf::Vector2f size, short ID, bool player, short cool, short dela, int sprit);
 	//Adds delay
 
-	void update(sf::Vector2u winSize, std::vector<Object*>* objects);
-	short getSpriteNum();
+	void update(sf::Vector2u winSize, std::vector<Object*>* objects, bool time);
 private:
 	short delay = 0;
 	sf::Vector2f tempSize;
