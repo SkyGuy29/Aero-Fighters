@@ -19,6 +19,12 @@ void Object::draw(sf::RenderTarget& target, sf::RenderStates states) const
 	target.draw(sprite, states);
 }
 
+//This is to get the specific sprite for enemies or projectiles
+short Object::getSpriteNum()
+{
+	return spriteNum;
+}
+
 // this is the new animator
 void Object::nextFrame()
 {

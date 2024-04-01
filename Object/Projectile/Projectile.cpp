@@ -67,6 +67,7 @@ sf::Vector2f size, short ID, bool player, short cool, int sprit)
 	sprite.setOrigin(sprite.getSize() / 2.f);
 	setPos(posX, posY);
 	this->vel = vel;
+	spriteNum = sprit;
 	if (player)
 		type = PLAYER_PROJECTILE;
 	else
@@ -87,6 +88,7 @@ Projectile::Projectile(float posX, float posY, sf::Vector2f vel,
 	sprite.setOrigin(sprite.getSize() / 2.f);
 	setPos(posX, posY);
 	this->vel = vel;
+	spriteNum = sprit;
 	if (player)
 		type = PLAYER_PROJECTILE;
 	else
@@ -103,6 +105,13 @@ void Projectile::update(sf::Vector2u winSize, std::vector<Object*>* objects)
 	// I think rainbows are pretty cool -Gabe
 	// Rainbows are fine -Matthew
 
+
+	//Make groups of three projectiles that are stacked vertically
+	//The Kunai is the sole exception which should be on it's own.
+	//Stack them in the order of America Player 1 projectile,
+	//America Player 2 projectile, Japan Player 1 projectile,
+	//England Player 1 projectile.
+
 	if (delay)
 	{
 		size = sf::Vector2f(0, 0);
@@ -116,14 +125,11 @@ void Projectile::update(sf::Vector2u winSize, std::vector<Object*>* objects)
 		objectUpdate(winSize, objects);
 	}
 
-	sprite.setSize(size);
-
-	setRandColor();
-
-	sprite.setPosition(pos);
+	nextFrame();
 
 	if (id == 3)
 	{
+		setRandColor();
 		setSize(sf::Vector2f(size.x += 15, size.y += 15));
 		sprite.setSize(sf::Vector2f(size.x += 15, size.y += 15));
 		sprite.setOrigin(sprite.getSize() / 2.f);
