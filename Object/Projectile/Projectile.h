@@ -18,7 +18,9 @@ public:
 	//Adds delay
 
 	void update(sf::Vector2u winSize, std::vector<Object*>* objects);
+	short getSpriteNum();
 private:
 	short delay = 0;
 	sf::Vector2f tempSize;
+	short spriteNum = -1;
 };

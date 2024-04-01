@@ -45,6 +45,8 @@ private:
 	sf::Texture backgroundImg;
 	sf::Texture playerImg;
 	sf::Texture projectileImg;
+	sf::Texture powerUpImg;
+	sf::Texture moneyImg;
 	sf::IntRect rect;
 	float backgroundSpeed = 1, backgroundDist = 0;
 	short country;

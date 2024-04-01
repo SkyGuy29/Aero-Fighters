@@ -45,6 +45,8 @@ public:
 
 	short getID();
 
+	short getSpriteNum();
+
 	bool isTexInit();
 
 	enum Types
@@ -66,7 +68,7 @@ protected:
 
 	void nextFrame();
 
-	short type, id = 0, cooldown = 0, health;
+	short type, id = 0, cooldown = 0, health, spriteNum = -1;
 
 	bool del = false;
 	bool texInit = false;
