@@ -47,11 +47,15 @@ Land::Land(short id, bool left, float* backgroundSpeed, sf::Vector2u winSize, st
 
 void Land::update(sf::Vector2u winSize, std::vector<Object*>* objects, bool time)
 {
-	enemyUpdate(winSize, objects, time);
-	setPos(getPos().x, getPos().y + *backgroundSpeed);
-
-	switch (id)
+	enemyUpdate(winSize, objects);
+	//Do things here only while time is moving.
+	if (time)
 	{
-		
+		setPos(getPos().x, getPos().y + *backgroundSpeed);
+
+		switch (id)
+		{
+
+		}
 	}
 }

@@ -13,7 +13,7 @@ int Enemy::getHealth() const
 	return health;
 }
 
-void Enemy::enemyUpdate(sf::Vector2u winSize, std::vector<Object*>* objects, bool time)
+void Enemy::enemyUpdate(sf::Vector2u winSize, std::vector<Object*>* objects)
 {
 	objectUpdate(winSize, objects);
 
