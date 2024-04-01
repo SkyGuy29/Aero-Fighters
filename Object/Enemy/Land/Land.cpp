@@ -11,6 +11,7 @@ Land::Land(short id, bool left, float* backgroundSpeed, sf::Vector2u winSize, st
 
 	switch (id)
 	{
+		//ENGLAND
 	case 0: //Weak Tank
 		health = 1;
 		break;
@@ -20,6 +21,22 @@ Land::Land(short id, bool left, float* backgroundSpeed, sf::Vector2u winSize, st
 	case 2: //fort building
 		health = 60;
 		setSize(60, 60);
+		break;
+	case 3: //smaller fort buildings
+		health = 15;
+		setSize(60, 60);
+		break;
+	case 4: //house
+		health = 5;
+		setSize(75, 50);
+		break;
+	case 5: //road gate
+		health = 10;
+		setSize(35, 35);
+		break;
+	case 6: //Hangar
+		health = 30;
+		setSize(80, 100);
 		break;
 	}
 
@@ -31,6 +48,10 @@ Land::Land(short id, bool left, float* backgroundSpeed, sf::Vector2u winSize, st
 void Land::update(sf::Vector2u winSize, std::vector<Object*>* objects)
 {
 	enemyUpdate(winSize, objects);
-
 	setPos(getPos().x, getPos().y + *backgroundSpeed);
+
+	switch (id)
+	{
+		
+	}
 }
