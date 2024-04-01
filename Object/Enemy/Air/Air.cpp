@@ -14,7 +14,7 @@ Air::Air(short id, bool left, sf::Vector2u winSize, std::vector<Object*>* object
 
 void Air::update(sf::Vector2u winSize, std::vector<Object*>* objects, bool time)
 {
-	enemyUpdate(winSize, objects);
+	enemyUpdate(winSize, objects, time);
 
 	switch (id)
 	{
