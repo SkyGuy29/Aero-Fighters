@@ -137,7 +137,7 @@ void Level::update(sf::Vector2u winSize)
 			case Object::PLAYER_PROJECTILE: case Object::ENEMY_PROJECTILE:
 				switch (objects[objects.size() - 1 - i]->getSpriteNum())
 				{
-				case 0:
+				case 0: //Rain 
 					objects[objects.size() - 1 - i]->setTexture(&projectileImg, 
 					sf::Vector2i(15, 12), sf::Vector2i(20, 10), 3, false);
 					break;
@@ -185,6 +185,14 @@ void Level::update(sf::Vector2u winSize)
 					objects[objects.size() - 1 - i]->setTexture(&projectileImg,
 					sf::Vector2i(20, 12), sf::Vector2i(0, 0), 3, false);
 					break;
+				case 12: //Enemy 1
+					objects[objects.size() - 1 - i]->setTexture(&projectileImg,
+					sf::Vector2i(20, 12), sf::Vector2i(0, 0), 3, false);
+					break;
+				case 13: //Enemy 2
+					objects[objects.size() - 1 - i]->setTexture(&projectileImg,
+					sf::Vector2i(20, 12), sf::Vector2i(0, 0), 3, false);
+					break;
 				}
 				break;
 			case Object::COLLECTABLE:
@@ -223,7 +231,7 @@ void Level::update(sf::Vector2u winSize)
 					break;
 				}
 			}
-		objects[objects.size() - 1 - i]->update(winSize, &objects, true);
+		objects[objects.size() - 1 - i]->update(winSize, &objects, p[1]->getTime());
 	}
 
 	for (int i = 0; i < objects.size(); i++)
@@ -333,8 +341,10 @@ void Level::statesUpdate(sf::Vector2u winSize)
 
 void Level::japanUpdate(sf::Vector2u winSize)
 {
-	if (backgroundDist <= 0)
+	if (backgroundDist <= 0 || !(p[1]->getTime()))
 		backgroundSpeed = 0;
+	else
+		backgroundSpeed = 1;
 	return;
 }
 
