@@ -45,6 +45,7 @@ void Level::load(sf::Vector2u winSize, short country, int mapId)
 	playerImg.loadFromFile("Res/Misc/players.png");
 	projectileImg.loadFromFile("Res/Misc/Projectiles.png");
 	powerUpImg.loadFromFile("Res/Misc/Powerups.png");
+	moneyImg.loadFromFile("Res/Misc/money.png");
 
 	p[0] = new Player(country, true);
 	p[1] = new Player(country, false);
@@ -124,6 +125,7 @@ void Level::update(sf::Vector2u winSize)
 
 	//polymorphism -- All objects are stored in this vector, they can be
 	//identified using getType()
+	short moneyOffset = 0;
 	for (int i = 0; i < objects.size(); i++)
 	{
 		if (!objects[objects.size() - 1 - i]->isTexInit())
@@ -133,15 +135,87 @@ void Level::update(sf::Vector2u winSize)
 				objects[objects.size() - 1 - i]->setTexture(&playerImg, sf::Vector2i(32, 32), sf::Vector2i(0, 16), 5, false);
 				break;
 			case Object::PLAYER_PROJECTILE: case Object::ENEMY_PROJECTILE:
-				//Keep commented while I figure out all the projectiles.
-				//objects[objects.size() - 1 - i]->setTexture(&projectileImg, sf::Vector2i(48, 64), sf::Vector2i(0, 0), 1, false);
+				switch (objects[objects.size() - 1 - i]->getSpriteNum())
+				{
+				case 0: //Rain 
+					objects[objects.size() - 1 - i]->setTexture(&projectileImg, 
+					sf::Vector2i(15, 12), sf::Vector2i(20, 10), 3, false);
+					break;
+				case 1:
+					objects[objects.size() - 1 - i]->setTexture(&projectileImg,
+					sf::Vector2i(20, 14), sf::Vector2i(50, 10), 3, false);
+					break;
+				case 2:
+					objects[objects.size() - 1 - i]->setTexture(&projectileImg,
+					sf::Vector2i(25, 15), sf::Vector2i(0, 0), 3, false);
+					break;
+				case 3:
+					objects[objects.size() - 1 - i]->setTexture(&projectileImg,
+					sf::Vector2i(32, 18), sf::Vector2i(0, 0), 3, false);
+					break;
+				case 4:
+					objects[objects.size() - 1 - i]->setTexture(&projectileImg,
+					sf::Vector2i(20, 12), sf::Vector2i(0, 0), 3, false);
+					break;
+				case 5:
+					objects[objects.size() - 1 - i]->setTexture(&projectileImg,
+					sf::Vector2i(25, 12), sf::Vector2i(0, 0), 3, false);
+					break;
+				case 6:
+					objects[objects.size() - 1 - i]->setTexture(&projectileImg,
+					sf::Vector2i(32, 12), sf::Vector2i(0, 0), 3, false);
+					break;
+				case 7:
+					objects[objects.size() - 1 - i]->setTexture(&projectileImg,
+					sf::Vector2i(48, 12), sf::Vector2i(0, 0), 3, false);
+					break;
+				case 8:
+					objects[objects.size() - 1 - i]->setTexture(&projectileImg,
+					sf::Vector2i(12, 40), sf::Vector2i(0, 0), 3, false);
+					break;
+				case 9:
+					objects[objects.size() - 1 - i]->setTexture(&projectileImg,
+					sf::Vector2i(12, 40), sf::Vector2i(0, 0), 1, false);
+					break;
+				case 10:
+					objects[objects.size() - 1 - i]->setTexture(&projectileImg,
+					sf::Vector2i(10, 12), sf::Vector2i(0, 0), 3, false);
+					break;
+				case 11:
+					objects[objects.size() - 1 - i]->setTexture(&projectileImg,
+					sf::Vector2i(20, 12), sf::Vector2i(0, 0), 3, false);
+					break;
+				case 12: //Enemy Projectile 1
+					objects[objects.size() - 1 - i]->setTexture(&projectileImg,
+					sf::Vector2i(20, 12), sf::Vector2i(0, 0), 3, false);
+					break;
+				case 13: //Enemy Projectile 2
+					objects[objects.size() - 1 - i]->setTexture(&projectileImg,
+					sf::Vector2i(20, 12), sf::Vector2i(0, 0), 3, false);
+					break;
+				}
 				break;
 			case Object::COLLECTABLE:
 				switch (objects[objects.size() - 1 - i]->getID())
 				{
 				case 0:
-					objects[objects.size() - 1 - i]->setTexture(&powerUpImg,
-					sf::Vector2i(16, 19), sf::Vector2i(0, 0), 8, false);
+					switch (country)
+					{
+					case 0:
+						moneyOffset = 22;
+						break;
+					case 1:
+						moneyOffset = 0;
+						break;
+					case 2:
+						moneyOffset = 66;
+						break;
+					case 3:
+						moneyOffset = 44;
+						break;
+					}
+					objects[objects.size() - 1 - i]->setTexture(&moneyImg,
+					sf::Vector2i(11, 12), sf::Vector2i(moneyOffset, 0), 2, false);
 					break;
 				case 1:
 					objects[objects.size() - 1 - i]->setTexture(&powerUpImg,
@@ -156,9 +230,8 @@ void Level::update(sf::Vector2u winSize)
 					sf::Vector2i(16, 19), sf::Vector2i(0, 40), 8, false);
 					break;
 				}
-				
 			}
-		objects[objects.size() - 1 - i]->update(winSize, &objects);
+		objects[objects.size() - 1 - i]->update(winSize, &objects, p[1]->getTime());
 	}
 
 	for (int i = 0; i < objects.size(); i++)
@@ -268,8 +341,10 @@ void Level::statesUpdate(sf::Vector2u winSize)
 
 void Level::japanUpdate(sf::Vector2u winSize)
 {
-	if (backgroundDist <= 0)
+	if (backgroundDist <= 0 || !(p[1]->getTime()))
 		backgroundSpeed = 0;
+	else
+		backgroundSpeed = 1;
 	return;
 }
 
@@ -330,6 +405,12 @@ void Level::getInput(sf::Vector2u winSize)
 
 		if (key(i, Special))
 			p[i]->special(objects, winSize);
+
+		if (key(i, Spawn))
+		{
+			p[0]->setHealth(3);
+			p[1]->setHealth(3);
+		}
 	}
 }
 

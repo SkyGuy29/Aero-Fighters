@@ -29,7 +29,7 @@ Collectable::Collectable(short id, float xPosition, float yPosition)
 		vel = sf::Vector2f(3.535, 3.535);
 }
 
-void Collectable::update(sf::Vector2u winSize, std::vector<Object*>* objects)
+void Collectable::update(sf::Vector2u winSize, std::vector<Object*>* objects, bool time)
 {
 	nextFrame();
 	if (outOfBounds(winSize) && (id == 0))
@@ -64,6 +64,10 @@ void Collectable::update(sf::Vector2u winSize, std::vector<Object*>* objects)
 		&& (intersect(objects->at(index))))
 			del = true;
 	}
+	if (!id && !time)
+		vel.y = 0;
+	else
+		vel.y = 1;
 	
 	objectUpdate(winSize, objects);
 }

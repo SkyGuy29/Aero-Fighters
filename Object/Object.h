@@ -9,7 +9,7 @@ class Object : public sf::Drawable
 public:
 	Object();
 
-	virtual void update(sf::Vector2u winSize, std::vector<Object*>*);
+	virtual void update(sf::Vector2u winSize, std::vector<Object*>*, bool time);
 
 	void objectUpdate(sf::Vector2u winSize, std::vector<Object*>*);
 
@@ -45,6 +45,8 @@ public:
 
 	short getID();
 
+	short getSpriteNum();
+
 	bool isTexInit();
 
 	enum Types
@@ -66,7 +68,7 @@ protected:
 
 	void nextFrame();
 
-	short type, id = 0, cooldown = 0, health;
+	short type, id = 0, cooldown = 0, health, spriteNum = -1;
 
 	bool del = false;
 	bool texInit = false;

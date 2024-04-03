@@ -14,9 +14,13 @@ public:
 
 	void special(std::vector<Object*>& objects, sf::Vector2u winSize);
 
-	void update(sf::Vector2u winSize, std::vector<Object*>* objects);
+	void update(sf::Vector2u winSize, std::vector<Object*>* objects, bool time);
 
 	void move(sf::Vector2u winSize);
+
+	bool getTime();
+
+	void setHealth(short);
 
 private:
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const;
@@ -30,5 +34,6 @@ private:
 	short invincibility = 0;
 	short sideAnimation = 0;
 	short cooldownSecondary = 0;
+	short cooldownTime = 0;
 };
 

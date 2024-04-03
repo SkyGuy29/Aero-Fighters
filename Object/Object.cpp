@@ -5,7 +5,7 @@ Object::Object()
 {
 }
 
-void Object::update(sf::Vector2u winSize, std::vector<Object*>*)
+void Object::update(sf::Vector2u winSize, std::vector<Object*>*, bool time)
 {
 }
 
@@ -17,6 +17,12 @@ void Object::objectUpdate(sf::Vector2u winSize, std::vector<Object*>* objects)
 void Object::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
 	target.draw(sprite, states);
+}
+
+//This is to get the specific sprite for enemies or projectiles
+short Object::getSpriteNum()
+{
+	return spriteNum;
 }
 
 // this is the new animator

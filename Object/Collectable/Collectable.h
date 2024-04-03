@@ -8,6 +8,6 @@ public:
 	Collectable(short, sf::Vector2f);
 	Collectable(short, float, float);
 
-	void update(sf::Vector2u winSize, std::vector<Object*>* objects);
+	void update(sf::Vector2u winSize, std::vector<Object*>* objects, bool time);
 };
 

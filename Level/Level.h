@@ -46,6 +46,7 @@ private:
 	sf::Texture playerImg;
 	sf::Texture projectileImg;
 	sf::Texture powerUpImg;
+	sf::Texture moneyImg;
 	sf::IntRect rect;
 	float backgroundSpeed = 1, backgroundDist = 0;
 	short country;
@@ -87,7 +88,8 @@ private:
 		Back,
 		Right,
 		Shoot,
-		Special
+		Special,
+		Spawn
 	};
 
 	enum Countries
@@ -98,24 +100,26 @@ private:
 		ENGLAND
 	};
 
-	int p1Ctrl[6] =
+	int p1Ctrl[7] =
 	{
 		sf::Keyboard::W, // Forward
 		sf::Keyboard::A, // Left
 		sf::Keyboard::S, // Back
 		sf::Keyboard::D, // Right
 		sf::Keyboard::Q, // Shoot
-		sf::Keyboard::E  // Special
+		sf::Keyboard::E,  // Special
+		sf::Keyboard::Space //Spawn
 	};
 
-	int p2Ctrl[6] =
+	int p2Ctrl[7] =
 	{
 		sf::Keyboard::I, // Forward
 		sf::Keyboard::J, // Left
 		sf::Keyboard::K, // Back
 		sf::Keyboard::L, // Right
 		sf::Keyboard::U, // Shoot
-		sf::Keyboard::O  // Special
+		sf::Keyboard::O,  // Special
+		sf::Keyboard::Space //Spawn
 	};
 };
 

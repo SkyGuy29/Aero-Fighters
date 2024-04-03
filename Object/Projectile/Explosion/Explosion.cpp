@@ -11,7 +11,7 @@ Explosion::Explosion(sf::Vector2f pos, int type)
 	sprite.setOrigin(sf::Vector2f(32, 32) / 2.f);
 }
 
-void Explosion::update(sf::Vector2u winSize, std::vector<Object*>*)
+void Explosion::update(sf::Vector2u winSize, std::vector<Object*>*, bool time)
 {
 	nextFrame();
 	if (anDone)
