@@ -28,10 +28,13 @@ private:
 
 	Level level;
 
+	sf::Font font;
+	sf::Text menuCountdown;
+
 	bool keyLeft = 0, keyRight = 0, blinkState = 0;
 	short country = 0;
 	short playerChoose = 10 * updatesPSec;
 	short menuBlinkRate = 5, menuBlinkTimer = 0;
-	sf::Texture menuMap, menuFlags, menuCountDown;
+	sf::Texture menuMap, menuFlags;
 	sf::RectangleShape menuMapRect, menuFlagsRect, menuCountDownRect, menuSelectRect;
 };
