@@ -5,51 +5,6 @@ Projectile::Projectile()
 	type = PLAYER_PROJECTILE;
 }
 
-Projectile::Projectile(sf::Vector2f pos, sf::Vector2f vel)
-{
-	setSize(4, 10);
-	tempSize = size;
-	sprite.setSize(sf::Vector2f(4, 10));
-	sprite.setOrigin(sprite.getSize() / 2.f);
-	setPos(pos);
-	this->vel = vel;
-	type = PLAYER_PROJECTILE;
-}
-
-Projectile::Projectile(float posX, float posY, sf::Vector2f vel)
-{
-	setSize(4, 10);
-	tempSize = size;
-	sprite.setSize(sf::Vector2f(4, 10));
-	sprite.setOrigin(sprite.getSize() / 2.f);
-	setPos(posX, posY);
-	this->vel = vel;
-	type = PLAYER_PROJECTILE;
-}
-
-Projectile::Projectile(sf::Vector2f pos, sf::Vector2f vel, sf::Vector2f size)
-{
-	setSize(size);
-	tempSize = size;
-	sprite.setSize(size);
-	sprite.setOrigin(sprite.getSize() / 2.f);
-	setPos(pos);
-	this->vel = vel;
-	type = PLAYER_PROJECTILE;
-}
-
-Projectile::Projectile(float posX, float posY, sf::Vector2f vel, sf::Vector2f size,
-	int sprit)
-{
-	setSize(size);
-	tempSize = size;
-	sprite.setSize(size);
-	sprite.setOrigin(sprite.getSize() / 2.f);
-	setPos(posX, posY);
-	this->vel = vel;
-	type = PLAYER_PROJECTILE;
-}
-
 //id 0 is basic projectiles
 //id 1 is for projectiles on a timer that pierce
 //id 2 is for projectiles that pierce and go off screen

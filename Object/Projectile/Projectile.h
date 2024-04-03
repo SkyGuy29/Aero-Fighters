@@ -7,10 +7,6 @@ class Projectile : public Object
 {
 public:
 	Projectile();
-	Projectile(sf::Vector2f pos, sf::Vector2f vel);
-	Projectile(float posX, float posY, sf::Vector2f vel);
-	Projectile(sf::Vector2f, sf::Vector2f, sf::Vector2f);
-	Projectile(float, float, sf::Vector2f, sf::Vector2f, int);
 	Projectile(float posX, float posY, sf::Vector2f vel,
 	sf::Vector2f size, short ID, bool player, short cool, int sprit); 
 	Projectile(float posX, float posY, sf::Vector2f vel,

@@ -137,53 +137,53 @@ void Level::update(sf::Vector2u winSize)
 			case Object::PLAYER_PROJECTILE: case Object::ENEMY_PROJECTILE:
 				switch (objects[objects.size() - 1 - i]->getSpriteNum())
 				{
-				case 0: //Rain 
+				case 0: 
 					objects[objects.size() - 1 - i]->setTexture(&projectileImg, 
-					sf::Vector2i(15, 12), sf::Vector2i(20, 10), 3, false);
+					sf::Vector2i(11, 18), sf::Vector2i(0, 0), 3, false);
 					break;
 				case 1:
 					objects[objects.size() - 1 - i]->setTexture(&projectileImg,
-					sf::Vector2i(20, 14), sf::Vector2i(50, 10), 3, false);
+					sf::Vector2i(16, 30), sf::Vector2i(0, 19), 3, false);
 					break;
 				case 2:
 					objects[objects.size() - 1 - i]->setTexture(&projectileImg,
-					sf::Vector2i(25, 15), sf::Vector2i(0, 0), 3, false);
+					sf::Vector2i(31, 30), sf::Vector2i(0, 50), 3, false);
 					break;
 				case 3:
 					objects[objects.size() - 1 - i]->setTexture(&projectileImg,
-					sf::Vector2i(32, 18), sf::Vector2i(0, 0), 3, false);
+					sf::Vector2i(47, 46), sf::Vector2i(0, 81), 3, false);
 					break;
 				case 4:
 					objects[objects.size() - 1 - i]->setTexture(&projectileImg,
-					sf::Vector2i(20, 12), sf::Vector2i(0, 0), 3, false);
+					sf::Vector2i(9, 28), sf::Vector2i(0, 128), 3, false);
 					break;
 				case 5:
 					objects[objects.size() - 1 - i]->setTexture(&projectileImg,
-					sf::Vector2i(25, 12), sf::Vector2i(0, 0), 3, false);
+					sf::Vector2i(16, 32), sf::Vector2i(0, 157), 3, false);
 					break;
 				case 6:
 					objects[objects.size() - 1 - i]->setTexture(&projectileImg,
-					sf::Vector2i(32, 12), sf::Vector2i(0, 0), 3, false);
+					sf::Vector2i(41, 44), sf::Vector2i(0, 190), 3, false);
 					break;
 				case 7:
 					objects[objects.size() - 1 - i]->setTexture(&projectileImg,
-					sf::Vector2i(48, 12), sf::Vector2i(0, 0), 3, false);
+					sf::Vector2i(64, 48), sf::Vector2i(0, 235), 3, false);
 					break;
 				case 8:
 					objects[objects.size() - 1 - i]->setTexture(&projectileImg,
-					sf::Vector2i(12, 40), sf::Vector2i(0, 0), 3, false);
+					sf::Vector2i(15, 29), sf::Vector2i(0, 284), 3, false);
 					break;
 				case 9:
 					objects[objects.size() - 1 - i]->setTexture(&projectileImg,
-					sf::Vector2i(12, 40), sf::Vector2i(0, 0), 1, false);
+					sf::Vector2i(9, 31), sf::Vector2i(0, 314), 1, false);
 					break;
 				case 10:
 					objects[objects.size() - 1 - i]->setTexture(&projectileImg,
-					sf::Vector2i(10, 12), sf::Vector2i(0, 0), 3, false);
+					sf::Vector2i(9, 31), sf::Vector2i(0, 346), 3, false);
 					break;
 				case 11:
 					objects[objects.size() - 1 - i]->setTexture(&projectileImg,
-					sf::Vector2i(20, 12), sf::Vector2i(0, 0), 3, false);
+					sf::Vector2i(16, 31), sf::Vector2i(0, 378), 3, false);
 					break;
 				case 12: //Enemy Projectile 1
 					objects[objects.size() - 1 - i]->setTexture(&projectileImg,
