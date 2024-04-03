@@ -20,6 +20,8 @@ public:
 
 	bool getTime();
 
+	void setHealth(short);
+
 private:
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 

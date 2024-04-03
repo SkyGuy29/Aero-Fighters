@@ -405,6 +405,12 @@ void Level::getInput(sf::Vector2u winSize)
 
 		if (key(i, Special))
 			p[i]->special(objects, winSize);
+
+		if (key(i, Spawn))
+		{
+			p[0]->setHealth(3);
+			p[1]->setHealth(3);
+		}
 	}
 }
 

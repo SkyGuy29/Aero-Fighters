@@ -373,7 +373,13 @@ void Player::update(sf::Vector2u winSize, std::vector<Object*>* objects, bool ti
 
 void Player::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
-	target.draw(sprite, states);
+	if(health)
+		target.draw(sprite, states);
+}
+
+void Player::setHealth(short healf)
+{
+	health = healf;
 }
 
 void Player::move(sf::Vector2u winSize)
