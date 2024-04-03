@@ -74,6 +74,8 @@ void Projectile::update(sf::Vector2u winSize, std::vector<Object*>* objects, boo
 	{
 		size = sf::Vector2f(0, 0);
 		delay--;
+		if (!delay)
+			size = tempSize;
 	}
 
 	if (id == 3)
@@ -135,16 +137,14 @@ void Projectile::update(sf::Vector2u winSize, std::vector<Object*>* objects, boo
 	}
 	else if (id == 5)
 	{
-		//Doesn't spin correctly
 		std::cout << "Turning\n";
-		float angle = atan(vel.y / vel.x);
-		angle += PI / 36;
+		float angle = atan(-vel.y / vel.x);
+		std::cout << angle << std::endl;
+		if (vel.x < 0)
+			angle += PI;
+		angle += (PI / 6);
+		std::cout << angle << std::endl;
 		vel = sf::Vector2f(5 * cos(angle), -5 * sin(angle));
 	}
-	if (!delay)
-	{
-		if(id != 3)
-			size = tempSize;
-		objectUpdate(winSize, objects);
-	}
+	objectUpdate(winSize, objects);
 }
