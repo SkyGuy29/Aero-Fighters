@@ -66,21 +66,14 @@ void Projectile::update(sf::Vector2u winSize, std::vector<Object*>* objects, boo
 	//Stack them in the order of America Player 1 projectile,
 	//America Player 2 projectile, Japan Player 1 projectile,
 	//England Player 1 projectile.
-
+	
+	nextFrame();
+	
 	if (delay)
 	{
 		size = sf::Vector2f(0, 0);
 		delay--;
 	}
-
-	if (!delay)
-	{
-		if(id != 3)
-			size = tempSize;
-		objectUpdate(winSize, objects);
-	}
-
-	nextFrame();
 
 	if (id == 3)
 	{
@@ -146,5 +139,11 @@ void Projectile::update(sf::Vector2u winSize, std::vector<Object*>* objects, boo
 		float angle = atan(vel.y / vel.x);
 		angle += PI / 36;
 		vel = sf::Vector2f(5 * cos(angle), -5 * sin(angle));
+	}
+	if (!delay)
+	{
+		if(id != 3)
+			size = tempSize;
+		objectUpdate(winSize, objects);
 	}
 }
