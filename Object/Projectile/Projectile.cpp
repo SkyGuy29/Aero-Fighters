@@ -67,8 +67,9 @@ void Projectile::update(sf::Vector2u winSize, std::vector<Object*>* objects, boo
 	//America Player 2 projectile, Japan Player 1 projectile,
 	//England Player 1 projectile.
 	
-	nextFrame(2);
-	
+	if (rand() % 2 == 0)
+		nextFrame(2);
+
 	if (delay)
 	{
 		size = sf::Vector2f(0, 0);

@@ -19,106 +19,106 @@ void Player::shoot(std::vector<Object*>& objects)
 		switch (country * 8 + powerLevel * 2 + isPlayerTwo)
 		{
 		case 0: case 9: case 17: case 25: //Blob
-			objects.push_back(new Projectile(pos.x, pos.y - 25,
+			objects.push_back(new Projectile(pos.x, pos.y - (size.y / 2),
 				sf::Vector2f(0, -10), sf::Vector2f(11, 18), 0, true,
 				0, 0));
-			cooldown = 3;
+			cooldown = 5;
 			break;
 		case 1: case 16: //Player 1 Sweden is the same as Player 2 America
-			objects.push_back(new Projectile(pos.x, pos.y - 25,
+			objects.push_back(new Projectile(pos.x, pos.y - (size.y / 2),
 				sf::Vector2f(0, -10), sf::Vector2f(9, 28), 0, true, 
 				0, 4));
-			cooldown = 3;
+			cooldown = 5;
 			break;
 		case 2: case 11: case 19: case 27:
-			objects.push_back(new Projectile(pos.x, pos.y - 25,
+			objects.push_back(new Projectile(pos.x, pos.y - (size.y / 2),
 				sf::Vector2f(0, -10), sf::Vector2f(16, 30), 0, true,
 				0, 1));
-			cooldown = 3;
+			cooldown = 5;
 			break;
 		case 3: case 18: //Rain
-			objects.push_back(new Projectile(pos.x, pos.y - 25,
+			objects.push_back(new Projectile(pos.x, pos.y - (size.y / 2),
 				sf::Vector2f(0, -10), sf::Vector2f(16, 32), 0, true, 0, 5));
-			cooldown = 3;
+			cooldown = 5;
 			break;
 		case 4: case 13: case 21: case 29: 
-			objects.push_back(new Projectile(pos.x, pos.y - 25,
+			objects.push_back(new Projectile(pos.x, pos.y - (size.y / 2),
 				sf::Vector2f(0, -10), sf::Vector2f(31, 30), 0, true, 0, 2));
-			cooldown = 2;
+			cooldown = 4;
 			break;
 		case 5: case 20: 
-			objects.push_back(new Projectile(pos.x, pos.y - 25,
+			objects.push_back(new Projectile(pos.x, pos.y - (size.y / 2),
 				sf::Vector2f(0, -10), sf::Vector2f(41, 44), 0, true, 0, 6));
-			cooldown = 3;
+			cooldown = 5;
 			break;
 		case 6: case 15: case 23: case 31:
-			objects.push_back(new Projectile(pos.x, pos.y - 25,
+			objects.push_back(new Projectile(pos.x, pos.y - (size.y / 2),
 				sf::Vector2f(0, -10), sf::Vector2f(47, 46), 0, true, 0, 3));
-			cooldown = 3;
+			cooldown = 5;
 			break;
 		case 7: case 22:
-			objects.push_back(new Projectile(pos.x, pos.y - 25,
+			objects.push_back(new Projectile(pos.x, pos.y - (size.y / 2),
 				sf::Vector2f(0, -10), sf::Vector2f(64, 48), 0, true, 0, 7));
-			cooldown = 3;
+			cooldown = 5;
 			break;
 		case 8: //Japan 1, Shurikens
-			objects.push_back(new Projectile(pos.x, pos.y - 25,
+			objects.push_back(new Projectile(pos.x, pos.y - (size.y / 2),
 				sf::Vector2f(0, -15), sf::Vector2f(15, 29), 0, true, 0, 8));
-			cooldown = 3;
+			cooldown = 5;
 			break;
 		case 10:
-			objects.push_back(new Projectile(pos.x, pos.y - 25,
+			objects.push_back(new Projectile(pos.x, pos.y - (size.y / 2),
 				sf::Vector2f(0, -15), sf::Vector2f(15, 29), 0, true, 0, 8));
-			cooldown = 2;
+			cooldown = 4;
 			break;
 		case 12: 
-			objects.push_back(new Projectile(pos.x, pos.y - 25,
+			objects.push_back(new Projectile(pos.x, pos.y - (size.y / 2),
 				sf::Vector2f(0, -15), sf::Vector2f(15, 29), 0, true, 0, 8));
-			cooldown = 2;
+			cooldown = 4;
 			break;
 		case 14:
-			objects.push_back(new Projectile(pos.x, pos.y - 25,
+			objects.push_back(new Projectile(pos.x, pos.y - (size.y / 2),
 				sf::Vector2f(0, -15), sf::Vector2f(9, 31), 0, true, 0, 9));
-			cooldown = 2;
+			cooldown = 4;
 			break;
 		case 24: //England 1, Big Blob
-			objects.push_back(new Projectile(pos.x, pos.y - 25,
+			objects.push_back(new Projectile(pos.x, pos.y - (size.y / 2),
 				sf::Vector2f(0, -10), sf::Vector2f(9, 31), 0, true, 0, 10));
-			cooldown = 3;
+			cooldown = 5;
 			break;
 		case 26:
-			objects.push_back(new Projectile(pos.x, pos.y - 25,
+			objects.push_back(new Projectile(pos.x, pos.y - (size.y / 2),
 				sf::Vector2f(0, -10), sf::Vector2f(16, 31), 0, true, 0, 11));
-			cooldown = 3;
+			cooldown = 5;
 			break;
 		case 28:
 			for (int num = 0; num < 3; num++)
 			{
-				objects.push_back(new Projectile(pos.x, pos.y - 25,
+				objects.push_back(new Projectile(pos.x, pos.y - (size.y / 2),
 					sf::Vector2f(10 * cos((90 + 20 * (num - 1)) * PI / 180),
 						-10 * sin((90 + 20 * (num - 1)) * PI / 180)),
 					sf::Vector2f(9, 31), 0, true, 0, 10));
 			}
-			cooldown = 3;
+			cooldown = 5;
 			break;
 		case 30:
 			for (int num = 0; num < 3; num++)
 			{
-				objects.push_back(new Projectile(pos.x, pos.y - 25,
+				objects.push_back(new Projectile(pos.x, pos.y - (size.y / 2),
 					sf::Vector2f(10 * cos((90 + 20 * (num - 1)) * PI / 180),
 						-10 * sin((90 + 20 * (num - 1)) * PI / 180)),
 					sf::Vector2f(16, 31), 0, true, 0, 11));
 			}
-			cooldown = 3;
+			cooldown = 5;
 			break;
 		default:
-			objects.push_back(new Projectile(pos.x, pos.y, sf::Vector2f(-2.6, -9.7), 
+			objects.push_back(new Projectile(pos.x, pos.y - (size.y / 2), sf::Vector2f(-2.6, -9.7),
 			sf::Vector2f(32, 32), 0, true, 0, -1));
-			objects.push_back(new Projectile(pos.x, pos.y, sf::Vector2f(0, -10),
+			objects.push_back(new Projectile(pos.x, pos.y - (size.y / 2), sf::Vector2f(0, -10),
 			sf::Vector2f(32, 32), 0, true, 0, -1));
-			objects.push_back(new Projectile(pos.x, pos.y, sf::Vector2f(2.6, -9.7),
+			objects.push_back(new Projectile(pos.x, pos.y - (size.y / 2), sf::Vector2f(2.6, -9.7),
 			sf::Vector2f(32, 32), 0, true, 0, -1));
-			cooldown = 3;
+			cooldown = 5;
 			break;
 		}
 	}
@@ -138,81 +138,81 @@ void Player::shoot(std::vector<Object*>& objects)
 			cooldownSecondary = 23;
 			break;
 		case 5: case 7:
-			objects.push_back(new Projectile(pos.x, pos.y,
+			objects.push_back(new Projectile(pos.x, pos.y - (size.y / 2),
 				sf::Vector2f(0, -10), sf::Vector2f(15, 15), 4, true, 0, 1));
 			cooldownSecondary = 15;
 			break;
 		case 12:
 			for (int num = 0; num < 4; num++)
-				objects.push_back(new Projectile(pos.x, pos.y,
+				objects.push_back(new Projectile(pos.x, pos.y - (size.y / 2),
 				sf::Vector2f(0, -10), sf::Vector2f(15, 15), 4, true, 0, 1));
 			cooldownSecondary = 30;
 			break;
 		case 13: //Lasers
-			objects.push_back(new Projectile(pos.x - 25, pos.y, sf::Vector2f(0, -25),
+			objects.push_back(new Projectile(pos.x - 25, pos.y - (size.y / 2), sf::Vector2f(0, -25),
 			sf::Vector2f(5, 50), 2, true, 0, 1));
-			objects.push_back(new Projectile(pos.x + 25, pos.y, sf::Vector2f(0, -25),
+			objects.push_back(new Projectile(pos.x + 25, pos.y - (size.y / 2), sf::Vector2f(0, -25),
 			sf::Vector2f(5, 50), 2, true, 0, 1));
 			cooldownSecondary = 15;
 			break;
 		case 14:
 			for (int num = 0; num < 8; num++)
-				objects.push_back(new Projectile(pos.x, pos.y,
+				objects.push_back(new Projectile(pos.x, pos.y - (size.y / 2),
 				sf::Vector2f(0, -10), sf::Vector2f(15, 15), 4, true, 0, 1));
 			cooldownSecondary = 30;
 			break;
 		case 15:
-			objects.push_back(new Projectile(pos.x - 25, pos.y, sf::Vector2f(0, -25),
+			objects.push_back(new Projectile(pos.x - 25, pos.y - (size.y / 2), sf::Vector2f(0, -25),
 				sf::Vector2f(5, 50), 2, true, 0, 1));
-			objects.push_back(new Projectile(pos.x + 25, pos.y, sf::Vector2f(0, -25),
+			objects.push_back(new Projectile(pos.x + 25, pos.y - (size.y / 2), sf::Vector2f(0, -25),
 				sf::Vector2f(5, 50), 2, true, 0, 1));
-			objects.push_back(new Projectile(pos.x - 50, pos.y, sf::Vector2f(0, -25),
+			objects.push_back(new Projectile(pos.x - 50, pos.y - (size.y / 2), sf::Vector2f(0, -25),
 				sf::Vector2f(5, 50), 2, true, 0, 1));
-			objects.push_back(new Projectile(pos.x + 50, pos.y, sf::Vector2f(0, -25),
+			objects.push_back(new Projectile(pos.x + 50, pos.y - (size.y / 2), sf::Vector2f(0, -25),
 				sf::Vector2f(5, 50), 2, true, 0, 1));
 			cooldownSecondary = 15;
 			break;
 		case 18:
-			objects.push_back(new Projectile(pos.x, pos.y,
+			objects.push_back(new Projectile(pos.x, pos.y - (size.y / 2),
 			sf::Vector2f(0, -10), sf::Vector2f(12, 22), 0, true, 0, 1));
 			cooldownSecondary = 5;
 			break;
 		case 19: //Tracking Mines
 			for (int num = 0; num < 2; num++)
-				objects.push_back(new Projectile(pos.x, pos.y,
+				objects.push_back(new Projectile(pos.x, pos.y - (size.y / 2),
 				sf::Vector2f(0, -10), sf::Vector2f(15, 15), 5, true, 100, 1));
 			cooldownSecondary = 100;
 			break;
 		case 20:
-			objects.push_back(new Projectile(pos.x, pos.y,
+			objects.push_back(new Projectile(pos.x, pos.y - (size.y / 2),
 			sf::Vector2f(0, -10), sf::Vector2f(12, 22), 0, true, 0, 1));
 			cooldownSecondary = 5;
 			break;
 		case 21:
 			for (int num = 0; num < 4; num++)
-				objects.push_back(new Projectile(pos.x, pos.y,
+				objects.push_back(new Projectile(pos.x, pos.y - (size.y / 2),
 				sf::Vector2f(0, -10), sf::Vector2f(15, 15), 5, true, 100, 1));
 			cooldownSecondary = 100;
 			break;
 		case 28: //Weird rockets
-			objects.push_back(new Projectile(pos.x, pos.y, sf::Vector2f(0, -10),
+			objects.push_back(new Projectile(pos.x, pos.y - (size.y / 2), sf::Vector2f(0, -10),
 			sf::Vector2f(12, 22), 2, true, 2000, 1));
 			cooldownSecondary = 25;
 			break;
 		case 29: //Delayed nukes
-			objects.push_back(new Projectile(pos.x, pos.y,
+			objects.push_back(new Projectile(pos.x, pos.y - (size.y / 2),
 			sf::Vector2f(0, -10), sf::Vector2f(12, 22), 1, true, 20, 30, 1));
-			objects.push_back(new Projectile(pos.x, pos.y,
+			objects.push_back(new Projectile(pos.x, pos.y - (size.y / 2),
 			sf::Vector2f(0, -10), sf::Vector2f(12, 22), 1, true, 20, 45, 1));
 			cooldownSecondary = 35;
 			break;
 		case 30:
-			objects.push_back(new Projectile(pos.x, pos.y, sf::Vector2f(0, -10),
+			objects.push_back(new Projectile(pos.x, pos.y - (size.y / 2), sf::Vector2f(0, -10),
 			sf::Vector2f(12, 22), 2, true, 2000, 1));
 			cooldownSecondary = 25;
 			break;
 		case 31:
-			objects.push_back(new Projectile(pos.x, pos.y,
+			objects.push_back(new Projectile(pos.x, pos.y - (size.y / 2),
 			sf::Vector2f(0, -10), sf::Vector2f(12, 22), 1, true, 20, 30, 1));
 			cooldownSecondary = 4;
 			break;
