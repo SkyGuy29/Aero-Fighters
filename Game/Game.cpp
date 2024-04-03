@@ -3,6 +3,8 @@
 Game::Game()
 {
 	srand(time(NULL));
+
+	font.loadFromFile("res/aero-fighters.ttf");
 }
 
 void Game::run()
@@ -18,6 +20,9 @@ void Game::run()
 
 	resize();
 
+	menuCountdown.setFont(font);
+	menuCountdown.setString("0");
+	menuCountdown.setPosition(213.25 - menuCountdown.getLocalBounds().width, 0);
 
 	// load menu textures
 	menuMap.loadFromFile("Res/Misc/menuMap.png");
@@ -89,6 +94,7 @@ void Game::drawMenu()
 	menuSelectRect.setOutlineThickness(3 * blinkState);
 	menuSelectRect.setPosition(22.5 + country * 45, 180);
 	window.draw(menuSelectRect);
+	window.draw(menuCountdown);
 }
 
 void Game::updateMenu()
@@ -117,6 +123,8 @@ void Game::updateMenu()
 	keyRight = sf::Keyboard::isKeyPressed(sf::Keyboard::Right);
 
 	playerChoose--;
+	menuCountdown.setString(std::to_string(playerChoose / updatesPSec));
+
 	if (!playerChoose)
 		level.load(winSize, country, 0);
 }
