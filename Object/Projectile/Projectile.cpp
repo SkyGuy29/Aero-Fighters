@@ -13,7 +13,7 @@ Projectile::Projectile()
 //id 5 is the tracking mines of sweden
 //The best generic Projectile constructor
 Projectile::Projectile(float posX, float posY, sf::Vector2f vel,
-sf::Vector2f size, short ID, bool player, short cool, int sprit)
+sf::Vector2f size, short ID, bool player, short cool, short sprit)
 {
 	id = ID;
 	setSize(size);
@@ -22,7 +22,7 @@ sf::Vector2f size, short ID, bool player, short cool, int sprit)
 	sprite.setOrigin(sprite.getSize() / 2.f);
 	setPos(posX, posY);
 	this->vel = vel;
-	spriteNum = sprit;
+	setSpriteNum(sprit);
 	if (player)
 		type = PLAYER_PROJECTILE;
 	else
@@ -33,7 +33,7 @@ sf::Vector2f size, short ID, bool player, short cool, int sprit)
 
 //Use when you want to delay the projectiles spawn
 Projectile::Projectile(float posX, float posY, sf::Vector2f vel,
-	sf::Vector2f size, short ID, bool player, short cool, short dela, int sprit)
+	sf::Vector2f size, short ID, bool player, short cool, short dela, short sprit)
 {
 	delay = dela;
 	id = ID;
@@ -43,7 +43,7 @@ Projectile::Projectile(float posX, float posY, sf::Vector2f vel,
 	sprite.setOrigin(sprite.getSize() / 2.f);
 	setPos(posX, posY);
 	this->vel = vel;
-	spriteNum = sprit;
+	setSpriteNum(sprit);
 	if (player)
 		type = PLAYER_PROJECTILE;
 	else

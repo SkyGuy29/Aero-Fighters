@@ -25,6 +25,12 @@ short Object::getSpriteNum()
 	return spriteNum;
 }
 
+//So that the sprite num actually gets updated
+void Object::setSpriteNum(short num)
+{
+	spriteNum = num;
+}
+
 // this is the new animator
 void Object::nextFrame()
 {

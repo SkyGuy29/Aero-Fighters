@@ -46,6 +46,7 @@ public:
 	short getID();
 
 	short getSpriteNum();
+	void setSpriteNum(short);
 
 	bool isTexInit();
 

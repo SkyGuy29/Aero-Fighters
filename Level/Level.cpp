@@ -135,6 +135,7 @@ void Level::update(sf::Vector2u winSize)
 				objects[objects.size() - 1 - i]->setTexture(&playerImg, sf::Vector2i(32, 32), sf::Vector2i(0, 16), 5, false);
 				break;
 			case Object::PLAYER_PROJECTILE: case Object::ENEMY_PROJECTILE:
+				std::cout << objects[objects.size() - 1 - i]->getSpriteNum();
 				switch (objects[objects.size() - 1 - i]->getSpriteNum())
 				{
 				case 0: 
