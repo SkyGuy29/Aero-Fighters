@@ -309,8 +309,8 @@ void Player::update(sf::Vector2u winSize, std::vector<Object*>* objects, bool ti
 	//Am I being shot?
 	for (int i = 0; i < objects->size(); i++)
 	{
-		if ((objects->at(i)->getType() == ENEMY_PROJECTILE) 
-			|| (objects->at(i)->getType() == AIR)
+		if (((objects->at(i)->getType() == ENEMY_PROJECTILE) 
+			|| (objects->at(i)->getType() == AIR))
 			&& this->intersect(objects->at(i))
 			&& !invincibility)
 		{
