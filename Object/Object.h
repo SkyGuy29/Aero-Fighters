@@ -68,6 +68,7 @@ protected:
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
 	void nextFrame();
+	void nextFrame(int frameRate);
 
 	short type, id = 0, cooldown = 0, health, spriteNum = -1;
 

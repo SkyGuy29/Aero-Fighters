@@ -17,5 +17,4 @@ public:
 private:
 	short delay = 0;
 	sf::Vector2f tempSize;
-	short spriteNum;
 };

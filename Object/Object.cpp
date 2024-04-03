@@ -49,6 +49,24 @@ void Object::nextFrame()
 		texSize.x, texSize.y));
 }
 
+//This animator allows for different frame changes.
+void Object::nextFrame(int frameRate)
+{
+	// Increases the image rectangle by its height and loops back when it reaches the end
+	currentFrame++;
+	if (currentFrame >= frameCount * frameRate)
+	{
+		currentFrame -= frameCount * frameRate;
+		anDone = true;
+	}
+
+	// the dividing to an int is needed for the updates per frame delay.
+	sprite.setTextureRect(sf::IntRect(
+		texOffset.x + (currentFrame / frameRate) * texSize.x * !verticalAnimation,
+		texOffset.y + (currentFrame / frameRate) * texSize.y * verticalAnimation,
+		texSize.x, texSize.y));
+}
+
 // The use of this method is to load a texture in Level or Game once, then cheaply load it again multiple times
 void Object::setTexture(sf::Texture* texPtr, sf::Vector2i size, sf::Vector2i offset, int frameCount, bool vertAnimation)
 {
