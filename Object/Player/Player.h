@@ -18,6 +18,8 @@ public:
 
 	void move(sf::Vector2u winSize);
 
+	bool getTime();
+
 private:
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
@@ -30,5 +32,6 @@ private:
 	short invincibility = 0;
 	short sideAnimation = 0;
 	short cooldownSecondary = 0;
+	short cooldownTime = 0;
 };
 

@@ -254,6 +254,7 @@ void Player::special(std::vector<Object*>& objects, sf::Vector2u winSize)
 			sf::Vector2f(0, 0), sf::Vector2f(1, 1), 3, true, 30, 1));
 			cooldown = 80;
 			cooldownSecondary = 80;
+			cooldownTime = 300;
 			break;
 		case 4: //Tracking Rockets
 			for (int num = 0; num < 8; num++)
@@ -316,7 +317,7 @@ void Player::update(sf::Vector2u winSize, std::vector<Object*>* objects, bool ti
 		{
 			health--;
 			pos = sf::Vector2f(winSize.x * 0.5f, winSize.y * 0.75f);
-			invincibility = 30;
+			invincibility = 60;
 		}
 		else if (objects->at(i)->getType() == COLLECTABLE && this->intersect(objects->at(i)))
 		{
@@ -340,8 +341,6 @@ void Player::update(sf::Vector2u winSize, std::vector<Object*>* objects, bool ti
 		}
 	}
 
-	
-
 	if (cooldown)
 		cooldown--;
 
@@ -358,10 +357,12 @@ void Player::update(sf::Vector2u winSize, std::vector<Object*>* objects, bool ti
 			movingProjectile = nullptr;
 	}
 
+	if (cooldownTime)
+		cooldownTime--;
+
 	if (!health)
 	{
-		//Disappear
-		
+		size = sf::Vector2f(0,0);
 	}
 	
 	objectUpdate(winSize, objects);
@@ -409,4 +410,12 @@ void Player::move(sf::Vector2u winSize)
 		pos.y = winSize.y - size.y / 2.f;
 
 	Object::move(winSize);
+}
+
+//This is to tell if time should be moving
+bool Player::getTime()
+{
+	if (!cooldownTime)
+		return true;
+	return false;
 }
