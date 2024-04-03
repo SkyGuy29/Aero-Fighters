@@ -185,11 +185,11 @@ void Level::update(sf::Vector2u winSize)
 					objects[objects.size() - 1 - i]->setTexture(&projectileImg,
 					sf::Vector2i(20, 12), sf::Vector2i(0, 0), 3, false);
 					break;
-				case 12: //Enemy 1
+				case 12: //Enemy Projectile 1
 					objects[objects.size() - 1 - i]->setTexture(&projectileImg,
 					sf::Vector2i(20, 12), sf::Vector2i(0, 0), 3, false);
 					break;
-				case 13: //Enemy 2
+				case 13: //Enemy Projectile 2
 					objects[objects.size() - 1 - i]->setTexture(&projectileImg,
 					sf::Vector2i(20, 12), sf::Vector2i(0, 0), 3, false);
 					break;
