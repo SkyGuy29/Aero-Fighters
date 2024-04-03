@@ -4,7 +4,7 @@ Player::Player(short c, bool playerOne)
 {
 	isPlayerTwo = !playerOne;
 	country = c;
-	setSize(25, 50);
+	setSize(20, 32);
 	type = PLAYER;
 	health = 3; //Health is used for lives.
 }
@@ -380,6 +380,7 @@ void Player::draw(sf::RenderTarget& target, sf::RenderStates states) const
 void Player::setHealth(short healf)
 {
 	health = healf;
+	size = sf::Vector2f(20, 32);
 }
 
 void Player::move(sf::Vector2u winSize)
