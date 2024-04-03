@@ -186,6 +186,7 @@ void Projectile::update(sf::Vector2u winSize, std::vector<Object*>* objects, boo
 	}
 	else if (id == 5)
 	{
+		//Doesn't spin correctly
 		std::cout << "Turning\n";
 		float angle = atan(vel.y / vel.x);
 		angle += PI / 36;

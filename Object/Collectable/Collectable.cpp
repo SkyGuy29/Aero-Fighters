@@ -64,6 +64,10 @@ void Collectable::update(sf::Vector2u winSize, std::vector<Object*>* objects, bo
 		&& (intersect(objects->at(index))))
 			del = true;
 	}
+	if (!id && !time)
+		vel.y = 0;
+	else
+		vel.y = 1;
 	
 	objectUpdate(winSize, objects);
 }

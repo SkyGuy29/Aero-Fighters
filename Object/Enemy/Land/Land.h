@@ -11,4 +11,6 @@ public:
 
 private:
     float* backgroundSpeed = nullptr;
+    bool target;
+    int cooldown = 0;
 };
