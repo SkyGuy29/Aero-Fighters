@@ -62,7 +62,8 @@ void Land::update(sf::Vector2u winSize, std::vector<Object*>* objects, bool time
 		{
 		case 0:
 		case 1:
-			if (rand() % 100 == 0)
+			//Shoot at target player
+			if (cooldown == 0 && entered)
 			{
 				sf::Vector2f distance = objects->at(target)->getPos() - getPos();
 				float magnitude = sqrt((distance.x * distance.x) + (distance.y * distance.y));
@@ -70,7 +71,12 @@ void Land::update(sf::Vector2u winSize, std::vector<Object*>* objects, bool time
 
 				objects->push_back(new Projectile(getPos().x, getPos().y,
 					projVelocity, sf::Vector2f(10, 10), 0, false, 0, 0, 12));
-				cooldown = 120;
+				cooldown = 100 + rand() % 100;
+
+				if (target == 0)
+					target = 1;
+				else
+					target = 0;
 			}
 		}
 	}
