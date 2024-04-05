@@ -39,6 +39,15 @@ Land::Land(short id, bool left, float* backgroundSpeed, sf::Vector2u winSize, st
 		health = 30;
 		setSize(80, 100);
 		break;
+		//SWEDEN
+	case 7: //mountain base
+		health = 10;
+		setSize(50, 50);
+		break;
+	case 8: //landmine
+		health = 1;
+		setSize(20, 20);
+		break;
 	}
 
 	sprite.setSize(size);
@@ -71,7 +80,7 @@ void Land::update(sf::Vector2u winSize, std::vector<Object*>* objects, bool time
 
 				objects->push_back(new Projectile(getPos().x, getPos().y,
 					projVelocity, sf::Vector2f(10, 10), 0, false, 0, 0, 12));
-				cooldown = 100 + rand() % 100;
+				cooldown = 100 + rand() % 50;
 
 				if (target == 0)
 					target = 1;
