@@ -112,17 +112,12 @@ void Level::load(sf::Vector2u winSize, short country, int mapId)
 void Level::update(sf::Vector2u winSize)
 {
 	//How do I draw text?
-	std::string s = "P1 Lives: ";
-	s += p[0]->getHealth();
-	s += "  P2 Lives: ";
-	s += p[1]->getHealth();
-	s += "  P1 Bombs: ";
-	s += p[0]->getSpecialCharge();
-	s += "  P2 Bombs: ";
-	s += p[1]->getSpecialCharge();
-	s += "  Score: 0";
-	s += "";
+	std::string s = "P1 Lives: " + std::to_string(p[0]->getHealth()) + "\nP2 Lives: " 
+	+ std::to_string(p[1]->getHealth()) + "\nP1 Bombs: " + std::to_string(p[0]->getSpecialCharge()) 
+	+ "\nP2 Bombs: " + std::to_string(p[1]->getSpecialCharge()) + "\nScore: 0";
 	ui.setString(s);
+	ui.setCharacterSize(12);
+
 	// The background has to scroll backwards to get the effect that we want.
 	backgroundDist -= backgroundSpeed;
 	rect.top = backgroundDist;
@@ -402,6 +397,8 @@ void Level::englandUpdate(sf::Vector2u winSize)
 void Level::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
 	target.draw(background, states);
+
+	target.draw(ui, states);
 
 	for (int i = objects.size() - 1; i >= 0; i--)
 		target.draw(*objects[i]);

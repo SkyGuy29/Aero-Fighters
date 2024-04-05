@@ -14,6 +14,9 @@ public:
 	//Adds delay
 
 	void update(sf::Vector2u winSize, std::vector<Object*>* objects, bool time);
+
+	void setTexture(sf::Texture* texPtr, sf::Vector2i size, sf::Vector2i offset, int frameCount, bool vertAnimation);
+
 private:
 	short delay = 0;
 	sf::Vector2f tempSize;
