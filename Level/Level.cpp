@@ -82,6 +82,7 @@ void Level::load(sf::Vector2u winSize, short country, int mapId)
 	case JAPAN:
 		break;
 	case SWEDEN:
+		file.open("Res/Sweden/enemies.txt");
 		break;
 	case ENGLAND:
 		file.open("Res/England/enemies.txt");
@@ -95,17 +96,20 @@ void Level::load(sf::Vector2u winSize, short country, int mapId)
 		file >> pos.y;
 		file >> vel.x;
 		file >> vel.y;
-		
 
 		switch (type)
 		{
 		case 0: //land
+			
 			objects.push_back(new Land(id, true, &backgroundSpeed, winSize, &objects, pos, vel));
 			break;
 		case 1: //air
 			objects.push_back(new Air(id, true, winSize, &objects, pos, vel));
 			break;
 		}
+		
+
+		
 	}
 }
 
