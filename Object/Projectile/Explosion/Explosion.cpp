@@ -5,10 +5,28 @@ Explosion::Explosion(sf::Vector2f pos, int type)
 	this->pos = pos;
 	this->type = EXPLOSION;
 	this->vel = {0, 0};
-	setSize(32, 32);
+	switch (type)
+	{
+	case 0:
+		setSize(48, 48);
+		setSpriteNum(0);
+		break;
+	case 1:
+		setSize(47, 37);
+		setSpriteNum(1);
+		break;
+	case 2:
+		setSize(78, 80);
+		setSpriteNum(2);
+		break;
+	case 3:
+		setSize(38, 41);
+		setSpriteNum(3);
+		break;
+	}
 	setPos(pos);
-	sprite.setSize(sf::Vector2f(32, 32));
-	sprite.setOrigin(sf::Vector2f(32, 32) / 2.f);
+	sprite.setSize(size);
+	sprite.setOrigin(size / 2.f);
 }
 
 void Explosion::update(sf::Vector2u winSize, std::vector<Object*>*, bool time)

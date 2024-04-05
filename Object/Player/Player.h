@@ -3,6 +3,7 @@
 #include <vector>
 
 #include "../Projectile/Projectile.h"
+#include "../Projectile/Explosion/Explosion.h"
 
 class Player : public Object
 {
@@ -22,12 +23,17 @@ public:
 
 	void setHealth(short);
 
+	short getHealth();
+
+	short getSpecialCharge();
+
 private:
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
 	Projectile* movingProjectile = nullptr;
 	bool isPlayerTwo;
 	short timer = 0;
+	short timerDeath = 0;
 	short country = -1;
 	short specialCharge = 2;
 	short powerLevel = 0;

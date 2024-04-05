@@ -6,7 +6,7 @@ Player::Player(short c, bool playerOne)
 	country = c;
 	setSize(20, 32);
 	type = PLAYER;
-	health = 3; //Health is used for lives.
+	health = 3; //Health is used for lives, the player dies in one hit.
 }
 
 // takes a pointer from Level's playerProjs so it can add Projectiles to it.
@@ -312,18 +312,31 @@ void Player::special(std::vector<Object*>& objects, sf::Vector2u winSize)
 
 void Player::update(sf::Vector2u winSize, std::vector<Object*>* objects, bool time)
 {
-
+	setSize(20, 32);
+	//If the player is currently dead, don't do anything
+	if (timerDeath)
+	{
+		setSize(0, 0);
+		timerDeath--;
+		return;
+	}
+	//If gone do nothing
+	if (!health)
+		return;
 	//Am I being shot?
 	for (int i = 0; i < objects->size(); i++)
 	{
-		if (((objects->at(i)->getType() == ENEMY_PROJECTILE) 
+		if (((objects->at(i)->getType() == ENEMY_PROJECTILE)
 			|| (objects->at(i)->getType() == AIR))
 			&& this->intersect(objects->at(i))
 			&& !invincibility)
 		{
 			health--;
+			objects->push_back(new Explosion(pos, 0));
 			pos = sf::Vector2f(winSize.x * 0.5f, winSize.y * 0.75f);
-			invincibility = 60;
+			invincibility = 61;
+			timerDeath = 61;
+			setSize(0, 0);
 		}
 		else if (objects->at(i)->getType() == COLLECTABLE && this->intersect(objects->at(i)))
 		{
@@ -333,11 +346,11 @@ void Player::update(sf::Vector2u winSize, std::vector<Object*>* objects, bool ti
 				//Increase score
 				break;
 			case 1: //Interact with P
-				if(powerLevel < 3)
+				if (powerLevel < 3)
 					powerLevel++;
 				break;
 			case 2: //Interact with B
-				if(specialCharge < 5)
+				if (specialCharge < 5)
 					specialCharge++;
 				break;
 			case 3: //Interact with F
@@ -366,27 +379,31 @@ void Player::update(sf::Vector2u winSize, std::vector<Object*>* objects, bool ti
 	if (cooldownTime)
 		cooldownTime--;
 
-	if (!health)
-	{
-		size = sf::Vector2f(0,0);
-	}
-	
 	objectUpdate(winSize, objects);
-	
+
 	if (movingProjectile != nullptr)
 		movingProjectile->setPos(pos.x, pos.y - winSize.y / 2);
 }
 
 void Player::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
-	if(health)
+	if(health && !timerDeath)
 		target.draw(sprite, states);
 }
 
 void Player::setHealth(short healf)
 {
 	health = healf;
-	size = sf::Vector2f(20, 32);
+}
+
+short Player::getHealth()
+{
+	return health;
+}
+
+short Player::getSpecialCharge()
+{
+	return specialCharge;
 }
 
 void Player::move(sf::Vector2u winSize)

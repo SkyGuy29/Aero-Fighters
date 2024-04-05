@@ -8,10 +8,9 @@ Projectile::Projectile()
 //id 0 is basic projectiles
 //id 1 is for projectiles on a timer that pierce
 //id 2 is for projectiles that pierce and go off screen
-//id 3 is Mao Mao's super
+//id 3 is for Japan Player 2's super
 //id 4 is for tracking projectiles
-//id 5 is the tracking mines of sweden
-//The best generic Projectile constructor
+//id 5 is the tracking mines of Sweden Player 2
 Projectile::Projectile(float posX, float posY, sf::Vector2f vel,
 sf::Vector2f size, short ID, bool player, short cool, short sprit)
 {
@@ -51,22 +50,9 @@ Projectile::Projectile(float posX, float posY, sf::Vector2f vel,
 	cooldown = cool + dela;
 }
 
-// Just moves in a straight line
+//The bulk of projectiles, all it does is move and check when to die.
 void Projectile::update(sf::Vector2u winSize, std::vector<Object*>* objects, bool time)
 {
-	// | comment if you hate rainbows |
-	// V							  V
-
-	// I think rainbows are pretty cool -Gabe
-	// Rainbows are fine -Matthew
-
-
-	//Make groups of three projectiles that are stacked vertically
-	//The Kunai is the sole exception which should be on it's own.
-	//Stack them in the order of America Player 1 projectile,
-	//America Player 2 projectile, Japan Player 1 projectile,
-	//England Player 1 projectile.
-	
 	if (rand() % 2 == 0)
 		nextFrame(2);
 
@@ -97,7 +83,7 @@ void Projectile::update(sf::Vector2u winSize, std::vector<Object*>* objects, boo
 
 	Object* closestEnemy = nullptr;
 	float newEnemyDistance;
-	float closestEnemyDistance = 999999999999;
+	float closestEnemyDistance = 350;
 
 	for (int i = 0; i < objects->size(); i++)
 	{
@@ -137,12 +123,11 @@ void Projectile::update(sf::Vector2u winSize, std::vector<Object*>* objects, boo
 	}
 	else if (id == 5)
 	{
-		std::cout << "Turning\n";
 		float angle = atan(-vel.y / vel.x);
 		std::cout << angle << std::endl;
 		if (vel.x < 0)
 			angle += PI;
-		angle += (PI / 6);
+		angle += (PI / 6); //Consuming ten billion years in an instant.
 		std::cout << angle << std::endl;
 		vel = sf::Vector2f(5 * cos(angle), -5 * sin(angle));
 	}

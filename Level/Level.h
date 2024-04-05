@@ -41,12 +41,16 @@ private:
 
 	std::vector<Object*> objects;
 
+	sf::Font font;
+	sf::Text ui;
+
 	sf::RectangleShape background;
 	sf::Texture backgroundImg;
 	sf::Texture playerImg;
 	sf::Texture projectileImg;
 	sf::Texture powerUpImg;
 	sf::Texture moneyImg;
+	sf::Texture explosionImg;
 	sf::IntRect rect;
 	float backgroundSpeed = 1, backgroundDist = 0;
 	short country;

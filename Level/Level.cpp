@@ -4,8 +4,7 @@
 
 Level::Level()
 {
-	//
-	/**/
+	font.loadFromFile("res/aero-fighters.ttf");
 }
 
 Level::~Level()
@@ -20,6 +19,9 @@ Level::~Level()
 void Level::load(sf::Vector2u winSize, short country, int mapId)
 {
 	this->country = country;
+
+	ui.setFont(font);
+	ui.setPosition(0, 0);
 
 	switch (country)
 	{
@@ -46,6 +48,7 @@ void Level::load(sf::Vector2u winSize, short country, int mapId)
 	projectileImg.loadFromFile("Res/Misc/Projectiles.png");
 	powerUpImg.loadFromFile("Res/Misc/Powerups.png");
 	moneyImg.loadFromFile("Res/Misc/money.png");
+	explosionImg.loadFromFile("Res/Misc/Explosion.png");
 
 	p[0] = new Player(country, true);
 	p[1] = new Player(country, false);
@@ -108,6 +111,18 @@ void Level::load(sf::Vector2u winSize, short country, int mapId)
 
 void Level::update(sf::Vector2u winSize)
 {
+	//How do I draw text?
+	std::string s = "P1 Lives: ";
+	s += p[0]->getHealth();
+	s += "  P2 Lives: ";
+	s += p[1]->getHealth();
+	s += "  P1 Bombs: ";
+	s += p[0]->getSpecialCharge();
+	s += "  P2 Bombs: ";
+	s += p[1]->getSpecialCharge();
+	s += "  Score: 0";
+	s += "";
+	ui.setString(s);
 	// The background has to scroll backwards to get the effect that we want.
 	backgroundDist -= backgroundSpeed;
 	rect.top = backgroundDist;
@@ -132,7 +147,25 @@ void Level::update(sf::Vector2u winSize)
 			switch (objects[objects.size() - 1 - i]->getType())
 			{
 			case Object::EXPLOSION:
-				objects[objects.size() - 1 - i]->setTexture(&playerImg, sf::Vector2i(32, 32), sf::Vector2i(0, 16), 5, false);
+				switch (objects[objects.size() - 1 - i]->getSpriteNum())
+				{
+				case 0:
+					objects[objects.size() - 1 - i]->setTexture(&explosionImg,
+					sf::Vector2i(48, 48), sf::Vector2i(0, 0), 16, false);
+					break;
+				case 1:
+					objects[objects.size() - 1 - i]->setTexture(&explosionImg,
+					sf::Vector2i(47, 37), sf::Vector2i(0, 49), 11, false);
+					break;
+				case 2:
+					objects[objects.size() - 1 - i]->setTexture(&explosionImg,
+					sf::Vector2i(78, 80), sf::Vector2i(0, 87), 14, false);
+					break;
+				case 3:
+					objects[objects.size() - 1 - i]->setTexture(&explosionImg,
+					sf::Vector2i(38, 41), sf::Vector2i(0, 168), 12, false);
+					break;
+				}
 				break;
 			case Object::PLAYER_PROJECTILE: case Object::ENEMY_PROJECTILE:
 				switch (objects[objects.size() - 1 - i]->getSpriteNum())
@@ -187,11 +220,11 @@ void Level::update(sf::Vector2u winSize)
 					break;
 				case 12: //Enemy Projectile 1
 					objects[objects.size() - 1 - i]->setTexture(&projectileImg,
-					sf::Vector2i(12, 12), sf::Vector2i(30, 0), 3, false);
+					sf::Vector2i(11, 18), sf::Vector2i(0, 0), 3, false);
 					break;
 				case 13: //Enemy Projectile 2
 					objects[objects.size() - 1 - i]->setTexture(&projectileImg,
-					sf::Vector2i(20, 20), sf::Vector2i(30, 0), 3, false);
+					sf::Vector2i(11, 18), sf::Vector2i(0, 0), 3, false);
 					break;
 				}
 				break;
@@ -406,7 +439,7 @@ void Level::getInput(sf::Vector2u winSize)
 		if (key(i, Special))
 			p[i]->special(objects, winSize);
 
-		if (key(i, Spawn))
+		if (key(i, Spawn)) //Temporary and should be changed to continue.
 		{
 			p[0]->setHealth(3);
 			p[1]->setHealth(3);
