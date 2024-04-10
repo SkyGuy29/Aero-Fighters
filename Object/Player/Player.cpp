@@ -22,74 +22,74 @@ void Player::shoot(std::vector<Object*>& objects)
 			objects.push_back(new Projectile(pos.x, pos.y - (size.y / 2),
 				sf::Vector2f(0, -10), sf::Vector2f(11, 18), 0, true,
 				0, 0));
-			cooldown = 5;
+			cooldown = 4;
 			break;
 		case 1: case 16: //Player 1 Sweden is the same as Player 2 America
 			objects.push_back(new Projectile(pos.x, pos.y - (size.y / 2),
 				sf::Vector2f(0, -10), sf::Vector2f(9, 28), 0, true, 
 				0, 4));
-			cooldown = 5;
+			cooldown = 4;
 			break;
 		case 2: case 11: case 19: case 27:
 			objects.push_back(new Projectile(pos.x, pos.y - (size.y / 2),
 				sf::Vector2f(0, -10), sf::Vector2f(16, 30), 0, true,
 				0, 1));
-			cooldown = 5;
+			cooldown = 4;
 			break;
 		case 3: case 18: //Rain
 			objects.push_back(new Projectile(pos.x, pos.y - (size.y / 2),
 				sf::Vector2f(0, -10), sf::Vector2f(16, 32), 0, true, 0, 5));
-			cooldown = 5;
+			cooldown = 4;
 			break;
 		case 4: case 13: case 21: case 29: 
 			objects.push_back(new Projectile(pos.x, pos.y - (size.y / 2),
 				sf::Vector2f(0, -10), sf::Vector2f(31, 30), 0, true, 0, 2));
-			cooldown = 4;
+			cooldown = 3;
 			break;
 		case 5: case 20: 
 			objects.push_back(new Projectile(pos.x, pos.y - (size.y / 2),
 				sf::Vector2f(0, -10), sf::Vector2f(41, 44), 0, true, 0, 6));
-			cooldown = 5;
+			cooldown = 4;
 			break;
 		case 6: case 15: case 23: case 31:
 			objects.push_back(new Projectile(pos.x, pos.y - (size.y / 2),
 				sf::Vector2f(0, -10), sf::Vector2f(47, 46), 0, true, 0, 3));
-			cooldown = 5;
+			cooldown = 4;
 			break;
 		case 7: case 22:
 			objects.push_back(new Projectile(pos.x, pos.y - (size.y / 2),
 				sf::Vector2f(0, -10), sf::Vector2f(64, 48), 0, true, 0, 7));
-			cooldown = 5;
+			cooldown = 4;
 			break;
 		case 8: //Japan 1, Shurikens
 			objects.push_back(new Projectile(pos.x, pos.y - (size.y / 2),
 				sf::Vector2f(0, -15), sf::Vector2f(15, 29), 0, true, 0, 8));
-			cooldown = 5;
+			cooldown = 4;
 			break;
 		case 10:
 			objects.push_back(new Projectile(pos.x, pos.y - (size.y / 2),
 				sf::Vector2f(0, -15), sf::Vector2f(15, 29), 0, true, 0, 8));
-			cooldown = 4;
+			cooldown = 3;
 			break;
 		case 12: 
 			objects.push_back(new Projectile(pos.x, pos.y - (size.y / 2),
 				sf::Vector2f(0, -15), sf::Vector2f(15, 29), 0, true, 0, 8));
-			cooldown = 4;
+			cooldown = 3;
 			break;
 		case 14:
 			objects.push_back(new Projectile(pos.x, pos.y - (size.y / 2),
 				sf::Vector2f(0, -15), sf::Vector2f(9, 31), 0, true, 0, 9));
-			cooldown = 4;
+			cooldown = 3;
 			break;
 		case 24: //England 1, Big Blob
 			objects.push_back(new Projectile(pos.x, pos.y - (size.y / 2),
 				sf::Vector2f(0, -10), sf::Vector2f(9, 31), 0, true, 0, 10));
-			cooldown = 5;
+			cooldown = 4;
 			break;
 		case 26:
 			objects.push_back(new Projectile(pos.x, pos.y - (size.y / 2),
 				sf::Vector2f(0, -10), sf::Vector2f(16, 31), 0, true, 0, 11));
-			cooldown = 5;
+			cooldown = 4;
 			break;
 		case 28:
 			for (int num = 0; num < 3; num++)
@@ -99,7 +99,7 @@ void Player::shoot(std::vector<Object*>& objects)
 						-10 * sin((90 + 20 * (num - 1)) * PI / 180)),
 					sf::Vector2f(9, 31), 0, true, 0, 10));
 			}
-			cooldown = 5;
+			cooldown = 4;
 			break;
 		case 30:
 			for (int num = 0; num < 3; num++)
@@ -109,7 +109,7 @@ void Player::shoot(std::vector<Object*>& objects)
 						-10 * sin((90 + 20 * (num - 1)) * PI / 180)),
 					sf::Vector2f(16, 31), 0, true, 0, 11));
 			}
-			cooldown = 5;
+			cooldown = 4;
 			break;
 		default:
 			objects.push_back(new Projectile(pos.x, pos.y - (size.y / 2), sf::Vector2f(-2.6, -9.7),
@@ -118,7 +118,7 @@ void Player::shoot(std::vector<Object*>& objects)
 			sf::Vector2f(32, 32), 0, true, 0, -1));
 			objects.push_back(new Projectile(pos.x, pos.y - (size.y / 2), sf::Vector2f(2.6, -9.7),
 			sf::Vector2f(32, 32), 0, true, 0, -1));
-			cooldown = 5;
+			cooldown = 4;
 			break;
 		}
 	}
@@ -333,6 +333,15 @@ void Player::update(sf::Vector2u winSize, std::vector<Object*>* objects, bool ti
 		{
 			health--;
 			objects->push_back(new Explosion(pos, 0));
+			objects->push_back(new Collectable(1, pos));
+			specialCharge = 2;
+			if (rand() % 2 == 0)
+				objects->push_back(new Collectable(2, pos));
+			if (!health)
+			{
+				if(rand() % 10 == 0)
+					objects->push_back(new Collectable(3, pos));
+			}
 			pos = sf::Vector2f(winSize.x * 0.5f, winSize.y * 0.75f);
 			invincibility = 61;
 			timerDeath = 61;

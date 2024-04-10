@@ -4,6 +4,7 @@
 
 #include "../Projectile/Projectile.h"
 #include "../Projectile/Explosion/Explosion.h"
+#include "../Collectable/Collectable.h"
 
 class Player : public Object
 {

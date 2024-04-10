@@ -16,6 +16,7 @@ int Enemy::getHealth() const
 void Enemy::enemyUpdate(sf::Vector2u winSize, std::vector<Object*>* objects)
 {
 	objectUpdate(winSize, objects);
+	nextFrame(3);
 
 	if (!entered && !outOfBounds(winSize))
 		entered = true;

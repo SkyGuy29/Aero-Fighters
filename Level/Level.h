@@ -52,9 +52,10 @@ private:
 	sf::Texture powerUpImg;
 	sf::Texture moneyImg;
 	sf::Texture explosionImg;
+	sf::Texture enemyImg;
 	sf::IntRect rect;
 	float backgroundSpeed = 1, backgroundDist = 0, frontbackgroundDist = 0;
-	short country;
+	short country, orient = 0;
 
 	// Maybe put it in game or some other texture storage idk
 	sf::Texture test, test2;

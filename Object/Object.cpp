@@ -31,26 +31,20 @@ void Object::setSpriteNum(short num)
 	spriteNum = num;
 }
 
-// this is the new animator
-void Object::nextFrame()
+//For setting the orientaion of rotating sprites
+void Object::setOrientation(short angle)
 {
-	// Increases the image rectangle by its height and loops back when it reaches the end
-	currentFrame++;
-	if (currentFrame >= frameCount * 15)
-	{
-		currentFrame -= frameCount * 15;
-		anDone = true;
-	}
+	orientation = angle;
+}
 
-	// the dividing to an int is needed for the updates per frame delay.
-	sprite.setTextureRect(sf::IntRect(
-		texOffset.x + (currentFrame / 15) * texSize.x * !verticalAnimation,
-		texOffset.y + (currentFrame / 15) * texSize.y *  verticalAnimation,
-		texSize.x, texSize.y));
+//For getting the orientaion of rotating sprites
+short Object::getOrientation()
+{
+	return orientation;
 }
 
 //This animator allows for different frame changes.
-void Object::nextFrame(int frameRate)
+void Object::nextFrame(int frameRate = 15)
 {
 	// Increases the image rectangle by its height and loops back when it reaches the end
 	currentFrame++;
