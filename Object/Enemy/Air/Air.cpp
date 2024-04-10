@@ -9,7 +9,8 @@ Air::Air(short id, bool left, sf::Vector2u winSize, std::vector<Object*>* object
 	setSize(32, 32);
 	sprite.setSize(size);
 	sprite.setOrigin(size / 2.f);
-	setRandColor();
+	setSpriteNum(rand() % 20);
+	setOrientation(rand() % 16);
 }
 
 void Air::update(sf::Vector2u winSize, std::vector<Object*>* objects, bool time)
