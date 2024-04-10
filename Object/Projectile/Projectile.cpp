@@ -121,11 +121,9 @@ void Projectile::update(sf::Vector2u winSize, std::vector<Object*>* objects, boo
 	else if (id == 5)
 	{
 		float angle = atan(-vel.y / vel.x);
-		std::cout << angle << std::endl;
 		if (vel.x < 0)
 			angle += PI;
 		angle += (PI / 6); //Consuming ten billion years in an instant.
-		std::cout << angle << std::endl;
 		vel = sf::Vector2f(5 * cos(angle), -5 * sin(angle));
 	}
 	objectUpdate(winSize, objects);

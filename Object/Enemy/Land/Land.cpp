@@ -16,11 +16,11 @@ Land::Land(short id, bool left, float* backgroundSpeed, sf::Vector2u winSize, st
 		//ENGLAND
 	case 0: //Weak Tank
 		health = 1;
-		setSpriteNum(0);
+		setSpriteNum(1);
 		break;
 	case 1: //STRONG Tank
 		health = 5;
-		setSpriteNum(1);
+		setSpriteNum(2);
 		break;
 	case 2: //fort building
 		health = 60;
@@ -49,7 +49,7 @@ Land::Land(short id, bool left, float* backgroundSpeed, sf::Vector2u winSize, st
 		break;
 	case 8: //landmine
 		health = 1;
-		setSpriteNum(15);
+		setSpriteNum(16);
 		break;
 	}
 
@@ -61,7 +61,6 @@ Land::Land(short id, bool left, float* backgroundSpeed, sf::Vector2u winSize, st
 void Land::update(sf::Vector2u winSize, std::vector<Object*>* objects, bool time)
 {
 	enemyUpdate(winSize, objects);
-	nextFrame(1);
 
 	//Do things here only while time is moving.
 	if (time)
