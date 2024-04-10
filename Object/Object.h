@@ -48,6 +48,9 @@ public:
 	short getSpriteNum();
 	void setSpriteNum(short);
 
+	short getOrientation();
+	void setOrientation(short);
+
 	bool isTexInit();
 
 	enum Types
@@ -69,7 +72,7 @@ protected:
 
 	void nextFrame(int frameRate);
 
-	short type, id = 0, cooldown = 0, health, spriteNum = -1;
+	short type, id = 0, cooldown = 0, health, spriteNum = -1, orientation = 0;
 
 	bool del = false;
 	bool texInit = false;
