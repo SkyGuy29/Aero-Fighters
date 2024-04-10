@@ -51,6 +51,7 @@ private:
 	sf::Texture powerUpImg;
 	sf::Texture moneyImg;
 	sf::Texture explosionImg;
+	sf::Texture enemyImg;
 	sf::IntRect rect;
 	float backgroundSpeed = 1, backgroundDist = 0;
 	short country;

@@ -8,16 +8,19 @@ Land::Land(short id, bool left, float* backgroundSpeed, sf::Vector2u winSize, st
 	this->backgroundSpeed = backgroundSpeed;
 	target = rand() % 2;
 
-	setSize(15, 25);
+	//All regular enemies are 32 x 32
+	setSize(32, 32);
 
 	switch (id)
 	{
 		//ENGLAND
 	case 0: //Weak Tank
 		health = 1;
+		setSpriteNum(0);
 		break;
 	case 1: //STRONG Tank
 		health = 5;
+		setSpriteNum(1);
 		break;
 	case 2: //fort building
 		health = 60;
@@ -46,18 +49,19 @@ Land::Land(short id, bool left, float* backgroundSpeed, sf::Vector2u winSize, st
 		break;
 	case 8: //landmine
 		health = 1;
-		setSize(20, 20);
+		setSpriteNum(15);
 		break;
 	}
 
 	sprite.setSize(size);
 	sprite.setOrigin(size / 2.f);
-	setRandColor();
+	//setRandColor();
 }
 
 void Land::update(sf::Vector2u winSize, std::vector<Object*>* objects, bool time)
 {
 	enemyUpdate(winSize, objects);
+	nextFrame(1);
 
 	//Do things here only while time is moving.
 	if (time)
@@ -70,6 +74,7 @@ void Land::update(sf::Vector2u winSize, std::vector<Object*>* objects, bool time
 		switch (id)
 		{
 		case 0:
+			break;
 		case 1:
 			//Shoot at target player
 			if (cooldown == 0 && entered)

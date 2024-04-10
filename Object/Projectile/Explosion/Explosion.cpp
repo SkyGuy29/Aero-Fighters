@@ -31,7 +31,7 @@ Explosion::Explosion(sf::Vector2f pos, int type)
 
 void Explosion::update(sf::Vector2u winSize, std::vector<Object*>*, bool time)
 {
-	nextFrame(3);
+	nextFrame(2);
 	if (anDone)
 		del = true;
 }
