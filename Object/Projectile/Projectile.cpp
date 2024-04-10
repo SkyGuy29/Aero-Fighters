@@ -53,7 +53,7 @@ Projectile::Projectile(float posX, float posY, sf::Vector2f vel,
 //The bulk of projectiles, all it does is move and check when to die.
 void Projectile::update(sf::Vector2u winSize, std::vector<Object*>* objects, bool time)
 {
-	nextFrame(1);
+	nextFrame(4);
 	if (delay)
 	{
 		size = sf::Vector2f(0, 0);

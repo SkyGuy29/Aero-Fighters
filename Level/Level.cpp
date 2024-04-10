@@ -50,6 +50,7 @@ void Level::load(sf::Vector2u winSize, short country, int mapId)
 	moneyImg.loadFromFile("Res/Misc/money.png");
 	explosionImg.loadFromFile("Res/Misc/Explosion.png");
 	enemyImg.loadFromFile("Res/Misc/enemies.png");
+	enemyProjectileImg.loadFromFile("Res/Misc/Enemy projectiles.png");
 
 	p[0] = new Player(country, true);
 	p[1] = new Player(country, false);
@@ -388,12 +389,28 @@ void Level::update(sf::Vector2u winSize)
 					sf::Vector2i(16, 31), sf::Vector2i((int)(rand() % 3) * 16, 378), 1, false);
 					break;
 				case 12: //Enemy Projectile 1
-					objects[objects.size() - 1 - i]->setTexture(&projectileImg,
-					sf::Vector2i(11, 18), sf::Vector2i(0, 0), 3, false);
+					objects[objects.size() - 1 - i]->setTexture(&enemyProjectileImg,
+					sf::Vector2i(8, 8), sf::Vector2i(0, 0), 4, false);
 					break;
-				case 13: //Enemy Projectile 2
-					objects[objects.size() - 1 - i]->setTexture(&projectileImg,
-					sf::Vector2i(11, 18), sf::Vector2i(0, 0), 3, false);
+				case 13: //Breakable
+					objects[objects.size() - 1 - i]->setTexture(&enemyProjectileImg,
+					sf::Vector2i(14, 14), sf::Vector2i(0, 0), 4, false);
+					break;
+				case 14: //Breaking
+					objects[objects.size() - 1 - i]->setTexture(&enemyProjectileImg,
+					sf::Vector2i(16, 12), sf::Vector2i(0, 0), 5, true);
+					break;
+				case 15:
+					objects[objects.size() - 1 - i]->setTexture(&enemyProjectileImg,
+					sf::Vector2i(12, 12), sf::Vector2i(0, 0), 2, false);
+					break;
+				case 16:
+					objects[objects.size() - 1 - i]->setTexture(&enemyProjectileImg,
+					sf::Vector2i(10, 10), sf::Vector2i(0, 0), 2, false);
+					break;
+				case 17:
+					objects[objects.size() - 1 - i]->setTexture(&enemyProjectileImg,
+					sf::Vector2i(4, 4), sf::Vector2i(0, 0), 1, false);
 					break;
 				}
 				break;

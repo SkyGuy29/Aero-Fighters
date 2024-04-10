@@ -61,7 +61,6 @@ Land::Land(short id, bool left, float* backgroundSpeed, sf::Vector2u winSize, st
 void Land::update(sf::Vector2u winSize, std::vector<Object*>* objects, bool time)
 {
 	enemyUpdate(winSize, objects);
-
 	//Do things here only while time is moving.
 	if (time)
 	{
@@ -84,6 +83,15 @@ void Land::update(sf::Vector2u winSize, std::vector<Object*>* objects, bool time
 
 				objects->push_back(new Projectile(getPos().x, getPos().y,
 					projVelocity, sf::Vector2f(10, 10), 0, false, 0, 0, 12));
+				float angle = atan(-projVelocity.y / projVelocity.x);
+				if (vel.x < 0)
+					angle += PI;
+				angle /= PI;
+				angle -= .5;
+				if (angle < 0)
+					angle += 2;
+				angle *= 8;
+				setOrientation((int)angle);
 				cooldown = 100 + rand() % 50;
 
 				if (target == 0)

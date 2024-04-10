@@ -15,6 +15,7 @@ int Enemy::getHealth() const
 
 void Enemy::enemyUpdate(sf::Vector2u winSize, std::vector<Object*>* objects)
 {
+	texInit = false;
 	objectUpdate(winSize, objects);
 	nextFrame(3);
 
