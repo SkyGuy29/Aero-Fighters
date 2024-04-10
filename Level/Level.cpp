@@ -79,6 +79,7 @@ void Level::load(sf::Vector2u winSize, short country, int mapId)
 	switch (country)
 	{
 	case STATES:
+		objects.push_back(new Air(0, true, winSize, &objects, sf::Vector2f(winSize.x / 2, winSize.y / 2), sf::Vector2f(0, 1)));
 		break;
 	case JAPAN:
 		break;
@@ -248,7 +249,7 @@ void Level::update(sf::Vector2u winSize)
 					break;
 				}
 				break;
-			case Object::AIR: //Have not checked, may not work
+			case Object::AIR: //
 				switch (objects[objects.size() - 1 - i]->getSpriteNum())
 				{
 				case 0: //Weird thing 1
