@@ -84,10 +84,10 @@ void Land::update(sf::Vector2u winSize, std::vector<Object*>* objects, bool time
 				objects->push_back(new Projectile(getPos().x, getPos().y,
 					projVelocity, sf::Vector2f(10, 10), 0, false, 0, 0, 12));
 				float angle = atan(-projVelocity.y / projVelocity.x);
-				if (vel.x < 0)
-					angle += PI;
 				angle /= PI;
-				angle -= .5;
+				if (vel.x < 0)
+					angle += 1;
+				angle -= 1;
 				if (angle < 0)
 					angle += 2;
 				angle *= 8;
