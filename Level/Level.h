@@ -44,15 +44,16 @@ private:
 	sf::Font font;
 	sf::Text ui;
 
-	sf::RectangleShape background;
+	sf::RectangleShape background, frontbackground;
 	sf::Texture backgroundImg;
+	sf::Texture frontbackgroundImg;
 	sf::Texture playerImg;
 	sf::Texture projectileImg;
 	sf::Texture powerUpImg;
 	sf::Texture moneyImg;
 	sf::Texture explosionImg;
 	sf::IntRect rect;
-	float backgroundSpeed = 1, backgroundDist = 0;
+	float backgroundSpeed = 1, backgroundDist = 0, frontbackgroundDist = 0;
 	short country;
 
 	// Maybe put it in game or some other texture storage idk

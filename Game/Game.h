@@ -18,7 +18,7 @@ private:
 	void resize();
 
 	sf::Clock clock;
-	int deltaTime = 0, updatesPSec = 30;
+	int deltaTime = 0, updatesPSec = 30 * 10;
 
 	sf::RenderWindow window;
 	sf::View view;

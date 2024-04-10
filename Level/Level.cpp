@@ -27,22 +27,31 @@ void Level::load(sf::Vector2u winSize, short country, int mapId)
 	{
 	case STATES:
 		backgroundImg.loadFromFile("Res/States/States.png");
+		frontbackgroundImg.loadFromFile("Res/States/FrontStates.png");
 		break;
 	case JAPAN:
 		backgroundImg.loadFromFile("Res/Japan/Japan.png");
+		frontbackgroundImg.loadFromFile("Res/Japan/FrontJapan.png");
 		break;
 	case SWEDEN:
 		backgroundImg.loadFromFile("Res/Sweden/Sweden.png");
+		frontbackgroundImg.loadFromFile("Res/Sweden/FrontSweden.png");
 		break;
 	case ENGLAND:
 		backgroundImg.loadFromFile("Res/England/England.png");
+		frontbackgroundImg.loadFromFile("Res/England/FrontEngland.png");
 	}
 
 	background.setSize(sf::Vector2f(winSize));
+	frontbackground.setSize(sf::Vector2f(winSize));
 	backgroundDist = backgroundImg.getSize().y - winSize.y;
 	rect = sf::IntRect(0, backgroundDist, winSize.x, winSize.y);
 	background.setTexture(&backgroundImg);
+	frontbackground.setTexture(&frontbackgroundImg);
 	background.setTextureRect(rect);
+	frontbackground.setTextureRect(rect);
+	frontbackgroundImg.setRepeated(true);
+	frontbackground.setPosition(0, -backgroundDist);
 
 	playerImg.loadFromFile("Res/Misc/players.png");
 	projectileImg.loadFromFile("Res/Misc/Projectiles.png");
@@ -123,10 +132,22 @@ void Level::update(sf::Vector2u winSize)
 	s += "  Score: 0";
 	s += "";
 	ui.setString(s);
+
 	// The background has to scroll backwards to get the effect that we want.
 	backgroundDist -= backgroundSpeed;
-	rect.top = backgroundDist;
+	if (backgroundDist <= frontbackground.getSize().y)
+	{
+		if (backgroundDist <= 0)
+		{
+			backgroundDist = 0;
+			frontbackground.setTextureRect(rect);
+		}
+		else
+			frontbackground.setPosition(0, -backgroundDist);
+	}
+	rect.top -= backgroundSpeed;
 	background.setTextureRect(rect);
+
 	// for smoothing out background. 
 	// I offset the the background by negative decapitating the background float. 
 	// SFML will smooth out not pixel aligned things.
@@ -367,18 +388,17 @@ void Level::update(sf::Vector2u winSize)
 
 void Level::statesUpdate(sf::Vector2u winSize)
 {
-	if (backgroundDist <= 0)
-		backgroundSpeed = 0;
+	//if (backgroundDist <= 0)
+		//backgroundSpeed = 0;
 	return;
 }
 
 void Level::japanUpdate(sf::Vector2u winSize)
 {
-	if (backgroundDist <= 0 || !(p[1]->getTime()))
-		backgroundSpeed = 0;
-	else
-		backgroundSpeed = 1;
-	return;
+	//if (backgroundDist <= 0 || !(p[1]->getTime()))
+		//backgroundSpeed = 0;
+	//else
+		//backgroundSpeed = 1;
 }
 
 void Level::swedenUpdate(sf::Vector2u winSize)
@@ -390,10 +410,11 @@ void Level::swedenUpdate(sf::Vector2u winSize)
 
 void Level::englandUpdate(sf::Vector2u winSize)
 {
-	if (backgroundDist <= 0)
-		backgroundSpeed = 0;
+	//if (backgroundDist <= 0)
+		//backgroundSpeed = 0;
 	//Slow down for fort
-	else if (backgroundDist <= 1405 && backgroundDist > 1264)
+	//else 
+		if (backgroundDist <= 1405 && backgroundDist > 1264)
 		backgroundSpeed = 0.5;
 	else
 		backgroundSpeed = 1;
@@ -402,6 +423,7 @@ void Level::englandUpdate(sf::Vector2u winSize)
 void Level::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
 	target.draw(background, states);
+	target.draw(frontbackground, states);
 
 	for (int i = objects.size() - 1; i >= 0; i--)
 		target.draw(*objects[i]);
