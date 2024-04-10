@@ -44,8 +44,9 @@ private:
 	sf::Font font;
 	sf::Text ui;
 
-	sf::RectangleShape background;
+	sf::RectangleShape background, frontbackground;
 	sf::Texture backgroundImg;
+	sf::Texture frontbackgroundImg;
 	sf::Texture playerImg;
 	sf::Texture projectileImg;
 	sf::Texture powerUpImg;
@@ -54,7 +55,7 @@ private:
 	sf::Texture enemyImg;
 	sf::Texture enemyProjectileImg;
 	sf::IntRect rect;
-	float backgroundSpeed = 1, backgroundDist = 0;
+	float backgroundSpeed = 1, backgroundDist = 0, frontbackgroundDist = 0;
 	short country, orient = 0;
 
 	// Maybe put it in game or some other texture storage idk

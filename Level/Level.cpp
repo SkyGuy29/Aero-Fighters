@@ -27,22 +27,32 @@ void Level::load(sf::Vector2u winSize, short country, int mapId)
 	{
 	case STATES:
 		backgroundImg.loadFromFile("Res/States/States.png");
+		frontbackgroundImg.loadFromFile("Res/States/FrontStates.png");
 		break;
 	case JAPAN:
 		backgroundImg.loadFromFile("Res/Japan/Japan.png");
+		frontbackgroundImg.loadFromFile("Res/Japan/FrontJapan.png");
 		break;
 	case SWEDEN:
 		backgroundImg.loadFromFile("Res/Sweden/Sweden.png");
+		frontbackgroundImg.loadFromFile("Res/Sweden/FrontSweden.png");
 		break;
 	case ENGLAND:
 		backgroundImg.loadFromFile("Res/England/England.png");
+		frontbackgroundImg.loadFromFile("Res/England/FrontEngland.png");
 	}
 
 	background.setSize(sf::Vector2f(winSize));
+	frontbackground.setSize(sf::Vector2f(winSize));
 	backgroundDist = backgroundImg.getSize().y - winSize.y;
 	rect = sf::IntRect(0, backgroundDist, winSize.x, winSize.y);
 	background.setTexture(&backgroundImg);
+	frontbackground.setTexture(&frontbackgroundImg);
 	background.setTextureRect(rect);
+	frontbackground.setTextureRect(rect);
+	frontbackgroundImg.setRepeated(true);
+	frontbackground.setPosition(0, -backgroundDist);
+	
 
 	playerImg.loadFromFile("Res/Misc/players.png");
 	projectileImg.loadFromFile("Res/Misc/Projectiles.png");
@@ -127,8 +137,19 @@ void Level::update(sf::Vector2u winSize)
 
 	// The background has to scroll backwards to get the effect that we want.
 	backgroundDist -= backgroundSpeed;
-	rect.top = backgroundDist;
+	if (backgroundDist <= frontbackground.getSize().y)
+	{
+		if (backgroundDist <= 0)
+		{
+			backgroundDist = 0;
+			frontbackground.setTextureRect(rect);
+		}
+		else
+			frontbackground.setPosition(0, -backgroundDist);
+	}
+	rect.top -= backgroundSpeed;
 	background.setTextureRect(rect);
+
 	// for smoothing out background. 
 	// I offset the the background by negative decapitating the background float. 
 	// SFML will smooth out not pixel aligned things.
@@ -337,6 +358,97 @@ void Level::update(sf::Vector2u winSize)
 					break;
 				}
 				break;
+
+			// 
+			// DUPLICATED SOMEHOW
+			// Wouldn't compile
+			// 
+			//case Object::AIR: 
+			//	orient = objects[objects.size() - 1 - i]->getOrientation();
+			//	switch (objects[objects.size() - 1 - i]->getSpriteNum())
+			//	{
+			//	case 0: //Weird thing 1
+			//		objects[objects.size() - 1 - i]->setTexture(&enemyImg,
+			//		sf::Vector2i(32, 32), sf::Vector2i(32 * orient, 240), 1, false);
+			//		break;
+			//	case 1: //Weird thing 2
+			//		objects[objects.size() - 1 - i]->setTexture(&enemyImg,
+			//		sf::Vector2i(32, 32), sf::Vector2i(32 * orient, 280), 1, false);
+			//		break;
+			//	case 2: //Regular Copter 1
+			//		objects[objects.size() - 1 - i]->setTexture(&enemyImg,
+			//		sf::Vector2i(32, 32), sf::Vector2i(32 * orient, 320), 1, false);
+			//		break;
+			//	case 3: //Regular Copter 2
+			//		objects[objects.size() - 1 - i]->setTexture(&enemyImg,
+			//		sf::Vector2i(32, 32), sf::Vector2i(32 * orient, 360), 1, false);
+			//		break;
+			//	case 4: //Fighter Jet 1a
+			//		objects[objects.size() - 1 - i]->setTexture(&enemyImg,
+			//		sf::Vector2i(32, 32), sf::Vector2i(32 * orient, 400), 1, false);
+			//		break;
+			//	case 5: //Fighter Jet 1b
+			//		objects[objects.size() - 1 - i]->setTexture(&enemyImg,
+			//		sf::Vector2i(32, 32), sf::Vector2i(32 * orient, 440), 1, false);
+			//		break;
+			//	case 6: //Fighter Jet Purple
+			//		objects[objects.size() - 1 - i]->setTexture(&enemyImg,
+			//		sf::Vector2i(32, 32), sf::Vector2i(32 * orient, 480), 1, false);
+			//		break;
+			//	case 7: //Fighter Jet 2a
+			//		objects[objects.size() - 1 - i]->setTexture(&enemyImg,
+			//		sf::Vector2i(32, 32), sf::Vector2i(32 * orient, 520), 1, false);
+			//		break;
+			//	case 8: //Fighter Jet 2b
+			//		objects[objects.size() - 1 - i]->setTexture(&enemyImg,
+			//		sf::Vector2i(32, 32), sf::Vector2i(32 * orient, 560), 1, false);
+			//		break;
+			//	case 9: //Big Copter Blades
+			//		objects[objects.size() - 1 - i]->setTexture(&enemyImg,
+			//		sf::Vector2i(64, 64), sf::Vector2i(520, 0), 3, false);
+			//		break;
+			//	case 10: //Little Shit Copter 1
+			//		objects[objects.size() - 1 - i]->setTexture(&enemyImg,
+			//		sf::Vector2i(32, 72), sf::Vector2i(520, 64), 1, false);
+			//		break;
+			//	case 11: //Little Shit Copter 2
+			//		objects[objects.size() - 1 - i]->setTexture(&enemyImg,
+			//		sf::Vector2i(32, 72), sf::Vector2i(552, 64), 1, false);
+			//		break;
+			//	case 12: //Big Plane 1
+			//		objects[objects.size() - 1 - i]->setTexture(&enemyImg,
+			//		sf::Vector2i(96, 64), sf::Vector2i(592, 64), 1, false);
+			//		break;
+			//	case 13: //Big Copter 
+			//		objects[objects.size() - 1 - i]->setTexture(&enemyImg,
+			//		sf::Vector2i(32, 48), sf::Vector2i(696, 64), 1, false);
+			//		break;
+			//	case 14: //Big Plane 2
+			//		objects[objects.size() - 1 - i]->setTexture(&enemyImg,
+			//		sf::Vector2i(32, 32), sf::Vector2i(592, 128), 2, false);
+			//		break;
+			//	case 15: //Side Bomber 1
+			//		objects[objects.size() - 1 - i]->setTexture(&enemyImg,
+			//		sf::Vector2i(32, 32), sf::Vector2i(520 + 32 * orient, 320), 1, false);
+			//		break;
+			//	case 16: //Side Bomber 2
+			//		objects[objects.size() - 1 - i]->setTexture(&enemyImg,
+			//		sf::Vector2i(32, 32), sf::Vector2i(520 + 32 * orient, 360), 1, false);
+			//		break;
+			//	case 17: //Dive Bomber 1
+			//		objects[objects.size() - 1 - i]->setTexture(&enemyImg,
+			//		sf::Vector2i(32, 32), sf::Vector2i(520 + 32 * orient, 400), 1, false);
+			//		break;
+			//	case 18: //Dive Bomber 2
+			//		objects[objects.size() - 1 - i]->setTexture(&enemyImg,
+			//		sf::Vector2i(32, 32), sf::Vector2i(520 + 32 * orient, 440), 1, false);
+			//		break;
+			//	case 19: //Regular Copter Blades
+			//		objects[objects.size() - 1 - i]->setTexture(&enemyImg,
+			//		sf::Vector2i(32, 32), sf::Vector2i(696, 480), 3, false);
+			//		break;
+			//	}
+			//	break;
 			case Object::PLAYER_PROJECTILE: case Object::ENEMY_PROJECTILE:
 				switch (objects[objects.size() - 1 - i]->getSpriteNum())
 				{
@@ -553,18 +665,17 @@ void Level::update(sf::Vector2u winSize)
 
 void Level::statesUpdate(sf::Vector2u winSize)
 {
-	if (backgroundDist <= 0)
-		backgroundSpeed = 0;
+	//if (backgroundDist <= 0)
+		//backgroundSpeed = 0;
 	return;
 }
 
 void Level::japanUpdate(sf::Vector2u winSize)
 {
-	if (backgroundDist <= 0 || !(p[1]->getTime()))
-		backgroundSpeed = 0;
-	else
-		backgroundSpeed = 1;
-	return;
+	//if (backgroundDist <= 0 || !(p[1]->getTime()))
+		//backgroundSpeed = 0;
+	//else
+		//backgroundSpeed = 1;
 }
 
 void Level::swedenUpdate(sf::Vector2u winSize)
@@ -576,10 +687,11 @@ void Level::swedenUpdate(sf::Vector2u winSize)
 
 void Level::englandUpdate(sf::Vector2u winSize)
 {
-	if (backgroundDist <= 0)
-		backgroundSpeed = 0;
+	//if (backgroundDist <= 0)
+		//backgroundSpeed = 0;
 	//Slow down for fort
-	else if (backgroundDist <= 1405 && backgroundDist > 1264)
+	//else 
+		if (backgroundDist <= 1405 && backgroundDist > 1264)
 		backgroundSpeed = 0.5;
 	else
 		backgroundSpeed = 1;
@@ -588,6 +700,7 @@ void Level::englandUpdate(sf::Vector2u winSize)
 void Level::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
 	target.draw(background, states);
+	target.draw(frontbackground, states);
 
 	
 	for (int i = objects.size() - 1; i >= 0; i--)
