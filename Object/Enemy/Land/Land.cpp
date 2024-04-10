@@ -74,24 +74,28 @@ void Land::update(sf::Vector2u winSize, std::vector<Object*>* objects, bool time
 		case 0:
 			break;
 		case 1:
+			sf::Vector2f distance = objects->at(target)->getPos() - getPos();
+			float magnitude = sqrt((distance.x * distance.x) + (distance.y * distance.y));
+			sf::Vector2f projVelocity = sf::Vector2f(2 * distance.x / magnitude, 2 * distance.y / magnitude);
+
+			float angle = atan(-projVelocity.y / projVelocity.x);
+			angle /= PI;
+			if (distance.x < 0)
+				angle += 1;
+			angle -= 1;
+			if (angle < 0)
+				angle += 2;
+			angle *= 8;
+
+			setOrientation((int)angle);
+
 			//Shoot at target player
 			if (cooldown == 0 && entered)
 			{
-				sf::Vector2f distance = objects->at(target)->getPos() - getPos();
-				float magnitude = sqrt((distance.x * distance.x) + (distance.y * distance.y));
-				sf::Vector2f projVelocity = sf::Vector2f(2 * distance.x / magnitude, 2 * distance.y / magnitude);
-
+				
 				objects->push_back(new Projectile(getPos().x, getPos().y,
-					projVelocity, sf::Vector2f(10, 10), 0, false, 0, 0, 12));
-				float angle = atan(-projVelocity.y / projVelocity.x);
-				angle /= PI;
-				if (vel.x < 0)
-					angle += 1;
-				angle -= 1;
-				if (angle < 0)
-					angle += 2;
-				angle *= 8;
-				setOrientation((int)angle);
+				projVelocity, sf::Vector2f(10, 10), 0, false, 0, 0, 12));
+
 				cooldown = 100 + rand() % 50;
 
 				if (target == 0)
