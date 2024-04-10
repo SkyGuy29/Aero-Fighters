@@ -31,6 +31,18 @@ void Object::setSpriteNum(short num)
 	spriteNum = num;
 }
 
+//For setting the orientaion of rotating sprites
+void Object::setOrientation(short angle)
+{
+	orientation = angle;
+}
+
+//For getting the orientaion of rotating sprites
+short Object::getOrientation()
+{
+	return orientation;
+}
+
 //This animator allows for different frame changes.
 void Object::nextFrame(int frameRate = 15)
 {

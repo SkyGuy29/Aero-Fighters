@@ -16,11 +16,11 @@ Land::Land(short id, bool left, float* backgroundSpeed, sf::Vector2u winSize, st
 		//ENGLAND
 	case 0: //Weak Tank
 		health = 1;
-		setSpriteNum(rand() % 4 + 15);
+		setSpriteNum(1);
 		break;
 	case 1: //STRONG Tank
 		health = 5;
-		setSpriteNum(rand() % 4 + 15);
+		setSpriteNum(2);
 		break;
 	case 2: //fort building
 		health = 60;
