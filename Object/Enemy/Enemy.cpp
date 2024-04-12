@@ -35,12 +35,19 @@ void Enemy::enemyUpdate(sf::Vector2u winSize, std::vector<Object*>* objects)
 		}
 		
 	}
-	if (health <= 0 && del == false)
+	if (health <= 0 && del == false && type != HIDDEN)
 	{
-		del = true;
-		if(rand() % 20 == 0)
-			objects->push_back(new Collectable(rand() % 4, pos));
-	    objects->push_back(new Explosion(pos, 0));
-		//Crashes when an enemy dies
+		switch (id)
+		{
+		case 8:
+			objects->push_back(new Collectable(0, pos));
+			setOrientation(6);
+			del = true;
+			break;
+		default:
+			del = true;
+			break;
+		}
+		objects->push_back(new Explosion(pos, 0));
 	}
 }

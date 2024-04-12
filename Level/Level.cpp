@@ -75,7 +75,7 @@ void Level::load(sf::Vector2u winSize, short country, int mapId)
 	objects.at(0)->setTexture(&playerImg, sf::Vector2i(32, 32), sf::Vector2i(0, 16), 5, false);
 	objects.at(1)->setTexture(&playerImg, sf::Vector2i(32, 32), sf::Vector2i(0, 16), 5, false);
 
-	objects.push_back(new Collectable(0, sf::Vector2f(winSize.x / 2, winSize.y / 2)));
+	//objects.push_back(new Collectable(0, sf::Vector2f(winSize.x / 2, winSize.y / 2)));
 
 	//land enemy
 	/*sf::Vector2f pos = sf::Vector2f(winSize.x * 0.5, winSize.y * 0.1);
@@ -235,7 +235,7 @@ void Level::update(sf::Vector2u winSize)
 					break;
 				case 15: //Landmines
 					objects[objects.size() - 1 - i]->setTexture(&enemyImg,
-					sf::Vector2i(32, 32), sf::Vector2i(520, 240), 1, false);
+					sf::Vector2i(32, 32), sf::Vector2i(520 + 32 * orient, 240), 1, false);
 					break;
 				case 16: //Thing
 					objects[objects.size() - 1 - i]->setTexture(&enemyImg,

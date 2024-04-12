@@ -10,8 +10,7 @@ Land::Land(short id, bool left, float* backgroundSpeed, sf::Vector2u winSize, st
 
 	//All regular enemies are 32 x 32
 	setSize(32, 32);
-	setOrientation(7);
-	float angle;
+	setOrientation(0);
 
 	switch (id)
 	{
@@ -38,10 +37,12 @@ Land::Land(short id, bool left, float* backgroundSpeed, sf::Vector2u winSize, st
 	case 0: //Weak Tank
 		health = 1;
 		setSpriteNum(2);
+		setOrientation(7);
 		break;
 	case 1: //STRONG Tank
 		health = 5;
 		setSpriteNum(2);
+		setOrientation(7);
 		break;
 	case 2: //fort building
 		health = 60;
@@ -69,7 +70,8 @@ Land::Land(short id, bool left, float* backgroundSpeed, sf::Vector2u winSize, st
 		setSize(50, 50);
 		break;
 	case 8: //landmine
-		health = 1;
+		health = 3;
+		timer = 11;
 		setSpriteNum(15);
 		break;
 	}
@@ -93,6 +95,7 @@ void Land::update(sf::Vector2u winSize, std::vector<Object*>* objects, bool time
 		if (timer)
 			timer--;
 
+		
 		switch (id)
 		{
 		case -1:
@@ -111,11 +114,11 @@ void Land::update(sf::Vector2u winSize, std::vector<Object*>* objects, bool time
 			}
 			break;
 		case 0: case 1:
-			sf::Vector2f distance = objects->at(target)->getPos() - getPos();
-			float magnitude = sqrt((distance.x * distance.x) + (distance.y * distance.y));
-			sf::Vector2f projVelocity = sf::Vector2f(2 * distance.x / magnitude, 2 * distance.y / magnitude);
+			distance = objects->at(target)->getPos() - getPos();
+			magnitude = sqrt((distance.x * distance.x) + (distance.y * distance.y));
+			projVelocity = sf::Vector2f(2 * distance.x / magnitude, 2 * distance.y / magnitude);
 
-			float angle = atan(projVelocity.y / projVelocity.x);
+			angle = atan(projVelocity.y / projVelocity.x);
 			angle /= PI;
 			if (distance.x < 0)
 				angle += 1;
@@ -146,6 +149,20 @@ void Land::update(sf::Vector2u winSize, std::vector<Object*>* objects, bool time
 					target = 1;
 				else
 					target = 0;
+			}
+			break;
+		case 8:
+			texInit = false;
+			if (!timer && orientation < 5 && del == false && entered)
+			{
+				setOrientation(orientation + 1);
+				timer = 10;
+			}
+			if (del == true)
+			{
+				del = false;
+				type = HIDDEN;
+				setOrientation(6);
 			}
 			break;
 		}
