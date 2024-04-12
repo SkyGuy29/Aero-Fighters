@@ -144,10 +144,10 @@ void Level::update(sf::Vector2u winSize)
 			backgroundDist = 0;
 			frontbackground.setTextureRect(rect);
 		}
-		else
-			frontbackground.setPosition(0, -backgroundDist);
+		//else
+			//frontbackground.setPosition(0, -backgroundDist);
 	}
-	rect.top -= backgroundSpeed;
+	rect.top = backgroundDist;
 	background.setTextureRect(rect);
 
 	// for smoothing out background. 
@@ -687,11 +687,10 @@ void Level::swedenUpdate(sf::Vector2u winSize)
 
 void Level::englandUpdate(sf::Vector2u winSize)
 {
-	//if (backgroundDist <= 0)
-		//backgroundSpeed = 0;
+	if (backgroundDist <= 0)
+		backgroundSpeed = 0;
 	//Slow down for fort
-	//else 
-		if (backgroundDist <= 1405 && backgroundDist > 1264)
+	else if (backgroundDist <= 1405 && backgroundDist > 1264)
 		backgroundSpeed = 0.5;
 	else
 		backgroundSpeed = 1;
