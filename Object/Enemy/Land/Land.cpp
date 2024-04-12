@@ -78,11 +78,11 @@ void Land::update(sf::Vector2u winSize, std::vector<Object*>* objects, bool time
 			float magnitude = sqrt((distance.x * distance.x) + (distance.y * distance.y));
 			sf::Vector2f projVelocity = sf::Vector2f(2 * distance.x / magnitude, 2 * distance.y / magnitude);
 
-			float angle = atan(-projVelocity.y / projVelocity.x);
+			float angle = atan(projVelocity.y / projVelocity.x);
 			angle /= PI;
 			if (distance.x < 0)
 				angle += 1;
-			angle -= 1;
+			angle += .5;
 			if (angle < 0)
 				angle += 2;
 			angle *= 8;
