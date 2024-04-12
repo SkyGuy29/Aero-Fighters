@@ -41,7 +41,6 @@ void Enemy::enemyUpdate(sf::Vector2u winSize, std::vector<Object*>* objects)
 		{
 		case 8:
 			objects->push_back(new Collectable(0, pos));
-			setOrientation(6);
 			del = true;
 			break;
 		default:

@@ -609,10 +609,42 @@ void Level::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
 	target.draw(background, states);
 	target.draw(frontbackground, states);
-
 	
 	for (int i = objects.size() - 1; i >= 0; i--)
-		target.draw(*objects[i]);
+		if(objects.at(i)->getType() == -1)
+			target.draw(*objects[i]);
+
+	for (int i = objects.size() - 1; i >= 0; i--)
+		if (objects.at(i)->getType() == 5)
+			target.draw(*objects[i]);
+
+	for (int i = objects.size() - 1; i >= 0; i--)
+		if (objects.at(i)->getType() == 4)
+			target.draw(*objects[i]);
+
+	for (int i = objects.size() - 1; i >= 0; i--)
+		if (objects.at(i)->getType() == 1 || objects.at(i)->getType() == 2)
+			target.draw(*objects[i]);
+
+	for (int i = objects.size() - 1; i >= 0; i--)
+		if (objects.at(i)->getType() == 3)
+			target.draw(*objects[i]);
+
+	for (int i = objects.size() - 1; i >= 0; i--)
+		if (objects.at(i)->getType() == 7)
+			target.draw(*objects[i]);
+
+	for (int i = objects.size() - 1; i >= 0; i--)
+		if (objects.at(i)->getType() == 6)
+			target.draw(*objects[i]);
+
+	for (int i = objects.size() - 1; i >= 0; i--)
+		if (objects.at(i)->getType() == 0)
+			target.draw(*objects[i]);
+
+	for (int i = objects.size() - 1; i >= 0; i--)
+		if (objects.at(i)->getType() == 8)
+			target.draw(*objects[i]);
 
 	target.draw(ui, states);
 }
