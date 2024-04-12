@@ -72,6 +72,7 @@ void Object::setTexture(sf::Texture* texPtr, sf::Vector2i size, sf::Vector2i off
 	verticalAnimation = vertAnimation;
 	sprite.setSize(sf::Vector2f(size));
 	sprite.setOrigin(sf::Vector2f(size) / 2.f);
+	nextFrame(2);
 }
 
 // just a temporary method, idk why I remade it lol

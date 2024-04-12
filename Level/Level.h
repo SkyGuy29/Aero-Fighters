@@ -39,6 +39,8 @@ private:
 
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
+	void initializeTextures(int);
+
 	std::vector<Object*> objects;
 
 	sf::Font font;
