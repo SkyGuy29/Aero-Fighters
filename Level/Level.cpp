@@ -128,7 +128,6 @@ void Level::load(sf::Vector2u winSize, short country, int mapId)
 
 void Level::update(sf::Vector2u winSize)
 {
-	//How do I draw text?
 	std::string s = "P1 Lives: " + std::to_string(p[0]->getHealth()) + "\nP2 Lives: " 
 	+ std::to_string(p[1]->getHealth()) + "\nP1 Bombs: " + std::to_string(p[0]->getSpecialCharge()) 
 	+ "\nP2 Bombs: " + std::to_string(p[1]->getSpecialCharge()) + "\nScore: 0";
@@ -358,97 +357,6 @@ void Level::update(sf::Vector2u winSize)
 					break;
 				}
 				break;
-
-			// 
-			// DUPLICATED SOMEHOW
-			// Wouldn't compile
-			// 
-			//case Object::AIR: 
-			//	orient = objects[objects.size() - 1 - i]->getOrientation();
-			//	switch (objects[objects.size() - 1 - i]->getSpriteNum())
-			//	{
-			//	case 0: //Weird thing 1
-			//		objects[objects.size() - 1 - i]->setTexture(&enemyImg,
-			//		sf::Vector2i(32, 32), sf::Vector2i(32 * orient, 240), 1, false);
-			//		break;
-			//	case 1: //Weird thing 2
-			//		objects[objects.size() - 1 - i]->setTexture(&enemyImg,
-			//		sf::Vector2i(32, 32), sf::Vector2i(32 * orient, 280), 1, false);
-			//		break;
-			//	case 2: //Regular Copter 1
-			//		objects[objects.size() - 1 - i]->setTexture(&enemyImg,
-			//		sf::Vector2i(32, 32), sf::Vector2i(32 * orient, 320), 1, false);
-			//		break;
-			//	case 3: //Regular Copter 2
-			//		objects[objects.size() - 1 - i]->setTexture(&enemyImg,
-			//		sf::Vector2i(32, 32), sf::Vector2i(32 * orient, 360), 1, false);
-			//		break;
-			//	case 4: //Fighter Jet 1a
-			//		objects[objects.size() - 1 - i]->setTexture(&enemyImg,
-			//		sf::Vector2i(32, 32), sf::Vector2i(32 * orient, 400), 1, false);
-			//		break;
-			//	case 5: //Fighter Jet 1b
-			//		objects[objects.size() - 1 - i]->setTexture(&enemyImg,
-			//		sf::Vector2i(32, 32), sf::Vector2i(32 * orient, 440), 1, false);
-			//		break;
-			//	case 6: //Fighter Jet Purple
-			//		objects[objects.size() - 1 - i]->setTexture(&enemyImg,
-			//		sf::Vector2i(32, 32), sf::Vector2i(32 * orient, 480), 1, false);
-			//		break;
-			//	case 7: //Fighter Jet 2a
-			//		objects[objects.size() - 1 - i]->setTexture(&enemyImg,
-			//		sf::Vector2i(32, 32), sf::Vector2i(32 * orient, 520), 1, false);
-			//		break;
-			//	case 8: //Fighter Jet 2b
-			//		objects[objects.size() - 1 - i]->setTexture(&enemyImg,
-			//		sf::Vector2i(32, 32), sf::Vector2i(32 * orient, 560), 1, false);
-			//		break;
-			//	case 9: //Big Copter Blades
-			//		objects[objects.size() - 1 - i]->setTexture(&enemyImg,
-			//		sf::Vector2i(64, 64), sf::Vector2i(520, 0), 3, false);
-			//		break;
-			//	case 10: //Little Shit Copter 1
-			//		objects[objects.size() - 1 - i]->setTexture(&enemyImg,
-			//		sf::Vector2i(32, 72), sf::Vector2i(520, 64), 1, false);
-			//		break;
-			//	case 11: //Little Shit Copter 2
-			//		objects[objects.size() - 1 - i]->setTexture(&enemyImg,
-			//		sf::Vector2i(32, 72), sf::Vector2i(552, 64), 1, false);
-			//		break;
-			//	case 12: //Big Plane 1
-			//		objects[objects.size() - 1 - i]->setTexture(&enemyImg,
-			//		sf::Vector2i(96, 64), sf::Vector2i(592, 64), 1, false);
-			//		break;
-			//	case 13: //Big Copter 
-			//		objects[objects.size() - 1 - i]->setTexture(&enemyImg,
-			//		sf::Vector2i(32, 48), sf::Vector2i(696, 64), 1, false);
-			//		break;
-			//	case 14: //Big Plane 2
-			//		objects[objects.size() - 1 - i]->setTexture(&enemyImg,
-			//		sf::Vector2i(32, 32), sf::Vector2i(592, 128), 2, false);
-			//		break;
-			//	case 15: //Side Bomber 1
-			//		objects[objects.size() - 1 - i]->setTexture(&enemyImg,
-			//		sf::Vector2i(32, 32), sf::Vector2i(520 + 32 * orient, 320), 1, false);
-			//		break;
-			//	case 16: //Side Bomber 2
-			//		objects[objects.size() - 1 - i]->setTexture(&enemyImg,
-			//		sf::Vector2i(32, 32), sf::Vector2i(520 + 32 * orient, 360), 1, false);
-			//		break;
-			//	case 17: //Dive Bomber 1
-			//		objects[objects.size() - 1 - i]->setTexture(&enemyImg,
-			//		sf::Vector2i(32, 32), sf::Vector2i(520 + 32 * orient, 400), 1, false);
-			//		break;
-			//	case 18: //Dive Bomber 2
-			//		objects[objects.size() - 1 - i]->setTexture(&enemyImg,
-			//		sf::Vector2i(32, 32), sf::Vector2i(520 + 32 * orient, 440), 1, false);
-			//		break;
-			//	case 19: //Regular Copter Blades
-			//		objects[objects.size() - 1 - i]->setTexture(&enemyImg,
-			//		sf::Vector2i(32, 32), sf::Vector2i(696, 480), 3, false);
-			//		break;
-			//	}
-			//	break;
 			case Object::PLAYER_PROJECTILE: case Object::ENEMY_PROJECTILE:
 				switch (objects[objects.size() - 1 - i]->getSpriteNum())
 				{
@@ -512,15 +420,15 @@ void Level::update(sf::Vector2u winSize)
 					objects[objects.size() - 1 - i]->setTexture(&enemyProjectileImg,
 					sf::Vector2i(16, 12), sf::Vector2i(0, 0), 5, true);
 					break;
-				case 15:
+				case 15: //Big
 					objects[objects.size() - 1 - i]->setTexture(&enemyProjectileImg,
 					sf::Vector2i(12, 12), sf::Vector2i(0, 0), 2, false);
 					break;
-				case 16:
+				case 16: //Medium
 					objects[objects.size() - 1 - i]->setTexture(&enemyProjectileImg,
 					sf::Vector2i(10, 10), sf::Vector2i(0, 0), 2, false);
 					break;
-				case 17:
+				case 17: //One tiny boy
 					objects[objects.size() - 1 - i]->setTexture(&enemyProjectileImg,
 					sf::Vector2i(4, 4), sf::Vector2i(0, 0), 1, false);
 					break;
@@ -700,10 +608,42 @@ void Level::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
 	target.draw(background, states);
 	target.draw(frontbackground, states);
-
 	
 	for (int i = objects.size() - 1; i >= 0; i--)
-		target.draw(*objects[i]);
+		if(objects.at(i)->getType() == -1)
+			target.draw(*objects[i]);
+
+	for (int i = objects.size() - 1; i >= 0; i--)
+		if (objects.at(i)->getType() == 5)
+			target.draw(*objects[i]);
+
+	for (int i = objects.size() - 1; i >= 0; i--)
+		if (objects.at(i)->getType() == 4)
+			target.draw(*objects[i]);
+
+	for (int i = objects.size() - 1; i >= 0; i--)
+		if (objects.at(i)->getType() == 1 || objects.at(i)->getType() == 2)
+			target.draw(*objects[i]);
+
+	for (int i = objects.size() - 1; i >= 0; i--)
+		if (objects.at(i)->getType() == 3)
+			target.draw(*objects[i]);
+
+	for (int i = objects.size() - 1; i >= 0; i--)
+		if (objects.at(i)->getType() == 7)
+			target.draw(*objects[i]);
+
+	for (int i = objects.size() - 1; i >= 0; i--)
+		if (objects.at(i)->getType() == 6)
+			target.draw(*objects[i]);
+
+	for (int i = objects.size() - 1; i >= 0; i--)
+		if (objects.at(i)->getType() == 0)
+			target.draw(*objects[i]);
+
+	for (int i = objects.size() - 1; i >= 0; i--)
+		if (objects.at(i)->getType() == 8)
+			target.draw(*objects[i]);
 
 	target.draw(ui, states);
 }

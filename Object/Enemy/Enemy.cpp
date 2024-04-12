@@ -28,10 +28,10 @@ void Enemy::enemyUpdate(sf::Vector2u winSize, std::vector<Object*>* objects)
 	//Am I being shot?
 	for (int i = 0; i < objects->size(); i++)
 	{
-		if (objects->at(i)->getType() == PLAYER_PROJECTILE && this->intersect(objects->at(i)) && type != HIDDEN)
+		if (objects->at(i)->getType() == PLAYER_PROJECTILE && this->intersect(objects->at(i)) && type != HIDDEN
+			&& entered)
 		{
 			health--;
-			setRandColor();
 		}
 		
 	}
@@ -41,7 +41,6 @@ void Enemy::enemyUpdate(sf::Vector2u winSize, std::vector<Object*>* objects)
 		{
 		case 8:
 			objects->push_back(new Collectable(0, pos));
-			setOrientation(6);
 			del = true;
 			break;
 		default:
