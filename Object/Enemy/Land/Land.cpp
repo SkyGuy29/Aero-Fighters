@@ -10,6 +10,7 @@ Land::Land(short id, bool left, float* backgroundSpeed, sf::Vector2u winSize, st
 
 	//All regular enemies are 32 x 32
 	setSize(32, 32);
+	setOrientation(7);
 	float angle;
 
 	switch (id)
@@ -89,6 +90,9 @@ void Land::update(sf::Vector2u winSize, std::vector<Object*>* objects, bool time
 		if (cooldown)
 			cooldown--;
 
+		if (timer)
+			timer--;
+
 		switch (id)
 		{
 		case -1:
@@ -120,10 +124,17 @@ void Land::update(sf::Vector2u winSize, std::vector<Object*>* objects, bool time
 				angle += 2;
 			angle *= 8;
 
-			setOrientation((int)angle);
+			if (orientation != (int) angle && !timer)
+			{
+				timer = 15;
+				if (orientation - (int)angle < 0)
+					setOrientation(orientation + 1);
+				else
+					setOrientation(orientation - 1);
+			}
 
 			//Shoot at target player
-			if (cooldown == 0 && entered)
+			if (cooldown == 0 && entered && orientation == (int) angle)
 			{
 
 				objects->push_back(new Projectile(getPos().x, getPos().y,

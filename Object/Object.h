@@ -72,7 +72,7 @@ protected:
 
 	void nextFrame(int frameRate);
 
-	short type, id = 0, cooldown = 0, health, spriteNum = -1, orientation = 0;
+	short type, id = 0, cooldown = 0, health, spriteNum = -1, orientation = 0, timer = 0;
 
 	bool del = false;
 	bool texInit = false;
