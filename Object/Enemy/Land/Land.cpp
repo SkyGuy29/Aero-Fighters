@@ -174,6 +174,13 @@ void Land::update(sf::Vector2u winSize, std::vector<Object*>* objects, bool time
 				sf::Vector2f(0.76537, -1.84776), sf::Vector2f(10, 10), 0, false, 0, 0, 12));
 			}
 			break;
+		case 7:
+			if (!cooldown)
+			{
+				cooldown = 60;
+				//Create a plane
+			}
+			break;
 		case 8:
 			if (!timer && orientation < 5 && del == false && entered)
 			{
