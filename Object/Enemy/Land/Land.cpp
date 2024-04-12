@@ -71,7 +71,7 @@ Land::Land(short id, bool left, float* backgroundSpeed, sf::Vector2u winSize, st
 		break;
 	case 8: //landmine
 		health = 3;
-		timer = 11;
+		timer = 7;
 		setSpriteNum(15);
 		break;
 	}
@@ -152,17 +152,19 @@ void Land::update(sf::Vector2u winSize, std::vector<Object*>* objects, bool time
 			}
 			break;
 		case 8:
-			texInit = false;
 			if (!timer && orientation < 5 && del == false && entered)
 			{
 				setOrientation(orientation + 1);
-				timer = 10;
+				timer = 7;
 			}
+			if (orientation == 6)
+				type = HIDDEN;
 			if (del == true)
 			{
 				del = false;
-				type = HIDDEN;
 				setOrientation(6);
+				health = 999;
+				texInit = false;
 			}
 			break;
 		}
