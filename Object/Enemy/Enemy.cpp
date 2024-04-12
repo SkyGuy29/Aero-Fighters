@@ -32,7 +32,6 @@ void Enemy::enemyUpdate(sf::Vector2u winSize, std::vector<Object*>* objects)
 			&& entered)
 		{
 			health--;
-			setRandColor();
 		}
 		
 	}
