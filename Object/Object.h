@@ -81,6 +81,8 @@ protected:
 
 	sf::RectangleShape sprite;
 
+	float* backgroundSpeed = nullptr;
+
 	short frameCount = 0, currentFrame = 0, image;
 	sf::Vector2i texSize, texOffset;
 	bool verticalAnimation = true, anDone = false;

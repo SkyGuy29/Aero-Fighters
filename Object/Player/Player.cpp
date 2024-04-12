@@ -1,7 +1,8 @@
 #include "Player.h"
 
-Player::Player(short c, bool playerOne)
+Player::Player(short c, bool playerOne, float* bgSpeed)
 {
+	backgroundSpeed = bgSpeed;
 	isPlayerTwo = !playerOne;
 	country = c;
 	setSize(20, 32);
@@ -333,14 +334,14 @@ void Player::update(sf::Vector2u winSize, std::vector<Object*>* objects, bool ti
 		{
 			health--;
 			objects->push_back(new Explosion(pos, 0));
-			objects->push_back(new Collectable(1, pos));
+			objects->push_back(new Collectable(1, pos, backgroundSpeed));
 			specialCharge = 2;
 			if (rand() % 2 == 0)
-				objects->push_back(new Collectable(2, pos));
+				objects->push_back(new Collectable(2, pos, backgroundSpeed));
 			if (!health)
 			{
 				if(rand() % 10 == 0)
-					objects->push_back(new Collectable(3, pos));
+					objects->push_back(new Collectable(3, pos, backgroundSpeed));
 			}
 			pos = sf::Vector2f(winSize.x * 0.5f, winSize.y * 0.75f);
 			invincibility = 61;

@@ -62,8 +62,8 @@ void Level::load(sf::Vector2u winSize, short country, int mapId)
 	enemyImg.loadFromFile("Res/Misc/enemies.png");
 	enemyProjectileImg.loadFromFile("Res/Misc/Enemy projectiles.png");
 
-	p[0] = new Player(country, true);
-	p[1] = new Player(country, false);
+	p[0] = new Player(country, true, &backgroundSpeed);
+	p[1] = new Player(country, false, &backgroundSpeed);
 	objects.push_back(p[0]);
 	objects.push_back(p[1]);
 

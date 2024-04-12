@@ -1,7 +1,8 @@
 #include "Collectable.h"
 
-Collectable::Collectable(short id, sf::Vector2f position)
+Collectable::Collectable(short id, sf::Vector2f position, float* bgSpeed)
 {
+	backgroundSpeed = bgSpeed;
 	this->id = id;
 	type = COLLECTABLE;
 	setSize(16, 19);
@@ -9,13 +10,14 @@ Collectable::Collectable(short id, sf::Vector2f position)
 	sprite.setOrigin(sprite.getSize() / 2.f);
 	pos = position;
 	if (id == 0)
-		vel = sf::Vector2f(0, 1);
+		vel = sf::Vector2f(0, 0);
 	else
 		vel = sf::Vector2f(3.535, 3.535);
 }
 
-Collectable::Collectable(short id, float xPosition, float yPosition)
+Collectable::Collectable(short id, float xPosition, float yPosition, float* bgSpeed)
 {
+	backgroundSpeed = bgSpeed;
 	this->id = id;
 	type = COLLECTABLE;
 	setSize(16, 19);
@@ -24,13 +26,17 @@ Collectable::Collectable(short id, float xPosition, float yPosition)
 	pos.x = xPosition;
 	pos.y = yPosition;
 	if (id == 0)
-		vel = sf::Vector2f(0, 10);
+		vel = sf::Vector2f(0, 0);
 	else
 		vel = sf::Vector2f(3.535, 3.535);
 }
 
 void Collectable::update(sf::Vector2u winSize, std::vector<Object*>* objects, bool time)
 {
+	if (id == 0)
+	{
+		pos.y += *backgroundSpeed;
+	}
 	nextFrame(8);
 	if (outOfBounds(winSize) && (id == 0))
 		del = true;

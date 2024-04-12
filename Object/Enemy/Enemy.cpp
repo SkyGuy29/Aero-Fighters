@@ -40,7 +40,7 @@ void Enemy::enemyUpdate(sf::Vector2u winSize, std::vector<Object*>* objects)
 		switch (id)
 		{
 		case 8:
-			objects->push_back(new Collectable(0, pos));
+			objects->push_back(new Collectable(0, pos, backgroundSpeed));
 			del = true;
 			break;
 		default:

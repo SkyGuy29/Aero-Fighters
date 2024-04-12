@@ -45,6 +45,7 @@ Land::Land(short id, bool left, float* backgroundSpeed, sf::Vector2u winSize, st
 		setOrientation(7);
 		break;
 	case 2: //fort building
+		cooldown = 100;
 		health = 60;
 		setSize(60, 60);
 		break;
@@ -149,6 +150,28 @@ void Land::update(sf::Vector2u winSize, std::vector<Object*>* objects, bool time
 					target = 1;
 				else
 					target = 0;
+			}
+			break;
+		case 2:
+			if (!cooldown)
+			{
+				cooldown = 100;
+				objects->push_back(new Projectile(getPos().x, getPos().y,
+				sf::Vector2f(1.84776, 0.76537), sf::Vector2f(10, 10), 0, false, 0, 0, 12));
+				objects->push_back(new Projectile(getPos().x, getPos().y,
+				sf::Vector2f(-1.84776, -0.76537), sf::Vector2f(10, 10), 0, false, 0, 0, 12));
+				objects->push_back(new Projectile(getPos().x, getPos().y,
+				sf::Vector2f(-1.84776, 0.76537), sf::Vector2f(10, 10), 0, false, 0, 0, 12));
+				objects->push_back(new Projectile(getPos().x, getPos().y,
+				sf::Vector2f(1.84776, -0.76537), sf::Vector2f(10, 10), 0, false, 0, 0, 12));
+				objects->push_back(new Projectile(getPos().x, getPos().y,
+				sf::Vector2f(0.76537, 1.84776), sf::Vector2f(10, 10), 0, false, 0, 0, 12));
+				objects->push_back(new Projectile(getPos().x, getPos().y,
+				sf::Vector2f(-0.76537, -1.84776), sf::Vector2f(10, 10), 0, false, 0, 0, 12));
+				objects->push_back(new Projectile(getPos().x, getPos().y,
+				sf::Vector2f(-0.76537, 1.84776), sf::Vector2f(10, 10), 0, false, 0, 0, 12));
+				objects->push_back(new Projectile(getPos().x, getPos().y,
+				sf::Vector2f(0.76537, -1.84776), sf::Vector2f(10, 10), 0, false, 0, 0, 12));
 			}
 			break;
 		case 8:

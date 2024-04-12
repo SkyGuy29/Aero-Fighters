@@ -11,7 +11,6 @@ public:
 
 private:
     Object* topPart = nullptr;
-    float* backgroundSpeed = nullptr;
     bool target;
     float angle, magnitude;
     sf::Vector2f projVelocity, distance;

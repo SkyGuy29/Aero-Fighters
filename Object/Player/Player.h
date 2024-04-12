@@ -10,7 +10,7 @@ class Player : public Object
 {
 public:
 	Player();
-	Player(short c, bool playerOne);
+	Player(short c, bool playerOne, float* bgSpeed);
 
 	void shoot(std::vector<Object*>& objects);
 
