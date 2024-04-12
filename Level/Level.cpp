@@ -241,11 +241,11 @@ void Level::update(sf::Vector2u winSize)
 					objects[objects.size() - 1 - i]->setTexture(&enemyImg,
 					sf::Vector2i(32, 32), sf::Vector2i(520, 280), 1, false);
 					break;
-				case 17: //Destroyed Boat 1
+				case 17: //Destroyed Boat/Tank 1
 					objects[objects.size() - 1 - i]->setTexture(&enemyImg,
 					sf::Vector2i(32, 32), sf::Vector2i(520 + 32 * orient, 480), 1, false);
 					break;
-				case 18: //Destroyed Boat 2
+				case 18: //Destroyed Boat/Tank 2
 					objects[objects.size() - 1 - i]->setTexture(&enemyImg,
 					sf::Vector2i(32, 32), sf::Vector2i(520 + 32 * orient, 520), 1, false);
 					break;

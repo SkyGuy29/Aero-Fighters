@@ -10,6 +10,7 @@ public:
     void update(sf::Vector2u winSize, std::vector<Object*>* objects, bool time);
 
 private:
+    Object* topPart = nullptr;
     float* backgroundSpeed = nullptr;
     bool target;
     int cooldown = 0;

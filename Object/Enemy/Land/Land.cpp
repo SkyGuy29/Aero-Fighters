@@ -10,13 +10,33 @@ Land::Land(short id, bool left, float* backgroundSpeed, sf::Vector2u winSize, st
 
 	//All regular enemies are 32 x 32
 	setSize(32, 32);
+	float angle;
 
 	switch (id)
 	{
 		//ENGLAND
+	case -1: //Tank Bottom
+		health = 99;
+		setSpriteNum(0);
+
+		angle = atan(vel.y / vel.x);
+		angle /= PI;
+		if (vel.x < 0)
+			angle += 1;
+		angle += .5;
+		if (angle < 0)
+			angle += 2;
+		angle *= 8;
+
+		setOrientation((int)angle);
+
+		topPart = new Land(1, left, backgroundSpeed, winSize, objects,
+		pos, vel); //Creates the top
+		objects->push_back(topPart);
+		break;
 	case 0: //Weak Tank
 		health = 1;
-		setSpriteNum(1);
+		setSpriteNum(2);
 		break;
 	case 1: //STRONG Tank
 		health = 5;
@@ -71,9 +91,22 @@ void Land::update(sf::Vector2u winSize, std::vector<Object*>* objects, bool time
 
 		switch (id)
 		{
-		case 0:
+		case -1:
+			type = HIDDEN;
+			if (topPart != nullptr)
+			{
+				if (topPart->shouldDelete())
+				{
+					topPart = nullptr;
+					texInit = false;
+					type = LAND;
+					setSpriteNum(17);
+					setOrientation(orientation % 8);
+					vel = sf::Vector2f(0, 0);
+				}
+			}
 			break;
-		case 1:
+		case 0: case 1:
 			sf::Vector2f distance = objects->at(target)->getPos() - getPos();
 			float magnitude = sqrt((distance.x * distance.x) + (distance.y * distance.y));
 			sf::Vector2f projVelocity = sf::Vector2f(2 * distance.x / magnitude, 2 * distance.y / magnitude);
@@ -92,7 +125,7 @@ void Land::update(sf::Vector2u winSize, std::vector<Object*>* objects, bool time
 			//Shoot at target player
 			if (cooldown == 0 && entered)
 			{
-				
+
 				objects->push_back(new Projectile(getPos().x, getPos().y,
 				projVelocity, sf::Vector2f(10, 10), 0, false, 0, 0, 12));
 
@@ -103,6 +136,7 @@ void Land::update(sf::Vector2u winSize, std::vector<Object*>* objects, bool time
 				else
 					target = 0;
 			}
+			break;
 		}
 	}
 }
