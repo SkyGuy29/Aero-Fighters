@@ -319,6 +319,9 @@ void Level::initializeTextures(int index)
 				objects[objects.size() - 1 - index]->setTexture(&enemyImg,
 					sf::Vector2i(32, 32), sf::Vector2i(696, 480), 3, false);
 				break;
+			default:
+				objects[objects.size() - 1 - index]->setRandColor();
+				break;
 			}
 			break;
 		case Object::PLAYER_PROJECTILE: case Object::ENEMY_PROJECTILE:

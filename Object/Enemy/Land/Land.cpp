@@ -69,6 +69,7 @@ Land::Land(short id, bool left, float* backgroundSpeed, sf::Vector2u winSize, st
 	case 7: //mountain base
 		health = 10;
 		setSize(50, 50);
+		cooldown = 100;
 		break;
 	case 8: //landmine
 		health = 3;
@@ -175,10 +176,11 @@ void Land::update(sf::Vector2u winSize, std::vector<Object*>* objects, bool time
 			}
 			break;
 		case 7:
-			if (!cooldown)
+			if (!cooldown && entered)
 			{
-				cooldown = 60;
-				//Create a plane
+				cooldown = 100;
+				objects->push_back(new Air(0, true, winSize, objects,
+					pos, sf::Vector2f(0, 5)));
 			}
 			break;
 		case 8:
