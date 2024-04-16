@@ -100,7 +100,7 @@ void Land::update(sf::Vector2u winSize, std::vector<Object*>* objects, bool time
 		
 		switch (id)
 		{
-		case -1:
+		case -1: //Tank bottom
 			type = HIDDEN;
 			if (topPart != nullptr)
 			{
@@ -115,7 +115,7 @@ void Land::update(sf::Vector2u winSize, std::vector<Object*>* objects, bool time
 				}
 			}
 			break;
-		case 0: case 1:
+		case 0: case 1: //Tank top
 			distance = objects->at(target)->getPos() - getPos();
 			magnitude = sqrt((distance.x * distance.x) + (distance.y * distance.y));
 			projVelocity = sf::Vector2f(2 * distance.x / magnitude, 2 * distance.y / magnitude);
@@ -153,7 +153,7 @@ void Land::update(sf::Vector2u winSize, std::vector<Object*>* objects, bool time
 					target = 0;
 			}
 			break;
-		case 2:
+		case 2: //Building Shoot 
 			if (!cooldown)
 			{
 				cooldown = 100;
@@ -175,7 +175,7 @@ void Land::update(sf::Vector2u winSize, std::vector<Object*>* objects, bool time
 				sf::Vector2f(0.76537, -1.84776), sf::Vector2f(10, 10), 0, false, 0, 0, 12));
 			}
 			break;
-		case 7:
+		case 7: //Hangar
 			if (!cooldown && entered)
 			{
 				cooldown = 100;
@@ -183,7 +183,7 @@ void Land::update(sf::Vector2u winSize, std::vector<Object*>* objects, bool time
 					pos, sf::Vector2f(0, 5)));
 			}
 			break;
-		case 8:
+		case 8: //Landmines
 			if (!timer && orientation < 5 && del == false && entered)
 			{
 				setOrientation(orientation + 1);
