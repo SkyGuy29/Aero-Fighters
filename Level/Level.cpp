@@ -75,13 +75,6 @@ void Level::load(sf::Vector2u winSize, short country, int mapId)
 	objects.at(0)->setTexture(&playerImg, sf::Vector2i(32, 32), sf::Vector2i(0, 16), 5, false);
 	objects.at(1)->setTexture(&playerImg, sf::Vector2i(32, 32), sf::Vector2i(0, 16), 5, false);
 
-	//objects.push_back(new Collectable(0, sf::Vector2f(winSize.x / 2, winSize.y / 2)));
-
-	//land enemy
-	/*sf::Vector2f pos = sf::Vector2f(winSize.x * 0.5, winSize.y * 0.1);
-	sf::Vector2f vel = sf::Vector2f(0, 0);
-	objects.push_back(new Land(0, true, &backgroundSpeed, winSize, &objects, pos, vel));*/
-
 	short type, id;
 	sf::Vector2f pos, vel;
 
@@ -120,9 +113,6 @@ void Level::load(sf::Vector2u winSize, short country, int mapId)
 			objects.push_back(new Air(id, true, winSize, &objects, pos, vel));
 			break;
 		}
-		
-
-		
 	}
 }
 
@@ -319,6 +309,9 @@ void Level::initializeTextures(int index)
 				objects[objects.size() - 1 - index]->setTexture(&enemyImg,
 					sf::Vector2i(32, 32), sf::Vector2i(696, 480), 3, false);
 				break;
+			default:
+				objects[objects.size() - 1 - index]->setRandColor();
+				break;
 			}
 			break;
 		case Object::PLAYER_PROJECTILE: case Object::ENEMY_PROJECTILE:
@@ -489,77 +482,77 @@ void Level::update(sf::Vector2u winSize)
 	//Random events!!!
 
 	//Fly straight in formation
-	if (rand() % 200 == -1)
-	{
-		sf::Vector2f pos = sf::Vector2f((rand() % 60 + 20) / 100. * winSize.x, winSize.y * -0.25f);
-		sf::Vector2f vel = sf::Vector2f(0, 4);
+	//if (rand() % 200 == -1)
+	//{
+	//	sf::Vector2f pos = sf::Vector2f((rand() % 60 + 20) / 100. * winSize.x, winSize.y * -0.25f);
+	//	sf::Vector2f vel = sf::Vector2f(0, 4);
 
-		for (int i = 0; i < 6; i++)
-		{
-			switch (i)
-			{
-			case 0:
-				break;
-			case 1:
-				pos += sf::Vector2f(-0.05f * winSize.y, -0.1f * winSize.y);
-				break;
-			case 2:
-			case 4:
-			case 5:
-				pos += sf::Vector2f(0.1f * winSize.y, 0);
-				break;
-			case 3:
-				pos += sf::Vector2f(-0.15f * winSize.y, -0.1f * winSize.y);
-			}
+	//	for (int i = 0; i < 6; i++)
+	//	{
+	//		switch (i)
+	//		{
+	//		case 0:
+	//			break;
+	//		case 1:
+	//			pos += sf::Vector2f(-0.05f * winSize.y, -0.1f * winSize.y);
+	//			break;
+	//		case 2:
+	//		case 4:
+	//		case 5:
+	//			pos += sf::Vector2f(0.1f * winSize.y, 0);
+	//			break;
+	//		case 3:
+	//			pos += sf::Vector2f(-0.15f * winSize.y, -0.1f * winSize.y);
+	//		}
 
-			objects.push_back(new Air(0, true, winSize, &objects, pos, vel));
-		}
-	}
-	//Turn left
-	if (rand() % 200 == -1)
-	{
-		sf::Vector2f pos = sf::Vector2f((rand() % 60 + 20) / 100. * winSize.x, 
-			winSize.y * -0.25f);
-		sf::Vector2f vel = sf::Vector2f(0, 4);
-		objects.push_back(new Air(1, true, winSize, &objects, pos, vel));
-	}
-	//Turn Right
-	if (rand() % 200 == -1)
-	{
-		sf::Vector2f pos = sf::Vector2f((rand() % 60 + 20) / 100. * winSize.x,
-			winSize.y * -0.25f);
-		sf::Vector2f vel = sf::Vector2f(0, 4);
-		objects.push_back(new Air(1, true, winSize, &objects, pos, vel));
-	}
-	//Flipping planes
-	if (rand() % 200 == -1)
-	{
-		sf::Vector2f pos = sf::Vector2f((rand() % 60 + 20) / 100. * winSize.x,
-			winSize.y * -0.25f);
-		sf::Vector2f vel = sf::Vector2f(1, 7);
+	//		objects.push_back(new Air(0, true, winSize, &objects, pos, vel));
+	//	}
+	//}
+	////Turn left
+	//if (rand() % 200 == -1)
+	//{
+	//	sf::Vector2f pos = sf::Vector2f((rand() % 60 + 20) / 100. * winSize.x, 
+	//		winSize.y * -0.25f);
+	//	sf::Vector2f vel = sf::Vector2f(0, 4);
+	//	objects.push_back(new Air(1, true, winSize, &objects, pos, vel));
+	//}
+	////Turn Right
+	//if (rand() % 200 == -1)
+	//{
+	//	sf::Vector2f pos = sf::Vector2f((rand() % 60 + 20) / 100. * winSize.x,
+	//		winSize.y * -0.25f);
+	//	sf::Vector2f vel = sf::Vector2f(0, 4);
+	//	objects.push_back(new Air(1, true, winSize, &objects, pos, vel));
+	//}
+	////Flipping planes
+	//if (rand() % 200 == -1)
+	//{
+	//	sf::Vector2f pos = sf::Vector2f((rand() % 60 + 20) / 100. * winSize.x,
+	//		winSize.y * -0.25f);
+	//	sf::Vector2f vel = sf::Vector2f(1, 7);
 
-		objects.push_back(new Air(2, true, winSize, &objects, pos, vel));
+	//	objects.push_back(new Air(2, true, winSize, &objects, pos, vel));
 
-		for (int i = 0; i < 3; i++)
-		{
-			pos += sf::Vector2f(-0.05f * winSize.y, -0.1f * winSize.y);
-			objects.push_back(new Air(2, true, winSize, &objects, pos, vel));
-		}
-	}
-	//Mini choppers left
-	if (rand() % 200 == -1)
-	{
-		sf::Vector2f pos = sf::Vector2f(0, 0.15 * winSize.y);
-		sf::Vector2f vel = sf::Vector2f(4, 0);
-		objects.push_back(new Air(3, true, winSize, &objects, pos, vel));
-	}
-	//Mini choppers right
-	if (rand() % 200 == -1)
-	{
-		sf::Vector2f pos = sf::Vector2f(winSize.x, 0.15 * winSize.y);
-		sf::Vector2f vel = sf::Vector2f(-4, 0);
-		objects.push_back(new Air(3, false, winSize, &objects, pos, vel));
-	}
+	//	for (int i = 0; i < 3; i++)
+	//	{
+	//		pos += sf::Vector2f(-0.05f * winSize.y, -0.1f * winSize.y);
+	//		objects.push_back(new Air(2, true, winSize, &objects, pos, vel));
+	//	}
+	//}
+	////Mini choppers left
+	//if (rand() % 200 == -1)
+	//{
+	//	sf::Vector2f pos = sf::Vector2f(0, 0.15 * winSize.y);
+	//	sf::Vector2f vel = sf::Vector2f(4, 0);
+	//	objects.push_back(new Air(3, true, winSize, &objects, pos, vel));
+	//}
+	////Mini choppers right
+	//if (rand() % 200 == -1)
+	//{
+	//	sf::Vector2f pos = sf::Vector2f(winSize.x, 0.15 * winSize.y);
+	//	sf::Vector2f vel = sf::Vector2f(-4, 0);
+	//	objects.push_back(new Air(3, false, winSize, &objects, pos, vel));
+	//}
 
 	switch (country)
 	{

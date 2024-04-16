@@ -10,7 +10,6 @@ Air::Air(short id, bool left, sf::Vector2u winSize, std::vector<Object*>* object
 	sprite.setSize(size);
 	sprite.setOrigin(size / 2.f);
 	setSpriteNum(rand() % 20);
-	setOrientation(rand() % 16);
 }
 
 void Air::update(sf::Vector2u winSize, std::vector<Object*>* objects, bool time)
@@ -21,8 +20,12 @@ void Air::update(sf::Vector2u winSize, std::vector<Object*>* objects, bool time)
 	{
 		switch (id)
 		{
+		case 0: //Default plane for the hangars
+			setSpriteNum(15);
+			break;
 		case 1: //turning plane
 			setSpriteNum(15);
+			//change orientation for animation
 			if (pos.y >= 0.1f * winSize.y)
 			{
 				if (left)
@@ -33,6 +36,7 @@ void Air::update(sf::Vector2u winSize, std::vector<Object*>* objects, bool time)
 			break;
 		case 2: //flip and turn around
 			setSpriteNum(17);
+			//change orientation for animation
 			if (pos.y >= 0.4f * winSize.y)
 				vel.y -= 0.75;
 			break;
