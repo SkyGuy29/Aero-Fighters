@@ -138,7 +138,7 @@ void Land::update(sf::Vector2u winSize, std::vector<Object*>* objects, bool time
 			}
 
 			//Shoot at target player
-			if (cooldown == 0 && entered && orientation == (int) angle)
+			if (!cooldown && entered && orientation == (int) angle)
 			{
 
 				objects->push_back(new Projectile(getPos().x, getPos().y,
