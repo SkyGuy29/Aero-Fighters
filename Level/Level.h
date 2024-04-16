@@ -56,6 +56,13 @@ private:
 	sf::Texture explosionImg;
 	sf::Texture enemyImg;
 	sf::Texture enemyProjectileImg;
+
+
+
+
+
+
+
 	sf::IntRect rect;
 	float backgroundSpeed = 1, backgroundDist = 0, frontbackgroundDist = 0;
 	short country, orient = 0;
