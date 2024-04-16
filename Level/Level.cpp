@@ -445,11 +445,13 @@ void Level::update(sf::Vector2u winSize)
 	{
 		if (backgroundDist <= 0)
 		{
+			frontbackgroundDist -= backgroundSpeed;
 			backgroundDist = 0;
+			rect.top = frontbackgroundDist;
 			frontbackground.setTextureRect(rect);
 		}
-		//else
-			//frontbackground.setPosition(0, -backgroundDist);
+		else
+			frontbackground.setPosition(0, -backgroundDist);
 	}
 	rect.top = backgroundDist;
 	background.setTextureRect(rect);
@@ -581,10 +583,10 @@ void Level::statesUpdate(sf::Vector2u winSize)
 
 void Level::japanUpdate(sf::Vector2u winSize)
 {
-	//if (backgroundDist <= 0 || !(p[1]->getTime()))
-		//backgroundSpeed = 0;
-	//else
-		//backgroundSpeed = 1;
+	if (backgroundDist <= 0 || !(p[1]->getTime()))
+		backgroundSpeed = 0;
+	else
+		backgroundSpeed = 1;
 }
 
 void Level::swedenUpdate(sf::Vector2u winSize)
