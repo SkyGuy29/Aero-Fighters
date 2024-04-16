@@ -1,9 +1,18 @@
 #include "Air.h"
 
-Air::Air(short id, bool left, sf::Vector2u winSize, std::vector<Object*>* objects,
-	sf::Vector2f pos, sf::Vector2f vel) : Enemy(id, left, pos, vel)
+Air::Air(short id, bool left, float* backgroundDist, int startMark, sf::Vector2u winSize, std::vector<Object*>* objects,
+	sf::Vector2f pos, sf::Vector2f vel) : Enemy(id, left, sf::Vector2f(-100, -100), sf::Vector2f(0, 0))
 {
 	type = AIR;
+
+	this->startMark = startMark;
+	this->backgroundDist = backgroundDist;
+
+	if (startMark == -1)
+		entered = true;
+
+	spawnPos = pos;
+	spawnVel = vel;
 
 	health = 1;
 	setSize(32, 32);
