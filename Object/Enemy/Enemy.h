@@ -15,8 +15,10 @@ public:
 	void enemyUpdate(sf::Vector2u winSize, std::vector<Object*>* objects);
 
 protected:
-	int health;
+	int health, startMark;
 	bool entered = false;
 	bool left;
+
+	sf::Vector2f spawnPos, spawnVel;
 };
 

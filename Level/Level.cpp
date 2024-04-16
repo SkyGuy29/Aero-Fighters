@@ -80,6 +80,7 @@ void Level::load(sf::Vector2u winSize, short country, int mapId)
 	objects.at(1)->setTexture(&playerImg, sf::Vector2i(32, 32), sf::Vector2i(0, 16), 5, false);
 
 	short type, id;
+	int startMark;
 	sf::Vector2f pos, vel;
 
 	std::fstream file;
@@ -87,7 +88,7 @@ void Level::load(sf::Vector2u winSize, short country, int mapId)
 	switch (country)
 	{
 	case STATES:
-		objects.push_back(new Air(0, true, winSize, &objects, sf::Vector2f(winSize.x / 2, winSize.y / 2), sf::Vector2f(0, 1)));
+		file.open("Res/States/enemies.txt");
 		break;
 	case JAPAN:
 		break;
@@ -114,7 +115,8 @@ void Level::load(sf::Vector2u winSize, short country, int mapId)
 			objects.push_back(new Land(id, true, &backgroundSpeed, winSize, &objects, pos, vel));
 			break;
 		case 1: //air
-			objects.push_back(new Air(id, true, winSize, &objects, pos, vel));
+			file >> startMark;
+			objects.push_back(new Air(id, true, &backgroundDist, startMark, winSize, &objects, pos, vel));
 			break;
 		}
 	}
@@ -456,11 +458,13 @@ void Level::update(sf::Vector2u winSize)
 	{
 		if (backgroundDist <= 0)
 		{
+			frontbackgroundDist -= backgroundSpeed;
 			backgroundDist = 0;
+			rect.top = frontbackgroundDist;
 			frontbackground.setTextureRect(rect);
 		}
-		//else
-			//frontbackground.setPosition(0, -backgroundDist);
+		else
+			frontbackground.setPosition(0, -backgroundDist);
 	}
 	rect.top = backgroundDist;
 	background.setTextureRect(rect);
@@ -592,10 +596,10 @@ void Level::statesUpdate(sf::Vector2u winSize)
 
 void Level::japanUpdate(sf::Vector2u winSize)
 {
-	//if (backgroundDist <= 0 || !(p[1]->getTime()))
-		//backgroundSpeed = 0;
-	//else
-		//backgroundSpeed = 1;
+	if (backgroundDist <= 0 || !(p[1]->getTime()))
+		backgroundSpeed = 0;
+	else
+		backgroundSpeed = 1;
 }
 
 void Level::swedenUpdate(sf::Vector2u winSize)

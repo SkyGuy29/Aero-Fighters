@@ -53,6 +53,11 @@ void Game::run()
 				resize();
 			}
 
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Tab))
+			updatesPSec = 600;
+		else
+			updatesPSec = 30;
+
 		// Keeps constant update rate.
 		deltaTime += clock.restart().asMilliseconds();
 		while (deltaTime >= 1000 / updatesPSec)
