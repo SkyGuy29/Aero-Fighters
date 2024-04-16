@@ -75,13 +75,6 @@ void Level::load(sf::Vector2u winSize, short country, int mapId)
 	objects.at(0)->setTexture(&playerImg, sf::Vector2i(32, 32), sf::Vector2i(0, 16), 5, false);
 	objects.at(1)->setTexture(&playerImg, sf::Vector2i(32, 32), sf::Vector2i(0, 16), 5, false);
 
-	//objects.push_back(new Collectable(0, sf::Vector2f(winSize.x / 2, winSize.y / 2)));
-
-	//land enemy
-	/*sf::Vector2f pos = sf::Vector2f(winSize.x * 0.5, winSize.y * 0.1);
-	sf::Vector2f vel = sf::Vector2f(0, 0);
-	objects.push_back(new Land(0, true, &backgroundSpeed, winSize, &objects, pos, vel));*/
-
 	short type, id;
 	sf::Vector2f pos, vel;
 
@@ -120,9 +113,6 @@ void Level::load(sf::Vector2u winSize, short country, int mapId)
 			objects.push_back(new Air(id, true, winSize, &objects, pos, vel));
 			break;
 		}
-		
-
-		
 	}
 }
 
