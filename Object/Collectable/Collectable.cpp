@@ -35,7 +35,7 @@ void Collectable::update(sf::Vector2u winSize, std::vector<Object*>* objects, bo
 {
 	if (id == 0)
 	{
-		pos.y += *backgroundSpeed;
+		vel.y = *backgroundSpeed;
 	}
 	nextFrame(8);
 	if (outOfBounds(winSize) && (id == 0))
@@ -74,6 +74,6 @@ void Collectable::update(sf::Vector2u winSize, std::vector<Object*>* objects, bo
 		vel.y = 0;
 	else
 		vel.y = 1;
-	
+
 	objectUpdate(winSize, objects);
 }
