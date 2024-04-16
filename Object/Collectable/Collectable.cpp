@@ -26,7 +26,7 @@ Collectable::Collectable(short id, float xPosition, float yPosition, float* bgSp
 	pos.x = xPosition;
 	pos.y = yPosition;
 	if (id == 0)
-		vel = sf::Vector2f(0, 0);
+		vel = sf::Vector2f(0, *bgSpeed);
 	else
 		vel = sf::Vector2f(3.535, 3.535);
 }
