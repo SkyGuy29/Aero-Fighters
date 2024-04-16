@@ -179,8 +179,8 @@ void Land::update(sf::Vector2u winSize, std::vector<Object*>* objects, bool time
 			if (!cooldown && entered)
 			{
 				cooldown = 100;
-				objects->push_back(new Air(0, true, winSize, objects,
-					pos, sf::Vector2f(0, 5)));
+				/*objects->push_back(new Air(0, true, winSize, objects,
+					pos, sf::Vector2f(0, 5)));*/
 			}
 			break;
 		case 8:

@@ -25,6 +25,13 @@ void Enemy::enemyUpdate(sf::Vector2u winSize, std::vector<Object*>* objects)
 	if (outOfBounds(winSize) && entered)
 		del = true;
 
+	//Go to spawn place
+	if (!entered && backgroundDist != nullptr && *backgroundDist <= startMark)
+	{
+		pos = spawnPos;
+		vel = spawnVel;
+	}
+
 	//Am I being shot?
 	for (int i = 0; i < objects->size(); i++)
 	{
