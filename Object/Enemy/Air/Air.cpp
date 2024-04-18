@@ -16,14 +16,22 @@ Air::Air(short id, bool left, float* backgroundDist, int startMark, sf::Vector2u
 
 	health = 1;
 	setSize(32, 32);
-	sprite.setSize(size);
-	sprite.setOrigin(size / 2.f);
 
 	switch (id)
 	{
 	case 0: //baby copter
 		setSpriteNum(0);
+		break;
+	case 1: //big plane
+		setSpriteNum(14);
+		setSize(50, 50);
+		break;
+	case 2: //spinny planes
+		setSpriteNum(15);
 	}
+
+	sprite.setSize(size);
+	sprite.setOrigin(size / 2.f);
 }
 
 void Air::update(sf::Vector2u winSize, std::vector<Object*>* objects, bool time)
@@ -32,6 +40,16 @@ void Air::update(sf::Vector2u winSize, std::vector<Object*>* objects, bool time)
 	//Do things here only if time is moving
 	if(time)
 	{
+		switch (id)
+		{
+			//ENGLAND
+		case 0: //baby copter
+			if (entered)
+			{
+				vel.y *= 0.95;
+			}
+		}
+
 		//switch (id)
 		//{
 		//case 0: //Default plane for the hangars
