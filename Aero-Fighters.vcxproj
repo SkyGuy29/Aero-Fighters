@@ -173,6 +173,9 @@
     <ClInclude Include="Object\Player\Player.h" />
     <ClInclude Include="Object\Projectile\Projectile.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\..\..\..\Downloads\Lobotomy_Time.png" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

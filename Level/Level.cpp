@@ -62,6 +62,10 @@ void Level::load(sf::Vector2u winSize, short country, int mapId)
 	enemyImg.loadFromFile("Res/Misc/enemies.png");
 	enemyProjectileImg.loadFromFile("Res/Misc/Enemy projectiles.png");
 
+
+
+
+
 	p[0] = new Player(country, true, &backgroundSpeed);
 	p[1] = new Player(country, false, &backgroundSpeed);
 	objects.push_back(p[0]);
@@ -118,6 +122,7 @@ void Level::load(sf::Vector2u winSize, short country, int mapId)
 	}
 }
 
+//You need to set spriteNum to change the texture.
 void Level::initializeTextures(int index)
 {
 	short moneyOffset = 0;
@@ -203,6 +208,14 @@ void Level::initializeTextures(int index)
 			case 18: //Destroyed Boat/Tank 2
 				objects[objects.size() - 1 - index]->setTexture(&enemyImg,
 					sf::Vector2i(32, 32), sf::Vector2i(520 + 32 * orient, 520), 1, false);
+				break;
+			case 19:
+				break;
+			case 20:
+				break;
+			case 21:
+				break;
+			case 22:
 				break;
 			}
 			break;
