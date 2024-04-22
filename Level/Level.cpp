@@ -47,13 +47,14 @@ void Level::load(sf::Vector2u winSize, short country, int mapId)
 	frontbackground.setSize(sf::Vector2f(winSize));
 	backgroundDist = backgroundImg.getSize().y - winSize.y;
 	rect = sf::IntRect(0, backgroundDist, winSize.x, winSize.y);
+	frontRect = rect;
 	background.setTexture(&backgroundImg);
 	frontbackground.setTexture(&frontbackgroundImg);
 	background.setTextureRect(rect);
 	frontbackground.setTextureRect(rect);
 	frontbackgroundImg.setRepeated(true);
-	frontbackground.setPosition(0, -backgroundDist);
-	frontbackgroundDist = -backgroundDist;
+	frontbackgroundDist = winSize.y;
+	frontbackground.setPosition(0, frontbackgroundDist);
 	
 
 	playerImg.loadFromFile("Res/Misc/players.png");
@@ -69,6 +70,7 @@ void Level::load(sf::Vector2u winSize, short country, int mapId)
 	hoodImg.loadFromFile("Res/England/Hood.png");
 	coneImg.loadFromFile("Res/England/Cone.png");
 	roofusImg.loadFromFile("Res/England/Roofus.png");
+	domeAnimationImg.loadFromFile("Res/England/Dome animation.png");
 
 	p[0] = new Player(country, true, &backgroundSpeed);
 	p[1] = new Player(country, false, &backgroundSpeed);
@@ -82,6 +84,9 @@ void Level::load(sf::Vector2u winSize, short country, int mapId)
 	// just a test to try out the moved animator to object
 	objects.at(0)->setTexture(&playerImg, sf::Vector2i(32, 32), sf::Vector2i(0, 16), 5, false);
 	objects.at(1)->setTexture(&playerImg, sf::Vector2i(32, 32), sf::Vector2i(0, 16), 5, false);
+
+	objects.push_back(new Air(0, true, &backgroundDist, 0, winSize, &objects, sf::Vector2f(winSize.x * 0.5f,
+	winSize.y * 0.5f), sf::Vector2f(0, 0)));
 
 	short type, id;
 	int startMark;
@@ -223,7 +228,7 @@ void Level::initializeTextures(int index)
 				break;
 			case 21: //Dome Shooty shoot Animatio 
 				objects[objects.size() - 1 - index]->setTexture(&houseImg,
-					sf::Vector2i(89, 74), sf::Vector2i(0, 0), 1, false);
+					sf::Vector2i(89, 74), sf::Vector2i(0, 0), 10, false);
 				break;
 			case 22: //Gate
 				objects[objects.size() - 1 - index]->setTexture(&gateImg,
@@ -310,23 +315,23 @@ void Level::initializeTextures(int index)
 				break;
 			case 10: //Advanced Mega Copter 1
 				objects[objects.size() - 1 - index]->setTexture(&enemyImg,
-					sf::Vector2i(32, 72), sf::Vector2i(520, 64), 1, false);
+					sf::Vector2i(32, 96), sf::Vector2i(520, 64), 1, false);
 				break;
 			case 11: //Advanced Mega Copter 2
 				objects[objects.size() - 1 - index]->setTexture(&enemyImg,
-					sf::Vector2i(32, 72), sf::Vector2i(552, 64), 1, false);
+					sf::Vector2i(32, 96), sf::Vector2i(560, 64), 1, false);
 				break;
 			case 12: //Big Plane 1
 				objects[objects.size() - 1 - index]->setTexture(&enemyImg,
-					sf::Vector2i(96, 64), sf::Vector2i(592, 64), 1, false);
+					sf::Vector2i(80, 88), sf::Vector2i(600, 64), 1, false);
 				break;
 			case 13: //Big Copter 
 				objects[objects.size() - 1 - index]->setTexture(&enemyImg,
-					sf::Vector2i(32, 48), sf::Vector2i(696, 64), 1, false);
+					sf::Vector2i(48, 72), sf::Vector2i(688, 64), 1, false);
 				break;
 			case 14: //Big Plane 2
 				objects[objects.size() - 1 - index]->setTexture(&enemyImg,
-					sf::Vector2i(32, 32), sf::Vector2i(592, 128), 2, false);
+					sf::Vector2i(80, 80), sf::Vector2i(600, 160), 1, false);
 				break;
 			case 15: //Side Bomber 1
 				objects[objects.size() - 1 - index]->setTexture(&enemyImg,
@@ -346,7 +351,7 @@ void Level::initializeTextures(int index)
 				break;
 			case 19: //Regular Copter Blades
 				objects[objects.size() - 1 - index]->setTexture(&enemyImg,
-					sf::Vector2i(32, 32), sf::Vector2i(696, 480), 3, false);
+					sf::Vector2i(32, 32), sf::Vector2i(688, 480), 3, false);
 				break;
 			default:
 				objects[objects.size() - 1 - index]->setRandColor();
@@ -477,29 +482,16 @@ void Level::update(sf::Vector2u winSize)
 	ui.setCharacterSize(12);
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter) && infScrollInPos)
-		raiseInfScroll();
+		setInfScroll(false);
 
 	// The background has to scroll backwards to get the effect that we want.
-	if (!infScrollInPos || !infScrollMoveDown)
+	if (!infScrollInPos || !infScrollEnabled)
 	{
 		backgroundDist -= backgroundSpeed;
 		rect.top = backgroundDist;
 		background.setTextureRect(rect);
 	}
 	updateInfScroll();
-
-	/*if (backgroundDist <= frontbackground.getSize().y)
-	{
-		if (backgroundDist <= 0)
-		{
-			frontbackgroundDist -= backgroundSpeed;
-			backgroundDist = 0;
-			rect.top = frontbackgroundDist;
-			frontbackground.setTextureRect(rect);
-		}
-		else
-			frontbackground.setPosition(0, -backgroundDist);
-	}*/
 
 	// for smoothing out background. 
 	// I offset the the background by negative decapitating the background float. 
@@ -619,50 +611,54 @@ void Level::update(sf::Vector2u winSize)
 	}
 }
 
-void Level::lowerInfScroll()
+void Level::setInfScroll(bool enable)
 {
-	infScrollMoveDown = true;
+	printf("set\n");
+	infScrollEnabled = enable;
 	infScrollInPos = false;
-	rect.top = 0;
-	frontbackground.setTextureRect(rect);
-}
 
-void Level::raiseInfScroll()
-{
-	infScrollMoveDown = false;
-	infScrollInPos = false;
+	if (enable)
+	{
+		frontRect.top = 0;
+		frontbackground.setTextureRect(rect);
+		frontbackgroundDist = -int(winSize.y);
+		frontbackground.setPosition(0, frontbackgroundDist);
+	}
 }
 
 void Level::updateInfScroll()
 {
-	if (!infScrollInPos)
+	if (infScrollEnabled || !infScrollInPos)
 	{
-		frontbackgroundDist += (infScrollMoveDown ? 1 : -1) * backgroundSpeed;
-		frontbackground.setPosition(0, frontbackgroundDist);
-	}
-	else
-	{
-		rect.top += (infScrollMoveDown ? 1 : -1) * backgroundSpeed;
-		frontbackground.setTextureRect(rect);
-	}
+		if (infScrollInPos)
+		{
+			frontRect.top -= backgroundSpeed;
+			frontbackground.setTextureRect(frontRect);
+		}
+		else
+		{
+			printf("moved\n");
+			frontbackgroundDist += backgroundSpeed;
+			frontbackground.setPosition(0, frontbackgroundDist);
+		}
 
-	if (frontbackgroundDist > 0)
-	{
-		frontbackgroundDist = 0;
-		infScrollInPos = true;
+		if ((frontbackgroundDist == winSize.y || frontbackgroundDist == 0) && !infScrollInPos)
+		{
+			infScrollInPos = true;
+			printf("stopped\n");
+		}
 	}
-	else if (frontbackgroundDist < -frontbackground.getSize().y)
-	{
-		frontbackgroundDist = -frontbackground.getSize().y;
-		infScrollInPos = true;
-	}
+	//printf("inPos: %d, enabled: %d, dist: %f\n", int(infScrollInPos), int(infScrollEnabled), frontbackgroundDist);
+
 }
 
 void Level::statesUpdate(sf::Vector2u winSize)
 {
-	if (backgroundDist < 0)
-		lowerInfScroll();
-		//backgroundSpeed = 0;
+	if (backgroundDist == 0 && !infScrollEnabled)
+	{
+		printf("setset\n");
+		setInfScroll(true);
+	}
 	return;
 }
 

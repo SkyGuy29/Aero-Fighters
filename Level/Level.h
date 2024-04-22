@@ -26,8 +26,7 @@ public:
 	void update(sf::Vector2u winSize);
 
 private:
-	void lowerInfScroll();
-	void raiseInfScroll();
+	void setInfScroll(bool enable);
 	void updateInfScroll();
 
 	void getInput(sf::Vector2u winSize);
@@ -66,6 +65,7 @@ private:
 	sf::Texture hoodImg;
 	sf::Texture coneImg;
 	sf::Texture roofusImg;
+	sf::Texture domeAnimationImg;
 	sf::IntRect rect;
 	float backgroundSpeed = 1, backgroundDist = 0, frontbackgroundDist = 0;
 	short country, orient = 0;
@@ -142,6 +142,7 @@ private:
 	};
 
 	sf::Vector2u winSize;
-	bool infScrollMoveDown = false, infScrollInPos = true;
+	bool infScrollInPos = true, infScrollEnabled = false;
+	sf::IntRect frontRect;
 };
 

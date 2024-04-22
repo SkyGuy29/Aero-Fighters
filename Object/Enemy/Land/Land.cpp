@@ -36,7 +36,7 @@ Land::Land(short id, bool left, float* backgroundSpeed, sf::Vector2u winSize, st
 		break;
 	case 0: //Weak Tank
 		health = 1;
-		setSpriteNum(2);
+		setSpriteNum(1);
 		setOrientation(7);
 		break;
 	case 1: //STRONG Tank
@@ -48,22 +48,27 @@ Land::Land(short id, bool left, float* backgroundSpeed, sf::Vector2u winSize, st
 		cooldown = 100;
 		health = 60;
 		setSize(60, 60);
+		setSpriteNum(20);
 		break;
 	case 3: //smaller fort buildings
 		health = 15;
 		setSize(60, 60);
+		setSpriteNum(24);
 		break;
 	case 4: //house
 		health = 5;
 		setSize(75, 50);
+		setSpriteNum(19);
 		break;
 	case 5: //road gate
 		health = 10;
 		setSize(35, 35);
+		setSpriteNum(22);
 		break;
 	case 6: //Hangar
 		health = 30;
 		setSize(80, 100);
+		setSpriteNum(23);
 		break;
 		//SWEDEN
 	case 7: //mountain base
