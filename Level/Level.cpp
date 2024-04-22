@@ -70,6 +70,7 @@ void Level::load(sf::Vector2u winSize, short country, int mapId)
 	coneImg.loadFromFile("Res/England/Cone.png");
 	roofusImg.loadFromFile("Res/England/Roofus.png");
 	domeAnimationImg.loadFromFile("Res/England/Dome animation.png");
+	missileImg.loadFromFile("Res/Misc/missles.png");
 
 	p[0] = new Player(country, true, &backgroundSpeed);
 	p[1] = new Player(country, false, &backgroundSpeed);
@@ -134,11 +135,11 @@ void Level::load(sf::Vector2u winSize, short country, int mapId)
 void Level::initializeTextures(int index)
 {
 	short moneyOffset = 0;
+	orient = objects[objects.size() - 1 - index]->getOrientation();
 	if (!objects[objects.size() - 1 - index]->isTexInit())
 		switch (objects[objects.size() - 1 - index]->getType())
 		{
 		case Object::LAND:
-			orient = objects[objects.size() - 1 - index]->getOrientation();
 			switch (objects[objects.size() - 1 - index]->getSpriteNum())
 			{
 			case 0: //Tank 1 base
@@ -269,7 +270,6 @@ void Level::initializeTextures(int index)
 			}
 			break;
 		case Object::AIR:
-			orient = objects[objects.size() - 1 - index]->getOrientation();
 			switch (objects[objects.size() - 1 - index]->getSpriteNum())
 			{
 			case 0: //Weird thing 1
@@ -431,6 +431,10 @@ void Level::initializeTextures(int index)
 			case 17: //One tiny boy
 				objects[objects.size() - 1 - index]->setTexture(&enemyProjectileImg,
 					sf::Vector2i(4, 4), sf::Vector2i(0, 0), 1, false);
+				break;
+			case 18: //Missiles
+				objects[objects.size() - 1 - index]->setTexture(&missileImg,
+					sf::Vector2i(12, 12), sf::Vector2i(orient * 12, 0), 1, false);
 				break;
 			}
 			break;
