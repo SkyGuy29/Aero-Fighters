@@ -140,5 +140,8 @@ private:
 		sf::Keyboard::O,  // Special
 		sf::Keyboard::Space //Spawn
 	};
+
+	sf::Vector2u winSize;
+	bool infScrollMoveDown = false, infScrollInPos = true;
 };
 
