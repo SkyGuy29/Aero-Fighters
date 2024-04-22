@@ -84,6 +84,9 @@ void Level::load(sf::Vector2u winSize, short country, int mapId)
 	objects.at(0)->setTexture(&playerImg, sf::Vector2i(32, 32), sf::Vector2i(0, 16), 5, false);
 	objects.at(1)->setTexture(&playerImg, sf::Vector2i(32, 32), sf::Vector2i(0, 16), 5, false);
 
+	objects.push_back(new Air(0, true, &backgroundDist, 0, winSize, &objects, sf::Vector2f(winSize.x * 0.5f,
+	winSize.y * 0.5f), sf::Vector2f(0, 0)));
+
 	short type, id;
 	int startMark;
 	sf::Vector2f pos, vel;
@@ -311,23 +314,23 @@ void Level::initializeTextures(int index)
 				break;
 			case 10: //Advanced Mega Copter 1
 				objects[objects.size() - 1 - index]->setTexture(&enemyImg,
-					sf::Vector2i(32, 72), sf::Vector2i(520, 64), 1, false);
+					sf::Vector2i(32, 96), sf::Vector2i(520, 64), 1, false);
 				break;
 			case 11: //Advanced Mega Copter 2
 				objects[objects.size() - 1 - index]->setTexture(&enemyImg,
-					sf::Vector2i(32, 72), sf::Vector2i(552, 64), 1, false);
+					sf::Vector2i(32, 96), sf::Vector2i(560, 64), 1, false);
 				break;
 			case 12: //Big Plane 1
 				objects[objects.size() - 1 - index]->setTexture(&enemyImg,
-					sf::Vector2i(96, 64), sf::Vector2i(592, 64), 1, false);
+					sf::Vector2i(80, 88), sf::Vector2i(600, 64), 1, false);
 				break;
 			case 13: //Big Copter 
 				objects[objects.size() - 1 - index]->setTexture(&enemyImg,
-					sf::Vector2i(32, 48), sf::Vector2i(696, 64), 1, false);
+					sf::Vector2i(48, 72), sf::Vector2i(688, 64), 1, false);
 				break;
 			case 14: //Big Plane 2
 				objects[objects.size() - 1 - index]->setTexture(&enemyImg,
-					sf::Vector2i(32, 32), sf::Vector2i(592, 128), 2, false);
+					sf::Vector2i(80, 80), sf::Vector2i(600, 160), 1, false);
 				break;
 			case 15: //Side Bomber 1
 				objects[objects.size() - 1 - index]->setTexture(&enemyImg,
@@ -347,7 +350,7 @@ void Level::initializeTextures(int index)
 				break;
 			case 19: //Regular Copter Blades
 				objects[objects.size() - 1 - index]->setTexture(&enemyImg,
-					sf::Vector2i(32, 32), sf::Vector2i(696, 480), 3, false);
+					sf::Vector2i(32, 32), sf::Vector2i(688, 480), 3, false);
 				break;
 			default:
 				objects[objects.size() - 1 - index]->setRandColor();
