@@ -61,11 +61,12 @@ void Level::load(sf::Vector2u winSize, short country, int mapId)
 	explosionImg.loadFromFile("Res/Misc/Explosion.png");
 	enemyImg.loadFromFile("Res/Misc/enemies.png");
 	enemyProjectileImg.loadFromFile("Res/Misc/Enemy projectiles.png");
-	houseImg.loadFromFile("Res/Misc/House.png");
-	domeImg.loadFromFile("Res/Misc/Dome.png");
-	gateImg.loadFromFile("Res/Misc/Gate.png");
-	hoodImg.loadFromFile("Res/Misc/Hood.png");
-	coneImg.loadFromFile("Res/Misc/cone.png");
+	houseImg.loadFromFile("Res/England/House.png");
+	domeImg.loadFromFile("Res/England/Dome.png");
+	gateImg.loadFromFile("Res/England/Gate.png");
+	hoodImg.loadFromFile("Res/England/Hood.png");
+	coneImg.loadFromFile("Res/England/Cone.png");
+	roofusImg.loadFromFile("Res/England/Roofus.png");
 
 	p[0] = new Player(country, true, &backgroundSpeed);
 	p[1] = new Player(country, false, &backgroundSpeed);
