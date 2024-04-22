@@ -24,10 +24,11 @@ Air::Air(short id, bool left, float* backgroundDist, int startMark, sf::Vector2u
 		break;
 	case 1: //big plane
 		setSpriteNum(14);
-		setSize(50, 50);
+		setSize(80, 80);
 		break;
 	case 2: //spinny planes
 		setSpriteNum(15);
+		break;
 	}
 
 	sprite.setSize(size);
