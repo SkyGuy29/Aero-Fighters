@@ -429,7 +429,7 @@ void Level::initializeTextures(int index)
 				objects[objects.size() - 1 - index]->setTexture(&enemyProjectileImg,
 					sf::Vector2i(10, 10), sf::Vector2i(0, 0), 2, false);
 				break;
-			case 17: //One tiny boy
+			case 17: //One pixel projectile
 				objects[objects.size() - 1 - index]->setTexture(&enemyProjectileImg,
 					sf::Vector2i(4, 4), sf::Vector2i(0, 0), 1, false);
 				break;
