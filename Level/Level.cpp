@@ -63,10 +63,12 @@ void Level::load(sf::Vector2u winSize, short country, int mapId)
 	explosionImg.loadFromFile("Res/Misc/Explosion.png");
 	enemyImg.loadFromFile("Res/Misc/enemies.png");
 	enemyProjectileImg.loadFromFile("Res/Misc/Enemy projectiles.png");
-
-
-
-
+	houseImg.loadFromFile("Res/England/House.png");
+	domeImg.loadFromFile("Res/England/Dome.png");
+	gateImg.loadFromFile("Res/England/Gate.png");
+	hoodImg.loadFromFile("Res/England/Hood.png");
+	coneImg.loadFromFile("Res/England/Cone.png");
+	roofusImg.loadFromFile("Res/England/Roofus.png");
 
 	p[0] = new Player(country, true, &backgroundSpeed);
 	p[1] = new Player(country, false, &backgroundSpeed);
@@ -211,13 +213,33 @@ void Level::initializeTextures(int index)
 				objects[objects.size() - 1 - index]->setTexture(&enemyImg,
 					sf::Vector2i(32, 32), sf::Vector2i(520 + 32 * orient, 520), 1, false);
 				break;
-			case 19:
+			case 19: //House
+				objects[objects.size() - 1 - index]->setTexture(&houseImg,
+					sf::Vector2i(64, 48), sf::Vector2i(0, 0), 1, false);
 				break;
-			case 20:
+			case 20: //Dome
+				objects[objects.size() - 1 - index]->setTexture(&domeImg,
+					sf::Vector2i(80, 80), sf::Vector2i(0, 0), 1, false);
 				break;
-			case 21:
+			case 21: //Dome Shooty shoot Animatio 
+				objects[objects.size() - 1 - index]->setTexture(&houseImg,
+					sf::Vector2i(89, 74), sf::Vector2i(0, 0), 1, false);
 				break;
-			case 22:
+			case 22: //Gate
+				objects[objects.size() - 1 - index]->setTexture(&gateImg,
+					sf::Vector2i(32, 40), sf::Vector2i(0, 0), 1, false);
+				break;
+			case 23: //Hangar
+				objects[objects.size() - 1 - index]->setTexture(&hoodImg,
+					sf::Vector2i(80, 96), sf::Vector2i(0, 0), 1, false);
+				break;
+			case 24: //Cone
+				objects[objects.size() - 1 - index]->setTexture(&coneImg,
+					sf::Vector2i(48, 48), sf::Vector2i(0, 0), 1, false);
+				break;
+			case 25: //Roofus
+				objects[objects.size() - 1 - index]->setTexture(&houseImg,
+					sf::Vector2i(48, 48), sf::Vector2i(0, 0), 1, false);
 				break;
 			}
 			break;
