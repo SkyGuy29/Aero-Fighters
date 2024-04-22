@@ -47,13 +47,14 @@ void Level::load(sf::Vector2u winSize, short country, int mapId)
 	frontbackground.setSize(sf::Vector2f(winSize));
 	backgroundDist = backgroundImg.getSize().y - winSize.y;
 	rect = sf::IntRect(0, backgroundDist, winSize.x, winSize.y);
+	frontRect = rect;
 	background.setTexture(&backgroundImg);
 	frontbackground.setTexture(&frontbackgroundImg);
 	background.setTextureRect(rect);
 	frontbackground.setTextureRect(rect);
 	frontbackgroundImg.setRepeated(true);
-	frontbackground.setPosition(0, -backgroundDist);
-	frontbackgroundDist = -backgroundDist;
+	frontbackgroundDist = winSize.y;
+	frontbackground.setPosition(0, frontbackgroundDist);
 	
 
 	playerImg.loadFromFile("Res/Misc/players.png");
@@ -477,29 +478,16 @@ void Level::update(sf::Vector2u winSize)
 	ui.setCharacterSize(12);
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter) && infScrollInPos)
-		raiseInfScroll();
+		setInfScroll(false);
 
 	// The background has to scroll backwards to get the effect that we want.
-	if (!infScrollInPos || !infScrollMoveDown)
+	if (!infScrollInPos || !infScrollEnabled)
 	{
 		backgroundDist -= backgroundSpeed;
 		rect.top = backgroundDist;
 		background.setTextureRect(rect);
 	}
 	updateInfScroll();
-
-	/*if (backgroundDist <= frontbackground.getSize().y)
-	{
-		if (backgroundDist <= 0)
-		{
-			frontbackgroundDist -= backgroundSpeed;
-			backgroundDist = 0;
-			rect.top = frontbackgroundDist;
-			frontbackground.setTextureRect(rect);
-		}
-		else
-			frontbackground.setPosition(0, -backgroundDist);
-	}*/
 
 	// for smoothing out background. 
 	// I offset the the background by negative decapitating the background float. 
@@ -619,50 +607,54 @@ void Level::update(sf::Vector2u winSize)
 	}
 }
 
-void Level::lowerInfScroll()
+void Level::setInfScroll(bool enable)
 {
-	infScrollMoveDown = true;
+	printf("set\n");
+	infScrollEnabled = enable;
 	infScrollInPos = false;
-	rect.top = 0;
-	frontbackground.setTextureRect(rect);
-}
 
-void Level::raiseInfScroll()
-{
-	infScrollMoveDown = false;
-	infScrollInPos = false;
+	if (enable)
+	{
+		frontRect.top = 0;
+		frontbackground.setTextureRect(rect);
+		frontbackgroundDist = -int(winSize.y);
+		frontbackground.setPosition(0, frontbackgroundDist);
+	}
 }
 
 void Level::updateInfScroll()
 {
-	if (!infScrollInPos)
+	if (infScrollEnabled || !infScrollInPos)
 	{
-		frontbackgroundDist += (infScrollMoveDown ? 1 : -1) * backgroundSpeed;
-		frontbackground.setPosition(0, frontbackgroundDist);
-	}
-	else
-	{
-		rect.top += (infScrollMoveDown ? 1 : -1) * backgroundSpeed;
-		frontbackground.setTextureRect(rect);
-	}
+		if (infScrollInPos)
+		{
+			frontRect.top -= backgroundSpeed;
+			frontbackground.setTextureRect(frontRect);
+		}
+		else
+		{
+			printf("moved\n");
+			frontbackgroundDist += backgroundSpeed;
+			frontbackground.setPosition(0, frontbackgroundDist);
+		}
 
-	if (frontbackgroundDist > 0)
-	{
-		frontbackgroundDist = 0;
-		infScrollInPos = true;
+		if ((frontbackgroundDist == winSize.y || frontbackgroundDist == 0) && !infScrollInPos)
+		{
+			infScrollInPos = true;
+			printf("stopped\n");
+		}
 	}
-	else if (frontbackgroundDist < -frontbackground.getSize().y)
-	{
-		frontbackgroundDist = -frontbackground.getSize().y;
-		infScrollInPos = true;
-	}
+	//printf("inPos: %d, enabled: %d, dist: %f\n", int(infScrollInPos), int(infScrollEnabled), frontbackgroundDist);
+
 }
 
 void Level::statesUpdate(sf::Vector2u winSize)
 {
-	if (backgroundDist < 0)
-		lowerInfScroll();
-		//backgroundSpeed = 0;
+	if (backgroundDist == 0 && !infScrollEnabled)
+	{
+		printf("setset\n");
+		setInfScroll(true);
+	}
 	return;
 }
 
