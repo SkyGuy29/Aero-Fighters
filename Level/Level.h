@@ -62,6 +62,7 @@ private:
 	sf::Texture hoodImg;
 	sf::Texture coneImg;
 	sf::Texture roofusImg;
+	sf::Texture domeAnimationImg;
 	sf::IntRect rect;
 	float backgroundSpeed = 1, backgroundDist = 0, frontbackgroundDist = 0;
 	short country, orient = 0;

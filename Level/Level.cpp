@@ -67,6 +67,7 @@ void Level::load(sf::Vector2u winSize, short country, int mapId)
 	hoodImg.loadFromFile("Res/England/Hood.png");
 	coneImg.loadFromFile("Res/England/Cone.png");
 	roofusImg.loadFromFile("Res/England/Roofus.png");
+	domeAnimationImg.loadFromFile("Res/England/Dome animation.png");
 
 	p[0] = new Player(country, true, &backgroundSpeed);
 	p[1] = new Player(country, false, &backgroundSpeed);
@@ -221,7 +222,7 @@ void Level::initializeTextures(int index)
 				break;
 			case 21: //Dome Shooty shoot Animatio 
 				objects[objects.size() - 1 - index]->setTexture(&houseImg,
-					sf::Vector2i(89, 74), sf::Vector2i(0, 0), 1, false);
+					sf::Vector2i(89, 74), sf::Vector2i(0, 0), 10, false);
 				break;
 			case 22: //Gate
 				objects[objects.size() - 1 - index]->setTexture(&gateImg,
