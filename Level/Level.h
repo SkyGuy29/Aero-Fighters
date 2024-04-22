@@ -26,8 +26,7 @@ public:
 	void update(sf::Vector2u winSize);
 
 private:
-	void lowerInfScroll();
-	void raiseInfScroll();
+	void setInfScroll(bool enable);
 	void updateInfScroll();
 
 	void getInput(sf::Vector2u winSize);
@@ -144,6 +143,7 @@ private:
 	};
 
 	sf::Vector2u winSize;
-	bool infScrollMoveDown = false, infScrollInPos = true;
+	bool infScrollInPos = true, infScrollEnabled = false;
+	sf::IntRect frontRect;
 };
 
