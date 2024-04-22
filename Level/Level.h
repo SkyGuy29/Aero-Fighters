@@ -26,6 +26,10 @@ public:
 	void update(sf::Vector2u winSize);
 
 private:
+	void lowerInfScroll();
+	void raiseInfScroll();
+	void updateInfScroll();
+
 	void getInput(sf::Vector2u winSize);
 
 	void statesUpdate(sf::Vector2u winSize);
@@ -137,5 +141,8 @@ private:
 		sf::Keyboard::O,  // Special
 		sf::Keyboard::Space //Spawn
 	};
+
+	sf::Vector2u winSize;
+	bool infScrollMoveDown = false, infScrollInPos = true;
 };
 
