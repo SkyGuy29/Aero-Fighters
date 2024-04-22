@@ -26,6 +26,10 @@ public:
 	void update(sf::Vector2u winSize);
 
 private:
+	void lowerInfScroll();
+	void raiseInfScroll();
+	void updateInfScroll();
+
 	void getInput(sf::Vector2u winSize);
 
 	void statesUpdate(sf::Vector2u winSize);
@@ -59,9 +63,9 @@ private:
 
 
 
+	sf::Vector2u winSize;
 
-
-
+	bool infScrollMoveDown = false, infScrollInPos = true;
 
 	sf::IntRect rect;
 	float backgroundSpeed = 1, backgroundDist = 0, frontbackgroundDist = 0;

@@ -19,6 +19,7 @@ Level::~Level()
 void Level::load(sf::Vector2u winSize, short country, int mapId)
 {
 	this->country = country;
+	this->winSize = winSize;
 
 	ui.setFont(font);
 	ui.setPosition(0, 0);
@@ -52,6 +53,7 @@ void Level::load(sf::Vector2u winSize, short country, int mapId)
 	frontbackground.setTextureRect(rect);
 	frontbackgroundImg.setRepeated(true);
 	frontbackground.setPosition(0, -backgroundDist);
+	frontbackgroundDist = -backgroundDist;
 	
 
 	playerImg.loadFromFile("Res/Misc/players.png");
@@ -452,9 +454,19 @@ void Level::update(sf::Vector2u winSize)
 	ui.setString(s);
 	ui.setCharacterSize(12);
 
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter) && infScrollInPos)
+		raiseInfScroll();
+
 	// The background has to scroll backwards to get the effect that we want.
-	backgroundDist -= backgroundSpeed;
-	if (backgroundDist <= frontbackground.getSize().y)
+	if (!infScrollInPos || !infScrollMoveDown)
+	{
+		backgroundDist -= backgroundSpeed;
+		rect.top = backgroundDist;
+		background.setTextureRect(rect);
+	}
+	updateInfScroll();
+
+	/*if (backgroundDist <= frontbackground.getSize().y)
 	{
 		if (backgroundDist <= 0)
 		{
@@ -465,9 +477,7 @@ void Level::update(sf::Vector2u winSize)
 		}
 		else
 			frontbackground.setPosition(0, -backgroundDist);
-	}
-	rect.top = backgroundDist;
-	background.setTextureRect(rect);
+	}*/
 
 	// for smoothing out background. 
 	// I offset the the background by negative decapitating the background float. 
@@ -587,9 +597,49 @@ void Level::update(sf::Vector2u winSize)
 	}
 }
 
+void Level::lowerInfScroll()
+{
+	infScrollMoveDown = true;
+	infScrollInPos = false;
+	rect.top = 0;
+	frontbackground.setTextureRect(rect);
+}
+
+void Level::raiseInfScroll()
+{
+	infScrollMoveDown = false;
+	infScrollInPos = false;
+}
+
+void Level::updateInfScroll()
+{
+	if (!infScrollInPos)
+	{
+		frontbackgroundDist += (infScrollMoveDown ? 1 : -1) * backgroundSpeed;
+		frontbackground.setPosition(0, frontbackgroundDist);
+	}
+	else
+	{
+		rect.top += (infScrollMoveDown ? 1 : -1) * backgroundSpeed;
+		frontbackground.setTextureRect(rect);
+	}
+
+	if (frontbackgroundDist > 0)
+	{
+		frontbackgroundDist = 0;
+		infScrollInPos = true;
+	}
+	else if (frontbackgroundDist < -frontbackground.getSize().y)
+	{
+		frontbackgroundDist = -frontbackground.getSize().y;
+		infScrollInPos = true;
+	}
+}
+
 void Level::statesUpdate(sf::Vector2u winSize)
 {
-	//if (backgroundDist <= 0)
+	if (backgroundDist < 0)
+		lowerInfScroll();
 		//backgroundSpeed = 0;
 	return;
 }
