@@ -434,8 +434,29 @@ void Level::initializeTextures(int index)
 					sf::Vector2i(4, 4), sf::Vector2i(0, 0), 1, false);
 				break;
 			case 18: //Missiles
+				if (orient > 4) //This is so that the flips are correct
+				{
+					switch (orient)
+					{
+					case 8:
+						orient = 0;
+						break;
+					case 7: case 9: case 15:
+						orient = 1;
+						break;
+					case 6: case 10: case 14:
+						orient = 2;
+						break;
+					case 5: case 11: case 13:
+						orient = 3;
+						break;
+					case 12:
+						orient = 4;
+						break;
+					}
+				}
 				objects[objects.size() - 1 - index]->setTexture(&missileImg,
-					sf::Vector2i(12, 12), sf::Vector2i(orient * 12, 0), 1, false);
+					sf::Vector2i(12, 12), sf::Vector2i((orient % 5) * 12, 0), 1, false);
 				break;
 			}
 			break;

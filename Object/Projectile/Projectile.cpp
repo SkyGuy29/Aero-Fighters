@@ -117,11 +117,23 @@ void Projectile::update(sf::Vector2u winSize, std::vector<Object*>* objects, boo
 	{
 		vel = sf::Vector2f( 5 * (closestEnemy->getPos().x - pos.x) / closestEnemyDistance,
 		5 * (closestEnemy->getPos().y - pos.y) / closestEnemyDistance);
-		float angle = atan(-vel.y / vel.x);
+		int angle = atan(-vel.y / vel.x) / PI * 8;
 		if (vel.x < 0)
-			angle += PI;
-		angle += (PI / 4);
-		setOrientation((int) (angle / PI * 8) % 5);
+			angle += 8;
+		angle -= 4;
+		if (angle < 0)
+			angle += 16;
+		if (angle > 15)
+			angle -= 16;
+		angle = 16 - angle;
+		if (angle > 15)
+			angle -= 16;
+		setOrientation(angle);
+		sprite.setScale(1, 1);
+		if (orientation > 8)
+			sprite.setScale(sf::Vector2f(-1, 1));
+		if (orientation < 12 && orientation > 4)
+			sprite.setScale(sf::Vector2f(sprite.getScale().x, -1));
 		texInit = false;
 	}
 	else if (id == 5)
