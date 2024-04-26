@@ -46,8 +46,19 @@ void Enemy::enemyUpdate(sf::Vector2u winSize, std::vector<Object*>* objects)
 	{
 		switch (id)
 		{
+		case 1:
+			if (type == AIR)
+				objects->push_back(new Collectable(1, pos, backgroundSpeed));
+			del = true;
+			break;
+		case 2:
+			if(type == LAND)
+				objects->push_back(new Collectable(1, pos, backgroundSpeed));
+			del = true;
+			break;
 		case 8:
-			objects->push_back(new Collectable(0, pos, backgroundSpeed));
+			if(type == LAND)
+				objects->push_back(new Collectable(0, pos, backgroundSpeed));
 			del = true;
 			break;
 		default:

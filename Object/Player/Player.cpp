@@ -140,13 +140,13 @@ void Player::shoot(std::vector<Object*>& objects)
 			break;
 		case 5: case 7:
 			objects.push_back(new Projectile(pos.x, pos.y - (size.y / 2),
-				sf::Vector2f(0, -10), sf::Vector2f(15, 15), 4, true, 0, -1));
+				sf::Vector2f(0, -10), sf::Vector2f(15, 15), 4, true, 0, 18));
 			cooldownSecondary = 15;
 			break;
 		case 12:
 			for (int num = 0; num < 4; num++)
 				objects.push_back(new Projectile(pos.x, pos.y - (size.y / 2),
-				sf::Vector2f(0, -10), sf::Vector2f(15, 15), 4, true, 0, -1));
+				sf::Vector2f(0, -10), sf::Vector2f(12, 12), 4, true, 0, 18));
 			cooldownSecondary = 30;
 			break;
 		case 13: //Lasers
@@ -159,7 +159,7 @@ void Player::shoot(std::vector<Object*>& objects)
 		case 14:
 			for (int num = 0; num < 8; num++)
 				objects.push_back(new Projectile(pos.x, pos.y - (size.y / 2),
-				sf::Vector2f(0, -10), sf::Vector2f(15, 15), 4, true, 0, -1));
+				sf::Vector2f(0, -10), sf::Vector2f(12, 12), 4, true, 0, 18));
 			cooldownSecondary = 30;
 			break;
 		case 15:
@@ -197,7 +197,7 @@ void Player::shoot(std::vector<Object*>& objects)
 			break;
 		case 28: //Weird rockets
 			objects.push_back(new Projectile(pos.x, pos.y - (size.y / 2), sf::Vector2f(0, -10),
-			sf::Vector2f(12, 22), 2, true, 2000, -1));
+			sf::Vector2f(12, 22), 2, true, 2000, 18));
 			cooldownSecondary = 25;
 			break;
 		case 29: //Delayed nukes
@@ -209,7 +209,7 @@ void Player::shoot(std::vector<Object*>& objects)
 			break;
 		case 30:
 			objects.push_back(new Projectile(pos.x, pos.y - (size.y / 2), sf::Vector2f(0, -10),
-			sf::Vector2f(12, 22), 2, true, 2000, -1));
+			sf::Vector2f(12, 22), 2, true, 2000, 18));
 			cooldownSecondary = 25;
 			break;
 		case 31:
@@ -267,7 +267,7 @@ void Player::special(std::vector<Object*>& objects, sf::Vector2u winSize)
 			for (int num = 0; num < 8; num++)
 			{
 				objects.push_back(new Projectile(pos.x, pos.y,
-					sf::Vector2f(0, -10), sf::Vector2f(8, 30), 4, true, 0, 1));
+					sf::Vector2f(0, -10), sf::Vector2f(8, 30), 4, true, 0, 18));
 			}
 			cooldown = 60;
 			cooldownSecondary = 60;
