@@ -140,6 +140,17 @@ void Level::initializeTextures(int index)
 	if (!objects[objects.size() - 1 - index]->isTexInit())
 		switch (objects[objects.size() - 1 - index]->getType())
 		{
+		case Object::BOSS:
+			switch (objects[objects.size() - 1 - index]->getID())
+			{
+			case 0:
+				break;
+			case 1:
+				break;
+			case 2:
+				break;
+			}
+			break;
 		case Object::LAND:
 			switch (objects[objects.size() - 1 - index]->getSpriteNum())
 			{

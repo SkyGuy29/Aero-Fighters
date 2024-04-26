@@ -41,8 +41,6 @@ public:
 	bool intersect(Object*);
 	
 	short getType();
-	short getId();
-
 	short getID();
 
 	short getSpriteNum();

@@ -119,11 +119,6 @@ short Object::getType()
 	return type;
 }
 
-short Object::getId()
-{
-	return id;
-}
-
 // I was thinking move would need a boundry check, not setPos.
 void Object::move(sf::Vector2u winSize)
 {
