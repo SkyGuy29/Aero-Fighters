@@ -555,81 +555,6 @@ void Level::update(sf::Vector2u winSize)
 			objects.erase(objects.end() - 1 - i);
 		}
 
-	//Random events!!!
-
-	//Fly straight in formation
-	//if (rand() % 200 == -1)
-	//{
-	//	sf::Vector2f pos = sf::Vector2f((rand() % 60 + 20) / 100. * winSize.x, winSize.y * -0.25f);
-	//	sf::Vector2f vel = sf::Vector2f(0, 4);
-
-	//	for (int i = 0; i < 6; i++)
-	//	{
-	//		switch (i)
-	//		{
-	//		case 0:
-	//			break;
-	//		case 1:
-	//			pos += sf::Vector2f(-0.05f * winSize.y, -0.1f * winSize.y);
-	//			break;
-	//		case 2:
-	//		case 4:
-	//		case 5:
-	//			pos += sf::Vector2f(0.1f * winSize.y, 0);
-	//			break;
-	//		case 3:
-	//			pos += sf::Vector2f(-0.15f * winSize.y, -0.1f * winSize.y);
-	//		}
-
-	//		objects.push_back(new Air(0, true, winSize, &objects, pos, vel));
-	//	}
-	//}
-	////Turn left
-	//if (rand() % 200 == -1)
-	//{
-	//	sf::Vector2f pos = sf::Vector2f((rand() % 60 + 20) / 100. * winSize.x, 
-	//		winSize.y * -0.25f);
-	//	sf::Vector2f vel = sf::Vector2f(0, 4);
-	//	objects.push_back(new Air(1, true, winSize, &objects, pos, vel));
-	//}
-	////Turn Right
-	//if (rand() % 200 == -1)
-	//{
-	//	sf::Vector2f pos = sf::Vector2f((rand() % 60 + 20) / 100. * winSize.x,
-	//		winSize.y * -0.25f);
-	//	sf::Vector2f vel = sf::Vector2f(0, 4);
-	//	objects.push_back(new Air(1, true, winSize, &objects, pos, vel));
-	//}
-	////Flipping planes
-	//if (rand() % 200 == -1)
-	//{
-	//	sf::Vector2f pos = sf::Vector2f((rand() % 60 + 20) / 100. * winSize.x,
-	//		winSize.y * -0.25f);
-	//	sf::Vector2f vel = sf::Vector2f(1, 7);
-
-	//	objects.push_back(new Air(2, true, winSize, &objects, pos, vel));
-
-	//	for (int i = 0; i < 3; i++)
-	//	{
-	//		pos += sf::Vector2f(-0.05f * winSize.y, -0.1f * winSize.y);
-	//		objects.push_back(new Air(2, true, winSize, &objects, pos, vel));
-	//	}
-	//}
-	////Mini choppers left
-	//if (rand() % 200 == -1)
-	//{
-	//	sf::Vector2f pos = sf::Vector2f(0, 0.15 * winSize.y);
-	//	sf::Vector2f vel = sf::Vector2f(4, 0);
-	//	objects.push_back(new Air(3, true, winSize, &objects, pos, vel));
-	//}
-	////Mini choppers right
-	//if (rand() % 200 == -1)
-	//{
-	//	sf::Vector2f pos = sf::Vector2f(winSize.x, 0.15 * winSize.y);
-	//	sf::Vector2f vel = sf::Vector2f(-4, 0);
-	//	objects.push_back(new Air(3, false, winSize, &objects, pos, vel));
-	//}
-
 	switch (country)
 	{
 	case STATES:
@@ -678,8 +603,6 @@ void Level::updateInfScroll()
 		if ((frontbackgroundDist == winSize.y || frontbackgroundDist == 0) && !infScrollInPos)
 			infScrollInPos = true;
 	}
-	//printf("inPos: %d, enabled: %d, dist: %f\n", int(infScrollInPos), int(infScrollEnabled), frontbackgroundDist);
-
 }
 
 void Level::statesUpdate(sf::Vector2u winSize)
@@ -709,7 +632,15 @@ void Level::swedenUpdate(sf::Vector2u winSize)
 void Level::englandUpdate(sf::Vector2u winSize)
 {
 	if (backgroundDist == 0 && !infScrollEnabled)
+	{
 		setInfScroll(true);
+		if (bossSpawned == false)
+		{
+			objects.push_back(new Boss(0, true, sf::Vector2f(winSize.x  / 2, winSize.y / 2), 
+			p[0]->getPos(), &objects));
+			bossSpawned = true;
+		}
+	}
 	//Slow down for fort
 	else if (backgroundDist <= 1405 && backgroundDist > 1264)
 		backgroundSpeed = 0.5;

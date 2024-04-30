@@ -12,5 +12,8 @@ public:
 private:
     Boss* bossPiece1 = nullptr;
     Boss* bossPiece2 = nullptr;
+    short pattern = 0;
+    short cooldown2 = 250;
+    short cooldown3 = 0;
 };
 
