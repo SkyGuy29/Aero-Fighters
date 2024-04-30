@@ -129,9 +129,9 @@ void Level::load(sf::Vector2u winSize, short country, int mapId)
 			objects.push_back(new Air(id, true, &backgroundDist, startMark, winSize, &objects, pos, vel));
 			break;
 		case 2:
-			file >> startMark;
-			objects.push_back(new Boss(id, true, &backgroundDist, startMark, winSize, &objects, pos, vel));
+			break;
 		}
+
 	}
 }
 
@@ -148,7 +148,7 @@ void Level::initializeTextures(int index)
 			{
 			case 0: //Avro Bomber
 				objects[objects.size() - 1 - index]->setTexture(&avroBomberImg,
-					sf::Vector2i(208, 232), sf::Vector2i(14, 10), 1, false);
+					sf::Vector2i(104, 116), sf::Vector2i(14, 10), 1, false);
 				break;
 			case 1: //Avro Bomber Left Wing
 			
@@ -644,9 +644,10 @@ void Level::englandUpdate(sf::Vector2u winSize)
 		setInfScroll(true);
 		if (bossSpawned == false)
 		{
-			objects.push_back(new Boss(0, true, sf::Vector2f(winSize.x  / 2, winSize.y / 2), 
-			sf::Vector2f(112, 240), &objects));
+			objects.push_back(new Boss(0, true, sf::Vector2f(winSize.x / 2, 
+			winSize.y / 2), sf::Vector2f(0, 0), &objects));
 			bossSpawned = true;
+			std::cout << p[0]->getPos().x << p[1]->getPos().y;
 		}
 	}
 	//Slow down for fort

@@ -18,7 +18,7 @@ std::vector<Object*>* objects) : Enemy::Enemy(id, left, pos, vel)
 	switch (id)
 	{
 	case 0: //England Boss
-		setSize(32, 32);
+		setSize(104, 116);
 		bossPiece1 = new Boss(1, left, pos, vel, objects);
 		bossPiece2 = new Boss(2, left, pos, vel, objects);
 		bossPiece3 = new Boss(3, left, pos, vel, objects);

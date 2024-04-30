@@ -5,8 +5,8 @@ class Boss :
     public Enemy
 {
 public:
-    Boss(short id, bool left, float* backgroundDist, int startMark, sf::Vector2u winSize, std::vector<Object*>* objects,
-        sf::Vector2f pos, sf::Vector2f vel);
+    Boss(short id, bool left, sf::Vector2f pos, sf::Vector2f vel,
+    std::vector<Object*>* object);
 
     void update(sf::Vector2u winSize, std::vector<Object*>* objects, bool time);
 private:
