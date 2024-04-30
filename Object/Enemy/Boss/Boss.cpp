@@ -5,6 +5,16 @@ Boss::Boss(short id, bool left, sf::Vector2f pos, sf::Vector2f vel,
 std::vector<Object*>* objects) : Enemy::Enemy(id, left, pos, vel)
 {
 	type = BOSS;
+
+	this->startMark = startMark;
+	this->backgroundDist = backgroundDist;
+
+	if (startMark == -1)
+		entered = true;
+
+	spawnPos = pos;
+	spawnVel = vel;
+
 	switch (id)
 	{
 	case 0: //England Boss
@@ -28,6 +38,9 @@ std::vector<Object*>* objects) : Enemy::Enemy(id, left, pos, vel)
 		setSize(32, 32);
 		health = 50;
 	}
+
+	sprite.setSize(size);
+	sprite.setOrigin(size / 2.f);
 }
 
 void Boss::update(sf::Vector2u winSize, std::vector<Object*>* objects, bool time)

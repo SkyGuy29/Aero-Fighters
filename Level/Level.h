@@ -12,6 +12,8 @@
 #include "../Object/Collectable/Collectable.h"
 
 //This takes a file and interprets it to create the level.
+//ALL objects in a level are held here. UIs, menus, and things that span
+//through multiple levels are held by Game.
 
 
 class Level : public sf::Drawable
@@ -71,9 +73,6 @@ private:
 	sf::IntRect rect;
 	float backgroundSpeed = 1, backgroundDist = 0, frontbackgroundDist = 0;
 	short country, orient = 0;
-
-	// Maybe put it in game or some other texture storage idk
-	sf::Texture test, test2;
 
 	Player* p[2];
 

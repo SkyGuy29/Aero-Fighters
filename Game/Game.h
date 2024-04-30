@@ -4,6 +4,8 @@
 
 #include "../Level/Level.h"
 
+//Big class that handles the whole game. It is created and ran once in Main.cpp.
+//The main game loop runs here.
 class Game
 {
 public:
