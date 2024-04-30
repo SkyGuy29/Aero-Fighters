@@ -15,6 +15,8 @@
 
 
 //This takes a file and interprets it to create the level.
+//ALL objects in a level are held here. UIs, menus, and things that span
+//through multiple levels are held by Game.
 
 class Level : public sf::Drawable
 {
@@ -65,18 +67,16 @@ private:
 	sf::Texture roofusImg;
 	sf::Texture domeAnimationImg;
 	sf::Texture missileImg;
+	sf::Texture avroBomberImg;
 	sf::IntRect rect;
 	float backgroundSpeed = 1, backgroundDist = 0, frontbackgroundDist = 0;
 	short country, orient = 0;
 	float backgroundSpeedup = 0.f;
 	float backgroundSpeedupMax = 2.f;
 
-	// Maybe put it in game or some other texture storage idk
-	sf::Texture test, test2;
-
 	Player* p[2];
 
 	sf::Vector2u winSize;
-	bool infScrollInPos = true, infScrollEnabled = false;
+	bool infScrollInPos = true, infScrollEnabled = false, bossSpawned = false;
 	sf::IntRect frontRect;
 };

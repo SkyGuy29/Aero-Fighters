@@ -11,6 +11,7 @@ Projectile::Projectile()
 //id 3 is for Japan Player 2's super
 //id 4 is for tracking projectiles
 //id 5 is the tracking mines of Sweden Player 2
+//id 6 is for breakable projectiles
 Projectile::Projectile(float posX, float posY, sf::Vector2f vel,
 sf::Vector2f size, short ID, bool player, short cool, short sprit)
 {
@@ -94,10 +95,14 @@ void Projectile::update(sf::Vector2u winSize, std::vector<Object*>* objects, boo
 			del = true;
 		}
 		else if (type == ENEMY_PROJECTILE
-			&& objects->at(i)->getType() == PLAYER
+			&& (objects->at(i)->getType() == PLAYER || (id == 6 
+			&& objects->at(i)->getType() == PLAYER_PROJECTILE))
 			&& this->intersect(objects->at(i)))
 		{
-			del = true;
+			if (id == 6)
+				spriteNum = 14;
+			else
+				del = true;
 		}
 		if (id >= 4 && (objects->at(i)->getType() == AIR
 			|| objects->at(i)->getType() == LAND)

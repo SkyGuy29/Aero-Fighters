@@ -66,7 +66,7 @@ void Game::run()
 		{
 			deltaTime -= 1000 / updatesPSec;
 
-			// update stuff here
+			// update objects here
 
 			if (playerChoose)
 				updateMenu();
@@ -76,7 +76,7 @@ void Game::run()
 
 		window.clear();
 
-		// draw stuff here
+		// draw objects here
 
 		if (playerChoose)
 			drawMenu();
