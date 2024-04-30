@@ -12,6 +12,7 @@ public:
 private:
     Boss* bossPiece1;
     Boss* bossPiece2;
+    Boss* bossPiece3;
     short pattern = 0;
     short cooldown2 = 250;
     short cooldown3 = 0;

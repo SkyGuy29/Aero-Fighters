@@ -56,12 +56,13 @@ public:
 		HIDDEN = -1,
 		PLAYER = 0,
 		BOSS = 1,
-		AIR = 2,
-		LAND = 3,
-		COLLECTABLE = 4,
-		PLAYER_PROJECTILE = 5,
-		ENEMY_PROJECTILE = 6,
-		EXPLOSION = 7
+		BOSS_PIECE = 2,
+		AIR = 3,
+		LAND = 4,
+		COLLECTABLE = 5,
+		PLAYER_PROJECTILE = 6,
+		ENEMY_PROJECTILE = 7,
+		EXPLOSION = 8
 	};
 
 protected:

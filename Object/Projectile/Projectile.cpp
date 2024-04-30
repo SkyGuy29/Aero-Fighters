@@ -99,7 +99,10 @@ void Projectile::update(sf::Vector2u winSize, std::vector<Object*>* objects, boo
 			&& objects->at(i)->getType() == PLAYER_PROJECTILE))
 			&& this->intersect(objects->at(i)))
 		{
-			del = true;
+			if (id == 6)
+				spriteNum = 14;
+			else
+				del = true;
 		}
 		if (id >= 4 && (objects->at(i)->getType() == AIR
 			|| objects->at(i)->getType() == LAND)

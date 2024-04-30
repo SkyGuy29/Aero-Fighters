@@ -71,6 +71,7 @@ void Level::load(sf::Vector2u winSize, short country, int mapId)
 	roofusImg.loadFromFile("Res/England/Roofus.png");
 	domeAnimationImg.loadFromFile("Res/England/Dome animation.png");
 	missileImg.loadFromFile("Res/Misc/missles.png");
+	avroBomberImg.loadFromFile("Res/England/Avro Bomber.png");
 
 	p[0] = new Player(country, true, &backgroundSpeed);
 	p[1] = new Player(country, false, &backgroundSpeed);
@@ -142,11 +143,18 @@ void Level::initializeTextures(int index)
 		case Object::BOSS:
 			switch (objects[objects.size() - 1 - index]->getID())
 			{
-			case 0:
+			case 0: //Avro Bomber
+				objects[objects.size() - 1 - index]->setTexture(&avroBomberImg,
+					sf::Vector2i(208, 232), sf::Vector2i(14, 10), 1, false);
 				break;
-			case 1:
+			case 1: //Avro Bomber Left Wing
+			
 				break;
-			case 2:
+			case 2: //Avro Bomber Right Wing
+
+				break;
+			case 3: //Avro Bomber Middle Part
+
 				break;
 			}
 			break;
@@ -634,7 +642,7 @@ void Level::englandUpdate(sf::Vector2u winSize)
 		if (bossSpawned == false)
 		{
 			objects.push_back(new Boss(0, true, sf::Vector2f(winSize.x  / 2, winSize.y / 2), 
-			p[0]->getPos(), &objects));
+			sf::Vector2f(112, 240), &objects));
 			bossSpawned = true;
 		}
 	}
