@@ -1,15 +1,5 @@
 #pragma once
 
-#ifndef CONTROLS_WONT_COMPILE
-#define CONTROLS_WONT_COMPILE
-
-// REMOVE BEFORE MR. GRAHAM REVIEWS CODE
-
-// IM SORRY
-// I FORCED THE LINKER TO COMPILE WITH MULTPLE SYMBOLS
-// FIX LATER MAYBE
-// -Ben
-
 #include <SFML/Window.hpp>
 
 // TEMPORARY CONTROLS
@@ -17,7 +7,7 @@
 // Controller test
 //https://hcidesign.com/gamepad/
 
-enum Controller
+static enum Controller
 {
 	A,
 	B,
@@ -37,7 +27,7 @@ enum Controller
 	D_Right
 };
 
-enum Controls
+static enum Controls
 {
 	Forward,
 	Left,
@@ -50,7 +40,7 @@ enum Controls
 	Select,
 };
 
-enum Countries
+static enum Countries
 {
 	STATES,
 	JAPAN,
@@ -58,7 +48,7 @@ enum Countries
 	ENGLAND
 };
 
-int p1Ctrl[] =
+static int p1Ctrl[] =
 {
 	sf::Keyboard::W, // Forward
 	sf::Keyboard::A, // Left
@@ -71,7 +61,7 @@ int p1Ctrl[] =
 	sf::Keyboard::Enter, // Select
 };
 
-int p2Ctrl[] =
+static int p2Ctrl[] =
 {
 	sf::Keyboard::I, // Forward
 	sf::Keyboard::J, // Left
@@ -85,19 +75,19 @@ int p2Ctrl[] =
 };
 
 // These two are for shortening code
-bool key(int p, int k)
+static bool key(int p, int k)
 {
 	if (p)
 		return sf::Keyboard::isKeyPressed(sf::Keyboard::Key(p2Ctrl[k]));
 	return sf::Keyboard::isKeyPressed(sf::Keyboard::Key(p1Ctrl[k]));
 }
 
-bool button(int p, int b)
+static bool button(int p, int b)
 {
 	return sf::Joystick::isButtonPressed(p, b);
 }
 
-sf::Vector2f joystick(int p)
+static sf::Vector2f joystick(int p)
 {
 	sf::Vector2f move;
 
@@ -109,5 +99,3 @@ sf::Vector2f joystick(int p)
 	move.y *= std::abs(move.y) < 15;
 	return move;
 }
-
-#endif
