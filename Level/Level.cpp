@@ -36,7 +36,6 @@ void Level::load(sf::Vector2u winSize, short country, int mapId)
 		break;
 	case SWEDEN:
 		backgroundImg.loadFromFile("Res/Sweden/Sweden.png");
-		frontbackgroundImg.loadFromFile("Res/Sweden/FrontSweden.png");
 		break;
 	case ENGLAND:
 		backgroundImg.loadFromFile("Res/England/England.png");
