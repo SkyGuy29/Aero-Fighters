@@ -646,7 +646,6 @@ void Level::update(sf::Vector2u winSize)
 
 void Level::setInfScroll(bool enable)
 {
-	printf("set\n");
 	infScrollEnabled = enable;
 	infScrollInPos = false;
 
@@ -670,16 +669,12 @@ void Level::updateInfScroll()
 		}
 		else
 		{
-			printf("moved\n");
 			frontbackgroundDist += backgroundSpeed;
 			frontbackground.setPosition(0, frontbackgroundDist);
 		}
 
 		if ((frontbackgroundDist == winSize.y || frontbackgroundDist == 0) && !infScrollInPos)
-		{
 			infScrollInPos = true;
-			printf("stopped\n");
-		}
 	}
 	//printf("inPos: %d, enabled: %d, dist: %f\n", int(infScrollInPos), int(infScrollEnabled), frontbackgroundDist);
 
@@ -688,17 +683,16 @@ void Level::updateInfScroll()
 void Level::statesUpdate(sf::Vector2u winSize)
 {
 	if (backgroundDist == 0 && !infScrollEnabled)
-	{
-		printf("setset\n");
 		setInfScroll(true);
-	}
 	return;
 }
 
 void Level::japanUpdate(sf::Vector2u winSize)
 {
-	if (backgroundDist <= 0 || !(p[1]->getTime()))
+	if (!(p[1]->getTime()))
 		backgroundSpeed = 0;
+	if (backgroundDist == 0 && !infScrollEnabled)
+		setInfScroll(true);
 	else
 		backgroundSpeed = 1;
 }
@@ -712,8 +706,8 @@ void Level::swedenUpdate(sf::Vector2u winSize)
 
 void Level::englandUpdate(sf::Vector2u winSize)
 {
-	if (backgroundDist <= 0)
-		backgroundSpeed = 0;
+	if (backgroundDist == 0 && !infScrollEnabled)
+		setInfScroll(true);
 	//Slow down for fort
 	else if (backgroundDist <= 1405 && backgroundDist > 1264)
 		backgroundSpeed = 0.5;
