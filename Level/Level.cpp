@@ -127,6 +127,9 @@ void Level::load(sf::Vector2u winSize, short country, int mapId)
 			file >> startMark;
 			objects.push_back(new Air(id, true, &backgroundDist, startMark, winSize, &objects, pos, vel));
 			break;
+		case 2:
+			file >> startMark;
+			objects.push_back(new Boss(id, true, &backgroundDist, startMark, winSize, &objects, pos, vel));
 		}
 	}
 }
