@@ -3,6 +3,7 @@
 #include <SFML/Audio.hpp>
 
 #include "../Level/Level.h"
+#include "../ControllerStuff.hpp"
 
 class Game
 {

@@ -705,8 +705,13 @@ void Level::swedenUpdate(sf::Vector2u winSize)
 
 void Level::englandUpdate(sf::Vector2u winSize)
 {
-	if (backgroundDist == 0 && !infScrollEnabled)
-		setInfScroll(true);
+	if (backgroundDist == 0)
+	{
+		if (!infScrollEnabled)
+			setInfScroll(true);
+		if (backgroundSpeedup < backgroundSpeedupMax)
+			backgroundSpeedup += 0.01f;
+	}
 	//Slow down for fort
 	else if (backgroundDist <= 1405 && backgroundDist > 1264)
 		backgroundSpeed = 0.5;
@@ -762,52 +767,43 @@ void Level::getInput(sf::Vector2u winSize)
 {
 	// controller controls
 	// works with 2 controllers
-	sf::Vector2f joy;
+	sf::Vector2f move;
+	bool shoot, special;
+	bool spawn;
 
 	for (int i = 0; i < 2; i++)
 	{
-		joy.x = sf::Joystick::getAxisPosition(i, sf::Joystick::X) / 100.f;
-		joy.y = sf::Joystick::getAxisPosition(i, sf::Joystick::Y) / 100.f;
+		if (sf::Joystick::isConnected(i))
+		{
+			move = joystick(i);
 
-		// fix drift under 15%
-		joy.x *= std::abs(joy.x) > 0.15f;
-		joy.y *= std::abs(joy.y) > 0.15f;
-		objects.at(i)->setVel(joy);
+			shoot = button(i, Controller::Y);
+			special = button(i, Controller::B);
 
-		if (button(i, Y))
+			spawn = button(i, Controller::A);
+		}
+		else
+		{
+			move.x = key(i, Controls::Right) - key(i, Controls::Left);
+			move.y = key(i, Controls::Back) - key(i, Controls::Forward);
+
+			shoot = key(i, Controls::Shoot);
+			special = key(i, Controls::Special);
+
+			spawn = key(i, Controls::Spawn);
+		}
+
+		objects.at(i)->setVel(move * 5.f);
+		if (shoot)
 			p[i]->shoot(objects);
 
-		if (button(i, B))
+		if (special)
 			p[i]->special(objects, winSize);
 
-		// keyboard controls
-		objects.at(i)->setVel((key(i, Right) - key(i, Left)) * 5,
-		(key(i, Back) - key(i, Forward)) * 5);
-
-		if (key(i, Shoot))
-			p[i]->shoot(objects);
-
-		if (key(i, Special))
-			p[i]->special(objects, winSize);
-
-		if (key(i, Spawn)) //Temporary and should be changed to continue.
+		if (spawn) //Temporary and should be changed to continue.
 		{
 			p[0]->setHealth(3);
 			p[1]->setHealth(3);
 		}
 	}
-}
-
-
-// These two are for shortening code
-bool Level::key(int p, int k)
-{
-	if (p)
-		return sf::Keyboard::isKeyPressed(sf::Keyboard::Key(p2Ctrl[k]));
-	return sf::Keyboard::isKeyPressed(sf::Keyboard::Key(p1Ctrl[k]));
-}
-
-bool Level::button(int p, int b)
-{
-	return sf::Joystick::isButtonPressed(p, b);
 }
