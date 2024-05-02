@@ -90,21 +90,20 @@ Land::Land(short id, bool left, float* backgroundSpeed, sf::Vector2u winSize, st
 
 	sprite.setSize(size);
 	sprite.setOrigin(size / 2.f);
-	//setRandColor();
 }
 
 void Land::update(sf::Vector2u winSize, std::vector<Object*>* objects, bool time)
 {
 	enemyUpdate(winSize, objects);
 	//Do things here only while time is moving.
-	if (time)
+	if (time != 0)
 	{
 		setPos(getPos().x, getPos().y + *backgroundSpeed);
 
-		if (cooldown)
+		if (cooldown != 0)
 			cooldown--;
 
-		if (timer)
+		if (timer != 0)
 			timer--;
 
 		

@@ -2,8 +2,7 @@
 #include "../Enemy.h"
 #include "../Air/Air.h"
 
-class Land :
-    public Enemy
+class Land : public Enemy
 {
 public:
     Land(short id, bool left, float* backgroundSpeed, sf::Vector2u winSize, std::vector<Object*>* objects,

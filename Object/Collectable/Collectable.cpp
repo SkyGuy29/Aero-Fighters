@@ -1,8 +1,8 @@
 #include "Collectable.h"
 
-Collectable::Collectable(short id, sf::Vector2f position, float* bgSpeed)
+Collectable::Collectable(short id, sf::Vector2f position, float* newBgSpeed)
 {
-	backgroundSpeed = bgSpeed;
+	backgroundSpeed = newBgSpeed;
 	this->id = id;
 	type = COLLECTABLE;
 	setSize(16, 19);
@@ -40,6 +40,7 @@ void Collectable::update(sf::Vector2u winSize, std::vector<Object*>* objects, bo
 	nextFrame(8);
 	if (outOfBounds(winSize) && (id == 0))
 		del = true;
+	//making it bounce
 	else if ((pos.y >= 240 || pos.y <= 30 || outOfBounds(winSize))
 			&& id != 0)
 	{
@@ -64,10 +65,11 @@ void Collectable::update(sf::Vector2u winSize, std::vector<Object*>* objects, bo
 			vel.y *= -1;
 		}
 	}
-	for (int index = 0; index < objects->size(); index++)
+	//pplayer interaction
+	for (int i = 0; i < objects->size(); i++)
 	{
-		if ((objects->at(index)->getType() == PLAYER) 
-		&& (intersect(objects->at(index))))
+		if ((objects->at(i)->getType() == PLAYER) 
+		&& (intersect(objects->at(i))))
 			del = true;
 	}
 	if (!id && !time)
