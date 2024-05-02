@@ -119,6 +119,10 @@ void Game::updateMenu()
 		return;
 	}
 
+	//for (int i = 0; i < 20; i++)
+	//	if (sf::Joystick::isButtonPressed(0, i))
+	//		printf("%d\n", i);
+
 	if ((sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || button(0, Controller::L2)) && !keyLeft)
 		if (country > 0)
 			country--;
