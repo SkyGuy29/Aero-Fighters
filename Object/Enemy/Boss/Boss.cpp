@@ -25,19 +25,19 @@ std::vector<Object*>* objects) : Enemy::Enemy(id, left, pos, vel)
 		objects->push_back(bossPiece1);
 		objects->push_back(bossPiece2);
 		objects->push_back(bossPiece3);
-		health = 100;
+		health = 1000;
 		break;
 	case 1: //England Boss Left Wing
 		setSize(56, 75);
-		health = 50;
+		health = 500;
 		break;
 	case 2: //England Boss Right Wing
 		setSize(56, 75);
-		health = 50;
+		health = 500;
 		break;
 	case 3: //England Boss Middle Part
 		setSize(56, 75);
-		health = 50;
+		health = 500;
 	}
 
 	sprite.setSize(size);
@@ -57,10 +57,10 @@ void Boss::update(sf::Vector2u winSize, std::vector<Object*>* objects, bool time
 	switch (id)
 	{
 	case 0: //England Boss Movement
-		vel.y *= .95;
-		bossPiece1->setPos(sf::Vector2f(pos.x - 54, pos.y + 36));
-		bossPiece2->setPos(sf::Vector2f(pos.x, pos.y + 36)); 
-		bossPiece3->setPos(sf::Vector2f(pos.x + 54, pos.y + 36));
+		vel.y *= .85;
+		bossPiece1->setPos(sf::Vector2f(pos.x - 54, pos.y + 24));
+		bossPiece2->setPos(sf::Vector2f(pos.x, pos.y + 24)); 
+		bossPiece3->setPos(sf::Vector2f(pos.x + 54, pos.y + 24));
 		break;
 	case 1: //England Boss Left Wing
 		if(!cooldown)
@@ -173,11 +173,11 @@ void Boss::update(sf::Vector2u winSize, std::vector<Object*>* objects, bool time
 		case 3: //England Boss Middle Part
 			if (!cooldown)
 			{
-				objects->push_back(new Projectile(pos.x, pos.y, sf::Vector2f(0, 3), 
+				objects->push_back(new Projectile(pos.x - 50, pos.y, sf::Vector2f(0, 3), 
 				sf::Vector2f(10, 10), 1, false, 0, 15));
-				objects->push_back(new Projectile(pos.x, pos.y, sf::Vector2f(0, 3),
+				objects->push_back(new Projectile(pos.x - 50, pos.y, sf::Vector2f(0, 3),
 				sf::Vector2f(10, 10), 1, false, 0, 30, 15));
-				objects->push_back(new Projectile(pos.x, pos.y, sf::Vector2f(0, 3),
+				objects->push_back(new Projectile(pos.x - 50, pos.y, sf::Vector2f(0, 3),
 				sf::Vector2f(10, 10), 1, false, 0, 60, 15));
 				cooldown = 300;
 			}

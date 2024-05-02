@@ -411,23 +411,23 @@ void Level::initializeTextures(int index)
 				break;
 			case 13: //Breakable
 				objects[objects.size() - 1 - index]->setTexture(&enemyProjectileImg,
-					sf::Vector2i(14, 14), sf::Vector2i(0, 0), 4, false);
+					sf::Vector2i(14, 14), sf::Vector2i(0, 8), 4, false);
 				break;
 			case 14: //Breaking
 				objects[objects.size() - 1 - index]->setTexture(&enemyProjectileImg,
-					sf::Vector2i(16, 12), sf::Vector2i(0, 0), 5, true);
+					sf::Vector2i(16, 12), sf::Vector2i(0, 22), 5, true);
 				break;
 			case 15: //Big
 				objects[objects.size() - 1 - index]->setTexture(&enemyProjectileImg,
-					sf::Vector2i(12, 12), sf::Vector2i(0, 0), 2, false);
+					sf::Vector2i(12, 12), sf::Vector2i(0, 34), 2, false);
 				break;
 			case 16: //Medium
 				objects[objects.size() - 1 - index]->setTexture(&enemyProjectileImg,
-					sf::Vector2i(10, 10), sf::Vector2i(0, 0), 2, false);
+					sf::Vector2i(10, 10), sf::Vector2i(0, 46), 2, false);
 				break;
 			case 17: //One pixel projectile
 				objects[objects.size() - 1 - index]->setTexture(&enemyProjectileImg,
-					sf::Vector2i(4, 4), sf::Vector2i(0, 0), 1, false);
+					sf::Vector2i(4, 4), sf::Vector2i(0, 56), 1, false);
 				break;
 			case 18: //Missiles 
 					switch (orient) //This is so that the flips are correct
@@ -620,7 +620,7 @@ void Level::englandUpdate(sf::Vector2u winSize)
 		if (bossSpawned == false)
 		{
 			objects.push_back(new Boss(0, true, sf::Vector2f(winSize.x / 2, 
-			0), sf::Vector2f(0, 8), &objects));
+			0), sf::Vector2f(0, 20), &objects));
 			bossSpawned = true;
 		}
 	}

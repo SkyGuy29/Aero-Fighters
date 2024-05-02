@@ -88,7 +88,8 @@ void Projectile::update(sf::Vector2u winSize, std::vector<Object*>* objects, boo
 		if (type == PLAYER_PROJECTILE
 			&& (!id || id >= 4)
 			&& ((objects->at(i)->getType() == AIR
-				|| objects->at(i)->getType() == LAND)
+				|| objects->at(i)->getType() == LAND
+				|| objects->at(i)->getType() == BOSS)
 				&& this->intersect(objects->at(i))))
 		{
 			del = true;
