@@ -124,7 +124,7 @@ void Level::load(sf::Vector2u winSize, short country, int mapId)
 			
 			objects.push_back(new Land(id, true, &backgroundSpeed, winSize, &objects, pos, vel));
 			break;
-		case 1: //air
+		case 1: //air 
 			file >> startMark;
 			objects.push_back(new Air(id, true, &backgroundDist, startMark, winSize, &objects, pos, vel));
 			break;
@@ -148,16 +148,19 @@ void Level::initializeTextures(int index)
 			{
 			case 0: //Avro Bomber
 				objects[objects.size() - 1 - index]->setTexture(&avroBomberImg,
-					sf::Vector2i(104, 116), sf::Vector2i(14, 10), 1, false);
+				sf::Vector2i(164, 150), sf::Vector2i(8, 4), 1, false);
 				break;
 			case 1: //Avro Bomber Left Wing
-			
+				objects[objects.size() - 1 - index]->setTexture(&avroBomberImg,
+				sf::Vector2i(56, 75), sf::Vector2i(180, 14), 1, false);
 				break;
 			case 2: //Avro Bomber Right Wing
-
+				objects[objects.size() - 1 - index]->setTexture(&avroBomberImg,
+				sf::Vector2i(52, 75), sf::Vector2i(236, 14), 1, false);
 				break;
 			case 3: //Avro Bomber Middle Part
-
+				objects[objects.size() - 1 - index]->setTexture(&avroBomberImg,
+				sf::Vector2i(56, 75), sf::Vector2i(288, 14), 1, false);
 				break;
 			}
 			break;
@@ -645,7 +648,7 @@ void Level::englandUpdate(sf::Vector2u winSize)
 		if (bossSpawned == false)
 		{
 			objects.push_back(new Boss(0, true, sf::Vector2f(winSize.x / 2, 
-			winSize.y / 2), sf::Vector2f(0, 0), &objects));
+			0), sf::Vector2f(0, 8), &objects));
 			bossSpawned = true;
 			std::cout << p[0]->getPos().x << p[1]->getPos().y;
 		}
