@@ -642,18 +642,6 @@ void Level::draw(sf::RenderTarget& target, sf::RenderStates states) const
 	for (int i = objects.size() - 1; i >= 0; i--)
 	{
 		if (objects[i]->isTexInit())
-			switch (objects[i]->getType())
-			{
-			case Object::ENEMY_PROJECTILE:
-			case Object::EXPLOSION:
-			case Object::PLAYER_PROJECTILE:
-				target.draw(*objects[i]);
-			}
-	}
-
-	for (int i = objects.size() - 1; i >= 0; i--)
-	{
-		if (objects[i]->isTexInit())
 			switch (objects.at(i)->getType())
 			{
 			case Object::AIR:
@@ -662,6 +650,18 @@ void Level::draw(sf::RenderTarget& target, sf::RenderStates states) const
 			case Object::LAND:
 			case Object::PLAYER:
 			case Object::BOSS:
+				target.draw(*objects[i]);
+			}
+	}
+	
+	for (int i = objects.size() - 1; i >= 0; i--)
+	{
+		if (objects[i]->isTexInit())
+			switch (objects[i]->getType())
+			{
+			case Object::ENEMY_PROJECTILE:
+			case Object::EXPLOSION:
+			case Object::PLAYER_PROJECTILE:
 				target.draw(*objects[i]);
 			}
 	}
