@@ -221,6 +221,7 @@ void Player::shoot(std::vector<Object*>& objects)
 	}
 }
 
+//uses the special ability of the player based on what country the user selected
 void Player::special(std::vector<Object*>& objects, sf::Vector2u winSize)
 {
 	if (!cooldown && specialCharge > 0)
@@ -358,6 +359,10 @@ void Player::update(sf::Vector2u winSize, std::vector<Object*>* objects, bool ti
 			case 1: //Interact with P
 				if (powerLevel < 3)
 					powerLevel++;
+				else
+				{
+					//score increase by 2000
+				}
 				break;
 			case 2: //Interact with B
 				if (specialCharge < 5)
@@ -370,13 +375,13 @@ void Player::update(sf::Vector2u winSize, std::vector<Object*>* objects, bool ti
 		}
 	}
 
-	if (cooldown)
+	if (cooldown != 0)
 		cooldown--;
 
-	if (cooldownSecondary)
+	if (cooldownSecondary != 0)
 		cooldownSecondary--;
 
-	if (invincibility)
+	if (invincibility != 0)
 		invincibility--;
 
 	if (timer > 0)
@@ -386,7 +391,7 @@ void Player::update(sf::Vector2u winSize, std::vector<Object*>* objects, bool ti
 			movingProjectile = nullptr;
 	}
 
-	if (cooldownTime)
+	if (cooldownTime != 0)
 		cooldownTime--;
 
 	objectUpdate(winSize, objects);
@@ -401,9 +406,9 @@ void Player::draw(sf::RenderTarget& target, sf::RenderStates states) const
 		target.draw(sprite, states);
 }
 
-void Player::setHealth(short healf)
+void Player::setHealth(short newHealth)
 {
-	health = healf;
+	health = newHealth;
 }
 
 short Player::getHealth()
@@ -416,6 +421,7 @@ short Player::getSpecialCharge()
 	return specialCharge;
 }
 
+//moves the player on the window
 void Player::move(sf::Vector2u winSize)
 {
 	if (vel.x > 0)
