@@ -662,41 +662,34 @@ void Level::draw(sf::RenderTarget& target, sf::RenderStates states) const
 	target.draw(background, states);
 	target.draw(frontbackground, states);
 	
+	// Drawing priority
+	// Slightly cleaner than what was here
+	// Explosions and projectiles first
 	for (int i = objects.size() - 1; i >= 0; i--)
-		if(objects.at(i)->getType() == -1)
-			target.draw(*objects[i]);
+	{
+		if (objects[i]->isTexInit())
+			switch (objects[i]->getType())
+			{
+			case Object::ENEMY_PROJECTILE:
+			case Object::EXPLOSION:
+			case Object::PLAYER_PROJECTILE:
+				target.draw(*objects[i]);
+			}
+	}
 
 	for (int i = objects.size() - 1; i >= 0; i--)
-		if (objects.at(i)->getType() == 5)
-			target.draw(*objects[i]);
-
-	for (int i = objects.size() - 1; i >= 0; i--)
-		if (objects.at(i)->getType() == 4)
-			target.draw(*objects[i]);
-
-	for (int i = objects.size() - 1; i >= 0; i--)
-		if (objects.at(i)->getType() == 1 || objects.at(i)->getType() == 2)
-			target.draw(*objects[i]);
-
-	for (int i = objects.size() - 1; i >= 0; i--)
-		if (objects.at(i)->getType() == 3)
-			target.draw(*objects[i]);
-
-	for (int i = objects.size() - 1; i >= 0; i--)
-		if (objects.at(i)->getType() == 7)
-			target.draw(*objects[i]);
-
-	for (int i = objects.size() - 1; i >= 0; i--)
-		if (objects.at(i)->getType() == 6)
-			target.draw(*objects[i]);
-
-	for (int i = objects.size() - 1; i >= 0; i--)
-		if (objects.at(i)->getType() == 0)
-			target.draw(*objects[i]);
-
-	for (int i = objects.size() - 1; i >= 0; i--)
-		if (objects.at(i)->getType() == 8)
-			target.draw(*objects[i]);
+	{
+		if (objects[i]->isTexInit())
+			switch (objects.at(i)->getType())
+			{
+			case Object::AIR:
+			case Object::BOSS_PIECE:
+			case Object::COLLECTABLE:
+			case Object::LAND:
+			case Object::PLAYER:
+				target.draw(*objects[i]);
+			}
+	}
 
 	target.draw(ui, states);
 }
