@@ -265,7 +265,7 @@ void Level::initializeTextures(int index)
 					sf::Vector2i(48, 48), sf::Vector2i(0, 0), 1, false);
 				break;
 			case 25: //Roofus
-				objects[objects.size() - 1 - index]->setTexture(&houseImg,
+				objects[objects.size() - 1 - index]->setTexture(&roofusImg,
 					sf::Vector2i(48, 48), sf::Vector2i(0, 0), 1, false);
 				break;
 			}
