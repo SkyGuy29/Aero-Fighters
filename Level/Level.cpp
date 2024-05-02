@@ -24,23 +24,8 @@ void Level::load(sf::Vector2u winSize, short country, int mapId)
 	ui.setFont(font);
 	ui.setPosition(0, 0);
 
-	switch (country)
-	{
-	case STATES:
-		backgroundImg.loadFromFile("Res/States/States.png");
-		frontbackgroundImg.loadFromFile("Res/States/FrontStates.png");
-		break;
-	case JAPAN:
-		backgroundImg.loadFromFile("Res/Japan/Japan.png");
-		frontbackgroundImg.loadFromFile("Res/Japan/FrontJapan.png");
-		break;
-	case SWEDEN:
-		backgroundImg.loadFromFile("Res/Sweden/Sweden.png");
-		break;
-	case ENGLAND:
-		backgroundImg.loadFromFile("Res/England/England.png");
-		frontbackgroundImg.loadFromFile("Res/England/FrontEngland.png");
-	}
+	backgroundImg.loadFromFile("Res/England/England.png");
+	frontbackgroundImg.loadFromFile("Res/England/FrontEngland.png");
 
 	background.setSize(sf::Vector2f(winSize));
 	frontbackground.setSize(sf::Vector2f(winSize));
@@ -95,19 +80,7 @@ void Level::load(sf::Vector2u winSize, short country, int mapId)
 
 	std::fstream file;
 
-	switch (country)
-	{
-	case STATES:
-		file.open("Res/States/enemies.txt");
-		break;
-	case JAPAN:
-		break;
-	case SWEDEN:
-		file.open("Res/Sweden/enemies.txt");
-		break;
-	case ENGLAND:
-		file.open("Res/England/enemies.txt");
-	}
+	file.open("Res/England/enemies.txt");
 
 	while (file.is_open() && !file.eof())
 	{
