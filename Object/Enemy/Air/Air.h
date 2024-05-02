@@ -9,5 +9,5 @@ public:
 
     void update(sf::Vector2u winSize, std::vector<Object*>* objects, bool time);
 private:
-
+    Object* chopperBlades = nullptr;
 };

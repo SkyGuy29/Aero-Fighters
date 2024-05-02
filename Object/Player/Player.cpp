@@ -337,11 +337,11 @@ void Player::update(sf::Vector2u winSize, std::vector<Object*>* objects, bool ti
 			objects->push_back(new Explosion(pos, 0));
 			objects->push_back(new Collectable(1, pos, backgroundSpeed));
 			specialCharge = 2;
-			if (rand() % 2 == 0)
+			if (rand() % 5 == 0)
 				objects->push_back(new Collectable(2, pos, backgroundSpeed));
 			if (!health)
 			{
-				if(rand() % 10 == 0)
+				if(rand() % 25 == 0)
 					objects->push_back(new Collectable(3, pos, backgroundSpeed));
 			}
 			pos = sf::Vector2f(winSize.x * 0.5f, winSize.y * 0.75f);

@@ -21,10 +21,19 @@ Air::Air(short id, bool left, float* backgroundDist, int startMark, sf::Vector2u
 	{
 	case 0: //baby copter
 		setSpriteNum(0);
+		setOrientation(8);
+		chopperBlades = new Air(3, left, backgroundDist, startMark, winSize, objects,
+			pos, vel); //Creates the top
+		objects->push_back(chopperBlades);
+		break;
+	case 3: //chopper blades
+		setSpriteNum(19);
+		health = 999;
 		break;
 	case 1: //big plane
 		setSpriteNum(14);
 		setSize(80, 80);
+		health = 15;
 		break;
 	case 2: //spinny planes
 		setSpriteNum(15);
@@ -37,7 +46,6 @@ Air::Air(short id, bool left, float* backgroundDist, int startMark, sf::Vector2u
 
 void Air::update(sf::Vector2u winSize, std::vector<Object*>* objects, bool time)
 {
-	enemyUpdate(winSize, objects);
 	//Do things here only if time is moving
 	if(time != 0)
 	{
@@ -45,10 +53,14 @@ void Air::update(sf::Vector2u winSize, std::vector<Object*>* objects, bool time)
 		{
 			//ENGLAND
 		case 0: //baby copter
+			if (shouldDelete())
+				chopperBlades->setDelete();
+		case 3: //chopper blades
 			if (entered)
 			{
 				vel.y *= 0.95;
 			}
 		}
+	enemyUpdate(winSize, objects);	
 	}
 }

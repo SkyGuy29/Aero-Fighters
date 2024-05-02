@@ -46,12 +46,17 @@ Land::Land(short id, bool left, float* backgroundSpeed, sf::Vector2u winSize, st
 		break;
 	case 2: //fort building
 		cooldown = 100;
-		health = 60;
+		health = 90;
 		setSize(60, 60);
 		setSpriteNum(20);
 		break;
-	case 3: //smaller fort buildings
-		health = 15;
+	case 3: //roofus
+		health = 30;
+		setSize(60, 60);
+		setSpriteNum(25);
+		break;
+	case 9: //cone
+		health = 30;
 		setSize(60, 60);
 		setSpriteNum(24);
 		break;
@@ -145,6 +150,7 @@ void Land::update(sf::Vector2u winSize, std::vector<Object*>* objects, bool time
 			//Shoot at target player
 			if (!cooldown && entered && orientation == (int) angle)
 			{
+				pos.y -= 0.5;
 
 				objects->push_back(new Projectile(getPos().x, getPos().y,
 				projVelocity, sf::Vector2f(10, 10), 0, false, 0, 0, 12));
@@ -160,7 +166,9 @@ void Land::update(sf::Vector2u winSize, std::vector<Object*>* objects, bool time
 		case 2: //Building Shoot 
 			if (!cooldown)
 			{
-				cooldown = 100; //numbers in next part based on sine and cosine
+				pos.y -= 0.5;
+
+				cooldown = 100;
 				objects->push_back(new Projectile(getPos().x, getPos().y,
 				sf::Vector2f(1.84776, 0.76537), sf::Vector2f(10, 10), 0, false, 0, 0, 12));
 				objects->push_back(new Projectile(getPos().x, getPos().y,
