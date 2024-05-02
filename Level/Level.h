@@ -11,10 +11,12 @@
 #include "../Object/Projectile/Projectile.h"
 #include "../Object/Collectable/Collectable.h"
 
+#include "../ControllerStuff.hpp"
+
+
 //This takes a file and interprets it to create the level.
 //ALL objects in a level are held here. UIs, menus, and things that span
 //through multiple levels are held by Game.
-
 
 class Level : public sf::Drawable
 {
@@ -37,10 +39,6 @@ private:
 	void japanUpdate(sf::Vector2u winSize);
 	void swedenUpdate(sf::Vector2u winSize);
 	void englandUpdate(sf::Vector2u winSize);
-
-	bool key(int p, int k);
-
-	bool button(int p, int b);
 
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
@@ -73,77 +71,12 @@ private:
 	sf::IntRect rect;
 	float backgroundSpeed = 1, backgroundDist = 0, frontbackgroundDist = 0;
 	short country, orient = 0;
+	float backgroundSpeedup = 0.f;
+	float backgroundSpeedupMax = 2.f;
 
 	Player* p[2];
-
-	// TEMPORARY CONTROLS
-
-	// Controller test
-	//https://hcidesign.com/gamepad/
-
-	enum Controller
-	{
-		A,
-		B,
-		X,
-		Y,
-		L1,
-		R1,
-		L2,
-		R2,
-		Select,
-		Start,
-		L3,
-		R3,
-		D_Up,
-		D_Down,
-		D_Left,
-		D_Right
-	};
-
-	enum Controls
-	{
-		Forward,
-		Left,
-		Back,
-		Right,
-		Shoot,
-		Special,
-		Spawn
-	};
-
-	enum Countries
-	{
-		STATES,
-		JAPAN,
-		SWEDEN,
-		ENGLAND
-	};
-
-	int p1Ctrl[7] =
-	{
-		sf::Keyboard::W, // Forward
-		sf::Keyboard::A, // Left
-		sf::Keyboard::S, // Back
-		sf::Keyboard::D, // Right
-		sf::Keyboard::Q, // Shoot
-		sf::Keyboard::E,  // Special
-		sf::Keyboard::Space //Spawn
-	};
-
-	int p2Ctrl[7] =
-	{
-		sf::Keyboard::I, // Forward
-		sf::Keyboard::J, // Left
-		sf::Keyboard::K, // Back
-		sf::Keyboard::L, // Right
-		sf::Keyboard::U, // Shoot
-		sf::Keyboard::O,  // Special
-		sf::Keyboard::Space //Spawn
-	};
 
 	sf::Vector2u winSize;
 	bool infScrollInPos = true, infScrollEnabled = false, bossSpawned = false;
 	sf::IntRect frontRect;
 };
-

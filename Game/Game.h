@@ -3,6 +3,7 @@
 #include <SFML/Audio.hpp>
 
 #include "../Level/Level.h"
+#include "../ControllerStuff.hpp"
 
 //Big class that handles the whole game. It is created and ran once in Main.cpp.
 //The main game loop runs here.

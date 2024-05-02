@@ -1,4 +1,6 @@
 #include "Game.h"
+//#include "../ControllerStuff.hpp"
+
 
 Game::Game()
 {
@@ -53,7 +55,7 @@ void Game::run()
 				resize();
 			}
 
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Tab))
+		if (key(0, Controls::FastForward) || button(0, Controller::X))
 			updatesPSec = 600;
 		else
 			updatesPSec = 30;
@@ -110,22 +112,22 @@ void Game::updateMenu()
 		menuBlinkTimer = 0;
 		blinkState = !blinkState;
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
+	if (key(0, Controls::Select) || button(0, Controller::A))
 	{
 		playerChoose = 0;
 		level.load(winSize, country, 0);
 		return;
 	}
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && !keyLeft)
+	if ((sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || button(0, Controller::L2)) && !keyLeft)
 		if (country > 0)
 			country--;
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && !keyRight)
+	if ((sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || button(0, Controller::R2)) && !keyRight)
 		if (country < 3)
 			country++;
 
-	keyLeft = sf::Keyboard::isKeyPressed(sf::Keyboard::Left);
-	keyRight = sf::Keyboard::isKeyPressed(sf::Keyboard::Right);
+	keyLeft = sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || button(0, Controller::L2);
+	keyRight = sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || button(0, Controller::R2);
 
 	playerChoose--;
 	menuCountdown.setString(std::to_string(playerChoose / updatesPSec));

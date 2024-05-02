@@ -86,6 +86,9 @@
     <ClInclude Include="Object\Projectile\Explosion\Explosion.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ControllerStuff.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\..\..\Downloads\Lobotomy_Time.png">
