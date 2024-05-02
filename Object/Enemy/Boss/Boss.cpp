@@ -183,30 +183,30 @@ void Boss::update(sf::Vector2u winSize, std::vector<Object*>* objects, bool time
 			}
 			if (!cooldown2)
 			{
-				objects->push_back(new Projectile(pos.x, pos.y, sf::Vector2f(5, 0),
-				sf::Vector2f(0, 0), 1, false, 0, 11));
-				objects->push_back(new Projectile(pos.x, pos.y, sf::Vector2f(4.830, -1.294),
-				sf::Vector2f(0, 0), 1, false, 0, 11));
-				objects->push_back(new Projectile(pos.x, pos.y, sf::Vector2f(4.83, 1.294),
-				sf::Vector2f(0, 0), 1, false, 0, 11));
-				objects->push_back(new Projectile(pos.x, pos.y, sf::Vector2f(5, 0),
-				sf::Vector2f(0, 0), 1, false, 0, 25, 11));
-				objects->push_back(new Projectile(pos.x, pos.y, sf::Vector2f(4.830, -1.294),
-				sf::Vector2f(0, 0), 1, false, 0, 25, 11));
-				objects->push_back(new Projectile(pos.x, pos.y, sf::Vector2f(4.83, 1.294),
-				sf::Vector2f(0, 0), 1, false, 0, 25, 11));
+				objects->push_back(new Projectile(pos.x, pos.y, sf::Vector2f(0, 5),
+				sf::Vector2f(0, 0), 1, false, 0, 12));
+				objects->push_back(new Projectile(pos.x, pos.y, sf::Vector2f(-1.294, 4.83),
+				sf::Vector2f(0, 0), 1, false, 0, 12));
+				objects->push_back(new Projectile(pos.x, pos.y, sf::Vector2f(1.294, 4.83),
+				sf::Vector2f(0, 0), 1, false, 0, 12));
+				objects->push_back(new Projectile(pos.x, pos.y, sf::Vector2f(0, 5),
+				sf::Vector2f(0, 0), 1, false, 0, 25, 12));
+				objects->push_back(new Projectile(pos.x, pos.y, sf::Vector2f(-1.294, 4.83),
+				sf::Vector2f(0, 0), 1, false, 0, 25, 12));
+				objects->push_back(new Projectile(pos.x, pos.y, sf::Vector2f(1.294, 4.83),
+				sf::Vector2f(0, 0), 1, false, 0, 25, 12));
 				cooldown2 = 250;
 			}
 			if (!cooldown3)
 			{
-				objects->push_back(new Projectile(pos.x + 8, pos.y, sf::Vector2f(4.830, 1.294),
-				sf::Vector2f(0, 0), 1, false, 0, 11));
-				objects->push_back(new Projectile(pos.x, pos.y, sf::Vector2f(4.830, 1.294),
-				sf::Vector2f(0, 0), 1, false, 0, 11));
-				objects->push_back(new Projectile(pos.x - 8, pos.y, sf::Vector2f(4.830, -1.294),
-				sf::Vector2f(0, 0), 1, false, 0, 11));
-				objects->push_back(new Projectile(pos.x, pos.y, sf::Vector2f(4.830, -1.294),
-				sf::Vector2f(0, 0), 1, false, 0, 11));
+				objects->push_back(new Projectile(pos.x + 56, pos.y, sf::Vector2f(1.294, 4.83),
+				sf::Vector2f(0, 0), 1, false, 0, 12));
+				objects->push_back(new Projectile(pos.x + 56, pos.y, sf::Vector2f(-1.294, 4.83),
+				sf::Vector2f(0, 0), 1, false, 0, 12));
+				objects->push_back(new Projectile(pos.x - 56, pos.y, sf::Vector2f(-1.294, 4.83),
+				sf::Vector2f(0, 0), 1, false, 0, 12));
+				objects->push_back(new Projectile(pos.x - 56, pos.y, sf::Vector2f(1.294, 4.83),
+				sf::Vector2f(0, 0), 1, false, 0, 12));
 				cooldown3 = 200;
 			}
 			break;

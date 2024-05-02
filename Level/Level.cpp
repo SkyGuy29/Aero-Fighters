@@ -622,7 +622,6 @@ void Level::englandUpdate(sf::Vector2u winSize)
 			objects.push_back(new Boss(0, true, sf::Vector2f(winSize.x / 2, 
 			0), sf::Vector2f(0, 8), &objects));
 			bossSpawned = true;
-			std::cout << p[0]->getPos().x << p[1]->getPos().y;
 		}
 	}
 	//Slow down for fort
@@ -662,6 +661,7 @@ void Level::draw(sf::RenderTarget& target, sf::RenderStates states) const
 			case Object::COLLECTABLE:
 			case Object::LAND:
 			case Object::PLAYER:
+			case Object::BOSS:
 				target.draw(*objects[i]);
 			}
 	}
