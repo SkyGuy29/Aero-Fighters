@@ -2,6 +2,8 @@
 
 #include "../Object.h"
 
+//creates an object that is collectible by the player.
+//this consists of powerups and money.
 class Collectable : public Object
 {
 public:

@@ -85,21 +85,20 @@ Land::Land(short id, bool left, float* backgroundSpeed, sf::Vector2u winSize, st
 
 	sprite.setSize(size);
 	sprite.setOrigin(size / 2.f);
-	//setRandColor();
 }
 
 void Land::update(sf::Vector2u winSize, std::vector<Object*>* objects, bool time)
 {
 	enemyUpdate(winSize, objects);
 	//Do things here only while time is moving.
-	if (time)
+	if (time != 0)
 	{
 		setPos(getPos().x, getPos().y + *backgroundSpeed);
 
-		if (cooldown)
+		if (cooldown != 0)
 			cooldown--;
 
-		if (timer)
+		if (timer != 0)
 			timer--;
 
 		
@@ -161,7 +160,7 @@ void Land::update(sf::Vector2u winSize, std::vector<Object*>* objects, bool time
 		case 2: //Building Shoot 
 			if (!cooldown)
 			{
-				cooldown = 100;
+				cooldown = 100; //numbers in next part based on sine and cosine
 				objects->push_back(new Projectile(getPos().x, getPos().y,
 				sf::Vector2f(1.84776, 0.76537), sf::Vector2f(10, 10), 0, false, 0, 0, 12));
 				objects->push_back(new Projectile(getPos().x, getPos().y,

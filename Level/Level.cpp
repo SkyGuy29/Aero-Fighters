@@ -543,7 +543,7 @@ void Level::update(sf::Vector2u winSize)
 	getInput(winSize);
 
 	// checking the back of the vector first is needed,
-	// so deleting doesn't shift everything down and mess up the for loop index
+	// so deleting doesn't shift everything down and mess up the for loop
 	// delete first, then erase
 
 	//polymorphism -- All objects are stored in this vector, they can be

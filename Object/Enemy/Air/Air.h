@@ -1,7 +1,7 @@
 #pragma once
 #include "../Enemy.h"
-class Air :
-    public Enemy
+
+class Air : public Enemy
 {
 public:
     Air(short id, bool left, float* backgroundDist, int startMark, sf::Vector2u winSize, std::vector<Object*>* objects,
