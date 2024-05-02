@@ -46,7 +46,7 @@ Land::Land(short id, bool left, float* backgroundSpeed, sf::Vector2u winSize, st
 		break;
 	case 2: //fort building
 		cooldown = 100;
-		health = 120;
+		health = 90;
 		setSize(60, 60);
 		setSpriteNum(20);
 		break;
