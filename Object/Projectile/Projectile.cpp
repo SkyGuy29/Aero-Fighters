@@ -65,7 +65,6 @@ void Projectile::update(sf::Vector2u winSize, std::vector<Object*>* objects, boo
 
 	if (id == 3)
 	{
-		setRandColor();
 		setSize(sf::Vector2f(size.x += 15, size.y += 15));
 		sprite.setSize(sf::Vector2f(size.x += 15, size.y += 15));
 		sprite.setOrigin(sprite.getSize() / 2.f);

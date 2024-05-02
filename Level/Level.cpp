@@ -375,7 +375,6 @@ void Level::initializeTextures(int index)
 					sf::Vector2i(32, 32), sf::Vector2i(688, 480), 3, false);
 				break;
 			default:
-				objects[objects.size() - 1 - index]->setRandColor();
 				break;
 			}
 			break;

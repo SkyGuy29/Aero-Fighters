@@ -36,8 +36,6 @@ public:
 
 
 	void setTexture(sf::Texture* texPtr, sf::Vector2i size, sf::Vector2i offset, int frameCount, bool vertAnimation);
-	// I know it's temporary
-	void setRandColor();
 	
 	bool intersect(Object*);
 	

@@ -5,6 +5,7 @@ Object::Object()
 {
 }
 
+//
 void Object::update(sf::Vector2u winSize, std::vector<Object*>*, bool time)
 {
 }
@@ -14,6 +15,7 @@ void Object::objectUpdate(sf::Vector2u winSize, std::vector<Object*>* objects)
 	move(winSize);
 }
 
+//draws the object to the screen
 void Object::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
 	target.draw(sprite, states);
@@ -73,16 +75,6 @@ void Object::setTexture(sf::Texture* texPtr, sf::Vector2i size, sf::Vector2i off
 	sprite.setSize(sf::Vector2f(size));
 	sprite.setOrigin(sf::Vector2f(size) / 2.f);
 	nextFrame(2);
-}
-
-// just a temporary method, idk why I remade it lol
-void Object::setRandColor()
-{
-	sf::Color c;
-	c.r = rand() % 256;
-	c.g = rand() % 256;
-	c.b = rand() % 256;
-	sprite.setFillColor(c);
 }
 
 sf::Vector2f Object::getPos()
