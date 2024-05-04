@@ -43,6 +43,12 @@ private:
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
 	void initializeTextures(int);
+	void initTexturesBoss(Object* object, sf::IntRect& objRect, int& frameCount, sf::Texture* texPtr);
+	void initTexturesLand(Object* object, sf::IntRect& objRect, int& frameCount, sf::Texture* texPtr);
+	void initTexturesExplosion(Object* object, sf::IntRect& objRect, int& frameCount, sf::Texture* texPtr);
+	void initTexturesAir(Object* object, sf::IntRect& objRect, int& frameCount, sf::Texture* texPtr);
+	void initTexturesProjectile(Object* object, sf::IntRect& objRect, int& frameCount, sf::Texture* texPtr);
+	void initTexturesCollectable(Object* object, sf::IntRect& objRect, int& frameCount, sf::Texture* texPtr);
 
 	std::vector<Object*> objects;
 

@@ -124,293 +124,313 @@ void Level::initializeTextures(int index)
 		switch (object->getType())
 		{
 		case Object::BOSS:
-			texPtr = &avroBomberImg;
-			frameCount = 1;
-			switch (object->getID())
-			{
-			case 0: //Avro Bomber
-				objRect = { 8, 4, 164, 150 };
-				break;
-			case 1: //Avro Bomber Left Wing
-				objRect = { 180, 14, 56, 75 };
-				break;
-			case 2: //Avro Bomber Right Wing
-				objRect = { 236, 14, 52, 75 };
-				break;
-			case 3: //Avro Bomber Middle Part
-				objRect = { 288, 14, 56, 75 };
-				break;
-			}
+			initTexturesBoss(object, objRect, frameCount, texPtr);
 			break;
 		case Object::LAND:
-			texPtr = &enemyImg;
-			frameCount = 1;
-			switch (spriteNum)
-			{
-			case 0:	case 1:	case 2:	case 3:	case 4: case 5: // Tanks
-				objRect = { 32 * orient, 0 + 40 * (spriteNum - 0), 32, 32 };
-				break;
-			case 6: case 7: case 8: case 9: case 10: 
-			case 11: case 12: case 13: case 14: // Boats and Turrets
-				objRect = { 32 * orient, 600 + 40 * (spriteNum - 6), 32, 32 };
-				break;
-			case 15: //Landmines
-				objRect = { 520 + 32 * orient, 240, 32, 32 };
-				break;
-			case 16: //Thing
-				objRect = { 520, 280, 32, 32 };
-				break;
-			case 17: case 18: // Destroyed Boat/Tank
-				objRect = { 520 + 32 * orient, (480 + 40 * (spriteNum - 17)), 32, 32 };
-				break;
-			case 19: //House
-				texPtr = &houseImg;
-				objRect = { 0, 0, 64, 48 };
-				break;
-			case 20: //Dome
-				texPtr = &domeImg;
-				objRect = { 0, 0, 80, 80 };
-				break;
-			case 21: //Dome Shooty shoot Animation
-				texPtr = &houseImg;
-				frameCount = 10;
-				objRect = { 0, 0, 89, 74 };
-				break;
-			case 22: //Gate
-				texPtr = &gateImg;
-				objRect = { 0, 0, 32, 40 };
-				break;
-			case 23: //Hangar
-				texPtr = &hoodImg;
-				objRect = { 0, 0, 80, 96 };
-				break;
-			case 24: //Cone
-				texPtr = &coneImg;
-				objRect = { 0, 0, 48, 48 };
-				break;
-			case 25: //Roofus
-				texPtr = &roofusImg;
-				objRect = { 0, 0, 48, 48 };
-				break;
-			}
+			initTexturesLand(object, objRect, frameCount, texPtr);
 			break;
 		case Object::EXPLOSION:
-			texPtr = &explosionImg;
-			switch (spriteNum)
-			{
-			case 0:
-				frameCount = 16;
-				objRect = { 0, 0, 48, 48 };
-				break;
-			case 1:
-				frameCount = 11;
-				objRect = { 0, 49, 47, 37 };
-				break;
-			case 2:
-				frameCount = 14;
-				objRect = { 0, 87, 78, 80 };
-				break;
-			case 3:
-				frameCount = 12;
-				objRect = { 0, 168, 38, 41 };
-				break;
-			}
+			initTexturesExplosion(object, objRect, frameCount, texPtr);
 			break;
 		case Object::AIR:
-			texPtr = &enemyImg;
-			frameCount = 1;
-			switch (spriteNum)
-			{
-			case 0: case 1: case 2: case 3: case 4: case 5: case 6: 
-			case 7: case 8: // Weird things, Regular Copters, and Fighter Jets
-				objRect = { 32 * orient, 240 + 40 * (spriteNum - 0), 32, 32};
-				break;
-			case 9: //Big Copter Blades
-				frameCount = 3;
-				objRect = { 520, 0, 64, 64 };
-				break;
-			case 10: case 11: //Advanced Mega Copter
-				objRect = { 520 + 40 * (spriteNum - 10), 64, 32, 96};
-				break;
-			case 12: //Big Plane 1
-				objRect = { 600, 64, 80, 88 };
-				break;
-			case 13: //Big Copter 
-				objRect = { 688, 64, 48, 72 };
-				break;
-			case 14: //Big Plane 2
-				objRect = { 600, 160, 80, 80 };
-				break;
-			case 15: case 16: case 17: case 18: //Side & Dive Bombers
-				objRect = { 520 + 32 * orient, 320 + 40 * (spriteNum - 15), 32, 32};
-				break;
-			case 19: //Regular Copter Blades
-				frameCount = 3;
-				objRect = { 688, 480, 32, 32 };
-				break;
-			}
+			initTexturesAir(object, objRect, frameCount, texPtr);
 			break;
 		case Object::PLAYER_PROJECTILE: case Object::ENEMY_PROJECTILE:
-			texPtr = &projectileImg;
-			frameCount = 1;
-			switch (objects[objects.size() - 1 - index]->getSpriteNum())
-			{
-			case 0:
-				objRect = { (rand() % 3) * 11, 0, 11, 18 };
-				break;
-			case 1:
-				objRect = { (rand() % 3) * 16, 19, 16, 30 };
-				break;
-			case 2:
-				objRect = { (rand() % 3) * 21, 50, 31, 30 };
-				break;
-			case 3:
-				objRect = { (rand() % 3) * 47, 81, 47, 46 };
-				break;
-			case 4:
-				objRect = { (rand() % 3) * 9, 128, 9, 28 };
-				break;
-			case 5:
-				objRect = { (rand() % 3) * 16, 157, 16, 32 };
-				break;
-			case 6:
-				objRect = { (rand() % 3) * 41, 190, 41, 44 };
-				break;
-			case 7:
-				objRect = { (rand() % 3) * 64, 235, 64, 48 };
-				break;
-			case 8:
-				objRect = { (rand() % 3) * 15, 284, 15, 29 };
-				break;
-			case 9: //Kunai
-				objRect = { 0, 314, 9, 31 };
-				break;
-			case 10:
-				objRect = { (rand() % 3) * 9, 346, 9, 31 };
-				break;
-			case 11:
-				objRect = { (rand() % 3) * 16, 378, 16, 31 };
-				break;
-			case 12: //Enemy Projectile 1
-				objects[objects.size() - 1 - index]->setTexture(&enemyProjectileImg,
-					sf::Vector2i(8, 8), sf::Vector2i(0, 0), 4, false);
-				break;
-			case 13: //Breakable
-				objects[objects.size() - 1 - index]->setTexture(&enemyProjectileImg,
-					sf::Vector2i(14, 14), sf::Vector2i(0, 8), 4, false);
-				break;
-			case 14: //Breaking
-				objects[objects.size() - 1 - index]->setTexture(&enemyProjectileImg,
-					sf::Vector2i(16, 12), sf::Vector2i(0, 22), 5, true);
-				break;
-			case 15: //Big
-				objects[objects.size() - 1 - index]->setTexture(&enemyProjectileImg,
-					sf::Vector2i(12, 12), sf::Vector2i(0, 34), 2, false);
-				break;
-			case 16: //Medium
-				objects[objects.size() - 1 - index]->setTexture(&enemyProjectileImg,
-					sf::Vector2i(10, 10), sf::Vector2i(0, 46), 2, false);
-				break;
-			case 17: //One pixel projectile
-				objects[objects.size() - 1 - index]->setTexture(&enemyProjectileImg,
-					sf::Vector2i(4, 4), sf::Vector2i(0, 56), 1, false);
-				break;
-			case 18: //Missiles 
-				/*
-				The missile knows where it is at all times. 
-				It knows this because it knows where it isn't. 
-				By subtracting where it is from where it isn't, 
-				or where it isn't from where it is (whichever is greater), 
-				it obtains a difference, or deviation. 
-				The guidance subsystem uses deviations to generate 
-				corrective commands to drive the missile from a position 
-				where it is to a position where it isn't, 
-				and arriving at a position where it wasn't, it now is. 
-				Consequently, the position where it is, 
-				is now the position that it wasn't, 
-				and it follows that the position that it was, 
-				is now the position that it isn't.
-				In the event that the position that it is in is not 
-				the position that it wasn't, the system has acquired a variation, 
-				the variation being the difference between where the missile is, 
-				and where it wasn't. 
-				If variation is considered to be a significant factor, 
-				it too may be corrected by the GEA. 
-				However, the missile must also know where it was.
-				The missile guidance computer scenario works as follows. 
-				Because a variation has modified some of the information
-				the missile has obtained, it is not sure just where it is. 
-				However, it is sure where it isn't, within reason, 
-				and it knows where it was. 
-				It now subtracts where it should be from where it wasn't, 
-				or vice-versa, and by differentiating this from the 
-				algebraic sum of where it shouldn't be, and where it was, 
-				it is able to obtain the deviation and its variation, 
-				which is called error.
-				*/
-					switch (orient) //This is so that the flips are correct
-					{
-					case 8:
-						orient = 0;
-						break;
-					case 7: case 9: case 15:
-						orient = 1;
-						break;
-					case 6: case 10: case 14:
-						orient = 2;
-						break;
-					case 5: case 11: case 13:
-						orient = 3;
-						break;
-					case 12:
-						orient = 4;
-						break;
-					}
-				objects[objects.size() - 1 - index]->setTexture(&missileImg,
-					sf::Vector2i(12, 12), sf::Vector2i((orient % 5) * 12, 0), 1, false);
-				break;
-			}
+			initTexturesProjectile(object, objRect, frameCount, texPtr);
 			break;
 		case Object::COLLECTABLE:
-			switch (objects[objects.size() - 1 - index]->getID())
-			{
-			case 0:
-				switch (country)
-				{
-				case 0:
-					moneyOffset = 22;
-					break;
-				case 1:
-					moneyOffset = 0;
-					break;
-				case 2:
-					moneyOffset = 66;
-					break;
-				case 3:
-					moneyOffset = 44;
-					break;
-				}
-				objects[objects.size() - 1 - index]->setTexture(&moneyImg,
-					sf::Vector2i(11, 12), sf::Vector2i(moneyOffset, 0), 2, false);
-				break;
-			case 1:
-				objects[objects.size() - 1 - index]->setTexture(&powerUpImg,
-					sf::Vector2i(16, 19), sf::Vector2i(0, 20), 8, false);
-				break;
-			case 2:
-				objects[objects.size() - 1 - index]->setTexture(&powerUpImg,
-					sf::Vector2i(16, 19), sf::Vector2i(0, 0), 8, false);
-				break;
-			case 3:
-				objects[objects.size() - 1 - index]->setTexture(&powerUpImg,
-					sf::Vector2i(16, 19), sf::Vector2i(0, 40), 8, false);
-				break;
-			}
+			initTexturesCollectable(object, objRect, frameCount, texPtr);
 		}
 
 	if (texPtr)
 		object->setTexture(texPtr, objRect.getSize(), 
 		objRect.getPosition(), frameCount, false);
+}
+
+void Level::initTexturesBoss(Object* object, sf::IntRect& objRect, int& frameCount, sf::Texture* texPtr)
+{
+	texPtr = &avroBomberImg;
+	frameCount = 1;
+	switch (object->getID())
+	{
+	case 0: //Avro Bomber
+		objRect = { 8, 4, 164, 150 };
+		break;
+	case 1: //Avro Bomber Left Wing
+		objRect = { 180, 14, 56, 75 };
+		break;
+	case 2: //Avro Bomber Right Wing
+		objRect = { 236, 14, 52, 75 };
+		break;
+	case 3: //Avro Bomber Middle Part
+		objRect = { 288, 14, 56, 75 };
+		break;
+	}
+}
+
+void Level::initTexturesLand(Object* object, sf::IntRect& objRect, int& frameCount, sf::Texture* texPtr)
+{
+	texPtr = &enemyImg;
+	frameCount = 1;
+	short spriteNum = object->getSpriteNum();
+	switch (spriteNum)
+	{
+	case 0:	case 1:	case 2:	case 3:	case 4: case 5: // Tanks
+		objRect = { 32 * orient, 0 + 40 * (spriteNum - 0), 32, 32 };
+		break;
+	case 6: case 7: case 8: case 9: case 10:
+	case 11: case 12: case 13: case 14: // Boats and Turrets
+		objRect = { 32 * orient, 600 + 40 * (spriteNum - 6), 32, 32 };
+		break;
+	case 15: //Landmines
+		objRect = { 520 + 32 * orient, 240, 32, 32 };
+		break;
+	case 16: //Thing
+		objRect = { 520, 280, 32, 32 };
+		break;
+	case 17: case 18: // Destroyed Boat/Tank
+		objRect = { 520 + 32 * orient, (480 + 40 * (spriteNum - 17)), 32, 32 };
+		break;
+	case 19: //House
+		texPtr = &houseImg;
+		objRect = { 0, 0, 64, 48 };
+		break;
+	case 20: //Dome
+		texPtr = &domeImg;
+		objRect = { 0, 0, 80, 80 };
+		break;
+	case 21: //Dome Shooty shoot Animation
+		texPtr = &houseImg;
+		frameCount = 10;
+		objRect = { 0, 0, 89, 74 };
+		break;
+	case 22: //Gate
+		texPtr = &gateImg;
+		objRect = { 0, 0, 32, 40 };
+		break;
+	case 23: //Hangar
+		texPtr = &hoodImg;
+		objRect = { 0, 0, 80, 96 };
+		break;
+	case 24: //Cone
+		texPtr = &coneImg;
+		objRect = { 0, 0, 48, 48 };
+		break;
+	case 25: //Roofus
+		texPtr = &roofusImg;
+		objRect = { 0, 0, 48, 48 };
+		break;
+	}
+}
+
+void Level::initTexturesExplosion(Object* object, sf::IntRect& objRect, int& frameCount, sf::Texture* texPtr)
+{
+		texPtr = &explosionImg;
+		short spriteNum = object->getSpriteNum();
+		switch (spriteNum)
+		{
+		case 0:
+			frameCount = 16;
+			objRect = { 0, 0, 48, 48 };
+			break;
+		case 1:
+			frameCount = 11;
+			objRect = { 0, 49, 47, 37 };
+			break;
+		case 2:
+			frameCount = 14;
+			objRect = { 0, 87, 78, 80 };
+			break;
+		case 3:
+			frameCount = 12;
+			objRect = { 0, 168, 38, 41 };
+			break;
+		}
+}
+
+void Level::initTexturesAir(Object* object, sf::IntRect& objRect, int& frameCount, sf::Texture* texPtr)
+{
+	texPtr = &enemyImg;
+	frameCount = 1;
+	short spriteNum = object->getSpriteNum();
+	switch (spriteNum)
+	{
+	case 0: case 1: case 2: case 3: case 4: case 5: case 6:
+	case 7: case 8: // Weird things, Regular Copters, and Fighter Jets
+		objRect = { 32 * orient, 240 + 40 * (spriteNum - 0), 32, 32 };
+		break;
+	case 9: //Big Copter Blades
+		frameCount = 3;
+		objRect = { 520, 0, 64, 64 };
+		break;
+	case 10: case 11: //Advanced Mega Copter
+		objRect = { 520 + 40 * (spriteNum - 10), 64, 32, 96 };
+		break;
+	case 12: //Big Plane 1
+		objRect = { 600, 64, 80, 88 };
+		break;
+	case 13: //Big Copter 
+		objRect = { 688, 64, 48, 72 };
+		break;
+	case 14: //Big Plane 2
+		objRect = { 600, 160, 80, 80 };
+		break;
+	case 15: case 16: case 17: case 18: //Side & Dive Bombers
+		objRect = { 520 + 32 * orient, 320 + 40 * (spriteNum - 15), 32, 32 };
+		break;
+	case 19: //Regular Copter Blades
+		frameCount = 3;
+		objRect = { 688, 480, 32, 32 };
+		break;
+	}
+}
+
+void Level::initTexturesProjectile(Object* object, sf::IntRect& objRect, int& frameCount, sf::Texture* texPtr)
+{
+	texPtr = &projectileImg;
+	frameCount = 1;
+	switch (object->getSpriteNum())
+	{
+	case 0:
+		objRect = { (rand() % 3) * 11, 0, 11, 18 };
+		break;
+	case 1:
+		objRect = { (rand() % 3) * 16, 19, 16, 30 };
+		break;
+	case 2:
+		objRect = { (rand() % 3) * 21, 50, 31, 30 };
+		break;
+	case 3:
+		objRect = { (rand() % 3) * 47, 81, 47, 46 };
+		break;
+	case 4:
+		objRect = { (rand() % 3) * 9, 128, 9, 28 };
+		break;
+	case 5:
+		objRect = { (rand() % 3) * 16, 157, 16, 32 };
+		break;
+	case 6:
+		objRect = { (rand() % 3) * 41, 190, 41, 44 };
+		break;
+	case 7:
+		objRect = { (rand() % 3) * 64, 235, 64, 48 };
+		break;
+	case 8:
+		objRect = { (rand() % 3) * 15, 284, 15, 29 };
+		break;
+	case 9: //Kunai
+		objRect = { 0, 314, 9, 31 };
+		break;
+	case 10:
+		objRect = { (rand() % 3) * 9, 346, 9, 31 };
+		break;
+	case 11:
+		objRect = { (rand() % 3) * 16, 378, 16, 31 };
+		break;
+	case 12: //Enemy Projectile 1
+		texPtr = &enemyProjectileImg;
+		frameCount = 4;
+		objRect = { 0, 0, 8, 8 };
+		break;
+	case 13: //Breakable
+		texPtr = &enemyProjectileImg;
+		frameCount = 4;
+		objRect = { 0, 8, 14, 14 };
+		break;
+	case 14: //Breaking
+		texPtr = &enemyProjectileImg;
+		frameCount = 5;
+		objRect = { 0, 22, 16, 12 };
+		break;
+	case 15: //Big
+		texPtr = &enemyProjectileImg;
+		frameCount = 2;
+		objRect = { 0, 34, 12, 12 };
+		break;
+	case 16: //Medium
+		texPtr = &enemyProjectileImg;
+		frameCount = 2;
+		objRect = { 0, 46, 10, 10 };
+		break;
+	case 17: //One pixel projectile
+		texPtr = &enemyProjectileImg;
+		frameCount = 1;
+		objRect = { 0, 56, 4, 4 };
+		break;
+	case 18: //Missiles 
+		/*
+		The missile knows where it is at all times.
+		It knows this because it knows where it isn't.
+		By subtracting where it is from where it isn't,
+		or where it isn't from where it is (whichever is greater),
+		it obtains a difference, or deviation.
+		The guidance subsystem uses deviations to generate
+		corrective commands to drive the missile from a position
+		where it is to a position where it isn't,
+		and arriving at a position where it wasn't, it now is.
+		Consequently, the position where it is,
+		is now the position that it wasn't,
+		and it follows that the position that it was,
+		is now the position that it isn't.
+		In the event that the position that it is in is not
+		the position that it wasn't, the system has acquired a variation,
+		the variation being the difference between where the missile is,
+		and where it wasn't.
+		If variation is considered to be a significant factor,
+		it too may be corrected by the GEA.
+		However, the missile must also know where it was.
+		The missile guidance computer scenario works as follows.
+		Because a variation has modified some of the information
+		the missile has obtained, it is not sure just where it is.
+		However, it is sure where it isn't, within reason,
+		and it knows where it was.
+		It now subtracts where it should be from where it wasn't,
+		or vice-versa, and by differentiating this from the
+		algebraic sum of where it shouldn't be, and where it was,
+		it is able to obtain the deviation and its variation,
+		which is called error.
+		*/
+		switch (orient) //This is so that the flips are correct
+		{
+		case 8:
+			orient = 0;
+			break;
+		case 7: case 9: case 15:
+			orient = 1;
+			break;
+		case 6: case 10: case 14:
+			orient = 2;
+			break;
+		case 5: case 11: case 13:
+			orient = 3;
+			break;
+		case 12:
+			orient = 4;
+			break;
+		}
+		texPtr = &missileImg;
+		objRect = { (orient % 5) * 12, 0, 12, 12 };
+		break;
+	}
+}
+
+void Level::initTexturesCollectable(Object* object, sf::IntRect& objRect, int& frameCount, sf::Texture* texPtr)
+{
+	texPtr = &powerUpImg;
+	frameCount = 8;
+	switch (object->getID())
+	{
+	case 0:
+		objRect = { country * 22, 0, 11, 12 };
+		texPtr = &moneyImg;
+		frameCount = 2;
+		break;
+	case 1:
+	case 2:
+	case 3:
+		objRect = { 0, 0 + 20 * (object->getID() - 1), 16, 19 };
+		break;
+	}
 }
 
 void Level::update(sf::Vector2u winSize)
