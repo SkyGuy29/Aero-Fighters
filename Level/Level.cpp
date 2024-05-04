@@ -111,15 +111,12 @@ void Level::load(sf::Vector2u winSize, short country, int mapId)
 //You need to set spriteNum to change the texture.
 void Level::initializeTextures(int index)
 {
-	short moneyOffset = 0;
 	sf::IntRect objRect;
 	int frameCount = 0;
 	sf::Texture* texPtr = nullptr;
 
 	Object* object = objects[objects.size() - 1 - index];
-	short spriteNum = object->getSpriteNum();
 
-	orient = object->getOrientation();
 	if (!object->isTexInit())
 		switch (object->getType())
 		{
@@ -135,7 +132,8 @@ void Level::initializeTextures(int index)
 		case Object::AIR:
 			initTexturesAir(object, objRect, frameCount, texPtr);
 			break;
-		case Object::PLAYER_PROJECTILE: case Object::ENEMY_PROJECTILE:
+		case Object::PLAYER_PROJECTILE:
+		case Object::ENEMY_PROJECTILE:
 			initTexturesProjectile(object, objRect, frameCount, texPtr);
 			break;
 		case Object::COLLECTABLE:
@@ -143,11 +141,11 @@ void Level::initializeTextures(int index)
 		}
 
 	if (texPtr)
-		object->setTexture(texPtr, objRect.getSize(), 
-		objRect.getPosition(), frameCount, false);
+		object->setTexture(texPtr, objRect.getSize(),
+			objRect.getPosition(), frameCount, false);
 }
 
-void Level::initTexturesBoss(Object* object, sf::IntRect& objRect, int& frameCount, sf::Texture* texPtr)
+void Level::initTexturesBoss(Object* object, sf::IntRect& objRect, int& frameCount, sf::Texture*& texPtr)
 {
 	texPtr = &avroBomberImg;
 	frameCount = 1;
@@ -168,10 +166,11 @@ void Level::initTexturesBoss(Object* object, sf::IntRect& objRect, int& frameCou
 	}
 }
 
-void Level::initTexturesLand(Object* object, sf::IntRect& objRect, int& frameCount, sf::Texture* texPtr)
+void Level::initTexturesLand(Object* object, sf::IntRect& objRect, int& frameCount, sf::Texture*& texPtr)
 {
 	texPtr = &enemyImg;
 	frameCount = 1;
+	orient = object->getOrientation();
 	short spriteNum = object->getSpriteNum();
 	switch (spriteNum)
 	{
@@ -223,7 +222,7 @@ void Level::initTexturesLand(Object* object, sf::IntRect& objRect, int& frameCou
 	}
 }
 
-void Level::initTexturesExplosion(Object* object, sf::IntRect& objRect, int& frameCount, sf::Texture* texPtr)
+void Level::initTexturesExplosion(Object* object, sf::IntRect& objRect, int& frameCount, sf::Texture*& texPtr)
 {
 		texPtr = &explosionImg;
 		short spriteNum = object->getSpriteNum();
@@ -248,7 +247,7 @@ void Level::initTexturesExplosion(Object* object, sf::IntRect& objRect, int& fra
 		}
 }
 
-void Level::initTexturesAir(Object* object, sf::IntRect& objRect, int& frameCount, sf::Texture* texPtr)
+void Level::initTexturesAir(Object* object, sf::IntRect& objRect, int& frameCount, sf::Texture*& texPtr)
 {
 	texPtr = &enemyImg;
 	frameCount = 1;
@@ -285,10 +284,11 @@ void Level::initTexturesAir(Object* object, sf::IntRect& objRect, int& frameCoun
 	}
 }
 
-void Level::initTexturesProjectile(Object* object, sf::IntRect& objRect, int& frameCount, sf::Texture* texPtr)
+void Level::initTexturesProjectile(Object* object, sf::IntRect& objRect, int& frameCount, sf::Texture*& texPtr)
 {
 	texPtr = &projectileImg;
 	frameCount = 1;
+	orient = object->getOrientation();
 	switch (object->getSpriteNum())
 	{
 	case 0:
@@ -414,7 +414,7 @@ void Level::initTexturesProjectile(Object* object, sf::IntRect& objRect, int& fr
 	}
 }
 
-void Level::initTexturesCollectable(Object* object, sf::IntRect& objRect, int& frameCount, sf::Texture* texPtr)
+void Level::initTexturesCollectable(Object* object, sf::IntRect& objRect, int& frameCount, sf::Texture*& texPtr)
 {
 	texPtr = &powerUpImg;
 	frameCount = 8;
