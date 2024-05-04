@@ -185,7 +185,7 @@ void Level::initializeTextures(int index)
 				objRect = { 0, 0, 80, 96 };
 				break;
 			case 24: //Cone
-				texPtr = &comeImg;
+				texPtr = &coneImg;
 				objRect = { 0, 0, 48, 48 };
 				break;
 			case 25: //Roofus
