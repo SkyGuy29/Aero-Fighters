@@ -95,7 +95,7 @@ static sf::Vector2f joystick(int p)
 	move.y = sf::Joystick::getAxisPosition(p, sf::Joystick::Y) / 100.f;
 
 	// 15% drift reduction
-	move.x *= std::abs(move.x) < 15;
-	move.y *= std::abs(move.y) < 15;
+	move.x *= std::abs(move.x) > 0.15;
+	move.y *= std::abs(move.y) > 0.15;
 	return move;
 }
