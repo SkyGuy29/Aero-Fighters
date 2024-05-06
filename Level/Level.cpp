@@ -480,20 +480,7 @@ void Level::update(sf::Vector2u winSize)
 			objects.erase(objects.end() - 1 - i);
 		}
 
-	switch (country)
-	{
-	case STATES:
-		statesUpdate(winSize);
-		break;
-	case JAPAN:
-		japanUpdate(winSize);
-		break;
-	case SWEDEN:
-		swedenUpdate(winSize);
-		break;
-	case ENGLAND:
-		englandUpdate(winSize);
-	}
+	englandUpdate(winSize);
 }
 
 void Level::setInfScroll(bool enable)
