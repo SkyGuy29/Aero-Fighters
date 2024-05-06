@@ -74,7 +74,7 @@ void Game::run()
 			{
 				if (!level.update(winSize))
 				{
-					sf::sleep(sf::milliseconds(1000));
+					sf::sleep(sf::milliseconds(1000)); //I don't even care, it works
 					window.close();
 				}
 			}
