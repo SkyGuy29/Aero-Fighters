@@ -115,7 +115,7 @@ void Game::updateMenu()
 	if (key(0, Controls::Select) || button(0, Controller::A))
 	{
 		playerChoose = 0;
-		level.load(winSize, country, 0);
+		level.load(winSize, 3, 0);
 		return;
 	}
 
@@ -137,7 +137,7 @@ void Game::updateMenu()
 	menuCountdown.setString(std::to_string(playerChoose / updatesPSec));
 
 	if (!playerChoose)
-		level.load(winSize, country, 0);
+		level.load(winSize, 3, 0);
 }
 
 void Game::resize()
