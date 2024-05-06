@@ -123,15 +123,15 @@ void Game::updateMenu()
 	//	if (sf::Joystick::isButtonPressed(0, i))
 	//		printf("%d\n", i);
 
-	if ((sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || button(0, Controller::L2)) && !keyLeft)
+	if ((sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || joystick(0).x < -0.5f) && !keyLeft)
 		if (country > 0)
 			country--;
-	if ((sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || button(0, Controller::R2)) && !keyRight)
+	if ((sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || joystick(0).x > 0.5f) && !keyRight)
 		if (country < 3)
 			country++;
 
-	keyLeft = sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || button(0, Controller::L2);
-	keyRight = sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || button(0, Controller::R2);
+	keyLeft = sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || joystick(0).x < -0.5f;
+	keyRight = sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || joystick(0).x > 0.5f;
 
 	playerChoose--;
 	menuCountdown.setString(std::to_string(playerChoose / updatesPSec));

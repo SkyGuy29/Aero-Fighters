@@ -7,6 +7,8 @@
 // Controller test
 //https://hcidesign.com/gamepad/
 
+// SFML controls are kind of messed up
+// dpad is POVx and POVy https://en.sfml-dev.org/forums/index.php?topic=7412.0
 static enum Controller
 {
 	A,
