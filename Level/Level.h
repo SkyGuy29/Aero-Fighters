@@ -27,7 +27,7 @@ public:
 
 	void load(sf::Vector2u winSize, short country, int mapId);
 
-	void update(sf::Vector2u winSize);
+	bool update(sf::Vector2u winSize);
 
 private:
 	void setInfScroll(bool enable);

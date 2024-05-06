@@ -71,7 +71,13 @@ void Game::run()
 			if (playerChoose)
 				updateMenu();
 			else
-				level.update(winSize);
+			{
+				if (!level.update(winSize))
+				{
+					sf::sleep(sf::milliseconds(1000));
+					window.close();
+				}
+			}
 		}
 
 		window.clear();

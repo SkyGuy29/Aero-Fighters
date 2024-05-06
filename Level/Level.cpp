@@ -433,11 +433,11 @@ void Level::initTexturesCollectable(Object* object, sf::IntRect& objRect, int& f
 	}
 }
 
-void Level::update(sf::Vector2u winSize)
+bool Level::update(sf::Vector2u winSize)
 {
 	std::string s = "P1 Lives: " + std::to_string(p[0]->getHealth()) + "\nP2 Lives: " 
 	+ std::to_string(p[1]->getHealth()) + "\nP1 Bombs: " + std::to_string(p[0]->getSpecialCharge()) 
-	+ "\nP2 Bombs: " + std::to_string(p[1]->getSpecialCharge()) + "\nScore: 0";
+	+ "\nP2 Bombs: " + std::to_string(p[1]->getSpecialCharge());
 	ui.setString(s);
 	ui.setCharacterSize(12);
 
@@ -481,6 +481,8 @@ void Level::update(sf::Vector2u winSize)
 		}
 
 	englandUpdate(winSize);
+
+	return p[0]->getHealth() > 0 || p[1]->getHealth() > 0;
 }
 
 void Level::setInfScroll(bool enable)
@@ -550,6 +552,7 @@ void Level::englandUpdate(sf::Vector2u winSize)
 		{
 			objects.push_back(new Boss(0, true, sf::Vector2f(winSize.x / 2, 
 			0), sf::Vector2f(0, 20), &objects));
+			backgroundSpeed = 3;
 			bossSpawned = true;
 		}
 	}
