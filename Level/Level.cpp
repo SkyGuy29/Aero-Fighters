@@ -639,7 +639,13 @@ void Level::getInput(sf::Vector2u winSize)
 
 		objects.at(i)->setVel(move * 5.f);
 		if (shoot)
-			p[i]->shoot(objects);
+		{
+			if (shoot && !playerShootLast[i])
+				p[i]->shoot(objects);
+			playerShootLast[i] = true;
+		}
+		else
+			playerShootLast[i] = false;
 
 		if (special)
 			p[i]->special(objects, winSize);

@@ -85,4 +85,6 @@ private:
 	sf::Vector2u winSize;
 	bool infScrollInPos = true, infScrollEnabled = false, bossSpawned = false;
 	sf::IntRect frontRect;
+
+	bool playerShootLast[2] = { 0, 0 };
 };
