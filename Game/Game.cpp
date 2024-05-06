@@ -74,8 +74,8 @@ void Game::run()
 			{
 				if (!level.update(winSize))
 				{
-					//sf::sleep(sf::milliseconds(1000));
-					//window.close();
+					sf::sleep(sf::milliseconds(1000));
+					window.close();
 				}
 			}
 		}
