@@ -57,7 +57,7 @@ void Boss::update(sf::Vector2u winSize, std::vector<Object*>* objects, bool time
 	switch (id)
 	{
 	case 0: //England Boss Movement
-		vel.y *= .85;
+		vel.y *= .98;
 		bossPiece1->setPos(sf::Vector2f(pos.x - 54, pos.y + 24));
 		bossPiece2->setPos(sf::Vector2f(pos.x, pos.y + 24)); 
 		bossPiece3->setPos(sf::Vector2f(pos.x + 54, pos.y + 24));

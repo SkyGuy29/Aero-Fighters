@@ -551,7 +551,7 @@ void Level::englandUpdate(sf::Vector2u winSize)
 		if (bossSpawned == false)
 		{
 			objects.push_back(new Boss(0, true, sf::Vector2f(winSize.x / 2, 
-			0), sf::Vector2f(0, 20), &objects));
+			-150), sf::Vector2f(0, 5), &objects));
 			backgroundSpeed = 3;
 			bossSpawned = true;
 		}
