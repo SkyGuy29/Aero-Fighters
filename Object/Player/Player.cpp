@@ -10,14 +10,16 @@ Player::Player(short c, bool playerOne, float* bgSpeed)
 	health = 3; //Health is used for lives, the player dies in one hit.
 }
 
-// takes a pointer from Level's playerProjs so it can add Projectiles to it.
+// takes a pointer from Level's ojects so it can add Projectiles to it.
 void Player::shoot(std::vector<Object*>& objects)
 {
 	int offset = 0;
 	// cooldown is so a constant stream of projectiles isn't created
+	//and doesn't trivialize the game.
 	if (!cooldown)
 	{
 		switch (country * 8 + powerLevel * 2 + isPlayerTwo)
+		//This switch statement produces the primary fire
 		{
 		case 0: case 9: case 17: case 25: //Blob
 			objects.push_back(new Projectile(pos.x, pos.y - (size.y / 2),
@@ -31,7 +33,7 @@ void Player::shoot(std::vector<Object*>& objects)
 				0, 4));
 			cooldown = 4;
 			break;
-		case 2: case 11: case 19: case 27:
+		case 2: case 11: case 19: case 27: //Blob 2
 			objects.push_back(new Projectile(pos.x, pos.y - (size.y / 2),
 				sf::Vector2f(0, -10), sf::Vector2f(16, 30), 0, true,
 				0, 1));
@@ -42,22 +44,22 @@ void Player::shoot(std::vector<Object*>& objects)
 				sf::Vector2f(0, -10), sf::Vector2f(16, 32), 0, true, 0, 5));
 			cooldown = 4;
 			break;
-		case 4: case 13: case 21: case 29: 
+		case 4: case 13: case 21: case 29: //Blob 3
 			objects.push_back(new Projectile(pos.x, pos.y - (size.y / 2),
 				sf::Vector2f(0, -10), sf::Vector2f(31, 30), 0, true, 0, 2));
 			cooldown = 3;
 			break;
-		case 5: case 20: 
+		case 5: case 20: //Rain 2
 			objects.push_back(new Projectile(pos.x, pos.y - (size.y / 2),
 				sf::Vector2f(0, -10), sf::Vector2f(41, 44), 0, true, 0, 6));
 			cooldown = 4;
 			break;
-		case 6: case 15: case 23: case 31:
+		case 6: case 15: case 23: case 31: //Blob 4
 			objects.push_back(new Projectile(pos.x, pos.y - (size.y / 2),
 				sf::Vector2f(0, -10), sf::Vector2f(47, 46), 0, true, 0, 3));
 			cooldown = 4;
 			break;
-		case 7: case 22:
+		case 7: case 22: //Rain 3
 			objects.push_back(new Projectile(pos.x, pos.y - (size.y / 2),
 				sf::Vector2f(0, -10), sf::Vector2f(64, 48), 0, true, 0, 7));
 			cooldown = 4;
@@ -67,17 +69,17 @@ void Player::shoot(std::vector<Object*>& objects)
 				sf::Vector2f(0, -15), sf::Vector2f(15, 29), 0, true, 0, 8));
 			cooldown = 4;
 			break;
-		case 10:
+		case 10: //Shurikens 2
 			objects.push_back(new Projectile(pos.x, pos.y - (size.y / 2),
 				sf::Vector2f(0, -15), sf::Vector2f(15, 29), 0, true, 0, 8));
 			cooldown = 3;
 			break;
-		case 12: 
+		case 12: //Shurikens 3
 			objects.push_back(new Projectile(pos.x, pos.y - (size.y / 2),
 				sf::Vector2f(0, -15), sf::Vector2f(15, 29), 0, true, 0, 8));
 			cooldown = 3;
 			break;
-		case 14:
+		case 14: //Kunai
 			objects.push_back(new Projectile(pos.x, pos.y - (size.y / 2),
 				sf::Vector2f(0, -15), sf::Vector2f(9, 31), 0, true, 0, 9));
 			cooldown = 3;
@@ -87,12 +89,12 @@ void Player::shoot(std::vector<Object*>& objects)
 				sf::Vector2f(0, -10), sf::Vector2f(9, 31), 0, true, 0, 10));
 			cooldown = 4;
 			break;
-		case 26:
+		case 26: //Big Blob 2
 			objects.push_back(new Projectile(pos.x, pos.y - (size.y / 2),
 				sf::Vector2f(0, -10), sf::Vector2f(16, 31), 0, true, 0, 11));
 			cooldown = 4;
 			break;
-		case 28:
+		case 28: //Big Blob 3
 			for (int num = 0; num < 3; num++)
 			{
 				objects.push_back(new Projectile(pos.x, pos.y - (size.y / 2),
@@ -102,7 +104,7 @@ void Player::shoot(std::vector<Object*>& objects)
 			}
 			cooldown = 4;
 			break;
-		case 30:
+		case 30: //Big Blob 4
 			for (int num = 0; num < 3; num++)
 			{
 				objects.push_back(new Projectile(pos.x, pos.y - (size.y / 2),
@@ -112,12 +114,15 @@ void Player::shoot(std::vector<Object*>& objects)
 			}
 			cooldown = 4;
 			break;
-		default:
-			objects.push_back(new Projectile(pos.x, pos.y - (size.y / 2), sf::Vector2f(-2.6, -9.7),
+		default: //Nothing should use this, but it's here just in case.
+			objects.push_back(new Projectile(pos.x, pos.y - (size.y / 2), 
+			sf::Vector2f(-2.6, -9.7),
 			sf::Vector2f(32, 32), 0, true, 0, -1));
-			objects.push_back(new Projectile(pos.x, pos.y - (size.y / 2), sf::Vector2f(0, -10),
+			objects.push_back(new Projectile(pos.x, pos.y - (size.y / 2), 
+			sf::Vector2f(0, -10),
 			sf::Vector2f(32, 32), 0, true, 0, -1));
-			objects.push_back(new Projectile(pos.x, pos.y - (size.y / 2), sf::Vector2f(2.6, -9.7),
+			objects.push_back(new Projectile(pos.x, pos.y - (size.y / 2), 
+			sf::Vector2f(2.6, -9.7),
 			sf::Vector2f(32, 32), 0, true, 0, -1));
 			cooldown = 4;
 			break;
@@ -129,7 +134,7 @@ void Player::shoot(std::vector<Object*>& objects)
 	{
 		switch (country * 8 + powerLevel * 2 + isPlayerTwo)
 		{
-		case 4: case 6:
+		case 4: case 6: //Fire
 			for (int fireNum = 0; fireNum < 7; fireNum++)
 			{
 				objects.push_back(new Projectile(pos.x, pos.y - fireNum * 35,
@@ -138,39 +143,39 @@ void Player::shoot(std::vector<Object*>& objects)
 			}
 			cooldownSecondary = 23;
 			break;
-		case 5: case 7:
+		case 5: case 7: //Rockets
 			objects.push_back(new Projectile(pos.x, pos.y - (size.y / 2),
 				sf::Vector2f(0, -10), sf::Vector2f(15, 15), 4, true, 0, 18));
 			cooldownSecondary = 15;
 			break;
-		case 12:
+		case 12: //Different Rockets
 			for (int num = 0; num < 4; num++)
 				objects.push_back(new Projectile(pos.x, pos.y - (size.y / 2),
 				sf::Vector2f(0, -10), sf::Vector2f(12, 12), 4, true, 0, 18));
 			cooldownSecondary = 30;
 			break;
 		case 13: //Lasers
-			objects.push_back(new Projectile(pos.x - 25, pos.y - (size.y / 2), sf::Vector2f(0, -25),
-			sf::Vector2f(5, 50), 2, true, 0, -1));
-			objects.push_back(new Projectile(pos.x + 25, pos.y - (size.y / 2), sf::Vector2f(0, -25),
-			sf::Vector2f(5, 50), 2, true, 0, -1));
+			objects.push_back(new Projectile(pos.x - 25, pos.y - (size.y / 2), 
+			sf::Vector2f(0, -25), sf::Vector2f(5, 50), 2, true, 0, -1));
+			objects.push_back(new Projectile(pos.x + 25, pos.y - (size.y / 2), 
+			sf::Vector2f(0, -25), sf::Vector2f(5, 50), 2, true, 0, -1));
 			cooldownSecondary = 15;
 			break;
-		case 14:
+		case 14: //Different Rockets 2
 			for (int num = 0; num < 8; num++)
 				objects.push_back(new Projectile(pos.x, pos.y - (size.y / 2),
 				sf::Vector2f(0, -10), sf::Vector2f(12, 12), 4, true, 0, 18));
 			cooldownSecondary = 30;
 			break;
-		case 15:
-			objects.push_back(new Projectile(pos.x - 25, pos.y - (size.y / 2), sf::Vector2f(0, -25),
-				sf::Vector2f(5, 50), 2, true, 0, -1));
-			objects.push_back(new Projectile(pos.x + 25, pos.y - (size.y / 2), sf::Vector2f(0, -25),
-				sf::Vector2f(5, 50), 2, true, 0, -1));
-			objects.push_back(new Projectile(pos.x - 50, pos.y - (size.y / 2), sf::Vector2f(0, -25),
-				sf::Vector2f(5, 50), 2, true, 0, -1));
-			objects.push_back(new Projectile(pos.x + 50, pos.y - (size.y / 2), sf::Vector2f(0, -25),
-				sf::Vector2f(5, 50), 2, true, 0, -1));
+		case 15: //Lasers 2
+			objects.push_back(new Projectile(pos.x - 25, pos.y - (size.y / 2), 
+			sf::Vector2f(0, -25), sf::Vector2f(5, 50), 2, true, 0, -1));
+			objects.push_back(new Projectile(pos.x + 25, pos.y - (size.y / 2), 
+			sf::Vector2f(0, -25), sf::Vector2f(5, 50), 2, true, 0, -1));
+			objects.push_back(new Projectile(pos.x - 50, pos.y - (size.y / 2), 
+			sf::Vector2f(0, -25), sf::Vector2f(5, 50), 2, true, 0, -1));
+			objects.push_back(new Projectile(pos.x + 50, pos.y - (size.y / 2), 
+			sf::Vector2f(0, -25), sf::Vector2f(5, 50), 2, true, 0, -1));
 			cooldownSecondary = 15;
 			break;
 		case 18:
@@ -189,15 +194,15 @@ void Player::shoot(std::vector<Object*>& objects)
 			sf::Vector2f(0, -10), sf::Vector2f(12, 22), 0, true, 0, -1));
 			cooldownSecondary = 5;
 			break;
-		case 21:
+		case 21: //Tracking Mines 2
 			for (int num = 0; num < 4; num++)
 				objects.push_back(new Projectile(pos.x, pos.y - (size.y / 2),
 				sf::Vector2f(0, -10), sf::Vector2f(15, 15), 5, true, 100, -1));
 			cooldownSecondary = 100;
 			break;
 		case 28: //Weird rockets
-			objects.push_back(new Projectile(pos.x, pos.y - (size.y / 2), sf::Vector2f(0, -10),
-			sf::Vector2f(12, 22), 2, true, 2000, 18));
+			objects.push_back(new Projectile(pos.x, pos.y - (size.y / 2), 
+			sf::Vector2f(0, -10), sf::Vector2f(12, 22), 2, true, 2000, 18));
 			cooldownSecondary = 25;
 			break;
 		case 29: //Delayed nukes
@@ -207,12 +212,12 @@ void Player::shoot(std::vector<Object*>& objects)
 			sf::Vector2f(0, -10), sf::Vector2f(12, 22), 1, true, 20, 45, -1));
 			cooldownSecondary = 35;
 			break;
-		case 30:
-			objects.push_back(new Projectile(pos.x, pos.y - (size.y / 2), sf::Vector2f(0, -10),
-			sf::Vector2f(12, 22), 2, true, 2000, 18));
+		case 30: //Weird Rockets 2
+			objects.push_back(new Projectile(pos.x, pos.y - (size.y / 2), 
+			sf::Vector2f(0, -10), sf::Vector2f(12, 22), 2, true, 2000, 18));
 			cooldownSecondary = 25;
 			break;
-		case 31:
+		case 31: //Delayed Nukes 2
 			objects.push_back(new Projectile(pos.x, pos.y - (size.y / 2),
 			sf::Vector2f(0, -10), sf::Vector2f(12, 22), 1, true, 20, 30, -1));
 			cooldownSecondary = 4;
@@ -239,8 +244,9 @@ void Player::special(std::vector<Object*>& objects, sf::Vector2u winSize)
 		case 1: //Rockets from bottom
 			for (int i = 0; i < 16; i++)
 			{
-				objects.push_back(new Projectile(rand() % winSize.x, winSize.y - 33,
-				sf::Vector2f(0, -5), sf::Vector2f(9, 65), 2, true, 15 * i, 10 * i, 1));
+				objects.push_back(new Projectile(rand() % winSize.x, 
+				winSize.y - 33,	sf::Vector2f(0, -5), sf::Vector2f(9, 65), 
+				2, true, 15 * i, 10 * i, 1));
 			}
 			cooldown = 20;
 			cooldownSecondary = 20;
@@ -249,8 +255,8 @@ void Player::special(std::vector<Object*>& objects, sf::Vector2u winSize)
 			if (timer == 0)
 			{
 				movingProjectile = new Projectile(pos.x, winSize.y / 2,
-					sf::Vector2f(0, 0), sf::Vector2f(50, winSize.y)
-					, 1, true, 300, 1);
+				sf::Vector2f(0, 0), sf::Vector2f(50, winSize.y)
+				, 1, true, 300, 1);
 				objects.push_back(movingProjectile);
 				timer = 300;
 				cooldown = 30;
@@ -268,7 +274,7 @@ void Player::special(std::vector<Object*>& objects, sf::Vector2u winSize)
 			for (int num = 0; num < 8; num++)
 			{
 				objects.push_back(new Projectile(pos.x, pos.y,
-					sf::Vector2f(0, -10), sf::Vector2f(8, 30), 4, true, 0, 18));
+				sf::Vector2f(0, -10), sf::Vector2f(8, 30), 4, true, 0, 18));
 			}
 			cooldown = 60;
 			cooldownSecondary = 60;
@@ -276,7 +282,8 @@ void Player::special(std::vector<Object*>& objects, sf::Vector2u winSize)
 		case 5: //Cluster Bomb
 			for (int clusterNum = 0; clusterNum < 10; clusterNum++)
 			{
-				for(int xOffset = -1 * (clusterNum - 1); xOffset < clusterNum; xOffset++)
+				for(int xOffset = -1 * (clusterNum - 1); xOffset < clusterNum; 
+				xOffset++)
 				objects.push_back(new Projectile(pos.x + xOffset * 30,
 				pos.y - (clusterNum - abs(xOffset) - 1) * 60 - 30,
 				sf::Vector2f(0, 0), sf::Vector2f(30, 60), 1, true, 30,
@@ -287,8 +294,9 @@ void Player::special(std::vector<Object*>& objects, sf::Vector2u winSize)
 			break;
 		case 6: //Many nukes
 			for(int i = 0; i < 8; i++)
-			objects.push_back(new Projectile(rand() % winSize.x, rand() % winSize.y,
-				sf::Vector2f(0, 0), sf::Vector2f(35, 35), 1, true, 100, 10 * i, 1));
+			objects.push_back(new Projectile(rand() % winSize.x, 
+			rand() % winSize.y, sf::Vector2f(0, 0), sf::Vector2f(35, 35), 
+			1, true, 100, 10 * i, 1));
 			cooldown = 40;
 			cooldownSecondary = 40;
 			break;
@@ -296,15 +304,15 @@ void Player::special(std::vector<Object*>& objects, sf::Vector2u winSize)
 			for (int num = 0; num < 16; num++)
 			{
 				objects.push_back(new Projectile(pos.x + 80 * cos(num),
-					pos.y + 80 * sin(num), sf::Vector2f(0, 0), sf::Vector2f(25, 25),
-					1, true, 120, 30, 1));
+				pos.y + 80 * sin(num), sf::Vector2f(0, 0),
+				sf::Vector2f(25, 25), 1, true, 120, 30, 1));
 			}
 			cooldown = 40;
 			cooldownSecondary = 40;
 			break;
-		default:
-			objects.push_back(new Projectile(pos.x, pos.y, sf::Vector2f(0, -10),
-			sf::Vector2f(40, 100), 0, true, 0, -1));
+		default: //Just in case the switch statement fails.
+			objects.push_back(new Projectile(pos.x, pos.y, 
+			sf::Vector2f(0, -10), sf::Vector2f(40, 100), 0, true, 0, -1));
 			cooldown = 120;
 			cooldownSecondary = 120;
 			break;
@@ -323,7 +331,7 @@ void Player::update(sf::Vector2u winSize, std::vector<Object*>* objects, bool ti
 		return;
 	}
 	//If gone do nothing
-	if (!health)
+	if (health != 0)
 		return;
 	//Am I being shot?
 	for (int i = 0; i < objects->size(); i++)
@@ -333,6 +341,7 @@ void Player::update(sf::Vector2u winSize, std::vector<Object*>* objects, bool ti
 			&& this->intersect(objects->at(i))
 			&& !invincibility)
 		{
+			//If the player is hit while not invincible
 			health--;
 			objects->push_back(new Explosion(pos, 0));
 			objects->push_back(new Collectable(1, pos, backgroundSpeed));
@@ -342,14 +351,16 @@ void Player::update(sf::Vector2u winSize, std::vector<Object*>* objects, bool ti
 			if (!health)
 			{
 				if(rand() % 25 == 0)
-					objects->push_back(new Collectable(3, pos, backgroundSpeed));
+					objects->push_back(new Collectable(3, pos, 
+					backgroundSpeed));
 			}
 			pos = sf::Vector2f(winSize.x * 0.5f, winSize.y * 0.75f);
 			invincibility = 61;
 			timerDeath = 61;
 			setSize(0, 0);
 		}
-		else if (objects->at(i)->getType() == COLLECTABLE && this->intersect(objects->at(i)))
+		else if (objects->at(i)->getType() == COLLECTABLE 
+				&& this->intersect(objects->at(i)))
 		{
 			switch (objects->at(i)->getID())
 			{

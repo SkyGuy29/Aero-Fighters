@@ -31,7 +31,8 @@ public:
 private:
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
-	Projectile* movingProjectile = nullptr;
+	Projectile* movingProjectile = nullptr; //Tracks where the laser that
+	//follows the player for Japan 1's bomb is.
 	bool isPlayerTwo;
 	short timerDeath = 0;
 	short country = -1;
