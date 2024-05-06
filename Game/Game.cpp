@@ -55,9 +55,9 @@ void Game::run()
 				resize();
 			}
 
-		if (key(0, Controls::FastForward) || button(0, Controller::X))
-			updatesPSec = 600;
-		else
+		//if (key(0, Controls::FastForward) || button(0, Controller::X))
+			//updatesPSec = 600;
+		//else
 			updatesPSec = 30;
 
 		// Keeps constant update rate.
@@ -112,7 +112,7 @@ void Game::updateMenu()
 		menuBlinkTimer = 0;
 		blinkState = !blinkState;
 	}
-	if (key(0, Controls::Select) || button(0, Controller::A))
+	if (key(0, Controls::Select) || button(0, Controller::Y))
 	{
 		playerChoose = 0;
 		level.load(winSize, country, 0);
