@@ -650,10 +650,10 @@ void Level::getInput(sf::Vector2u winSize)
 		if (special)
 			p[i]->special(objects, winSize);
 
-		if (spawn) //Temporary and should be changed to continue.
-		{
-			p[0]->setHealth(3);
-			p[1]->setHealth(3);
-		}
+		//if (spawn) //Temporary and should be changed to continue.
+		//{
+		//	p[0]->setHealth(3);
+		//	p[1]->setHealth(3);
+		//}
 	}
 }
