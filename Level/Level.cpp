@@ -573,10 +573,19 @@ void Level::draw(sf::RenderTarget& target, sf::RenderStates states) const
 		if (objects[i]->isTexInit())
 			switch (objects.at(i)->getType())
 			{
+			case Object::LAND:
+				target.draw(*objects[i]);
+			}
+	}
+
+	for (int i = objects.size() - 1; i >= 0; i--)
+	{
+		if (objects[i]->isTexInit())
+			switch (objects.at(i)->getType())
+			{
 			case Object::AIR:
 			case Object::BOSS_PIECE:
 			case Object::COLLECTABLE:
-			case Object::LAND:
 			case Object::PLAYER:
 			case Object::BOSS:
 				target.draw(*objects[i]);
