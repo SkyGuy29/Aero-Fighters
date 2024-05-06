@@ -1,4 +1,0 @@
-each sprite is aligned on a 16x19 grid 17 spaces apart, there is 1px buffer room between every grid space.
-powerups read left to right to spin properly, then loop back to the beginning.
-there are 8 states a powerup can be in, as seen in the grid.
-DO NOT USE THE PSD USE THE PNG THE PSD IS THE PROJECT FILE FOR THE IMAGE
