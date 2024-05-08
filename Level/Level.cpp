@@ -486,7 +486,6 @@ bool Level::update(sf::Vector2u winSize)
 	//identified using getType()
 	for (int i = 0; i < objects.size(); i++)
 	{
-		initializeTextures(i);
 		objects[objects.size() - 1 - i]->update(winSize, &objects, 
 			p[1]->getTime());
 		initializeTextures(i);

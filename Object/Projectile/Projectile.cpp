@@ -58,10 +58,16 @@ bool time)
 	nextFrame(4);
 	if (delay > 0) //If the delay is not up the projectile doesn't exist.
 	{
+		texInit = true;
 		size = sf::Vector2f(0, 0);
 		delay--;
 		if (delay == 0)
+		{
+			texInit = false;
 			size = tempSize;
+		}
+		else
+			return;
 	}
 
 	if (id == 3) //Changes the size for the Japan 2 bomb
