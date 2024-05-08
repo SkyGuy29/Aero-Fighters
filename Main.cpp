@@ -25,9 +25,9 @@
 
 int main()
 {
-	Game game; //makes the game
-	game.run(); //runs the game
-	return 0; //the end.
+	Game game;
+	game.run(); 
+	return 0; 
 	/*
 	Ben, Matthew, Gabe, I want to say a huge thank you for the past three
 	months of work you have put in. I think you guys have probably seen that
