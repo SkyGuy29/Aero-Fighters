@@ -115,8 +115,8 @@ void Level::load(sf::Vector2u winSize, short country, int mapId)
 
 void Level::debugMode()
 {
-	p[0]->setHealth(3);
-	p[1]->setHealth(3);
+	p[0]->setHealth(SHRT_MAX);
+	p[1]->setHealth(SHRT_MAX);
 }
 
 //You need to set spriteNum to change the texture.
