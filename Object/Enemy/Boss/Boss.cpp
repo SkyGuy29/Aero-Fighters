@@ -18,7 +18,7 @@ std::vector<Object*>* objects) : Enemy::Enemy(id, left, pos, vel)
 	switch (id)
 	{
 	case 0: //England Boss
-		setSize(164, 150);
+		setSize(164, 110);
 		bossPiece1 = new Boss(1, left, sf::Vector2f(pos.x - 54, pos.y + 44), 
 		vel, objects); 
 		bossPiece2 = new Boss(2, left, sf::Vector2f(pos.x, pos.y + 44), vel, 
@@ -137,67 +137,67 @@ void Boss::update(sf::Vector2u winSize, std::vector<Object*>* objects,
 			switch (pattern) //Shoots things in a cycling pattern
 			{
 			case 0:
-				objects->push_back(new Projectile(pos.x, pos.y, 
-				sf::Vector2f(3, 0),	sf::Vector2f(14, 14), 6, false, 0, 13));
-				objects->push_back(new Projectile(pos.x, pos.y, 
-				sf::Vector2f(-3, 0), sf::Vector2f(14, 14), 6, false, 0, 13));
-				objects->push_back(new Projectile(pos.x, pos.y, 
-				sf::Vector2f(0, 3),	sf::Vector2f(14, 14), 6, false, 0, 13));
-				objects->push_back(new Projectile(pos.x, pos.y, 
-				sf::Vector2f(0, -3), sf::Vector2f(14, 14), 6, false, 0, 13));
+				objects->push_back(new Projectile(pos.x + 56, pos.y,
+					sf::Vector2f(3, 0), sf::Vector2f(14, 14), 6, false, 0, 13));
+				objects->push_back(new Projectile(pos.x + 56, pos.y,
+					sf::Vector2f(-3, 0), sf::Vector2f(14, 14), 6, false, 0, 13));
+				objects->push_back(new Projectile(pos.x + 56, pos.y,
+					sf::Vector2f(0, 3), sf::Vector2f(14, 14), 6, false, 0, 13));
+				objects->push_back(new Projectile(pos.x + 56, pos.y,
+					sf::Vector2f(0, -3), sf::Vector2f(14, 14), 6, false, 0, 13));
 				pattern = 1;
 				cooldown = 50;
 				break;
 			case 1:
-				objects->push_back(new Projectile(pos.x, pos.y, 
-				sf::Vector2f(.707, .707), sf::Vector2f(14, 14), 6, 
-				false, 0, 13));
-				objects->push_back(new Projectile(pos.x, pos.y, 
-				sf::Vector2f(-0.707, .707), sf::Vector2f(14, 14), 6,
-				false, 0, 13));
-				objects->push_back(new Projectile(pos.x, pos.y, 
-				sf::Vector2f(-0.707, -0.707), sf::Vector2f(14, 14), 6, 
-				false, 0, 13));
-				objects->push_back(new Projectile(pos.x, pos.y, 
-				sf::Vector2f(.707, -0.707),	sf::Vector2f(14, 14), 6, 
-				false, 0, 13));
+				objects->push_back(new Projectile(pos.x + 56, pos.y,
+					sf::Vector2f(.707, .707), sf::Vector2f(14, 14), 6,
+					false, 0, 13));
+				objects->push_back(new Projectile(pos.x + 56, pos.y,
+					sf::Vector2f(-0.707, .707), sf::Vector2f(14, 14), 6,
+					false, 0, 13));
+				objects->push_back(new Projectile(pos.x + 56, pos.y,
+					sf::Vector2f(-0.707, -0.707), sf::Vector2f(14, 14), 6,
+					false, 0, 13));
+				objects->push_back(new Projectile(pos.x + 56, pos.y,
+					sf::Vector2f(.707, -0.707), sf::Vector2f(14, 14), 6,
+					false, 0, 13));
 				pattern = 2;
 				cooldown = 50;
 				break;
 			case 2:
-				objects->push_back(new Projectile(pos.x, pos.y, 
-				sf::Vector2f(.866, .5),	sf::Vector2f(14, 14), 6, 
-				false, 0, 13));
-				objects->push_back(new Projectile(pos.x, pos.y, 
-				sf::Vector2f(-.866, .5), sf::Vector2f(14, 14), 6, 
-				false, 0, 13));
-				objects->push_back(new Projectile(pos.x, pos.y, 
-				sf::Vector2f(-.866, -.5), sf::Vector2f(14, 14), 6, 
-				false, 0, 13));
-				objects->push_back(new Projectile(pos.x, pos.y,
-				sf::Vector2f(.866, -.5), sf::Vector2f(14, 14), 6, 
-				false, 0, 13));
+				objects->push_back(new Projectile(pos.x + 56, pos.y,
+					sf::Vector2f(.866, .5), sf::Vector2f(14, 14), 6,
+					false, 0, 13));
+				objects->push_back(new Projectile(pos.x + 56, pos.y,
+					sf::Vector2f(-.866, .5), sf::Vector2f(14, 14), 6,
+					false, 0, 13));
+				objects->push_back(new Projectile(pos.x + 56, pos.y,
+					sf::Vector2f(-.866, -.5), sf::Vector2f(14, 14), 6,
+					false, 0, 13));
+				objects->push_back(new Projectile(pos.x + 56, pos.y,
+					sf::Vector2f(.866, -.5), sf::Vector2f(14, 14), 6,
+					false, 0, 13));
 				pattern = 3;
 				cooldown = 50;
 				break;
 			case 3:
-				objects->push_back(new Projectile(pos.x, pos.y, 
-				sf::Vector2f(.966, .259), sf::Vector2f(14, 14), 6, 
-				false, 0, 13));
-				objects->push_back(new Projectile(pos.x, pos.y, 
-				sf::Vector2f(-.966, .259), sf::Vector2f(14, 14), 6, 
-				false, 0, 13));
-				objects->push_back(new Projectile(pos.x, pos.y, 
-				sf::Vector2f(-.966, -.259), sf::Vector2f(14, 14), 6, 
-				false, 0, 13));
-				objects->push_back(new Projectile(pos.x, pos.y, 
-				sf::Vector2f(.966, -.259), sf::Vector2f(14, 14), 6, 
-				false, 0, 13));
+				objects->push_back(new Projectile(pos.x + 56, pos.y,
+					sf::Vector2f(.966, .259), sf::Vector2f(14, 14), 6,
+					false, 0, 13));
+				objects->push_back(new Projectile(pos.x + 56, pos.y,
+					sf::Vector2f(-.966, .259), sf::Vector2f(14, 14), 6,
+					false, 0, 13));
+				objects->push_back(new Projectile(pos.x + 56, pos.y,
+					sf::Vector2f(-.966, -.259), sf::Vector2f(14, 14), 6,
+					false, 0, 13));
+				objects->push_back(new Projectile(pos.x + 56, pos.y,
+					sf::Vector2f(.966, -.259), sf::Vector2f(14, 14), 6,
+					false, 0, 13));
 				pattern = 0;
 				cooldown = 200;
 				break;
 			}
-		break;
+			break;
 		case 3: //England Boss Middle Part
 			if (cooldown == 0) //Shoots three independent patterns
 			{
@@ -207,48 +207,49 @@ void Boss::update(sf::Vector2u winSize, std::vector<Object*>* objects,
 				sf::Vector2f(0, 3), sf::Vector2f(10, 10), 1, false, 0, 30, 
 				15));
 				objects->push_back(new Projectile(pos.x - 50, pos.y, 
-				sf::Vector2f(0, 3), sf::Vector2f(10, 10), 1, false, 0, 60, 
+				sf::Vector2f(0, 3), sf::Vector2f(10, 10), 1, false, 0, 45, 
 				15));
 				cooldown = 300;
 			}
 			if (cooldown2 == 0)
 			{
-				objects->push_back(new Projectile(pos.x, pos.y, 
-				sf::Vector2f(0, 5),	sf::Vector2f(0, 0), 1, false, 0, 12));
-				objects->push_back(new Projectile(pos.x, pos.y, 
-				sf::Vector2f(-1.294, 4.83),	sf::Vector2f(0, 0), 1, false, 
+				objects->push_back(new Projectile(pos.x - 30, pos.y, 
+				sf::Vector2f(0, 5),	sf::Vector2f(10, 10), 1, false, 0, 12));
+				objects->push_back(new Projectile(pos.x - 30, pos.y, 
+				sf::Vector2f(-1.294, 4.83),	sf::Vector2f(10, 10), 1, false, 
 				0, 12));
-				objects->push_back(new Projectile(pos.x, pos.y, 
-				sf::Vector2f(1.294, 4.83), sf::Vector2f(0, 0), 1, false,
+				objects->push_back(new Projectile(pos.x - 30, pos.y, 
+				sf::Vector2f(1.294, 4.83), sf::Vector2f(10, 10), 1, false,
 				0, 12));
-				objects->push_back(new Projectile(pos.x, pos.y, 
-				sf::Vector2f(0, 5),	sf::Vector2f(0, 0), 1, false, 0, 25, 12));
-				objects->push_back(new Projectile(pos.x, pos.y, 
-				sf::Vector2f(-1.294, 4.83),	sf::Vector2f(0, 0), 1, false, 
+				objects->push_back(new Projectile(pos.x - 30, pos.y, 
+				sf::Vector2f(0, 5),	sf::Vector2f(10, 10), 1, false, 0, 25, 12));
+				objects->push_back(new Projectile(pos.x - 30, pos.y, 
+				sf::Vector2f(-1.294, 4.83),	sf::Vector2f(10, 10), 1, false, 
 				0, 25, 12));
-				objects->push_back(new Projectile(pos.x, pos.y, 
-				sf::Vector2f(1.294, 4.83), sf::Vector2f(0, 0), 1, false, 
+				objects->push_back(new Projectile(pos.x - 30, pos.y, 
+				sf::Vector2f(1.294, 4.83), sf::Vector2f(10, 10), 1, false, 
 				0, 25, 12));
 				cooldown2 = 250;
 			}
 			if (cooldown3 == 0)
 			{
 				objects->push_back(new Projectile(pos.x + 56, pos.y, 
-				sf::Vector2f(1.294, 4.83), sf::Vector2f(0, 0), 1, false, 
+				sf::Vector2f(1.294, 4.83), sf::Vector2f(10, 10), 1, false, 
 				0, 12));
 				objects->push_back(new Projectile(pos.x + 56, pos.y, 
-				sf::Vector2f(-1.294, 4.83), sf::Vector2f(0, 0), 1, false, 
+				sf::Vector2f(-1.294, 4.83), sf::Vector2f(10, 10), 1, false, 
 				0, 12));
 				objects->push_back(new Projectile(pos.x - 56, pos.y, 
-				sf::Vector2f(-1.294, 4.83),	sf::Vector2f(0, 0), 1, false, 
+				sf::Vector2f(-1.294, 4.83),	sf::Vector2f(10, 10), 1, false, 
 				0, 12));
 				objects->push_back(new Projectile(pos.x - 56, pos.y, 
-				sf::Vector2f(1.294, 4.83), sf::Vector2f(0, 0), 1, false, 
+				sf::Vector2f(1.294, 4.83), sf::Vector2f(10, 10), 1, false, 
 				0, 12));
 				cooldown3 = 200;
 			}
 			break;
 	}
+	/// Removes the rest of the boss that would still show
 	if (id == 0 && del == true)
 	{
 		bossPiece1->setDelete();
