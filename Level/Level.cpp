@@ -68,10 +68,13 @@ void Level::load(sf::Vector2u winSize, short country, int mapId)
 	objects.at(1)->setPos(sf::Vector2f(winSize.x * 0.75f, winSize.y * 0.75f));
 
 	// just a test to try out the moved animator to object
-	objects.at(0)->setTexture(&playerImg, sf::Vector2i(32, 32), sf::Vector2i(0, 16), 5, false);
-	objects.at(1)->setTexture(&playerImg, sf::Vector2i(32, 32), sf::Vector2i(0, 16), 5, false);
+	objects.at(0)->setTexture(&playerImg, sf::Vector2i(32, 32), 
+		sf::Vector2i(0, 16), 5, false);
+	objects.at(1)->setTexture(&playerImg, sf::Vector2i(32, 32), 
+		sf::Vector2i(0, 16), 5, false);
 
-	objects.push_back(new Air(0, true, &backgroundDist, 0, winSize, &objects, sf::Vector2f(winSize.x * 0.5f,
+	objects.push_back(new Air(0, true, &backgroundDist, 0, winSize, 
+		&objects, sf::Vector2f(winSize.x * 0.5f,
 	winSize.y * 0.5f), sf::Vector2f(0, 0)));
 
 	short type, id;
@@ -95,11 +98,13 @@ void Level::load(sf::Vector2u winSize, short country, int mapId)
 		{
 		case 0: //land
 			
-			objects.push_back(new Land(id, true, &backgroundSpeed, winSize, &objects, pos, vel));
+			objects.push_back(new Land(id, true, &backgroundSpeed, winSize, 
+				&objects, pos, vel));
 			break;
 		case 1: //air 
 			file >> startMark;
-			objects.push_back(new Air(id, true, &backgroundDist, startMark, winSize, &objects, pos, vel));
+			objects.push_back(new Air(id, true, &backgroundDist, startMark, 
+				winSize, &objects, pos, vel));
 			break;
 		case 2:
 			break;
@@ -151,7 +156,8 @@ void Level::initializeTextures(int index)
 			objRect.getPosition(), frameCount, false);
 }
 
-void Level::initTexturesBoss(Object* object, sf::IntRect& objRect, int& frameCount, sf::Texture*& texPtr)
+void Level::initTexturesBoss(Object* object, sf::IntRect& objRect, 
+	int& frameCount, sf::Texture*& texPtr)
 {
 	texPtr = &avroBomberImg;
 	frameCount = 1;
@@ -172,7 +178,8 @@ void Level::initTexturesBoss(Object* object, sf::IntRect& objRect, int& frameCou
 	}
 }
 
-void Level::initTexturesLand(Object* object, sf::IntRect& objRect, int& frameCount, sf::Texture*& texPtr)
+void Level::initTexturesLand(Object* object, sf::IntRect& objRect, 
+	int& frameCount, sf::Texture*& texPtr)
 {
 	texPtr = &enemyImg;
 	frameCount = 1;
@@ -228,7 +235,8 @@ void Level::initTexturesLand(Object* object, sf::IntRect& objRect, int& frameCou
 	}
 }
 
-void Level::initTexturesExplosion(Object* object, sf::IntRect& objRect, int& frameCount, sf::Texture*& texPtr)
+void Level::initTexturesExplosion(Object* object, sf::IntRect& objRect, 
+	int& frameCount, sf::Texture*& texPtr)
 {
 		texPtr = &explosionImg;
 		short spriteNum = object->getSpriteNum();
@@ -253,7 +261,8 @@ void Level::initTexturesExplosion(Object* object, sf::IntRect& objRect, int& fra
 		}
 }
 
-void Level::initTexturesAir(Object* object, sf::IntRect& objRect, int& frameCount, sf::Texture*& texPtr)
+void Level::initTexturesAir(Object* object, sf::IntRect& objRect, 
+	int& frameCount, sf::Texture*& texPtr)
 {
 	texPtr = &enemyImg;
 	frameCount = 1;
@@ -290,7 +299,8 @@ void Level::initTexturesAir(Object* object, sf::IntRect& objRect, int& frameCoun
 	}
 }
 
-void Level::initTexturesProjectile(Object* object, sf::IntRect& objRect, int& frameCount, sf::Texture*& texPtr)
+void Level::initTexturesProjectile(Object* object, sf::IntRect& objRect, 
+	int& frameCount, sf::Texture*& texPtr)
 {
 	texPtr = &projectileImg;
 	frameCount = 1;
@@ -441,8 +451,10 @@ void Level::initTexturesCollectable(Object* object, sf::IntRect& objRect, int& f
 
 bool Level::update(sf::Vector2u winSize)
 {
-	std::string s = "P1 Lives: " + std::to_string(p[0]->getHealth()) + "\nP2 Lives: " 
-	+ std::to_string(p[1]->getHealth()) + "\nP1 Bombs: " + std::to_string(p[0]->getSpecialCharge()) 
+	std::string s = "P1 Lives: " + std::to_string(p[0]->getHealth()) 
+		+ "\nP2 Lives: " 
+	+ std::to_string(p[1]->getHealth()) + "\nP1 Bombs: " 
+		+ std::to_string(p[0]->getSpecialCharge()) 
 	+ "\nP2 Bombs: " + std::to_string(p[1]->getSpecialCharge());
 	ui.setString(s);
 	ui.setCharacterSize(12);
@@ -475,7 +487,8 @@ bool Level::update(sf::Vector2u winSize)
 	for (int i = 0; i < objects.size(); i++)
 	{
 		initializeTextures(i);
-		objects[objects.size() - 1 - i]->update(winSize, &objects, p[1]->getTime());
+		objects[objects.size() - 1 - i]->update(winSize, &objects, 
+			p[1]->getTime());
 		initializeTextures(i);
 	}
 
@@ -520,7 +533,8 @@ void Level::updateInfScroll()
 			frontbackground.setPosition(0, frontbackgroundDist);
 		}
 
-		if ((frontbackgroundDist == winSize.y || frontbackgroundDist >= 0) && !infScrollInPos)
+		if ((frontbackgroundDist == winSize.y || frontbackgroundDist >= 0) 
+			&& !infScrollInPos)
 			infScrollInPos = true;
 	}
 }
