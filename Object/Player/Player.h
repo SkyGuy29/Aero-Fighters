@@ -16,7 +16,8 @@ public:
 
 	void special(std::vector<Object*>& objects, sf::Vector2u winSize);
 
-	void update(sf::Vector2u winSize, std::vector<Object*>* objects, bool time);
+	void update(sf::Vector2u winSize, std::vector<Object*>* objects, 
+	bool time);
 
 	void move(sf::Vector2u winSize);
 

@@ -109,7 +109,8 @@ bool time)
 		}
 		if (id >= 4 && (objects->at(i)->getType() == AIR
 			|| objects->at(i)->getType() == LAND)
-			&& objects->at(i)->shouldDelete() == false)
+			&& objects->at(i)->shouldDelete() == false
+			&& id != 6)
 		{
 		//Used for tracking projectiles
 			newEnemyDistance = sqrt((objects->at(i)->getPos().x - pos.x)

@@ -5,7 +5,8 @@
 #include "../Level/Level.h"
 #include "../ControllerStuff.hpp"
 
-//Big class that handles the whole game. It is created and ran once in Main.cpp.
+//Big class that handles the whole game. It is created and ran once in 
+//Main.cpp.
 //The main game loop runs here.
 class Game
 {
@@ -39,5 +40,6 @@ private:
 	short playerChoose = 10 * updatesPSec;
 	short menuBlinkRate = 5, menuBlinkTimer = 0;
 	sf::Texture menuMap, menuFlags;
-	sf::RectangleShape menuMapRect, menuFlagsRect, menuCountDownRect, menuSelectRect;
+	sf::RectangleShape menuMapRect, menuFlagsRect, menuCountDownRect, 
+	menuSelectRect;
 };

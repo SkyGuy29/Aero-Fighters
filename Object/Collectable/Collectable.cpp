@@ -15,7 +15,8 @@ Collectable::Collectable(short id, sf::Vector2f position, float* newBgSpeed)
 		vel = sf::Vector2f(3.535, 3.535);
 }
 
-Collectable::Collectable(short id, float xPosition, float yPosition, float* bgSpeed)
+Collectable::Collectable(short id, float xPosition, float yPosition, 
+float* bgSpeed)
 {
 	backgroundSpeed = bgSpeed;
 	this->id = id;
@@ -31,7 +32,8 @@ Collectable::Collectable(short id, float xPosition, float yPosition, float* bgSp
 		vel = sf::Vector2f(3.535, 3.535);
 }
 
-void Collectable::update(sf::Vector2u winSize, std::vector<Object*>* objects, bool time)
+void Collectable::update(sf::Vector2u winSize, std::vector<Object*>* objects, 
+bool time)
 {
 	if (id == 0)
 	{
@@ -65,7 +67,7 @@ void Collectable::update(sf::Vector2u winSize, std::vector<Object*>* objects, bo
 			vel.y *= -1;
 		}
 	}
-	//pplayer interaction
+	//player interaction
 	for (int i = 0; i < objects->size(); i++)
 	{
 		if ((objects->at(i)->getType() == PLAYER) 

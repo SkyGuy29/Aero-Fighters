@@ -48,7 +48,8 @@ short Object::getOrientation()
 //This animator allows for different frame changes.
 void Object::nextFrame(int frameRate = 15)
 {
-	// Increases the image rectangle by its height and loops back when it reaches the end
+	// Increases the image rectangle by its height and loops back when 
+	//it reaches the end
 	currentFrame++;
 	if (currentFrame >= frameCount * frameRate)
 	{
@@ -58,13 +59,17 @@ void Object::nextFrame(int frameRate = 15)
 
 	// the dividing to an int is needed for the updates per frame delay.
 	sprite.setTextureRect(sf::IntRect(
-		texOffset.x + (currentFrame / frameRate) * texSize.x * !verticalAnimation,
-		texOffset.y + (currentFrame / frameRate) * texSize.y * verticalAnimation,
+		texOffset.x + (currentFrame / frameRate) * texSize.x 
+		* !verticalAnimation,
+		texOffset.y + (currentFrame / frameRate) * texSize.y 
+		* verticalAnimation,
 		texSize.x, texSize.y));
 }
 
-// The use of this method is to load a texture in Level or Game once, then cheaply load it again multiple times
-void Object::setTexture(sf::Texture* texPtr, sf::Vector2i size, sf::Vector2i offset, int frameCount, bool vertAnimation)
+// The use of this method is to load a texture in Level or Game once, 
+// then cheaply load it again multiple times
+void Object::setTexture(sf::Texture* texPtr, sf::Vector2i size, 
+sf::Vector2i offset, int frameCount, bool vertAnimation)
 {
 	texInit = true;
 	sprite.setTexture(texPtr);
@@ -102,8 +107,10 @@ bool Object::intersect(Object* targetPtr)
 	if (size.x == 0 || size.y == 0 || targetPtr->getSize().x == 0 
 	|| targetPtr->getSize().y == 0)
 		return false;
-	return (abs(pos.x - targetPtr->getPos().x) <= (size.x / 2 + targetPtr->getSize().x / 2))
-		&& (abs(pos.y - targetPtr->getPos().y) <= (size.y / 2 + targetPtr->getSize().y / 2));
+	return (abs(pos.x - targetPtr->getPos().x) <= (size.x / 2 
+		+ targetPtr->getSize().x / 2))
+		&& (abs(pos.y - targetPtr->getPos().y) <= (size.y / 2 
+		+ targetPtr->getSize().y / 2));
 }
 
 short Object::getType()
@@ -118,7 +125,8 @@ void Object::move(sf::Vector2u winSize)
 	sprite.setPosition(pos);
 }
 
-// setPos was more of a setup thing, and you know exactly where it will be going.
+// setPos was more of a setup thing, and you know exactly where it will 
+// be going.
 void Object::setPos(sf::Vector2f newPos)
 {
 	pos = newPos;
@@ -130,7 +138,8 @@ void Object::setPos(float newPosX, float newPosY)
 	setPos(sf::Vector2f(newPosX, newPosY));
 }
 
-// I just wanted to reduce code repitition for setting the sprite origin, so might as well make it useful
+// I just wanted to reduce code repitition for setting the sprite origin, 
+// so might as well make it useful
 void Object::setSize(sf::Vector2f newSize)
 {
 	size = newSize;
@@ -162,7 +171,8 @@ bool Object::outOfBounds(sf::Vector2u winSize)
 {
 	return (
 		pos.x + size.x / 2.f < 0 || pos.y + size.y / 2.f < 0 || 
-		pos.x - size.x / 2.f >= winSize.x || pos.y - size.y / 2.f >= winSize.y);
+		pos.x - size.x / 2.f >= winSize.x || pos.y - size.y / 2.f 
+		>= winSize.y);
 }
 
 void Object::setDelete()

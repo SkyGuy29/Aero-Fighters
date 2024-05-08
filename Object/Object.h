@@ -35,7 +35,8 @@ public:
 	sf::Vector2f getSize();
 
 
-	void setTexture(sf::Texture* texPtr, sf::Vector2i size, sf::Vector2i offset, int frameCount, bool vertAnimation);
+	void setTexture(sf::Texture* texPtr, sf::Vector2i size, 
+	sf::Vector2i offset, int frameCount, bool vertAnimation);
 	
 	bool intersect(Object*);
 	
@@ -69,7 +70,8 @@ protected:
 
 	void nextFrame(int frameRate);
 
-	short type, id = 0, cooldown = 0, health, spriteNum = -1, orientation = 0, timer = 0;
+	short type, id = 0, cooldown = 0, health, spriteNum = -1, orientation = 0, 
+	timer = 0;
 
 	bool del = false;
 	bool texInit = false;
