@@ -520,7 +520,7 @@ void Level::updateInfScroll()
 			frontbackground.setPosition(0, frontbackgroundDist);
 		}
 
-		if ((frontbackgroundDist == winSize.y || frontbackgroundDist == 0) && !infScrollInPos)
+		if ((frontbackgroundDist == winSize.y || frontbackgroundDist >= 0) && !infScrollInPos)
 			infScrollInPos = true;
 	}
 }
@@ -566,7 +566,7 @@ void Level::englandUpdate(sf::Vector2u winSize)
 		backgroundSpeed = 0.5;
 	else if (!infScrollEnabled)
 		backgroundSpeed = 1;
-	else if (infScrollEnabled && backgroundSpeed < 3)
+	else if (infScrollEnabled && backgroundSpeed < 7)
 		backgroundSpeed *= 1.01;
 }
 
