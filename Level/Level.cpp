@@ -113,6 +113,12 @@ void Level::load(sf::Vector2u winSize, short country, int mapId)
 	}
 }
 
+void Level::debugMode()
+{
+	p[0]->setHealth(3);
+	p[1]->setHealth(3);
+}
+
 //You need to set spriteNum to change the texture.
 void Level::initializeTextures(int index)
 {
@@ -527,7 +533,7 @@ void Level::updateInfScroll()
 			frontbackground.setPosition(0, frontbackgroundDist);
 		}
 
-		if ((frontbackgroundDist == winSize.y || frontbackgroundDist == 0) 
+		if ((frontbackgroundDist == winSize.y || frontbackgroundDist >= 0) 
 			&& !infScrollInPos)
 			infScrollInPos = true;
 	}
@@ -559,22 +565,23 @@ void Level::swedenUpdate(sf::Vector2u winSize)
 
 void Level::englandUpdate(sf::Vector2u winSize)
 {
-	if (backgroundDist == 0 && !infScrollEnabled)
+	if (backgroundDist <= 0 && !infScrollEnabled)
 	{
 		setInfScroll(true);
 		if (bossSpawned == false)
 		{
-			objects.push_back(new Boss(0, true, sf::Vector2f(winSize.x / 2, 
-			-150), sf::Vector2f(0, 5), &objects));
-			backgroundSpeed = 3;
+			objects.push_back(new Boss(0, true, sf::Vector2f(winSize.x / 2,
+				-150), sf::Vector2f(0, 5), &objects));
 			bossSpawned = true;
 		}
 	}
 	//Slow down for fort
 	else if (backgroundDist <= 1405 && backgroundDist > 1264)
 		backgroundSpeed = 0.5;
-	else
+	else if (!infScrollEnabled)
 		backgroundSpeed = 1;
+	else if (infScrollEnabled && backgroundSpeed < 7)
+		backgroundSpeed *= 1.01;
 }
 
 void Level::draw(sf::RenderTarget& target, sf::RenderStates states) const
