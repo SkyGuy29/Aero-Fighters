@@ -11,7 +11,8 @@ Game::Game()
 
 void Game::run()
 {
-	window.create(sf::VideoMode(winSize.x * 2, winSize.y * 2), "Aero Fighters");
+	window.create(sf::VideoMode(winSize.x * 2, winSize.y * 2), 
+		"Aero Fighters");
 	window.setFramerateLimit(framesPSec);
 
 	// This view scales the 224x320 up to whatever the window size is.
@@ -24,7 +25,8 @@ void Game::run()
 
 	menuCountdown.setFont(font);
 	menuCountdown.setString("0");
-	menuCountdown.setPosition(213.25 - menuCountdown.getLocalBounds().width, 0);
+	menuCountdown.setPosition(213.25 - menuCountdown.getLocalBounds().width, 
+		0);
 
 	// load menu textures
 	menuMap.loadFromFile("Res/Misc/menuMap.png");
@@ -74,7 +76,8 @@ void Game::run()
 			{
 				if (!level.update(winSize))
 				{
-					sf::sleep(sf::milliseconds(1000)); //I don't even care, it works
+					sf::sleep(sf::milliseconds(1000)); 
+					//I don't even care, it works
 					window.close();
 				}
 			}
@@ -129,15 +132,19 @@ void Game::updateMenu()
 	//	if (sf::Joystick::isButtonPressed(0, i))
 	//		printf("%d\n", i);
 
-	if ((sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || joystick(0).x < -0.5f) && !keyLeft)
+	if ((sf::Keyboard::isKeyPressed(sf::Keyboard::Left) 
+		|| joystick(0).x < -0.5f) && !keyLeft)
 		if (country > 0)
 			country--;
-	if ((sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || joystick(0).x > 0.5f) && !keyRight)
+	if ((sf::Keyboard::isKeyPressed(sf::Keyboard::Right) 
+		|| joystick(0).x > 0.5f) && !keyRight)
 		if (country < 3)
 			country++;
 
-	keyLeft = sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || joystick(0).x < -0.5f;
-	keyRight = sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || joystick(0).x > 0.5f;
+	keyLeft = sf::Keyboard::isKeyPressed(sf::Keyboard::Left) 
+		|| joystick(0).x < -0.5f;
+	keyRight = sf::Keyboard::isKeyPressed(sf::Keyboard::Right) 
+		|| joystick(0).x > 0.5f;
 
 	playerChoose--;
 	menuCountdown.setString(std::to_string(playerChoose / updatesPSec));
@@ -150,7 +157,8 @@ void Game::resize()
 {
 	// Get the minimum scale from either x or y
 	// This fills the max space possible, then the view is centered on the window.
-	float winScale = std::fmin(float(window.getSize().x) / winSize.x, float(window.getSize().y) / winSize.y);
+	float winScale = std::fmin(float(window.getSize().x) / winSize.x, 
+		float(window.getSize().y) / winSize.y);
 
 	view.setViewport(sf::FloatRect(
 		0.5f - winScale * float(winSize.x) / float(window.getSize().x) / 2.f,
