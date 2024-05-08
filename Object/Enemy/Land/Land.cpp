@@ -1,7 +1,8 @@
 #include "Land.h"
 
-Land::Land(short id, bool left, float* backgroundSpeed, sf::Vector2u winSize, std::vector<Object*>* objects,
-	sf::Vector2f pos, sf::Vector2f vel) : Enemy(id, left, pos, vel)
+Land::Land(short id, bool left, float* backgroundSpeed, sf::Vector2u winSize, 
+	std::vector<Object*>* objects, sf::Vector2f pos, sf::Vector2f vel) 
+	: Enemy(id, left, pos, vel)
 {
 	type = LAND;
 
@@ -92,7 +93,8 @@ Land::Land(short id, bool left, float* backgroundSpeed, sf::Vector2u winSize, st
 	sprite.setOrigin(size / 2.f);
 }
 
-void Land::update(sf::Vector2u winSize, std::vector<Object*>* objects, bool time)
+void Land::update(sf::Vector2u winSize, std::vector<Object*>* objects, 
+	bool time)
 {
 	enemyUpdate(winSize, objects);
 	//Do things here only while time is moving.
@@ -126,8 +128,10 @@ void Land::update(sf::Vector2u winSize, std::vector<Object*>* objects, bool time
 			break;
 		case 0: case 1: //Tank top
 			distance = objects->at(target)->getPos() - getPos();
-			magnitude = sqrt((distance.x * distance.x) + (distance.y * distance.y));
-			projVelocity = sf::Vector2f(2 * distance.x / magnitude, 2 * distance.y / magnitude);
+			magnitude = sqrt((distance.x * distance.x) + (distance.y 
+				* distance.y));
+			projVelocity = sf::Vector2f(2 * distance.x / magnitude, 
+				2 * distance.y / magnitude);
 
 			angle = atan(projVelocity.y / projVelocity.x);
 			angle /= PI;
@@ -170,21 +174,29 @@ void Land::update(sf::Vector2u winSize, std::vector<Object*>* objects, bool time
 
 				cooldown = 100;
 				objects->push_back(new Projectile(getPos().x, getPos().y,
-				sf::Vector2f(1.84776, 0.76537), sf::Vector2f(10, 10), 0, false, 0, 0, 12));
+				sf::Vector2f(1.84776, 0.76537), sf::Vector2f(10, 10), 0, 
+				false, 0, 0, 12));
 				objects->push_back(new Projectile(getPos().x, getPos().y,
-				sf::Vector2f(-1.84776, -0.76537), sf::Vector2f(10, 10), 0, false, 0, 0, 12));
+				sf::Vector2f(-1.84776, -0.76537), sf::Vector2f(10, 10), 0, 
+				false, 0, 0, 12));
 				objects->push_back(new Projectile(getPos().x, getPos().y,
-				sf::Vector2f(-1.84776, 0.76537), sf::Vector2f(10, 10), 0, false, 0, 0, 12));
+				sf::Vector2f(-1.84776, 0.76537), sf::Vector2f(10, 10), 0, 
+				false, 0, 0, 12));
 				objects->push_back(new Projectile(getPos().x, getPos().y,
-				sf::Vector2f(1.84776, -0.76537), sf::Vector2f(10, 10), 0, false, 0, 0, 12));
+				sf::Vector2f(1.84776, -0.76537), sf::Vector2f(10, 10), 0, 
+				false, 0, 0, 12));
 				objects->push_back(new Projectile(getPos().x, getPos().y,
-				sf::Vector2f(0.76537, 1.84776), sf::Vector2f(10, 10), 0, false, 0, 0, 12));
+				sf::Vector2f(0.76537, 1.84776), sf::Vector2f(10, 10), 0, 
+				false, 0, 0, 12));
 				objects->push_back(new Projectile(getPos().x, getPos().y,
-				sf::Vector2f(-0.76537, -1.84776), sf::Vector2f(10, 10), 0, false, 0, 0, 12));
+				sf::Vector2f(-0.76537, -1.84776), sf::Vector2f(10, 10), 0, 
+				false, 0, 0, 12));
 				objects->push_back(new Projectile(getPos().x, getPos().y,
-				sf::Vector2f(-0.76537, 1.84776), sf::Vector2f(10, 10), 0, false, 0, 0, 12));
+				sf::Vector2f(-0.76537, 1.84776), sf::Vector2f(10, 10), 0, 
+				false, 0, 0, 12));
 				objects->push_back(new Projectile(getPos().x, getPos().y,
-				sf::Vector2f(0.76537, -1.84776), sf::Vector2f(10, 10), 0, false, 0, 0, 12));
+				sf::Vector2f(0.76537, -1.84776), sf::Vector2f(10, 10), 0, 
+				false, 0, 0, 12));
 			}
 			break;
 		case 7: //Hangar

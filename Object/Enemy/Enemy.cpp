@@ -35,7 +35,8 @@ void Enemy::enemyUpdate(sf::Vector2u winSize, std::vector<Object*>* objects)
 	//Am I being shot?
 	for (int i = 0; i < objects->size(); i++)
 	{
-		if (objects->at(i)->getType() == PLAYER_PROJECTILE && this->intersect(objects->at(i)) && type != HIDDEN
+		if (objects->at(i)->getType() == PLAYER_PROJECTILE 
+			&& this->intersect(objects->at(i)) && type != HIDDEN
 			&& entered)
 		{
 			health--;
