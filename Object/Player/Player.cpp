@@ -16,7 +16,7 @@ void Player::shoot(std::vector<Object*>& objects)
 	int offset = 0;
 	// cooldown is so a constant stream of projectiles isn't created
 	//and doesn't trivialize the game.
-	if (!cooldown)
+	if (cooldown == 0)
 	{
 		switch (country * 8 + powerLevel * 2 + isPlayerTwo)
 		//This switch statement produces the primary fire
@@ -130,7 +130,7 @@ void Player::shoot(std::vector<Object*>& objects)
 	}
 	//The secondary fire acts independently from the main fire and needs
 	//it's own cooldown.
-	if (!cooldownSecondary)
+	if (cooldownSecondary == 0)
 	{
 		switch (country * 8 + powerLevel * 2 + isPlayerTwo)
 		{
@@ -229,7 +229,7 @@ void Player::shoot(std::vector<Object*>& objects)
 //uses the special ability of the player based on what country the user selected
 void Player::special(std::vector<Object*>& objects, sf::Vector2u winSize)
 {
-	if (!cooldown && specialCharge > 0)
+	if (cooldown == 0 && specialCharge > 0)
 	{
 		specialCharge--;
 		switch (country * 2 + isPlayerTwo)
@@ -324,14 +324,14 @@ void Player::update(sf::Vector2u winSize, std::vector<Object*>* objects, bool ti
 {
 	setSize(20, 32);
 	//If the player is currently dead, don't do anything
-	if (timerDeath)
+	if (timerDeath > 0)
 	{
 		setSize(0, 0);
 		timerDeath--;
 		return;
 	}
 	//If gone do nothing
-	if (health != 0)
+	if (health == 0)
 		return;
 	//Am I being shot?
 	for (int i = 0; i < objects->size(); i++)

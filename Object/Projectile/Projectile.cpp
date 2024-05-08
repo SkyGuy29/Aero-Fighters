@@ -17,7 +17,7 @@ sf::Vector2f size, short ID, bool player, short cool, short sprit)
 {
 	id = ID;
 	setSize(size);
-	tempSize = size;
+	tempSize = size; 
 	sprite.setSize(size);
 	sprite.setOrigin(sprite.getSize() / 2.f);
 	setPos(posX, posY);
@@ -33,12 +33,12 @@ sf::Vector2f size, short ID, bool player, short cool, short sprit)
 
 //Use when you want to delay the projectiles spawn
 Projectile::Projectile(float posX, float posY, sf::Vector2f vel,
-	sf::Vector2f size, short ID, bool player, short cool, short dela, short sprit)
+sf::Vector2f size, short ID, bool player, short cool, short dela, short sprit)
 {
 	delay = dela;
 	id = ID;
 	setSize(size);
-	tempSize = size;
+	tempSize = size; //Temp size holds the original size
 	sprite.setSize(size);
 	sprite.setOrigin(sprite.getSize() / 2.f);
 	setPos(posX, posY);
@@ -125,8 +125,9 @@ bool time)
 	}
 	if (closestEnemy != nullptr)
 	{
-		vel = sf::Vector2f( 5 * (closestEnemy->getPos().x - pos.x) / closestEnemyDistance,
-		5 * (closestEnemy->getPos().y - pos.y) / closestEnemyDistance);
+		vel = sf::Vector2f( 5 * (closestEnemy->getPos().x - pos.x) / 
+		closestEnemyDistance, 5 * (closestEnemy->getPos().y - pos.y) 
+		/ closestEnemyDistance);
 		int angle = atan(-vel.y / vel.x) / PI * 8;
 		if (vel.x < 0)
 			angle += 8;
