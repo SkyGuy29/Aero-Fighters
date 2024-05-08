@@ -10,12 +10,10 @@ public:
 	Projectile(float posX, float posY, sf::Vector2f vel,
 	sf::Vector2f size, short ID, bool player, short cool, short sprit); 
 	Projectile(float posX, float posY, sf::Vector2f vel,
-	sf::Vector2f size, short ID, bool player, short cool, short dela, short sprit);
-	//Adds delay
+	sf::Vector2f size, short ID, bool player, short cool, short dela, 
+	short sprit); //Adds delay
 
 	void update(sf::Vector2u winSize, std::vector<Object*>* objects, bool time);
-
-	void setTexture(sf::Texture* texPtr, sf::Vector2i size, sf::Vector2i offset, int frameCount, bool vertAnimation);
 
 private:
 	short delay = 0;
