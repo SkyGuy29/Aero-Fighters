@@ -29,6 +29,8 @@ public:
 
 	bool update(sf::Vector2u winSize);
 
+	void debugMode();
+
 private:
 	void setInfScroll(bool enable);
 	void updateInfScroll();

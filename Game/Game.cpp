@@ -55,9 +55,12 @@ void Game::run()
 				resize();
 			}
 
-		//if (key(0, Controls::FastForward) || button(0, Controller::X))
-			//updatesPSec = 600;
-		//else
+		if (key(0, Controls::FastForward) || button(0, Controller::X))
+		{
+			level.debugMode();
+			updatesPSec = 600;
+		}
+		else
 			updatesPSec = 30;
 
 		// Keeps constant update rate.
