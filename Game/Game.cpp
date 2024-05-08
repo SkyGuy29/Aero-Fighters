@@ -56,7 +56,7 @@ void Game::run()
 			case sf::Event::Resized:
 				resize();
 			}
-
+#ifdef _DEBUG
 		if (key(0, Controls::FastForward) || button(0, Controller::X))
 		{
 			level.debugMode();
@@ -64,6 +64,7 @@ void Game::run()
 		}
 		else
 			updatesPSec = 30;
+#endif
 
 		// Keeps constant update rate.
 		deltaTime += clock.restart().asMilliseconds();
