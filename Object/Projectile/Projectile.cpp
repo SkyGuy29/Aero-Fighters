@@ -56,11 +56,11 @@ void Projectile::update(sf::Vector2u winSize, std::vector<Object*>* objects,
 bool time)
 {
 	nextFrame(4);
-	if (delay) //If the delay is not up the projectile doesn't exist.
+	if (delay > 0) //If the delay is not up the projectile doesn't exist.
 	{
 		size = sf::Vector2f(0, 0);
 		delay--;
-		if (!delay)
+		if (delay == 0)
 			size = tempSize;
 	}
 
@@ -71,10 +71,10 @@ bool time)
 		sprite.setOrigin(sprite.getSize() / 2.f);
 	}
 
-	if (id && cooldown)
+	if (id > 0 && cooldown > 0)
 		cooldown--;
 
-	if (!cooldown && id && (id < 4) && (id != 2))
+	if (cooldown == 0 && id > 0 && id < 4 && id != 2)
 		del = true;
 
 	if (outOfBounds(winSize))
@@ -87,7 +87,7 @@ bool time)
 	for (int i = 0; i < objects->size(); i++)
 	{
 		if (type == PLAYER_PROJECTILE
-			&& (!id || id >= 4)
+			&& (id == 0 || id >= 4)
 			&& ((objects->at(i)->getType() == AIR
 				|| objects->at(i)->getType() == LAND
 				|| objects->at(i)->getType() == BOSS)
@@ -125,23 +125,24 @@ bool time)
 	}
 	if (closestEnemy != nullptr)
 	{
-		vel = sf::Vector2f( 5 * (closestEnemy->getPos().x - pos.x) / 
+		vel = sf::Vector2f(5 * (closestEnemy->getPos().x - pos.x) / 
 		closestEnemyDistance, 5 * (closestEnemy->getPos().y - pos.y) 
 		/ closestEnemyDistance);
-		int angle = atan(-vel.y / vel.x) / PI * 8;
-		if (vel.x < 0)
+		int angle = atan(-vel.y / vel.x) / PI * 8; //Gets the angle and turns
+		//it into one of 16 orientations.
+		if (vel.x < 0) //This is to make atan have all the range.
 			angle += 8;
-		angle -= 4;
+		angle -= 4; //Offsets to match what the sprites are.
 		if (angle < 0)
 			angle += 16;
 		if (angle > 15)
 			angle -= 16;
-		angle = 16 - angle;
+		angle = 16 - angle; //Reverse things for more alignment.
 		if (angle > 15)
 			angle -= 16;
 		//The math works, trust me.
 		setOrientation(angle);
-		sprite.setScale(1, 1);
+		sprite.setScale(1, 1); //There are only 5 sprites, so they get flipped.
 		if (orientation > 8)
 			sprite.setScale(sf::Vector2f(-1, 1));
 		if (orientation < 12 && orientation > 4)

@@ -472,7 +472,7 @@ void Player::move(sf::Vector2u winSize)
 //This is to tell if time should be moving
 bool Player::getTime()
 {
-	if (!cooldownTime)
+	if (cooldownTime == 0)
 		return true;
 	return false;
 }
