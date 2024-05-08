@@ -249,6 +249,12 @@ void Boss::update(sf::Vector2u winSize, std::vector<Object*>* objects,
 			}
 			break;
 	}
+	if (id == 0 && del == true)
+	{
+		bossPiece1->setDelete();
+		bossPiece2->setDelete();
+		bossPiece3->setDelete();
+	}
 	enemyUpdate(winSize, objects);
 
 	/// Removes the rest of the boss that would still show
