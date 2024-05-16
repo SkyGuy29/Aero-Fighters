@@ -485,11 +485,14 @@ bool Level::update(sf::Vector2u winSize)
 	//polymorphism -- All objects are stored in this vector, they can be
 	//identified using getType()
 	for (int i = 0; i < objects.size(); i++)
-	{
 		objects[objects.size() - 1 - i]->update(winSize, &objects, 
 			p[1]->getTime());
+
+	// Calling init textures after everything is updated.
+	// Objects may create explosions that won't be drawn, 
+	// because the loop won't reach them
+	for (int i = 0; i < objects.size(); i++)
 		initializeTextures(i);
-	}
 
 	for (int i = 0; i < objects.size(); i++)
 		if (objects[objects.size() - 1 - i]->shouldDelete())
