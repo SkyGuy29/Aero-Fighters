@@ -82,6 +82,7 @@ void Game::run()
 				{
 					sf::sleep(sf::milliseconds(1000)); 
 					//I don't even care, it works
+					printf("You lost!\n");
 					window.close();
 				}
 			}
