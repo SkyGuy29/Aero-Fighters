@@ -21,36 +21,29 @@
 class Level : public sf::Drawable
 {
 public:
-	//default constructor for Level objects
 	Level();
-	//default deconstructor for Level objects
+
 	~Level();
-	//loads level data and sprites from files
+
 	void load(sf::Vector2u winSize, short country, int mapId);
-	//update handler for objects in a level
+
 	bool update(sf::Vector2u winSize);
-	//
+
 	void debugMode();
 
 private:
-	//switches the infinite scrolling background on or off
-	//based on the given parameter
 	void setInfScroll(bool enable);
-	//updates the infinite scrolling background
 	void updateInfScroll();
-	//
+
 	void getInput(sf::Vector2u winSize);
 
-	//
 	void statesUpdate(sf::Vector2u winSize);
 	void japanUpdate(sf::Vector2u winSize);
 	void swedenUpdate(sf::Vector2u winSize);
 	void englandUpdate(sf::Vector2u winSize);
-	
-	//draws level data to the window
+
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
-	//
 	void initializeTextures(int);
 	void initTexturesBoss(Object* object, sf::IntRect& objRect, 
 	int& frameCount, sf::Texture*& texPtr);

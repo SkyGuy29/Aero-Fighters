@@ -11,18 +11,14 @@
 class Game
 {
 public:
-	//default constructor for Game objects
 	Game();
 
-	//opens and handles the game window and game structure
 	void run();
-	//draws the menu to the window
+
 	void drawMenu();
-	//updates the menu based on player input
 	void updateMenu();
 
 private:
-	//resizes the window automatically
 	void resize();
 
 	sf::Clock clock;
