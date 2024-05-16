@@ -80,11 +80,8 @@ void Level::load(sf::Vector2u winSize, short country, int mapId)
 	short type, id;
 	int startMark;
 	sf::Vector2f pos, vel;
-
 	std::fstream file;
-
 	file.open("Res/England/enemies.txt");
-
 	while (file.is_open() && !file.eof())
 	{
 		file >> type;
@@ -109,8 +106,8 @@ void Level::load(sf::Vector2u winSize, short country, int mapId)
 		case 2:
 			break;
 		}
-
 	}
+	//I am so sorry -Gabe
 }
 
 void Level::debugMode()
