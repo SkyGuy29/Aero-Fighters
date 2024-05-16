@@ -22,6 +22,7 @@ void Enemy::enemyUpdate(sf::Vector2u winSize, std::vector<Object*>* objects)
 	if (!entered && !outOfBounds(winSize))
 		entered = true;
 
+	//Delete an enemy when it goes off screen
 	if (outOfBounds(winSize) && entered)
 		del = true;
 
