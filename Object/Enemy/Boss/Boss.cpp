@@ -213,37 +213,21 @@ void Boss::update(sf::Vector2u winSize, std::vector<Object*>* objects,
 			}
 			if (cooldown2 == 0)
 			{
-				objects->push_back(new Projectile(pos.x - 80, pos.y, 
+				objects->push_back(new Projectile(pos.x - 30, pos.y, 
 				sf::Vector2f(0, 5),	sf::Vector2f(10, 10), 1, false, 0, 12));
-				objects->push_back(new Projectile(pos.x - 80, pos.y, 
+				objects->push_back(new Projectile(pos.x - 30, pos.y, 
 				sf::Vector2f(-1.294, 4.83),	sf::Vector2f(10, 10), 1, false, 
 				0, 12));
-				objects->push_back(new Projectile(pos.x - 80, pos.y, 
+				objects->push_back(new Projectile(pos.x - 30, pos.y, 
 				sf::Vector2f(1.294, 4.83), sf::Vector2f(10, 10), 1, false,
 				0, 12));
-				objects->push_back(new Projectile(pos.x - 80, pos.y, 
+				objects->push_back(new Projectile(pos.x - 30, pos.y, 
 				sf::Vector2f(0, 5),	sf::Vector2f(10, 10), 1, false, 0, 25, 12));
-				objects->push_back(new Projectile(pos.x - 80, pos.y, 
+				objects->push_back(new Projectile(pos.x - 30, pos.y, 
 				sf::Vector2f(-1.294, 4.83),	sf::Vector2f(10, 10), 1, false, 
 				0, 25, 12));
-				objects->push_back(new Projectile(pos.x - 80, pos.y, 
+				objects->push_back(new Projectile(pos.x - 30, pos.y, 
 				sf::Vector2f(1.294, 4.83), sf::Vector2f(10, 10), 1, false, 
-				0, 25, 12));
-				objects->push_back(new Projectile(pos.x - 20, pos.y,
-				sf::Vector2f(0, 5), sf::Vector2f(10, 10), 1, false, 0, 12));
-				objects->push_back(new Projectile(pos.x - 20, pos.y,
-				sf::Vector2f(-1.294, 4.83), sf::Vector2f(10, 10), 1, false,
-				0, 12));
-				objects->push_back(new Projectile(pos.x - 20, pos.y,
-				sf::Vector2f(1.294, 4.83), sf::Vector2f(10, 10), 1, false,
-				0, 12));
-				objects->push_back(new Projectile(pos.x - 20, pos.y,
-				sf::Vector2f(0, 5), sf::Vector2f(10, 10), 1, false, 0, 25, 12));
-				objects->push_back(new Projectile(pos.x - 20, pos.y,
-				sf::Vector2f(-1.294, 4.83), sf::Vector2f(10, 10), 1, false,
-				0, 25, 12));
-				objects->push_back(new Projectile(pos.x - 20, pos.y,
-				sf::Vector2f(1.294, 4.83), sf::Vector2f(10, 10), 1, false,
 				0, 25, 12));
 				cooldown2 = 250;
 			}
