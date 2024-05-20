@@ -118,7 +118,7 @@ short Object::getType()
 }
 
 // I was thinking move would need a boundry check, not setPos.
-void Object::move(sf::Vector2u winSize)
+void Object::move()
 {
 	pos += vel;
 	sprite.setPosition(pos);

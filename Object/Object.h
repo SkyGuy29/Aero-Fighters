@@ -14,7 +14,7 @@ public:
 
 	void objectUpdate(sf::Vector2u winSize, std::vector<Object*>*);
 
-	virtual void move(sf::Vector2u winSize);
+	virtual void move();
 
 	void setPos(sf::Vector2f newPos);
 	void setPos(float newPosX, float newPosY);
