@@ -392,7 +392,7 @@ void Level::initTexturesProjectile(Object* object, sf::IntRect& objRect,
 	case 15: //Big
 		texPtr = &enemyProjectileImg;
 		frameCount = 2;
-		objRect = { 0, 34, 12, 12 };
+		objRect = { 0, 37, 12, 12 };
 		break;
 	case 16: //Medium
 		texPtr = &enemyProjectileImg;
