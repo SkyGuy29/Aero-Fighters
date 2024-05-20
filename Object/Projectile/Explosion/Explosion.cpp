@@ -32,6 +32,7 @@ Explosion::Explosion(sf::Vector2f pos, int type)
 void Explosion::update(sf::Vector2u winSize, std::vector<Object*>*, bool time)
 {
 	nextFrame(2);
+	sprite.move(0, backgroundSpeed);
 	if (anDone)
 		del = true;
 }
