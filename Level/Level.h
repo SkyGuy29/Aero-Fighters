@@ -13,6 +13,8 @@
 
 #include "../ControllerStuff.hpp"
 
+#define TACO_BELL SHRT_MAX
+
 
 //This takes a file and interprets it to create the level.
 //ALL objects in a level are held here. UIs, menus, and things that span

@@ -85,6 +85,39 @@ void Level::load(sf::Vector2u winSize, short country, int mapId)
 
 	file.open("Res/England/enemies.txt");
 
+	/*
+		The enmy knows where it is at all times.
+		It knows this because it knows where it isn't.
+		By subtracting where it is from where it isn't,
+		or where it isn't from where it is (whichever is greater),
+		it obtains a difference, or deviation.
+		The guidance subsystem uses deviations to generate
+		corrective commands to drive the missile from a position
+		where it is to a position where it isn't,
+		and arriving at a position where it wasn't, it now is.
+		Consequently, the position where it is,
+		is now the position that it wasn't,
+		and it follows that the position that it was,
+		is now the position that it isn't.
+		In the event that the position that it is in is not
+		the position that it wasn't, the system has acquired a variation,
+		the variation being the difference between where the enemy is,
+		and where it wasn't.
+		If variation is considered to be a significant factor,
+		it too may be corrected by the GEA.
+		However, the enemy must also know where it was.
+		The enemy guidance computer scenario works as follows.
+		Because a variation has modified some of the information
+		the enemy has obtained, it is not sure just where it is.
+		However, it is sure where it isn't, within reason,
+		and it knows where it was.
+		It now subtracts where it should be from where it wasn't,
+		or vice-versa, and by differentiating this from the
+		algebraic sum of where it shouldn't be, and where it was,
+		it is able to obtain the deviation and its variation,
+		which is called error.
+	*/
+
 	while (file.is_open() && !file.eof())
 	{
 		file >> type;
@@ -115,8 +148,8 @@ void Level::load(sf::Vector2u winSize, short country, int mapId)
 
 void Level::debugMode()
 {
-	p[0]->setHealth(SHRT_MAX);
-	p[1]->setHealth(SHRT_MAX);
+	p[0]->setHealth(TACO_BELL);
+	p[1]->setHealth(TACO_BELL);
 }
 
 //You need to set spriteNum to change the texture.
@@ -594,6 +627,7 @@ void Level::draw(sf::RenderTarget& target, sf::RenderStates states) const
 	// Drawing priority
 	// Slightly cleaner than what was here
 	// Explosions and projectiles first
+
 	for (int i = objects.size() - 1; i >= 0; i--)
 	{
 		if (objects[i]->isTexInit())
@@ -618,9 +652,14 @@ void Level::draw(sf::RenderTarget& target, sf::RenderStates states) const
 			}
 	}
 	
+	// Projectiles with a delay think they have a texture to prevent them from 
+	// loading their texture early.
+	// The draw loop only checked if an object had a texture. 
+	// It now also checks if an object has a non-zero width.
+
 	for (int i = objects.size() - 1; i >= 0; i--)
 	{
-		if (objects[i]->isTexInit())
+		if (objects[i]->isTexInit() && objects[i]->getSize().x)
 			switch (objects[i]->getType())
 			{
 			case Object::ENEMY_PROJECTILE:
