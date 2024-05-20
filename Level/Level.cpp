@@ -516,8 +516,19 @@ bool Level::update(sf::Vector2u winSize)
 	//polymorphism -- All objects are stored in this vector, they can be
 	//identified using getType()
 	for (int i = 0; i < objects.size(); i++)
-		objects[objects.size() - 1 - i]->update(winSize, &objects, 
+	{
+		objects[objects.size() - 1 - i]->update(winSize, &objects,
 			p[1]->getTime());
+		if (objects[objects.size() - 1 - i]->getType() == Object::EXPLOSION)
+		{
+			// I'm sorry.
+			// Explosions didn't move before. They move now
+			// I didn't want to add more polymorphism stuff
+			// Pointers are cool
+			Explosion* exp = (Explosion*)objects[objects.size() - 1 - i];
+			exp->backgroundSpeed = backgroundSpeed;
+		}
+	}
 
 	// Calling init textures after everything is updated.
 	// Objects may create explosions that won't be drawn, 
