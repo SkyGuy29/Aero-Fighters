@@ -9,6 +9,10 @@ Game::Game()
 	font.loadFromFile("res/aero-fighters.ttf");
 }
 
+
+/// <summary>
+/// Runs the primary gameplay loop.
+/// </summary>
 void Game::run()
 {
 	window.create(sf::VideoMode(winSize.x * 2, winSize.y * 2), 
@@ -48,6 +52,7 @@ void Game::run()
 	{
 		sf::Event e;
 		while (window.pollEvent(e))
+		{
 			switch (e.type)
 			{
 			case sf::Event::Closed:
@@ -56,6 +61,8 @@ void Game::run()
 			case sf::Event::Resized:
 				resize();
 			}
+		}
+			
 #ifdef _DEBUG
 		if (key(0, Controls::FastForward) || button(0, Controller::X))
 		{
@@ -80,8 +87,9 @@ void Game::run()
 			{
 				if (!level.update(winSize))
 				{
+					// Player death here. NEEDS UPDATE
 					sf::sleep(sf::milliseconds(1000)); 
-					//I don't even care, it works
+
 					printf("You lost!\n");
 					window.close();
 				}
@@ -101,6 +109,7 @@ void Game::run()
 	}
 }
 
+
 void Game::drawMenu()
 {
 	window.draw(menuMapRect);
@@ -118,6 +127,7 @@ void Game::drawMenu()
 	window.draw(menuCountdown);
 }
 
+
 void Game::updateMenu()
 {
 	menuBlinkTimer++;
@@ -132,10 +142,6 @@ void Game::updateMenu()
 		level.load(winSize, country, 0);
 		return;
 	}
-
-	//for (int i = 0; i < 20; i++)
-	//	if (sf::Joystick::isButtonPressed(0, i))
-	//		printf("%d\n", i);
 
 	if ((sf::Keyboard::isKeyPressed(sf::Keyboard::Left) 
 		|| joystick(0).x < -0.5f) && !keyLeft)
@@ -157,6 +163,7 @@ void Game::updateMenu()
 	if (!playerChoose)
 		level.load(winSize, country, 0);
 }
+
 
 void Game::resize()
 {
