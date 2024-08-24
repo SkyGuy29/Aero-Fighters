@@ -1,0 +1,11 @@
+# Code sources
+*.cpp   text diff=cpp
+*.hpp   text diff=cpp
+*.h     text diff=cpp
+
+# Correct C++ over C
+*.h linguist-language=cpp
+
+# Ignore non-program code for language detection
+lib/** linguist-vendored
+doc/** linguist-vendored

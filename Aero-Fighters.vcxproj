@@ -154,32 +154,32 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Object\Projectile\Explosion\Explosion.cpp" />
-    <ClCompile Include="Object\Collectable\Collectable.cpp" />
-    <ClCompile Include="Object\Enemy\Boss\Boss.cpp" />
-    <ClCompile Include="Object\Enemy\Air\Air.cpp" />
-    <ClCompile Include="Object\Enemy\Land\Land.cpp" />
-    <ClCompile Include="Object\Enemy\Enemy.cpp" />
-    <ClCompile Include="Game\Game.cpp" />
-    <ClCompile Include="Level\Level.cpp" />
-    <ClCompile Include="Main.cpp" />
-    <ClCompile Include="Object\Object.cpp" />
-    <ClCompile Include="Object\Player\Player.cpp" />
-    <ClCompile Include="Object\Projectile\Projectile.cpp" />
+    <ClCompile Include="src\Object\Projectile\Explosion\Explosion.cpp" />
+    <ClCompile Include="src\Object\Collectable\Collectable.cpp" />
+    <ClCompile Include="src\Object\Enemy\Boss\Boss.cpp" />
+    <ClCompile Include="src\Object\Enemy\Air\Air.cpp" />
+    <ClCompile Include="src\Object\Enemy\Land\Land.cpp" />
+    <ClCompile Include="src\Object\Enemy\Enemy.cpp" />
+    <ClCompile Include="src\Game\Game.cpp" />
+    <ClCompile Include="src\Level\Level.cpp" />
+    <ClCompile Include="src\Main.cpp" />
+    <ClCompile Include="src\Object\Object.cpp" />
+    <ClCompile Include="src\Object\Player\Player.cpp" />
+    <ClCompile Include="src\Object\Projectile\Projectile.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ControllerStuff.hpp" />
-    <ClInclude Include="Object\Projectile\Explosion\Explosion.h" />
-    <ClInclude Include="Object\Collectable\Collectable.h" />
-    <ClInclude Include="Object\Enemy\Boss\Boss.h" />
-    <ClInclude Include="Object\Enemy\Air\Air.h" />
-    <ClInclude Include="Object\Enemy\Land\Land.h" />
-    <ClInclude Include="Object\Enemy\Enemy.h" />
-    <ClInclude Include="Game\Game.h" />
-    <ClInclude Include="Level\Level.h" />
-    <ClInclude Include="Object\Object.h" />
-    <ClInclude Include="Object\Player\Player.h" />
-    <ClInclude Include="Object\Projectile\Projectile.h" />
+    <ClInclude Include="src\ControllerStuff.hpp" />
+    <ClInclude Include="src\Object\Projectile\Explosion\Explosion.h" />
+    <ClInclude Include="src\Object\Collectable\Collectable.h" />
+    <ClInclude Include="src\Object\Enemy\Boss\Boss.h" />
+    <ClInclude Include="src\Object\Enemy\Air\Air.h" />
+    <ClInclude Include="src\Object\Enemy\Land\Land.h" />
+    <ClInclude Include="src\Object\Enemy\Enemy.h" />
+    <ClInclude Include="src\Game\Game.h" />
+    <ClInclude Include="src\Level\Level.h" />
+    <ClInclude Include="src\Object\Object.h" />
+    <ClInclude Include="src\Object\Player\Player.h" />
+    <ClInclude Include="src\Object\Projectile\Projectile.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
