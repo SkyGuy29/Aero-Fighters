@@ -8,6 +8,11 @@ Object::Object()
 
 /// <summary>
 /// Calls Object::move(winSize) (??? what is the point?)
+/// 
+/// @@TODO@@
+/// Base class version is never called - Declare pure virtual. - Ricky
+/// 
+/// 
 /// </summary>
 /// <param name="winSize"></param>
 /// <param name="objects"></param>
@@ -27,7 +32,8 @@ void Object::draw(sf::RenderTarget& target, const sf::RenderStates states) const
 	target.draw(sprite, states);
 }
 
-
+// @@TODO@@
+// Move to seperate sprite container class - Unweave the inheritance web - Ricky
 //So that the sprite num actually gets updated
 void Object::setSpriteNum(const short num)
 {
@@ -35,6 +41,8 @@ void Object::setSpriteNum(const short num)
 }
 
 
+// @@TODO@@
+// Move to seperate sprite container class - Unweave the inheritance web - Ricky
 //For setting the orientaion of rotating sprites
 void Object::setOrientation(const short angle)
 {
@@ -44,6 +52,9 @@ void Object::setOrientation(const short angle)
 
 /// <summary>
 /// This animator allows for different frame changes.
+/// 
+/// @@TODO@@
+/// Move to seperate sprite container class - Unweave the inheritance web - Ricky
 /// </summary>
 /// <param name="frameRate"></param>
 void Object::nextFrame(const int frameRate = 15)
@@ -68,8 +79,10 @@ void Object::nextFrame(const int frameRate = 15)
 
 
 /// <summary>
+/// 
 /// The purpose of this method is to load a texture in Level or Game once,
 /// then cheaply load it again multiple times
+/// 
 /// </summary>
 /// <param name="texPtr"></param>
 /// <param name="size"></param>
@@ -104,6 +117,9 @@ bool Object::intersect(Object* targetPtr) const
 
 
 // I was thinking move would need a boundry check, not setPos.
+// @@TODO@@
+// Move to seperate sprite container class - Unweave the inheritance web - Ricky
+// Base method is never used -- Make pure virtual or delete - Ricky
 void Object::move(sf::Vector2f winSize)
 {
 	pos += vel;
@@ -120,6 +136,8 @@ void Object::setPos(sf::Vector2f newPos)
 }
 
 
+// @@TODO@@
+// Cut overloaded function - Wraps a function call that is easier to read without the overload or does the exact same thing as a smaller variant - Ricky
 void Object::setPos(float newPosX, float newPosY)
 {
 	setPos(sf::Vector2f(newPosX, newPosY));
@@ -134,6 +152,8 @@ void Object::setSize(sf::Vector2f newSize)
 }
 
 
+// @@TODO@@
+// Cut overloaded function - Wraps a function call that is easier to read without the overload or does the exact same thing as a smaller variant - Ricky
 void Object::setSize(float newSizeX, float newSizeY)
 {
 	setSize(sf::Vector2f(newSizeX, newSizeY));
@@ -146,6 +166,8 @@ void Object::setVel(sf::Vector2f newVel)
 }
 
 
+// @@TODO@@
+// Cut overloaded function - Wraps a function call that is easier to read without the overload or does the exact same thing as a smaller variant - Ricky
 void Object::setVel(float x, float y)
 {
 	vel.x = x;
