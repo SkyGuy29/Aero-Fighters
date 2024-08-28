@@ -6,6 +6,9 @@ Collectable::Collectable(const short id, const sf::Vector2f position, float* new
 	backgroundSpeed = newBgSpeed;
 	this->id = id;
 	type = COLLECTABLE;
+
+	// @@TODO@@
+	// Avoid magic numbers; What do these mean? - Ricky
 	setSize(16, 19);
 	sprite.setSize(sf::Vector2f(16, 19));
 	sprite.setOrigin(sprite.getSize() / 2.f);

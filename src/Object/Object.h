@@ -33,6 +33,7 @@ public:
 	void setSpriteNum(short);
 	void setTexture(sf::Texture* texPtr, sf::Vector2i size,
 		sf::Vector2i offset, int frameCount, bool vertAnimation);
+	// Base never used - Delete / Declare pure virtual - Ricky
 	sf::Vector2f getVel() const { return vel; };
 
 	bool outOfBounds(sf::Vector2f winSize) const;
@@ -75,7 +76,7 @@ protected:
 	short type, id = 0, cooldown = 0, health, spriteNum = -1, orientation = 0, 
 	timer = 0;
 
-	// Can be deleted
+	// In the derivations that use this, it appears that they are never actually deleted but rather just ignored, or in the case of land objects, its health is raised and the flag is removed. - ricky
 	bool del = false;
 
 	// Object Position

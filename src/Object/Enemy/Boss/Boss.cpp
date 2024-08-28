@@ -19,6 +19,9 @@ Boss::Boss(const short id, const bool left, const sf::Vector2f pos,
 	switch (id)
 	{
 	case 0: //England Boss
+
+	// @@TODO@@
+	// Avoid magic numbers; What do these mean? - Ricky
 		setSize(164, 100);
 		bossPiece1 = new Boss(1, left, sf::Vector2f(pos.x - 54, pos.y + 44),
 		                      vel, objects);
@@ -33,6 +36,9 @@ Boss::Boss(const short id, const bool left, const sf::Vector2f pos,
 		break;
 	case 1: //England Boss Left Wing
 	case 2: //England Boss Right Wing
+
+	// @@TODO@@
+	// Avoid magic numbers; What do these mean? - Ricky
 		setSize(56, 60);
 		health = 500;
 		break;

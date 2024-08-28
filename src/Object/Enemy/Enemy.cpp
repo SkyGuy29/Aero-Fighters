@@ -44,6 +44,8 @@ void Enemy::enemyUpdate(sf::Vector2f winSize, std::vector<Object*>* objects)
 		}
 	}
 
+
+	// Generates Collectable items when an enemy dies, presumably dropped items. - ricky
 	if (health <= 0 && del == false && type != HIDDEN)
 	{
 		switch (id)
