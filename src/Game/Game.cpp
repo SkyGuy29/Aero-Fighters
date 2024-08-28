@@ -32,8 +32,7 @@ void Game::run()
 	
 	menuCountdown.setFont(font);
 	menuCountdown.setString("0");
-	menuCountdown.setPosition(213.25f - menuCountdown.getLocalBounds().width, 
-		0);
+	menuCountdown.setPosition(213.25f - menuCountdown.getLocalBounds().width, 0);
 
 	// load menu textures
 	menuMap.loadFromFile("res/Misc/menuMap.png");

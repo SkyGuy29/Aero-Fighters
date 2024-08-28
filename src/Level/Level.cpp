@@ -398,7 +398,11 @@ void Level::updatePlayers()
 {
 	// controller controls
 	// works with 2 controllers
+
+	// Move Offset
 	sf::Vector2f move;
+
+	// If the player should shoot
 	bool shoot, special;
 	bool spawn;
 

@@ -38,6 +38,7 @@ private:
 
 	void updatePlayers();
 
+	// I feel like this is unneccessary, this shoul\d just be a switch statement in a method names "CountryUpdate" - Ricky
 	void statesUpdate();
 	void japanUpdate();
 	void swedenUpdate();
@@ -59,6 +60,7 @@ private:
 	void initTexturesCollectable(Object* object, sf::IntRect& objRect, 
 		int& frameCount, sf::Texture*& texPtr);
 
+	// All "objects" in the game.
 	std::vector<Object*> objects;
 
 	sf::Font font;
