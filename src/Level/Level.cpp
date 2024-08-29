@@ -238,7 +238,7 @@ bool Level::update(sf::Vector2f winSize)
 	updateInfScroll();
 
 	// for smoothing out background. 
-	// I offset the the background by negative decapitating the background float. 
+	// Take the decimal, leave the whole number
 	// SFML will smooth out not pixel aligned things.
 	background.setPosition(0, float((int)backgroundDist - backgroundDist));
 	
