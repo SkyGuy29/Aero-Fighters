@@ -139,8 +139,7 @@ void Level::load(sf::Vector2f winSize, const short country, int mapId)
 		switch (type)
 		{
 		case 0: //land
-			
-			objects.push_back(new Land(id, true, &backgroundSpeed, winSize, 
+			objects.push_back(new Land(id, true, &backgroundSpeed,
 				&objects, pos, vel));
 			break;
 		case 1: //air 

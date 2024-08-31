@@ -50,30 +50,30 @@ enum Countries
 	ENGLAND
 };
 
-static int p1Ctrl[] =
+static sf::Keyboard::Key p1Ctrl[] =
 {
-	sf::Keyboard::W, // Forward
-	sf::Keyboard::A, // Left
-	sf::Keyboard::S, // Back
-	sf::Keyboard::D, // Right
-	sf::Keyboard::Q, // Shoot
-	sf::Keyboard::E,  // Special
-	sf::Keyboard::Space, //Spawn
-	sf::Keyboard::Tab, // FFW
-	sf::Keyboard::Enter, // Select
+	sf::Keyboard::Key::W, // Forward
+	sf::Keyboard::Key::A, // Left
+	sf::Keyboard::Key::S, // Back
+	sf::Keyboard::Key::D, // Right
+	sf::Keyboard::Key::Q, // Shoot
+	sf::Keyboard::Key::E,  // Special
+	sf::Keyboard::Key::Space, //Spawn
+	sf::Keyboard::Key::Tab, // FFW
+	sf::Keyboard::Key::Enter, // Select
 };
 
-static int p2Ctrl[] =
+static sf::Keyboard::Key p2Ctrl[] =
 {
-	sf::Keyboard::I, // Forward
-	sf::Keyboard::J, // Left
-	sf::Keyboard::K, // Back
-	sf::Keyboard::L, // Right
-	sf::Keyboard::U, // Shoot
-	sf::Keyboard::O,  // Special
-	sf::Keyboard::Space, //Spawn
-	sf::Keyboard::Tab, // FFW
-	sf::Keyboard::Enter, // Select
+	sf::Keyboard::Key::I, // Forward
+	sf::Keyboard::Key::J, // Left
+	sf::Keyboard::Key::K, // Back
+	sf::Keyboard::Key::L, // Right
+	sf::Keyboard::Key::U, // Shoot
+	sf::Keyboard::Key::O,  // Special
+	sf::Keyboard::Key::Space, //Spawn
+	sf::Keyboard::Key::Tab, // FFW
+	sf::Keyboard::Key::Enter, // Select
 };
 
 // These two are for shortening code
@@ -84,11 +84,11 @@ static int p2Ctrl[] =
 /// <param name="player">0 and 1 respectively corrospond to players 1 and 2 control schema.</param>
 /// <param name="key">The key to check.</param>
 /// <returns></returns>
-static bool key(int player, Controls key)
+static bool key(const int player, const Controls key)
 {
 	if (player)
-		return sf::Keyboard::isKeyPressed(sf::Keyboard::Key(p2Ctrl[(unsigned int)key]));
-	return sf::Keyboard::isKeyPressed(sf::Keyboard::Key(p1Ctrl[(unsigned int)key]));
+		return sf::Keyboard::isKeyPressed(p2Ctrl[(unsigned int)key]);
+	return sf::Keyboard::isKeyPressed(p1Ctrl[(unsigned int)key]);
 }
 
 
@@ -113,8 +113,8 @@ static sf::Vector2f joystick(int player)
 {
 	sf::Vector2f move;
 
-	move.x = sf::Joystick::getAxisPosition(player, sf::Joystick::X) / 100.f;
-	move.y = sf::Joystick::getAxisPosition(player, sf::Joystick::Y) / 100.f;
+	move.x = sf::Joystick::getAxisPosition(player, sf::Joystick::Axis::X) / 100.f;
+	move.y = sf::Joystick::getAxisPosition(player, sf::Joystick::Axis::Y) / 100.f;
 
 	// 15% drift reduction
 	move.x *= std::abs(move.x) > 0.15;

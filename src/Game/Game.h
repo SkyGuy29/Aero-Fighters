@@ -1,6 +1,51 @@
 #pragma once
 
 #include "../Level/Level.h"
+#include <cmath>
+
+
+class Countdown
+{
+public:
+	unsigned getTime()
+	{
+		return seconds;
+	}
+
+	bool isDone()
+	{
+		return (seconds == 0);
+	}
+
+	void tick()
+	{
+		if (seconds > 0)
+			progress--;
+		if (progress == 0)
+		{
+			seconds--;
+			progress = ticksPerSec;
+		}
+	}
+
+	void set(unsigned seconds, unsigned ticksPerSec)
+	{
+		this->seconds = seconds;
+		this->ticksPerSec = ticksPerSec;
+		this->progress = ticksPerSec;
+	}
+
+	void reset()
+	{
+		this->seconds = 0;
+		this->progress = 0;
+	}
+
+private:
+	unsigned seconds = 0,
+		progress = 0,
+		ticksPerSec = 0;
+};
 
 
 /// <summary>
@@ -46,7 +91,7 @@ private:
 	sf::Texture menuMap,
 		// Also unsure what it does... - ricky
 		menuFlags;
-	
+
 	// These should all be wrapped in a struct to structure the data; make it easier to understand its all related
 	sf::RectangleShape
 		// The naming scheme is misleading, this appears to be the background of the menu? - ricky
@@ -64,9 +109,9 @@ private:
 	// Last Tick Processing Time
 	int deltaTime = 0,
 		// Ticks per second
-		updatesPSec = 30,
+		ticksPerSec = 30,
 		// Frames per second
-		framesPSec = 30;
+		framesPerSec = 30;
 
 	//int score, highScore;
 		 // Is Left Key pressed
@@ -76,13 +121,14 @@ private:
 		// Selection menu outline blinking
 		blinkState = false;
 
-		  // Selected Country
+	// Selected Country
 	unsigned char country = 0,
 		// The rate at which the blick state changes in ticks
 		menuBlinkRate = 5,
 		// Current progress int he blink rate
 		menuBlinkTimer = 0;
 
-	// Frames that the player is on menu screen.
-	short playerChoose = 10 * updatesPSec;
+	Countdown countryChoose, gameOver;
+
+	bool inGame = false, playersDead = false;
 };

@@ -3,6 +3,12 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+
+# CMake / CLion
+.idea/
+cmake-build-*
+
+# VISUAL STUDIO BELOW
 # User-specific files
 *.rsuser
 *.suo

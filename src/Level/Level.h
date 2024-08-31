@@ -2,6 +2,7 @@
 
 #include <vector>
 #include <SFML/Graphics.hpp>
+#include <climits>
 #include <iostream>
 
 #include "../Object/Enemy/Boss/Boss.h"
@@ -22,7 +23,7 @@
 /// ALL objects in a level are held here. UIs, menus, and things that span
 /// through multiple levels are held by Game.
 /// </summary>
-class Level : public sf::Drawable
+class Level final : public sf::Drawable
 {
 public:
 	Level();

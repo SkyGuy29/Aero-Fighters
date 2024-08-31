@@ -1,6 +1,7 @@
 #pragma once
 
 #include <vector>
+#include <cmath>
 
 #include "../Projectile/Projectile.h"
 #include "../Collectable/Collectable.h"

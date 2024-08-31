@@ -2,7 +2,7 @@
 
 
 Land::Land(const short id, const bool left,
-	float* backgroundSpeed, const sf::Vector2f winSize, 
+	float* backgroundSpeed,
 	std::vector<Object*>* objects, const sf::Vector2f pos,
 	const sf::Vector2f vel
 )
@@ -35,7 +35,7 @@ Land::Land(const short id, const bool left,
 
 		setOrientation((int)angle);
 
-		topPart = new Land(1, left, backgroundSpeed, winSize, objects,
+		topPart = new Land(1, left, backgroundSpeed, objects,
 		pos, vel); //Creates the top
 		objects->push_back(topPart);
 		break;
