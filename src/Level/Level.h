@@ -39,11 +39,12 @@ private:
 
 	void updatePlayers();
 
-	// I feel like this is unneccessary, this shoul\d just be a switch statement in a method names "CountryUpdate" - Ricky
+	// I feel like this is unneccessary, this should just be a switch statement in a method names "CountryUpdate" - Ricky
 	void statesUpdate();
 	void japanUpdate();
 	void swedenUpdate();
 	void englandUpdate();
+
 
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
