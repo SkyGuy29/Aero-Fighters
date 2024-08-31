@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../Level/Level.h"
+#include <cmath>
 
 
 /// <summary>

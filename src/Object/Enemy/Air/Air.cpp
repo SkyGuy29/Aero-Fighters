@@ -1,9 +1,10 @@
 #include "Air.h"
 
 Air::Air(short id, bool left, float* backgroundDist, int startMark, 
-sf::Vector2f winSize, std::vector<Object*>* objects, sf::Vector2f pos, 
-sf::Vector2f vel) : Enemy(id, left, sf::Vector2f(-100, -100), 
-sf::Vector2f(0, 0))
+	sf::Vector2f winSize, std::vector<Object*>* objects, sf::Vector2f pos,
+	sf::Vector2f vel) : Enemy(id, left, sf::Vector2f(-100, -100),
+	sf::Vector2f(0, 0)
+)
 {
 	type = AIR;
 
