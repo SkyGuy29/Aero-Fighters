@@ -13,7 +13,7 @@ public:
 	//id 4 is for tracking projectiles
 	//id 5 is the tracking mines of Sweden Player 2
 	//id 6 is for breakable projectiles
-	enum ProjectileType {
+	enum ProjectileType : unsigned char {
 		Basic,
 		TimerPierce,
 		PierceOffscreen,
