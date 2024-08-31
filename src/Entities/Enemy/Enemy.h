@@ -3,6 +3,6 @@
 #include "../Interfaces/ICollidable.h"
 
 class Enemy :
-    public Entity, public ICollidable
+    public Entity
 {
 };
