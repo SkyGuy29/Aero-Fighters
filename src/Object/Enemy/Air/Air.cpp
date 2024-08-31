@@ -17,8 +17,8 @@ sf::Vector2f(0, 0))
 	spawnVel = vel;
 
 	health = 1;
-	// @@TODO@@
-	// Avoid magic numbers; What do these mean? - Ricky
+	
+	// Default air entity size is 32x32
 	setSize(32, 32);
 
 	switch (id)
