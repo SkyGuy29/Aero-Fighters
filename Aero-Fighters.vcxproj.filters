@@ -137,5 +137,8 @@
     <ClInclude Include="src\Entities\Enemy\EnemyCollidable.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\Sprites\SpriteType.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
