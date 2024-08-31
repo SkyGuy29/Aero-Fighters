@@ -12,6 +12,7 @@ using ProjectileType = Projectile::ProjectileType;
 class Player final : public Object
 {
 public:
+	// Con
 	Player(short country, bool playerOne, float* bgSpeed);
 
 	void shoot(std::vector<Object*>& objects);
