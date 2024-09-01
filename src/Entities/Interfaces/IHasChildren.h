@@ -26,6 +26,12 @@ protected:
 			for (unsigned char i = 0; i < count; i++)
 				child[i].Tick();
 		}
+
+		// Destroys the children of the parent entity
+		~Children()
+		{
+			delete[] child;
+		}
 	};
 
 	// This entities child entities
