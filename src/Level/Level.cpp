@@ -164,6 +164,12 @@ void Level::debugMode() const
 	p[1]->setHealth(HP_MAX);
 }
 
+void Level::respawnPlayers()
+{
+	p[0]->setHealth(3);
+	p[1]->setHealth(3);
+}
+
 
 /// <summary>
 /// Initializes textures of objects in the object list based on the provided index. You need to set spriteNum to change the texture.

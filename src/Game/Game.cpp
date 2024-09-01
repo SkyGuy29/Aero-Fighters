@@ -194,6 +194,13 @@ void Game::updateMenu()
 	{
 		menuCountdown.setString(std::to_string(gameOver.getTime()));
 
+		if (key(0, Controls::Select) || button(0, Controller::Select_BTN))
+		{
+			playersDead = false;
+			inGame = true;
+			level.respawnPlayers();
+		}
+
 		// Return to main menu for now, probably cutscene later
 		if (gameOver.isDone())
 		{
