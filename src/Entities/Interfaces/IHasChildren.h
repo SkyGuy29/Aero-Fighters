@@ -20,11 +20,11 @@ protected:
 		// The total number of children
 		unsigned char count = 0;
 
-		void Tick()
+		void tick()
 		{
 			// For every child, tick.
 			for (unsigned char i = 0; i < count; i++)
-				child[i].Tick();
+				child[i].tick();
 		}
 
 		// Destroys the children of the parent entity
