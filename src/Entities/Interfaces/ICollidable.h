@@ -6,7 +6,8 @@ class ICollidable
 {
 public:
 	virtual inline const bool CollidesWith(Entity& other) noexcept = 0;
-private:
+
+protected:
 	struct Vec2UC
 	{
 		unsigned char x, y;
