@@ -160,7 +160,7 @@ void Object::setSize(float newSizeX, float newSizeY)
 }
 
 
-void Object::setVel(sf::Vector2f newVel)
+void Object::setVel(const sf::Vector2f newVel)
 {
 	vel = newVel;
 }
@@ -168,7 +168,7 @@ void Object::setVel(sf::Vector2f newVel)
 
 // @@TODO@@
 // Cut overloaded function - Wraps a function call that is easier to read without the overload or does the exact same thing as a smaller variant - Ricky
-void Object::setVel(float x, float y)
+void Object::setVel(const float x, const float y)
 {
 	vel.x = x;
 	vel.y = y;
@@ -180,9 +180,9 @@ void Object::setVel(float x, float y)
 /// </summary>
 /// <param name="winSize"></param>
 /// <returns></returns>
-bool Object::outOfBounds(sf::Vector2f winSize) const
+bool Object::outOfBounds(const sf::Vector2f winSize) const
 {
-	return pos.x + size.x / 2.f < 0 || pos.y + size.y / 2.f < 0 || 
-		pos.x - size.x / 2.f >= winSize.x || pos.y - size.y / 2.f 
+	return pos.x + size.x/2.f < 0 || pos.y + size.y/2.f < 0 ||
+		pos.x - size.x/2.f >= winSize.x || pos.y - size.y/2.f
 		>= winSize.y;
 }

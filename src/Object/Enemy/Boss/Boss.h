@@ -3,15 +3,15 @@
 using ProjectileType = Projectile::ProjectileType;
 
 
-class Boss :
+class Boss final :
     public Enemy
 {
 public:
     Boss(short id, bool left, sf::Vector2f pos, sf::Vector2f vel,
-    std::vector<Object*>* objects);
+        std::vector<Object*>* objects, bool levelEditor);
 
     void update(sf::Vector2f winSize, std::vector<Object*>* objects, 
-    bool time);
+        bool time) override;
 private:
     Boss* bossPiece1 = nullptr;
     Boss* bossPiece2 = nullptr;

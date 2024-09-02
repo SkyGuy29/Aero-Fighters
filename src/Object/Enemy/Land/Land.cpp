@@ -4,9 +4,9 @@
 Land::Land(const short id, const bool left,
 	float* backgroundSpeed,
 	std::vector<Object*>* objects, const sf::Vector2f pos,
-	const sf::Vector2f vel
+	const sf::Vector2f vel, const bool levelEditor
 )
-	: Enemy(id, left, pos, vel)
+	: Enemy(id, left, pos, levelEditor ? sf::Vector2f(0,0) : vel, levelEditor)
 {
 	type = LAND;
 
@@ -36,7 +36,7 @@ Land::Land(const short id, const bool left,
 		setOrientation((int)angle);
 
 		topPart = new Land(1, left, backgroundSpeed, objects,
-		pos, vel); //Creates the top
+		pos, vel, levelEditor); //Creates the top
 		objects->push_back(topPart);
 		break;
 	case 0: //Weak Tank
@@ -97,11 +97,12 @@ Land::Land(const short id, const bool left,
 	sprite.setOrigin(size / 2.f);
 }
 
-void Land::update(sf::Vector2f winSize, std::vector<Object*>* objects, 
-	bool time)
+void Land::update(const sf::Vector2f winSize, std::vector<Object*>* objects,
+    const bool time)
 {
 	enemyUpdate(winSize, objects);
 	//Do things here only while time is moving.
+
 	if (time != 0)
 	{
 		setPos(getPos().x, getPos().y + *backgroundSpeed);
@@ -111,7 +112,6 @@ void Land::update(sf::Vector2f winSize, std::vector<Object*>* objects,
 
 		if (timer != 0)
 			timer--;
-
 		
 		switch (id)
 		{

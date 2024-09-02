@@ -1,10 +1,9 @@
 #include "Air.h"
 
-Air::Air(short id, bool left, float* backgroundDist, int startMark, 
-	sf::Vector2f winSize, std::vector<Object*>* objects, sf::Vector2f pos,
-	sf::Vector2f vel) : Enemy(id, left, sf::Vector2f(-100, -100),
-	sf::Vector2f(0, 0)
-)
+Air::Air(const short id, bool left, float* backgroundDist, int startMark,
+    sf::Vector2f winSize, std::vector<Object*>* objects, sf::Vector2f pos,
+    sf::Vector2f vel, const bool levelEditor) : Enemy(id, left, sf::Vector2f(-100, -100),
+    sf::Vector2f(0, 0), levelEditor)
 {
 	type = AIR;
 
@@ -28,7 +27,7 @@ Air::Air(short id, bool left, float* backgroundDist, int startMark,
 		setSpriteNum(0);
 		setOrientation(8);
 		chopperBlades = new Air(3, left, backgroundDist, startMark, winSize, 
-		objects, pos, vel); //Creates the top
+		objects, pos, vel, levelEditor); //Creates the top
 		objects->push_back(chopperBlades);
 		break;
 	case 3: //chopper blades

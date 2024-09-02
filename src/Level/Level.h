@@ -29,17 +29,18 @@ public:
 	Level();
 	~Level();
 
-	void load(sf::Vector2f winSize, short country, int mapId);
+	void load(sf::Vector2f winSize, short country, int mapId, bool levelEditor);
 	bool update(sf::Vector2f winSize);
 
 	void debugMode() const;
 
-	void respawnPlayers();
+	void respawnPlayers() const;
 
 private:
 	void setInfScroll(bool enable);
 	void updateInfScroll();
 
+	void updateLevelEditor();
 	void updatePlayers();
 
 	// I feel like this is unneccessary, this should just be a switch statement in a method names "CountryUpdate" - Ricky
@@ -49,7 +50,7 @@ private:
 	void englandUpdate();
 
 
-	void draw(sf::RenderTarget& target, sf::RenderStates states) const;
+	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
 	void initializeTextures(int);
 	void initTexturesBoss(Object* object, sf::IntRect& objRect, 
@@ -85,7 +86,7 @@ private:
 	Player* p[2];
 
 	sf::Vector2f winSize;
-	bool infScrollInPos = true, infScrollEnabled = false, bossSpawned = false;
+	bool infScrollInPos = true, infScrollEnabled = false, bossSpawned = false, levelEditor = false;
 	sf::IntRect frontRect;
 
 	bool playerShootLast[2] = { false, false };

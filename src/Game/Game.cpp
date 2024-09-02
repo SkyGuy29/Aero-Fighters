@@ -77,6 +77,14 @@ void Game::run()
 		}
 		else
 			ticksPerSec = 30;
+
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::B) && !levelEditor &&
+			sf::Keyboard::isKeyPressed(sf::Keyboard::LControl) && !countryChoose.isDone())
+		{
+			levelEditor = true;
+			window.setSize(sf::Vector2u(winSize.x*4, winSize.y*2));
+
+		}
 #endif
 
 		// Keeps constant update rate.
@@ -249,7 +257,7 @@ void Game::updateMenu()
 		if (countryChoose.isDone())
 		{
 			inGame = true;
-			level.load(winSize, country, 0);
+			level.load(winSize, country, 0, levelEditor);
 		}
 
 
@@ -260,7 +268,7 @@ void Game::updateMenu()
 			// Reset player choose, load the respective level, and early escape
 			countryChoose.reset();
 			inGame = true;
-			level.load(winSize, country, 0); // Set the last param for loading the correct map
+			level.load(winSize, country, 0, levelEditor); // Set the last param for loading the correct map
 		}
 	}
 }

@@ -8,7 +8,7 @@ public:
     // Constructor
     Air(short id, bool left, float* backgroundDist, int startMark, 
 		sf::Vector2f winSize, std::vector<Object*>* objects, sf::Vector2f pos, 
-		sf::Vector2f vel
+		sf::Vector2f vel, bool levelEditor
 	);
 
     // Ticking Function

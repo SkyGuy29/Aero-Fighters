@@ -119,7 +119,9 @@ private:
 		// Is Right Key Pressed
 		keyRight = false,
 		// Selection menu outline blinking
-		blinkState = false;
+		blinkState = false,
+		// Level editor debug mode
+		levelEditor = false;
 
 	// Selected Country
 	unsigned char country = 0,

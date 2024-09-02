@@ -9,7 +9,7 @@ class Enemy : public Object
 {
 public:
 	// Constructor
-	Enemy(short, bool, sf::Vector2f, sf::Vector2f);
+	Enemy(short, bool, sf::Vector2f, sf::Vector2f, bool);
 
 	// Returns the enemies health
 	int getHealth() const;
@@ -24,6 +24,7 @@ protected:
 	int startMark;
 	// Has entered frame
 	bool entered = false;
+	bool levelEditor = false;
 	// never used in base class
 	bool left;
 

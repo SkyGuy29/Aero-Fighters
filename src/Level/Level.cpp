@@ -25,10 +25,11 @@ Level::~Level()
 /// <param name="winSize"></param>
 /// <param name="country"></param>
 /// <param name="mapId"></param>
-void Level::load(sf::Vector2f winSize, const short country, int mapId)
+void Level::load(sf::Vector2f winSize, const short country, int mapId, bool levelEditor)
 {
 	this->country = country;
 	this->winSize = winSize;
+	this->levelEditor = levelEditor;
 
 	ui.setFont(font);
 	ui.setPosition(0, 0);
@@ -85,7 +86,7 @@ void Level::load(sf::Vector2f winSize, const short country, int mapId)
 
 	objects.push_back(new Air(0, true, &backgroundDist, 0, winSize, 
 		&objects, sf::Vector2f(winSize.x * 0.5f,
-	winSize.y * 0.5f), sf::Vector2f(0, 0)));
+	winSize.y * 0.5f), sf::Vector2f(0, 0), levelEditor));
 
 	short type, id;
 	int startMark;
@@ -140,12 +141,12 @@ void Level::load(sf::Vector2f winSize, const short country, int mapId)
 		{
 		case 0: //land
 			objects.push_back(new Land(id, true, &backgroundSpeed,
-				&objects, pos, vel));
+				&objects, pos, vel, levelEditor));
 			break;
 		case 1: //air 
 			file >> startMark;
 			objects.push_back(new Air(id, true, &backgroundDist, startMark, 
-				winSize, &objects, pos, vel));
+				winSize, &objects, pos, vel, levelEditor));
 			break;
 		case 2:
 			break;
@@ -164,7 +165,7 @@ void Level::debugMode() const
 	p[1]->setHealth(HP_MAX);
 }
 
-void Level::respawnPlayers()
+void Level::respawnPlayers() const
 {
 	p[0]->setHealth(3);
 	p[1]->setHealth(3);
@@ -220,7 +221,7 @@ void Level::initializeTextures(const int index)
 /// </summary>
 /// <param name="winSize"></param>
 /// <returns></returns>
-bool Level::update(sf::Vector2f winSize)
+bool Level::update(const sf::Vector2f winSize)
 {
 	const std::string UIString = "P1 Lives: " + std::to_string(p[0]->getHealth()) 
 		+ "\nP2 Lives: " 
@@ -233,8 +234,11 @@ bool Level::update(sf::Vector2f winSize)
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter) && infScrollInPos)
 		setInfScroll(false);
 
+	if(levelEditor)
+		updateLevelEditor();
+
 	// The background has to scroll backwards to get the effect that we want.
-	if (!infScrollInPos || !infScrollEnabled)
+	if (infScrollInPos || infScrollEnabled)
 	{
 		backgroundDist -= backgroundSpeed;
 		rect.top = (int)backgroundDist;
@@ -258,7 +262,7 @@ bool Level::update(sf::Vector2f winSize)
 	for (unsigned int i = 0; i < objects.size(); i++)
 	{
 		objects[objects.size() - 1 - i]->update(winSize, &objects,
-			p[1]->getTime());
+			p[1]->getTime() && !levelEditor);
 		if (objects[objects.size() - 1 - i]->getType() == Object::EXPLOSION)
 		{
 			// I'm sorry.
@@ -278,7 +282,10 @@ bool Level::update(sf::Vector2f winSize)
 
 	for (unsigned int i = 0; i < objects.size(); i++)
 	{
-		if (objects[objects.size() - 1 - i]->shouldDelete())
+		// logic after && symbol is for when the level editor is active we dont want to remove enemies when offscreen
+		if (objects[objects.size() - 1 - i]->shouldDelete() &&
+			(!(objects[objects.size() - 1 - i]->getType() == Object::LAND ||
+			objects[objects.size() - 1 - i]->getType() == Object::AIR) || !levelEditor))
 		{
 			delete objects[objects.size() - 1 - i];
 			objects.erase(objects.end() - 1 - i);
@@ -332,6 +339,34 @@ void Level::updateInfScroll()
 	if ((frontbackgroundDist == winSize.y || frontbackgroundDist >= 0) 
 		&& !infScrollInPos)
 		infScrollInPos = true;
+}
+
+
+void Level::updateLevelEditor()
+{
+	setInfScroll(false);
+	if(sf::Keyboard::isKeyPressed(sf::Keyboard::PageUp) ||
+		sf::Keyboard::isKeyPressed(sf::Keyboard::PageDown))
+	{
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::PageUp))
+			backgroundSpeed = 25;
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::PageDown))
+			backgroundSpeed = -25;
+		backgroundDist -= backgroundSpeed;
+		rect.top = (int)backgroundDist;
+		background.setTextureRect(rect);
+
+		for (Object* object : objects)
+		{
+			switch (object->getType())
+			{
+				case Object::LAND:
+					object->setPos(object->getPos().x, object->getPos().y + backgroundSpeed);
+			}
+		}
+	}
+
+
 }
 
 
@@ -483,13 +518,13 @@ void Level::swedenUpdate()
 
 void Level::englandUpdate()
 {
-	if (backgroundDist <= 0 && !infScrollEnabled)
+	if (backgroundDist <= 0 && !levelEditor && !infScrollEnabled)
 	{
 		setInfScroll(true);
 		if (bossSpawned == false)
 		{
 			objects.push_back(new Boss(0, true, sf::Vector2f(winSize.x / 2,
-				-150), sf::Vector2f(0, 5), &objects));
+				-150), sf::Vector2f(0, 5), &objects, levelEditor));
 			bossSpawned = true;
 		}
 	}
