@@ -18,8 +18,8 @@ Air::Air(short id, bool left, float* backgroundDist, int startMark,
 	spawnVel = vel;
 
 	health = 1;
-	// @@TODO@@
-	// Avoid magic numbers; What do these mean? - Ricky
+	
+	// Default air entity size is 32x32
 	setSize(32, 32);
 
 	switch (id)

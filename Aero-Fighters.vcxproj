@@ -155,7 +155,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\Entities\PowerUp\PowerUp.cpp" />
-    <ClCompile Include="src\Entities\Interfaces\ICollidable.cpp" />
     <ClCompile Include="src\Object\Collectable\Collectable.cpp" />
     <ClCompile Include="src\Object\Enemy\Boss\Boss.cpp" />
     <ClCompile Include="src\Object\Enemy\Air\Air.cpp" />
@@ -171,6 +170,7 @@
     <ClCompile Include="src\Entities\TileEntity\TileEntity.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Entities\Interfaces\IHasChildren.h" />
     <ClInclude Include="src\Entities\PowerUp\PowerUp.h" />
     <ClInclude Include="src\Entities\Interfaces\ICollidable.h" />
     <ClInclude Include="src\ControllerStuff.hpp" />
@@ -186,6 +186,7 @@
     <ClInclude Include="src\Object\Player\Player.h" />
     <ClInclude Include="src\Object\Projectile\Projectile.h" />
     <ClInclude Include="src\Entities\TileEntity\TileEntity.h" />
+    <ClInclude Include="src\Sprites\SpriteType.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

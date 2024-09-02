@@ -33,6 +33,9 @@ public:
 	bool update(sf::Vector2f winSize);
 
 	void debugMode() const;
+
+	void respawnPlayers();
+
 private:
 	void setInfScroll(bool enable);
 	void updateInfScroll();

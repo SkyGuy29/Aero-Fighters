@@ -97,7 +97,7 @@ protected:
 	// The speed of the backgrounds movement
 	float* backgroundSpeed = nullptr;
 
-	// More research needed, Figure out what this does - Ricky
+	// The distance down the screen the background has moved, always negative, update is based upon decrementing the y position by the background movement speed.
 	float* backgroundDist = nullptr;
 
 
