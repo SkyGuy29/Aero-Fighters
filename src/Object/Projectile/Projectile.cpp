@@ -76,7 +76,8 @@ void Projectile::update(sf::Vector2f winSize, std::vector<Object*>* objects,
 	if (id > 0 && cooldown > 0)
 		cooldown--;
 
-	if (cooldown == 0 && id > 0 && id < 4 && id != 2)
+	//if (cooldown == 0 && id > 0 && id < 4 && id != 2)
+	if (cooldown == 0 && (id == 3 || id == 1))
 		del = true;
 
 	if (outOfBounds(winSize))
