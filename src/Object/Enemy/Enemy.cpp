@@ -59,25 +59,25 @@ void Enemy::enemyUpdate(sf::Vector2f winSize, std::vector<Object*>* objects)
 		// Drop powerups based on my specific type
 		switch (id)
 		{
-			// If i'm a boss
+			// If i'm a ___
 		case 1:
-			// If i'm an Air Boss
+			// If i'm an Air ___
 			if (type == AIR)
 				objects->push_back(new Collectable(1, pos, backgroundSpeed));
 			del = true;
 			break;
 
-		// If i'm a boss child entity
+		// If i'm a ___
 		case 2:
-			// If i'm a land boss child entity
+			// If i'm a land ___
 			if(type == LAND)
 				objects->push_back(new Collectable(1, pos, backgroundSpeed));
 			del = true;
 			break;
 
-		//If i'm an explosion
+		//If i'm an ___
 		case 8:
-			// If i'm a land explosion
+			// If i'm a land ___
 			if(type == LAND)
 				objects->push_back(new Collectable(0, pos, backgroundSpeed));
 			del = true;

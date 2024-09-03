@@ -87,7 +87,7 @@ Land::Land(const short id, const bool left,
 		cooldown = 100;
 		break;
 	case 8: //landmine
-		health = 3;
+		health = 3; // Moving to be a Tile Entity
 		timer = 7;
 		setSpriteNum(15);
 		break;
@@ -146,7 +146,7 @@ void Land::update(sf::Vector2f winSize, std::vector<Object*>* objects,
 				angle += 2;
 			angle *= 8;
 
-			if (orientation != (int) angle && !timer)
+			if (orientation != (int) angle && timer == 0)
 			{
 				timer = 15;
 				if (orientation - (int)angle < 0)
@@ -219,6 +219,7 @@ void Land::update(sf::Vector2f winSize, std::vector<Object*>* objects,
 			if (del == true)
 			{
 				del = false;
+
 				setOrientation(6);
 				health = 999;
 				texInit = false;

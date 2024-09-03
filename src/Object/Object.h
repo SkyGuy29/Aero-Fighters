@@ -74,8 +74,18 @@ protected:
 
 	void nextFrame(int frameRate);
 
-	short type, id = 0, cooldown = 0, health, spriteNum = -1, orientation = 0, 
-	timer = 0;
+	// The type of enemy this is
+	short type;
+	// Entity type specific, specific enemy identifier
+	short id = 0;
+	// Cooldown for attacks... ? Maybe ?
+	short cooldown = 0;
+	// This enemies health
+	short health;
+	// The sprite ID this enemy uses
+	short spriteNum = -1;
+	short orientation = 0;
+	short timer = 0;
 
 	// In the derivations that use this, it appears that they are never actually deleted but rather just ignored, or in the case of land objects, its health is raised and the flag is removed. - ricky
 	bool del = false;
