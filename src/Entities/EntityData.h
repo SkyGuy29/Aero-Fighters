@@ -3,7 +3,7 @@
 #include "../Utility/EntityID.h"
 
 using cstr = const char* const;
-.using Vec2f = sf::Vector2f;
+using Vec2f = sf::Vector2f;
 
 namespace EntityData
 {
