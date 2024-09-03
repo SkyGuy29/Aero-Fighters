@@ -3,7 +3,12 @@
 
 Game::Game()
 {
-	srand(time(0));
+	long long seed = time(nullptr);
+
+	srand(
+		seed < 0 // If seed is negative
+		? (seed *= -1) %= std::numeric_limits<unsigned int>::max()
+		: seed %= std::numeric_limits<unsigned int>::max());
 
 	// Initialize window
 	window.create(sf::VideoMode((int)winSize.x * 2, (int)winSize.y * 2),
@@ -82,7 +87,10 @@ void Game::run()
 			sf::Keyboard::isKeyPressed(sf::Keyboard::LControl) && !countryChoose.isDone())
 		{
 			levelEditor = true;
-			window.setSize(sf::Vector2u(winSize.x*4, winSize.y*2));
+			window.setSize(sf::Vector2u(
+				static_cast<unsigned int>(winSize.x) * 4,
+				static_cast<unsigned int>(winSize.y) * 2)
+			);
 
 		}
 #endif
