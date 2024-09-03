@@ -241,7 +241,7 @@ void Game::updateMenu()
 		else if ((sf::Keyboard::isKeyPressed(sf::Keyboard::Right)
 			|| joystick(0).x > 0.5f) && !keyRight)
 			// Move country selection to the right with wrapping
-			++country % 4;
+			++country %= 4;
 
 		// Doesn't switch if the key is held.
 		keyLeft = sf::Keyboard::isKeyPressed(sf::Keyboard::Left)
