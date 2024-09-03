@@ -24,8 +24,10 @@ Level::~Level()
 /// </summary>
 /// <param name="winSize"></param>
 /// <param name="country"></param>
-/// <param name="mapId"></param>
-void Level::load(sf::Vector2f winSize, const short country, int mapId, bool levelEditor)
+/// <param name="map"></param>
+/// <param name="levelEditor">Whether or not the levelEditor is active.</param>
+void Level::load(sf::Vector2f winSize, const short country,
+	const Map map, const bool levelEditor)
 {
 	this->country = country;
 	this->winSize = winSize;
@@ -35,8 +37,9 @@ void Level::load(sf::Vector2f winSize, const short country, int mapId, bool leve
 	ui.setPosition(0, 0);
 
 	// setting up the background
-	backgroundImg.loadFromFile("res/England/England.png");
-	frontbackgroundImg.loadFromFile("res/England/FrontEngland.png");
+	backgroundImg.loadFromFile("res/"  + mapStrings[map] + "/" + mapStrings[map] + ".png");
+	if(map == England)
+		frontbackgroundImg.loadFromFile("res/"  + mapStrings[map] + "/Front"  + mapStrings[map] + ".png");
 
 	background.setSize(sf::Vector2f(winSize));
 	frontbackground.setSize(sf::Vector2f(winSize));
@@ -59,15 +62,21 @@ void Level::load(sf::Vector2f winSize, const short country, int mapId, bool leve
 	explosionImg.loadFromFile("res/Misc/Explosion.png");
 	enemyImg.loadFromFile("res/Misc/enemies.png");
 	enemyProjectileImg.loadFromFile("res/Misc/Enemy projectiles.png");
-	houseImg.loadFromFile("res/England/House.png");
-	domeImg.loadFromFile("res/England/Dome.png");
-	gateImg.loadFromFile("res/England/Gate.png");
-	hoodImg.loadFromFile("res/England/Hood.png");
-	coneImg.loadFromFile("res/England/Cone.png");
-	roofusImg.loadFromFile("res/England/Roofus.png");
-	domeAnimationImg.loadFromFile("res/England/Dome animation.png");
 	missileImg.loadFromFile("res/Misc/missles.png");
-	avroBomberImg.loadFromFile("res/England/Avro Bomber.png");
+
+	switch (map)
+	{
+		case England:
+			houseImg.loadFromFile("res/England/House.png");
+			domeImg.loadFromFile("res/England/Dome.png");
+			gateImg.loadFromFile("res/England/Gate.png");
+			hoodImg.loadFromFile("res/England/Hood.png");
+			coneImg.loadFromFile("res/England/Cone.png");
+			roofusImg.loadFromFile("res/England/Roofus.png");
+			domeAnimationImg.loadFromFile("res/England/Dome animation.png");
+			avroBomberImg.loadFromFile("res/England/Avro Bomber.png");
+			break;
+	}
 
 	p[0] = new Player(country, true, &backgroundSpeed);
 	p[1] = new Player(country, false, &backgroundSpeed);
@@ -84,6 +93,7 @@ void Level::load(sf::Vector2f winSize, const short country, int mapId, bool leve
 	objects.at(1)->setTexture(&playerImg, sf::Vector2i(32, 32), 
 		sf::Vector2i(0, 16), 5, false);
 
+	// ?
 	objects.push_back(new Air(0, true, &backgroundDist, 0, winSize, 
 		&objects, sf::Vector2f(winSize.x * 0.5f,
 	winSize.y * 0.5f), sf::Vector2f(0, 0), levelEditor));
@@ -92,7 +102,8 @@ void Level::load(sf::Vector2f winSize, const short country, int mapId, bool leve
 	int startMark;
 	sf::Vector2f pos, vel;
 	std::fstream file;
-	file.open("res/England/enemies.txt");
+
+	file.open("res/" + mapStrings[map] + "/enemies.txt");
 
 	/*
 		The enemy knows where it is at all times.

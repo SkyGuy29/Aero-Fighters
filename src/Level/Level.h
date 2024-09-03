@@ -26,10 +26,33 @@
 class Level final : public sf::Drawable
 {
 public:
+	enum Map
+	{
+		England,
+		Israel,
+		Japan,
+		Meddit,
+		Russia,
+		States,
+		Sweden,
+		Space
+	};
+
+	std::vector<std::string> mapStrings = {
+		"England",
+		"Israel",
+		"Japan",
+		"Meddit",
+		"Russia",
+		"States",
+		"Sweden",
+		"Space"
+	};
+
 	Level();
 	~Level();
 
-	void load(sf::Vector2f winSize, short country, int mapId, bool levelEditor);
+	void load(sf::Vector2f winSize, short country, Map map, bool levelEditor);
 	bool update(sf::Vector2f winSize);
 
 	void debugMode() const;
@@ -53,7 +76,7 @@ private:
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
 	void initializeTextures(int);
-	void initTexturesBoss(Object* object, sf::IntRect& objRect, 
+	void initTexturesBoss(Object* object, sf::IntRect& objRect,
 		int& frameCount, sf::Texture*& texPtr);
 	void initTexturesLand(Object* object, sf::IntRect& objRect,
 		int& frameCount, sf::Texture*& texPtr);
@@ -75,14 +98,17 @@ private:
 	sf::RectangleShape background, frontbackground;
 	sf::Texture backgroundImg, frontbackgroundImg, playerImg, projectileImg,
 		powerUpImg, moneyImg, explosionImg, enemyImg,
-		enemyProjectileImg, houseImg, domeImg, gateImg, hoodImg,
-		coneImg, roofusImg, domeAnimationImg, missileImg, avroBomberImg;
+		enemyProjectileImg, missileImg;
+
+	// Textures that only the map England needs
+	sf::Texture houseImg, domeImg, gateImg, hoodImg,
+		coneImg, roofusImg, domeAnimationImg, avroBomberImg;
+
 	sf::IntRect rect;
 	float backgroundSpeed = 1, backgroundDist = 0, frontbackgroundDist = 0;
 	short country, orient = 0;
 	//float backgroundSpeedup = 0.f;
 	//float backgroundSpeedupMax = 2.f;
-
 	Player* p[2];
 
 	sf::Vector2f winSize;

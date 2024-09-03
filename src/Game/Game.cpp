@@ -87,6 +87,7 @@ void Game::run()
 			sf::Keyboard::isKeyPressed(sf::Keyboard::LControl) && !countryChoose.isDone())
 		{
 			levelEditor = true;
+			// static casts are annyoing to look at
 			window.setSize(sf::Vector2u(
 				static_cast<unsigned int>(winSize.x) * 4,
 				static_cast<unsigned int>(winSize.y) * 2)
@@ -260,23 +261,15 @@ void Game::updateMenu()
 		// Display new menu countdown
 		menuCountdown.setString(std::to_string(countryChoose.getTime()));
 
-		// Compare to 0 if it isnt a boolean, improves readability.
-		// If the player is out of time to choose, load the appropriate level.
-		if (countryChoose.isDone())
-		{
-			inGame = true;
-			level.load(winSize, country, 0, levelEditor);
-		}
-
 
 		// We can move this to the end and have it only reset playerChosoe so that we dont need the early escape; flow is easier to follow and the code is shorter
-		// If any menu selection button has been pressed
-		if (key(0, Controls::Select) || button(0, Controller::Y))
+		// If time is out or any menu selection button has been pressed
+		if (countryChoose.isDone() || key(0, Controls::Select) || button(0, Controller::Y))
 		{
 			// Reset player choose, load the respective level, and early escape
 			countryChoose.reset();
 			inGame = true;
-			level.load(winSize, country, 0, levelEditor); // Set the last param for loading the correct map
+			level.load(winSize, country, Level::England, levelEditor); // Set the last param for loading the correct map
 		}
 	}
 }
