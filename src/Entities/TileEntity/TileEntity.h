@@ -5,5 +5,6 @@
 class TileEntity :
     public Entity, public ICollidable
 {
+
 };
 

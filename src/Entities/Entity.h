@@ -46,7 +46,7 @@ protected:
 	sf::Vector2f pos;
 	// The velocity of this entity
 	// Derived during object construction
-	sf::Vector2f vel = EntityData::EntityDataTable.at(ID).velocity;
+	sf::Vector2f vel = { EntityData::EntityDataTable.at(ID).velocity.x, EntityData::EntityDataTable.at(ID).velocity.y };
 	// The attack cooldown of this entity
 	// Derived during object construction from the entity data table.
 	EntityData::Cooldown cooldown = EntityData::EntityDataTable.at(ID).cooldown;
@@ -64,6 +64,6 @@ private:
 	static WindowSize& winSize;
 
 	// null / null / null / null / null / null / null / hasSpawned
-	bool entityFlags = 0b00000000
+	bool entityFlags = 0b00000000;
 };
 

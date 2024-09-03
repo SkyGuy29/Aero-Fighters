@@ -1,5 +1,5 @@
 #pragma once
-#include "Enemy.h"
+#include "Enemy_new.h"
 #include "../Interfaces/ICollidable.h"
 
 class EnemyCollidable :

@@ -3,35 +3,40 @@
 #include "../Utility/EntityID.h"
 
 using cstr = const char* const;
-using Vec2f = sf::Vector2f;
 
 namespace EntityData
 {
+	struct Vec2f
+	{
+		float x, y;
+
+		Vec2f(float x, float y) : x(x), y(y) {}
+	};
 
 	struct Cooldown
 	{
 		// The base cooldown for this entity
-		constexpr short BaseCooldown;
+		short BaseCooldown;
 		// The current cooldown timer
 		// (CurrentCooldown != BaseCooldown ? ++CurrentCooldown)
-		constexpr short CurrentCooldown;
+		short CurrentCooldown;
 
-		constexpr Cooldown(const short BaseCooldown, short CurrentCooldown) :
+		Cooldown(const short BaseCooldown, short CurrentCooldown) :
 			BaseCooldown(BaseCooldown), CurrentCooldown(CurrentCooldown) {}
 	};
 
 	struct EntityData
 	{
-		constexpr Vec2f velocity;
-		constexpr unsigned short health;
-		constexpr Cooldown cooldown;
+		Vec2f velocity;
+		unsigned short health;
+		Cooldown cooldown;
 
-		constexpr EntityData(Vec2f velocity, unsigned short health, Cooldown cooldown) :
+		EntityData(Vec2f velocity, unsigned short health, Cooldown cooldown) :
 			velocity(velocity), health(health), cooldown(cooldown) {}
 	};
 
 
-	constexpr std::unordered_map<EntityID, EntityData> EntityDataTable =
+	const std::unordered_map<EntityID, EntityData> EntityDataTable =
 	{
 		{
 			EntityID::ENEMY_AIR_BABY_COPTER,
