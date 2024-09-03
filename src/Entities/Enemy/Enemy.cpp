@@ -1,1 +1,6 @@
-#include "Enemy.h"
+#include "Enemy.h"  
+
+void Enemy::tick(EntityHolder entities)
+{
+	
+}
