@@ -444,7 +444,7 @@ void Player::update(const sf::Vector2f winSize, std::vector<Object*>* objects, b
 	if (cooldownTime != 0)
 		cooldownTime--;
 
-	objectUpdate(winSize, objects);
+	Player::move(winSize);
 
 	if (movingProjectile != nullptr)
 		movingProjectile->setPos(pos.x, pos.y - winSize.y / 2);
