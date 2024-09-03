@@ -2,8 +2,8 @@
 
 
 Boss::Boss(const short id, const bool left, const sf::Vector2f pos,
-	const sf::Vector2f vel, std::vector<Object*>* objects) :
-	Enemy::Enemy(id, left, pos, vel)
+	const sf::Vector2f vel, std::vector<Object*>* objects, const bool levelEditor) :
+	Enemy(id, left, pos, vel, levelEditor)
 {
 	type = BOSS;
 
@@ -24,11 +24,11 @@ Boss::Boss(const short id, const bool left, const sf::Vector2f pos,
 	// Avoid magic numbers; What do these mean? - Ricky
 		setSize(164, 100);
 		bossPiece1 = new Boss(1, left, sf::Vector2f(pos.x - 54, pos.y + 44),
-		                      vel, objects);
+		                      vel, objects, levelEditor);
 		bossPiece2 = new Boss(2, left, sf::Vector2f(pos.x, pos.y + 44), vel,
-		                      objects);
+		                      objects, levelEditor);
 		bossPiece3 = new Boss(3, left, sf::Vector2f(pos.x + 54, pos.y + 44),
-		                      vel, objects);
+		                      vel, objects, levelEditor);
 		objects->push_back(bossPiece1);
 		objects->push_back(bossPiece2);
 		objects->push_back(bossPiece3);
@@ -51,8 +51,8 @@ Boss::Boss(const short id, const bool left, const sf::Vector2f pos,
 	sprite.setOrigin(size / 2.f);
 }
 
-void Boss::update(sf::Vector2f winSize, std::vector<Object*>* objects,
-	bool time)
+void Boss::update(const sf::Vector2f winSize, std::vector<Object*>* objects,
+    const bool time)
 {
 	if (time == false)
 		return;

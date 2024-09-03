@@ -3,6 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include <cmath>
 
+
 /// <summary>
 /// The base class for everything that moves. Making this allows us to use polymorphism
 /// to handle and run through every object in the game in a little neater manner.

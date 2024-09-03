@@ -1,11 +1,12 @@
 #include "Enemy.h"
 
-Enemy::Enemy(short id, bool left, sf::Vector2f pos, sf::Vector2f vel)
+Enemy::Enemy(const short id, const bool left, const sf::Vector2f pos, const sf::Vector2f vel, bool levelEditor)
 {
 	this->id = id;
 	this->left = left;
 	this->pos = pos;
 	this->vel = vel;
+	this->levelEditor = levelEditor;
 }
 
 int Enemy::getHealth() const
@@ -13,20 +14,21 @@ int Enemy::getHealth() const
 	return health;
 }
 
-void Enemy::enemyUpdate(sf::Vector2f winSize, std::vector<Object*>* objects)
+void Enemy::enemyUpdate(const sf::Vector2f winSize, std::vector<Object*>* objects)
 {
 	texInit = false;
 	objectUpdate(winSize, objects);
 	nextFrame(3);
 
-	if (!entered && !outOfBounds(winSize))
+	if (!entered && (!outOfBounds(winSize) || levelEditor))
 		entered = true;
 
 	//Delete an enemy when it goes off screen
 	if (outOfBounds(winSize) && entered)
 		del = true;
 
-	//Go to spawn place
+	//
+	// Go to spawn place
 	// If the enemy has not yet entered the screen,
 	// Knows the backgrounds position,
 	// and the background is showing the enemies spawn position
@@ -34,7 +36,8 @@ void Enemy::enemyUpdate(sf::Vector2f winSize, std::vector<Object*>* objects)
 	{
 		// Spawn the enemy by setting its position and velocity
 		pos = spawnPos;
-		vel = spawnVel;
+		if(!levelEditor)
+			vel = spawnVel;
 	}
 
 	//Am I being shot?
