@@ -147,6 +147,8 @@ void Game::run()
 				updateMenu();
 			}
 		}
+		view.move(0, -1);
+		window.setView(view);
 
 		// Clear window display
 		window.clear();
