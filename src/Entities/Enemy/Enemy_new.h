@@ -16,7 +16,6 @@ public:
 	~Enemy();
 
 	void tick(EntityHolder entities) override;
-
 protected:
 
 private:

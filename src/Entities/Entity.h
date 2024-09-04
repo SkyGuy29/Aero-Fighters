@@ -57,9 +57,6 @@ protected:
 
 	// The ID of this entity
 	const EntityID ID;
-
-
-
 private:
 	static WindowSize& winSize;
 
