@@ -244,8 +244,12 @@ void Level::initializeTextures(const int index)
 /// <returns></returns>
 bool Level::update(const sf::Vector2f winSize)
 {
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter) && infScrollInPos)
-		setInfScroll(false);
+	// Just for debugging
+	// The bug where holding enter freezes the background, 
+	// but not the enemies is caused by this
+	// We don't really need this anymore anyways
+	//if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter) && infScrollInPos)
+		//setInfScroll(false);
 
 	if(levelEditor)
 		updateLevelEditor();
