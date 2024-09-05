@@ -21,6 +21,8 @@ Game::Game()
 	view.setSize(winSize.x, winSize.y);
 	view.setCenter(winSize.x / 2.f, winSize.y / 2.f);
 
+	Object::setView(view);
+
 	resize();
 
 
@@ -148,6 +150,9 @@ void Game::run()
 				updateMenu();
 			}
 		}
+
+		view.move(0, -1);
+		window.setView(view);
 
 		// Clear window display
 		window.clear();
