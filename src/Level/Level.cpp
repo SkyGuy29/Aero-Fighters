@@ -33,9 +33,6 @@ void Level::load(sf::Vector2f winSize, const short country,
 	this->winSize = winSize;
 	this->levelEditor = levelEditor;
 
-	ui.setFont(font);
-	ui.setPosition(0, 0);
-
 	// setting up the background
 	backgroundImg.loadFromFile("res/"  + mapStrings[map] + "/" + mapStrings[map] + ".png");
 	if(map == England)
@@ -63,6 +60,19 @@ void Level::load(sf::Vector2f winSize, const short country,
 	enemyImg.loadFromFile("res/Misc/enemies.png");
 	enemyProjectileImg.loadFromFile("res/Misc/Enemy projectiles.png");
 	missileImg.loadFromFile("res/Misc/missles.png");
+
+	// Seperate player texture for drawing lives
+	playerImgRepeat = playerImg;
+	playerImgRepeat.setRepeated(true);
+
+	p1Score.setFont(font);
+	p2Score.setFont(font);
+	p1LivesRect.setTexture(&playerImgRepeat);
+	p2LivesRect.setTexture(&playerImgRepeat);
+	p1LivesRect.setTextureRect(sf::IntRect(0, 16, 32, 32));
+	p2LivesRect.setTextureRect(sf::IntRect(0, 16, 32, 32));
+	p1Score.setCharacterSize(16);
+	p2Score.setCharacterSize(16);
 
 	switch (map)
 	{
@@ -234,14 +244,6 @@ void Level::initializeTextures(const int index)
 /// <returns></returns>
 bool Level::update(const sf::Vector2f winSize)
 {
-	const std::string UIString = "P1 Lives: " + std::to_string(p[0]->getHealth()) 
-		+ "\nP2 Lives: " 
-	+ std::to_string(p[1]->getHealth()) + "\nP1 Bombs: " 
-		+ std::to_string(p[0]->getSpecialCharge()) 
-	+ "\nP2 Bombs: " + std::to_string(p[1]->getSpecialCharge());
-	ui.setString(UIString);
-	ui.setCharacterSize(12);
-
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter) && infScrollInPos)
 		setInfScroll(false);
 
@@ -298,12 +300,38 @@ bool Level::update(const sf::Vector2f winSize)
 			(!(objects[objects.size() - 1 - i]->getType() == Object::LAND ||
 			objects[objects.size() - 1 - i]->getType() == Object::AIR) || !levelEditor))
 		{
+			// Just temporary
+			// Deleting stuff adds score to random player
+			if (rand() % 2 == 0)
+				player1Score += 100;
+			else
+				player2Score += 100;
+
 			delete objects[objects.size() - 1 - i];
 			objects.erase(objects.end() - 1 - i);
 		}
 	}
 
 	englandUpdate();
+
+	// Update scores and stuff after update,
+	// so the game over screen doesn't freeze it with one life left
+	p1Score.setString(std::to_string(player1Score));
+	p2Score.setString(std::to_string(player2Score));
+
+	p1LivesRect.setSize(sf::Vector2f(16 * p[0]->getHealth(), 16));
+	p2LivesRect.setSize(sf::Vector2f(16 * p[1]->getHealth(), 16));
+	p1LivesRect.setTextureRect(sf::IntRect(0, 16, 32 * p[0]->getHealth(), 32));
+	p2LivesRect.setTextureRect(sf::IntRect(0, 16, 32 * p[1]->getHealth(), 32));
+	p1LivesRect.setPosition(sf::Vector2f(0, 16));
+	p2LivesRect.setPosition(sf::Vector2f(winSize.x - p2LivesRect.getLocalBounds().width, 16));
+
+	// Place scores in middle top
+	// Scores were not implemented, so these values never change for now
+	p1Score.setPosition(sf::Vector2f(winSize.x / 2 - 20 - p1Score.getLocalBounds().width,
+		-p2Score.getLocalBounds().height));
+	p2Score.setPosition(sf::Vector2f(winSize.x / 2 + 20,
+		-p2Score.getLocalBounds().height));
 
 	return p[0]->getHealth() > 0 || p[1]->getHealth() > 0;
 }
@@ -438,7 +466,11 @@ void Level::draw(sf::RenderTarget& target, const sf::RenderStates states) const
 			}
 	}
 
-	target.draw(ui, states);
+	target.draw(p1Score, states);
+	target.draw(p2Score, states);
+
+	target.draw(p1LivesRect, states);
+	target.draw(p2LivesRect, states);
 }
 
 

@@ -93,7 +93,9 @@ private:
 	std::vector<Object*> objects;
 
 	sf::Font font;
-	sf::Text ui;
+	sf::Text p1Score, p2Score;
+	sf::RectangleShape p1LivesRect, p2LivesRect;
+	sf::Texture playerImgRepeat;
 
 	sf::RectangleShape background, frontbackground;
 	sf::Texture backgroundImg, frontbackgroundImg, playerImg, projectileImg,
@@ -110,6 +112,7 @@ private:
 	//float backgroundSpeedup = 0.f;
 	//float backgroundSpeedupMax = 2.f;
 	Player* p[2];
+	int player1Score = 0, player2Score = 0;
 
 	sf::Vector2f winSize;
 	bool infScrollInPos = true, infScrollEnabled = false, bossSpawned = false, levelEditor = false;
