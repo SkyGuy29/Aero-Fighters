@@ -14,13 +14,13 @@ public:
 	struct EntityHolder
 	{
 		// All enemy entities
-		std::vector<Entity*> Enemies;
+		std::vector<Entity*> enemies;
 
 		// All projectile entities
-		std::vector<Entity*> Projectiles;
+		std::vector<Entity*> projectiles;
 
 		// All other entities
-		std::vector<Entity*> Other;
+		std::vector<Entity*> other;
 	};
 	// Generic definition for any entities tick function
 	// Entity holder used for when entities need to check for collision themselves

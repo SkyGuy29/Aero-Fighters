@@ -7,6 +7,7 @@ using Vec2f = sf::Vector2f;
 
 namespace EntityData
 {
+	// Stores a given entities cooldown information for quick access
 	struct Cooldown
 	{
 		// The base cooldown for this entity
@@ -19,10 +20,14 @@ namespace EntityData
 			BaseCooldown(BaseCooldown), CurrentCooldown(CurrentCooldown) {}
 	};
 
+	// The stored default information for a given entity; very generic.
 	struct EntityData
 	{
+		// This entities base velocity
 		Vec2f velocity;
+		// This entities base health
 		unsigned short health;
+		// This entities base cooldown information
 		Cooldown cooldown;
 
 		EntityData(Vec2f velocity, unsigned short health, Cooldown cooldown) :
@@ -31,12 +36,25 @@ namespace EntityData
 
 
 
-
+	// Entity Data Table
+	// TODO: Replace with array, static_cast accessor
+	// Stores Key value pairs, the Key is the EntityID,
+	// the value is the entities data
 	const std::unordered_map<EntityID, EntityData> EntityDataTable =
 	{
 		{
 			EntityID::ENEMY_AIR_BABY_COPTER,
-			{{0,0}, 0, {0,0}}
+			EntityData {
+				Vec2f {
+					0, // X
+					0  // Y
+				},
+				0, // Health
+				Cooldown {
+					0, // Base Cooldown
+					0  // Current Cooldown
+				}
+			}
 		}, // Add other values
 	};
 }
