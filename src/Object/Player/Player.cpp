@@ -506,9 +506,10 @@ void Player::move(sf::Vector2f winSize)
 	if (pos.y - size.y / 2.f < 0)
 		pos.y = size.y / 2.f;
 	if (pos.x + size.x / 2.f >= winSize.x)
+
 		pos.x = winSize.x - size.x / 2.f;
-	if (pos.y + size.y / 2.f >= winSize.y)
-		pos.y = winSize.y - size.y / 2.f;
+	//if (pos.y + size.y / 2.f >= winSize.y)
+		//pos.y = winSize.y - size.y / 2.f;
 
 	Object::move(winSize);
 }

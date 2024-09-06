@@ -13,11 +13,14 @@
 /// </summary>
 class Object : public sf::Drawable
 {
+
 public:
 	Object();
 
 	// 
 	virtual void update(sf::Vector2f winSize, std::vector<Object*>*, bool time) = 0;
+
+	static void setView(sf::View new_view);
 
 	void objectUpdate(sf::Vector2f winSize, std::vector<Object*>*);
 
@@ -128,6 +131,8 @@ protected:
 	// Has the texture been initialized
 	bool texInit = false;
 
+
+	static sf::View view;
 
 
 	// Conversion Helper Constants

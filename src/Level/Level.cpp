@@ -24,19 +24,19 @@ Level::~Level()
 /// </summary>
 /// <param name="winSize"></param>
 /// <param name="country"></param>
-/// <param name="mapId"></param>
-void Level::load(sf::Vector2f winSize, const short country, int mapId, bool levelEditor)
+/// <param name="map"></param>
+/// <param name="levelEditor">Whether or not the levelEditor is active.</param>
+void Level::load(sf::Vector2f winSize, const short country,
+	const Map map, const bool levelEditor)
 {
 	this->country = country;
 	this->winSize = winSize;
 	this->levelEditor = levelEditor;
 
-	ui.setFont(font);
-	ui.setPosition(0, 0);
-
 	// setting up the background
-	backgroundImg.loadFromFile("res/England/England.png");
-	frontbackgroundImg.loadFromFile("res/England/FrontEngland.png");
+	backgroundImg.loadFromFile("res/"  + mapStrings[map] + "/" + mapStrings[map] + ".png");
+	if(map == England)
+		frontbackgroundImg.loadFromFile("res/"  + mapStrings[map] + "/Front"  + mapStrings[map] + ".png");
 
 	background.setSize(sf::Vector2f(winSize));
 	frontbackground.setSize(sf::Vector2f(winSize));
@@ -59,15 +59,34 @@ void Level::load(sf::Vector2f winSize, const short country, int mapId, bool leve
 	explosionImg.loadFromFile("res/Misc/Explosion.png");
 	enemyImg.loadFromFile("res/Misc/enemies.png");
 	enemyProjectileImg.loadFromFile("res/Misc/Enemy projectiles.png");
-	houseImg.loadFromFile("res/England/House.png");
-	domeImg.loadFromFile("res/England/Dome.png");
-	gateImg.loadFromFile("res/England/Gate.png");
-	hoodImg.loadFromFile("res/England/Hood.png");
-	coneImg.loadFromFile("res/England/Cone.png");
-	roofusImg.loadFromFile("res/England/Roofus.png");
-	domeAnimationImg.loadFromFile("res/England/Dome animation.png");
 	missileImg.loadFromFile("res/Misc/missles.png");
-	avroBomberImg.loadFromFile("res/England/Avro Bomber.png");
+
+	// Seperate player texture for drawing lives
+	playerImgRepeat = playerImg;
+	playerImgRepeat.setRepeated(true);
+
+	p1Score.setFont(font);
+	p2Score.setFont(font);
+	p1LivesRect.setTexture(&playerImgRepeat);
+	p2LivesRect.setTexture(&playerImgRepeat);
+	p1LivesRect.setTextureRect(sf::IntRect(0, 16, 32, 32));
+	p2LivesRect.setTextureRect(sf::IntRect(0, 16, 32, 32));
+	p1Score.setCharacterSize(16);
+	p2Score.setCharacterSize(16);
+
+	switch (map)
+	{
+		case England:
+			houseImg.loadFromFile("res/England/House.png");
+			domeImg.loadFromFile("res/England/Dome.png");
+			gateImg.loadFromFile("res/England/Gate.png");
+			hoodImg.loadFromFile("res/England/Hood.png");
+			coneImg.loadFromFile("res/England/Cone.png");
+			roofusImg.loadFromFile("res/England/Roofus.png");
+			domeAnimationImg.loadFromFile("res/England/Dome animation.png");
+			avroBomberImg.loadFromFile("res/England/Avro Bomber.png");
+			break;
+	}
 
 	p[0] = new Player(country, true, &backgroundSpeed);
 	p[1] = new Player(country, false, &backgroundSpeed);
@@ -84,6 +103,7 @@ void Level::load(sf::Vector2f winSize, const short country, int mapId, bool leve
 	objects.at(1)->setTexture(&playerImg, sf::Vector2i(32, 32), 
 		sf::Vector2i(0, 16), 5, false);
 
+	// ?
 	objects.push_back(new Air(0, true, &backgroundDist, 0, winSize, 
 		&objects, sf::Vector2f(winSize.x * 0.5f,
 	winSize.y * 0.5f), sf::Vector2f(0, 0), levelEditor));
@@ -92,7 +112,8 @@ void Level::load(sf::Vector2f winSize, const short country, int mapId, bool leve
 	int startMark;
 	sf::Vector2f pos, vel;
 	std::fstream file;
-	file.open("res/England/enemies.txt");
+
+	file.open("res/" + mapStrings[map] + "/enemies.txt");
 
 	/*
 		The enemy knows where it is at all times.
@@ -223,16 +244,12 @@ void Level::initializeTextures(const int index)
 /// <returns></returns>
 bool Level::update(const sf::Vector2f winSize)
 {
-	const std::string UIString = "P1 Lives: " + std::to_string(p[0]->getHealth()) 
-		+ "\nP2 Lives: " 
-	+ std::to_string(p[1]->getHealth()) + "\nP1 Bombs: " 
-		+ std::to_string(p[0]->getSpecialCharge()) 
-	+ "\nP2 Bombs: " + std::to_string(p[1]->getSpecialCharge());
-	ui.setString(UIString);
-	ui.setCharacterSize(12);
-
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter) && infScrollInPos)
-		setInfScroll(false);
+	// Just for debugging
+	// The bug where holding enter freezes the background, 
+	// but not the enemies is caused by this
+	// We don't really need this anymore anyways
+	//if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter) && infScrollInPos)
+		//setInfScroll(false);
 
 	if(levelEditor)
 		updateLevelEditor();
@@ -287,12 +304,38 @@ bool Level::update(const sf::Vector2f winSize)
 			(!(objects[objects.size() - 1 - i]->getType() == Object::LAND ||
 			objects[objects.size() - 1 - i]->getType() == Object::AIR) || !levelEditor))
 		{
+			// Just temporary
+			// Deleting stuff adds score to random player
+			if (rand() % 2 == 0)
+				player1Score += 100;
+			else
+				player2Score += 100;
+
 			delete objects[objects.size() - 1 - i];
 			objects.erase(objects.end() - 1 - i);
 		}
 	}
 
 	englandUpdate();
+
+	// Update scores and stuff after update,
+	// so the game over screen doesn't freeze it with one life left
+	p1Score.setString(std::to_string(player1Score));
+	p2Score.setString(std::to_string(player2Score));
+
+	p1LivesRect.setSize(sf::Vector2f(16 * p[0]->getHealth(), 16));
+	p2LivesRect.setSize(sf::Vector2f(16 * p[1]->getHealth(), 16));
+	p1LivesRect.setTextureRect(sf::IntRect(0, 16, 32 * p[0]->getHealth(), 32));
+	p2LivesRect.setTextureRect(sf::IntRect(0, 16, 32 * p[1]->getHealth(), 32));
+	p1LivesRect.setPosition(sf::Vector2f(0, 16));
+	p2LivesRect.setPosition(sf::Vector2f(winSize.x - p2LivesRect.getLocalBounds().width, 16));
+
+	// Place scores in middle top
+	// Scores were not implemented, so these values never change for now
+	p1Score.setPosition(sf::Vector2f(winSize.x / 2 - 20 - p1Score.getLocalBounds().width,
+		-p2Score.getLocalBounds().height));
+	p2Score.setPosition(sf::Vector2f(winSize.x / 2 + 20,
+		-p2Score.getLocalBounds().height));
 
 	return p[0]->getHealth() > 0 || p[1]->getHealth() > 0;
 }
@@ -427,7 +470,11 @@ void Level::draw(sf::RenderTarget& target, const sf::RenderStates states) const
 			}
 	}
 
-	target.draw(ui, states);
+	target.draw(p1Score, states);
+	target.draw(p2Score, states);
+
+	target.draw(p1LivesRect, states);
+	target.draw(p2LivesRect, states);
 }
 
 

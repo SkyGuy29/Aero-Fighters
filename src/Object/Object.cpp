@@ -1,6 +1,15 @@
 #include "Object.h"
 
 
+sf::View Object::view;
+
+
+void Object::setView(sf::View new_view)
+{
+	view = new_view;
+}
+
+
 Object::Object()
 {
 }
