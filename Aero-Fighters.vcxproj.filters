@@ -132,4 +132,23 @@
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="lib\SFML64\lib\sfml-graphics-s.pdb" />
+    <None Include="lib\SFML64\lib\sfml-graphics-s-d.pdb" />
+    <None Include="lib\SFML64\lib\sfml-window-s.pdb" />
+    <None Include="lib\SFML64\lib\sfml-window-s-d.pdb" />
+    <None Include="lib\SFML64\lib\sfml-audio-s.pdb" />
+    <None Include="lib\SFML64\lib\sfml-audio-s-d.pdb" />
+    <None Include="lib\SFML64\lib\sfml-network-s.pdb" />
+    <None Include="lib\SFML64\lib\sfml-network-s-d.pdb" />
+    <None Include="lib\SFML64\lib\sfml-system-s.pdb" />
+    <None Include="lib\SFML64\lib\sfml-system-s-d.pdb" />
+    <None Include="lib\SFML64\lib\sfml-main-d.pdb" />
+    <None Include="lib\SFML64\lib\sfml-main-s.pdb" />
+    <None Include="lib\SFML64\lib\sfml-graphics.pdb" />
+    <None Include="lib\SFML64\lib\sfml-window.pdb" />
+    <None Include="lib\SFML64\lib\sfml-audio.pdb" />
+    <None Include="lib\SFML64\lib\sfml-network.pdb" />
+    <None Include="lib\SFML64\lib\sfml-system.pdb" />
+  </ItemGroup>
 </Project>
