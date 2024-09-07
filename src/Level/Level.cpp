@@ -323,8 +323,8 @@ bool Level::update(const sf::Vector2f winSize)
 	p1Score.setString(std::to_string(player1Score));
 	p2Score.setString(std::to_string(player2Score));
 
-	p1LivesRect.setSize(sf::Vector2f(16 * p[0]->getHealth(), 16));
-	p2LivesRect.setSize(sf::Vector2f(16 * p[1]->getHealth(), 16));
+	p1LivesRect.setSize(sf::Vector2f(16.f * p[0]->getHealth(), 16));
+	p2LivesRect.setSize(sf::Vector2f(16.f * p[1]->getHealth(), 16));
 	p1LivesRect.setTextureRect(sf::IntRect(0, 16, 32 * p[0]->getHealth(), 32));
 	p2LivesRect.setTextureRect(sf::IntRect(0, 16, 32 * p[1]->getHealth(), 32));
 	p1LivesRect.setPosition(sf::Vector2f(0, 16));
