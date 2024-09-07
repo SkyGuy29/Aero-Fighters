@@ -46,10 +46,10 @@ protected:
 	sf::Vector2f pos;
 	// The velocity of this entity
 	// Derived during object construction
-	sf::Vector2f vel = { EntityData::EntityDataTable.at(ID).velocity.x, EntityData::EntityDataTable.at(ID).velocity.y };
+	sf::Vector2f vel = EntityData::EntityDataTable.at(static_cast<unsigned char>(ID)).DATA.velocity;
 	// The attack cooldown of this entity
 	// Derived during object construction from the entity data table.
-	EntityData::Cooldown cooldown = EntityData::EntityDataTable.at(ID).cooldown;
+	EntityData::Cooldown cooldown = EntityData::EntityDataTable.at(static_cast<unsigned char>(ID)).DATA.cooldown;
 
 	// This entities current orientation
 	// Only used when drawing - entity specific
