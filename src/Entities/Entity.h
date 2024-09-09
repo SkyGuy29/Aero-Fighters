@@ -4,7 +4,7 @@
 #include "../Utility/WindowSize.h"
 #include "../Utility/EntityID.h"
 #include "EntityData.h"
-
+#define PI 3.14159
 
 using Vec2f = sf::Vector2f;
 
@@ -21,7 +21,7 @@ public:
 		// All projectile entities
 		std::vector<Entity*> projectiles;
 
-		Player[2] players;
+		Entity* players[2];
 
 		// All other entities
 		std::vector<Entity*> other;
@@ -34,6 +34,8 @@ public:
 	// Should only ever be called once, giving a variable held
 	// before level is instantiated.
 	void setWinSize(WindowSize& winSize);
+
+	sf::Sprite sprite;
 protected:
 	Entity(sf::Vector2f pos, sf::Vector2f vel,
 		EntityID ID, unsigned char orientation = 0);
@@ -45,7 +47,6 @@ protected:
 	// The ID of this entity
 	const EntityID ID;
 
-	sf::Sprite sprite;
 	sf::Vector2f vel = EntityDataStorage::getData(ID).velocity;
 	// The attack cooldown of this entity
 	// Derived during object construction from the entity data table.
@@ -58,7 +59,6 @@ protected:
 	
 private:
 	static WindowSize& winSize;
-	static EntityHolder entities;
 
 	// null / null / null / null / null / null / null / hasSpawned
 	bool entityFlags = 0b00000000;

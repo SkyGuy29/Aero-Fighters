@@ -36,7 +36,7 @@ void Land::tick(Entity::EntityHolder& entities)
 			}
 			break;
 		case EntityID::ENEMY_LAND_TANK_WEAK: case EntityID::ENEMY_LAND_TANK_STRONG: //Tank top
-			float distance = entities->at(target)->getPos() - getPos();
+			sf::Vector2f distance = entities.players[target].sprite.getPosition() - sprite.getPosition();
 			float magnitude = sqrt((distance.x * distance.x) + (distance.y
 				* distance.y));
 			sf::Vector2f projVelocity = sf::Vector2f(2 * distance.x / magnitude,
@@ -55,20 +55,20 @@ void Land::tick(Entity::EntityHolder& entities)
 			{
 				rotateTimer = 15;
 				if (orientation - (int)angle < 0)
-					setOrientation(orientation + 1);
+					orientation = orientation + 1;
 				else
-					setOrientation(orientation - 1);
+					orientation = orientation - 1;
 			}
 
 			//Shoot at target player
-			if (!cooldown && entered && orientation == (int)angle)
+			if (!cooldown.currentCooldown && entered && orientation == (int)angle)
 			{
-				pos.y -= 0.5f;
+				sprite.setPosition(sprite.getPosition().x, sprite.getPosition().y - 0.5f);
 
-				objects->push_back(new Projectile(getPos().x, getPos().y,
+				entities.projectiles.push_back(new Projectile(getPos().x, getPos().y,
 					projVelocity, sf::Vector2f(10, 10), ProjectileType::Basic, false, 0, 0, 12));
 
-				cooldown = 100 + rand() % 50;
+				cooldown.currentCooldown = 100 + rand() % 50;
 
 				target = !target;
 			}
@@ -79,44 +79,44 @@ void Land::tick(Entity::EntityHolder& entities)
 				pos.y -= 0.5f;
 
 				cooldown = 100;
-				objects->push_back(new Projectile(getPos().x, getPos().y,
+				entities.projectiles.push_back(new Projectile(getPos().x, getPos().y,
 					sf::Vector2f(1.84776f, 0.76537f), sf::Vector2f(10, 10), ProjectileType::Basic,
 					false, 0, 0, 12));
-				objects->push_back(new Projectile(getPos().x, getPos().y,
+				entities.projectiles.push_back(new Projectile(getPos().x, getPos().y,
 					sf::Vector2f(-1.84776f, -0.76537f), sf::Vector2f(10, 10), ProjectileType::Basic,
 					false, 0, 0, 12));
-				objects->push_back(new Projectile(getPos().x, getPos().y,
+				entities.projectiles.push_back(new Projectile(getPos().x, getPos().y,
 					sf::Vector2f(-1.84776f, 0.76537f), sf::Vector2f(10, 10), ProjectileType::Basic,
 					false, 0, 0, 12));
-				objects->push_back(new Projectile(getPos().x, getPos().y,
+				entities.projectiles.push_back(new Projectile(getPos().x, getPos().y,
 					sf::Vector2f(1.84776f, -0.76537f), sf::Vector2f(10, 10), ProjectileType::Basic,
 					false, 0, 0, 12));
-				objects->push_back(new Projectile(getPos().x, getPos().y,
+				entities.projectiles.push_back(new Projectile(getPos().x, getPos().y,
 					sf::Vector2f(0.76537f, 1.84776f), sf::Vector2f(10, 10), ProjectileType::Basic,
 					false, 0, 0, 12));
-				objects->push_back(new Projectile(getPos().x, getPos().y,
+				entities.projectiles.push_back(new Projectile(getPos().x, getPos().y,
 					sf::Vector2f(-0.76537f, -1.84776f), sf::Vector2f(10, 10), ProjectileType::Basic,
 					false, 0, 0, 12));
-				objects->push_back(new Projectile(getPos().x, getPos().y,
+				entities.projectiles.push_back(new Projectile(getPos().x, getPos().y,
 					sf::Vector2f(-0.76537f, 1.84776f), sf::Vector2f(10, 10), ProjectileType::Basic,
 					false, 0, 0, 12));
-				objects->push_back(new Projectile(getPos().x, getPos().y,
+				entities.projectiles.push_back(new Projectile(getPos().x, getPos().y,
 					sf::Vector2f(0.76537f, -1.84776f), sf::Vector2f(10, 10), ProjectileType::Basic,
 					false, 0, 0, 12));
 			}
 			break;
-		case 7: //Hangar
-			if (!cooldown && entered)
+		case EntityID::TILE_HANGAR_ENGLAND: //Hangar
+			if (!cooldown.currentCooldown && entered)
 			{
-				cooldown = 100;
+				cooldown.currentCooldown = 100;
 				/*objects->push_back(new Air(0, true, winSize, objects,
 					pos, sf::Vector2f(0, 5)));*/
 			}
 			break;
-		case 8: //Landmines
+		case EntityID::LANDMINE: //Landmines
 			if (!rotateTimer && orientation < 5 && del == false && entered)
 			{
-				setOrientation(orientation + 1);
+				orientation = orientation + 1;
 				rotateTimer = 7;
 			}
 			if (orientation == 6)
@@ -125,7 +125,7 @@ void Land::tick(Entity::EntityHolder& entities)
 			{
 				del = false;
 
-				setOrientation(6);
+				orientation = 6;
 				health = 999;
 				texInit = false;
 			}

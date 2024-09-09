@@ -1,5 +1,4 @@
 #include "../Enemy_new.h"
-#include "../../Entity.h"
 #pragma once
 
 
@@ -13,4 +12,6 @@ public:
 	void tick(EntityHolder& entities) override;
 private:
 	short rotateTimer = 0;
+	// the player the enemy targets (0/1) -> (player one/player two)
+	short target = 0;
 };

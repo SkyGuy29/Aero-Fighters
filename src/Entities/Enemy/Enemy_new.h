@@ -1,5 +1,6 @@
 #pragma once
 #include "../Entity.h"
+#include "../../Projectile/Projectile_new.h"
 #include "../Interfaces/ICollidable.h"
 #include "../Interfaces/IHasHealth.h"
 
@@ -17,5 +18,6 @@ public:
 	void tick(EntityHolder& entities) override;
 protected:
 	int* backgroundSpeed = nullptr;
+	bool entered = false;
 private:
 };
