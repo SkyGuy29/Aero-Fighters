@@ -119,6 +119,7 @@
       <PreprocessorDefinitions>SFML_STATIC;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)lib\SFML64\include</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -154,7 +155,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Entities\Enemy\EnemyCollidable.cpp" />
+    <ClCompile Include="src\Entities\Enemy\Enemy_new.cpp" />
+    <ClCompile Include="src\Entities\Entity.cpp" />
+    <ClCompile Include="src\Entities\Player\Player_new.cpp" />
     <ClCompile Include="src\Entities\PowerUp\PowerUp.cpp" />
+    <ClCompile Include="src\Entities\Projectile\Projectile_new.cpp" />
     <ClCompile Include="src\Object\Collectable\Collectable.cpp" />
     <ClCompile Include="src\Object\Enemy\Boss\Boss.cpp" />
     <ClCompile Include="src\Object\Enemy\Air\Air.cpp" />
@@ -170,12 +176,18 @@
     <ClCompile Include="src\Entities\TileEntity\TileEntity.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Entities\Enemy\EnemyCollidable.h" />
+    <ClInclude Include="src\Entities\Enemy\Enemy_new.h" />
+    <ClInclude Include="src\Entities\Entity.h" />
     <ClInclude Include="src\Entities\EntityData.h" />
     <ClInclude Include="src\Entities\Interfaces\IHasHealth.h" />
     <ClInclude Include="src\Entities\Interfaces\IHasChildren.h" />
+    <ClInclude Include="src\Entities\Player\Player_new.h" />
     <ClInclude Include="src\Entities\PowerUp\PowerUp.h" />
     <ClInclude Include="src\Entities\Interfaces\ICollidable.h" />
     <ClInclude Include="src\ControllerStuff.hpp" />
+    <ClInclude Include="src\Entities\Projectile\Projectile_new.h" />
+    <ClInclude Include="src\Level\Intermediary.h" />
     <ClInclude Include="src\Object\Projectile\Explosion\Explosion.h" />
     <ClInclude Include="src\Object\Collectable\Collectable.h" />
     <ClInclude Include="src\Object\Enemy\Boss\Boss.h" />

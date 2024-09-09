@@ -6,8 +6,12 @@
 using cstr = const char* const;
 using Vec2f = sf::Vector2f;
 
-namespace EntityData
+class EntityDataStorage
 {
+public:
+	// Must never be constructed
+	EntityDataStorage() = delete;
+
 	// Stores a given entities cooldown information for quick access
 	struct Cooldown
 	{
@@ -38,17 +42,25 @@ namespace EntityData
 			velocity(velocity), health(health), cooldown(cooldown), CHILD_DATA(CHILD_DATA) {}
 	};
 
+	/**
+	 * Returns the baseline data for a given entity.
+	 *
+	 * @param ID The ID of the entity whose data is being requested
+	 * @return A constant reference to an EntityData object
+	 */
+	static const EntityData& getData(EntityID ID)
+	{
+		return EntityDataTable[static_cast<unsigned char>(ID)];
+	}
 
 
+private:
 	// Entity Data Table
-	// TODO: Replace with array, static_cast accessor
-	// Stores Key value pairs, the Key is the EntityID,
-	// the value is the entities data
-	const EntityData EntityDataTable[] =
+	static const EntityData EntityDataTable[] =
 	{
 		{
 			EntityData {
-				Vec2f {
+				{
 					0, // X
 					0  // Y
 				},
@@ -63,4 +75,4 @@ namespace EntityData
 	};
 
 	// Entity Child Table
-}
+};

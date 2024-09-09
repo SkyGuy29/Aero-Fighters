@@ -1,12 +1,9 @@
 #pragma once
 #include <vector>
-#include <unordered_map>
 #include <SFML/Graphics.hpp>
 #include "../Utility/WindowSize.h"
-#include "./Enemy/Enemy_new.h"
-#include "./Projectile/Projectile_new.h"
 #include "../Utility/EntityID.h"
-#include "./EntityData.h"
+#include "EntityData.h"
 
 
 using Vec2f = sf::Vector2f;
@@ -14,13 +11,15 @@ using Vec2f = sf::Vector2f;
 class Entity
 { 
 public:
+	virtual ~Entity() = 0;
+
 	struct EntityHolder
 	{
 		// All enemy entities
-		std::vector<Enemy*> enemies;
+		std::vector<Entity*> enemies;
 
 		// All projectile entities
-		std::vector<Projectile*> projectiles;
+		std::vector<Entity*> projectiles;
 
 		Player[2] players;
 
@@ -47,10 +46,10 @@ protected:
 	const EntityID ID;
 
 	sf::Sprite sprite;
-	sf::Vector2f vel = EntityData::EntityDataTable[static_cast<unsigned char>(ID)].velocity;
+	sf::Vector2f vel = EntityDataStorage::getData(ID).velocity;
 	// The attack cooldown of this entity
 	// Derived during object construction from the entity data table.
-	EntityData::Cooldown cooldown = EntityData::EntityDataTable[static_cast<unsigned char>(ID)].cooldown;
+	EntityDataStorage::Cooldown cooldown = EntityDataStorage::getData(ID).cooldown;
 
 	// This entities current orientation
 	// Only used when drawing - entity specific
