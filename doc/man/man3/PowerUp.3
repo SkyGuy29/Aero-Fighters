@@ -1,0 +1,63 @@
+.TH "PowerUp" 3 "Version v0.1" "Aero Fighters" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+PowerUp
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <PowerUp\&.h>\fP
+.PP
+Inherits \fBEntity\fP\&.
+.SS "Additional Inherited Members"
+
+
+Public Member Functions inherited from \fBEntity\fP
+.in +1c
+.ti -1c
+.RI "virtual void \fBtick\fP (\fBEntityHolder\fP entities)=0"
+.br
+.ti -1c
+.RI "void \fBsetWinSize\fP (\fBWindowSize\fP &winSize)"
+.br
+.in -1c
+
+Protected Member Functions inherited from \fBEntity\fP
+.in +1c
+.ti -1c
+.RI "\fBEntity\fP (sf::Vector2f \fBpos\fP, sf::Vector2f \fBvel\fP, \fBEntityID\fP \fBID\fP, unsigned char \fBorientation\fP=0)"
+.br
+.ti -1c
+.RI "bool \fBonScreen\fP () noexcept"
+.br
+.ti -1c
+.RI "bool \fBhasSpawned\fP () noexcept"
+.br
+.in -1c
+
+Protected Attributes inherited from \fBEntity\fP
+.in +1c
+.ti -1c
+.RI "sf::Vector2f \fBpos\fP"
+.br
+.ti -1c
+.RI "sf::Vector2f \fBvel\fP = EntityData::EntityDataTable\&.at(static_cast<unsigned char>(\fBID\fP))\&.DATA\&.velocity"
+.br
+.ti -1c
+.RI "\fBEntityData::Cooldown\fP \fBcooldown\fP = EntityData::EntityDataTable\&.at(static_cast<unsigned char>(\fBID\fP))\&.DATA\&.cooldown"
+.br
+.ti -1c
+.RI "unsigned char \fBorientation\fP"
+.br
+.ti -1c
+.RI "const \fBEntityID\fP \fBID\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Definition at line \fB5\fP of file \fBPowerUp\&.h\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Aero Fighters from the source code\&.

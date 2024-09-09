@@ -1,0 +1,26 @@
+\doxysection{Air.\+h}
+\hypertarget{_air_8h_source}{}\label{_air_8h_source}\index{src/Object/Enemy/Air/Air.h@{src/Object/Enemy/Air/Air.h}}
+\mbox{\hyperlink{_air_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_air_8h_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{_air_8h_source_l00002}00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_enemy_8h}{../Enemy.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_air_8h_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{_air_8h_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{_air_8h_source_l00005}\mbox{\hyperlink{class_air}{00005}}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_air}{Air}}\ final\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_enemy}{Enemy}}}
+\DoxyCodeLine{\Hypertarget{_air_8h_source_l00006}00006\ \{}
+\DoxyCodeLine{\Hypertarget{_air_8h_source_l00007}00007\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_air_8h_source_l00008}00008\ \ \ \ \ \textcolor{comment}{//\ Constructor}}
+\DoxyCodeLine{\Hypertarget{_air_8h_source_l00009}00009\ \ \ \ \ \mbox{\hyperlink{class_air_ab505f9153ad671c72cc16563ff9fd11a}{Air}}(\textcolor{keywordtype}{short}\ \textcolor{keywordtype}{id},\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_enemy_a21d97250b5e8befe6d02aeeb0bb36de3}{left}},\ \textcolor{keywordtype}{float}*\ \mbox{\hyperlink{class_object_a46bf1c4a8a577572b7ac2778adfaf007}{backgroundDist}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_enemy_a7cf34adfd070a3067f0aabcf7967f317}{startMark}},\ }
+\DoxyCodeLine{\Hypertarget{_air_8h_source_l00010}00010\ \ \ \ \ \ \ \ \ sf::Vector2f\ winSize,\ std::vector<Object*>*\ objects,\ sf::Vector2f\ \mbox{\hyperlink{class_entity_ad329967c418fc97aae4745b68adebb11}{pos}},\ }
+\DoxyCodeLine{\Hypertarget{_air_8h_source_l00011}00011\ \ \ \ \ \ \ \ \ sf::Vector2f\ \mbox{\hyperlink{class_entity_aa84a7361118f092029908d97188374f3}{vel}},\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_enemy_a586ab31ee88fe7bf100413374a25d24b}{levelEditor}}}
+\DoxyCodeLine{\Hypertarget{_air_8h_source_l00012}00012\ \ \ \ \ );}
+\DoxyCodeLine{\Hypertarget{_air_8h_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{_air_8h_source_l00014}00014\ \ \ \ \ \textcolor{comment}{//\ Ticking\ Function}}
+\DoxyCodeLine{\Hypertarget{_air_8h_source_l00015}00015\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_air_af69d0b97a17f128b091a3de191d82862}{update}}(sf::Vector2f\ winSize,\ std::vector<Object*>*\ objects,\ }
+\DoxyCodeLine{\Hypertarget{_air_8h_source_l00016}00016\ \ \ \ \ \textcolor{keywordtype}{bool}\ time)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{\Hypertarget{_air_8h_source_l00017}00017\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{_air_8h_source_l00018}00018\ \ \ \ \ \textcolor{comment}{//\ Child\ Chopper\ blades?}}
+\DoxyCodeLine{\Hypertarget{_air_8h_source_l00019}00019\ \ \ \ \ \mbox{\hyperlink{class_object}{Object}}*\ chopperBlades\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{_air_8h_source_l00020}00020\ \};}
+
+\end{DoxyCode}

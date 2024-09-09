@@ -1,0 +1,112 @@
+.TH "Entity" 3 "Version v0.1" "Aero Fighters" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Entity
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <Entity\&.h>\fP
+.PP
+Inherited by \fBEnemy\fP\fR [private]\fP, \fBPlayer\fP, \fBPowerUp\fP, \fBProjectile\fP, and \fBTileEntity\fP\&.
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBEntityHolder\fP"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "virtual void \fBtick\fP (\fBEntityHolder\fP entities)=0"
+.br
+.ti -1c
+.RI "void \fBsetWinSize\fP (\fBWindowSize\fP &winSize)"
+.br
+.in -1c
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBEntity\fP (sf::Vector2f \fBpos\fP, sf::Vector2f \fBvel\fP, \fBEntityID\fP \fBID\fP, unsigned char \fBorientation\fP=0)"
+.br
+.ti -1c
+.RI "bool \fBonScreen\fP () noexcept"
+.br
+.ti -1c
+.RI "bool \fBhasSpawned\fP () noexcept"
+.br
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "sf::Vector2f \fBpos\fP"
+.br
+.ti -1c
+.RI "sf::Vector2f \fBvel\fP = EntityData::EntityDataTable\&.at(static_cast<unsigned char>(\fBID\fP))\&.DATA\&.velocity"
+.br
+.ti -1c
+.RI "\fBEntityData::Cooldown\fP \fBcooldown\fP = EntityData::EntityDataTable\&.at(static_cast<unsigned char>(\fBID\fP))\&.DATA\&.cooldown"
+.br
+.ti -1c
+.RI "unsigned char \fBorientation\fP"
+.br
+.ti -1c
+.RI "const \fBEntityID\fP \fBID\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Definition at line \fB11\fP of file \fBEntity\&.h\fP\&.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "Entity::Entity (sf::Vector2f pos, sf::Vector2f vel, \fBEntityID\fP ID, unsigned char orientation = \fR0\fP)\fR [inline]\fP, \fR [protected]\fP"
+
+.PP
+Definition at line \fB36\fP of file \fBEntity\&.h\fP\&.
+.SH "Member Function Documentation"
+.PP 
+.SS "bool Entity::hasSpawned ()\fR [inline]\fP, \fR [protected]\fP, \fR [noexcept]\fP"
+
+.PP
+Definition at line \fB14\fP of file \fBEntity\&.cpp\fP\&.
+.SS "bool Entity::onScreen ()\fR [inline]\fP, \fR [protected]\fP, \fR [noexcept]\fP"
+
+.PP
+Definition at line \fB5\fP of file \fBEntity\&.cpp\fP\&.
+.SS "void Entity::setWinSize (\fBWindowSize\fP & winSize)"
+
+.SS "virtual void Entity::tick (\fBEntityHolder\fP entities)\fR [pure virtual]\fP"
+
+.PP
+Implemented in \fBEnemy\fP\&.
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBEntityData::Cooldown\fP Entity::cooldown = EntityData::EntityDataTable\&.at(static_cast<unsigned char>(\fBID\fP))\&.DATA\&.cooldown\fR [protected]\fP"
+
+.PP
+Definition at line \fB52\fP of file \fBEntity\&.h\fP\&.
+.SS "const \fBEntityID\fP Entity::ID\fR [protected]\fP"
+
+.PP
+Definition at line \fB59\fP of file \fBEntity\&.h\fP\&.
+.SS "unsigned char Entity::orientation\fR [protected]\fP"
+
+.PP
+Definition at line \fB56\fP of file \fBEntity\&.h\fP\&.
+.SS "sf::Vector2f Entity::pos\fR [protected]\fP"
+
+.PP
+Definition at line \fB46\fP of file \fBEntity\&.h\fP\&.
+.SS "sf::Vector2f Entity::vel = EntityData::EntityDataTable\&.at(static_cast<unsigned char>(\fBID\fP))\&.DATA\&.velocity\fR [protected]\fP"
+
+.PP
+Definition at line \fB49\fP of file \fBEntity\&.h\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Aero Fighters from the source code\&.

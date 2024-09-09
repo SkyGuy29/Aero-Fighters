@@ -1,0 +1,55 @@
+.TH "src/Sprites/SpriteType.h" 3 "Version v0.1" "Aero Fighters" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+src/Sprites/SpriteType.h
+.SH SYNOPSIS
+.br
+.PP
+\fR#include <unordered_map>\fP
+.br
+\fR#include <SFML/Graphics\&.hpp>\fP
+.br
+\fR#include '\&.\&./Utility/EntityID\&.h'\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBsprites::SpriteData\fP"
+.br
+.in -1c
+.SS "Namespaces"
+
+.in +1c
+.ti -1c
+.RI "namespace \fBsprites\fP"
+.br
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "using \fBcstr\fP = const char* const"
+.br
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "constexpr std::unordered_map< \fBEntityID\fP, \fBSpriteData\fP > \fBsprites::spriteDataTable\fP"
+.br
+.ti -1c
+.RI "std::unordered_map< \fBEntityID\fP, sf::Texture > \fBsprites::textureTable\fP"
+.br
+.in -1c
+.SH "Typedef Documentation"
+.PP 
+.SS "using \fBcstr\fP = const char* const"
+
+.PP
+Definition at line \fB8\fP of file \fBSpriteType\&.h\fP\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Aero Fighters from the source code\&.

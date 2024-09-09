@@ -1,0 +1,49 @@
+.TH "sprites" 3 "Version v0.1" "Aero Fighters" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+sprites
+.SH SYNOPSIS
+.br
+.PP
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBSpriteData\fP"
+.br
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "constexpr std::unordered_map< \fBEntityID\fP, \fBSpriteData\fP > \fBspriteDataTable\fP"
+.br
+.ti -1c
+.RI "std::unordered_map< \fBEntityID\fP, sf::Texture > \fBtextureTable\fP"
+.br
+.in -1c
+.SH "Variable Documentation"
+.PP 
+.SS "std::unordered_map<\fBEntityID\fP, \fBSpriteData\fP> sprites::spriteDataTable\fR [constexpr]\fP"
+\fBInitial value:\fP
+.nf
+=
+    {
+        {EntityID::ENEMY_AIR_BABY_COPTER, {"baby_copter_filename", {0,0}, 0}}, 
+        {EntityID::ENEMY_AIR_BIG_PLANE, {"big_plane_filename", {0,0}, 0}}, 
+        {EntityID::ENEMY_AIR_SPINNY_PLANE, {"spinny_plane_filename", {0,0}, 0}}, 
+        {EntityID::ENEMY_AIR_CHILD_CHOPPER_BLADES, {"chopper_blades_filename", {0,0}, 0}}, 
+    }
+.PP
+.fi
+
+.PP
+Definition at line \fB26\fP of file \fBSpriteType\&.h\fP\&.
+.SS "std::unordered_map<\fBEntityID\fP, sf::Texture> sprites::textureTable"
+
+.PP
+Definition at line \fB34\fP of file \fBSpriteType\&.h\fP\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Aero Fighters from the source code\&.

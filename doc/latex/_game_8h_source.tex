@@ -1,0 +1,133 @@
+\doxysection{Game.\+h}
+\hypertarget{_game_8h_source}{}\label{_game_8h_source}\index{src/Game/Game.h@{src/Game/Game.h}}
+\mbox{\hyperlink{_game_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00003}00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_level_8h}{../Level/Level.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00004}00004\ \textcolor{preprocessor}{\#include\ <cmath>}}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00007}\mbox{\hyperlink{class_countdown}{00007}}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_countdown}{Countdown}}}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00008}00008\ \{}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00009}00009\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00010}\mbox{\hyperlink{class_countdown_abfde9b7e2c75e65b97edd9d6281a69ce}{00010}}\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \mbox{\hyperlink{class_countdown_abfde9b7e2c75e65b97edd9d6281a69ce}{getTime}}()}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00011}00011\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00012}00012\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ seconds;}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00013}00013\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00015}\mbox{\hyperlink{class_countdown_a813113c311677d981c5041e0b4ccae4f}{00015}}\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_countdown_a813113c311677d981c5041e0b4ccae4f}{isDone}}()}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00016}00016\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00017}00017\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (seconds\ ==\ 0);}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00018}00018\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00020}\mbox{\hyperlink{class_countdown_a870c09fcb62f70c1568205bd1d554173}{00020}}\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_countdown_a870c09fcb62f70c1568205bd1d554173}{tick}}()}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00021}00021\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00022}00022\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (seconds\ >\ 0)}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00023}00023\ \ \ \ \ \ \ \ \ \ \ \ \ progress-\/-\/;}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00024}00024\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (progress\ ==\ 0)}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00025}00025\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00026}00026\ \ \ \ \ \ \ \ \ \ \ \ \ seconds-\/-\/;}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00027}00027\ \ \ \ \ \ \ \ \ \ \ \ \ progress\ =\ ticksPerSec;}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00028}00028\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00029}00029\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00031}\mbox{\hyperlink{class_countdown_a9df7e06af78822ea707cef9159d5c66f}{00031}}\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_countdown_a9df7e06af78822ea707cef9159d5c66f}{set}}(\textcolor{keywordtype}{unsigned}\ seconds,\ \textcolor{keywordtype}{unsigned}\ ticksPerSec)}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00032}00032\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00033}00033\ \ \ \ \ \ \ \ \ this-\/>seconds\ =\ seconds;}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00034}00034\ \ \ \ \ \ \ \ \ this-\/>ticksPerSec\ =\ ticksPerSec;}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00035}00035\ \ \ \ \ \ \ \ \ this-\/>progress\ =\ ticksPerSec;}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00036}00036\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00038}\mbox{\hyperlink{class_countdown_af12aa371186c6548698b4dec66798e92}{00038}}\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_countdown_af12aa371186c6548698b4dec66798e92}{reset}}()}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00039}00039\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00040}00040\ \ \ \ \ \ \ \ \ this-\/>seconds\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00041}00041\ \ \ \ \ \ \ \ \ this-\/>progress\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00042}00042\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00044}00044\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00045}00045\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ seconds\ =\ 0,}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00046}00046\ \ \ \ \ \ \ \ \ progress\ =\ 0,}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00047}00047\ \ \ \ \ \ \ \ \ ticksPerSec\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00048}00048\ \};}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00050}00050\ }
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00060}\mbox{\hyperlink{class_game}{00060}}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_game}{Game}}}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00061}00061\ \{}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00062}00062\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00063}00063\ \ \ \ \ \mbox{\hyperlink{class_game_ad59df6562a58a614fda24622d3715b65}{Game}}();}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00064}00064\ }
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00065}00065\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_game_a1ab78f5ed0d5ea879157357cf2fb2afa}{run}}();}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00066}00066\ }
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00067}00067\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_game_ad03a5123cd16e37d2fdacefc8f8d15a7}{drawMenu}}();}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00068}00068\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_game_ae7263719bf90a3137e67a6015172d7e7}{updateMenu}}();}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00069}00069\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00070}00070\ \ \ \ \ \textcolor{keywordtype}{void}\ resize();}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00071}00071\ }
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00072}00072\ \ \ \ \ \textcolor{comment}{//\ The\ game\ window}}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00073}00073\ \ \ \ \ sf::RenderWindow\ window;}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00074}00074\ }
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00075}00075\ \ \ \ \ \textcolor{comment}{//\ The\ in\ game\ view\ area}}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00076}00076\ \ \ \ \ sf::View\ view;}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00077}00077\ }
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00078}00078\ \ \ \ \ \textcolor{comment}{//\ The\ size\ of\ the\ window}}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00079}00079\ \ \ \ \ sf::Vector2f\ winSize\ =\ sf::Vector2f(224.f,\ 320.f);}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00080}00080\ }
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00081}00081\ \ \ \ \ \textcolor{comment}{//\ Deltatime\ clock}}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00082}00082\ \ \ \ \ sf::Clock\ clock;}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00083}00083\ }
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00084}00084\ \ \ \ \ \textcolor{comment}{//\ Menu\ Font}}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00085}00085\ \ \ \ \ sf::Font\ font;}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00086}00086\ }
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00087}00087\ \ \ \ \ \textcolor{comment}{//\ Text\ used\ to\ diaplay\ the\ menu\ countdown}}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00088}00088\ \ \ \ \ sf::Text\ menuCountdown;}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00089}00089\ }
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00090}00090\ \ \ \ \ \textcolor{comment}{//\ Menu\ Map\ texture,\ unsure\ what\ it\ does?\ -\/\ Ricky}}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00091}00091\ \ \ \ \ sf::Texture\ menuMap,}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00092}00092\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Also\ unsure\ what\ it\ does...\ -\/\ ricky}}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00093}00093\ \ \ \ \ \ \ \ \ menuFlags;}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00094}00094\ }
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00095}00095\ \ \ \ \ \textcolor{comment}{//\ These\ should\ all\ be\ wrapped\ in\ a\ struct\ to\ structure\ the\ data;\ make\ it\ easier\ to\ understand\ its\ all\ related}}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00096}00096\ \ \ \ \ sf::RectangleShape}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00097}00097\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ naming\ scheme\ is\ misleading,\ this\ appears\ to\ be\ the\ background\ of\ the\ menu?\ -\/\ ricky}}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00098}00098\ \ \ \ \ \ \ \ \ menuMapRect,}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00099}00099\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Used\ for\ chosing\ the\ country?\ -\/\ ricky}}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00100}00100\ \ \ \ \ \ \ \ \ menuFlagsRect,}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00101}00101\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Only\ ever\ declared,\ never\ used...\ Delete\ it\ -\/\ Ricky}}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00102}00102\ \ \ \ \ \ \ \ \ menuCountDownRect,}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00103}00103\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Selection\ outline}}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00104}00104\ \ \ \ \ \ \ \ \ menuSelectRect;}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00105}00105\ }
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00106}00106\ \ \ \ \ \textcolor{comment}{//\ The\ game\ level}}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00107}00107\ \ \ \ \ \mbox{\hyperlink{class_level}{Level}}\ level;}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00108}00108\ }
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00109}00109\ \ \ \ \ \textcolor{comment}{//\ Last\ Tick\ Processing\ Time}}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00110}00110\ \ \ \ \ \textcolor{keywordtype}{int}\ deltaTime\ =\ 0,}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00111}00111\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Ticks\ per\ second}}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00112}00112\ \ \ \ \ \ \ \ \ ticksPerSec\ =\ 30,}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00113}00113\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Frames\ per\ second}}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00114}00114\ \ \ \ \ \ \ \ \ framesPerSec\ =\ 30;}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00115}00115\ }
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00116}00116\ \ \ \ \ \textcolor{comment}{//int\ score,\ highScore;}}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00117}00117\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Is\ Left\ Key\ pressed}}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00118}00118\ \ \ \ \ \textcolor{keywordtype}{bool}\ keyLeft\ =\ \textcolor{keyword}{false},}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00119}00119\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Is\ Right\ Key\ Pressed}}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00120}00120\ \ \ \ \ \ \ \ \ keyRight\ =\ \textcolor{keyword}{false},}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00121}00121\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Selection\ menu\ outline\ blinking}}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00122}00122\ \ \ \ \ \ \ \ \ blinkState\ =\ \textcolor{keyword}{false},}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00123}00123\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Level\ editor\ debug\ mode}}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00124}00124\ \ \ \ \ \ \ \ \ levelEditor\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00125}00125\ }
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00126}00126\ \ \ \ \ \textcolor{comment}{//\ Selected\ Country}}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00127}00127\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ country\ =\ 0,}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00128}00128\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ rate\ at\ which\ the\ blick\ state\ changes\ in\ ticks}}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00129}00129\ \ \ \ \ \ \ \ \ menuBlinkRate\ =\ 5,}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00130}00130\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Current\ progress\ int\ he\ blink\ rate}}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00131}00131\ \ \ \ \ \ \ \ \ menuBlinkTimer\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00132}00132\ }
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00133}00133\ \ \ \ \ \mbox{\hyperlink{class_countdown}{Countdown}}\ countryChoose,\ gameOver;}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00134}00134\ }
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00135}00135\ \ \ \ \ \textcolor{keywordtype}{bool}\ inGame\ =\ \textcolor{keyword}{false},\ playersDead\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_game_8h_source_l00136}00136\ \};}
+
+\end{DoxyCode}

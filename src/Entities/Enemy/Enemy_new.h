@@ -10,8 +10,7 @@ class Enemy :
 public:
 	Enemy(sf::Vector2f pos, sf::Vector2f vel,
 		EntityID ID, unsigned char orientation = 0) :
-		pos(pos), ID(ID), orientation(orientation),
-		Entity(pos, vel, ID), IHasHealth(ID) {}
+		Entity(pos, vel, ID, orientation), IHasHealth(ID) {}
 
 	~Enemy();
 

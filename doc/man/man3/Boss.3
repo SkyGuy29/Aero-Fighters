@@ -1,0 +1,283 @@
+.TH "Boss" 3 "Version v0.1" "Aero Fighters" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Boss
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <Boss\&.h>\fP
+.PP
+Inherits \fBEnemy\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBBoss\fP (short \fBid\fP, bool \fBleft\fP, sf::Vector2f \fBpos\fP, sf::Vector2f \fBvel\fP, std::vector< \fBObject\fP * > *objects, bool \fBlevelEditor\fP)"
+.br
+.ti -1c
+.RI "void \fBupdate\fP (sf::Vector2f winSize, std::vector< \fBObject\fP * > *objects, bool time) override"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBEnemy\fP
+.in +1c
+.ti -1c
+.RI "\fBEnemy\fP (sf::Vector2f \fBpos\fP, sf::Vector2f \fBvel\fP, \fBEntityID\fP \fBID\fP, unsigned char \fBorientation\fP=0)"
+.br
+.ti -1c
+.RI "\fB~Enemy\fP ()"
+.br
+.ti -1c
+.RI "void \fBtick\fP (\fBEntityHolder\fP entities) override"
+.br
+.ti -1c
+.RI "\fBEnemy\fP (short, bool, sf::Vector2f, sf::Vector2f, bool)"
+.br
+.ti -1c
+.RI "int \fBgetHealth\fP () const"
+.br
+.ti -1c
+.RI "void \fBenemyUpdate\fP (sf::Vector2f winSize, std::vector< \fBObject\fP * > *objects)"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBObject\fP
+.in +1c
+.ti -1c
+.RI "\fBObject\fP ()"
+.br
+.ti -1c
+.RI "void \fBobjectUpdate\fP (sf::Vector2f winSize, std::vector< \fBObject\fP * > *)"
+.br
+.RI "Calls Object::move(winSize) (??? what is the point?) "
+.ti -1c
+.RI "virtual void \fBmove\fP (sf::Vector2f winSize)"
+.br
+.ti -1c
+.RI "void \fBsetPos\fP (sf::Vector2f newPos)"
+.br
+.ti -1c
+.RI "void \fBsetPos\fP (float newPosX, float newPosY)"
+.br
+.ti -1c
+.RI "void \fBsetSize\fP (sf::Vector2f newSize)"
+.br
+.ti -1c
+.RI "void \fBsetSize\fP (float newSizeX, float newSizeY)"
+.br
+.ti -1c
+.RI "void \fBsetVel\fP (sf::Vector2f)"
+.br
+.ti -1c
+.RI "void \fBsetVel\fP (float, float)"
+.br
+.ti -1c
+.RI "void \fBsetSpriteNum\fP (short)"
+.br
+.ti -1c
+.RI "void \fBsetTexture\fP (sf::Texture *texPtr, sf::Vector2i \fBsize\fP, sf::Vector2i offset, int \fBframeCount\fP, bool vertAnimation)"
+.br
+.RI "The purpose of this method is to load a texture in \fBLevel\fP or \fBGame\fP once, then cheaply load it again multiple times\&. "
+.ti -1c
+.RI "sf::Vector2f \fBgetVel\fP () const"
+.br
+.ti -1c
+.RI "bool \fBoutOfBounds\fP (sf::Vector2f winSize) const"
+.br
+.RI "Returns if any part of an object is outside the viewing area\&. "
+.ti -1c
+.RI "void \fBflagDelete\fP ()"
+.br
+.ti -1c
+.RI "bool \fBshouldDelete\fP () const"
+.br
+.ti -1c
+.RI "sf::Vector2f \fBgetPos\fP () const"
+.br
+.ti -1c
+.RI "sf::Vector2f \fBgetSize\fP () const"
+.br
+.ti -1c
+.RI "bool \fBintersect\fP (\fBObject\fP *) const"
+.br
+.ti -1c
+.RI "short \fBgetType\fP () const"
+.br
+.ti -1c
+.RI "short \fBgetId\fP () const"
+.br
+.ti -1c
+.RI "short \fBgetSpriteNum\fP () const"
+.br
+.ti -1c
+.RI "short \fBgetOrientation\fP () const"
+.br
+.ti -1c
+.RI "void \fBsetOrientation\fP (short)"
+.br
+.ti -1c
+.RI "bool \fBisTexInit\fP () const"
+.br
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Public Types inherited from \fBObject\fP
+.in +1c
+.ti -1c
+.RI "enum \fBTypes\fP { \fBHIDDEN\fP =-1, \fBPLAYER\fP = 0, \fBBOSS\fP = 1, \fBBOSS_PIECE\fP = 2, \fBAIR\fP = 3, \fBLAND\fP = 4, \fBCOLLECTABLE\fP = 5, \fBPLAYER_PROJECTILE\fP = 6, \fBENEMY_PROJECTILE\fP = 7, \fBEXPLOSION\fP = 8 }"
+.br
+.in -1c
+
+Static Public Member Functions inherited from \fBObject\fP
+.in +1c
+.ti -1c
+.RI "static void \fBsetView\fP (sf::View new_view)"
+.br
+.in -1c
+
+Protected Member Functions inherited from \fBObject\fP
+.in +1c
+.ti -1c
+.RI "virtual void \fBdraw\fP (sf::RenderTarget &target, sf::RenderStates states) const"
+.br
+.RI "Draws the object to the screen\&. Implemeneted from sf::Drawable\&. "
+.ti -1c
+.RI "void \fBnextFrame\fP (int frameRate)"
+.br
+.RI "This animator allows for different frame changes\&. "
+.in -1c
+
+Protected Attributes inherited from \fBEnemy\fP
+.in +1c
+.ti -1c
+.RI "int \fBhealth\fP"
+.br
+.ti -1c
+.RI "int \fBstartMark\fP"
+.br
+.ti -1c
+.RI "bool \fBentered\fP = false"
+.br
+.ti -1c
+.RI "bool \fBlevelEditor\fP = false"
+.br
+.ti -1c
+.RI "bool \fBleft\fP"
+.br
+.ti -1c
+.RI "sf::Vector2f \fBspawnPos\fP"
+.br
+.ti -1c
+.RI "sf::Vector2f \fBspawnVel\fP"
+.br
+.in -1c
+
+Protected Attributes inherited from \fBObject\fP
+.in +1c
+.ti -1c
+.RI "short \fBtype\fP"
+.br
+.ti -1c
+.RI "short \fBid\fP = 0"
+.br
+.ti -1c
+.RI "short \fBcooldown\fP = 0"
+.br
+.ti -1c
+.RI "short \fBhealth\fP"
+.br
+.ti -1c
+.RI "short \fBspriteNum\fP = \-1"
+.br
+.ti -1c
+.RI "short \fBorientation\fP = 0"
+.br
+.ti -1c
+.RI "short \fBtimer\fP = 0"
+.br
+.ti -1c
+.RI "bool \fBdel\fP = false"
+.br
+.ti -1c
+.RI "sf::Vector2f \fBpos\fP"
+.br
+.ti -1c
+.RI "sf::Vector2f \fBsize\fP"
+.br
+.ti -1c
+.RI "sf::Vector2f \fBvel\fP"
+.br
+.ti -1c
+.RI "sf::RectangleShape \fBsprite\fP"
+.br
+.ti -1c
+.RI "float * \fBbackgroundSpeed\fP = nullptr"
+.br
+.ti -1c
+.RI "float * \fBbackgroundDist\fP = nullptr"
+.br
+.ti -1c
+.RI "short \fBframeCount\fP = 0"
+.br
+.ti -1c
+.RI "short \fBcurrentFrame\fP = 0"
+.br
+.ti -1c
+.RI "short \fBimage\fP"
+.br
+.ti -1c
+.RI "sf::Vector2i \fBtexSize\fP"
+.br
+.ti -1c
+.RI "sf::Vector2i \fBtexOffset\fP"
+.br
+.ti -1c
+.RI "bool \fBverticalAnimation\fP = true"
+.br
+.ti -1c
+.RI "bool \fBanDone\fP = false"
+.br
+.ti -1c
+.RI "bool \fBtexInit\fP = false"
+.br
+.ti -1c
+.RI "const float \fBPI\fP = 3\&.14159f"
+.br
+.ti -1c
+.RI "const float \fBTO_RAD\fP = \fBPI\fP / 180\&.f"
+.br
+.ti -1c
+.RI "const float \fBTO_DEG\fP = 180\&.f / \fBPI\fP"
+.br
+.in -1c
+
+Static Protected Attributes inherited from \fBObject\fP
+.in +1c
+.ti -1c
+.RI "static sf::View \fBview\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Definition at line \fB6\fP of file \fBBoss\&.h\fP\&.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "Boss::Boss (short id, bool left, sf::Vector2f pos, sf::Vector2f vel, std::vector< \fBObject\fP * > * objects, bool levelEditor)"
+
+.PP
+Definition at line \fB4\fP of file \fBBoss\&.cpp\fP\&.
+.SH "Member Function Documentation"
+.PP 
+.SS "void Boss::update (sf::Vector2f winSize, std::vector< \fBObject\fP * > * objects, bool time)\fR [override]\fP, \fR [virtual]\fP"
+Removes the rest of the boss that would still show
+.PP
+Implements \fBObject\fP\&.
+.PP
+Definition at line \fB54\fP of file \fBBoss\&.cpp\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Aero Fighters from the source code\&.

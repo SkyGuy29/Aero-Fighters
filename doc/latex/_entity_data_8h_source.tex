@@ -1,0 +1,74 @@
+\doxysection{Entity\+Data.\+h}
+\hypertarget{_entity_data_8h_source}{}\label{_entity_data_8h_source}\index{src/Entities/EntityData.h@{src/Entities/EntityData.h}}
+\mbox{\hyperlink{_entity_data_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_entity_data_8h_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{_entity_data_8h_source_l00002}00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_static_array_8h}{../Utility/Array/StaticArray.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_entity_data_8h_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{_entity_data_8h_source_l00004}\mbox{\hyperlink{_entity_data_8h_a8989bbb4d3c2daa720e02252eb0977c0}{00004}}\ \textcolor{keyword}{using\ }\mbox{\hyperlink{_entity_data_8h_a8989bbb4d3c2daa720e02252eb0977c0}{cstr}}\ =\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{_entity_data_8h_source_l00005}00005\ \textcolor{keyword}{using\ }\mbox{\hyperlink{_entity_8h_aa9af547c03f1b8c809c1a6de96a7ed3c}{Vec2f}}\ =\ sf::Vector2f;}
+\DoxyCodeLine{\Hypertarget{_entity_data_8h_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{_entity_data_8h_source_l00007}\mbox{\hyperlink{namespace_entity_data}{00007}}\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_entity_data}{EntityData}}}
+\DoxyCodeLine{\Hypertarget{_entity_data_8h_source_l00008}00008\ \{}
+\DoxyCodeLine{\Hypertarget{_entity_data_8h_source_l00009}00009\ \ \ \ \ \textcolor{comment}{//\ Stores\ a\ given\ entities\ cooldown\ information\ for\ quick\ access}}
+\DoxyCodeLine{\Hypertarget{_entity_data_8h_source_l00010}\mbox{\hyperlink{struct_entity_data_1_1_cooldown}{00010}}\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_entity_data_1_1_cooldown}{Cooldown}}}
+\DoxyCodeLine{\Hypertarget{_entity_data_8h_source_l00011}00011\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_entity_data_8h_source_l00012}00012\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ base\ cooldown\ for\ this\ entity}}
+\DoxyCodeLine{\Hypertarget{_entity_data_8h_source_l00013}\mbox{\hyperlink{struct_entity_data_1_1_cooldown_a1f427438684937296872da3463c34226}{00013}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{short}\ \mbox{\hyperlink{struct_entity_data_1_1_cooldown_a1f427438684937296872da3463c34226}{BaseCooldown}};}
+\DoxyCodeLine{\Hypertarget{_entity_data_8h_source_l00014}00014\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ current\ cooldown\ timer}}
+\DoxyCodeLine{\Hypertarget{_entity_data_8h_source_l00015}00015\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ (CurrentCooldown\ !=\ BaseCooldown\ ?\ ++CurrentCooldown)}}
+\DoxyCodeLine{\Hypertarget{_entity_data_8h_source_l00016}\mbox{\hyperlink{struct_entity_data_1_1_cooldown_a8ea6edecb01be78e1737353b7561aec8}{00016}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{short}\ \mbox{\hyperlink{struct_entity_data_1_1_cooldown_a8ea6edecb01be78e1737353b7561aec8}{CurrentCooldown}};}
+\DoxyCodeLine{\Hypertarget{_entity_data_8h_source_l00017}00017\ }
+\DoxyCodeLine{\Hypertarget{_entity_data_8h_source_l00018}\mbox{\hyperlink{struct_entity_data_1_1_cooldown_afe67c7e79fc24a610a3a121dfce29164}{00018}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_entity_data_1_1_cooldown_afe67c7e79fc24a610a3a121dfce29164}{Cooldown}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{short}\ \mbox{\hyperlink{struct_entity_data_1_1_cooldown_a1f427438684937296872da3463c34226}{BaseCooldown}},\ \textcolor{keywordtype}{short}\ \mbox{\hyperlink{struct_entity_data_1_1_cooldown_a8ea6edecb01be78e1737353b7561aec8}{CurrentCooldown}})\ :}
+\DoxyCodeLine{\Hypertarget{_entity_data_8h_source_l00019}00019\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_entity_data_1_1_cooldown_a1f427438684937296872da3463c34226}{BaseCooldown}}(\mbox{\hyperlink{struct_entity_data_1_1_cooldown_a1f427438684937296872da3463c34226}{BaseCooldown}}),\ \mbox{\hyperlink{struct_entity_data_1_1_cooldown_a8ea6edecb01be78e1737353b7561aec8}{CurrentCooldown}}(\mbox{\hyperlink{struct_entity_data_1_1_cooldown_a8ea6edecb01be78e1737353b7561aec8}{CurrentCooldown}})\ \{\}}
+\DoxyCodeLine{\Hypertarget{_entity_data_8h_source_l00020}00020\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{_entity_data_8h_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{_entity_data_8h_source_l00022}00022\ \ \ \ \ \textcolor{comment}{//\ The\ stored\ default\ information\ for\ a\ given\ entity;\ very\ generic.}}
+\DoxyCodeLine{\Hypertarget{_entity_data_8h_source_l00023}\mbox{\hyperlink{struct_entity_data_1_1_entity_data}{00023}}\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{namespace_entity_data}{EntityData}}}
+\DoxyCodeLine{\Hypertarget{_entity_data_8h_source_l00024}00024\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_entity_data_8h_source_l00025}00025\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ This\ entities\ base\ velocity}}
+\DoxyCodeLine{\Hypertarget{_entity_data_8h_source_l00026}\mbox{\hyperlink{struct_entity_data_1_1_entity_data_ad176800c702082b14b0465b58841cb31}{00026}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_entity_8h_aa9af547c03f1b8c809c1a6de96a7ed3c}{Vec2f}}\ \mbox{\hyperlink{struct_entity_data_1_1_entity_data_ad176800c702082b14b0465b58841cb31}{velocity}};}
+\DoxyCodeLine{\Hypertarget{_entity_data_8h_source_l00027}00027\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ This\ entities\ base\ health}}
+\DoxyCodeLine{\Hypertarget{_entity_data_8h_source_l00028}\mbox{\hyperlink{struct_entity_data_1_1_entity_data_ad0d671b6d5ad2aefdcc184a3ad100437}{00028}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ \mbox{\hyperlink{struct_entity_data_1_1_entity_data_ad0d671b6d5ad2aefdcc184a3ad100437}{health}};}
+\DoxyCodeLine{\Hypertarget{_entity_data_8h_source_l00029}00029\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ This\ entities\ base\ cooldown\ information}}
+\DoxyCodeLine{\Hypertarget{_entity_data_8h_source_l00030}\mbox{\hyperlink{struct_entity_data_1_1_entity_data_aa56ca41be26fe1e06b613e7713615038}{00030}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_entity_data_1_1_cooldown}{Cooldown}}\ \mbox{\hyperlink{struct_entity_data_1_1_entity_data_aa56ca41be26fe1e06b613e7713615038}{cooldown}};}
+\DoxyCodeLine{\Hypertarget{_entity_data_8h_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{_entity_data_8h_source_l00032}00032\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Holds\ data\ regarding\ is\ the\ entity\ has\ children\ (least\ significant\ bit\ IE\ right-\/most)}}
+\DoxyCodeLine{\Hypertarget{_entity_data_8h_source_l00033}00033\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ And\ if\ it\ does\ then\ the\ array\ element\ holding\ its\ children\ (left-\/most\ 7\ most\ significant\ bits)}}
+\DoxyCodeLine{\Hypertarget{_entity_data_8h_source_l00034}\mbox{\hyperlink{struct_entity_data_1_1_entity_data_ae41ed689ebba0dc93af340c3d14a08b7}{00034}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{struct_entity_data_1_1_entity_data_ae41ed689ebba0dc93af340c3d14a08b7}{CHILD\_DATA}};}
+\DoxyCodeLine{\Hypertarget{_entity_data_8h_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{_entity_data_8h_source_l00036}\mbox{\hyperlink{struct_entity_data_1_1_entity_data_a36cf09d54b7d44c4129dc3c594053d96}{00036}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_entity_data_1_1_entity_data_a36cf09d54b7d44c4129dc3c594053d96}{EntityData}}(\mbox{\hyperlink{_entity_8h_aa9af547c03f1b8c809c1a6de96a7ed3c}{Vec2f}}\ velocity,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ health,\ \mbox{\hyperlink{struct_entity_data_1_1_cooldown}{Cooldown}}\ cooldown,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ CHILD\_DATA)\ :}
+\DoxyCodeLine{\Hypertarget{_entity_data_8h_source_l00037}00037\ \ \ \ \ \ \ \ \ \ \ \ \ velocity(velocity),\ health(health),\ cooldown(cooldown),\ CHILD\_DATA(CHILD\_DATA)\ \{\}}
+\DoxyCodeLine{\Hypertarget{_entity_data_8h_source_l00038}00038\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{_entity_data_8h_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{_entity_data_8h_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{_entity_data_8h_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{_entity_data_8h_source_l00042}00042\ \ \ \ \ \textcolor{comment}{//\ Entity\ Data\ Table}}
+\DoxyCodeLine{\Hypertarget{_entity_data_8h_source_l00043}00043\ \ \ \ \ \textcolor{comment}{//\ TODO:\ Replace\ with\ array,\ static\_cast\ accessor}}
+\DoxyCodeLine{\Hypertarget{_entity_data_8h_source_l00044}00044\ \ \ \ \ \textcolor{comment}{//\ Stores\ Key\ value\ pairs,\ the\ Key\ is\ the\ EntityID,}}
+\DoxyCodeLine{\Hypertarget{_entity_data_8h_source_l00045}00045\ \ \ \ \ \textcolor{comment}{//\ the\ value\ is\ the\ entities\ data}}
+\DoxyCodeLine{\Hypertarget{_entity_data_8h_source_l00046}00046\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_static_array}{StaticArray}}<}
+\DoxyCodeLine{\Hypertarget{_entity_data_8h_source_l00047}00047\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_entity_data}{EntityData}},}
+\DoxyCodeLine{\Hypertarget{_entity_data_8h_source_l00048}00048\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\textcolor{keyword}{>}(\mbox{\hyperlink{_entity_i_d_8h_abf26b7b6a9a1dc0f488678f8511c3be6a4905ac9d6a22bdfc1ae096094ce6248d}{EntityID::COUNT}})}
+\DoxyCodeLine{\Hypertarget{_entity_data_8h_source_l00049}\mbox{\hyperlink{namespace_entity_data_abc595c10586e2d2cfed109c30bab4194}{00049}}\ \ \ \ \ >\ \mbox{\hyperlink{namespace_entity_data_abc595c10586e2d2cfed109c30bab4194}{EntityDataTable}}\ =}
+\DoxyCodeLine{\Hypertarget{_entity_data_8h_source_l00050}00050\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_entity_data_8h_source_l00051}00051\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_entity_data_8h_source_l00052}00052\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_entity_data}{EntityData}}\ \{}
+\DoxyCodeLine{\Hypertarget{_entity_data_8h_source_l00053}00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_entity_8h_aa9af547c03f1b8c809c1a6de96a7ed3c}{Vec2f}}\ \{}
+\DoxyCodeLine{\Hypertarget{_entity_data_8h_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0,\ \textcolor{comment}{//\ X}}
+\DoxyCodeLine{\Hypertarget{_entity_data_8h_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0\ \ \textcolor{comment}{//\ Y}}
+\DoxyCodeLine{\Hypertarget{_entity_data_8h_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{\Hypertarget{_entity_data_8h_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0,\ \textcolor{comment}{//\ Health}}
+\DoxyCodeLine{\Hypertarget{_entity_data_8h_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_entity_data_1_1_cooldown}{Cooldown}}\ \{}
+\DoxyCodeLine{\Hypertarget{_entity_data_8h_source_l00059}00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0,\ \textcolor{comment}{//\ Base\ Cooldown}}
+\DoxyCodeLine{\Hypertarget{_entity_data_8h_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0\ \ \textcolor{comment}{//\ Current\ Cooldown}}
+\DoxyCodeLine{\Hypertarget{_entity_data_8h_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{\Hypertarget{_entity_data_8h_source_l00062}00062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0\ \textcolor{comment}{//\ CHILD\_DATA}}
+\DoxyCodeLine{\Hypertarget{_entity_data_8h_source_l00063}00063\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{comment}{//\ Add\ other\ values}}
+\DoxyCodeLine{\Hypertarget{_entity_data_8h_source_l00064}00064\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_entity_data_8h_source_l00065}00065\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{_entity_data_8h_source_l00066}00066\ }
+\DoxyCodeLine{\Hypertarget{_entity_data_8h_source_l00067}00067\ \ \ \ \ \textcolor{comment}{//\ Entity\ Child\ Table}}
+\DoxyCodeLine{\Hypertarget{_entity_data_8h_source_l00068}00068\ \}}
+
+\end{DoxyCode}

@@ -1,0 +1,362 @@
+\doxysection{Player Class Reference}
+\hypertarget{class_player}{}\label{class_player}\index{Player@{Player}}
+
+
+{\ttfamily \#include $<$Player.\+h$>$}
+
+
+
+Inheritance diagram for Player\+:
+% FIG 0
+
+
+Collaboration diagram for Player\+:
+% FIG 1
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_player_a6db3924655d37340586c9c4d4fefae8e}{Player}} (short country, bool player\+One, float \texorpdfstring{$\ast$}{*}bg\+Speed)
+\item 
+void \mbox{\hyperlink{class_player_a058891f5cfd2dc489f6af41fbc373a37}{shoot}} (std\+::vector$<$ \mbox{\hyperlink{class_object}{Object}} \texorpdfstring{$\ast$}{*} $>$ \&objects)
+\begin{DoxyCompactList}\small\item\em takes a pointer from \doxylink{class_level}{Level}\textquotesingle{}s ojects so it can add Projectiles to it. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_player_ac083b202a91b3330324ad2906e17bf52}{special}} (std\+::vector$<$ \mbox{\hyperlink{class_object}{Object}} \texorpdfstring{$\ast$}{*} $>$ \&objects, sf\+::\+Vector2f win\+Size)
+\item 
+void \mbox{\hyperlink{class_player_ad3db15013054f56d7bd5697526a65078}{update}} (sf\+::\+Vector2f win\+Size, std\+::vector$<$ \mbox{\hyperlink{class_object}{Object}} \texorpdfstring{$\ast$}{*} $>$ \texorpdfstring{$\ast$}{*}objects, bool time) override
+\begin{DoxyCompactList}\small\item\em Updates the player. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_player_a8ed6b92863010ce9b748c0ed8f308f2c}{move}} (sf\+::\+Vector2f win\+Size) override
+\item 
+bool \mbox{\hyperlink{class_player_ab99b9a3c0f91c6926249cb9ad41aafc5}{get\+Time}} () const
+\item 
+short \mbox{\hyperlink{class_player_afedf037af6d031163d4c00f4cb773d56}{get\+Health}} () const
+\item 
+short \mbox{\hyperlink{class_player_ae599929196a707b86e6714748ca217cb}{get\+Special\+Charge}} () const
+\item 
+void \mbox{\hyperlink{class_player_a6bb715335c5bdd61640bf79938fd4de7}{set\+Health}} (short)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_entity}{Entity}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{class_entity_a9b83139843435e4755af4cf654a24af9}{tick}} (\mbox{\hyperlink{struct_entity_1_1_entity_holder}{Entity\+Holder}} entities)=0
+\item 
+void \mbox{\hyperlink{class_entity_a3d0e1a6a41a6dcb652d4bfe878d8e8fd}{set\+Win\+Size}} (\mbox{\hyperlink{struct_window_size}{Window\+Size}} \&win\+Size)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_i_collidable}{ICollidable}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual const bool \mbox{\hyperlink{class_i_collidable_abb3316a95e1e4e3b1c25e3f58cf372f3}{Collides\+With}} (\mbox{\hyperlink{class_entity}{Entity}} \&other) noexcept=0
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_object}{Object}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_object_a40860402e64d8008fb42329df7097cdb}{Object}} ()
+\item 
+void \mbox{\hyperlink{class_object_a9ae70955ceef5287048fcf627efb97e3}{object\+Update}} (sf\+::\+Vector2f win\+Size, std\+::vector$<$ \mbox{\hyperlink{class_object}{Object}} \texorpdfstring{$\ast$}{*} $>$ \texorpdfstring{$\ast$}{*})
+\begin{DoxyCompactList}\small\item\em Calls Object\+::move(win\+Size) (??? what is the point?) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_object_a2149267e41bbb91d03d23eeb95caf8df}{set\+Pos}} (sf\+::\+Vector2f new\+Pos)
+\item 
+void \mbox{\hyperlink{class_object_a786fdbe5c0121bd8d1af5240d825b59b}{set\+Pos}} (float new\+PosX, float new\+PosY)
+\item 
+void \mbox{\hyperlink{class_object_aa9a24f326a7837ce7be255c436bb90f0}{set\+Size}} (sf\+::\+Vector2f new\+Size)
+\item 
+void \mbox{\hyperlink{class_object_ae311e6cffe5a97a4dd2ea053c8815578}{set\+Size}} (float new\+SizeX, float new\+SizeY)
+\item 
+void \mbox{\hyperlink{class_object_a3bcbac8e0ac8c428fa4ce17091e191db}{set\+Vel}} (sf\+::\+Vector2f)
+\item 
+void \mbox{\hyperlink{class_object_adba30b76a97c64684da9fc18ed48be51}{set\+Vel}} (float, float)
+\item 
+void \mbox{\hyperlink{class_object_a004999d115ca15135a66ee9dca51693c}{set\+Sprite\+Num}} (short)
+\item 
+void \mbox{\hyperlink{class_object_a74eb59c8845bee92bff15a7b3320e7f5}{set\+Texture}} (sf\+::\+Texture \texorpdfstring{$\ast$}{*}tex\+Ptr, sf\+::\+Vector2i \mbox{\hyperlink{class_object_a7759c83a62b6a4b1f5d8a67fdc58b2e1}{size}}, sf\+::\+Vector2i offset, int \mbox{\hyperlink{class_object_a2df5cec533ee6b18541c71c1f769198c}{frame\+Count}}, bool vert\+Animation)
+\begin{DoxyCompactList}\small\item\em The purpose of this method is to load a texture in \doxylink{class_level}{Level} or \doxylink{class_game}{Game} once, then cheaply load it again multiple times. \end{DoxyCompactList}\item 
+sf\+::\+Vector2f \mbox{\hyperlink{class_object_aab61b0a1554bb954e3297d5ecc932311}{get\+Vel}} () const
+\item 
+bool \mbox{\hyperlink{class_object_ab020d1ea9452f936dc258bc47392d777}{out\+Of\+Bounds}} (sf\+::\+Vector2f win\+Size) const
+\begin{DoxyCompactList}\small\item\em Returns if any part of an object is outside the viewing area. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_object_ad87fbb2ee8bc411982a421329c960874}{flag\+Delete}} ()
+\item 
+bool \mbox{\hyperlink{class_object_af864dbd38aa32473d8964f113d0b20c1}{should\+Delete}} () const
+\item 
+sf\+::\+Vector2f \mbox{\hyperlink{class_object_a6c18e49c4c21c3d99ac214044202eb4c}{get\+Pos}} () const
+\item 
+sf\+::\+Vector2f \mbox{\hyperlink{class_object_a74c9cee8fe6e63523e423687bf02883f}{get\+Size}} () const
+\item 
+bool \mbox{\hyperlink{class_object_a86dd0f591da2c8a08b1778c35ce879d2}{intersect}} (\mbox{\hyperlink{class_object}{Object}} \texorpdfstring{$\ast$}{*}) const
+\item 
+short \mbox{\hyperlink{class_object_a5a6edd3542f1a2ef6b6c7969d59f83e3}{get\+Type}} () const
+\item 
+short \mbox{\hyperlink{class_object_a2c8eca870f0045fc4a0c43d94a0472a5}{get\+Id}} () const
+\item 
+short \mbox{\hyperlink{class_object_a9b046527d64d93cba4b8e8e84c377530}{get\+Sprite\+Num}} () const
+\item 
+short \mbox{\hyperlink{class_object_a099b61a0e3b058793784dd879a1f2c4e}{get\+Orientation}} () const
+\item 
+void \mbox{\hyperlink{class_object_a23ab535f9688d797674919157763c6ee}{set\+Orientation}} (short)
+\item 
+bool \mbox{\hyperlink{class_object_aae1c24adafa5c14df0f61b55664a106f}{is\+Tex\+Init}} () const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Types inherited from \mbox{\hyperlink{class_object}{Object}}}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{class_object_aa30bdbe3657d9756611172b5f4ffcedf}{Types}} \{ \newline
+\mbox{\hyperlink{class_object_aa30bdbe3657d9756611172b5f4ffcedfaebc42d3e8a59ee83e897c37286bc0801}{HIDDEN}} =-\/1
+, \mbox{\hyperlink{class_object_aa30bdbe3657d9756611172b5f4ffcedfa6c8e0f12f0544ca4849ef9677e133c4a}{PLAYER}} = 0
+, \mbox{\hyperlink{class_object_aa30bdbe3657d9756611172b5f4ffcedfae6ab2458f15cf9b61400b476d1afabff}{BOSS}} = 1
+, \mbox{\hyperlink{class_object_aa30bdbe3657d9756611172b5f4ffcedfa2657f666c376bf9d85a3745447824cb0}{BOSS\+\_\+\+PIECE}} = 2
+, \newline
+\mbox{\hyperlink{class_object_aa30bdbe3657d9756611172b5f4ffcedfad9b734065c178992981eb1f1258e7e22}{AIR}} = 3
+, \mbox{\hyperlink{class_object_aa30bdbe3657d9756611172b5f4ffcedfa5c76a9d1866a04538f64c9871e342452}{LAND}} = 4
+, \mbox{\hyperlink{class_object_aa30bdbe3657d9756611172b5f4ffcedfa0c630e789ab51b65b387c99ca0b3c750}{COLLECTABLE}} = 5
+, \mbox{\hyperlink{class_object_aa30bdbe3657d9756611172b5f4ffcedfa439b5fdd5ad9e6e311e0f6f1b12a6306}{PLAYER\+\_\+\+PROJECTILE}} = 6
+, \newline
+\mbox{\hyperlink{class_object_aa30bdbe3657d9756611172b5f4ffcedfadc2a381f993d4faf9824b5fcf6c02ccd}{ENEMY\+\_\+\+PROJECTILE}} = 7
+, \mbox{\hyperlink{class_object_aa30bdbe3657d9756611172b5f4ffcedfa6f28bb958f4e90da71e05e331e766740}{EXPLOSION}} = 8
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions inherited from \mbox{\hyperlink{class_object}{Object}}}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{class_object_a48629781d0a98162069bd2f6339a76c9}{set\+View}} (sf\+::\+View new\+\_\+view)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{class_entity}{Entity}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_entity_a5b1eed88d9f4c3ec5240ce8fb22ada83}{Entity}} (sf\+::\+Vector2f \mbox{\hyperlink{class_entity_ad329967c418fc97aae4745b68adebb11}{pos}}, sf\+::\+Vector2f \mbox{\hyperlink{class_entity_aa84a7361118f092029908d97188374f3}{vel}}, \mbox{\hyperlink{_entity_i_d_8h_abf26b7b6a9a1dc0f488678f8511c3be6}{Entity\+ID}} \mbox{\hyperlink{class_entity_a712837ff2925b8d49f04d4fb8b0eacca}{ID}}, unsigned char \mbox{\hyperlink{class_entity_af761b48c7f05a79b16a00df52d48fce0}{orientation}}=0)
+\item 
+bool \mbox{\hyperlink{class_entity_aa1ff6c02e083e85f4c670ac5c83dcaa3}{on\+Screen}} () noexcept
+\item 
+bool \mbox{\hyperlink{class_entity_a51eb209022b130024a519957bd010b20}{has\+Spawned}} () noexcept
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{class_object}{Object}}}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_object_aec9c0d84c1043f54de40f2863ec9c2fc}{next\+Frame}} (int frame\+Rate)
+\begin{DoxyCompactList}\small\item\em This animator allows for different frame changes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_entity}{Entity}}}
+\begin{DoxyCompactItemize}
+\item 
+sf\+::\+Vector2f \mbox{\hyperlink{class_entity_ad329967c418fc97aae4745b68adebb11}{pos}}
+\item 
+sf\+::\+Vector2f \mbox{\hyperlink{class_entity_aa84a7361118f092029908d97188374f3}{vel}} = Entity\+Data\+::\+Entity\+Data\+Table.\+at(static\+\_\+cast$<$unsigned char$>$(\mbox{\hyperlink{class_entity_a712837ff2925b8d49f04d4fb8b0eacca}{ID}})).DATA.\+velocity
+\item 
+\mbox{\hyperlink{struct_entity_data_1_1_cooldown}{Entity\+Data\+::\+Cooldown}} \mbox{\hyperlink{class_entity_a4cac955655798b026f287d369a37220b}{cooldown}} = Entity\+Data\+::\+Entity\+Data\+Table.\+at(static\+\_\+cast$<$unsigned char$>$(\mbox{\hyperlink{class_entity_a712837ff2925b8d49f04d4fb8b0eacca}{ID}})).DATA.\+cooldown
+\item 
+unsigned char \mbox{\hyperlink{class_entity_af761b48c7f05a79b16a00df52d48fce0}{orientation}}
+\item 
+const \mbox{\hyperlink{_entity_i_d_8h_abf26b7b6a9a1dc0f488678f8511c3be6}{Entity\+ID}} \mbox{\hyperlink{class_entity_a712837ff2925b8d49f04d4fb8b0eacca}{ID}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_i_collidable}{ICollidable}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_i_collidable_1_1_vec2_u_c}{Vec2\+UC}} \mbox{\hyperlink{class_i_collidable_a27e006cecdddb563dd42d80ec2917e57}{bounds}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_object}{Object}}}
+\begin{DoxyCompactItemize}
+\item 
+short \mbox{\hyperlink{class_object_a8137cf4265bcaaf2fc7c91a9ccd8e4f4}{type}}
+\item 
+short \mbox{\hyperlink{class_object_a5d56e2dbec4aab44d836760b698e0e9c}{id}} = 0
+\item 
+short \mbox{\hyperlink{class_object_abb0e0157451e9582afae52cb06a22f61}{cooldown}} = 0
+\item 
+short \mbox{\hyperlink{class_object_a78088792df871b0c272a0db382589258}{health}}
+\item 
+short \mbox{\hyperlink{class_object_a5dd83bc6754de2b7a216b2c8bb4da21a}{sprite\+Num}} = -\/1
+\item 
+short \mbox{\hyperlink{class_object_a04b0731cc3064d4e2c98900a741b162f}{orientation}} = 0
+\item 
+short \mbox{\hyperlink{class_object_adc3c0e750a7f1b69b70ddb00ddbe59be}{timer}} = 0
+\item 
+bool \mbox{\hyperlink{class_object_a0637c58ae14ffe525de737632fa7b01c}{del}} = false
+\item 
+sf\+::\+Vector2f \mbox{\hyperlink{class_object_aec00daf54d15f689af2eea0be28dbf86}{pos}}
+\item 
+sf\+::\+Vector2f \mbox{\hyperlink{class_object_a7759c83a62b6a4b1f5d8a67fdc58b2e1}{size}}
+\item 
+sf\+::\+Vector2f \mbox{\hyperlink{class_object_ab1f131a494c3319025c912fe976f2d78}{vel}}
+\item 
+sf\+::\+Rectangle\+Shape \mbox{\hyperlink{class_object_a548162681111448527fb64c36dfca06f}{sprite}}
+\item 
+float \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_object_a8f0f94d918a9895dcf9e72d14b79a6b4}{background\+Speed}} = nullptr
+\item 
+float \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_object_a46bf1c4a8a577572b7ac2778adfaf007}{background\+Dist}} = nullptr
+\item 
+short \mbox{\hyperlink{class_object_a2df5cec533ee6b18541c71c1f769198c}{frame\+Count}} = 0
+\item 
+short \mbox{\hyperlink{class_object_af5a56a268fa9c6814152d873a327cac6}{current\+Frame}} = 0
+\item 
+short \mbox{\hyperlink{class_object_aeb8a6d27b5c2c4af7c4c1f881573ef26}{image}}
+\item 
+sf\+::\+Vector2i \mbox{\hyperlink{class_object_af4e5d4eecdbd608ac9cd7426c848702c}{tex\+Size}}
+\item 
+sf\+::\+Vector2i \mbox{\hyperlink{class_object_ad8f0e11e70143864d9a1818b8466e277}{tex\+Offset}}
+\item 
+bool \mbox{\hyperlink{class_object_a784bb9c37f3b8e1ea3df0d724304564e}{vertical\+Animation}} = true
+\item 
+bool \mbox{\hyperlink{class_object_ac95f2021b4721dc0ded2ef6d7e3c1629}{an\+Done}} = false
+\item 
+bool \mbox{\hyperlink{class_object_a5dd0a101abd877b8d7311c10cab4c145}{tex\+Init}} = false
+\item 
+const float \mbox{\hyperlink{class_object_abdeb829aa5527c6fbd305b34656d0a60}{PI}} = 3.\+14159f
+\item 
+const float \mbox{\hyperlink{class_object_a88b4b41a26ec768990bd986841d5ceb3}{TO\+\_\+\+RAD}} = \mbox{\hyperlink{class_object_abdeb829aa5527c6fbd305b34656d0a60}{PI}} / 180.f
+\item 
+const float \mbox{\hyperlink{class_object_a104cf7c3f341a71271ab52082b92b3ed}{TO\+\_\+\+DEG}} = 180.f / \mbox{\hyperlink{class_object_abdeb829aa5527c6fbd305b34656d0a60}{PI}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Protected Attributes inherited from \mbox{\hyperlink{class_object}{Object}}}
+\begin{DoxyCompactItemize}
+\item 
+static sf\+::\+View \mbox{\hyperlink{class_object_a0f880ebab8bf938fff7680a9e80ae693}{view}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{_entities_2_player_2_player_8h_source_l00005}{5}} of file \mbox{\hyperlink{_entities_2_player_2_player_8h_source}{Player.\+h}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_player_a6db3924655d37340586c9c4d4fefae8e}\index{Player@{Player}!Player@{Player}}
+\index{Player@{Player}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{Player()}{Player()}}
+{\footnotesize\ttfamily \label{class_player_a6db3924655d37340586c9c4d4fefae8e} 
+Player\+::\+Player (\begin{DoxyParamCaption}\item[{short}]{country}{, }\item[{bool}]{player\+One}{, }\item[{float \texorpdfstring{$\ast$}{*}}]{bg\+Speed}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_object_2_player_2_player_8cpp_source_l00004}{4}} of file \mbox{\hyperlink{_object_2_player_2_player_8cpp_source}{Player.\+cpp}}.
+
+Here is the call graph for this function\+:
+% FIG 2
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_player_afedf037af6d031163d4c00f4cb773d56}\index{Player@{Player}!getHealth@{getHealth}}
+\index{getHealth@{getHealth}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{getHealth()}{getHealth()}}
+{\footnotesize\ttfamily \label{class_player_afedf037af6d031163d4c00f4cb773d56} 
+short Player\+::get\+Health (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \mbox{\hyperlink{_object_2_player_2_player_8cpp_source_l00467}{467}} of file \mbox{\hyperlink{_object_2_player_2_player_8cpp_source}{Player.\+cpp}}.
+
+Here is the caller graph for this function\+:
+% FIG 3
+\Hypertarget{class_player_ae599929196a707b86e6714748ca217cb}\index{Player@{Player}!getSpecialCharge@{getSpecialCharge}}
+\index{getSpecialCharge@{getSpecialCharge}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{getSpecialCharge()}{getSpecialCharge()}}
+{\footnotesize\ttfamily \label{class_player_ae599929196a707b86e6714748ca217cb} 
+short Player\+::get\+Special\+Charge (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \mbox{\hyperlink{_object_2_player_2_player_8cpp_source_l00473}{473}} of file \mbox{\hyperlink{_object_2_player_2_player_8cpp_source}{Player.\+cpp}}.
+
+\Hypertarget{class_player_ab99b9a3c0f91c6926249cb9ad41aafc5}\index{Player@{Player}!getTime@{getTime}}
+\index{getTime@{getTime}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{getTime()}{getTime()}}
+{\footnotesize\ttfamily \label{class_player_ab99b9a3c0f91c6926249cb9ad41aafc5} 
+bool Player\+::get\+Time (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \mbox{\hyperlink{_object_2_player_2_player_8cpp_source_l00519}{519}} of file \mbox{\hyperlink{_object_2_player_2_player_8cpp_source}{Player.\+cpp}}.
+
+\Hypertarget{class_player_a8ed6b92863010ce9b748c0ed8f308f2c}\index{Player@{Player}!move@{move}}
+\index{move@{move}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{move()}{move()}}
+{\footnotesize\ttfamily \label{class_player_a8ed6b92863010ce9b748c0ed8f308f2c} 
+void Player\+::move (\begin{DoxyParamCaption}\item[{sf\+::\+Vector2f}]{win\+Size}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{class_object_a6077158280beade62fcb3e72f5946402}{Object}}.
+
+
+
+Definition at line \mbox{\hyperlink{_object_2_player_2_player_8cpp_source_l00480}{480}} of file \mbox{\hyperlink{_object_2_player_2_player_8cpp_source}{Player.\+cpp}}.
+
+Here is the call graph for this function\+:
+% FIG 4
+Here is the caller graph for this function\+:
+% FIG 5
+\Hypertarget{class_player_a6bb715335c5bdd61640bf79938fd4de7}\index{Player@{Player}!setHealth@{setHealth}}
+\index{setHealth@{setHealth}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{setHealth()}{setHealth()}}
+{\footnotesize\ttfamily \label{class_player_a6bb715335c5bdd61640bf79938fd4de7} 
+void Player\+::set\+Health (\begin{DoxyParamCaption}\item[{short}]{new\+Health}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_object_2_player_2_player_8cpp_source_l00461}{461}} of file \mbox{\hyperlink{_object_2_player_2_player_8cpp_source}{Player.\+cpp}}.
+
+Here is the caller graph for this function\+:
+% FIG 6
+\Hypertarget{class_player_a058891f5cfd2dc489f6af41fbc373a37}\index{Player@{Player}!shoot@{shoot}}
+\index{shoot@{shoot}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{shoot()}{shoot()}}
+{\footnotesize\ttfamily \label{class_player_a058891f5cfd2dc489f6af41fbc373a37} 
+void Player\+::shoot (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{class_object}{Object}} \texorpdfstring{$\ast$}{*} $>$ \&}]{objects}{}\end{DoxyParamCaption})}
+
+
+
+takes a pointer from \doxylink{class_level}{Level}\textquotesingle{}s ojects so it can add Projectiles to it. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em objects} & Main object vector.\\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{_object_2_player_2_player_8cpp_source_l00019}{19}} of file \mbox{\hyperlink{_object_2_player_2_player_8cpp_source}{Player.\+cpp}}.
+
+\Hypertarget{class_player_ac083b202a91b3330324ad2906e17bf52}\index{Player@{Player}!special@{special}}
+\index{special@{special}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{special()}{special()}}
+{\footnotesize\ttfamily \label{class_player_ac083b202a91b3330324ad2906e17bf52} 
+void Player\+::special (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{class_object}{Object}} \texorpdfstring{$\ast$}{*} $>$ \&}]{objects}{, }\item[{sf\+::\+Vector2f}]{win\+Size}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_object_2_player_2_player_8cpp_source_l00258}{258}} of file \mbox{\hyperlink{_object_2_player_2_player_8cpp_source}{Player.\+cpp}}.
+
+\Hypertarget{class_player_ad3db15013054f56d7bd5697526a65078}\index{Player@{Player}!update@{update}}
+\index{update@{update}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily \label{class_player_ad3db15013054f56d7bd5697526a65078} 
+void Player\+::update (\begin{DoxyParamCaption}\item[{sf\+::\+Vector2f}]{win\+Size}{, }\item[{std\+::vector$<$ \mbox{\hyperlink{class_object}{Object}} \texorpdfstring{$\ast$}{*} $>$ \texorpdfstring{$\ast$}{*}}]{objects}{, }\item[{bool}]{time}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Updates the player. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em win\+Size} & \\
+\hline
+{\em objects} & Main object vector.\\
+\hline
+{\em time} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{class_object_a2036e826245b9b0b8e9f0072730c33d5}{Object}}.
+
+
+
+Definition at line \mbox{\hyperlink{_object_2_player_2_player_8cpp_source_l00362}{362}} of file \mbox{\hyperlink{_object_2_player_2_player_8cpp_source}{Player.\+cpp}}.
+
+Here is the call graph for this function\+:
+% FIG 7
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Entities/\+Player/\mbox{\hyperlink{_entities_2_player_2_player_8h}{Player.\+h}}\item 
+src/\+Object/\+Player/\mbox{\hyperlink{_object_2_player_2_player_8h}{Player.\+h}}\item 
+src/\+Object/\+Player/\mbox{\hyperlink{_object_2_player_2_player_8cpp}{Player.\+cpp}}\end{DoxyCompactItemize}

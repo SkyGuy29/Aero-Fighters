@@ -1,0 +1,72 @@
+\doxysection{Player.\+h}
+\hypertarget{_object_2_player_2_player_8h_source}{}\label{_object_2_player_2_player_8h_source}\index{src/Object/Player/Player.h@{src/Object/Player/Player.h}}
+\mbox{\hyperlink{_object_2_player_2_player_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_object_2_player_2_player_8h_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{_object_2_player_2_player_8h_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_object_2_player_2_player_8h_source_l00003}00003\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{\Hypertarget{_object_2_player_2_player_8h_source_l00004}00004\ \textcolor{preprocessor}{\#include\ <cmath>}}
+\DoxyCodeLine{\Hypertarget{_object_2_player_2_player_8h_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{_object_2_player_2_player_8h_source_l00006}00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_projectile_8h}{../Projectile/Projectile.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_object_2_player_2_player_8h_source_l00007}00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_collectable_8h}{../Collectable/Collectable.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_object_2_player_2_player_8h_source_l00008}00008\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_explosion_8h}{../Projectile/Explosion/Explosion.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_object_2_player_2_player_8h_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{_object_2_player_2_player_8h_source_l00010}00010\ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_projectile_a430582d90d0fbb5e0f4d1978d78c0248}{ProjectileType}}\ =\ \mbox{\hyperlink{class_projectile_a430582d90d0fbb5e0f4d1978d78c0248}{Projectile::ProjectileType}};}
+\DoxyCodeLine{\Hypertarget{_object_2_player_2_player_8h_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{_object_2_player_2_player_8h_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{_object_2_player_2_player_8h_source_l00013}00013\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_player}{Player}}\ final\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_object}{Object}}}
+\DoxyCodeLine{\Hypertarget{_object_2_player_2_player_8h_source_l00014}00014\ \{}
+\DoxyCodeLine{\Hypertarget{_object_2_player_2_player_8h_source_l00015}00015\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_object_2_player_2_player_8h_source_l00016}00016\ \ \ \ \ \textcolor{comment}{//\ Con}}
+\DoxyCodeLine{\Hypertarget{_object_2_player_2_player_8h_source_l00017}00017\ \ \ \ \ \mbox{\hyperlink{class_player_a6db3924655d37340586c9c4d4fefae8e}{Player}}(\textcolor{keywordtype}{short}\ country,\ \textcolor{keywordtype}{bool}\ playerOne,\ \textcolor{keywordtype}{float}*\ bgSpeed);}
+\DoxyCodeLine{\Hypertarget{_object_2_player_2_player_8h_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{_object_2_player_2_player_8h_source_l00019}00019\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_player_a058891f5cfd2dc489f6af41fbc373a37}{shoot}}(std::vector<Object*>\&\ objects);}
+\DoxyCodeLine{\Hypertarget{_object_2_player_2_player_8h_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{_object_2_player_2_player_8h_source_l00021}00021\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_player_ac083b202a91b3330324ad2906e17bf52}{special}}(std::vector<Object*>\&\ objects,\ sf::Vector2f\ winSize);}
+\DoxyCodeLine{\Hypertarget{_object_2_player_2_player_8h_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{_object_2_player_2_player_8h_source_l00023}00023\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_player_ad3db15013054f56d7bd5697526a65078}{update}}(sf::Vector2f\ winSize,\ std::vector<Object*>*\ objects,\ }
+\DoxyCodeLine{\Hypertarget{_object_2_player_2_player_8h_source_l00024}00024\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ time)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{\Hypertarget{_object_2_player_2_player_8h_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{_object_2_player_2_player_8h_source_l00026}00026\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_player_a8ed6b92863010ce9b748c0ed8f308f2c}{move}}(sf::Vector2f\ winSize)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{\Hypertarget{_object_2_player_2_player_8h_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{_object_2_player_2_player_8h_source_l00028}00028\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_player_ab99b9a3c0f91c6926249cb9ad41aafc5}{getTime}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{_object_2_player_2_player_8h_source_l00029}00029\ \ \ \ \ \textcolor{keywordtype}{short}\ \mbox{\hyperlink{class_player_afedf037af6d031163d4c00f4cb773d56}{getHealth}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{_object_2_player_2_player_8h_source_l00030}00030\ \ \ \ \ \textcolor{keywordtype}{short}\ \mbox{\hyperlink{class_player_ae599929196a707b86e6714748ca217cb}{getSpecialCharge}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{_object_2_player_2_player_8h_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{_object_2_player_2_player_8h_source_l00032}00032\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_player_a6bb715335c5bdd61640bf79938fd4de7}{setHealth}}(\textcolor{keywordtype}{short});}
+\DoxyCodeLine{\Hypertarget{_object_2_player_2_player_8h_source_l00033}00033\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{_object_2_player_2_player_8h_source_l00034}00034\ \ \ \ \ \textcolor{keywordtype}{void}\ draw(sf::RenderTarget\&\ target,\ sf::RenderStates\ states)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{\Hypertarget{_object_2_player_2_player_8h_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{_object_2_player_2_player_8h_source_l00036}00036\ \ \ \ \ \mbox{\hyperlink{class_projectile}{Projectile}}*\ movingProjectile\ =\ \textcolor{keyword}{nullptr};\ \textcolor{comment}{//Tracks\ where\ the\ laser\ that}}
+\DoxyCodeLine{\Hypertarget{_object_2_player_2_player_8h_source_l00037}00037\ \ \ \ \ \textcolor{comment}{//follows\ the\ player\ for\ Japan\ 1's\ bomb\ is.}}
+\DoxyCodeLine{\Hypertarget{_object_2_player_2_player_8h_source_l00038}00038\ \ \ \ \ \textcolor{keywordtype}{bool}\ isPlayerTwo;}
+\DoxyCodeLine{\Hypertarget{_object_2_player_2_player_8h_source_l00039}00039\ \ \ \ \ \textcolor{keywordtype}{short}\ timerDeath\ =\ 0,\ country\ =\ -\/1,\ specialCharge\ =\ 2,\ powerLevel\ =\ 0,}
+\DoxyCodeLine{\Hypertarget{_object_2_player_2_player_8h_source_l00040}00040\ \ \ \ \ \ \ \ \ invincibility\ =\ 0,\ sideAnimation\ =\ 0,\ cooldownSecondary\ =\ 0,}
+\DoxyCodeLine{\Hypertarget{_object_2_player_2_player_8h_source_l00041}00041\ \ \ \ \ \ \ \ \ cooldownTime\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_object_2_player_2_player_8h_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{_object_2_player_2_player_8h_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{_object_2_player_2_player_8h_source_l00044}00044\ \ \ \ \ \textcolor{keyword}{struct\ }ProjectileData}
+\DoxyCodeLine{\Hypertarget{_object_2_player_2_player_8h_source_l00045}00045\ \ \ \ \ \{\ \ \ }
+\DoxyCodeLine{\Hypertarget{_object_2_player_2_player_8h_source_l00046}00046\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ position\ offset\ the\ projectile\ should\ be\ placed\ at}}
+\DoxyCodeLine{\Hypertarget{_object_2_player_2_player_8h_source_l00047}00047\ \ \ \ \ \ \ \ \ sf::Vector2f\ pos;}
+\DoxyCodeLine{\Hypertarget{_object_2_player_2_player_8h_source_l00048}00048\ }
+\DoxyCodeLine{\Hypertarget{_object_2_player_2_player_8h_source_l00049}00049\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ Velocity\ the\ projectile\ should\ be\ placed\ with}}
+\DoxyCodeLine{\Hypertarget{_object_2_player_2_player_8h_source_l00050}00050\ \ \ \ \ \ \ \ \ sf::Vector2f\ vel;}
+\DoxyCodeLine{\Hypertarget{_object_2_player_2_player_8h_source_l00051}00051\ }
+\DoxyCodeLine{\Hypertarget{_object_2_player_2_player_8h_source_l00052}00052\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ number\ of\ this\ projectile\ to\ place}}
+\DoxyCodeLine{\Hypertarget{_object_2_player_2_player_8h_source_l00053}00053\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ count;}
+\DoxyCodeLine{\Hypertarget{_object_2_player_2_player_8h_source_l00054}00054\ }
+\DoxyCodeLine{\Hypertarget{_object_2_player_2_player_8h_source_l00055}00055\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ type\ of\ projectile\ to\ place}}
+\DoxyCodeLine{\Hypertarget{_object_2_player_2_player_8h_source_l00056}00056\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_projectile_a430582d90d0fbb5e0f4d1978d78c0248}{ProjectileType}}\ type;}
+\DoxyCodeLine{\Hypertarget{_object_2_player_2_player_8h_source_l00057}00057\ }
+\DoxyCodeLine{\Hypertarget{_object_2_player_2_player_8h_source_l00058}00058\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ projectiles\ cooldown}}
+\DoxyCodeLine{\Hypertarget{_object_2_player_2_player_8h_source_l00059}00059\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{short}\ cooldown;}
+\DoxyCodeLine{\Hypertarget{_object_2_player_2_player_8h_source_l00060}00060\ }
+\DoxyCodeLine{\Hypertarget{_object_2_player_2_player_8h_source_l00061}00061\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ sprite\ used\ for\ the\ }}
+\DoxyCodeLine{\Hypertarget{_object_2_player_2_player_8h_source_l00062}00062\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{short}\ spriteNum;}
+\DoxyCodeLine{\Hypertarget{_object_2_player_2_player_8h_source_l00063}00063\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{_object_2_player_2_player_8h_source_l00064}00064\ }
+\DoxyCodeLine{\Hypertarget{_object_2_player_2_player_8h_source_l00065}00065\ \};}
+\DoxyCodeLine{\Hypertarget{_object_2_player_2_player_8h_source_l00066}00066\ }
+
+\end{DoxyCode}

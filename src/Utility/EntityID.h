@@ -16,5 +16,18 @@ enum class EntityID : unsigned char
 	TILE_CONE_ENGLAND,
 	TILE_HOUSE_ENGLAND,
 	TILE_GATE_ENGLAND,
-	TILE_HANGAR_ENGLAND
+	TILE_HANGAR_ENGLAND,
+
+	// DO NOT USE
+	// MUST BE AT THE END OF THE ENUM
+	// Used as a compile-tile constant for entity related tables.
+	COUNT
+};
+
+struct EntityTypeCounts
+{
+	// May not construct objects
+	EntityTypeCounts() = delete;
+
+	static constexpr unsigned char TOTAL_CHILD_HOLDERS = 1;
 };

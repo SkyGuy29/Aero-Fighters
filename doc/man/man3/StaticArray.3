@@ -1,0 +1,87 @@
+.TH "StaticArray< RAW_TYPE, LENGTH >" 3 "Version v0.1" "Aero Fighters" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+StaticArray< RAW_TYPE, LENGTH >
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <StaticArray\&.h>\fP
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBReturnData\fP"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "constexpr \fBStaticArray\fP (const RAW_TYPE(&rawData)[LENGTH])"
+.br
+.ti -1c
+.RI "const \fBReturnData\fP \fBat\fP (unsigned char index) const"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<typename RAW_TYPE, unsigned char LENGTH>
+.br
+class StaticArray< RAW_TYPE, LENGTH >"Holds static data tables\&. The array can ONLY be initialized as a compile-time constant, placing it in the programs binary during compilation\&.
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIRAW_TYPE\fP The type that is stored internally\&. 
+.br
+\fILENGTH\fP The total accessible elements\&.
+.RE
+.PP
+\fBWarning\fP
+.RS 4
+Can only be initialized as a compile-time constant\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB15\fP of file \fBStaticArray\&.h\fP\&.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<typename RAW_TYPE , unsigned char LENGTH> \fBStaticArray\fP< RAW_TYPE, LENGTH >\fB::StaticArray\fP (const RAW_TYPE(&) rawData[LENGTH])\fR [inline]\fP, \fR [constexpr]\fP"
+Constexpr constructor for constructing as a compile-time constant
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIrawData\fP A const reference to the internal object array\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB48\fP of file \fBStaticArray\&.h\fP\&.
+.SH "Member Function Documentation"
+.PP 
+.SS "template<typename RAW_TYPE , unsigned char LENGTH> const \fBReturnData\fP \fBStaticArray\fP< RAW_TYPE, LENGTH >::at (unsigned char index) const\fR [inline]\fP"
+Array accessor method for retrieving a specified element\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIindex\fP The element being accessed\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+\fBReturnData\fP holding the element\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB58\fP of file \fBStaticArray\&.h\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Aero Fighters from the source code\&.

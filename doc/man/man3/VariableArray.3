@@ -1,0 +1,94 @@
+.TH "VariableArray< RAW_TYPE, TOTAL_ELEMENTS, TOTAL_UNIQUE_OBJECTS >" 3 "Version v0.1" "Aero Fighters" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+VariableArray< RAW_TYPE, TOTAL_ELEMENTS, TOTAL_UNIQUE_OBJECTS >
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <VariableArray\&.h>\fP
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBReturnData\fP"
+.br
+.ti -1c
+.RI "struct \fBSpacingElement\fP"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "constexpr \fBVariableArray\fP (const RAW_TYPE(&rawData)[TOTAL_UNIQUE_OBJECTS], const \fBSpacingElement\fP(&spacings)[TOTAL_ELEMENTS])"
+.br
+.ti -1c
+.RI "const \fBReturnData\fP \fBat\fP (unsigned char index) const"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<typename RAW_TYPE, unsigned char TOTAL_ELEMENTS, unsigned char TOTAL_UNIQUE_OBJECTS>
+.br
+class VariableArray< RAW_TYPE, TOTAL_ELEMENTS, TOTAL_UNIQUE_OBJECTS >"Holds static data tables where individual elements can have multiple data members, The array can ONLY be initialized as a compile-time constant, placing it in the programs binary during compilation\&.
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIRAW_TYPE\fP The type that is stored internally\&. 
+.br
+\fITOTAL_ELEMENTS\fP The total accessible elements\&. 
+.br
+\fITOTAL_UNIQUE_OBJECTS\fP The total objects needed to be stored under raw data, this includes all sub-elements that make up the array\&.
+.RE
+.PP
+\fBWarning\fP
+.RS 4
+Can only be initialized as a compile-time constant\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB19\fP of file \fBVariableArray\&.h\fP\&.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<typename RAW_TYPE , unsigned char TOTAL_ELEMENTS, unsigned char TOTAL_UNIQUE_OBJECTS> \fBVariableArray\fP< RAW_TYPE, TOTAL_ELEMENTS, TOTAL_UNIQUE_OBJECTS >\fB::VariableArray\fP (const RAW_TYPE(&) rawData[TOTAL_UNIQUE_OBJECTS], const \fBSpacingElement\fP(&) spacings[TOTAL_ELEMENTS])\fR [inline]\fP, \fR [constexpr]\fP"
+Constexpr constructor for constructing as a compile-time constant
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIrawData\fP A reference to the internal object array\&. 
+.br
+\fIspacings\fP A reference to the internal spacing array\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB81\fP of file \fBVariableArray\&.h\fP\&.
+.SH "Member Function Documentation"
+.PP 
+.SS "template<typename RAW_TYPE , unsigned char TOTAL_ELEMENTS, unsigned char TOTAL_UNIQUE_OBJECTS> const \fBReturnData\fP \fBVariableArray\fP< RAW_TYPE, TOTAL_ELEMENTS, TOTAL_UNIQUE_OBJECTS >::at (unsigned char index) const\fR [inline]\fP"
+Array accessor method for retrieving sub-array location & bounds information
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIindex\fP The element being accessed\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+\fBReturnData\fP holding sub-array information\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB93\fP of file \fBVariableArray\&.h\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Aero Fighters from the source code\&.

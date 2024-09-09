@@ -1,0 +1,178 @@
+\doxysection{Main.\+cpp}
+\hypertarget{_main_8cpp_source}{}\label{_main_8cpp_source}\index{src/Main.cpp@{src/Main.cpp}}
+\mbox{\hyperlink{_main_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00001}00001\ \textcolor{comment}{//\ the\ fun\ begins!}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00003}00003\ \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00004}00004\ \textcolor{comment}{\ \ \ \ Start\ here,\ then\ Game\ takes\ over.}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00005}00005\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00006}00006\ \textcolor{comment}{\ \ \ \ Game\ runs\ the\ main\ loop\ at\ 30\ updates\ and\ frames\ a\ second\ (until\ the\ original\ is\ found).}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00007}00007\ \textcolor{comment}{\ \ \ \ Game\ also\ handles\ the\ window\ scaling\ and\ events.}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00008}00008\ \textcolor{comment}{\ \ \ \ Game\ updates\ and\ draws\ level\ every\ loop.}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00009}00009\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00010}00010\ \textcolor{comment}{\ \ \ \ winSize\ is\ the\ resolution\ of\ the\ original\ game.\ It\ is\ NOT\ the\ size\ of\ the\ window.}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00011}00011\ \textcolor{comment}{\ \ \ \ All\ window\ scaling\ is\ handled\ elsewhere.\ No\ scaling\ math\ needed.}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00012}00012\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00013}00013\ \textcolor{comment}{\ \ \ \ Level\ loads\ the\ enemy\ placement\ from\ a\ file\ and\ controls\ the\ characters.}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00014}00014\ \textcolor{comment}{\ \ \ \ Level\ handles\ player\ input\ (keyboard\ and\ controller).\ Maybe\ could\ be\ moved\ back\ to\ Game.}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00015}00015\ \textcolor{comment}{\ \ \ \ Level\ updates\ the\ background,\ projectiles,\ enemies,\ players,\ and\ collectables.}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00016}00016\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00017}00017\ \textcolor{comment}{\ \ \ \ Player\ can\ shoot\ by\ passing\ a\ pointer\ of\ the\ playerProjs\ vector,\ and\ pushing\ a\ projectile\ to\ it.}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00018}00018\ \textcolor{comment}{\ \ \ \ Player\ is\ moved\ by\ level's\ getInput\ method.\ (WASD,\ IJKL)\ OR\ (Left\ Stick)}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00019}00019\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00020}00020\ \textcolor{comment}{\ \ \ \ Projectiles\ are\ created\ at\ the\ position\ of\ an\ enemy\ or\ player\ and\ stored\ in\ a\ vector\ in\ Level.}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00021}00021\ \textcolor{comment}{\ \ \ \ Projectiles\ just\ fly\ in\ a\ straight\ line\ at\ their\ angle.\ Other\ types\ will\ be\ added\ later.}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00022}00022\ \textcolor{comment}{*/}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00024}00024\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_game_8h}{Game/Game.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00026}\mbox{\hyperlink{_main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{00026}}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{_main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}}()}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00027}00027\ \{}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00028}00028\ \ \ \ \ \mbox{\hyperlink{class_game}{Game}}\ game;}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00029}00029\ \ \ \ \ game.\mbox{\hyperlink{class_game_a1ab78f5ed0d5ea879157357cf2fb2afa}{run}}();\ }
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00030}00030\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;\ }
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00032}00032\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00033}00033\ \textcolor{comment}{\ \ \ \ Ben,\ Matthew,\ Gabe,\ I\ want\ to\ say\ a\ huge\ thank\ you\ for\ the\ past\ three}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00034}00034\ \textcolor{comment}{\ \ \ \ months\ of\ work\ you\ have\ put\ in.\ I\ think\ you\ guys\ have\ probably\ seen\ that}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00035}00035\ \textcolor{comment}{\ \ \ \ I\ was\ not\ super\ hopeful\ about\ this\ project\ by\ any\ means,\ but\ truly\ despite}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00036}00036\ \textcolor{comment}{\ \ \ \ the\ challenges\ I\ knew\ we\ would\ face\ you\ all\ three\ took\ it\ on\ head\ first.}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00037}00037\ \textcolor{comment}{\ \ \ \ None\ of\ us\ were\ perfect,\ and\ I\ think\ this\ project\ stands\ as\ a\ testament\ to}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00038}00038\ \textcolor{comment}{\ \ \ \ that,\ but\ it\ also\ shows\ just\ how\ far\ hard\ work\ can\ get\ you.\ You\ gave\ it\ your}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00039}00039\ \textcolor{comment}{\ \ \ \ all\ to\ a\ project\ I\ thought\ was\ doomed\ from\ the\ start,\ and\ showed\ me\ so\ much}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00040}00040\ \textcolor{comment}{\ \ \ \ hope\ and\ passion\ where\ I\ fell\ short.}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00041}00041\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00042}00042\ \textcolor{comment}{\ \ \ \ Matthew,\ man\ you\ are\ so\ committed.\ You\ have\ been\ probably\ the\ hardest\ worker}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00043}00043\ \textcolor{comment}{\ \ \ \ I\ have\ ever\ met.\ Every\ day,\ besides\ the\ Inspirobot\ incident,\ you\ came\ in\ and}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00044}00044\ \textcolor{comment}{\ \ \ \ got\ started\ immediatly.\ I\ really\ appreciate\ all\ the\ effort\ you\ put\ in\ here,}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00045}00045\ \textcolor{comment}{\ \ \ \ seriously\ you\ have\ made\ such\ a\ massive\ impact\ on\ me\ with\ just\ how\ hard\ you}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00046}00046\ \textcolor{comment}{\ \ \ \ worked\ (and\ all\ without\ complaining!).\ You\ really\ are\ unstoppable.}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00047}00047\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00048}00048\ \textcolor{comment}{\ \ \ \ Gabe,\ seeing\ you\ both\ shine\ on\ stage\ and\ on\ this\ project\ has\ been\ really}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00049}00049\ \textcolor{comment}{\ \ \ \ awe-\/inspiring.\ You\ are\ really\ talented,\ and\ I'm\ so\ glad\ I\ was\ able\ to\ work}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00050}00050\ \textcolor{comment}{\ \ \ \ with\ you\ on\ this\ project.\ I'm\ sure\ I\ can\ speak\ for\ all\ of\ us\ when\ I\ say\ that}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00051}00051\ \textcolor{comment}{\ \ \ \ our\ group\ was\ made\ so\ much\ better\ with\ you\ here.\ Thank\ you\ so\ much\ for\ what}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00052}00052\ \textcolor{comment}{\ \ \ \ you\ contributed\ here,\ I\ hope\ that\ whatever\ path\ you\ take\ in\ your\ life,\ CS\ or}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00053}00053\ \textcolor{comment}{\ \ \ \ not,\ will\ take\ you\ to\ success.}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00054}00054\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00055}00055\ \textcolor{comment}{\ \ \ \ Ben,\ I\ think\ I've\ already\ told\ you\ this,\ but\ the\ one\ thing\ I\ wanted\ more\ than}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00056}00056\ \textcolor{comment}{\ \ \ \ anything\ else\ was\ to\ work\ with\ you\ on\ this\ project.\ You\ are\ a\ great\ friend,}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00057}00057\ \textcolor{comment}{\ \ \ \ and\ an\ even\ better\ programmer.\ I\ hope\ you\ learned\ a\ lot\ from\ working\ on\ this,}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00058}00058\ \textcolor{comment}{\ \ \ \ because\ for\ a\ long\ time\ I\ was\ pretty\ convinced\ that\ you\ already\ knew\ everything.}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00059}00059\ \textcolor{comment}{\ \ \ \ I\ know\ I\ learned\ so\ much\ from\ you\ already,\ and\ we\ still\ have\ another\ year\ to\ go.}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00060}00060\ \textcolor{comment}{\ \ \ \ I'm\ really\ excited\ to\ see\ where\ both\ of\ our\ futures\ lead\ us.\ Tanks\ so\ much\ for\ }}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00061}00061\ \textcolor{comment}{\ \ \ \ the\ wonderful\ memories\ we\ made\ together\ during\ these\ months.}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00062}00062\ \textcolor{comment}{\ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00063}00063\ \textcolor{comment}{\ \ \ \ Mr.\ Graham,\ if\ you\ are\ reading\ this,\ thank\ you\ for\ all\ of\ the\ advice\ you\ gave\ me}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00064}00064\ \textcolor{comment}{\ \ \ \ throughout\ this\ project.\ I\ still\ do\ not\ quite\ feel\ confident\ as\ a\ leader,\ but\ you}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00065}00065\ \textcolor{comment}{\ \ \ \ saw\ the\ best\ in\ me\ and\ gave\ me\ encouragement\ when\ I\ needed\ it\ most.\ I\ probably}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00066}00066\ \textcolor{comment}{\ \ \ \ should\ have\ paid\ more\ attention\ to\ the\ nudges\ you\ gave\ me\ along\ the\ way,\ but}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00067}00067\ \textcolor{comment}{\ \ \ \ I\ think\ somehow\ we\ made\ it\ almost\ work\ in\ the\ end.}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00068}00068\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00069}00069\ \textcolor{comment}{\ \ \ \ In\ closing,\ I\ just\ want\ to\ say\ one\ last\ thank\ you\ to\ all\ of\ you.\ It\ means\ the}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00070}00070\ \textcolor{comment}{\ \ \ \ world\ to\ me\ that\ you\ guys\ wanted\ me\ to\ lead\ this\ project,\ and\ I\ hope\ I\ was\ at}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00071}00071\ \textcolor{comment}{\ \ \ \ least\ somewhat\ able\ to\ live\ up\ to\ the\ claims\ I\ made\ in\ the\ beginning.}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00072}00072\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00073}00073\ \textcolor{comment}{\ \ \ \ Sincerely,}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00074}00074\ \textcolor{comment}{\ \ \ \ \ \ \ \ -\/Christian.}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00075}00075\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00076}00076\ \}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00077}00077\ }
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00078}00078\ \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00079}00079\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \_\_\_\ \ \ \_\_\_\ \ \ \_\_\_}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00080}00080\ \textcolor{comment}{\ \ \ \ \ \ \ \ /\ \ \ \(\backslash\)\ /\ \ \ \(\backslash\)\ /\ \ \ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00081}00081\ \textcolor{comment}{\ \ \ /\(\backslash\)/\(\backslash\)|\ \ |\ \ |\ \ |\ \ |\ \ |\ \ |}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00082}00082\ \textcolor{comment}{\ \ ('w'\ |\ \ |\ \ \ \ \ |\ \ |\ \ |\ \ |\_\_}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00083}00083\ \textcolor{comment}{\ \ \ \(\backslash\)\_\_\_\_\_/\ \(\backslash\)\_\_\_/\ \(\backslash\)\_\_\_/\ \(\backslash\)\_\_\_\_)}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00084}00084\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00085}00085\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ Inch\ Cat}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00086}00086\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00087}00087\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \_\_\_\ \ \ \_\_\_\ \ \ \_\_\_}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00088}00088\ \textcolor{comment}{\ \ \ \ \ \ \ \ /\ \ \ \(\backslash\)\ /\ \ \ \(\backslash\)\ /\ \ \ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00089}00089\ \textcolor{comment}{\ \ \ /\(\backslash\)/\(\backslash\)|\ \ |\ \ |\ \ |\ \ |\ \ |\ \ |}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00090}00090\ \textcolor{comment}{\ \ ('w'\ |\ \ |\ \ \ \ \ |\ \ |\ \ |\ \ |\_\_}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00091}00091\ \textcolor{comment}{\ \ \ \(\backslash\)\_\_\_\_\_/\ \(\backslash\)\_\_\_/\ \(\backslash\)\_\_\_/\ \(\backslash\)\_\_\_\_)}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00092}00092\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00093}00093\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ Inch\ Cat}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00094}00094\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00095}00095\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \_\_\_\ \ \ \_\_\_\ \ \ \_\_\_}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00096}00096\ \textcolor{comment}{\ \ \ \ \ \ \ \ /\ \ \ \(\backslash\)\ /\ \ \ \(\backslash\)\ /\ \ \ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00097}00097\ \textcolor{comment}{\ \ \ /\(\backslash\)/\(\backslash\)|\ \ |\ \ |\ \ |\ \ |\ \ |\ \ |}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00098}00098\ \textcolor{comment}{\ \ ('w'\ |\ \ |\ \ \ \ \ |\ \ |\ \ |\ \ |\_\_}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00099}00099\ \textcolor{comment}{\ \ \ \(\backslash\)\_\_\_\_\_/\ \(\backslash\)\_\_\_/\ \(\backslash\)\_\_\_/\ \(\backslash\)\_\_\_\_)}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00100}00100\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00101}00101\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ Inch\ Cat}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00102}00102\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00103}00103\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \_\_\_\ \ \ \_\_\_\ \ \ \_\_\_}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00104}00104\ \textcolor{comment}{\ \ \ \ \ \ \ \ /\ \ \ \(\backslash\)\ /\ \ \ \(\backslash\)\ /\ \ \ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00105}00105\ \textcolor{comment}{\ \ \ /\(\backslash\)/\(\backslash\)|\ \ |\ \ |\ \ |\ \ |\ \ |\ \ |}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00106}00106\ \textcolor{comment}{\ \ ('w'\ |\ \ |\ \ \ \ \ |\ \ |\ \ |\ \ |\_\_}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00107}00107\ \textcolor{comment}{\ \ \ \(\backslash\)\_\_\_\_\_/\ \(\backslash\)\_\_\_/\ \(\backslash\)\_\_\_/\ \(\backslash\)\_\_\_\_)}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00108}00108\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00109}00109\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ Inch\ Cat}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00110}00110\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00111}00111\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \_\_\_\ \ \ \_\_\_\ \ \ \_\_\_}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00112}00112\ \textcolor{comment}{\ \ \ \ \ \ \ \ /\ \ \ \(\backslash\)\ /\ \ \ \(\backslash\)\ /\ \ \ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00113}00113\ \textcolor{comment}{\ \ \ /\(\backslash\)/\(\backslash\)|\ \ |\ \ |\ \ |\ \ |\ \ |\ \ |}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00114}00114\ \textcolor{comment}{\ \ ('w'\ |\ \ |\ \ \ \ \ |\ \ |\ \ |\ \ |\_\_}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00115}00115\ \textcolor{comment}{\ \ \ \(\backslash\)\_\_\_\_\_/\ \(\backslash\)\_\_\_/\ \(\backslash\)\_\_\_/\ \(\backslash\)\_\_\_\_)}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00116}00116\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00117}00117\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ Inch\ Cat}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00118}00118\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00119}00119\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \_\_\_\ \ \ \_\_\_\ \ \ \_\_\_}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00120}00120\ \textcolor{comment}{\ \ \ \ \ \ \ \ /\ \ \ \(\backslash\)\ /\ \ \ \(\backslash\)\ /\ \ \ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00121}00121\ \textcolor{comment}{\ \ \ /\(\backslash\)/\(\backslash\)|\ \ |\ \ |\ \ |\ \ |\ \ |\ \ |}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00122}00122\ \textcolor{comment}{\ \ ('w'\ |\ \ |\ \ \ \ \ |\ \ |\ \ |\ \ |\_\_}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00123}00123\ \textcolor{comment}{\ \ \ \(\backslash\)\_\_\_\_\_/\ \(\backslash\)\_\_\_/\ \(\backslash\)\_\_\_/\ \(\backslash\)\_\_\_\_)}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00124}00124\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00125}00125\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ Inch\ Cat}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00126}00126\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00127}00127\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \_\_\_\ \ \ \_\_\_\ \ \ \_\_\_}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00128}00128\ \textcolor{comment}{\ \ \ \ \ \ \ \ /\ \ \ \(\backslash\)\ /\ \ \ \(\backslash\)\ /\ \ \ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00129}00129\ \textcolor{comment}{\ \ \ /\(\backslash\)/\(\backslash\)|\ \ |\ \ |\ \ |\ \ |\ \ |\ \ |}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00130}00130\ \textcolor{comment}{\ \ ('w'\ |\ \ |\ \ \ \ \ |\ \ |\ \ |\ \ |\_\_}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00131}00131\ \textcolor{comment}{\ \ \ \(\backslash\)\_\_\_\_\_/\ \(\backslash\)\_\_\_/\ \(\backslash\)\_\_\_/\ \(\backslash\)\_\_\_\_)}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00132}00132\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00133}00133\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ Inch\ Cat}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00134}00134\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00135}00135\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \_\_\_\ \ \ \_\_\_\ \ \ \_\_\_}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00136}00136\ \textcolor{comment}{\ \ \ \ \ \ \ \ /\ \ \ \(\backslash\)\ /\ \ \ \(\backslash\)\ /\ \ \ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00137}00137\ \textcolor{comment}{\ \ \ /\(\backslash\)/\(\backslash\)|\ \ |\ \ |\ \ |\ \ |\ \ |\ \ |}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00138}00138\ \textcolor{comment}{\ \ ('w'\ |\ \ |\ \ \ \ \ |\ \ |\ \ |\ \ |\_\_}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00139}00139\ \textcolor{comment}{\ \ \ \(\backslash\)\_\_\_\_\_/\ \(\backslash\)\_\_\_/\ \(\backslash\)\_\_\_/\ \(\backslash\)\_\_\_\_)}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00140}00140\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00141}00141\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ Inch\ Cat}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00142}00142\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00143}00143\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \_\_\_\ \ \ \_\_\_\ \ \ \_\_\_}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00144}00144\ \textcolor{comment}{\ \ \ \ \ \ \ \ /\ \ \ \(\backslash\)\ /\ \ \ \(\backslash\)\ /\ \ \ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00145}00145\ \textcolor{comment}{\ \ \ /\(\backslash\)/\(\backslash\)|\ \ |\ \ |\ \ |\ \ |\ \ |\ \ |}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00146}00146\ \textcolor{comment}{\ \ ('w'\ |\ \ |\ \ \ \ \ |\ \ |\ \ |\ \ |\_\_}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00147}00147\ \textcolor{comment}{\ \ \ \(\backslash\)\_\_\_\_\_/\ \(\backslash\)\_\_\_/\ \(\backslash\)\_\_\_/\ \(\backslash\)\_\_\_\_)}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00148}00148\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00149}00149\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ Inch\ Cat}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00150}00150\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00151}00151\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \_\_\_\ \ \ \_\_\_\ \ \ \_\_\_}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00152}00152\ \textcolor{comment}{\ \ \ \ \ \ \ \ /\ \ \ \(\backslash\)\ /\ \ \ \(\backslash\)\ /\ \ \ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00153}00153\ \textcolor{comment}{\ \ \ /\(\backslash\)/\(\backslash\)|\ \ |\ \ |\ \ |\ \ |\ \ |\ \ |}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00154}00154\ \textcolor{comment}{\ \ ('w'\ |\ \ |\ \ \ \ \ |\ \ |\ \ |\ \ |\_\_}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00155}00155\ \textcolor{comment}{\ \ \ \(\backslash\)\_\_\_\_\_/\ \(\backslash\)\_\_\_/\ \(\backslash\)\_\_\_/\ \(\backslash\)\_\_\_\_)}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00156}00156\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00157}00157\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ Inch\ Cat}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00158}00158\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \_\_\_\ \ \ \_\_\_\ \ \ \_\_\_}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00159}00159\ \textcolor{comment}{\ \ \ \ \ \ \ \ /\ \ \ \(\backslash\)\ /\ \ \ \(\backslash\)\ /\ \ \ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00160}00160\ \textcolor{comment}{\ \ \ /\(\backslash\)/\(\backslash\)|\ \ |\ \ |\ \ |\ \ |\ \ |\ \ |}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00161}00161\ \textcolor{comment}{\ \ ('w'\ |\ \ |\ \ \ \ \ |\ \ |\ \ |\ \ |\_\_}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00162}00162\ \textcolor{comment}{\ \ \ \(\backslash\)\_\_\_\_\_/\ \(\backslash\)\_\_\_/\ \(\backslash\)\_\_\_/\ \(\backslash\)\_\_\_\_)}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00163}00163\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00164}00164\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ Inch\ Cat}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00165}00165\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \_\_\_\ \ \ \_\_\_\ \ \ \_\_\_}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00166}00166\ \textcolor{comment}{\ \ \ \ \ \ \ \ /\ \ \ \(\backslash\)\ /\ \ \ \(\backslash\)\ /\ \ \ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00167}00167\ \textcolor{comment}{\ \ \ /\(\backslash\)/\(\backslash\)|\ \ |\ \ |\ \ |\ \ |\ \ |\ \ |}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00168}00168\ \textcolor{comment}{\ \ ('o'\ |\ \ |\ \ \ \ \ |\ \ |\ \ |\ \ |\_\_}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00169}00169\ \textcolor{comment}{\ \ \ \(\backslash\)\_\_\_\_\_/\ \(\backslash\)\_\_\_/\ \(\backslash\)\_\_\_/\ \(\backslash\)\_\_\_\_)}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00170}00170\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00171}00171\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ CInch\ at}}
+\DoxyCodeLine{\Hypertarget{_main_8cpp_source_l00172}00172\ \textcolor{comment}{*/}}
+
+\end{DoxyCode}

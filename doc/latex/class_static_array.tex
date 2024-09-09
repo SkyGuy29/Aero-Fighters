@@ -1,0 +1,89 @@
+\doxysection{Static\+Array\texorpdfstring{$<$}{<} RAW\+\_\+\+TYPE, LENGTH \texorpdfstring{$>$}{>} Class Template Reference}
+\hypertarget{class_static_array}{}\label{class_static_array}\index{StaticArray$<$ RAW\_TYPE, LENGTH $>$@{StaticArray$<$ RAW\_TYPE, LENGTH $>$}}
+
+
+{\ttfamily \#include $<$Static\+Array.\+h$>$}
+
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_static_array_1_1_return_data}{Return\+Data}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+constexpr \mbox{\hyperlink{class_static_array_abe006bf28253c093cc63416c25651d6c}{Static\+Array}} (const RAW\+\_\+\+TYPE(\&raw\+Data)\mbox{[}LENGTH\mbox{]})
+\item 
+const \mbox{\hyperlink{struct_static_array_1_1_return_data}{Return\+Data}} \mbox{\hyperlink{class_static_array_a122711e0719eb5b27405d14e9d9191c9}{at}} (unsigned char index) const
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename RAW\+\_\+\+TYPE, unsigned char LENGTH$>$\newline
+class Static\+Array$<$ RAW\+\_\+\+TYPE, LENGTH $>$}
+Holds static data tables. The array can ONLY be initialized as a compile-\/time constant, placing it in the programs binary during compilation.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em RAW\+\_\+\+TYPE} & The type that is stored internally. \\
+\hline
+{\em LENGTH} & The total accessible elements.\\
+\hline
+\end{DoxyTemplParams}
+\begin{DoxyWarning}{Warning}
+Can only be initialized as a compile-\/time constant. 
+\end{DoxyWarning}
+
+
+Definition at line \mbox{\hyperlink{_static_array_8h_source_l00015}{15}} of file \mbox{\hyperlink{_static_array_8h_source}{Static\+Array.\+h}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_static_array_abe006bf28253c093cc63416c25651d6c}\index{StaticArray$<$ RAW\_TYPE, LENGTH $>$@{StaticArray$<$ RAW\_TYPE, LENGTH $>$}!StaticArray@{StaticArray}}
+\index{StaticArray@{StaticArray}!StaticArray$<$ RAW\_TYPE, LENGTH $>$@{StaticArray$<$ RAW\_TYPE, LENGTH $>$}}
+\doxysubsubsection{\texorpdfstring{StaticArray()}{StaticArray()}}
+{\footnotesize\ttfamily \label{class_static_array_abe006bf28253c093cc63416c25651d6c} 
+template$<$typename RAW\+\_\+\+TYPE , unsigned char LENGTH$>$ \\
+\mbox{\hyperlink{class_static_array}{Static\+Array}}$<$ RAW\+\_\+\+TYPE, LENGTH $>$\mbox{\hyperlink{class_static_array}{\+::\+Static\+Array}} (\begin{DoxyParamCaption}\item[{const RAW\+\_\+\+TYPE(\&)}]{raw\+Data}{\mbox{[}\+LENGTH\mbox{]}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+Constexpr constructor for constructing as a compile-\/time constant
+
+
+\begin{DoxyParams}{Parameters}
+{\em raw\+Data} & A const reference to the internal object array. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{_static_array_8h_source_l00048}{48}} of file \mbox{\hyperlink{_static_array_8h_source}{Static\+Array.\+h}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_static_array_a122711e0719eb5b27405d14e9d9191c9}\index{StaticArray$<$ RAW\_TYPE, LENGTH $>$@{StaticArray$<$ RAW\_TYPE, LENGTH $>$}!at@{at}}
+\index{at@{at}!StaticArray$<$ RAW\_TYPE, LENGTH $>$@{StaticArray$<$ RAW\_TYPE, LENGTH $>$}}
+\doxysubsubsection{\texorpdfstring{at()}{at()}}
+{\footnotesize\ttfamily \label{class_static_array_a122711e0719eb5b27405d14e9d9191c9} 
+template$<$typename RAW\+\_\+\+TYPE , unsigned char LENGTH$>$ \\
+const \mbox{\hyperlink{struct_static_array_1_1_return_data}{Return\+Data}} \mbox{\hyperlink{class_static_array}{Static\+Array}}$<$ RAW\+\_\+\+TYPE, LENGTH $>$\+::at (\begin{DoxyParamCaption}\item[{unsigned char}]{index}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Array accessor method for retrieving a specified element.
+
+
+\begin{DoxyParams}{Parameters}
+{\em index} & The element being accessed. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\doxylink{struct_static_array_1_1_return_data}{Return\+Data} holding the element. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_static_array_8h_source_l00058}{58}} of file \mbox{\hyperlink{_static_array_8h_source}{Static\+Array.\+h}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Utility/\+Array/\mbox{\hyperlink{_static_array_8h}{Static\+Array.\+h}}\end{DoxyCompactItemize}

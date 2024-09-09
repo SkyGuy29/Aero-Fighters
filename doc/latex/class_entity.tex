@@ -1,0 +1,166 @@
+\doxysection{Entity Class Reference}
+\hypertarget{class_entity}{}\label{class_entity}\index{Entity@{Entity}}
+
+
+{\ttfamily \#include $<$Entity.\+h$>$}
+
+
+
+Inheritance diagram for Entity\+:
+% FIG 0
+
+
+Collaboration diagram for Entity\+:
+% FIG 1
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_entity_1_1_entity_holder}{Entity\+Holder}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{class_entity_a9b83139843435e4755af4cf654a24af9}{tick}} (\mbox{\hyperlink{struct_entity_1_1_entity_holder}{Entity\+Holder}} entities)=0
+\item 
+void \mbox{\hyperlink{class_entity_a3d0e1a6a41a6dcb652d4bfe878d8e8fd}{set\+Win\+Size}} (\mbox{\hyperlink{struct_window_size}{Window\+Size}} \&win\+Size)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_entity_a5b1eed88d9f4c3ec5240ce8fb22ada83}{Entity}} (sf\+::\+Vector2f \mbox{\hyperlink{class_entity_ad329967c418fc97aae4745b68adebb11}{pos}}, sf\+::\+Vector2f \mbox{\hyperlink{class_entity_aa84a7361118f092029908d97188374f3}{vel}}, \mbox{\hyperlink{_entity_i_d_8h_abf26b7b6a9a1dc0f488678f8511c3be6}{Entity\+ID}} \mbox{\hyperlink{class_entity_a712837ff2925b8d49f04d4fb8b0eacca}{ID}}, unsigned char \mbox{\hyperlink{class_entity_af761b48c7f05a79b16a00df52d48fce0}{orientation}}=0)
+\item 
+bool \mbox{\hyperlink{class_entity_aa1ff6c02e083e85f4c670ac5c83dcaa3}{on\+Screen}} () noexcept
+\item 
+bool \mbox{\hyperlink{class_entity_a51eb209022b130024a519957bd010b20}{has\+Spawned}} () noexcept
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+sf\+::\+Vector2f \mbox{\hyperlink{class_entity_ad329967c418fc97aae4745b68adebb11}{pos}}
+\item 
+sf\+::\+Vector2f \mbox{\hyperlink{class_entity_aa84a7361118f092029908d97188374f3}{vel}} = Entity\+Data\+::\+Entity\+Data\+Table.\+at(static\+\_\+cast$<$unsigned char$>$(\mbox{\hyperlink{class_entity_a712837ff2925b8d49f04d4fb8b0eacca}{ID}})).DATA.\+velocity
+\item 
+\mbox{\hyperlink{struct_entity_data_1_1_cooldown}{Entity\+Data\+::\+Cooldown}} \mbox{\hyperlink{class_entity_a4cac955655798b026f287d369a37220b}{cooldown}} = Entity\+Data\+::\+Entity\+Data\+Table.\+at(static\+\_\+cast$<$unsigned char$>$(\mbox{\hyperlink{class_entity_a712837ff2925b8d49f04d4fb8b0eacca}{ID}})).DATA.\+cooldown
+\item 
+unsigned char \mbox{\hyperlink{class_entity_af761b48c7f05a79b16a00df52d48fce0}{orientation}}
+\item 
+const \mbox{\hyperlink{_entity_i_d_8h_abf26b7b6a9a1dc0f488678f8511c3be6}{Entity\+ID}} \mbox{\hyperlink{class_entity_a712837ff2925b8d49f04d4fb8b0eacca}{ID}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{_entity_8h_source_l00011}{11}} of file \mbox{\hyperlink{_entity_8h_source}{Entity.\+h}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_entity_a5b1eed88d9f4c3ec5240ce8fb22ada83}\index{Entity@{Entity}!Entity@{Entity}}
+\index{Entity@{Entity}!Entity@{Entity}}
+\doxysubsubsection{\texorpdfstring{Entity()}{Entity()}}
+{\footnotesize\ttfamily \label{class_entity_a5b1eed88d9f4c3ec5240ce8fb22ada83} 
+Entity\+::\+Entity (\begin{DoxyParamCaption}\item[{sf\+::\+Vector2f}]{pos}{, }\item[{sf\+::\+Vector2f}]{vel}{, }\item[{\mbox{\hyperlink{_entity_i_d_8h_abf26b7b6a9a1dc0f488678f8511c3be6}{Entity\+ID}}}]{ID}{, }\item[{unsigned char}]{orientation}{ = {\ttfamily 0}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{_entity_8h_source_l00036}{36}} of file \mbox{\hyperlink{_entity_8h_source}{Entity.\+h}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_entity_a51eb209022b130024a519957bd010b20}\index{Entity@{Entity}!hasSpawned@{hasSpawned}}
+\index{hasSpawned@{hasSpawned}!Entity@{Entity}}
+\doxysubsubsection{\texorpdfstring{hasSpawned()}{hasSpawned()}}
+{\footnotesize\ttfamily \label{class_entity_a51eb209022b130024a519957bd010b20} 
+bool Entity\+::has\+Spawned (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}, {\ttfamily [noexcept]}}
+
+
+
+Definition at line \mbox{\hyperlink{_entity_8cpp_source_l00014}{14}} of file \mbox{\hyperlink{_entity_8cpp_source}{Entity.\+cpp}}.
+
+\Hypertarget{class_entity_aa1ff6c02e083e85f4c670ac5c83dcaa3}\index{Entity@{Entity}!onScreen@{onScreen}}
+\index{onScreen@{onScreen}!Entity@{Entity}}
+\doxysubsubsection{\texorpdfstring{onScreen()}{onScreen()}}
+{\footnotesize\ttfamily \label{class_entity_aa1ff6c02e083e85f4c670ac5c83dcaa3} 
+bool Entity\+::on\+Screen (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}, {\ttfamily [noexcept]}}
+
+
+
+Definition at line \mbox{\hyperlink{_entity_8cpp_source_l00005}{5}} of file \mbox{\hyperlink{_entity_8cpp_source}{Entity.\+cpp}}.
+
+\Hypertarget{class_entity_a3d0e1a6a41a6dcb652d4bfe878d8e8fd}\index{Entity@{Entity}!setWinSize@{setWinSize}}
+\index{setWinSize@{setWinSize}!Entity@{Entity}}
+\doxysubsubsection{\texorpdfstring{setWinSize()}{setWinSize()}}
+{\footnotesize\ttfamily \label{class_entity_a3d0e1a6a41a6dcb652d4bfe878d8e8fd} 
+void Entity\+::set\+Win\+Size (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_window_size}{Window\+Size}} \&}]{win\+Size}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_entity_a9b83139843435e4755af4cf654a24af9}\index{Entity@{Entity}!tick@{tick}}
+\index{tick@{tick}!Entity@{Entity}}
+\doxysubsubsection{\texorpdfstring{tick()}{tick()}}
+{\footnotesize\ttfamily \label{class_entity_a9b83139843435e4755af4cf654a24af9} 
+virtual void Entity\+::tick (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_entity_1_1_entity_holder}{Entity\+Holder}}}]{entities}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{class_enemy_af27337d84aa23643f7fc1322bf016ef5}{Enemy}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_entity_a4cac955655798b026f287d369a37220b}\index{Entity@{Entity}!cooldown@{cooldown}}
+\index{cooldown@{cooldown}!Entity@{Entity}}
+\doxysubsubsection{\texorpdfstring{cooldown}{cooldown}}
+{\footnotesize\ttfamily \label{class_entity_a4cac955655798b026f287d369a37220b} 
+\mbox{\hyperlink{struct_entity_data_1_1_cooldown}{Entity\+Data\+::\+Cooldown}} Entity\+::cooldown = Entity\+Data\+::\+Entity\+Data\+Table.\+at(static\+\_\+cast$<$unsigned char$>$(\mbox{\hyperlink{class_entity_a712837ff2925b8d49f04d4fb8b0eacca}{ID}})).DATA.\+cooldown\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{_entity_8h_source_l00052}{52}} of file \mbox{\hyperlink{_entity_8h_source}{Entity.\+h}}.
+
+\Hypertarget{class_entity_a712837ff2925b8d49f04d4fb8b0eacca}\index{Entity@{Entity}!ID@{ID}}
+\index{ID@{ID}!Entity@{Entity}}
+\doxysubsubsection{\texorpdfstring{ID}{ID}}
+{\footnotesize\ttfamily \label{class_entity_a712837ff2925b8d49f04d4fb8b0eacca} 
+const \mbox{\hyperlink{_entity_i_d_8h_abf26b7b6a9a1dc0f488678f8511c3be6}{Entity\+ID}} Entity\+::\+ID\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{_entity_8h_source_l00059}{59}} of file \mbox{\hyperlink{_entity_8h_source}{Entity.\+h}}.
+
+\Hypertarget{class_entity_af761b48c7f05a79b16a00df52d48fce0}\index{Entity@{Entity}!orientation@{orientation}}
+\index{orientation@{orientation}!Entity@{Entity}}
+\doxysubsubsection{\texorpdfstring{orientation}{orientation}}
+{\footnotesize\ttfamily \label{class_entity_af761b48c7f05a79b16a00df52d48fce0} 
+unsigned char Entity\+::orientation\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{_entity_8h_source_l00056}{56}} of file \mbox{\hyperlink{_entity_8h_source}{Entity.\+h}}.
+
+\Hypertarget{class_entity_ad329967c418fc97aae4745b68adebb11}\index{Entity@{Entity}!pos@{pos}}
+\index{pos@{pos}!Entity@{Entity}}
+\doxysubsubsection{\texorpdfstring{pos}{pos}}
+{\footnotesize\ttfamily \label{class_entity_ad329967c418fc97aae4745b68adebb11} 
+sf\+::\+Vector2f Entity\+::pos\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{_entity_8h_source_l00046}{46}} of file \mbox{\hyperlink{_entity_8h_source}{Entity.\+h}}.
+
+\Hypertarget{class_entity_aa84a7361118f092029908d97188374f3}\index{Entity@{Entity}!vel@{vel}}
+\index{vel@{vel}!Entity@{Entity}}
+\doxysubsubsection{\texorpdfstring{vel}{vel}}
+{\footnotesize\ttfamily \label{class_entity_aa84a7361118f092029908d97188374f3} 
+sf\+::\+Vector2f Entity\+::vel = Entity\+Data\+::\+Entity\+Data\+Table.\+at(static\+\_\+cast$<$unsigned char$>$(\mbox{\hyperlink{class_entity_a712837ff2925b8d49f04d4fb8b0eacca}{ID}})).DATA.\+velocity\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{_entity_8h_source_l00049}{49}} of file \mbox{\hyperlink{_entity_8h_source}{Entity.\+h}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Entities/\mbox{\hyperlink{_entity_8h}{Entity.\+h}}\item 
+src/\+Entities/\mbox{\hyperlink{_entity_8cpp}{Entity.\+cpp}}\end{DoxyCompactItemize}

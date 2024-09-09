@@ -176,7 +176,6 @@
     <ClInclude Include="src\Entities\PowerUp\PowerUp.h" />
     <ClInclude Include="src\Entities\Interfaces\ICollidable.h" />
     <ClInclude Include="src\ControllerStuff.hpp" />
-    <ClInclude Include="src\Level\Intermediary.h" />
     <ClInclude Include="src\Object\Projectile\Explosion\Explosion.h" />
     <ClInclude Include="src\Object\Collectable\Collectable.h" />
     <ClInclude Include="src\Object\Enemy\Boss\Boss.h" />
@@ -191,7 +190,28 @@
     <ClInclude Include="src\Entities\TileEntity\TileEntity.h" />
     <ClInclude Include="src\Sprites\SpriteType.h" />
     <ClInclude Include="src\Utility\EntityID.h" />
+    <ClInclude Include="src\Utility\Array\StaticArray.h" />
     <ClInclude Include="src\Utility\WindowSize.h" />
+    <ClInclude Include="src\Utility\Array\VariableArray.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="lib\SFML64\lib\sfml-audio-s-d.pdb" />
+    <None Include="lib\SFML64\lib\sfml-audio-s.pdb" />
+    <None Include="lib\SFML64\lib\sfml-audio.pdb" />
+    <None Include="lib\SFML64\lib\sfml-graphics-s-d.pdb" />
+    <None Include="lib\SFML64\lib\sfml-graphics-s.pdb" />
+    <None Include="lib\SFML64\lib\sfml-graphics.pdb" />
+    <None Include="lib\SFML64\lib\sfml-main-d.pdb" />
+    <None Include="lib\SFML64\lib\sfml-main-s.pdb" />
+    <None Include="lib\SFML64\lib\sfml-network-s-d.pdb" />
+    <None Include="lib\SFML64\lib\sfml-network-s.pdb" />
+    <None Include="lib\SFML64\lib\sfml-network.pdb" />
+    <None Include="lib\SFML64\lib\sfml-system-s-d.pdb" />
+    <None Include="lib\SFML64\lib\sfml-system-s.pdb" />
+    <None Include="lib\SFML64\lib\sfml-system.pdb" />
+    <None Include="lib\SFML64\lib\sfml-window-s-d.pdb" />
+    <None Include="lib\SFML64\lib\sfml-window-s.pdb" />
+    <None Include="lib\SFML64\lib\sfml-window.pdb" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
