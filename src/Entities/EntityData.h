@@ -6,6 +6,10 @@ using Vec2f = sf::Vector2f;
 
 class EntityDataStorage
 {
+public:
+	// Must never be constructed
+	EntityDataStorage() = delete;
+
 	// Stores a given entities cooldown information for quick access
 	struct Cooldown
 	{
@@ -37,20 +41,28 @@ class EntityDataStorage
 			velocity(velocity), health(health), cooldown(cooldown), CHILD_DATA(CHILD_DATA) {}
 	};
 
+	/**
+	 * Returns the baseline data for a given entity.
+	 *
+	 * @param ID The ID of the entity whose data is being requested
+	 * @return A constant reference to an EntityData object
+	 */
+	static const EntityData& getData(EntityID ID)
+	{
+		return EntityDataTable.at(static_cast<unsigned char>(ID)).DATA;
+	}
 
 
+private:
 	// Entity Data Table
-	// TODO: Replace with array, static_cast accessor
-	// Stores Key value pairs, the Key is the EntityID,
-	// the value is the entities data
-	const StaticArray<
+	static constexpr StaticArray<
 		EntityData,
 		1 //static_cast<unsigned char>(EntityID::COUNT)
 	> EntityDataTable =
 	{
 		{
 			EntityData {
-				Vec2f {
+				{
 					0, // X
 					0  // Y
 				},
@@ -65,4 +77,4 @@ class EntityDataStorage
 	};
 
 	// Entity Child Table
-}
+};
