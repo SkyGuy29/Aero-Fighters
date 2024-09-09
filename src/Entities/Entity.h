@@ -5,6 +5,7 @@
 #include "../Utility/EntityID.h"
 #include "EntityData.h"
 
+
 using Vec2f = sf::Vector2f;
 
 class Entity
@@ -19,6 +20,8 @@ public:
 
 		// All projectile entities
 		std::vector<Entity*> projectiles;
+
+		Player[2] players;
 
 		// All other entities
 		std::vector<Entity*> other;
@@ -39,6 +42,8 @@ protected:
 	inline bool onScreen() noexcept;
 
 	inline bool hasSpawned() noexcept;
+	// The ID of this entity
+	const EntityID ID;
 
 	sf::Sprite sprite;
 	sf::Vector2f vel = EntityDataStorage::getData(ID).velocity;
@@ -50,8 +55,7 @@ protected:
 	// Only used when drawing - entity specific
 	unsigned char orientation;
 
-	// The ID of this entity
-	const EntityID ID;
+	
 private:
 	static WindowSize& winSize;
 	static EntityHolder entities;

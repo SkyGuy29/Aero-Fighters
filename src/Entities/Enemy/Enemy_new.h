@@ -5,17 +5,17 @@
 
 // Primarily used by 
 class Enemy :
-    private Entity, private IHasHealth
+	protected Entity, protected IHasHealth
 {
 public:
 	Enemy(sf::Vector2f pos, sf::Vector2f vel,
-		EntityID ID, unsigned char orientation = 0) :
-		Entity(pos, vel, ID, orientation), IHasHealth(ID) {}
+		EntityID ID, int* backgroundSpeed, unsigned char orientation = 0) :
+		backgroundSpeed(backgroundSpeed), Entity(pos, vel, ID, orientation), IHasHealth(ID) {}
 
 	~Enemy();
 
-	void tick(EntityHolder entities) override;
+	void tick(EntityHolder& entities) override;
 protected:
-
+	int* backgroundSpeed = nullptr;
 private:
 };
