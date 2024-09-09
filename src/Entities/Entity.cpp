@@ -2,6 +2,15 @@
 #include "../Sprites/SpriteType.h"
 
 
+Entity(sf::Vector2f pos,
+	EntityID ID, unsigned char orientation = 0)
+{
+	this->sprite.setPos(pos);
+	this->ID = ID;
+	this->orientation = orientation;
+}
+
+
 bool Entity::onScreen()
 {
 	return !(pos.x + (sprites::spriteDataTable.at(ID).size.x / 2.f) < 0 ||              // Off the left

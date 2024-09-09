@@ -67,7 +67,16 @@ public:
 		);
 	}
 
-
+	/**
+	 * Array accessor method for retrieving a specified element.
+	 *
+	 * @param index The element being accessed.
+	 * @return ReturnData holding the element.
+	 */
+	const ReturnData operator[](unsigned int index) const
+	{
+		return at(index);
+	}
 private:
 	// Internal object array
 	const RAW_TYPE(&DATA)[LENGTH];

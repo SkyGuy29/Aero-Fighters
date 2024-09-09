@@ -1,4 +1,6 @@
 #pragma once
+#include <SFML/Graphics.hpp>
+#include "../Utility/EntityID.h"
 #include "../Utility/Array/StaticArray.h"
 
 using cstr = const char* const;
@@ -49,16 +51,13 @@ public:
 	 */
 	static const EntityData& getData(EntityID ID)
 	{
-		return EntityDataTable.at(static_cast<unsigned char>(ID)).DATA;
+		return EntityDataTable[static_cast<unsigned char>(ID)];
 	}
 
 
 private:
 	// Entity Data Table
-	static constexpr StaticArray<
-		EntityData,
-		1 //static_cast<unsigned char>(EntityID::COUNT)
-	> EntityDataTable =
+	static const EntityData EntityDataTable[] =
 	{
 		{
 			EntityData {
