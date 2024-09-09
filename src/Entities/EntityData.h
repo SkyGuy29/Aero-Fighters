@@ -4,7 +4,7 @@
 using cstr = const char* const;
 using Vec2f = sf::Vector2f;
 
-namespace EntityData
+class EntityDataStorage
 {
 	// Stores a given entities cooldown information for quick access
 	struct Cooldown
