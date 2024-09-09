@@ -20,9 +20,6 @@ public:
 
 		// All projectile entities
 		std::vector<Entity*> projectiles;
-
-		Player[2] players;
-
 		// All other entities
 		std::vector<Entity*> other;
 	};
@@ -35,7 +32,7 @@ public:
 	// before level is instantiated.
 	void setWinSize(WindowSize& winSize);
 protected:
-	Entity(sf::Vector2f pos, sf::Vector2f vel,
+	Entity(sf::Vector2f pos,
 		EntityID ID, unsigned char orientation = 0);
 
 	// Returns if this entity is currently visible

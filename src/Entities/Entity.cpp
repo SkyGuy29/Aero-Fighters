@@ -2,12 +2,10 @@
 #include "../Sprites/SpriteType.h"
 
 
-Entity(sf::Vector2f pos,
-	EntityID ID, unsigned char orientation = 0)
+Entity::Entity(sf::Vector2f pos,
+	EntityID ID, unsigned char orientation) : ID(ID), orientation(orientation)
 {
 	this->sprite.setPos(pos);
-	this->ID = ID;
-	this->orientation = orientation;
 }
 
 

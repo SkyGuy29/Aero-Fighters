@@ -17,7 +17,7 @@ namespace sprites
 		const unsigned char animationFrameCount;
 		unsigned char currentFrame = 0;
 
-		const SpriteData(cstr filename, const Vec2f size,
+		constexpr SpriteData(cstr filename, const Vec2f size,
 			const unsigned char animationFrameCount) :
 			filename(filename), size(size), animationFrameCount(animationFrameCount) {}
 	};
