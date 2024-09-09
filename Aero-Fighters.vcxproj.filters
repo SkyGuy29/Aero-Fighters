@@ -110,9 +110,6 @@
     <ClInclude Include="src\Entities\Interfaces\IHasChildren.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Level\Intermediary.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\Utility\WindowSize.h">
       <Filter>Header Files</Filter>
     </ClInclude>
