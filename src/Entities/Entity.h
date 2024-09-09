@@ -4,7 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include "../Utility/WindowSize.h"
 #include "../Utility/EntityID.h"
-#include "../EntityData.h"
+#include "EntityData.h"
 
 using Vec2f = sf::Vector2f;
 
@@ -46,10 +46,10 @@ protected:
 	sf::Vector2f pos;
 	// The velocity of this entity
 	// Derived during object construction
-	sf::Vector2f vel = EntityData::EntityDataTable.at(static_cast<unsigned char>(ID)).DATA.velocity;
+	sf::Vector2f vel = EntityDataStorage::getData(ID).velocity;
 	// The attack cooldown of this entity
 	// Derived during object construction from the entity data table.
-	EntityData::Cooldown cooldown = EntityData::EntityDataTable.at(static_cast<unsigned char>(ID)).DATA.cooldown;
+	EntityDataStorage::Cooldown cooldown = EntityDataStorage::getData(ID).cooldown;
 
 	// This entities current orientation
 	// Only used when drawing - entity specific
