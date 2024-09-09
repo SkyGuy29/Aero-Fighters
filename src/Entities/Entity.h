@@ -8,6 +8,7 @@
 #include "../Utility/EntityID.h"
 #include "./EntityData.h"
 
+
 using Vec2f = sf::Vector2f;
 
 class Entity
@@ -20,6 +21,8 @@ public:
 
 		// All projectile entities
 		std::vector<Projectile*> projectiles;
+
+		Player[2] players;
 
 		// All other entities
 		std::vector<Entity*> other;
@@ -40,22 +43,23 @@ protected:
 	inline bool onScreen() noexcept;
 
 	inline bool hasSpawned() noexcept;
+	// The ID of this entity
+	const EntityID ID;
 
 	sf::Sprite sprite;
-	sf::Vector2f vel = EntityData::EntityDataTable.at(static_cast<unsigned char>(ID)).DATA.velocity;
+	sf::Vector2f vel = EntityData::EntityDataTable[static_cast<unsigned char>(ID)].velocity;
 	// The attack cooldown of this entity
 	// Derived during object construction from the entity data table.
-	EntityData::Cooldown cooldown = EntityData::EntityDataTable.at(static_cast<unsigned char>(ID)).DATA.cooldown;
+	EntityData::Cooldown cooldown = EntityData::EntityDataTable[static_cast<unsigned char>(ID)].cooldown;
 
 	// This entities current orientation
 	// Only used when drawing - entity specific
 	unsigned char orientation;
 
-	// The ID of this entity
-	const EntityID ID;
+	
 private:
 	static WindowSize& winSize;
-	static EntityHolder 
+	static EntityHolder entities;
 
 	// null / null / null / null / null / null / null / hasSpawned
 	bool entityFlags = 0b00000000;

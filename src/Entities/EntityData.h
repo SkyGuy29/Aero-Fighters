@@ -12,13 +12,12 @@ namespace EntityData
 	struct Cooldown
 	{
 		// The base cooldown for this entity
-		short BaseCooldown;
-		// The current cooldown timer
-		// (CurrentCooldown != BaseCooldown ? ++CurrentCooldown)
-		short CurrentCooldown;
+		short baseCooldown;
+		// The current cooldown timer (Counts down to 0)
+		short currentCooldown;
 
 		Cooldown(const short BaseCooldown, short CurrentCooldown) :
-			BaseCooldown(BaseCooldown), CurrentCooldown(CurrentCooldown) {}
+			baseCooldown(BaseCooldown), currentCooldown(CurrentCooldown) {}
 	};
 
 	// The stored default information for a given entity; very generic.
