@@ -1,0 +1,858 @@
+\doxysection{Level.\+cpp}
+\hypertarget{_level_8cpp_source}{}\label{_level_8cpp_source}\index{src/Level/Level.cpp@{src/Level/Level.cpp}}
+\mbox{\hyperlink{_level_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_level_8h}{Level.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00002}00002\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00003}00003\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00006}\mbox{\hyperlink{class_level_a7a696c928ca5d5354db6e50e46d0f67d}{00006}}\ \mbox{\hyperlink{class_level_a7a696c928ca5d5354db6e50e46d0f67d}{Level::Level}}()}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00007}00007\ \{}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00008}00008\ \ \ \ \ font.loadFromFile(\textcolor{stringliteral}{"{}res/aero-\/fighters.ttf"{}});}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00009}00009\ \}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00012}\mbox{\hyperlink{class_level_a249eac1e8f19ff44134efa5e986feaca}{00012}}\ \mbox{\hyperlink{class_level_a249eac1e8f19ff44134efa5e986feaca}{Level::\string~Level}}()}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00013}00013\ \{}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00014}00014\ \ \ \ \ \textcolor{keywordflow}{while}\ (!objects.empty())}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00015}00015\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00016}00016\ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ objects[objects.size()\ -\/\ 1];}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00017}00017\ \ \ \ \ \ \ \ \ objects.erase(objects.end()\ -\/\ 1);}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00018}00018\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00019}00019\ \}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00029}\mbox{\hyperlink{class_level_aeddf53e7edf5b1fff16c43f85106362d}{00029}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_level_aeddf53e7edf5b1fff16c43f85106362d}{Level::load}}(sf::Vector2f\ winSize,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{short}\ country,}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00030}00030\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_level_a5fd9c7519c741dc94f251b7402377407}{Map}}\ map,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ levelEditor)}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00031}00031\ \{}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00032}00032\ \ \ \ \ this-\/>country\ =\ country;}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00033}00033\ \ \ \ \ this-\/>winSize\ =\ winSize;}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00034}00034\ \ \ \ \ this-\/>levelEditor\ =\ levelEditor;}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00036}00036\ \ \ \ \ \textcolor{comment}{//\ setting\ up\ the\ background}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00037}00037\ \ \ \ \ backgroundImg.loadFromFile(\textcolor{stringliteral}{"{}res/"{}}\ \ +\ \mbox{\hyperlink{class_level_acd795d57ca19a87e2295ea734d1aa018}{mapStrings}}[map]\ +\ \textcolor{stringliteral}{"{}/"{}}\ +\ \mbox{\hyperlink{class_level_acd795d57ca19a87e2295ea734d1aa018}{mapStrings}}[map]\ +\ \textcolor{stringliteral}{"{}.png"{}});}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00038}00038\ \ \ \ \ \textcolor{keywordflow}{if}(map\ ==\ \mbox{\hyperlink{class_level_a5fd9c7519c741dc94f251b7402377407a9fab37cbeb18497d7b6b5577a972a559}{England}})}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00039}00039\ \ \ \ \ \ \ \ \ frontbackgroundImg.loadFromFile(\textcolor{stringliteral}{"{}res/"{}}\ \ +\ \mbox{\hyperlink{class_level_acd795d57ca19a87e2295ea734d1aa018}{mapStrings}}[map]\ +\ \textcolor{stringliteral}{"{}/Front"{}}\ \ +\ \mbox{\hyperlink{class_level_acd795d57ca19a87e2295ea734d1aa018}{mapStrings}}[map]\ +\ \textcolor{stringliteral}{"{}.png"{}});}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00041}00041\ \ \ \ \ background.setSize(sf::Vector2f(winSize));}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00042}00042\ \ \ \ \ frontbackground.setSize(sf::Vector2f(winSize));}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00043}00043\ \ \ \ \ backgroundDist\ =\ (float)backgroundImg.getSize().y\ -\/\ winSize.y;}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00044}00044\ \ \ \ \ rect\ =\ sf::IntRect(0,\ (\textcolor{keywordtype}{int})backgroundDist,\ (\textcolor{keywordtype}{int})winSize.x,\ (\textcolor{keywordtype}{int})winSize.y);}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00045}00045\ \ \ \ \ frontRect\ =\ rect;}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00046}00046\ \ \ \ \ background.setTexture(\&backgroundImg);}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00047}00047\ \ \ \ \ frontbackground.setTexture(\&frontbackgroundImg);}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00048}00048\ \ \ \ \ background.setTextureRect(rect);}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00049}00049\ \ \ \ \ frontbackground.setTextureRect(rect);}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00050}00050\ \ \ \ \ frontbackgroundImg.setRepeated(\textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00051}00051\ \ \ \ \ frontbackgroundDist\ =\ winSize.y;}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00052}00052\ \ \ \ \ frontbackground.setPosition(0,\ frontbackgroundDist);}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00053}00053\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00054}00054\ \ \ \ \ \textcolor{comment}{//\ loading\ resources}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00055}00055\ \ \ \ \ playerImg.loadFromFile(\textcolor{stringliteral}{"{}res/Misc/players.png"{}});}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00056}00056\ \ \ \ \ projectileImg.loadFromFile(\textcolor{stringliteral}{"{}res/Misc/Projectiles.png"{}});}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00057}00057\ \ \ \ \ powerUpImg.loadFromFile(\textcolor{stringliteral}{"{}res/Misc/Powerups.png"{}});}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00058}00058\ \ \ \ \ moneyImg.loadFromFile(\textcolor{stringliteral}{"{}res/Misc/money.png"{}});}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00059}00059\ \ \ \ \ explosionImg.loadFromFile(\textcolor{stringliteral}{"{}res/Misc/Explosion.png"{}});}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00060}00060\ \ \ \ \ enemyImg.loadFromFile(\textcolor{stringliteral}{"{}res/Misc/enemies.png"{}});}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00061}00061\ \ \ \ \ enemyProjectileImg.loadFromFile(\textcolor{stringliteral}{"{}res/Misc/Enemy\ projectiles.png"{}});}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00062}00062\ \ \ \ \ missileImg.loadFromFile(\textcolor{stringliteral}{"{}res/Misc/missles.png"{}});}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00063}00063\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00064}00064\ \ \ \ \ \textcolor{comment}{//\ Seperate\ player\ texture\ for\ drawing\ lives}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00065}00065\ \ \ \ \ playerImgRepeat\ =\ playerImg;}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00066}00066\ \ \ \ \ playerImgRepeat.setRepeated(\textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00067}00067\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00068}00068\ \ \ \ \ p1Score.setFont(font);}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00069}00069\ \ \ \ \ p2Score.setFont(font);}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00070}00070\ \ \ \ \ p1LivesRect.setTexture(\&playerImgRepeat);}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00071}00071\ \ \ \ \ p2LivesRect.setTexture(\&playerImgRepeat);}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00072}00072\ \ \ \ \ p1LivesRect.setTextureRect(sf::IntRect(0,\ 16,\ 32,\ 32));}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00073}00073\ \ \ \ \ p2LivesRect.setTextureRect(sf::IntRect(0,\ 16,\ 32,\ 32));}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00074}00074\ \ \ \ \ p1Score.setCharacterSize(16);}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00075}00075\ \ \ \ \ p2Score.setCharacterSize(16);}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00076}00076\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00077}00077\ \ \ \ \ \textcolor{keywordflow}{switch}\ (map)}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00078}00078\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00079}00079\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{class_level_a5fd9c7519c741dc94f251b7402377407a9fab37cbeb18497d7b6b5577a972a559}{England}}:}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00080}00080\ \ \ \ \ \ \ \ \ \ \ \ \ houseImg.loadFromFile(\textcolor{stringliteral}{"{}res/England/House.png"{}});}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00081}00081\ \ \ \ \ \ \ \ \ \ \ \ \ domeImg.loadFromFile(\textcolor{stringliteral}{"{}res/England/Dome.png"{}});}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00082}00082\ \ \ \ \ \ \ \ \ \ \ \ \ gateImg.loadFromFile(\textcolor{stringliteral}{"{}res/England/Gate.png"{}});}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00083}00083\ \ \ \ \ \ \ \ \ \ \ \ \ hoodImg.loadFromFile(\textcolor{stringliteral}{"{}res/England/Hood.png"{}});}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00084}00084\ \ \ \ \ \ \ \ \ \ \ \ \ coneImg.loadFromFile(\textcolor{stringliteral}{"{}res/England/Cone.png"{}});}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00085}00085\ \ \ \ \ \ \ \ \ \ \ \ \ roofusImg.loadFromFile(\textcolor{stringliteral}{"{}res/England/Roofus.png"{}});}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00086}00086\ \ \ \ \ \ \ \ \ \ \ \ \ domeAnimationImg.loadFromFile(\textcolor{stringliteral}{"{}res/England/Dome\ animation.png"{}});}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ avroBomberImg.loadFromFile(\textcolor{stringliteral}{"{}res/England/Avro\ Bomber.png"{}});}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00089}00089\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00090}00090\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00091}00091\ \ \ \ \ p[0]\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_player}{Player}}(country,\ \textcolor{keyword}{true},\ \&backgroundSpeed);}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00092}00092\ \ \ \ \ p[1]\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_player}{Player}}(country,\ \textcolor{keyword}{false},\ \&backgroundSpeed);}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00093}00093\ \ \ \ \ objects.push\_back(p[0]);}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00094}00094\ \ \ \ \ objects.push\_back(p[1]);}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00095}00095\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00096}00096\ \ \ \ \ \textcolor{comment}{//\ Change\ later.\ This\ just\ spaces\ out\ the\ players}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00097}00097\ \ \ \ \ objects.at(0)-\/>setPos(sf::Vector2f(winSize.x\ *\ 0.25f,\ winSize.y\ *\ 0.75f));}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00098}00098\ \ \ \ \ objects.at(1)-\/>setPos(sf::Vector2f(winSize.x\ *\ 0.75f,\ winSize.y\ *\ 0.75f));}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00099}00099\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00100}00100\ \ \ \ \ \textcolor{comment}{//\ just\ a\ test\ to\ try\ out\ the\ moved\ animator\ to\ object}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00101}00101\ \ \ \ \ objects.at(0)-\/>setTexture(\&playerImg,\ sf::Vector2i(32,\ 32),\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00102}00102\ \ \ \ \ \ \ \ \ sf::Vector2i(0,\ 16),\ 5,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00103}00103\ \ \ \ \ objects.at(1)-\/>setTexture(\&playerImg,\ sf::Vector2i(32,\ 32),\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00104}00104\ \ \ \ \ \ \ \ \ sf::Vector2i(0,\ 16),\ 5,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00105}00105\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00106}00106\ \ \ \ \ \textcolor{comment}{//\ ?}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00107}00107\ \ \ \ \ objects.push\_back(\textcolor{keyword}{new}\ \mbox{\hyperlink{class_air}{Air}}(0,\ \textcolor{keyword}{true},\ \&backgroundDist,\ 0,\ winSize,\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00108}00108\ \ \ \ \ \ \ \ \ \&objects,\ sf::Vector2f(winSize.x\ *\ 0.5f,}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00109}00109\ \ \ \ \ winSize.y\ *\ 0.5f),\ sf::Vector2f(0,\ 0),\ levelEditor));}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00110}00110\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00111}00111\ \ \ \ \ \textcolor{keywordtype}{short}\ type,\ id;}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00112}00112\ \ \ \ \ \textcolor{keywordtype}{int}\ startMark;}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00113}00113\ \ \ \ \ sf::Vector2f\ pos,\ vel;}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00114}00114\ \ \ \ \ std::fstream\ file;}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00115}00115\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00116}00116\ \ \ \ \ file.open(\textcolor{stringliteral}{"{}res/"{}}\ +\ \mbox{\hyperlink{class_level_acd795d57ca19a87e2295ea734d1aa018}{mapStrings}}[map]\ +\ \textcolor{stringliteral}{"{}/enemies.txt"{}});}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00117}00117\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00118}00118\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00119}00119\ \textcolor{comment}{\ \ \ \ \ \ \ \ The\ enemy\ knows\ where\ it\ is\ at\ all\ times.}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00120}00120\ \textcolor{comment}{\ \ \ \ \ \ \ \ It\ knows\ this\ because\ it\ knows\ where\ it\ isn't.}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00121}00121\ \textcolor{comment}{\ \ \ \ \ \ \ \ By\ subtracting\ where\ it\ is\ from\ where\ it\ isn't,}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00122}00122\ \textcolor{comment}{\ \ \ \ \ \ \ \ or\ where\ it\ isn't\ from\ where\ it\ is\ (whichever\ is\ greater),}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00123}00123\ \textcolor{comment}{\ \ \ \ \ \ \ \ it\ obtains\ a\ difference,\ or\ deviation.}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00124}00124\ \textcolor{comment}{\ \ \ \ \ \ \ \ The\ guidance\ subsystem\ uses\ deviations\ to\ generate}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00125}00125\ \textcolor{comment}{\ \ \ \ \ \ \ \ corrective\ commands\ to\ drive\ the\ missile\ from\ a\ position}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00126}00126\ \textcolor{comment}{\ \ \ \ \ \ \ \ where\ it\ is\ to\ a\ position\ where\ it\ isn't,}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00127}00127\ \textcolor{comment}{\ \ \ \ \ \ \ \ and\ arriving\ at\ a\ position\ where\ it\ wasn't,\ it\ now\ is.}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00128}00128\ \textcolor{comment}{\ \ \ \ \ \ \ \ Consequently,\ the\ position\ where\ it\ is,}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00129}00129\ \textcolor{comment}{\ \ \ \ \ \ \ \ is\ now\ the\ position\ that\ it\ wasn't,}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00130}00130\ \textcolor{comment}{\ \ \ \ \ \ \ \ and\ it\ follows\ that\ the\ position\ that\ it\ was,}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00131}00131\ \textcolor{comment}{\ \ \ \ \ \ \ \ is\ now\ the\ position\ that\ it\ isn't.}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00132}00132\ \textcolor{comment}{\ \ \ \ \ \ \ \ In\ the\ event\ that\ the\ position\ that\ it\ is\ in\ is\ not}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00133}00133\ \textcolor{comment}{\ \ \ \ \ \ \ \ the\ position\ that\ it\ wasn't,\ the\ system\ has\ acquired\ a\ variation,}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00134}00134\ \textcolor{comment}{\ \ \ \ \ \ \ \ the\ variation\ being\ the\ difference\ between\ where\ the\ enemy\ is,}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00135}00135\ \textcolor{comment}{\ \ \ \ \ \ \ \ and\ where\ it\ wasn't.}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00136}00136\ \textcolor{comment}{\ \ \ \ \ \ \ \ If\ variation\ is\ considered\ to\ be\ a\ significant\ factor,}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00137}00137\ \textcolor{comment}{\ \ \ \ \ \ \ \ it\ too\ may\ be\ corrected\ by\ the\ GEA.}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00138}00138\ \textcolor{comment}{\ \ \ \ \ \ \ \ However,\ the\ enemy\ must\ also\ know\ where\ it\ was.}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00139}00139\ \textcolor{comment}{\ \ \ \ \ \ \ \ The\ enemy\ guidance\ computer\ scenario\ works\ as\ follows.}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00140}00140\ \textcolor{comment}{\ \ \ \ \ \ \ \ Because\ a\ variation\ has\ modified\ some\ of\ the\ information}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00141}00141\ \textcolor{comment}{\ \ \ \ \ \ \ \ the\ enemy\ has\ obtained,\ it\ is\ not\ sure\ just\ where\ it\ is.}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00142}00142\ \textcolor{comment}{\ \ \ \ \ \ \ \ However,\ it\ is\ sure\ where\ it\ isn't,\ within\ reason,}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00143}00143\ \textcolor{comment}{\ \ \ \ \ \ \ \ and\ it\ knows\ where\ it\ was.}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00144}00144\ \textcolor{comment}{\ \ \ \ \ \ \ \ It\ now\ subtracts\ where\ it\ should\ be\ from\ where\ it\ wasn't,}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00145}00145\ \textcolor{comment}{\ \ \ \ \ \ \ \ or\ vice-\/versa,\ and\ by\ differentiating\ this\ from\ the}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00146}00146\ \textcolor{comment}{\ \ \ \ \ \ \ \ algebraic\ sum\ of\ where\ it\ shouldn't\ be,\ and\ where\ it\ was,}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00147}00147\ \textcolor{comment}{\ \ \ \ \ \ \ \ it\ is\ able\ to\ obtain\ the\ deviation\ and\ its\ variation,}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00148}00148\ \textcolor{comment}{\ \ \ \ \ \ \ \ which\ is\ called\ error.}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00149}00149\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00150}00150\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00151}00151\ \ \ \ \ \textcolor{comment}{//\ loading\ the\ enemies}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00152}00152\ \ \ \ \ \textcolor{keywordflow}{while}\ (file.is\_open()\ \&\&\ !file.eof())}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00153}00153\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00154}00154\ \ \ \ \ \ \ \ \ file\ >>\ type;}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00155}00155\ \ \ \ \ \ \ \ \ file\ >>\ id;}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00156}00156\ \ \ \ \ \ \ \ \ file\ >>\ pos.x;}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00157}00157\ \ \ \ \ \ \ \ \ file\ >>\ pos.y;}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00158}00158\ \ \ \ \ \ \ \ \ file\ >>\ vel.x;}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00159}00159\ \ \ \ \ \ \ \ \ file\ >>\ vel.y;}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00160}00160\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00161}00161\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (type)}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00162}00162\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00163}00163\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 0:\ \textcolor{comment}{//land}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00164}00164\ \ \ \ \ \ \ \ \ \ \ \ \ objects.push\_back(\textcolor{keyword}{new}\ \mbox{\hyperlink{class_land}{Land}}(\textcolor{keywordtype}{id},\ \textcolor{keyword}{true},\ \&backgroundSpeed,}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00165}00165\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&objects,\ pos,\ vel,\ levelEditor));}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00166}00166\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00167}00167\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 1:\ \textcolor{comment}{//air\ }}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00168}00168\ \ \ \ \ \ \ \ \ \ \ \ \ file\ >>\ startMark;}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00169}00169\ \ \ \ \ \ \ \ \ \ \ \ \ objects.push\_back(\textcolor{keyword}{new}\ \mbox{\hyperlink{class_air}{Air}}(\textcolor{keywordtype}{id},\ \textcolor{keyword}{true},\ \&backgroundDist,\ startMark,\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00170}00170\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ winSize,\ \&objects,\ pos,\ vel,\ levelEditor));}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00171}00171\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00172}00172\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 2:}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00173}00173\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00174}00174\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00175}00175\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00176}00176\ \ \ \ \ \textcolor{comment}{//I\ am\ so\ sorry\ -\/Gabe}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00177}00177\ \}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00178}00178\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00179}00179\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00183}\mbox{\hyperlink{class_level_a471c9e2b17008decb1a37c33b7764316}{00183}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_level_a471c9e2b17008decb1a37c33b7764316}{Level::debugMode}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00184}00184\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00185}00185\ \ \ \ \ p[0]-\/>\mbox{\hyperlink{class_player_a6bb715335c5bdd61640bf79938fd4de7}{setHealth}}(\mbox{\hyperlink{_level_8h_a579ff6594d2d947883d6cdac6991bb7b}{HP\_MAX}});}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00186}00186\ \ \ \ \ p[1]-\/>\mbox{\hyperlink{class_player_a6bb715335c5bdd61640bf79938fd4de7}{setHealth}}(\mbox{\hyperlink{_level_8h_a579ff6594d2d947883d6cdac6991bb7b}{HP\_MAX}});}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00187}00187\ \}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00188}00188\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00189}\mbox{\hyperlink{class_level_a246347869043d53d20b752ffbd23e0d0}{00189}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_level_a246347869043d53d20b752ffbd23e0d0}{Level::respawnPlayers}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00190}00190\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00191}00191\ \ \ \ \ p[0]-\/>\mbox{\hyperlink{class_player_a6bb715335c5bdd61640bf79938fd4de7}{setHealth}}(3);}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00192}00192\ \ \ \ \ p[1]-\/>\mbox{\hyperlink{class_player_a6bb715335c5bdd61640bf79938fd4de7}{setHealth}}(3);}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00193}00193\ \}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00194}00194\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00195}00195\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00200}00200\ \textcolor{keywordtype}{void}\ Level::initializeTextures(\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ index)}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00201}00201\ \{}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00202}00202\ \ \ \ \ sf::IntRect\ objRect;}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00203}00203\ \ \ \ \ \textcolor{keywordtype}{int}\ frameCount\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00204}00204\ \ \ \ \ sf::Texture*\ texPtr\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00205}00205\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00206}00206\ \ \ \ \ \mbox{\hyperlink{class_object}{Object}}*\ \textcolor{keywordtype}{object}\ =\ objects[objects.size()\ -\/\ 1\ -\/\ index];}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00207}00207\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00208}00208\ \ \ \ \ \textcolor{comment}{//\ if\ the\ texture\ is\ not\ initialized}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00209}00209\ \ \ \ \ \textcolor{keywordflow}{if}\ (!object-\/>\mbox{\hyperlink{class_object_aae1c24adafa5c14df0f61b55664a106f}{isTexInit}}())}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00210}00210\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00211}00211\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (object-\/>\mbox{\hyperlink{class_object_a5a6edd3542f1a2ef6b6c7969d59f83e3}{getType}}())}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00212}00212\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00213}00213\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{class_object_aa30bdbe3657d9756611172b5f4ffcedfae6ab2458f15cf9b61400b476d1afabff}{Object::BOSS}}:}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00214}00214\ \ \ \ \ \ \ \ \ \ \ \ \ initTexturesBoss(\textcolor{keywordtype}{object},\ objRect,\ frameCount,\ texPtr);}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00215}00215\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00216}00216\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{class_object_aa30bdbe3657d9756611172b5f4ffcedfa5c76a9d1866a04538f64c9871e342452}{Object::LAND}}:}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00217}00217\ \ \ \ \ \ \ \ \ \ \ \ \ initTexturesLand(\textcolor{keywordtype}{object},\ objRect,\ frameCount,\ texPtr);}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00218}00218\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00219}00219\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{class_object_aa30bdbe3657d9756611172b5f4ffcedfa6f28bb958f4e90da71e05e331e766740}{Object::EXPLOSION}}:}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00220}00220\ \ \ \ \ \ \ \ \ \ \ \ \ initTexturesExplosion(\textcolor{keywordtype}{object},\ objRect,\ frameCount,\ texPtr);}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00221}00221\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00222}00222\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{class_object_aa30bdbe3657d9756611172b5f4ffcedfad9b734065c178992981eb1f1258e7e22}{Object::AIR}}:}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00223}00223\ \ \ \ \ \ \ \ \ \ \ \ \ initTexturesAir(\textcolor{keywordtype}{object},\ objRect,\ frameCount,\ texPtr);}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00224}00224\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00225}00225\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{class_object_aa30bdbe3657d9756611172b5f4ffcedfa439b5fdd5ad9e6e311e0f6f1b12a6306}{Object::PLAYER\_PROJECTILE}}:}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00226}00226\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{class_object_aa30bdbe3657d9756611172b5f4ffcedfadc2a381f993d4faf9824b5fcf6c02ccd}{Object::ENEMY\_PROJECTILE}}:}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00227}00227\ \ \ \ \ \ \ \ \ \ \ \ \ initTexturesProjectile(\textcolor{keywordtype}{object},\ objRect,\ frameCount,\ texPtr);}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00228}00228\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00229}00229\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{class_object_aa30bdbe3657d9756611172b5f4ffcedfa0c630e789ab51b65b387c99ca0b3c750}{Object::COLLECTABLE}}:}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00230}00230\ \ \ \ \ \ \ \ \ \ \ \ \ initTexturesCollectable(\textcolor{keywordtype}{object},\ objRect,\ frameCount,\ texPtr);}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00231}00231\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00232}00232\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00233}00233\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00234}00234\ \ \ \ \ \textcolor{keywordflow}{if}\ (texPtr)}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00235}00235\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{object}-\/>setTexture(texPtr,\ objRect.getSize(),}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00236}00236\ \ \ \ \ \ \ \ \ \ \ \ \ objRect.getPosition(),\ frameCount,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00237}00237\ \}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00238}00238\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00239}00239\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00245}\mbox{\hyperlink{class_level_abc059a9b29f04a38aad94cae8e341bc6}{00245}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_level_abc059a9b29f04a38aad94cae8e341bc6}{Level::update}}(\textcolor{keyword}{const}\ sf::Vector2f\ winSize)}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00246}00246\ \{}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00247}00247\ \ \ \ \ \textcolor{comment}{//\ Just\ for\ debugging}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00248}00248\ \ \ \ \ \textcolor{comment}{//\ The\ bug\ where\ holding\ enter\ freezes\ the\ background,\ }}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00249}00249\ \ \ \ \ \textcolor{comment}{//\ but\ not\ the\ enemies\ is\ caused\ by\ this}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00250}00250\ \ \ \ \ \textcolor{comment}{//\ We\ don't\ really\ need\ this\ anymore\ anyways}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00251}00251\ \ \ \ \ \textcolor{comment}{//if\ (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)\ \&\&\ infScrollInPos)}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00252}00252\ \ \ \ \ \ \ \ \ \textcolor{comment}{//setInfScroll(false);}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00253}00253\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00254}00254\ \ \ \ \ \textcolor{keywordflow}{if}(levelEditor)}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00255}00255\ \ \ \ \ \ \ \ \ updateLevelEditor();}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00256}00256\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00257}00257\ \ \ \ \ \textcolor{comment}{//\ The\ background\ has\ to\ scroll\ backwards\ to\ get\ the\ effect\ that\ we\ want.}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00258}00258\ \ \ \ \ \textcolor{keywordflow}{if}\ (infScrollInPos\ ||\ infScrollEnabled)}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00259}00259\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00260}00260\ \ \ \ \ \ \ \ \ backgroundDist\ -\/=\ backgroundSpeed;}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00261}00261\ \ \ \ \ \ \ \ \ rect.top\ =\ (int)backgroundDist;}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00262}00262\ \ \ \ \ \ \ \ \ background.setTextureRect(rect);}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00263}00263\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00264}00264\ \ \ \ \ updateInfScroll();}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00265}00265\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00266}00266\ \ \ \ \ \textcolor{comment}{//\ for\ smoothing\ out\ background.\ }}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00267}00267\ \ \ \ \ \textcolor{comment}{//\ Take\ the\ decimal,\ leave\ the\ whole\ number}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00268}00268\ \ \ \ \ \textcolor{comment}{//\ SFML\ will\ smooth\ out\ not\ pixel\ aligned\ things.}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00269}00269\ \ \ \ \ background.setPosition(0,\ \textcolor{keywordtype}{float}((\textcolor{keywordtype}{int})backgroundDist\ -\/\ backgroundDist));}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00270}00270\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00271}00271\ \ \ \ \ updatePlayers();}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00272}00272\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00273}00273\ \ \ \ \ \textcolor{comment}{//\ checking\ the\ back\ of\ the\ vector\ first\ is\ needed,}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00274}00274\ \ \ \ \ \textcolor{comment}{//\ so\ deleting\ doesn't\ shift\ everything\ down\ and\ mess\ up\ the\ for\ loop}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00275}00275\ \ \ \ \ \textcolor{comment}{//\ delete\ first,\ then\ erase}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00276}00276\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00277}00277\ \ \ \ \ \textcolor{comment}{//polymorphism\ -\/-\/\ All\ objects\ are\ stored\ in\ this\ vector,\ they\ can\ be}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00278}00278\ \ \ \ \ \textcolor{comment}{//identified\ using\ getType()}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00279}00279\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ objects.size();\ i++)}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00280}00280\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00281}00281\ \ \ \ \ \ \ \ \ objects[objects.size()\ -\/\ 1\ -\/\ i]-\/>update(winSize,\ \&objects,}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00282}00282\ \ \ \ \ \ \ \ \ \ \ \ \ p[1]-\/>getTime()\ \&\&\ !levelEditor);}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00283}00283\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (objects[objects.size()\ -\/\ 1\ -\/\ i]-\/>getType()\ ==\ \mbox{\hyperlink{class_object_aa30bdbe3657d9756611172b5f4ffcedfa6f28bb958f4e90da71e05e331e766740}{Object::EXPLOSION}})}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00284}00284\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00285}00285\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ I'm\ sorry.}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00286}00286\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Explosions\ didn't\ move\ before.\ They\ move\ now}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00287}00287\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ I\ didn't\ want\ to\ add\ more\ polymorphism\ stuff}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00288}00288\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Pointers\ are\ cool}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00289}00289\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_explosion}{Explosion}}*\ exp\ =\ (\mbox{\hyperlink{class_explosion}{Explosion}}*)objects[objects.size()\ -\/\ 1\ -\/\ i];}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00290}00290\ \ \ \ \ \ \ \ \ \ \ \ \ exp-\/>\mbox{\hyperlink{class_explosion_a6ae4683af0dbbcf965100dfa96ab48db}{backgroundSpeed}}\ =\ backgroundSpeed;}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00291}00291\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00292}00292\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00293}00293\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00294}00294\ \ \ \ \ \textcolor{comment}{//\ Calling\ init\ textures\ after\ everything\ is\ updated.}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00295}00295\ \ \ \ \ \textcolor{comment}{//\ Objects\ may\ create\ explosions\ that\ won't\ be\ drawn,\ }}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00296}00296\ \ \ \ \ \textcolor{comment}{//\ because\ the\ loop\ won't\ reach\ them}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00297}00297\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ objects.size();\ i++)}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00298}00298\ \ \ \ \ \ \ \ \ initializeTextures(i);}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00299}00299\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00300}00300\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ objects.size();\ i++)}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00301}00301\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00302}00302\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ logic\ after\ \&\&\ symbol\ is\ for\ when\ the\ level\ editor\ is\ active\ we\ dont\ want\ to\ remove\ enemies\ when\ offscreen}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00303}00303\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (objects[objects.size()\ -\/\ 1\ -\/\ i]-\/>shouldDelete()\ \&\&}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00304}00304\ \ \ \ \ \ \ \ \ \ \ \ \ (!(objects[objects.size()\ -\/\ 1\ -\/\ i]-\/>getType()\ ==\ \mbox{\hyperlink{class_object_aa30bdbe3657d9756611172b5f4ffcedfa5c76a9d1866a04538f64c9871e342452}{Object::LAND}}\ ||}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00305}00305\ \ \ \ \ \ \ \ \ \ \ \ \ objects[objects.size()\ -\/\ 1\ -\/\ i]-\/>getType()\ ==\ \mbox{\hyperlink{class_object_aa30bdbe3657d9756611172b5f4ffcedfad9b734065c178992981eb1f1258e7e22}{Object::AIR}})\ ||\ !levelEditor))}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00306}00306\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00307}00307\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Just\ temporary}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00308}00308\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Deleting\ stuff\ adds\ score\ to\ random\ player}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00309}00309\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (rand()\ \%\ 2\ ==\ 0)}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00310}00310\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ player1Score\ +=\ 100;}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00311}00311\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00312}00312\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ player2Score\ +=\ 100;}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00313}00313\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00314}00314\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ objects[objects.size()\ -\/\ 1\ -\/\ i];}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00315}00315\ \ \ \ \ \ \ \ \ \ \ \ \ objects.erase(objects.end()\ -\/\ 1\ -\/\ i);}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00316}00316\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00317}00317\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00318}00318\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00319}00319\ \ \ \ \ englandUpdate();}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00320}00320\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00321}00321\ \ \ \ \ \textcolor{comment}{//\ Update\ scores\ and\ stuff\ after\ update,}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00322}00322\ \ \ \ \ \textcolor{comment}{//\ so\ the\ game\ over\ screen\ doesn't\ freeze\ it\ with\ one\ life\ left}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00323}00323\ \ \ \ \ p1Score.setString(std::to\_string(player1Score));}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00324}00324\ \ \ \ \ p2Score.setString(std::to\_string(player2Score));}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00325}00325\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00326}00326\ \ \ \ \ p1LivesRect.setSize(sf::Vector2f(16.f\ *\ p[0]-\/>getHealth(),\ 16));}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00327}00327\ \ \ \ \ p2LivesRect.setSize(sf::Vector2f(16.f\ *\ p[1]-\/>getHealth(),\ 16));}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00328}00328\ \ \ \ \ p1LivesRect.setTextureRect(sf::IntRect(0,\ 16,\ 32\ *\ p[0]-\/>getHealth(),\ 32));}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00329}00329\ \ \ \ \ p2LivesRect.setTextureRect(sf::IntRect(0,\ 16,\ 32\ *\ p[1]-\/>getHealth(),\ 32));}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00330}00330\ \ \ \ \ p1LivesRect.setPosition(sf::Vector2f(0,\ 16));}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00331}00331\ \ \ \ \ p2LivesRect.setPosition(sf::Vector2f(winSize.x\ -\/\ p2LivesRect.getLocalBounds().width,\ 16));}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00332}00332\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00333}00333\ \ \ \ \ \textcolor{comment}{//\ Place\ scores\ in\ middle\ top}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00334}00334\ \ \ \ \ \textcolor{comment}{//\ Scores\ were\ not\ implemented,\ so\ these\ values\ never\ change\ for\ now}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00335}00335\ \ \ \ \ p1Score.setPosition(sf::Vector2f(winSize.x\ /\ 2\ -\/\ 20\ -\/\ p1Score.getLocalBounds().width,}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00336}00336\ \ \ \ \ \ \ \ \ -\/p2Score.getLocalBounds().height));}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00337}00337\ \ \ \ \ p2Score.setPosition(sf::Vector2f(winSize.x\ /\ 2\ +\ 20,}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00338}00338\ \ \ \ \ \ \ \ \ -\/p2Score.getLocalBounds().height));}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00339}00339\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00340}00340\ \ \ \ \ \textcolor{keywordflow}{return}\ p[0]-\/>\mbox{\hyperlink{class_player_afedf037af6d031163d4c00f4cb773d56}{getHealth}}()\ >\ 0\ ||\ p[1]-\/>\mbox{\hyperlink{class_player_afedf037af6d031163d4c00f4cb773d56}{getHealth}}()\ >\ 0;}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00341}00341\ \}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00342}00342\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00343}00343\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00348}00348\ \textcolor{keywordtype}{void}\ Level::setInfScroll(\textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ enable)}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00349}00349\ \{}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00350}00350\ \ \ \ \ infScrollEnabled\ =\ enable;}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00351}00351\ \ \ \ \ infScrollInPos\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00352}00352\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00353}00353\ \ \ \ \ \textcolor{keywordflow}{if}\ (enable)}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00354}00354\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00355}00355\ \ \ \ \ \ \ \ \ frontRect.top\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00356}00356\ \ \ \ \ \ \ \ \ frontbackground.setTextureRect(rect);}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00357}00357\ \ \ \ \ \ \ \ \ frontbackgroundDist\ =\ (float)\ -\/(\textcolor{keywordtype}{int})winSize.y;}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00358}00358\ \ \ \ \ \ \ \ \ frontbackground.setPosition(0,\ frontbackgroundDist);}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00359}00359\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00360}00360\ \}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00361}00361\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00362}00362\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00366}00366\ \textcolor{keywordtype}{void}\ Level::updateInfScroll()}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00367}00367\ \{}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00368}00368\ \ \ \ \ \textcolor{keywordflow}{if}\ (!(infScrollEnabled\ ||\ !infScrollInPos))}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00369}00369\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00370}00370\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00371}00371\ \ \ \ \ \textcolor{keywordflow}{if}\ (infScrollInPos)}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00372}00372\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00373}00373\ \ \ \ \ \ \ \ \ frontRect.top\ -\/=\ (int)backgroundSpeed;}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00374}00374\ \ \ \ \ \ \ \ \ frontbackground.setTextureRect(frontRect);}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00375}00375\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00376}00376\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00377}00377\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00378}00378\ \ \ \ \ \ \ \ \ frontbackgroundDist\ +=\ backgroundSpeed;}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00379}00379\ \ \ \ \ \ \ \ \ frontbackground.setPosition(0,\ frontbackgroundDist);}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00380}00380\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00381}00381\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00382}00382\ \ \ \ \ \textcolor{keywordflow}{if}\ ((frontbackgroundDist\ ==\ winSize.y\ ||\ frontbackgroundDist\ >=\ 0)\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00383}00383\ \ \ \ \ \ \ \ \ \&\&\ !infScrollInPos)}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00384}00384\ \ \ \ \ \ \ \ \ infScrollInPos\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00385}00385\ \}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00386}00386\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00387}00387\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00388}00388\ \textcolor{keywordtype}{void}\ Level::updateLevelEditor()}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00389}00389\ \{}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00390}00390\ \ \ \ \ setInfScroll(\textcolor{keyword}{false});}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00391}00391\ \ \ \ \ \textcolor{keywordflow}{if}(sf::Keyboard::isKeyPressed(sf::Keyboard::PageUp)\ ||}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00392}00392\ \ \ \ \ \ \ \ \ sf::Keyboard::isKeyPressed(sf::Keyboard::PageDown))}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00393}00393\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00394}00394\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(sf::Keyboard::isKeyPressed(sf::Keyboard::PageUp))}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00395}00395\ \ \ \ \ \ \ \ \ \ \ \ \ backgroundSpeed\ =\ 25;}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00396}00396\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(sf::Keyboard::isKeyPressed(sf::Keyboard::PageDown))}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00397}00397\ \ \ \ \ \ \ \ \ \ \ \ \ backgroundSpeed\ =\ -\/25;}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00398}00398\ \ \ \ \ \ \ \ \ backgroundDist\ -\/=\ backgroundSpeed;}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00399}00399\ \ \ \ \ \ \ \ \ rect.top\ =\ (int)backgroundDist;}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00400}00400\ \ \ \ \ \ \ \ \ background.setTextureRect(rect);}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00401}00401\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00402}00402\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\mbox{\hyperlink{class_object}{Object}}*\ \textcolor{keywordtype}{object}\ :\ objects)}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00403}00403\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00404}00404\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (object-\/>\mbox{\hyperlink{class_object_a5a6edd3542f1a2ef6b6c7969d59f83e3}{getType}}())}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00405}00405\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00406}00406\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{class_object_aa30bdbe3657d9756611172b5f4ffcedfa5c76a9d1866a04538f64c9871e342452}{Object::LAND}}:}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00407}00407\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{object}-\/>setPos(object-\/>\mbox{\hyperlink{class_object_a6c18e49c4c21c3d99ac214044202eb4c}{getPos}}().x,\ object-\/>\mbox{\hyperlink{class_object_a6c18e49c4c21c3d99ac214044202eb4c}{getPos}}().y\ +\ backgroundSpeed);}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00408}00408\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00409}00409\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00410}00410\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00411}00411\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00412}00412\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00413}00413\ \}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00414}00414\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00415}00415\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00421}00421\ \textcolor{keywordtype}{void}\ Level::draw(sf::RenderTarget\&\ target,\ \textcolor{keyword}{const}\ sf::RenderStates\ states)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00422}00422\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00423}00423\ \ \ \ \ target.draw(background,\ states);}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00424}00424\ \ \ \ \ target.draw(frontbackground,\ states);}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00425}00425\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00426}00426\ \ \ \ \ \textcolor{comment}{//\ Drawing\ priority}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00427}00427\ \ \ \ \ \textcolor{comment}{//\ Slightly\ cleaner\ than\ what\ was\ here}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00428}00428\ \ \ \ \ \textcolor{comment}{//\ Explosions\ and\ projectiles\ first}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00429}00429\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00430}00430\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ (\textcolor{keywordtype}{int})objects.size()\ -\/\ 1;\ i\ >=\ 0;\ i-\/-\/)}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00431}00431\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00432}00432\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (objects[i]-\/>isTexInit())}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00433}00433\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00434}00434\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (objects.at(i)-\/>getType())}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00435}00435\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00436}00436\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{class_object_aa30bdbe3657d9756611172b5f4ffcedfa5c76a9d1866a04538f64c9871e342452}{Object::LAND}}:}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00437}00437\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ target.draw(*objects[i]);}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00438}00438\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00439}00439\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00440}00440\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00441}00441\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00442}00442\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ (\textcolor{keywordtype}{int})objects.size()\ -\/\ 1;\ i\ >=\ 0;\ i-\/-\/)}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00443}00443\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00444}00444\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (objects[i]-\/>isTexInit())}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00445}00445\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (objects.at(i)-\/>getType())}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00446}00446\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00447}00447\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{class_object_aa30bdbe3657d9756611172b5f4ffcedfad9b734065c178992981eb1f1258e7e22}{Object::AIR}}:}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00448}00448\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{class_object_aa30bdbe3657d9756611172b5f4ffcedfa2657f666c376bf9d85a3745447824cb0}{Object::BOSS\_PIECE}}:}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00449}00449\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{class_object_aa30bdbe3657d9756611172b5f4ffcedfa0c630e789ab51b65b387c99ca0b3c750}{Object::COLLECTABLE}}:}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00450}00450\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{class_object_aa30bdbe3657d9756611172b5f4ffcedfa6c8e0f12f0544ca4849ef9677e133c4a}{Object::PLAYER}}:}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00451}00451\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{class_object_aa30bdbe3657d9756611172b5f4ffcedfae6ab2458f15cf9b61400b476d1afabff}{Object::BOSS}}:}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00452}00452\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ target.draw(*objects[i]);}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00453}00453\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00454}00454\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00455}00455\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00456}00456\ \ \ \ \ \textcolor{comment}{//\ Projectiles\ with\ a\ delay\ think\ they\ have\ a\ texture\ to\ prevent\ them\ from\ }}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00457}00457\ \ \ \ \ \textcolor{comment}{//\ loading\ their\ texture\ early.}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00458}00458\ \ \ \ \ \textcolor{comment}{//\ The\ draw\ loop\ only\ checked\ if\ an\ object\ had\ a\ texture.\ }}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00459}00459\ \ \ \ \ \textcolor{comment}{//\ It\ now\ also\ checks\ if\ an\ object\ has\ a\ non-\/zero\ width.}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00460}00460\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00461}00461\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ (\textcolor{keywordtype}{int})objects.size()\ -\/\ 1;\ i\ >=\ 0;\ i-\/-\/)}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00462}00462\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00463}00463\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (objects[i]-\/>isTexInit()\ \&\&\ objects[i]-\/>getSize().x\ >\ 0)}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00464}00464\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (objects[i]-\/>getType())}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00465}00465\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00466}00466\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{class_object_aa30bdbe3657d9756611172b5f4ffcedfadc2a381f993d4faf9824b5fcf6c02ccd}{Object::ENEMY\_PROJECTILE}}:}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00467}00467\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{class_object_aa30bdbe3657d9756611172b5f4ffcedfa6f28bb958f4e90da71e05e331e766740}{Object::EXPLOSION}}:}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00468}00468\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{class_object_aa30bdbe3657d9756611172b5f4ffcedfa439b5fdd5ad9e6e311e0f6f1b12a6306}{Object::PLAYER\_PROJECTILE}}:}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00469}00469\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ target.draw(*objects[i]);}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00470}00470\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00471}00471\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00472}00472\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00473}00473\ \ \ \ \ target.draw(p1Score,\ states);}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00474}00474\ \ \ \ \ target.draw(p2Score,\ states);}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00475}00475\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00476}00476\ \ \ \ \ target.draw(p1LivesRect,\ states);}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00477}00477\ \ \ \ \ target.draw(p2LivesRect,\ states);}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00478}00478\ \}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00479}00479\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00480}00480\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00484}00484\ \textcolor{keywordtype}{void}\ Level::updatePlayers()}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00485}00485\ \{}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00486}00486\ \ \ \ \ \textcolor{comment}{//\ controller\ controls}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00487}00487\ \ \ \ \ \textcolor{comment}{//\ works\ with\ 2\ controllers}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00488}00488\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00489}00489\ \ \ \ \ \textcolor{comment}{//\ Move\ Offset}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00490}00490\ \ \ \ \ sf::Vector2f\ move;}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00491}00491\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00492}00492\ \ \ \ \ \textcolor{comment}{//\ If\ the\ player\ should\ shoot}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00493}00493\ \ \ \ \ \textcolor{keywordtype}{bool}\ shoot,\ special;}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00494}00494\ \ \ \ \ \textcolor{keywordtype}{bool}\ spawn;}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00495}00495\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00496}00496\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 2;\ i++)}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00497}00497\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00498}00498\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (sf::Joystick::isConnected(i))}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00499}00499\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00500}00500\ \ \ \ \ \ \ \ \ \ \ \ \ move\ =\ joystick(i);}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00501}00501\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00502}00502\ \ \ \ \ \ \ \ \ \ \ \ \ shoot\ =\ button(i,\ \mbox{\hyperlink{_controller_stuff_8hpp_a89d05f92ddc43745299203ee8cc1d89da5596231eabd6cf29050967d5ac83ad84}{Controller::Y}});}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00503}00503\ \ \ \ \ \ \ \ \ \ \ \ \ special\ =\ button(i,\ \mbox{\hyperlink{_controller_stuff_8hpp_a89d05f92ddc43745299203ee8cc1d89da3f2a77ecd272aa6d6b5902faa5e5fc68}{Controller::B}});}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00504}00504\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00505}00505\ \ \ \ \ \ \ \ \ \ \ \ \ spawn\ =\ button(i,\ \mbox{\hyperlink{_controller_stuff_8hpp_a89d05f92ddc43745299203ee8cc1d89da42a4ade1acd55a49164099104990e09f}{Controller::A}});}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00506}00506\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00507}00507\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00508}00508\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00509}00509\ \ \ \ \ \ \ \ \ \ \ \ \ move.x\ =\ (float)key(i,\ \mbox{\hyperlink{_controller_stuff_8hpp_a949b4a8624f2b4343a97e2f265d19aa7ad48f7af8c070184f3774c8e85854eb66}{Controls::Right}})\ -\/\ key(i,\ \mbox{\hyperlink{_controller_stuff_8hpp_a949b4a8624f2b4343a97e2f265d19aa7a9d4d8b0b72fc2659da772d761a3c5ecb}{Controls::Left}});}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00510}00510\ \ \ \ \ \ \ \ \ \ \ \ \ move.y\ =\ (float)key(i,\ \mbox{\hyperlink{_controller_stuff_8hpp_a949b4a8624f2b4343a97e2f265d19aa7a36625780699489b5c3dfceadfb9c27d1}{Controls::Back}})\ -\/\ key(i,\ \mbox{\hyperlink{_controller_stuff_8hpp_a949b4a8624f2b4343a97e2f265d19aa7ae204c9c3e62b1e9a6b60e40cd05256c5}{Controls::Forward}});}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00511}00511\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00512}00512\ \ \ \ \ \ \ \ \ \ \ \ \ shoot\ =\ key(i,\ \mbox{\hyperlink{_controller_stuff_8hpp_a949b4a8624f2b4343a97e2f265d19aa7ae0047bf03d9327f6eee214075d1a784b}{Controls::Shoot}});}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00513}00513\ \ \ \ \ \ \ \ \ \ \ \ \ special\ =\ key(i,\ \mbox{\hyperlink{_controller_stuff_8hpp_a949b4a8624f2b4343a97e2f265d19aa7ac18c85698a8e17ceb09f0393f47d43d3}{Controls::Special}});}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00514}00514\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00515}00515\ \ \ \ \ \ \ \ \ \ \ \ \ spawn\ =\ key(i,\ \mbox{\hyperlink{_controller_stuff_8hpp_a949b4a8624f2b4343a97e2f265d19aa7aaa91a7c5a479ef5add68c761703fbaee}{Controls::Spawn}});}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00516}00516\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00517}00517\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00518}00518\ \ \ \ \ \ \ \ \ objects.at(i)-\/>setVel(move\ *\ 5.f);}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00519}00519\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (shoot)}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00520}00520\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00521}00521\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!playerShootLast[i])}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00522}00522\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ p[i]-\/>\mbox{\hyperlink{class_player_a058891f5cfd2dc489f6af41fbc373a37}{shoot}}(objects);}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00523}00523\ \ \ \ \ \ \ \ \ \ \ \ \ playerShootLast[i]\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00524}00524\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00525}00525\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00526}00526\ \ \ \ \ \ \ \ \ \ \ \ \ playerShootLast[i]\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00527}00527\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00528}00528\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (special)}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00529}00529\ \ \ \ \ \ \ \ \ \ \ \ \ p[i]-\/>\mbox{\hyperlink{class_player_ac083b202a91b3330324ad2906e17bf52}{special}}(objects,\ winSize);}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00530}00530\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00531}00531\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (spawn)\ \textcolor{comment}{//Temporary\ and\ should\ be\ changed\ to\ continue.}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00532}00532\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00533}00533\ \ \ \ \ \ \ \ \ \ \ \ \ p[0]-\/>\mbox{\hyperlink{class_player_a6bb715335c5bdd61640bf79938fd4de7}{setHealth}}(3);}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00534}00534\ \ \ \ \ \ \ \ \ \ \ \ \ p[1]-\/>\mbox{\hyperlink{class_player_a6bb715335c5bdd61640bf79938fd4de7}{setHealth}}(3);}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00535}00535\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00536}00536\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00537}00537\ \}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00538}00538\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00539}00539\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00540}00540\ \textcolor{keywordtype}{void}\ Level::statesUpdate()}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00541}00541\ \{}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00542}00542\ \ \ \ \ \textcolor{keywordflow}{if}\ (backgroundDist\ ==\ 0\ \&\&\ !infScrollEnabled)}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00543}00543\ \ \ \ \ \ \ \ \ setInfScroll(\textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00544}00544\ \}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00545}00545\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00546}00546\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00547}00547\ \textcolor{keywordtype}{void}\ Level::japanUpdate()}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00548}00548\ \{}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00549}00549\ \ \ \ \ \textcolor{keywordflow}{if}\ (!(p[1]-\/>getTime()))}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00550}00550\ \ \ \ \ \ \ \ \ backgroundSpeed\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00551}00551\ \ \ \ \ \textcolor{keywordflow}{if}\ (backgroundDist\ ==\ 0\ \&\&\ !infScrollEnabled)}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00552}00552\ \ \ \ \ \ \ \ \ setInfScroll(\textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00553}00553\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00554}00554\ \ \ \ \ \ \ \ \ backgroundSpeed\ =\ 1;}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00555}00555\ \}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00556}00556\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00557}00557\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00558}00558\ \textcolor{keywordtype}{void}\ Level::swedenUpdate()}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00559}00559\ \{}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00560}00560\ \ \ \ \ \textcolor{keywordflow}{if}\ (backgroundDist\ <=\ 0)}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00561}00561\ \ \ \ \ \ \ \ \ backgroundSpeed\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00562}00562\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00563}00563\ \}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00564}00564\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00565}00565\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00566}00566\ \textcolor{keywordtype}{void}\ Level::englandUpdate()}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00567}00567\ \{}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00568}00568\ \ \ \ \ \textcolor{keywordflow}{if}\ (backgroundDist\ <=\ 0\ \&\&\ !levelEditor\ \&\&\ !infScrollEnabled)}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00569}00569\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00570}00570\ \ \ \ \ \ \ \ \ setInfScroll(\textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00571}00571\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (bossSpawned\ ==\ \textcolor{keyword}{false})}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00572}00572\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00573}00573\ \ \ \ \ \ \ \ \ \ \ \ \ objects.push\_back(\textcolor{keyword}{new}\ \mbox{\hyperlink{class_boss}{Boss}}(0,\ \textcolor{keyword}{true},\ sf::Vector2f(winSize.x\ /\ 2,}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00574}00574\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ -\/150),\ sf::Vector2f(0,\ 5),\ \&objects,\ levelEditor));}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00575}00575\ \ \ \ \ \ \ \ \ \ \ \ \ bossSpawned\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00576}00576\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00577}00577\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00578}00578\ \ \ \ \ \textcolor{comment}{//Slow\ down\ for\ fort}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00579}00579\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (backgroundDist\ <=\ 1405\ \&\&\ backgroundDist\ >\ 1264)}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00580}00580\ \ \ \ \ \ \ \ \ backgroundSpeed\ =\ 0.5;}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00581}00581\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (!infScrollEnabled)}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00582}00582\ \ \ \ \ \ \ \ \ backgroundSpeed\ =\ 1;}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00583}00583\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (infScrollEnabled\ \&\&\ backgroundSpeed\ <\ 7)}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00584}00584\ \ \ \ \ \ \ \ \ backgroundSpeed\ *=\ 1.01f;}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00585}00585\ \}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00586}00586\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00587}00587\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00595}00595\ \textcolor{keywordtype}{void}\ Level::initTexturesBoss(\mbox{\hyperlink{class_object}{Object}}*\ \textcolor{keywordtype}{object},\ sf::IntRect\&\ objRect,}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00596}00596\ \ \ \ \ \textcolor{keywordtype}{int}\&\ frameCount,\ sf::Texture*\&\ texPtr)}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00597}00597\ \{}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00598}00598\ \ \ \ \ texPtr\ =\ \&avroBomberImg;}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00599}00599\ \ \ \ \ frameCount\ =\ 1;}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00600}00600\ \ \ \ \ \textcolor{keywordflow}{switch}\ (object-\/>\mbox{\hyperlink{class_object_a2c8eca870f0045fc4a0c43d94a0472a5}{getId}}())}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00601}00601\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00602}00602\ \ \ \ \ \textcolor{keywordflow}{case}\ 0:\ \textcolor{comment}{//Avro\ Bomber}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00603}00603\ \ \ \ \ \ \ \ \ objRect\ =\ \{\ 8,\ 4,\ 164,\ 150\ \};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00604}00604\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00605}00605\ \ \ \ \ \textcolor{keywordflow}{case}\ 1:\ \textcolor{comment}{//Avro\ Bomber\ Left\ Wing}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00606}00606\ \ \ \ \ \ \ \ \ objRect\ =\ \{\ 180,\ 14,\ 56,\ 75\ \};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00607}00607\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00608}00608\ \ \ \ \ \textcolor{keywordflow}{case}\ 2:\ \textcolor{comment}{//Avro\ Bomber\ Right\ Wing}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00609}00609\ \ \ \ \ \ \ \ \ objRect\ =\ \{\ 236,\ 14,\ 52,\ 75\ \};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00610}00610\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00611}00611\ \ \ \ \ \textcolor{keywordflow}{case}\ 3:\ \textcolor{comment}{//Avro\ Bomber\ Middle\ Part}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00612}00612\ \ \ \ \ \ \ \ \ objRect\ =\ \{\ 288,\ 14,\ 56,\ 75\ \};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00613}00613\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00614}00614\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00615}00615\ \}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00616}00616\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00617}00617\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00625}00625\ \textcolor{keywordtype}{void}\ Level::initTexturesLand(\mbox{\hyperlink{class_object}{Object}}*\ \textcolor{keywordtype}{object},\ sf::IntRect\&\ objRect,}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00626}00626\ \ \ \ \ \textcolor{keywordtype}{int}\&\ frameCount,\ sf::Texture*\&\ texPtr)}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00627}00627\ \{}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00628}00628\ \ \ \ \ texPtr\ =\ \&enemyImg;}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00629}00629\ \ \ \ \ frameCount\ =\ 1;}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00630}00630\ \ \ \ \ orient\ =\ \textcolor{keywordtype}{object}-\/>getOrientation();}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00631}00631\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{short}\ spriteNum\ =\ \textcolor{keywordtype}{object}-\/>getSpriteNum();}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00632}00632\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00633}00633\ \ \ \ \ \textcolor{keywordflow}{switch}\ (spriteNum)}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00634}00634\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00635}00635\ \ \ \ \ \textcolor{keywordflow}{case}\ 0:\ \textcolor{keywordflow}{case}\ 1:\ \textcolor{keywordflow}{case}\ 2:\ \textcolor{keywordflow}{case}\ 3:\ \textcolor{keywordflow}{case}\ 4:\ \textcolor{keywordflow}{case}\ 5:\ \textcolor{comment}{//\ Tanks}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00636}00636\ \ \ \ \ \ \ \ \ objRect\ =\ \{\ 32\ *\ orient,\ 0\ +\ 40\ *\ (spriteNum\ -\/\ 0),\ 32,\ 32\ \};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00637}00637\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00638}00638\ \ \ \ \ \textcolor{keywordflow}{case}\ 6:\ \textcolor{keywordflow}{case}\ 7:\ \textcolor{keywordflow}{case}\ 8:\ \textcolor{keywordflow}{case}\ 9:\ \textcolor{keywordflow}{case}\ 10:}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00639}00639\ \ \ \ \ \textcolor{keywordflow}{case}\ 11:\ \textcolor{keywordflow}{case}\ 12:\ \textcolor{keywordflow}{case}\ 13:\ \textcolor{keywordflow}{case}\ 14:\ \textcolor{comment}{//\ Boats\ and\ Turrets}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00640}00640\ \ \ \ \ \ \ \ \ objRect\ =\ \{\ 32\ *\ orient,\ 600\ +\ 40\ *\ (spriteNum\ -\/\ 6),\ 32,\ 32\ \};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00641}00641\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00642}00642\ \ \ \ \ \textcolor{keywordflow}{case}\ 15:\ \textcolor{comment}{//Landmines}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00643}00643\ \ \ \ \ \ \ \ \ objRect\ =\ \{\ 520\ +\ 32\ *\ orient,\ 240,\ 32,\ 32\ \};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00644}00644\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00645}00645\ \ \ \ \ \textcolor{keywordflow}{case}\ 16:\ \textcolor{comment}{//Thing}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00646}00646\ \ \ \ \ \ \ \ \ objRect\ =\ \{\ 520,\ 280,\ 32,\ 32\ \};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00647}00647\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00648}00648\ \ \ \ \ \textcolor{keywordflow}{case}\ 17:\ \textcolor{keywordflow}{case}\ 18:\ \textcolor{comment}{//\ Destroyed\ Boat/Tank}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00649}00649\ \ \ \ \ \ \ \ \ objRect\ =\ \{\ 520\ +\ 32\ *\ orient,\ (480\ +\ 40\ *\ (spriteNum\ -\/\ 17)),\ 32,\ 32\ \};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00650}00650\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00651}00651\ \ \ \ \ \textcolor{keywordflow}{case}\ 19:\ \textcolor{comment}{//House}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00652}00652\ \ \ \ \ \ \ \ \ texPtr\ =\ \&houseImg;}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00653}00653\ \ \ \ \ \ \ \ \ objRect\ =\ \{\ 0,\ 0,\ 64,\ 48\ \};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00654}00654\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00655}00655\ \ \ \ \ \textcolor{keywordflow}{case}\ 20:\ \textcolor{comment}{//Dome}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00656}00656\ \ \ \ \ \ \ \ \ texPtr\ =\ \&domeImg;}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00657}00657\ \ \ \ \ \ \ \ \ objRect\ =\ \{\ 0,\ 0,\ 80,\ 80\ \};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00658}00658\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00659}00659\ \ \ \ \ \textcolor{keywordflow}{case}\ 21:\ \textcolor{comment}{//Dome\ Shooty\ shoot\ Animation}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00660}00660\ \ \ \ \ \ \ \ \ texPtr\ =\ \&houseImg;}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00661}00661\ \ \ \ \ \ \ \ \ frameCount\ =\ 10;}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00662}00662\ \ \ \ \ \ \ \ \ objRect\ =\ \{\ 0,\ 0,\ 89,\ 74\ \};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00663}00663\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00664}00664\ \ \ \ \ \textcolor{keywordflow}{case}\ 22:\ \textcolor{comment}{//Gate}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00665}00665\ \ \ \ \ \ \ \ \ texPtr\ =\ \&gateImg;}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00666}00666\ \ \ \ \ \ \ \ \ objRect\ =\ \{\ 0,\ 0,\ 32,\ 40\ \};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00667}00667\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00668}00668\ \ \ \ \ \textcolor{keywordflow}{case}\ 23:\ \textcolor{comment}{//Hangar}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00669}00669\ \ \ \ \ \ \ \ \ texPtr\ =\ \&hoodImg;}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00670}00670\ \ \ \ \ \ \ \ \ objRect\ =\ \{\ 0,\ 0,\ 80,\ 96\ \};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00671}00671\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00672}00672\ \ \ \ \ \textcolor{keywordflow}{case}\ 24:\ \textcolor{comment}{//Cone}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00673}00673\ \ \ \ \ \ \ \ \ texPtr\ =\ \&coneImg;}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00674}00674\ \ \ \ \ \ \ \ \ objRect\ =\ \{\ 0,\ 0,\ 48,\ 48\ \};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00675}00675\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00676}00676\ \ \ \ \ \textcolor{keywordflow}{case}\ 25:\ \textcolor{comment}{//Roofus}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00677}00677\ \ \ \ \ \ \ \ \ texPtr\ =\ \&roofusImg;}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00678}00678\ \ \ \ \ \ \ \ \ objRect\ =\ \{\ 0,\ 0,\ 48,\ 48\ \};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00679}00679\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00680}00680\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00681}00681\ \}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00682}00682\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00683}00683\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00691}00691\ \textcolor{keywordtype}{void}\ Level::initTexturesExplosion(\mbox{\hyperlink{class_object}{Object}}*\ \textcolor{keywordtype}{object},\ sf::IntRect\&\ objRect,}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00692}00692\ \ \ \ \ \textcolor{keywordtype}{int}\&\ frameCount,\ sf::Texture*\&\ texPtr)}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00693}00693\ \{}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00694}00694\ \ \ \ \ texPtr\ =\ \&explosionImg;}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00695}00695\ \ \ \ \ \textcolor{keywordtype}{short}\ spriteNum\ =\ \textcolor{keywordtype}{object}-\/>getSpriteNum();}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00696}00696\ \ \ \ \ \textcolor{keywordflow}{switch}\ (spriteNum)}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00697}00697\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00698}00698\ \ \ \ \ \textcolor{keywordflow}{case}\ 0:}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00699}00699\ \ \ \ \ \ \ \ \ frameCount\ =\ 16;}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00700}00700\ \ \ \ \ \ \ \ \ objRect\ =\ \{\ 0,\ 0,\ 48,\ 48\ \};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00701}00701\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00702}00702\ \ \ \ \ \textcolor{keywordflow}{case}\ 1:}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00703}00703\ \ \ \ \ \ \ \ \ frameCount\ =\ 11;}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00704}00704\ \ \ \ \ \ \ \ \ objRect\ =\ \{\ 0,\ 49,\ 47,\ 37\ \};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00705}00705\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00706}00706\ \ \ \ \ \textcolor{keywordflow}{case}\ 2:}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00707}00707\ \ \ \ \ \ \ \ \ frameCount\ =\ 14;}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00708}00708\ \ \ \ \ \ \ \ \ objRect\ =\ \{\ 0,\ 87,\ 78,\ 80\ \};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00709}00709\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00710}00710\ \ \ \ \ \textcolor{keywordflow}{case}\ 3:}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00711}00711\ \ \ \ \ \ \ \ \ frameCount\ =\ 12;}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00712}00712\ \ \ \ \ \ \ \ \ objRect\ =\ \{\ 0,\ 168,\ 38,\ 41\ \};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00713}00713\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00714}00714\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00715}00715\ \}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00716}00716\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00717}00717\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00725}00725\ \textcolor{keywordtype}{void}\ Level::initTexturesAir(\mbox{\hyperlink{class_object}{Object}}*\ \textcolor{keywordtype}{object},\ sf::IntRect\&\ objRect,}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00726}00726\ \ \ \ \ \textcolor{keywordtype}{int}\&\ frameCount,\ sf::Texture*\&\ texPtr)}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00727}00727\ \{}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00728}00728\ \ \ \ \ texPtr\ =\ \&enemyImg;}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00729}00729\ \ \ \ \ frameCount\ =\ 1;}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00730}00730\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{short}\ spriteNum\ =\ \textcolor{keywordtype}{object}-\/>getSpriteNum();}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00731}00731\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00732}00732\ \ \ \ \ \textcolor{keywordflow}{switch}\ (spriteNum)}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00733}00733\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00734}00734\ \ \ \ \ \textcolor{keywordflow}{case}\ 0:\ \textcolor{keywordflow}{case}\ 1:\ \textcolor{keywordflow}{case}\ 2:\ \textcolor{keywordflow}{case}\ 3:\ \textcolor{keywordflow}{case}\ 4:\ \textcolor{keywordflow}{case}\ 5:\ \textcolor{keywordflow}{case}\ 6:}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00735}00735\ \ \ \ \ \textcolor{keywordflow}{case}\ 7:\ \textcolor{keywordflow}{case}\ 8:\ \textcolor{comment}{//\ Weird\ things,\ Regular\ Copters,\ and\ Fighter\ Jets}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00736}00736\ \ \ \ \ \ \ \ \ objRect\ =\ \{\ 32\ *\ orient,\ 240\ +\ 40\ *\ (spriteNum\ -\/\ 0),\ 32,\ 32\ \};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00737}00737\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00738}00738\ \ \ \ \ \textcolor{keywordflow}{case}\ 9:\ \textcolor{comment}{//Big\ Copter\ Blades}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00739}00739\ \ \ \ \ \ \ \ \ frameCount\ =\ 3;}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00740}00740\ \ \ \ \ \ \ \ \ objRect\ =\ \{\ 520,\ 0,\ 64,\ 64\ \};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00741}00741\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00742}00742\ \ \ \ \ \textcolor{keywordflow}{case}\ 10:\ \textcolor{keywordflow}{case}\ 11:\ \textcolor{comment}{//Advanced\ Mega\ Copter}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00743}00743\ \ \ \ \ \ \ \ \ objRect\ =\ \{\ 520\ +\ 40\ *\ (spriteNum\ -\/\ 10),\ 64,\ 32,\ 96\ \};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00744}00744\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00745}00745\ \ \ \ \ \textcolor{keywordflow}{case}\ 12:\ \textcolor{comment}{//Big\ Plane\ 1}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00746}00746\ \ \ \ \ \ \ \ \ objRect\ =\ \{\ 600,\ 64,\ 80,\ 88\ \};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00747}00747\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00748}00748\ \ \ \ \ \textcolor{keywordflow}{case}\ 13:\ \textcolor{comment}{//Big\ Copter\ }}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00749}00749\ \ \ \ \ \ \ \ \ objRect\ =\ \{\ 688,\ 64,\ 48,\ 72\ \};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00750}00750\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00751}00751\ \ \ \ \ \textcolor{keywordflow}{case}\ 14:\ \textcolor{comment}{//Big\ Plane\ 2}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00752}00752\ \ \ \ \ \ \ \ \ objRect\ =\ \{\ 600,\ 160,\ 80,\ 80\ \};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00753}00753\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00754}00754\ \ \ \ \ \textcolor{keywordflow}{case}\ 15:\ \textcolor{keywordflow}{case}\ 16:\ \textcolor{keywordflow}{case}\ 17:\ \textcolor{keywordflow}{case}\ 18:\ \textcolor{comment}{//Side\ \&\ Dive\ Bombers}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00755}00755\ \ \ \ \ \ \ \ \ objRect\ =\ \{\ 520\ +\ 32\ *\ orient,\ 320\ +\ 40\ *\ (spriteNum\ -\/\ 15),\ 32,\ 32\ \};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00756}00756\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00757}00757\ \ \ \ \ \textcolor{keywordflow}{case}\ 19:\ \textcolor{comment}{//Regular\ Copter\ Blades}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00758}00758\ \ \ \ \ \ \ \ \ frameCount\ =\ 3;}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00759}00759\ \ \ \ \ \ \ \ \ objRect\ =\ \{\ 688,\ 480,\ 32,\ 32\ \};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00760}00760\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00761}00761\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00762}00762\ \}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00763}00763\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00764}00764\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00772}00772\ \textcolor{keywordtype}{void}\ Level::initTexturesProjectile(\mbox{\hyperlink{class_object}{Object}}*\ \textcolor{keywordtype}{object},\ sf::IntRect\&\ objRect,}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00773}00773\ \ \ \ \ \textcolor{keywordtype}{int}\&\ frameCount,\ sf::Texture*\&\ texPtr)}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00774}00774\ \{}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00775}00775\ \ \ \ \ texPtr\ =\ \&projectileImg;}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00776}00776\ \ \ \ \ frameCount\ =\ 1;}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00777}00777\ \ \ \ \ orient\ =\ \textcolor{keywordtype}{object}-\/>getOrientation();}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00778}00778\ \ \ \ \ \textcolor{keywordflow}{switch}\ (object-\/>\mbox{\hyperlink{class_object_a9b046527d64d93cba4b8e8e84c377530}{getSpriteNum}}())}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00779}00779\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00780}00780\ \ \ \ \ \textcolor{keywordflow}{case}\ 0:}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00781}00781\ \ \ \ \ \ \ \ \ objRect\ =\ \{\ (rand()\ \%\ 3)\ *\ 11,\ 0,\ 11,\ 18\ \};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00782}00782\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00783}00783\ \ \ \ \ \textcolor{keywordflow}{case}\ 1:}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00784}00784\ \ \ \ \ \ \ \ \ objRect\ =\ \{\ (rand()\ \%\ 3)\ *\ 16,\ 19,\ 16,\ 30\ \};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00785}00785\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00786}00786\ \ \ \ \ \textcolor{keywordflow}{case}\ 2:}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00787}00787\ \ \ \ \ \ \ \ \ objRect\ =\ \{\ (rand()\ \%\ 3)\ *\ 21,\ 50,\ 31,\ 30\ \};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00788}00788\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00789}00789\ \ \ \ \ \textcolor{keywordflow}{case}\ 3:}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00790}00790\ \ \ \ \ \ \ \ \ objRect\ =\ \{\ (rand()\ \%\ 3)\ *\ 47,\ 81,\ 47,\ 46\ \};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00791}00791\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00792}00792\ \ \ \ \ \textcolor{keywordflow}{case}\ 4:}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00793}00793\ \ \ \ \ \ \ \ \ objRect\ =\ \{\ (rand()\ \%\ 3)\ *\ 9,\ 128,\ 9,\ 28\ \};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00794}00794\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00795}00795\ \ \ \ \ \textcolor{keywordflow}{case}\ 5:}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00796}00796\ \ \ \ \ \ \ \ \ objRect\ =\ \{\ (rand()\ \%\ 3)\ *\ 16,\ 157,\ 16,\ 32\ \};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00797}00797\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00798}00798\ \ \ \ \ \textcolor{keywordflow}{case}\ 6:}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00799}00799\ \ \ \ \ \ \ \ \ objRect\ =\ \{\ (rand()\ \%\ 3)\ *\ 41,\ 190,\ 41,\ 44\ \};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00800}00800\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00801}00801\ \ \ \ \ \textcolor{keywordflow}{case}\ 7:}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00802}00802\ \ \ \ \ \ \ \ \ objRect\ =\ \{\ (rand()\ \%\ 3)\ *\ 64,\ 235,\ 64,\ 48\ \};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00803}00803\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00804}00804\ \ \ \ \ \textcolor{keywordflow}{case}\ 8:}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00805}00805\ \ \ \ \ \ \ \ \ objRect\ =\ \{\ (rand()\ \%\ 3)\ *\ 15,\ 284,\ 15,\ 29\ \};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00806}00806\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00807}00807\ \ \ \ \ \textcolor{keywordflow}{case}\ 9:\ \textcolor{comment}{//Kunai}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00808}00808\ \ \ \ \ \ \ \ \ objRect\ =\ \{\ 0,\ 314,\ 9,\ 31\ \};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00809}00809\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00810}00810\ \ \ \ \ \textcolor{keywordflow}{case}\ 10:}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00811}00811\ \ \ \ \ \ \ \ \ objRect\ =\ \{\ (rand()\ \%\ 3)\ *\ 9,\ 346,\ 9,\ 31\ \};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00812}00812\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00813}00813\ \ \ \ \ \textcolor{keywordflow}{case}\ 11:}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00814}00814\ \ \ \ \ \ \ \ \ objRect\ =\ \{\ (rand()\ \%\ 3)\ *\ 16,\ 378,\ 16,\ 31\ \};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00815}00815\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00816}00816\ \ \ \ \ \textcolor{keywordflow}{case}\ 12:\ \textcolor{comment}{//Enemy\ Projectile\ 1}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00817}00817\ \ \ \ \ \ \ \ \ texPtr\ =\ \&enemyProjectileImg;}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00818}00818\ \ \ \ \ \ \ \ \ frameCount\ =\ 4;}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00819}00819\ \ \ \ \ \ \ \ \ objRect\ =\ \{\ 0,\ 0,\ 8,\ 8\ \};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00820}00820\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00821}00821\ \ \ \ \ \textcolor{keywordflow}{case}\ 13:\ \textcolor{comment}{//Breakable}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00822}00822\ \ \ \ \ \ \ \ \ texPtr\ =\ \&enemyProjectileImg;}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00823}00823\ \ \ \ \ \ \ \ \ frameCount\ =\ 4;}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00824}00824\ \ \ \ \ \ \ \ \ objRect\ =\ \{\ 0,\ 8,\ 14,\ 14\ \};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00825}00825\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00826}00826\ \ \ \ \ \textcolor{keywordflow}{case}\ 14:\ \textcolor{comment}{//Breaking}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00827}00827\ \ \ \ \ \ \ \ \ texPtr\ =\ \&enemyProjectileImg;}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00828}00828\ \ \ \ \ \ \ \ \ frameCount\ =\ 5;}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00829}00829\ \ \ \ \ \ \ \ \ objRect\ =\ \{\ 0,\ 22,\ 16,\ 12\ \};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00830}00830\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00831}00831\ \ \ \ \ \textcolor{keywordflow}{case}\ 15:\ \textcolor{comment}{//Big}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00832}00832\ \ \ \ \ \ \ \ \ texPtr\ =\ \&enemyProjectileImg;}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00833}00833\ \ \ \ \ \ \ \ \ frameCount\ =\ 2;}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00834}00834\ \ \ \ \ \ \ \ \ objRect\ =\ \{\ 0,\ 37,\ 12,\ 12\ \};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00835}00835\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00836}00836\ \ \ \ \ \textcolor{keywordflow}{case}\ 16:\ \textcolor{comment}{//Medium}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00837}00837\ \ \ \ \ \ \ \ \ texPtr\ =\ \&enemyProjectileImg;}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00838}00838\ \ \ \ \ \ \ \ \ frameCount\ =\ 2;}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00839}00839\ \ \ \ \ \ \ \ \ objRect\ =\ \{\ 0,\ 46,\ 10,\ 10\ \};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00840}00840\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00841}00841\ \ \ \ \ \textcolor{keywordflow}{case}\ 17:\ \textcolor{comment}{//One\ pixel\ projectile}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00842}00842\ \ \ \ \ \ \ \ \ texPtr\ =\ \&enemyProjectileImg;}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00843}00843\ \ \ \ \ \ \ \ \ frameCount\ =\ 1;}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00844}00844\ \ \ \ \ \ \ \ \ objRect\ =\ \{\ 0,\ 56,\ 4,\ 4\ \};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00845}00845\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00846}00846\ \ \ \ \ \textcolor{keywordflow}{case}\ 18:\ \textcolor{comment}{//Missiles\ }}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00847}00847\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00848}00848\ \textcolor{comment}{\ \ \ \ \ \ \ \ The\ missile\ knows\ where\ it\ is\ at\ all\ times.}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00849}00849\ \textcolor{comment}{\ \ \ \ \ \ \ \ It\ knows\ this\ because\ it\ knows\ where\ it\ isn't.}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00850}00850\ \textcolor{comment}{\ \ \ \ \ \ \ \ By\ subtracting\ where\ it\ is\ from\ where\ it\ isn't,}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00851}00851\ \textcolor{comment}{\ \ \ \ \ \ \ \ or\ where\ it\ isn't\ from\ where\ it\ is\ (whichever\ is\ greater),}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00852}00852\ \textcolor{comment}{\ \ \ \ \ \ \ \ it\ obtains\ a\ difference,\ or\ deviation.}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00853}00853\ \textcolor{comment}{\ \ \ \ \ \ \ \ The\ guidance\ subsystem\ uses\ deviations\ to\ generate}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00854}00854\ \textcolor{comment}{\ \ \ \ \ \ \ \ corrective\ commands\ to\ drive\ the\ missile\ from\ a\ position}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00855}00855\ \textcolor{comment}{\ \ \ \ \ \ \ \ where\ it\ is\ to\ a\ position\ where\ it\ isn't,}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00856}00856\ \textcolor{comment}{\ \ \ \ \ \ \ \ and\ arriving\ at\ a\ position\ where\ it\ wasn't,\ it\ now\ is.}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00857}00857\ \textcolor{comment}{\ \ \ \ \ \ \ \ Consequently,\ the\ position\ where\ it\ is,}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00858}00858\ \textcolor{comment}{\ \ \ \ \ \ \ \ is\ now\ the\ position\ that\ it\ wasn't,}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00859}00859\ \textcolor{comment}{\ \ \ \ \ \ \ \ and\ it\ follows\ that\ the\ position\ that\ it\ was,}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00860}00860\ \textcolor{comment}{\ \ \ \ \ \ \ \ is\ now\ the\ position\ that\ it\ isn't.}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00861}00861\ \textcolor{comment}{\ \ \ \ \ \ \ \ In\ the\ event\ that\ the\ position\ that\ it\ is\ in\ is\ not}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00862}00862\ \textcolor{comment}{\ \ \ \ \ \ \ \ the\ position\ that\ it\ wasn't,\ the\ system\ has\ acquired\ a\ variation,}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00863}00863\ \textcolor{comment}{\ \ \ \ \ \ \ \ the\ variation\ being\ the\ difference\ between\ where\ the\ missile\ is,}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00864}00864\ \textcolor{comment}{\ \ \ \ \ \ \ \ and\ where\ it\ wasn't.}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00865}00865\ \textcolor{comment}{\ \ \ \ \ \ \ \ If\ variation\ is\ considered\ to\ be\ a\ significant\ factor,}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00866}00866\ \textcolor{comment}{\ \ \ \ \ \ \ \ it\ too\ may\ be\ corrected\ by\ the\ GEA.}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00867}00867\ \textcolor{comment}{\ \ \ \ \ \ \ \ However,\ the\ missile\ must\ also\ know\ where\ it\ was.}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00868}00868\ \textcolor{comment}{\ \ \ \ \ \ \ \ The\ missile\ guidance\ computer\ scenario\ works\ as\ follows.}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00869}00869\ \textcolor{comment}{\ \ \ \ \ \ \ \ Because\ a\ variation\ has\ modified\ some\ of\ the\ information}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00870}00870\ \textcolor{comment}{\ \ \ \ \ \ \ \ the\ missile\ has\ obtained,\ it\ is\ not\ sure\ just\ where\ it\ is.}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00871}00871\ \textcolor{comment}{\ \ \ \ \ \ \ \ However,\ it\ is\ sure\ where\ it\ isn't,\ within\ reason,}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00872}00872\ \textcolor{comment}{\ \ \ \ \ \ \ \ and\ it\ knows\ where\ it\ was.}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00873}00873\ \textcolor{comment}{\ \ \ \ \ \ \ \ It\ now\ subtracts\ where\ it\ should\ be\ from\ where\ it\ wasn't,}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00874}00874\ \textcolor{comment}{\ \ \ \ \ \ \ \ or\ vice-\/versa,\ and\ by\ differentiating\ this\ from\ the}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00875}00875\ \textcolor{comment}{\ \ \ \ \ \ \ \ algebraic\ sum\ of\ where\ it\ shouldn't\ be,\ and\ where\ it\ was,}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00876}00876\ \textcolor{comment}{\ \ \ \ \ \ \ \ it\ is\ able\ to\ obtain\ the\ deviation\ and\ its\ variation,}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00877}00877\ \textcolor{comment}{\ \ \ \ \ \ \ \ which\ is\ called\ error.}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00878}00878\ \textcolor{comment}{\ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00879}00879\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (orient)\ \textcolor{comment}{//This\ is\ so\ that\ the\ flips\ are\ correct}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00880}00880\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00881}00881\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 8:}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00882}00882\ \ \ \ \ \ \ \ \ \ \ \ \ orient\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00883}00883\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00884}00884\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 7:\ \textcolor{keywordflow}{case}\ 9:\ \textcolor{keywordflow}{case}\ 15:}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00885}00885\ \ \ \ \ \ \ \ \ \ \ \ \ orient\ =\ 1;}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00886}00886\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00887}00887\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 6:\ \textcolor{keywordflow}{case}\ 10:\ \textcolor{keywordflow}{case}\ 14:}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00888}00888\ \ \ \ \ \ \ \ \ \ \ \ \ orient\ =\ 2;}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00889}00889\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00890}00890\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 5:\ \textcolor{keywordflow}{case}\ 11:\ \textcolor{keywordflow}{case}\ 13:}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00891}00891\ \ \ \ \ \ \ \ \ \ \ \ \ orient\ =\ 3;}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00892}00892\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00893}00893\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 12:}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00894}00894\ \ \ \ \ \ \ \ \ \ \ \ \ orient\ =\ 4;}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00895}00895\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00896}00896\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00897}00897\ \ \ \ \ \ \ \ \ texPtr\ =\ \&missileImg;}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00898}00898\ \ \ \ \ \ \ \ \ objRect\ =\ \{\ (orient\ \%\ 5)\ *\ 12,\ 0,\ 12,\ 12\ \};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00899}00899\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00900}00900\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00901}00901\ \}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00902}00902\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00903}00903\ }
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00911}00911\ \textcolor{keywordtype}{void}\ Level::initTexturesCollectable(\mbox{\hyperlink{class_object}{Object}}*\ \textcolor{keywordtype}{object},\ sf::IntRect\&\ objRect,\ \textcolor{keywordtype}{int}\&\ frameCount,\ sf::Texture*\&\ texPtr)}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00912}00912\ \{}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00913}00913\ \ \ \ \ texPtr\ =\ \&powerUpImg;}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00914}00914\ \ \ \ \ frameCount\ =\ 8;}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00915}00915\ \ \ \ \ \textcolor{keywordflow}{switch}\ (object-\/>\mbox{\hyperlink{class_object_a2c8eca870f0045fc4a0c43d94a0472a5}{getId}}())}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00916}00916\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00917}00917\ \ \ \ \ \textcolor{keywordflow}{case}\ 0:}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00918}00918\ \ \ \ \ \ \ \ \ objRect\ =\ \{\ country\ *\ 22,\ 0,\ 11,\ 12\ \};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00919}00919\ \ \ \ \ \ \ \ \ texPtr\ =\ \&moneyImg;}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00920}00920\ \ \ \ \ \ \ \ \ frameCount\ =\ 2;}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00921}00921\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00922}00922\ \ \ \ \ \textcolor{keywordflow}{case}\ 1:}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00923}00923\ \ \ \ \ \textcolor{keywordflow}{case}\ 2:}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00924}00924\ \ \ \ \ \textcolor{keywordflow}{case}\ 3:}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00925}00925\ \ \ \ \ \ \ \ \ objRect\ =\ \{\ 0,\ 0\ +\ 20\ *\ (\textcolor{keywordtype}{object}-\/>getId()\ -\/\ 1),\ 16,\ 19\ \};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00926}00926\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00927}00927\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_level_8cpp_source_l00928}00928\ \}}
+
+\end{DoxyCode}

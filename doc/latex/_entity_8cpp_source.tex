@@ -1,0 +1,23 @@
+\doxysection{Entity.\+cpp}
+\hypertarget{_entity_8cpp_source}{}\label{_entity_8cpp_source}\index{src/Entities/Entity.cpp@{src/Entities/Entity.cpp}}
+\mbox{\hyperlink{_entity_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_entity_8h}{Entity.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00002}00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_sprite_type_8h}{../Sprites/SpriteType.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00005}\mbox{\hyperlink{class_entity_aa1ff6c02e083e85f4c670ac5c83dcaa3}{00005}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_entity_aa1ff6c02e083e85f4c670ac5c83dcaa3}{Entity::onScreen}}()}
+\DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00006}00006\ \{}
+\DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00007}00007\ \ \ \ \ \textcolor{keywordflow}{return}\ !(\mbox{\hyperlink{class_entity_ad329967c418fc97aae4745b68adebb11}{pos}}.x\ +\ (\mbox{\hyperlink{namespacesprites_a27c1c5c80608213d6fe185593c030423}{sprites::spriteDataTable}}.at(\mbox{\hyperlink{class_entity_a712837ff2925b8d49f04d4fb8b0eacca}{ID}}).size.x\ /\ 2.f)\ <\ 0\ ||\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Off\ the\ left}}
+\DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00008}00008\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_entity_ad329967c418fc97aae4745b68adebb11}{pos}}.y\ +\ (\mbox{\hyperlink{namespacesprites_a27c1c5c80608213d6fe185593c030423}{sprites::spriteDataTable}}.at(\mbox{\hyperlink{class_entity_a712837ff2925b8d49f04d4fb8b0eacca}{ID}}).size.x\ /\ 2.f)\ <\ 0\ ||\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Off\ the\ top}}
+\DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00009}00009\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_entity_ad329967c418fc97aae4745b68adebb11}{pos}}.x\ -\/\ (\mbox{\hyperlink{namespacesprites_a27c1c5c80608213d6fe185593c030423}{sprites::spriteDataTable}}.at(\mbox{\hyperlink{class_entity_a712837ff2925b8d49f04d4fb8b0eacca}{ID}}).size.x\ /\ 2.f)\ >=\ winSize.\mbox{\hyperlink{struct_window_size_a455a224dba1e88666c5b2a769d69f61e}{width}}\ ||\ \textcolor{comment}{//\ Off\ the\ right}}
+\DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00010}00010\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_entity_ad329967c418fc97aae4745b68adebb11}{pos}}.y\ -\/\ (\mbox{\hyperlink{namespacesprites_a27c1c5c80608213d6fe185593c030423}{sprites::spriteDataTable}}.at(\mbox{\hyperlink{class_entity_a712837ff2925b8d49f04d4fb8b0eacca}{ID}}).size.x\ /\ 2.f)\ >=\ winSize.\mbox{\hyperlink{struct_window_size_ad91c5ae8d1755bf4b9b18f9c1f626b7d}{height}});\ \textcolor{comment}{//\ Off\ the\ bottom}}
+\DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00011}00011\ \}}
+\DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00014}\mbox{\hyperlink{class_entity_a51eb209022b130024a519957bd010b20}{00014}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_entity_a51eb209022b130024a519957bd010b20}{Entity::hasSpawned}}()}
+\DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00015}00015\ \{}
+\DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00016}00016\ \ \ \ \ \textcolor{keywordflow}{return}\ entityFlags\ \&\ 0b00000001;}
+\DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00017}00017\ \}}
+
+\end{DoxyCode}

@@ -1,0 +1,123 @@
+\doxysection{Level.\+h}
+\hypertarget{_level_8h_source}{}\label{_level_8h_source}\index{src/Level/Level.h@{src/Level/Level.h}}
+\mbox{\hyperlink{_level_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00003}00003\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00004}00004\ \textcolor{preprocessor}{\#include\ <SFML/Graphics.hpp>}}
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00005}00005\ \textcolor{preprocessor}{\#include\ <climits>}}
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00006}00006\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00008}00008\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_boss_8h}{../Object/Enemy/Boss/Boss.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00009}00009\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_air_8h}{../Object/Enemy/Air/Air.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00010}00010\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_land_8h}{../Object/Enemy/Land/Land.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00011}00011\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_object_2_player_2_player_8h}{../Object/Player/Player.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00012}00012\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_projectile_8h}{../Object/Projectile/Projectile.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00013}00013\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_collectable_8h}{../Object/Collectable/Collectable.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00015}00015\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_controller_stuff_8hpp}{../ControllerStuff.hpp}}"{}}}
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00017}00017\ \textcolor{comment}{//\ Renamed\ from\ TACO\_BELL}}
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00018}\mbox{\hyperlink{_level_8h_a579ff6594d2d947883d6cdac6991bb7b}{00018}}\ \textcolor{preprocessor}{\#define\ HP\_MAX\ SHRT\_MAX}}
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00026}\mbox{\hyperlink{class_level}{00026}}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_level}{Level}}\ final\ :\ \textcolor{keyword}{public}\ sf::Drawable}
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00027}00027\ \{}
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00028}00028\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00029}\mbox{\hyperlink{class_level_a5fd9c7519c741dc94f251b7402377407}{00029}}\ \ \ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{class_level_a5fd9c7519c741dc94f251b7402377407}{Map}}}
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00030}00030\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00031}\mbox{\hyperlink{class_level_a5fd9c7519c741dc94f251b7402377407a9fab37cbeb18497d7b6b5577a972a559}{00031}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_level_a5fd9c7519c741dc94f251b7402377407a9fab37cbeb18497d7b6b5577a972a559}{England}},}
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00032}\mbox{\hyperlink{class_level_a5fd9c7519c741dc94f251b7402377407aed27389e5397992fa81ae3e6d1cebbb9}{00032}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_level_a5fd9c7519c741dc94f251b7402377407aed27389e5397992fa81ae3e6d1cebbb9}{Israel}},}
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00033}\mbox{\hyperlink{class_level_a5fd9c7519c741dc94f251b7402377407afb16b1bbc84e89d58a91b4b05598ed74}{00033}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_level_a5fd9c7519c741dc94f251b7402377407afb16b1bbc84e89d58a91b4b05598ed74}{Japan}},}
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00034}\mbox{\hyperlink{class_level_a5fd9c7519c741dc94f251b7402377407aa919b74e672a195761702ddc448c6ff5}{00034}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_level_a5fd9c7519c741dc94f251b7402377407aa919b74e672a195761702ddc448c6ff5}{Meddit}},}
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00035}\mbox{\hyperlink{class_level_a5fd9c7519c741dc94f251b7402377407aeae7a7ab9b73fb4c43ab4976c6d3ae71}{00035}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_level_a5fd9c7519c741dc94f251b7402377407aeae7a7ab9b73fb4c43ab4976c6d3ae71}{Russia}},}
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00036}\mbox{\hyperlink{class_level_a5fd9c7519c741dc94f251b7402377407a65444b0b2d4ebcccb1e67a8ffeeccd32}{00036}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_level_a5fd9c7519c741dc94f251b7402377407a65444b0b2d4ebcccb1e67a8ffeeccd32}{States}},}
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00037}\mbox{\hyperlink{class_level_a5fd9c7519c741dc94f251b7402377407ae079d5fd088ed477da248cdab64914db}{00037}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_level_a5fd9c7519c741dc94f251b7402377407ae079d5fd088ed477da248cdab64914db}{Sweden}},}
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00038}00038\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_level_a5fd9c7519c741dc94f251b7402377407a782746e5dab01ff52b4bfba476400720}{Space}}}
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00039}\mbox{\hyperlink{class_level_a5fd9c7519c741dc94f251b7402377407a782746e5dab01ff52b4bfba476400720}{00039}}\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00041}\mbox{\hyperlink{class_level_acd795d57ca19a87e2295ea734d1aa018}{00041}}\ \ \ \ \ std::vector<std::string>\ \mbox{\hyperlink{class_level_acd795d57ca19a87e2295ea734d1aa018}{mapStrings}}\ =\ \{}
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00042}00042\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}England"{}},}
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00043}00043\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Israel"{}},}
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00044}00044\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Japan"{}},}
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00045}00045\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Meddit"{}},}
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00046}00046\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Russia"{}},}
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00047}00047\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}States"{}},}
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00048}00048\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Sweden"{}},}
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00049}00049\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Space"{}}}
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00050}00050\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00051}00051\ }
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00052}00052\ \ \ \ \ \mbox{\hyperlink{class_level_a7a696c928ca5d5354db6e50e46d0f67d}{Level}}();}
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00053}00053\ \ \ \ \ \mbox{\hyperlink{class_level_a249eac1e8f19ff44134efa5e986feaca}{\string~Level}}();}
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00054}00054\ }
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00055}00055\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_level_aeddf53e7edf5b1fff16c43f85106362d}{load}}(sf::Vector2f\ winSize,\ \textcolor{keywordtype}{short}\ country,\ \mbox{\hyperlink{class_level_a5fd9c7519c741dc94f251b7402377407}{Map}}\ map,\ \textcolor{keywordtype}{bool}\ levelEditor);}
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00056}00056\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_level_abc059a9b29f04a38aad94cae8e341bc6}{update}}(sf::Vector2f\ winSize);}
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00057}00057\ }
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00058}00058\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_level_a471c9e2b17008decb1a37c33b7764316}{debugMode}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00059}00059\ }
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00060}00060\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_level_a246347869043d53d20b752ffbd23e0d0}{respawnPlayers}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00061}00061\ }
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00062}00062\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00063}00063\ \ \ \ \ \textcolor{keywordtype}{void}\ setInfScroll(\textcolor{keywordtype}{bool}\ enable);}
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00064}00064\ \ \ \ \ \textcolor{keywordtype}{void}\ updateInfScroll();}
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00065}00065\ }
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00066}00066\ \ \ \ \ \textcolor{keywordtype}{void}\ updateLevelEditor();}
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00067}00067\ \ \ \ \ \textcolor{keywordtype}{void}\ updatePlayers();}
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00068}00068\ }
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00069}00069\ \ \ \ \ \textcolor{comment}{//\ I\ feel\ like\ this\ is\ unneccessary,\ this\ should\ just\ be\ a\ switch\ statement\ in\ a\ method\ names\ "{}CountryUpdate"{}\ -\/\ Ricky}}
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00070}00070\ \ \ \ \ \textcolor{keywordtype}{void}\ statesUpdate();}
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00071}00071\ \ \ \ \ \textcolor{keywordtype}{void}\ japanUpdate();}
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00072}00072\ \ \ \ \ \textcolor{keywordtype}{void}\ swedenUpdate();}
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00073}00073\ \ \ \ \ \textcolor{keywordtype}{void}\ englandUpdate();}
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00074}00074\ }
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00075}00075\ }
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00076}00076\ \ \ \ \ \textcolor{keywordtype}{void}\ draw(sf::RenderTarget\&\ target,\ sf::RenderStates\ states)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00077}00077\ }
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00078}00078\ \ \ \ \ \textcolor{keywordtype}{void}\ initializeTextures(\textcolor{keywordtype}{int});}
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00079}00079\ \ \ \ \ \textcolor{keywordtype}{void}\ initTexturesBoss(\mbox{\hyperlink{class_object}{Object}}*\ \textcolor{keywordtype}{object},\ sf::IntRect\&\ objRect,}
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00080}00080\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\&\ frameCount,\ sf::Texture*\&\ texPtr);}
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00081}00081\ \ \ \ \ \textcolor{keywordtype}{void}\ initTexturesLand(\mbox{\hyperlink{class_object}{Object}}*\ \textcolor{keywordtype}{object},\ sf::IntRect\&\ objRect,}
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00082}00082\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\&\ frameCount,\ sf::Texture*\&\ texPtr);}
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00083}00083\ \ \ \ \ \textcolor{keywordtype}{void}\ initTexturesExplosion(\mbox{\hyperlink{class_object}{Object}}*\ \textcolor{keywordtype}{object},\ sf::IntRect\&\ objRect,\ }
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00084}00084\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\&\ frameCount,\ sf::Texture*\&\ texPtr);}
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00085}00085\ \ \ \ \ \textcolor{keywordtype}{void}\ initTexturesAir(\mbox{\hyperlink{class_object}{Object}}*\ \textcolor{keywordtype}{object},\ sf::IntRect\&\ objRect,\ }
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00086}00086\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\&\ frameCount,\ sf::Texture*\&\ texPtr);}
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00087}00087\ \ \ \ \ \textcolor{keywordtype}{void}\ initTexturesProjectile(\mbox{\hyperlink{class_object}{Object}}*\ \textcolor{keywordtype}{object},\ sf::IntRect\&\ objRect,\ }
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00088}00088\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\&\ frameCount,\ sf::Texture*\&\ texPtr);}
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00089}00089\ \ \ \ \ \textcolor{keywordtype}{void}\ initTexturesCollectable(\mbox{\hyperlink{class_object}{Object}}*\ \textcolor{keywordtype}{object},\ sf::IntRect\&\ objRect,\ }
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00090}00090\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\&\ frameCount,\ sf::Texture*\&\ texPtr);}
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00091}00091\ }
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00092}00092\ \ \ \ \ \textcolor{comment}{//\ All\ "{}objects"{}\ in\ the\ game.}}
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00093}00093\ \ \ \ \ std::vector<Object*>\ objects;}
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00094}00094\ }
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00095}00095\ \ \ \ \ sf::Font\ font;}
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00096}00096\ \ \ \ \ sf::Text\ p1Score,\ p2Score;}
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00097}00097\ \ \ \ \ sf::RectangleShape\ p1LivesRect,\ p2LivesRect;}
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00098}00098\ \ \ \ \ sf::Texture\ playerImgRepeat;}
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00099}00099\ }
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00100}00100\ \ \ \ \ sf::RectangleShape\ background,\ frontbackground;}
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00101}00101\ \ \ \ \ sf::Texture\ backgroundImg,\ frontbackgroundImg,\ playerImg,\ projectileImg,}
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00102}00102\ \ \ \ \ \ \ \ \ powerUpImg,\ moneyImg,\ explosionImg,\ enemyImg,}
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00103}00103\ \ \ \ \ \ \ \ \ enemyProjectileImg,\ missileImg;}
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00104}00104\ }
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00105}00105\ \ \ \ \ \textcolor{comment}{//\ Textures\ that\ only\ the\ map\ England\ needs}}
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00106}00106\ \ \ \ \ sf::Texture\ houseImg,\ domeImg,\ gateImg,\ hoodImg,}
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00107}00107\ \ \ \ \ \ \ \ \ coneImg,\ roofusImg,\ domeAnimationImg,\ avroBomberImg;}
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00108}00108\ }
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00109}00109\ \ \ \ \ sf::IntRect\ rect;}
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00110}00110\ \ \ \ \ \textcolor{keywordtype}{float}\ backgroundSpeed\ =\ 1,\ backgroundDist\ =\ 0,\ frontbackgroundDist\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00111}00111\ \ \ \ \ \textcolor{keywordtype}{short}\ country,\ orient\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00112}00112\ \ \ \ \ \textcolor{comment}{//float\ backgroundSpeedup\ =\ 0.f;}}
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00113}00113\ \ \ \ \ \textcolor{comment}{//float\ backgroundSpeedupMax\ =\ 2.f;}}
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00114}00114\ \ \ \ \ \mbox{\hyperlink{class_player}{Player}}*\ p[2];}
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00115}00115\ \ \ \ \ \textcolor{keywordtype}{int}\ player1Score\ =\ 0,\ player2Score\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00116}00116\ }
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00117}00117\ \ \ \ \ sf::Vector2f\ winSize;}
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00118}00118\ \ \ \ \ \textcolor{keywordtype}{bool}\ infScrollInPos\ =\ \textcolor{keyword}{true},\ infScrollEnabled\ =\ \textcolor{keyword}{false},\ bossSpawned\ =\ \textcolor{keyword}{false},\ levelEditor\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00119}00119\ \ \ \ \ sf::IntRect\ frontRect;}
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00120}00120\ }
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00121}00121\ \ \ \ \ \textcolor{keywordtype}{bool}\ playerShootLast[2]\ =\ \{\ \textcolor{keyword}{false},\ \textcolor{keyword}{false}\ \};}
+\DoxyCodeLine{\Hypertarget{_level_8h_source_l00122}00122\ \};}
+
+\end{DoxyCode}

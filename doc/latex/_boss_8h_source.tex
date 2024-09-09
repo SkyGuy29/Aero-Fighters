@@ -1,0 +1,29 @@
+\doxysection{Boss.\+h}
+\hypertarget{_boss_8h_source}{}\label{_boss_8h_source}\index{src/Object/Enemy/Boss/Boss.h@{src/Object/Enemy/Boss/Boss.h}}
+\mbox{\hyperlink{_boss_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_boss_8h_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{_boss_8h_source_l00002}00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_enemy_8h}{../Enemy.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_boss_8h_source_l00003}\mbox{\hyperlink{_boss_8h_a11ba68bd8e5187013e02f8127dc7169e}{00003}}\ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_projectile_a430582d90d0fbb5e0f4d1978d78c0248}{ProjectileType}}\ =\ \mbox{\hyperlink{class_projectile_a430582d90d0fbb5e0f4d1978d78c0248}{Projectile::ProjectileType}};}
+\DoxyCodeLine{\Hypertarget{_boss_8h_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{_boss_8h_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{_boss_8h_source_l00006}\mbox{\hyperlink{class_boss}{00006}}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_boss}{Boss}}\ final\ :}
+\DoxyCodeLine{\Hypertarget{_boss_8h_source_l00007}00007\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_enemy}{Enemy}}}
+\DoxyCodeLine{\Hypertarget{_boss_8h_source_l00008}00008\ \{}
+\DoxyCodeLine{\Hypertarget{_boss_8h_source_l00009}00009\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_boss_8h_source_l00010}00010\ \ \ \ \ \mbox{\hyperlink{class_boss_ab174554e020ae7888aec99bd0f505aba}{Boss}}(\textcolor{keywordtype}{short}\ \textcolor{keywordtype}{id},\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_enemy_a21d97250b5e8befe6d02aeeb0bb36de3}{left}},\ sf::Vector2f\ \mbox{\hyperlink{class_entity_ad329967c418fc97aae4745b68adebb11}{pos}},\ sf::Vector2f\ \mbox{\hyperlink{class_entity_aa84a7361118f092029908d97188374f3}{vel}},}
+\DoxyCodeLine{\Hypertarget{_boss_8h_source_l00011}00011\ \ \ \ \ \ \ \ \ std::vector<Object*>*\ objects,\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_enemy_a586ab31ee88fe7bf100413374a25d24b}{levelEditor}});}
+\DoxyCodeLine{\Hypertarget{_boss_8h_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{_boss_8h_source_l00013}00013\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_boss_aacbf018ecb6dff0260e2020eee7a8b69}{update}}(sf::Vector2f\ winSize,\ std::vector<Object*>*\ objects,\ }
+\DoxyCodeLine{\Hypertarget{_boss_8h_source_l00014}00014\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ time)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{\Hypertarget{_boss_8h_source_l00015}00015\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{_boss_8h_source_l00016}00016\ \ \ \ \ \mbox{\hyperlink{class_boss}{Boss}}*\ bossPiece1\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{_boss_8h_source_l00017}00017\ \ \ \ \ \mbox{\hyperlink{class_boss}{Boss}}*\ bossPiece2\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{_boss_8h_source_l00018}00018\ \ \ \ \ \mbox{\hyperlink{class_boss}{Boss}}*\ bossPiece3\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{_boss_8h_source_l00019}00019\ \ \ \ \ \textcolor{keywordtype}{short}\ pattern\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_boss_8h_source_l00020}00020\ \ \ \ \ \textcolor{keywordtype}{short}\ cooldown2\ =\ 250;}
+\DoxyCodeLine{\Hypertarget{_boss_8h_source_l00021}00021\ \ \ \ \ \textcolor{keywordtype}{short}\ cooldown3\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_boss_8h_source_l00022}00022\ \};}
+\DoxyCodeLine{\Hypertarget{_boss_8h_source_l00023}00023\ }
+
+\end{DoxyCode}

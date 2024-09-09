@@ -1,0 +1,164 @@
+.TH "Level" 3 "Version v0.1" "Aero Fighters" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Level \- This takes a file and interprets it to create the level\&. ALL objects in a level are held here\&. UIs, menus, and things that span through multiple levels are held by \fBGame\fP\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <Level\&.h>\fP
+.PP
+Inherits sf::Drawable\&.
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "enum \fBMap\fP { \fBEngland\fP, \fBIsrael\fP, \fBJapan\fP, \fBMeddit\fP, \fBRussia\fP, \fBStates\fP, \fBSweden\fP, \fBSpace\fP }"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBLevel\fP ()"
+.br
+.ti -1c
+.RI "\fB~Level\fP ()"
+.br
+.ti -1c
+.RI "void \fBload\fP (sf::Vector2f winSize, short country, \fBMap\fP map, bool levelEditor)"
+.br
+.RI "Initializes the level with the given country and map\&. "
+.ti -1c
+.RI "bool \fBupdate\fP (sf::Vector2f winSize)"
+.br
+.RI "Updates the level\&. "
+.ti -1c
+.RI "void \fBdebugMode\fP () const"
+.br
+.RI "Enables debug mode\&. Gives both players infinite health\&. "
+.ti -1c
+.RI "void \fBrespawnPlayers\fP () const"
+.br
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "std::vector< std::string > \fBmapStrings\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+This takes a file and interprets it to create the level\&. ALL objects in a level are held here\&. UIs, menus, and things that span through multiple levels are held by \fBGame\fP\&. 
+.PP
+Definition at line \fB26\fP of file \fBLevel\&.h\fP\&.
+.SH "Member Enumeration Documentation"
+.PP 
+.SS "enum \fBLevel::Map\fP"
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\f(BIEngland \fP
+.TP
+\f(BIIsrael \fP
+.TP
+\f(BIJapan \fP
+.TP
+\f(BIMeddit \fP
+.TP
+\f(BIRussia \fP
+.TP
+\f(BIStates \fP
+.TP
+\f(BISweden \fP
+.TP
+\f(BISpace \fP
+.PP
+Definition at line \fB29\fP of file \fBLevel\&.h\fP\&.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "Level::Level ()"
+
+.PP
+Definition at line \fB6\fP of file \fBLevel\&.cpp\fP\&.
+.SS "Level::~Level ()"
+
+.PP
+Definition at line \fB12\fP of file \fBLevel\&.cpp\fP\&.
+.SH "Member Function Documentation"
+.PP 
+.SS "void Level::debugMode () const"
+
+.PP
+Enables debug mode\&. Gives both players infinite health\&. 
+.PP
+Definition at line \fB183\fP of file \fBLevel\&.cpp\fP\&.
+.SS "void Level::load (sf::Vector2f winSize, short country, \fBMap\fP map, bool levelEditor)"
+
+.PP
+Initializes the level with the given country and map\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIwinSize\fP 
+.br
+\fIcountry\fP 
+.br
+\fImap\fP 
+.br
+\fIlevelEditor\fP Whether or not the levelEditor is active\&.
+.RE
+.PP
+
+.PP
+Definition at line \fB29\fP of file \fBLevel\&.cpp\fP\&.
+.SS "void Level::respawnPlayers () const"
+
+.PP
+Definition at line \fB189\fP of file \fBLevel\&.cpp\fP\&.
+.SS "bool Level::update (sf::Vector2f winSize)"
+
+.PP
+Updates the level\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIwinSize\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+.RE
+.PP
+
+.PP
+Definition at line \fB245\fP of file \fBLevel\&.cpp\fP\&.
+.SH "Member Data Documentation"
+.PP 
+.SS "std::vector<std::string> Level::mapStrings"
+\fBInitial value:\fP
+.nf
+= {
+        "England",
+        "Israel",
+        "Japan",
+        "Meddit",
+        "Russia",
+        "States",
+        "Sweden",
+        "Space"
+    }
+.PP
+.fi
+
+.PP
+Definition at line \fB41\fP of file \fBLevel\&.h\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Aero Fighters from the source code\&.

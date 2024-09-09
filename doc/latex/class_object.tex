@@ -1,0 +1,885 @@
+\doxysection{Object Class Reference}
+\hypertarget{class_object}{}\label{class_object}\index{Object@{Object}}
+
+
+The base class for everything that moves. Making this allows us to use polymorphism to handle and run through every object in the game in a little neater manner.  
+
+
+
+
+{\ttfamily \#include $<$Object.\+h$>$}
+
+
+
+Inheritance diagram for Object\+:
+% FIG 0
+
+
+Collaboration diagram for Object\+:
+% FIG 1
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{class_object_aa30bdbe3657d9756611172b5f4ffcedf}{Types}} \{ \newline
+\mbox{\hyperlink{class_object_aa30bdbe3657d9756611172b5f4ffcedfaebc42d3e8a59ee83e897c37286bc0801}{HIDDEN}} =-\/1
+, \mbox{\hyperlink{class_object_aa30bdbe3657d9756611172b5f4ffcedfa6c8e0f12f0544ca4849ef9677e133c4a}{PLAYER}} = 0
+, \mbox{\hyperlink{class_object_aa30bdbe3657d9756611172b5f4ffcedfae6ab2458f15cf9b61400b476d1afabff}{BOSS}} = 1
+, \mbox{\hyperlink{class_object_aa30bdbe3657d9756611172b5f4ffcedfa2657f666c376bf9d85a3745447824cb0}{BOSS\+\_\+\+PIECE}} = 2
+, \newline
+\mbox{\hyperlink{class_object_aa30bdbe3657d9756611172b5f4ffcedfad9b734065c178992981eb1f1258e7e22}{AIR}} = 3
+, \mbox{\hyperlink{class_object_aa30bdbe3657d9756611172b5f4ffcedfa5c76a9d1866a04538f64c9871e342452}{LAND}} = 4
+, \mbox{\hyperlink{class_object_aa30bdbe3657d9756611172b5f4ffcedfa0c630e789ab51b65b387c99ca0b3c750}{COLLECTABLE}} = 5
+, \mbox{\hyperlink{class_object_aa30bdbe3657d9756611172b5f4ffcedfa439b5fdd5ad9e6e311e0f6f1b12a6306}{PLAYER\+\_\+\+PROJECTILE}} = 6
+, \newline
+\mbox{\hyperlink{class_object_aa30bdbe3657d9756611172b5f4ffcedfadc2a381f993d4faf9824b5fcf6c02ccd}{ENEMY\+\_\+\+PROJECTILE}} = 7
+, \mbox{\hyperlink{class_object_aa30bdbe3657d9756611172b5f4ffcedfa6f28bb958f4e90da71e05e331e766740}{EXPLOSION}} = 8
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_object_a40860402e64d8008fb42329df7097cdb}{Object}} ()
+\item 
+virtual void \mbox{\hyperlink{class_object_a2036e826245b9b0b8e9f0072730c33d5}{update}} (sf\+::\+Vector2f win\+Size, std\+::vector$<$ \mbox{\hyperlink{class_object}{Object}} \texorpdfstring{$\ast$}{*} $>$ \texorpdfstring{$\ast$}{*}, bool time)=0
+\item 
+void \mbox{\hyperlink{class_object_a9ae70955ceef5287048fcf627efb97e3}{object\+Update}} (sf\+::\+Vector2f win\+Size, std\+::vector$<$ \mbox{\hyperlink{class_object}{Object}} \texorpdfstring{$\ast$}{*} $>$ \texorpdfstring{$\ast$}{*})
+\begin{DoxyCompactList}\small\item\em Calls Object\+::move(win\+Size) (??? what is the point?) \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_object_a6077158280beade62fcb3e72f5946402}{move}} (sf\+::\+Vector2f win\+Size)
+\item 
+void \mbox{\hyperlink{class_object_a2149267e41bbb91d03d23eeb95caf8df}{set\+Pos}} (sf\+::\+Vector2f new\+Pos)
+\item 
+void \mbox{\hyperlink{class_object_a786fdbe5c0121bd8d1af5240d825b59b}{set\+Pos}} (float new\+PosX, float new\+PosY)
+\item 
+void \mbox{\hyperlink{class_object_aa9a24f326a7837ce7be255c436bb90f0}{set\+Size}} (sf\+::\+Vector2f new\+Size)
+\item 
+void \mbox{\hyperlink{class_object_ae311e6cffe5a97a4dd2ea053c8815578}{set\+Size}} (float new\+SizeX, float new\+SizeY)
+\item 
+void \mbox{\hyperlink{class_object_a3bcbac8e0ac8c428fa4ce17091e191db}{set\+Vel}} (sf\+::\+Vector2f)
+\item 
+void \mbox{\hyperlink{class_object_adba30b76a97c64684da9fc18ed48be51}{set\+Vel}} (float, float)
+\item 
+void \mbox{\hyperlink{class_object_a004999d115ca15135a66ee9dca51693c}{set\+Sprite\+Num}} (short)
+\item 
+void \mbox{\hyperlink{class_object_a74eb59c8845bee92bff15a7b3320e7f5}{set\+Texture}} (sf\+::\+Texture \texorpdfstring{$\ast$}{*}tex\+Ptr, sf\+::\+Vector2i \mbox{\hyperlink{class_object_a7759c83a62b6a4b1f5d8a67fdc58b2e1}{size}}, sf\+::\+Vector2i offset, int \mbox{\hyperlink{class_object_a2df5cec533ee6b18541c71c1f769198c}{frame\+Count}}, bool vert\+Animation)
+\begin{DoxyCompactList}\small\item\em The purpose of this method is to load a texture in \doxylink{class_level}{Level} or \doxylink{class_game}{Game} once, then cheaply load it again multiple times. \end{DoxyCompactList}\item 
+sf\+::\+Vector2f \mbox{\hyperlink{class_object_aab61b0a1554bb954e3297d5ecc932311}{get\+Vel}} () const
+\item 
+bool \mbox{\hyperlink{class_object_ab020d1ea9452f936dc258bc47392d777}{out\+Of\+Bounds}} (sf\+::\+Vector2f win\+Size) const
+\begin{DoxyCompactList}\small\item\em Returns if any part of an object is outside the viewing area. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_object_ad87fbb2ee8bc411982a421329c960874}{flag\+Delete}} ()
+\item 
+bool \mbox{\hyperlink{class_object_af864dbd38aa32473d8964f113d0b20c1}{should\+Delete}} () const
+\item 
+sf\+::\+Vector2f \mbox{\hyperlink{class_object_a6c18e49c4c21c3d99ac214044202eb4c}{get\+Pos}} () const
+\item 
+sf\+::\+Vector2f \mbox{\hyperlink{class_object_a74c9cee8fe6e63523e423687bf02883f}{get\+Size}} () const
+\item 
+bool \mbox{\hyperlink{class_object_a86dd0f591da2c8a08b1778c35ce879d2}{intersect}} (\mbox{\hyperlink{class_object}{Object}} \texorpdfstring{$\ast$}{*}) const
+\item 
+short \mbox{\hyperlink{class_object_a5a6edd3542f1a2ef6b6c7969d59f83e3}{get\+Type}} () const
+\item 
+short \mbox{\hyperlink{class_object_a2c8eca870f0045fc4a0c43d94a0472a5}{get\+Id}} () const
+\item 
+short \mbox{\hyperlink{class_object_a9b046527d64d93cba4b8e8e84c377530}{get\+Sprite\+Num}} () const
+\item 
+short \mbox{\hyperlink{class_object_a099b61a0e3b058793784dd879a1f2c4e}{get\+Orientation}} () const
+\item 
+void \mbox{\hyperlink{class_object_a23ab535f9688d797674919157763c6ee}{set\+Orientation}} (short)
+\item 
+bool \mbox{\hyperlink{class_object_aae1c24adafa5c14df0f61b55664a106f}{is\+Tex\+Init}} () const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{class_object_a48629781d0a98162069bd2f6339a76c9}{set\+View}} (sf\+::\+View new\+\_\+view)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{class_object_a6c3dc18899c7d428b35b88b1474778d0}{draw}} (sf\+::\+Render\+Target \&target, sf\+::\+Render\+States states) const
+\begin{DoxyCompactList}\small\item\em Draws the object to the screen. Implemeneted from sf\+::\+Drawable. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_object_aec9c0d84c1043f54de40f2863ec9c2fc}{next\+Frame}} (int frame\+Rate)
+\begin{DoxyCompactList}\small\item\em This animator allows for different frame changes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+short \mbox{\hyperlink{class_object_a8137cf4265bcaaf2fc7c91a9ccd8e4f4}{type}}
+\item 
+short \mbox{\hyperlink{class_object_a5d56e2dbec4aab44d836760b698e0e9c}{id}} = 0
+\item 
+short \mbox{\hyperlink{class_object_abb0e0157451e9582afae52cb06a22f61}{cooldown}} = 0
+\item 
+short \mbox{\hyperlink{class_object_a78088792df871b0c272a0db382589258}{health}}
+\item 
+short \mbox{\hyperlink{class_object_a5dd83bc6754de2b7a216b2c8bb4da21a}{sprite\+Num}} = -\/1
+\item 
+short \mbox{\hyperlink{class_object_a04b0731cc3064d4e2c98900a741b162f}{orientation}} = 0
+\item 
+short \mbox{\hyperlink{class_object_adc3c0e750a7f1b69b70ddb00ddbe59be}{timer}} = 0
+\item 
+bool \mbox{\hyperlink{class_object_a0637c58ae14ffe525de737632fa7b01c}{del}} = false
+\item 
+sf\+::\+Vector2f \mbox{\hyperlink{class_object_aec00daf54d15f689af2eea0be28dbf86}{pos}}
+\item 
+sf\+::\+Vector2f \mbox{\hyperlink{class_object_a7759c83a62b6a4b1f5d8a67fdc58b2e1}{size}}
+\item 
+sf\+::\+Vector2f \mbox{\hyperlink{class_object_ab1f131a494c3319025c912fe976f2d78}{vel}}
+\item 
+sf\+::\+Rectangle\+Shape \mbox{\hyperlink{class_object_a548162681111448527fb64c36dfca06f}{sprite}}
+\item 
+float \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_object_a8f0f94d918a9895dcf9e72d14b79a6b4}{background\+Speed}} = nullptr
+\item 
+float \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_object_a46bf1c4a8a577572b7ac2778adfaf007}{background\+Dist}} = nullptr
+\item 
+short \mbox{\hyperlink{class_object_a2df5cec533ee6b18541c71c1f769198c}{frame\+Count}} = 0
+\item 
+short \mbox{\hyperlink{class_object_af5a56a268fa9c6814152d873a327cac6}{current\+Frame}} = 0
+\item 
+short \mbox{\hyperlink{class_object_aeb8a6d27b5c2c4af7c4c1f881573ef26}{image}}
+\item 
+sf\+::\+Vector2i \mbox{\hyperlink{class_object_af4e5d4eecdbd608ac9cd7426c848702c}{tex\+Size}}
+\item 
+sf\+::\+Vector2i \mbox{\hyperlink{class_object_ad8f0e11e70143864d9a1818b8466e277}{tex\+Offset}}
+\item 
+bool \mbox{\hyperlink{class_object_a784bb9c37f3b8e1ea3df0d724304564e}{vertical\+Animation}} = true
+\item 
+bool \mbox{\hyperlink{class_object_ac95f2021b4721dc0ded2ef6d7e3c1629}{an\+Done}} = false
+\item 
+bool \mbox{\hyperlink{class_object_a5dd0a101abd877b8d7311c10cab4c145}{tex\+Init}} = false
+\item 
+const float \mbox{\hyperlink{class_object_abdeb829aa5527c6fbd305b34656d0a60}{PI}} = 3.\+14159f
+\item 
+const float \mbox{\hyperlink{class_object_a88b4b41a26ec768990bd986841d5ceb3}{TO\+\_\+\+RAD}} = \mbox{\hyperlink{class_object_abdeb829aa5527c6fbd305b34656d0a60}{PI}} / 180.f
+\item 
+const float \mbox{\hyperlink{class_object_a104cf7c3f341a71271ab52082b92b3ed}{TO\+\_\+\+DEG}} = 180.f / \mbox{\hyperlink{class_object_abdeb829aa5527c6fbd305b34656d0a60}{PI}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static sf\+::\+View \mbox{\hyperlink{class_object_a0f880ebab8bf938fff7680a9e80ae693}{view}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The base class for everything that moves. Making this allows us to use polymorphism to handle and run through every object in the game in a little neater manner. 
+
+@TODO@ Split into more base classes. 
+
+Definition at line \mbox{\hyperlink{_object_8h_source_l00014}{14}} of file \mbox{\hyperlink{_object_8h_source}{Object.\+h}}.
+
+
+
+\doxysubsection{Member Enumeration Documentation}
+\Hypertarget{class_object_aa30bdbe3657d9756611172b5f4ffcedf}\index{Object@{Object}!Types@{Types}}
+\index{Types@{Types}!Object@{Object}}
+\doxysubsubsection{\texorpdfstring{Types}{Types}}
+{\footnotesize\ttfamily \label{class_object_aa30bdbe3657d9756611172b5f4ffcedf} 
+enum \mbox{\hyperlink{class_object_aa30bdbe3657d9756611172b5f4ffcedf}{Object\+::\+Types}}}
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{HIDDEN@{HIDDEN}!Object@{Object}}\index{Object@{Object}!HIDDEN@{HIDDEN}}}\Hypertarget{class_object_aa30bdbe3657d9756611172b5f4ffcedfaebc42d3e8a59ee83e897c37286bc0801}\label{class_object_aa30bdbe3657d9756611172b5f4ffcedf} 
+HIDDEN&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PLAYER@{PLAYER}!Object@{Object}}\index{Object@{Object}!PLAYER@{PLAYER}}}\Hypertarget{class_object_aa30bdbe3657d9756611172b5f4ffcedfa6c8e0f12f0544ca4849ef9677e133c4a}\label{class_object_aa30bdbe3657d9756611172b5f4ffcedf} 
+PLAYER&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{BOSS@{BOSS}!Object@{Object}}\index{Object@{Object}!BOSS@{BOSS}}}\Hypertarget{class_object_aa30bdbe3657d9756611172b5f4ffcedfae6ab2458f15cf9b61400b476d1afabff}\label{class_object_aa30bdbe3657d9756611172b5f4ffcedf} 
+BOSS&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{BOSS\_PIECE@{BOSS\_PIECE}!Object@{Object}}\index{Object@{Object}!BOSS\_PIECE@{BOSS\_PIECE}}}\Hypertarget{class_object_aa30bdbe3657d9756611172b5f4ffcedfa2657f666c376bf9d85a3745447824cb0}\label{class_object_aa30bdbe3657d9756611172b5f4ffcedf} 
+BOSS\+\_\+\+PIECE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AIR@{AIR}!Object@{Object}}\index{Object@{Object}!AIR@{AIR}}}\Hypertarget{class_object_aa30bdbe3657d9756611172b5f4ffcedfad9b734065c178992981eb1f1258e7e22}\label{class_object_aa30bdbe3657d9756611172b5f4ffcedf} 
+AIR&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LAND@{LAND}!Object@{Object}}\index{Object@{Object}!LAND@{LAND}}}\Hypertarget{class_object_aa30bdbe3657d9756611172b5f4ffcedfa5c76a9d1866a04538f64c9871e342452}\label{class_object_aa30bdbe3657d9756611172b5f4ffcedf} 
+LAND&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{COLLECTABLE@{COLLECTABLE}!Object@{Object}}\index{Object@{Object}!COLLECTABLE@{COLLECTABLE}}}\Hypertarget{class_object_aa30bdbe3657d9756611172b5f4ffcedfa0c630e789ab51b65b387c99ca0b3c750}\label{class_object_aa30bdbe3657d9756611172b5f4ffcedf} 
+COLLECTABLE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PLAYER\_PROJECTILE@{PLAYER\_PROJECTILE}!Object@{Object}}\index{Object@{Object}!PLAYER\_PROJECTILE@{PLAYER\_PROJECTILE}}}\Hypertarget{class_object_aa30bdbe3657d9756611172b5f4ffcedfa439b5fdd5ad9e6e311e0f6f1b12a6306}\label{class_object_aa30bdbe3657d9756611172b5f4ffcedf} 
+PLAYER\+\_\+\+PROJECTILE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ENEMY\_PROJECTILE@{ENEMY\_PROJECTILE}!Object@{Object}}\index{Object@{Object}!ENEMY\_PROJECTILE@{ENEMY\_PROJECTILE}}}\Hypertarget{class_object_aa30bdbe3657d9756611172b5f4ffcedfadc2a381f993d4faf9824b5fcf6c02ccd}\label{class_object_aa30bdbe3657d9756611172b5f4ffcedf} 
+ENEMY\+\_\+\+PROJECTILE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EXPLOSION@{EXPLOSION}!Object@{Object}}\index{Object@{Object}!EXPLOSION@{EXPLOSION}}}\Hypertarget{class_object_aa30bdbe3657d9756611172b5f4ffcedfa6f28bb958f4e90da71e05e331e766740}\label{class_object_aa30bdbe3657d9756611172b5f4ffcedf} 
+EXPLOSION&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line \mbox{\hyperlink{_object_8h_source_l00063}{63}} of file \mbox{\hyperlink{_object_8h_source}{Object.\+h}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_object_a40860402e64d8008fb42329df7097cdb}\index{Object@{Object}!Object@{Object}}
+\index{Object@{Object}!Object@{Object}}
+\doxysubsubsection{\texorpdfstring{Object()}{Object()}}
+{\footnotesize\ttfamily \label{class_object_a40860402e64d8008fb42329df7097cdb} 
+Object\+::\+Object (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_object_8cpp_source_l00013}{13}} of file \mbox{\hyperlink{_object_8cpp_source}{Object.\+cpp}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_object_a6c3dc18899c7d428b35b88b1474778d0}\index{Object@{Object}!draw@{draw}}
+\index{draw@{draw}!Object@{Object}}
+\doxysubsubsection{\texorpdfstring{draw()}{draw()}}
+{\footnotesize\ttfamily \label{class_object_a6c3dc18899c7d428b35b88b1474778d0} 
+void Object\+::draw (\begin{DoxyParamCaption}\item[{sf\+::\+Render\+Target \&}]{target}{, }\item[{sf\+::\+Render\+States}]{states}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Draws the object to the screen. Implemeneted from sf\+::\+Drawable. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em target} & \\
+\hline
+{\em states} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{_object_8cpp_source_l00039}{39}} of file \mbox{\hyperlink{_object_8cpp_source}{Object.\+cpp}}.
+
+\Hypertarget{class_object_ad87fbb2ee8bc411982a421329c960874}\index{Object@{Object}!flagDelete@{flagDelete}}
+\index{flagDelete@{flagDelete}!Object@{Object}}
+\doxysubsubsection{\texorpdfstring{flagDelete()}{flagDelete()}}
+{\footnotesize\ttfamily \label{class_object_ad87fbb2ee8bc411982a421329c960874} 
+void Object\+::flag\+Delete (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{_object_8h_source_l00046}{46}} of file \mbox{\hyperlink{_object_8h_source}{Object.\+h}}.
+
+Here is the caller graph for this function\+:
+% FIG 2
+\Hypertarget{class_object_a2c8eca870f0045fc4a0c43d94a0472a5}\index{Object@{Object}!getId@{getId}}
+\index{getId@{getId}!Object@{Object}}
+\doxysubsubsection{\texorpdfstring{getId()}{getId()}}
+{\footnotesize\ttfamily \label{class_object_a2c8eca870f0045fc4a0c43d94a0472a5} 
+short Object\+::get\+Id (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{_object_8h_source_l00055}{55}} of file \mbox{\hyperlink{_object_8h_source}{Object.\+h}}.
+
+\Hypertarget{class_object_a099b61a0e3b058793784dd879a1f2c4e}\index{Object@{Object}!getOrientation@{getOrientation}}
+\index{getOrientation@{getOrientation}!Object@{Object}}
+\doxysubsubsection{\texorpdfstring{getOrientation()}{getOrientation()}}
+{\footnotesize\ttfamily \label{class_object_a099b61a0e3b058793784dd879a1f2c4e} 
+short Object\+::get\+Orientation (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{_object_8h_source_l00058}{58}} of file \mbox{\hyperlink{_object_8h_source}{Object.\+h}}.
+
+\Hypertarget{class_object_a6c18e49c4c21c3d99ac214044202eb4c}\index{Object@{Object}!getPos@{getPos}}
+\index{getPos@{getPos}!Object@{Object}}
+\doxysubsubsection{\texorpdfstring{getPos()}{getPos()}}
+{\footnotesize\ttfamily \label{class_object_a6c18e49c4c21c3d99ac214044202eb4c} 
+sf\+::\+Vector2f Object\+::get\+Pos (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{_object_8h_source_l00049}{49}} of file \mbox{\hyperlink{_object_8h_source}{Object.\+h}}.
+
+Here is the caller graph for this function\+:
+% FIG 3
+\Hypertarget{class_object_a74c9cee8fe6e63523e423687bf02883f}\index{Object@{Object}!getSize@{getSize}}
+\index{getSize@{getSize}!Object@{Object}}
+\doxysubsubsection{\texorpdfstring{getSize()}{getSize()}}
+{\footnotesize\ttfamily \label{class_object_a74c9cee8fe6e63523e423687bf02883f} 
+sf\+::\+Vector2f Object\+::get\+Size (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{_object_8h_source_l00050}{50}} of file \mbox{\hyperlink{_object_8h_source}{Object.\+h}}.
+
+Here is the caller graph for this function\+:
+% FIG 4
+\Hypertarget{class_object_a9b046527d64d93cba4b8e8e84c377530}\index{Object@{Object}!getSpriteNum@{getSpriteNum}}
+\index{getSpriteNum@{getSpriteNum}!Object@{Object}}
+\doxysubsubsection{\texorpdfstring{getSpriteNum()}{getSpriteNum()}}
+{\footnotesize\ttfamily \label{class_object_a9b046527d64d93cba4b8e8e84c377530} 
+short Object\+::get\+Sprite\+Num (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{_object_8h_source_l00056}{56}} of file \mbox{\hyperlink{_object_8h_source}{Object.\+h}}.
+
+\Hypertarget{class_object_a5a6edd3542f1a2ef6b6c7969d59f83e3}\index{Object@{Object}!getType@{getType}}
+\index{getType@{getType}!Object@{Object}}
+\doxysubsubsection{\texorpdfstring{getType()}{getType()}}
+{\footnotesize\ttfamily \label{class_object_a5a6edd3542f1a2ef6b6c7969d59f83e3} 
+short Object\+::get\+Type (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{_object_8h_source_l00054}{54}} of file \mbox{\hyperlink{_object_8h_source}{Object.\+h}}.
+
+\Hypertarget{class_object_aab61b0a1554bb954e3297d5ecc932311}\index{Object@{Object}!getVel@{getVel}}
+\index{getVel@{getVel}!Object@{Object}}
+\doxysubsubsection{\texorpdfstring{getVel()}{getVel()}}
+{\footnotesize\ttfamily \label{class_object_aab61b0a1554bb954e3297d5ecc932311} 
+sf\+::\+Vector2f Object\+::get\+Vel (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{_object_8h_source_l00042}{42}} of file \mbox{\hyperlink{_object_8h_source}{Object.\+h}}.
+
+\Hypertarget{class_object_a86dd0f591da2c8a08b1778c35ce879d2}\index{Object@{Object}!intersect@{intersect}}
+\index{intersect@{intersect}!Object@{Object}}
+\doxysubsubsection{\texorpdfstring{intersect()}{intersect()}}
+{\footnotesize\ttfamily \label{class_object_a86dd0f591da2c8a08b1778c35ce879d2} 
+bool Object\+::intersect (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_object}{Object}} \texorpdfstring{$\ast$}{*}}]{target\+Ptr}{}\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \mbox{\hyperlink{_object_8cpp_source_l00116}{116}} of file \mbox{\hyperlink{_object_8cpp_source}{Object.\+cpp}}.
+
+Here is the call graph for this function\+:
+% FIG 5
+Here is the caller graph for this function\+:
+% FIG 6
+\Hypertarget{class_object_aae1c24adafa5c14df0f61b55664a106f}\index{Object@{Object}!isTexInit@{isTexInit}}
+\index{isTexInit@{isTexInit}!Object@{Object}}
+\doxysubsubsection{\texorpdfstring{isTexInit()}{isTexInit()}}
+{\footnotesize\ttfamily \label{class_object_aae1c24adafa5c14df0f61b55664a106f} 
+bool Object\+::is\+Tex\+Init (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{_object_8h_source_l00061}{61}} of file \mbox{\hyperlink{_object_8h_source}{Object.\+h}}.
+
+\Hypertarget{class_object_a6077158280beade62fcb3e72f5946402}\index{Object@{Object}!move@{move}}
+\index{move@{move}!Object@{Object}}
+\doxysubsubsection{\texorpdfstring{move()}{move()}}
+{\footnotesize\ttfamily \label{class_object_a6077158280beade62fcb3e72f5946402} 
+void Object\+::move (\begin{DoxyParamCaption}\item[{sf\+::\+Vector2f}]{win\+Size}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Reimplemented in \mbox{\hyperlink{class_player_a8ed6b92863010ce9b748c0ed8f308f2c}{Player}}.
+
+
+
+Definition at line \mbox{\hyperlink{_object_8cpp_source_l00132}{132}} of file \mbox{\hyperlink{_object_8cpp_source}{Object.\+cpp}}.
+
+Here is the caller graph for this function\+:
+% FIG 7
+\Hypertarget{class_object_aec9c0d84c1043f54de40f2863ec9c2fc}\index{Object@{Object}!nextFrame@{nextFrame}}
+\index{nextFrame@{nextFrame}!Object@{Object}}
+\doxysubsubsection{\texorpdfstring{nextFrame()}{nextFrame()}}
+{\footnotesize\ttfamily \label{class_object_aec9c0d84c1043f54de40f2863ec9c2fc} 
+void Object\+::next\+Frame (\begin{DoxyParamCaption}\item[{int}]{frame\+Rate}{ = {\ttfamily 15}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+This animator allows for different frame changes. 
+
+@TODO@ Move to seperate sprite container class -\/ Unweave the inheritance web -\/ Ricky
+
+
+\begin{DoxyParams}{Parameters}
+{\em frame\+Rate} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{_object_8cpp_source_l00069}{69}} of file \mbox{\hyperlink{_object_8cpp_source}{Object.\+cpp}}.
+
+Here is the caller graph for this function\+:
+% FIG 8
+\Hypertarget{class_object_a9ae70955ceef5287048fcf627efb97e3}\index{Object@{Object}!objectUpdate@{objectUpdate}}
+\index{objectUpdate@{objectUpdate}!Object@{Object}}
+\doxysubsubsection{\texorpdfstring{objectUpdate()}{objectUpdate()}}
+{\footnotesize\ttfamily \label{class_object_a9ae70955ceef5287048fcf627efb97e3} 
+void Object\+::object\+Update (\begin{DoxyParamCaption}\item[{sf\+::\+Vector2f}]{win\+Size}{, }\item[{std\+::vector$<$ \mbox{\hyperlink{class_object}{Object}} \texorpdfstring{$\ast$}{*} $>$ \texorpdfstring{$\ast$}{*}}]{objects}{}\end{DoxyParamCaption})}
+
+
+
+Calls Object\+::move(win\+Size) (??? what is the point?) 
+
+@TODO@ Base class version is never called -\/ Declare pure virtual. -\/ Ricky
+
+
+\begin{DoxyParams}{Parameters}
+{\em win\+Size} & \\
+\hline
+{\em objects} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{_object_8cpp_source_l00028}{28}} of file \mbox{\hyperlink{_object_8cpp_source}{Object.\+cpp}}.
+
+Here is the call graph for this function\+:
+% FIG 9
+Here is the caller graph for this function\+:
+% FIG 10
+\Hypertarget{class_object_ab020d1ea9452f936dc258bc47392d777}\index{Object@{Object}!outOfBounds@{outOfBounds}}
+\index{outOfBounds@{outOfBounds}!Object@{Object}}
+\doxysubsubsection{\texorpdfstring{outOfBounds()}{outOfBounds()}}
+{\footnotesize\ttfamily \label{class_object_ab020d1ea9452f936dc258bc47392d777} 
+bool Object\+::out\+Of\+Bounds (\begin{DoxyParamCaption}\item[{sf\+::\+Vector2f}]{win\+Size}{}\end{DoxyParamCaption}) const}
+
+
+
+Returns if any part of an object is outside the viewing area. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em win\+Size} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_object_8cpp_source_l00192}{192}} of file \mbox{\hyperlink{_object_8cpp_source}{Object.\+cpp}}.
+
+Here is the caller graph for this function\+:
+% FIG 11
+\Hypertarget{class_object_a23ab535f9688d797674919157763c6ee}\index{Object@{Object}!setOrientation@{setOrientation}}
+\index{setOrientation@{setOrientation}!Object@{Object}}
+\doxysubsubsection{\texorpdfstring{setOrientation()}{setOrientation()}}
+{\footnotesize\ttfamily \label{class_object_a23ab535f9688d797674919157763c6ee} 
+void Object\+::set\+Orientation (\begin{DoxyParamCaption}\item[{short}]{angle}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_object_8cpp_source_l00056}{56}} of file \mbox{\hyperlink{_object_8cpp_source}{Object.\+cpp}}.
+
+Here is the caller graph for this function\+:
+% FIG 12
+\Hypertarget{class_object_a786fdbe5c0121bd8d1af5240d825b59b}\index{Object@{Object}!setPos@{setPos}}
+\index{setPos@{setPos}!Object@{Object}}
+\doxysubsubsection{\texorpdfstring{setPos()}{setPos()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_object_a786fdbe5c0121bd8d1af5240d825b59b} 
+void Object\+::set\+Pos (\begin{DoxyParamCaption}\item[{float}]{new\+PosX}{, }\item[{float}]{new\+PosY}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_object_8cpp_source_l00150}{150}} of file \mbox{\hyperlink{_object_8cpp_source}{Object.\+cpp}}.
+
+Here is the call graph for this function\+:
+% FIG 13
+\Hypertarget{class_object_a2149267e41bbb91d03d23eeb95caf8df}\index{Object@{Object}!setPos@{setPos}}
+\index{setPos@{setPos}!Object@{Object}}
+\doxysubsubsection{\texorpdfstring{setPos()}{setPos()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_object_a2149267e41bbb91d03d23eeb95caf8df} 
+void Object\+::set\+Pos (\begin{DoxyParamCaption}\item[{sf\+::\+Vector2f}]{new\+Pos}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_object_8cpp_source_l00141}{141}} of file \mbox{\hyperlink{_object_8cpp_source}{Object.\+cpp}}.
+
+Here is the caller graph for this function\+:
+% FIG 14
+\Hypertarget{class_object_ae311e6cffe5a97a4dd2ea053c8815578}\index{Object@{Object}!setSize@{setSize}}
+\index{setSize@{setSize}!Object@{Object}}
+\doxysubsubsection{\texorpdfstring{setSize()}{setSize()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_object_ae311e6cffe5a97a4dd2ea053c8815578} 
+void Object\+::set\+Size (\begin{DoxyParamCaption}\item[{float}]{new\+SizeX}{, }\item[{float}]{new\+SizeY}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_object_8cpp_source_l00166}{166}} of file \mbox{\hyperlink{_object_8cpp_source}{Object.\+cpp}}.
+
+Here is the call graph for this function\+:
+% FIG 15
+\Hypertarget{class_object_aa9a24f326a7837ce7be255c436bb90f0}\index{Object@{Object}!setSize@{setSize}}
+\index{setSize@{setSize}!Object@{Object}}
+\doxysubsubsection{\texorpdfstring{setSize()}{setSize()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_object_aa9a24f326a7837ce7be255c436bb90f0} 
+void Object\+::set\+Size (\begin{DoxyParamCaption}\item[{sf\+::\+Vector2f}]{new\+Size}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_object_8cpp_source_l00158}{158}} of file \mbox{\hyperlink{_object_8cpp_source}{Object.\+cpp}}.
+
+Here is the caller graph for this function\+:
+% FIG 16
+\Hypertarget{class_object_a004999d115ca15135a66ee9dca51693c}\index{Object@{Object}!setSpriteNum@{setSpriteNum}}
+\index{setSpriteNum@{setSpriteNum}!Object@{Object}}
+\doxysubsubsection{\texorpdfstring{setSpriteNum()}{setSpriteNum()}}
+{\footnotesize\ttfamily \label{class_object_a004999d115ca15135a66ee9dca51693c} 
+void Object\+::set\+Sprite\+Num (\begin{DoxyParamCaption}\item[{short}]{num}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_object_8cpp_source_l00047}{47}} of file \mbox{\hyperlink{_object_8cpp_source}{Object.\+cpp}}.
+
+Here is the caller graph for this function\+:
+% FIG 17
+\Hypertarget{class_object_a74eb59c8845bee92bff15a7b3320e7f5}\index{Object@{Object}!setTexture@{setTexture}}
+\index{setTexture@{setTexture}!Object@{Object}}
+\doxysubsubsection{\texorpdfstring{setTexture()}{setTexture()}}
+{\footnotesize\ttfamily \label{class_object_a74eb59c8845bee92bff15a7b3320e7f5} 
+void Object\+::set\+Texture (\begin{DoxyParamCaption}\item[{sf\+::\+Texture \texorpdfstring{$\ast$}{*}}]{tex\+Ptr}{, }\item[{sf\+::\+Vector2i}]{size}{, }\item[{sf\+::\+Vector2i}]{offset}{, }\item[{int}]{frame\+Count}{, }\item[{bool}]{vert\+Animation}{}\end{DoxyParamCaption})}
+
+
+
+The purpose of this method is to load a texture in \doxylink{class_level}{Level} or \doxylink{class_game}{Game} once, then cheaply load it again multiple times. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tex\+Ptr} & \\
+\hline
+{\em size} & \\
+\hline
+{\em offset} & \\
+\hline
+{\em frame\+Count} & \\
+\hline
+{\em vert\+Animation} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{_object_8cpp_source_l00101}{101}} of file \mbox{\hyperlink{_object_8cpp_source}{Object.\+cpp}}.
+
+Here is the call graph for this function\+:
+% FIG 18
+\Hypertarget{class_object_adba30b76a97c64684da9fc18ed48be51}\index{Object@{Object}!setVel@{setVel}}
+\index{setVel@{setVel}!Object@{Object}}
+\doxysubsubsection{\texorpdfstring{setVel()}{setVel()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_object_adba30b76a97c64684da9fc18ed48be51} 
+void Object\+::set\+Vel (\begin{DoxyParamCaption}\item[{float}]{x}{, }\item[{float}]{y}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_object_8cpp_source_l00180}{180}} of file \mbox{\hyperlink{_object_8cpp_source}{Object.\+cpp}}.
+
+\Hypertarget{class_object_a3bcbac8e0ac8c428fa4ce17091e191db}\index{Object@{Object}!setVel@{setVel}}
+\index{setVel@{setVel}!Object@{Object}}
+\doxysubsubsection{\texorpdfstring{setVel()}{setVel()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_object_a3bcbac8e0ac8c428fa4ce17091e191db} 
+void Object\+::set\+Vel (\begin{DoxyParamCaption}\item[{sf\+::\+Vector2f}]{new\+Vel}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_object_8cpp_source_l00172}{172}} of file \mbox{\hyperlink{_object_8cpp_source}{Object.\+cpp}}.
+
+\Hypertarget{class_object_a48629781d0a98162069bd2f6339a76c9}\index{Object@{Object}!setView@{setView}}
+\index{setView@{setView}!Object@{Object}}
+\doxysubsubsection{\texorpdfstring{setView()}{setView()}}
+{\footnotesize\ttfamily \label{class_object_a48629781d0a98162069bd2f6339a76c9} 
+void Object\+::set\+View (\begin{DoxyParamCaption}\item[{sf\+::\+View}]{new\+\_\+view}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{_object_8cpp_source_l00007}{7}} of file \mbox{\hyperlink{_object_8cpp_source}{Object.\+cpp}}.
+
+Here is the caller graph for this function\+:
+% FIG 19
+\Hypertarget{class_object_af864dbd38aa32473d8964f113d0b20c1}\index{Object@{Object}!shouldDelete@{shouldDelete}}
+\index{shouldDelete@{shouldDelete}!Object@{Object}}
+\doxysubsubsection{\texorpdfstring{shouldDelete()}{shouldDelete()}}
+{\footnotesize\ttfamily \label{class_object_af864dbd38aa32473d8964f113d0b20c1} 
+bool Object\+::should\+Delete (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{_object_8h_source_l00047}{47}} of file \mbox{\hyperlink{_object_8h_source}{Object.\+h}}.
+
+Here is the caller graph for this function\+:
+% FIG 20
+\Hypertarget{class_object_a2036e826245b9b0b8e9f0072730c33d5}\index{Object@{Object}!update@{update}}
+\index{update@{update}!Object@{Object}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily \label{class_object_a2036e826245b9b0b8e9f0072730c33d5} 
+virtual void Object\+::update (\begin{DoxyParamCaption}\item[{sf\+::\+Vector2f}]{win\+Size}{, }\item[{std\+::vector$<$ \mbox{\hyperlink{class_object}{Object}} \texorpdfstring{$\ast$}{*} $>$ \texorpdfstring{$\ast$}{*}}]{}{, }\item[{bool}]{time}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{class_air_af69d0b97a17f128b091a3de191d82862}{Air}}, \mbox{\hyperlink{class_boss_aacbf018ecb6dff0260e2020eee7a8b69}{Boss}}, \mbox{\hyperlink{class_collectable_a280f999b32e6801cc03e68f4b2ac39f7}{Collectable}}, \mbox{\hyperlink{class_explosion_a043a5d163ff60eb9c14a5b4a65dc48f4}{Explosion}}, \mbox{\hyperlink{class_land_a82f318af9a42680b029b77966ad79459}{Land}}, \mbox{\hyperlink{class_player_ad3db15013054f56d7bd5697526a65078}{Player}}, and \mbox{\hyperlink{class_projectile_aac5408bf2c265be01e3b1828dbf87d95}{Projectile}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_object_ac95f2021b4721dc0ded2ef6d7e3c1629}\index{Object@{Object}!anDone@{anDone}}
+\index{anDone@{anDone}!Object@{Object}}
+\doxysubsubsection{\texorpdfstring{anDone}{anDone}}
+{\footnotesize\ttfamily \label{class_object_ac95f2021b4721dc0ded2ef6d7e3c1629} 
+bool Object\+::an\+Done = false\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{_object_8h_source_l00129}{129}} of file \mbox{\hyperlink{_object_8h_source}{Object.\+h}}.
+
+\Hypertarget{class_object_a46bf1c4a8a577572b7ac2778adfaf007}\index{Object@{Object}!backgroundDist@{backgroundDist}}
+\index{backgroundDist@{backgroundDist}!Object@{Object}}
+\doxysubsubsection{\texorpdfstring{backgroundDist}{backgroundDist}}
+{\footnotesize\ttfamily \label{class_object_a46bf1c4a8a577572b7ac2778adfaf007} 
+float\texorpdfstring{$\ast$}{*} Object\+::background\+Dist = nullptr\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{_object_8h_source_l00115}{115}} of file \mbox{\hyperlink{_object_8h_source}{Object.\+h}}.
+
+\Hypertarget{class_object_a8f0f94d918a9895dcf9e72d14b79a6b4}\index{Object@{Object}!backgroundSpeed@{backgroundSpeed}}
+\index{backgroundSpeed@{backgroundSpeed}!Object@{Object}}
+\doxysubsubsection{\texorpdfstring{backgroundSpeed}{backgroundSpeed}}
+{\footnotesize\ttfamily \label{class_object_a8f0f94d918a9895dcf9e72d14b79a6b4} 
+float\texorpdfstring{$\ast$}{*} Object\+::background\+Speed = nullptr\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{_object_8h_source_l00112}{112}} of file \mbox{\hyperlink{_object_8h_source}{Object.\+h}}.
+
+\Hypertarget{class_object_abb0e0157451e9582afae52cb06a22f61}\index{Object@{Object}!cooldown@{cooldown}}
+\index{cooldown@{cooldown}!Object@{Object}}
+\doxysubsubsection{\texorpdfstring{cooldown}{cooldown}}
+{\footnotesize\ttfamily \label{class_object_abb0e0157451e9582afae52cb06a22f61} 
+short Object\+::cooldown = 0\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{_object_8h_source_l00086}{86}} of file \mbox{\hyperlink{_object_8h_source}{Object.\+h}}.
+
+\Hypertarget{class_object_af5a56a268fa9c6814152d873a327cac6}\index{Object@{Object}!currentFrame@{currentFrame}}
+\index{currentFrame@{currentFrame}!Object@{Object}}
+\doxysubsubsection{\texorpdfstring{currentFrame}{currentFrame}}
+{\footnotesize\ttfamily \label{class_object_af5a56a268fa9c6814152d873a327cac6} 
+short Object\+::current\+Frame = 0\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{_object_8h_source_l00121}{121}} of file \mbox{\hyperlink{_object_8h_source}{Object.\+h}}.
+
+\Hypertarget{class_object_a0637c58ae14ffe525de737632fa7b01c}\index{Object@{Object}!del@{del}}
+\index{del@{del}!Object@{Object}}
+\doxysubsubsection{\texorpdfstring{del}{del}}
+{\footnotesize\ttfamily \label{class_object_a0637c58ae14ffe525de737632fa7b01c} 
+bool Object\+::del = false\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{_object_8h_source_l00095}{95}} of file \mbox{\hyperlink{_object_8h_source}{Object.\+h}}.
+
+\Hypertarget{class_object_a2df5cec533ee6b18541c71c1f769198c}\index{Object@{Object}!frameCount@{frameCount}}
+\index{frameCount@{frameCount}!Object@{Object}}
+\doxysubsubsection{\texorpdfstring{frameCount}{frameCount}}
+{\footnotesize\ttfamily \label{class_object_a2df5cec533ee6b18541c71c1f769198c} 
+short Object\+::frame\+Count = 0\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{_object_8h_source_l00121}{121}} of file \mbox{\hyperlink{_object_8h_source}{Object.\+h}}.
+
+\Hypertarget{class_object_a78088792df871b0c272a0db382589258}\index{Object@{Object}!health@{health}}
+\index{health@{health}!Object@{Object}}
+\doxysubsubsection{\texorpdfstring{health}{health}}
+{\footnotesize\ttfamily \label{class_object_a78088792df871b0c272a0db382589258} 
+short Object\+::health\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{_object_8h_source_l00088}{88}} of file \mbox{\hyperlink{_object_8h_source}{Object.\+h}}.
+
+\Hypertarget{class_object_a5d56e2dbec4aab44d836760b698e0e9c}\index{Object@{Object}!id@{id}}
+\index{id@{id}!Object@{Object}}
+\doxysubsubsection{\texorpdfstring{id}{id}}
+{\footnotesize\ttfamily \label{class_object_a5d56e2dbec4aab44d836760b698e0e9c} 
+short Object\+::id = 0\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{_object_8h_source_l00084}{84}} of file \mbox{\hyperlink{_object_8h_source}{Object.\+h}}.
+
+\Hypertarget{class_object_aeb8a6d27b5c2c4af7c4c1f881573ef26}\index{Object@{Object}!image@{image}}
+\index{image@{image}!Object@{Object}}
+\doxysubsubsection{\texorpdfstring{image}{image}}
+{\footnotesize\ttfamily \label{class_object_aeb8a6d27b5c2c4af7c4c1f881573ef26} 
+short Object\+::image\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{_object_8h_source_l00124}{124}} of file \mbox{\hyperlink{_object_8h_source}{Object.\+h}}.
+
+\Hypertarget{class_object_a04b0731cc3064d4e2c98900a741b162f}\index{Object@{Object}!orientation@{orientation}}
+\index{orientation@{orientation}!Object@{Object}}
+\doxysubsubsection{\texorpdfstring{orientation}{orientation}}
+{\footnotesize\ttfamily \label{class_object_a04b0731cc3064d4e2c98900a741b162f} 
+short Object\+::orientation = 0\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{_object_8h_source_l00091}{91}} of file \mbox{\hyperlink{_object_8h_source}{Object.\+h}}.
+
+\Hypertarget{class_object_abdeb829aa5527c6fbd305b34656d0a60}\index{Object@{Object}!PI@{PI}}
+\index{PI@{PI}!Object@{Object}}
+\doxysubsubsection{\texorpdfstring{PI}{PI}}
+{\footnotesize\ttfamily \label{class_object_abdeb829aa5527c6fbd305b34656d0a60} 
+const float Object\+::\+PI = 3.\+14159f\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{_object_8h_source_l00139}{139}} of file \mbox{\hyperlink{_object_8h_source}{Object.\+h}}.
+
+\Hypertarget{class_object_aec00daf54d15f689af2eea0be28dbf86}\index{Object@{Object}!pos@{pos}}
+\index{pos@{pos}!Object@{Object}}
+\doxysubsubsection{\texorpdfstring{pos}{pos}}
+{\footnotesize\ttfamily \label{class_object_aec00daf54d15f689af2eea0be28dbf86} 
+sf\+::\+Vector2f Object\+::pos\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{_object_8h_source_l00098}{98}} of file \mbox{\hyperlink{_object_8h_source}{Object.\+h}}.
+
+\Hypertarget{class_object_a7759c83a62b6a4b1f5d8a67fdc58b2e1}\index{Object@{Object}!size@{size}}
+\index{size@{size}!Object@{Object}}
+\doxysubsubsection{\texorpdfstring{size}{size}}
+{\footnotesize\ttfamily \label{class_object_a7759c83a62b6a4b1f5d8a67fdc58b2e1} 
+sf\+::\+Vector2f Object\+::size\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{_object_8h_source_l00100}{100}} of file \mbox{\hyperlink{_object_8h_source}{Object.\+h}}.
+
+\Hypertarget{class_object_a548162681111448527fb64c36dfca06f}\index{Object@{Object}!sprite@{sprite}}
+\index{sprite@{sprite}!Object@{Object}}
+\doxysubsubsection{\texorpdfstring{sprite}{sprite}}
+{\footnotesize\ttfamily \label{class_object_a548162681111448527fb64c36dfca06f} 
+sf\+::\+Rectangle\+Shape Object\+::sprite\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{_object_8h_source_l00105}{105}} of file \mbox{\hyperlink{_object_8h_source}{Object.\+h}}.
+
+\Hypertarget{class_object_a5dd83bc6754de2b7a216b2c8bb4da21a}\index{Object@{Object}!spriteNum@{spriteNum}}
+\index{spriteNum@{spriteNum}!Object@{Object}}
+\doxysubsubsection{\texorpdfstring{spriteNum}{spriteNum}}
+{\footnotesize\ttfamily \label{class_object_a5dd83bc6754de2b7a216b2c8bb4da21a} 
+short Object\+::sprite\+Num = -\/1\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{_object_8h_source_l00090}{90}} of file \mbox{\hyperlink{_object_8h_source}{Object.\+h}}.
+
+\Hypertarget{class_object_a5dd0a101abd877b8d7311c10cab4c145}\index{Object@{Object}!texInit@{texInit}}
+\index{texInit@{texInit}!Object@{Object}}
+\doxysubsubsection{\texorpdfstring{texInit}{texInit}}
+{\footnotesize\ttfamily \label{class_object_a5dd0a101abd877b8d7311c10cab4c145} 
+bool Object\+::tex\+Init = false\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{_object_8h_source_l00132}{132}} of file \mbox{\hyperlink{_object_8h_source}{Object.\+h}}.
+
+\Hypertarget{class_object_ad8f0e11e70143864d9a1818b8466e277}\index{Object@{Object}!texOffset@{texOffset}}
+\index{texOffset@{texOffset}!Object@{Object}}
+\doxysubsubsection{\texorpdfstring{texOffset}{texOffset}}
+{\footnotesize\ttfamily \label{class_object_ad8f0e11e70143864d9a1818b8466e277} 
+sf\+::\+Vector2i Object\+::tex\+Offset\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{_object_8h_source_l00126}{126}} of file \mbox{\hyperlink{_object_8h_source}{Object.\+h}}.
+
+\Hypertarget{class_object_af4e5d4eecdbd608ac9cd7426c848702c}\index{Object@{Object}!texSize@{texSize}}
+\index{texSize@{texSize}!Object@{Object}}
+\doxysubsubsection{\texorpdfstring{texSize}{texSize}}
+{\footnotesize\ttfamily \label{class_object_af4e5d4eecdbd608ac9cd7426c848702c} 
+sf\+::\+Vector2i Object\+::tex\+Size\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{_object_8h_source_l00126}{126}} of file \mbox{\hyperlink{_object_8h_source}{Object.\+h}}.
+
+\Hypertarget{class_object_adc3c0e750a7f1b69b70ddb00ddbe59be}\index{Object@{Object}!timer@{timer}}
+\index{timer@{timer}!Object@{Object}}
+\doxysubsubsection{\texorpdfstring{timer}{timer}}
+{\footnotesize\ttfamily \label{class_object_adc3c0e750a7f1b69b70ddb00ddbe59be} 
+short Object\+::timer = 0\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{_object_8h_source_l00092}{92}} of file \mbox{\hyperlink{_object_8h_source}{Object.\+h}}.
+
+\Hypertarget{class_object_a104cf7c3f341a71271ab52082b92b3ed}\index{Object@{Object}!TO\_DEG@{TO\_DEG}}
+\index{TO\_DEG@{TO\_DEG}!Object@{Object}}
+\doxysubsubsection{\texorpdfstring{TO\_DEG}{TO\_DEG}}
+{\footnotesize\ttfamily \label{class_object_a104cf7c3f341a71271ab52082b92b3ed} 
+const float Object\+::\+TO\+\_\+\+DEG = 180.f / \mbox{\hyperlink{class_object_abdeb829aa5527c6fbd305b34656d0a60}{PI}}\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{_object_8h_source_l00139}{139}} of file \mbox{\hyperlink{_object_8h_source}{Object.\+h}}.
+
+\Hypertarget{class_object_a88b4b41a26ec768990bd986841d5ceb3}\index{Object@{Object}!TO\_RAD@{TO\_RAD}}
+\index{TO\_RAD@{TO\_RAD}!Object@{Object}}
+\doxysubsubsection{\texorpdfstring{TO\_RAD}{TO\_RAD}}
+{\footnotesize\ttfamily \label{class_object_a88b4b41a26ec768990bd986841d5ceb3} 
+const float Object\+::\+TO\+\_\+\+RAD = \mbox{\hyperlink{class_object_abdeb829aa5527c6fbd305b34656d0a60}{PI}} / 180.f\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{_object_8h_source_l00139}{139}} of file \mbox{\hyperlink{_object_8h_source}{Object.\+h}}.
+
+\Hypertarget{class_object_a8137cf4265bcaaf2fc7c91a9ccd8e4f4}\index{Object@{Object}!type@{type}}
+\index{type@{type}!Object@{Object}}
+\doxysubsubsection{\texorpdfstring{type}{type}}
+{\footnotesize\ttfamily \label{class_object_a8137cf4265bcaaf2fc7c91a9ccd8e4f4} 
+short Object\+::type\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{_object_8h_source_l00082}{82}} of file \mbox{\hyperlink{_object_8h_source}{Object.\+h}}.
+
+\Hypertarget{class_object_ab1f131a494c3319025c912fe976f2d78}\index{Object@{Object}!vel@{vel}}
+\index{vel@{vel}!Object@{Object}}
+\doxysubsubsection{\texorpdfstring{vel}{vel}}
+{\footnotesize\ttfamily \label{class_object_ab1f131a494c3319025c912fe976f2d78} 
+sf\+::\+Vector2f Object\+::vel\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{_object_8h_source_l00102}{102}} of file \mbox{\hyperlink{_object_8h_source}{Object.\+h}}.
+
+\Hypertarget{class_object_a784bb9c37f3b8e1ea3df0d724304564e}\index{Object@{Object}!verticalAnimation@{verticalAnimation}}
+\index{verticalAnimation@{verticalAnimation}!Object@{Object}}
+\doxysubsubsection{\texorpdfstring{verticalAnimation}{verticalAnimation}}
+{\footnotesize\ttfamily \label{class_object_a784bb9c37f3b8e1ea3df0d724304564e} 
+bool Object\+::vertical\+Animation = true\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{_object_8h_source_l00129}{129}} of file \mbox{\hyperlink{_object_8h_source}{Object.\+h}}.
+
+\Hypertarget{class_object_a0f880ebab8bf938fff7680a9e80ae693}\index{Object@{Object}!view@{view}}
+\index{view@{view}!Object@{Object}}
+\doxysubsubsection{\texorpdfstring{view}{view}}
+{\footnotesize\ttfamily \label{class_object_a0f880ebab8bf938fff7680a9e80ae693} 
+sf\+::\+View Object\+::view\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{_object_8h_source_l00135}{135}} of file \mbox{\hyperlink{_object_8h_source}{Object.\+h}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Object/\mbox{\hyperlink{_object_8h}{Object.\+h}}\item 
+src/\+Object/\mbox{\hyperlink{_object_8cpp}{Object.\+cpp}}\end{DoxyCompactItemize}

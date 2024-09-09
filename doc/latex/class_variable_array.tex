@@ -1,0 +1,95 @@
+\doxysection{Variable\+Array\texorpdfstring{$<$}{<} RAW\+\_\+\+TYPE, TOTAL\+\_\+\+ELEMENTS, TOTAL\+\_\+\+UNIQUE\+\_\+\+OBJECTS \texorpdfstring{$>$}{>} Class Template Reference}
+\hypertarget{class_variable_array}{}\label{class_variable_array}\index{VariableArray$<$ RAW\_TYPE, TOTAL\_ELEMENTS, TOTAL\_UNIQUE\_OBJECTS $>$@{VariableArray$<$ RAW\_TYPE, TOTAL\_ELEMENTS, TOTAL\_UNIQUE\_OBJECTS $>$}}
+
+
+{\ttfamily \#include $<$Variable\+Array.\+h$>$}
+
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_variable_array_1_1_return_data}{Return\+Data}}
+\item 
+struct \mbox{\hyperlink{struct_variable_array_1_1_spacing_element}{Spacing\+Element}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+constexpr \mbox{\hyperlink{class_variable_array_a1ec4289a2973211da412ebbc589f58f9}{Variable\+Array}} (const RAW\+\_\+\+TYPE(\&raw\+Data)\mbox{[}TOTAL\+\_\+\+UNIQUE\+\_\+\+OBJECTS\mbox{]}, const \mbox{\hyperlink{struct_variable_array_1_1_spacing_element}{Spacing\+Element}}(\&spacings)\mbox{[}TOTAL\+\_\+\+ELEMENTS\mbox{]})
+\item 
+const \mbox{\hyperlink{struct_variable_array_1_1_return_data}{Return\+Data}} \mbox{\hyperlink{class_variable_array_ab9bf8853b4d4a5dbfee67ae48086d700}{at}} (unsigned char index) const
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename RAW\+\_\+\+TYPE, unsigned char TOTAL\+\_\+\+ELEMENTS, unsigned char TOTAL\+\_\+\+UNIQUE\+\_\+\+OBJECTS$>$\newline
+class Variable\+Array$<$ RAW\+\_\+\+TYPE, TOTAL\+\_\+\+ELEMENTS, TOTAL\+\_\+\+UNIQUE\+\_\+\+OBJECTS $>$}
+Holds static data tables where individual elements can have multiple data members, The array can ONLY be initialized as a compile-\/time constant, placing it in the programs binary during compilation.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em RAW\+\_\+\+TYPE} & The type that is stored internally. \\
+\hline
+{\em TOTAL\+\_\+\+ELEMENTS} & The total accessible elements. \\
+\hline
+{\em TOTAL\+\_\+\+UNIQUE\+\_\+\+OBJECTS} & The total objects needed to be stored under raw data, this includes all sub-\/elements that make up the array.\\
+\hline
+\end{DoxyTemplParams}
+\begin{DoxyWarning}{Warning}
+Can only be initialized as a compile-\/time constant. 
+\end{DoxyWarning}
+
+
+Definition at line \mbox{\hyperlink{_variable_array_8h_source_l00019}{19}} of file \mbox{\hyperlink{_variable_array_8h_source}{Variable\+Array.\+h}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_variable_array_a1ec4289a2973211da412ebbc589f58f9}\index{VariableArray$<$ RAW\_TYPE, TOTAL\_ELEMENTS, TOTAL\_UNIQUE\_OBJECTS $>$@{VariableArray$<$ RAW\_TYPE, TOTAL\_ELEMENTS, TOTAL\_UNIQUE\_OBJECTS $>$}!VariableArray@{VariableArray}}
+\index{VariableArray@{VariableArray}!VariableArray$<$ RAW\_TYPE, TOTAL\_ELEMENTS, TOTAL\_UNIQUE\_OBJECTS $>$@{VariableArray$<$ RAW\_TYPE, TOTAL\_ELEMENTS, TOTAL\_UNIQUE\_OBJECTS $>$}}
+\doxysubsubsection{\texorpdfstring{VariableArray()}{VariableArray()}}
+{\footnotesize\ttfamily \label{class_variable_array_a1ec4289a2973211da412ebbc589f58f9} 
+template$<$typename RAW\+\_\+\+TYPE , unsigned char TOTAL\+\_\+\+ELEMENTS, unsigned char TOTAL\+\_\+\+UNIQUE\+\_\+\+OBJECTS$>$ \\
+\mbox{\hyperlink{class_variable_array}{Variable\+Array}}$<$ RAW\+\_\+\+TYPE, TOTAL\+\_\+\+ELEMENTS, TOTAL\+\_\+\+UNIQUE\+\_\+\+OBJECTS $>$\mbox{\hyperlink{class_variable_array}{\+::\+Variable\+Array}} (\begin{DoxyParamCaption}\item[{const RAW\+\_\+\+TYPE(\&)}]{raw\+Data}{\mbox{[}\+TOTAL\+\_\+\+UNIQUE\+\_\+\+OBJECTS\mbox{]}, }\item[{const \mbox{\hyperlink{struct_variable_array_1_1_spacing_element}{Spacing\+Element}}(\&)}]{spacings}{\mbox{[}\+TOTAL\+\_\+\+ELEMENTS\mbox{]}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+Constexpr constructor for constructing as a compile-\/time constant
+
+
+\begin{DoxyParams}{Parameters}
+{\em raw\+Data} & A reference to the internal object array. \\
+\hline
+{\em spacings} & A reference to the internal spacing array. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{_variable_array_8h_source_l00081}{81}} of file \mbox{\hyperlink{_variable_array_8h_source}{Variable\+Array.\+h}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_variable_array_ab9bf8853b4d4a5dbfee67ae48086d700}\index{VariableArray$<$ RAW\_TYPE, TOTAL\_ELEMENTS, TOTAL\_UNIQUE\_OBJECTS $>$@{VariableArray$<$ RAW\_TYPE, TOTAL\_ELEMENTS, TOTAL\_UNIQUE\_OBJECTS $>$}!at@{at}}
+\index{at@{at}!VariableArray$<$ RAW\_TYPE, TOTAL\_ELEMENTS, TOTAL\_UNIQUE\_OBJECTS $>$@{VariableArray$<$ RAW\_TYPE, TOTAL\_ELEMENTS, TOTAL\_UNIQUE\_OBJECTS $>$}}
+\doxysubsubsection{\texorpdfstring{at()}{at()}}
+{\footnotesize\ttfamily \label{class_variable_array_ab9bf8853b4d4a5dbfee67ae48086d700} 
+template$<$typename RAW\+\_\+\+TYPE , unsigned char TOTAL\+\_\+\+ELEMENTS, unsigned char TOTAL\+\_\+\+UNIQUE\+\_\+\+OBJECTS$>$ \\
+const \mbox{\hyperlink{struct_variable_array_1_1_return_data}{Return\+Data}} \mbox{\hyperlink{class_variable_array}{Variable\+Array}}$<$ RAW\+\_\+\+TYPE, TOTAL\+\_\+\+ELEMENTS, TOTAL\+\_\+\+UNIQUE\+\_\+\+OBJECTS $>$\+::at (\begin{DoxyParamCaption}\item[{unsigned char}]{index}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Array accessor method for retrieving sub-\/array location \& bounds information
+
+
+\begin{DoxyParams}{Parameters}
+{\em index} & The element being accessed. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\doxylink{struct_variable_array_1_1_return_data}{Return\+Data} holding sub-\/array information. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_variable_array_8h_source_l00093}{93}} of file \mbox{\hyperlink{_variable_array_8h_source}{Variable\+Array.\+h}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Utility/\+Array/\mbox{\hyperlink{_variable_array_8h}{Variable\+Array.\+h}}\end{DoxyCompactItemize}

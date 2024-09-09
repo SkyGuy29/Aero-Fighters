@@ -1,0 +1,45 @@
+\doxysection{Projectile.\+h}
+\hypertarget{_projectile_8h_source}{}\label{_projectile_8h_source}\index{src/Object/Projectile/Projectile.h@{src/Object/Projectile/Projectile.h}}
+\mbox{\hyperlink{_projectile_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_projectile_8h_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{_projectile_8h_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_projectile_8h_source_l00003}00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_object_8h}{../Object.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_projectile_8h_source_l00004}00004\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{\Hypertarget{_projectile_8h_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{_projectile_8h_source_l00006}00006\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_projectile}{Projectile}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_object}{Object}}}
+\DoxyCodeLine{\Hypertarget{_projectile_8h_source_l00007}00007\ \{}
+\DoxyCodeLine{\Hypertarget{_projectile_8h_source_l00008}00008\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_projectile_8h_source_l00009}00009\ \ \ \ \ \textcolor{comment}{//id\ 0\ is\ basic\ projectiles}}
+\DoxyCodeLine{\Hypertarget{_projectile_8h_source_l00010}00010\ \ \ \ \ \textcolor{comment}{//id\ 1\ is\ for\ projectiles\ on\ a\ timer\ that\ pierce}}
+\DoxyCodeLine{\Hypertarget{_projectile_8h_source_l00011}00011\ \ \ \ \ \textcolor{comment}{//id\ 2\ is\ for\ projectiles\ that\ pierce\ and\ go\ off\ screen}}
+\DoxyCodeLine{\Hypertarget{_projectile_8h_source_l00012}00012\ \ \ \ \ \textcolor{comment}{//id\ 3\ is\ for\ Japan\ Player\ 2's\ super}}
+\DoxyCodeLine{\Hypertarget{_projectile_8h_source_l00013}00013\ \ \ \ \ \textcolor{comment}{//id\ 4\ is\ for\ tracking\ projectiles}}
+\DoxyCodeLine{\Hypertarget{_projectile_8h_source_l00014}00014\ \ \ \ \ \textcolor{comment}{//id\ 5\ is\ the\ tracking\ mines\ of\ Sweden\ Player\ 2}}
+\DoxyCodeLine{\Hypertarget{_projectile_8h_source_l00015}00015\ \ \ \ \ \textcolor{comment}{//id\ 6\ is\ for\ breakable\ projectiles}}
+\DoxyCodeLine{\Hypertarget{_projectile_8h_source_l00016}\mbox{\hyperlink{class_projectile_a430582d90d0fbb5e0f4d1978d78c0248}{00016}}\ \ \ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{class_projectile_a430582d90d0fbb5e0f4d1978d78c0248}{ProjectileType}}\ :\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ \{}
+\DoxyCodeLine{\Hypertarget{_projectile_8h_source_l00017}\mbox{\hyperlink{class_projectile_a430582d90d0fbb5e0f4d1978d78c0248ad520089436fe533a6915aae7a1115c98}{00017}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_projectile_a430582d90d0fbb5e0f4d1978d78c0248ad520089436fe533a6915aae7a1115c98}{Basic}},}
+\DoxyCodeLine{\Hypertarget{_projectile_8h_source_l00018}\mbox{\hyperlink{class_projectile_a430582d90d0fbb5e0f4d1978d78c0248a610f3a0581d350f9ce291658dfe2701b}{00018}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_projectile_a430582d90d0fbb5e0f4d1978d78c0248a610f3a0581d350f9ce291658dfe2701b}{TimerPierce}},}
+\DoxyCodeLine{\Hypertarget{_projectile_8h_source_l00019}\mbox{\hyperlink{class_projectile_a430582d90d0fbb5e0f4d1978d78c0248a4176a5d631b39641111306ad3f348f1a}{00019}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_projectile_a430582d90d0fbb5e0f4d1978d78c0248a4176a5d631b39641111306ad3f348f1a}{PierceOffscreen}},}
+\DoxyCodeLine{\Hypertarget{_projectile_8h_source_l00020}\mbox{\hyperlink{class_projectile_a430582d90d0fbb5e0f4d1978d78c0248a567cbc78f08c6e5161d5730d1cef546d}{00020}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_projectile_a430582d90d0fbb5e0f4d1978d78c0248a567cbc78f08c6e5161d5730d1cef546d}{JapanPlayer2Super}},}
+\DoxyCodeLine{\Hypertarget{_projectile_8h_source_l00021}\mbox{\hyperlink{class_projectile_a430582d90d0fbb5e0f4d1978d78c0248ae050057ce4a3d3ff290aa97ef31e3704}{00021}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_projectile_a430582d90d0fbb5e0f4d1978d78c0248ae050057ce4a3d3ff290aa97ef31e3704}{Tracking}},}
+\DoxyCodeLine{\Hypertarget{_projectile_8h_source_l00022}\mbox{\hyperlink{class_projectile_a430582d90d0fbb5e0f4d1978d78c0248a0a1d91ae64c8667bb51c4a5429d7a7ce}{00022}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_projectile_a430582d90d0fbb5e0f4d1978d78c0248a0a1d91ae64c8667bb51c4a5429d7a7ce}{SwedenPlayer2Mine}},}
+\DoxyCodeLine{\Hypertarget{_projectile_8h_source_l00023}00023\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_projectile_a430582d90d0fbb5e0f4d1978d78c0248a9e77756afc5e1ddedfe87082c3a02b3b}{Breakable}}}
+\DoxyCodeLine{\Hypertarget{_projectile_8h_source_l00024}\mbox{\hyperlink{class_projectile_a430582d90d0fbb5e0f4d1978d78c0248a9e77756afc5e1ddedfe87082c3a02b3b}{00024}}\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{_projectile_8h_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{_projectile_8h_source_l00026}00026\ \ \ \ \ \mbox{\hyperlink{class_projectile_ac536ed2aad56af866a2078b9a85aa16d}{Projectile}}();}
+\DoxyCodeLine{\Hypertarget{_projectile_8h_source_l00027}00027\ \ \ \ \ \mbox{\hyperlink{class_projectile_ac536ed2aad56af866a2078b9a85aa16d}{Projectile}}(\textcolor{keywordtype}{float}\ posX,\ \textcolor{keywordtype}{float}\ posY,\ sf::Vector2f\ \mbox{\hyperlink{class_entity_aa84a7361118f092029908d97188374f3}{vel}},}
+\DoxyCodeLine{\Hypertarget{_projectile_8h_source_l00028}00028\ \ \ \ \ \ \ \ \ sf::Vector2f\ \mbox{\hyperlink{class_object_a7759c83a62b6a4b1f5d8a67fdc58b2e1}{size}},\ \mbox{\hyperlink{class_projectile_a430582d90d0fbb5e0f4d1978d78c0248}{ProjectileType}}\ \mbox{\hyperlink{class_entity_a712837ff2925b8d49f04d4fb8b0eacca}{ID}},\ \textcolor{keywordtype}{bool}\ player,\ \textcolor{keywordtype}{short}\ cool,\ \textcolor{keywordtype}{short}\ delay,}
+\DoxyCodeLine{\Hypertarget{_projectile_8h_source_l00029}00029\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{short}\ \mbox{\hyperlink{class_object_a548162681111448527fb64c36dfca06f}{sprite}});\ \textcolor{comment}{//Adds\ delay}}
+\DoxyCodeLine{\Hypertarget{_projectile_8h_source_l00030}00030\ \ \ \ \ \mbox{\hyperlink{class_projectile_ac536ed2aad56af866a2078b9a85aa16d}{Projectile}}(\textcolor{keywordtype}{float}\ posX,\ \textcolor{keywordtype}{float}\ posY,\ sf::Vector2f\ \mbox{\hyperlink{class_entity_aa84a7361118f092029908d97188374f3}{vel}},}
+\DoxyCodeLine{\Hypertarget{_projectile_8h_source_l00031}00031\ \ \ \ \ \ \ \ \ sf::Vector2f\ \mbox{\hyperlink{class_object_a7759c83a62b6a4b1f5d8a67fdc58b2e1}{size}},\ \mbox{\hyperlink{class_projectile_a430582d90d0fbb5e0f4d1978d78c0248}{ProjectileType}}\ \mbox{\hyperlink{class_entity_a712837ff2925b8d49f04d4fb8b0eacca}{ID}},\ \textcolor{keywordtype}{bool}\ player,\ \textcolor{keywordtype}{short}\ cool,\ \textcolor{keywordtype}{short}\ \mbox{\hyperlink{class_object_a5dd83bc6754de2b7a216b2c8bb4da21a}{spriteNum}});}
+\DoxyCodeLine{\Hypertarget{_projectile_8h_source_l00032}00032\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_projectile_8h_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{_projectile_8h_source_l00034}00034\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_projectile_aac5408bf2c265be01e3b1828dbf87d95}{update}}(sf::Vector2f\ winSize,\ std::vector<Object*>*\ objects,\ \textcolor{keywordtype}{bool}\ time);}
+\DoxyCodeLine{\Hypertarget{_projectile_8h_source_l00035}00035\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{_projectile_8h_source_l00036}00036\ \ \ \ \ \textcolor{keywordtype}{short}\ delay\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_projectile_8h_source_l00037}00037\ \ \ \ \ sf::Vector2f\ tempSize;}
+\DoxyCodeLine{\Hypertarget{_projectile_8h_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{_projectile_8h_source_l00039}00039\ \};}
+
+\end{DoxyCode}

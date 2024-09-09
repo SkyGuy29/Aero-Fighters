@@ -1,0 +1,27 @@
+\doxysection{Land.\+h}
+\hypertarget{_land_8h_source}{}\label{_land_8h_source}\index{src/Object/Enemy/Land/Land.h@{src/Object/Enemy/Land/Land.h}}
+\mbox{\hyperlink{_land_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_land_8h_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{_land_8h_source_l00002}00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_enemy_8h}{../Enemy.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_land_8h_source_l00003}00003\ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_projectile_a430582d90d0fbb5e0f4d1978d78c0248}{ProjectileType}}\ =\ \mbox{\hyperlink{class_projectile_a430582d90d0fbb5e0f4d1978d78c0248}{Projectile::ProjectileType}};}
+\DoxyCodeLine{\Hypertarget{_land_8h_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{_land_8h_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{_land_8h_source_l00006}\mbox{\hyperlink{class_land}{00006}}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_land}{Land}}\ final\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_enemy}{Enemy}}}
+\DoxyCodeLine{\Hypertarget{_land_8h_source_l00007}00007\ \{}
+\DoxyCodeLine{\Hypertarget{_land_8h_source_l00008}00008\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_land_8h_source_l00009}00009\ \ \ \ \ \mbox{\hyperlink{class_land_a4488e126e7b40ffd3ad4fc367f110026}{Land}}(\textcolor{keywordtype}{short}\ \textcolor{keywordtype}{id},\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_enemy_a21d97250b5e8befe6d02aeeb0bb36de3}{left}},\ \textcolor{keywordtype}{float}*\ \mbox{\hyperlink{class_object_a8f0f94d918a9895dcf9e72d14b79a6b4}{backgroundSpeed}},}
+\DoxyCodeLine{\Hypertarget{_land_8h_source_l00010}00010\ \ \ \ \ \ \ \ \ std::vector<Object*>*\ objects,\ sf::Vector2f\ \mbox{\hyperlink{class_entity_ad329967c418fc97aae4745b68adebb11}{pos}},\ sf::Vector2f\ \mbox{\hyperlink{class_entity_aa84a7361118f092029908d97188374f3}{vel}},\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_enemy_a586ab31ee88fe7bf100413374a25d24b}{levelEditor}}}
+\DoxyCodeLine{\Hypertarget{_land_8h_source_l00011}00011\ \ \ \ \ );}
+\DoxyCodeLine{\Hypertarget{_land_8h_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{_land_8h_source_l00013}00013\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_land_a82f318af9a42680b029b77966ad79459}{update}}(sf::Vector2f\ winSize,\ std::vector<Object*>*\ objects,\ }
+\DoxyCodeLine{\Hypertarget{_land_8h_source_l00014}00014\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ time)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{\Hypertarget{_land_8h_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{_land_8h_source_l00016}00016\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{_land_8h_source_l00017}00017\ \ \ \ \ \mbox{\hyperlink{class_object}{Object}}*\ topPart\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{_land_8h_source_l00018}00018\ \ \ \ \ \textcolor{keywordtype}{bool}\ target;}
+\DoxyCodeLine{\Hypertarget{_land_8h_source_l00019}00019\ \ \ \ \ \textcolor{keywordtype}{float}\ angle,\ magnitude;}
+\DoxyCodeLine{\Hypertarget{_land_8h_source_l00020}00020\ \ \ \ \ sf::Vector2f\ projVelocity,\ distance;}
+\DoxyCodeLine{\Hypertarget{_land_8h_source_l00021}00021\ \};}
+
+\end{DoxyCode}

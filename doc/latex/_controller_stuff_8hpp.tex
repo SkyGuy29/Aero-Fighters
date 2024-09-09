@@ -1,0 +1,207 @@
+\doxysection{src/\+Controller\+Stuff.hpp File Reference}
+\hypertarget{_controller_stuff_8hpp}{}\label{_controller_stuff_8hpp}\index{src/ControllerStuff.hpp@{src/ControllerStuff.hpp}}
+{\ttfamily \#include $<$SFML/\+Window.\+hpp$>$}\newline
+Include dependency graph for Controller\+Stuff.\+hpp\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{_controller_stuff_8hpp_a89d05f92ddc43745299203ee8cc1d89d}{Controller}} \+: unsigned char \{ \newline
+\mbox{\hyperlink{_controller_stuff_8hpp_a89d05f92ddc43745299203ee8cc1d89da42a4ade1acd55a49164099104990e09f}{A}}
+, \mbox{\hyperlink{_controller_stuff_8hpp_a89d05f92ddc43745299203ee8cc1d89da3f2a77ecd272aa6d6b5902faa5e5fc68}{B}}
+, \mbox{\hyperlink{_controller_stuff_8hpp_a89d05f92ddc43745299203ee8cc1d89da58833a3110c570fb05130d40c365d1e4}{X}}
+, \mbox{\hyperlink{_controller_stuff_8hpp_a89d05f92ddc43745299203ee8cc1d89da5596231eabd6cf29050967d5ac83ad84}{Y}}
+, \newline
+\mbox{\hyperlink{_controller_stuff_8hpp_a89d05f92ddc43745299203ee8cc1d89da0adffb24dae0c41be5b803f4d444f066}{L2}}
+, \mbox{\hyperlink{_controller_stuff_8hpp_a89d05f92ddc43745299203ee8cc1d89da629d7b403cea5f826352f3aefb9a6d6a}{R2}}
+, \mbox{\hyperlink{_controller_stuff_8hpp_a89d05f92ddc43745299203ee8cc1d89dae5bc7ee7d6dda5340a28f91834f10543}{L1}}
+, \mbox{\hyperlink{_controller_stuff_8hpp_a89d05f92ddc43745299203ee8cc1d89daf8d87ff07efe24755164f550526f4dac}{R1}}
+, \newline
+\mbox{\hyperlink{_controller_stuff_8hpp_a89d05f92ddc43745299203ee8cc1d89da33e9c7d4643bf1c0f5662e6f683e128a}{Select\+\_\+\+BTN}}
+, \mbox{\hyperlink{_controller_stuff_8hpp_a89d05f92ddc43745299203ee8cc1d89dabd5f9c956752ce4dc707b4624b3a36f7}{Start}}
+, \mbox{\hyperlink{_controller_stuff_8hpp_a89d05f92ddc43745299203ee8cc1d89da78d20b793a10e7c2f1012114803147c3}{L3}}
+, \mbox{\hyperlink{_controller_stuff_8hpp_a89d05f92ddc43745299203ee8cc1d89daad0b4725f69a34fed2c914517bcd9baa}{R3}}
+, \newline
+\mbox{\hyperlink{_controller_stuff_8hpp_a89d05f92ddc43745299203ee8cc1d89da7086523a37233dece8e70cebe6309b22}{D\+\_\+\+Up}}
+, \mbox{\hyperlink{_controller_stuff_8hpp_a89d05f92ddc43745299203ee8cc1d89da72531429f8c70f66f627701b97c63b0f}{D\+\_\+\+Down}}
+, \mbox{\hyperlink{_controller_stuff_8hpp_a89d05f92ddc43745299203ee8cc1d89da94a922ea11286e2184c9400732ab0eeb}{D\+\_\+\+Left}}
+, \mbox{\hyperlink{_controller_stuff_8hpp_a89d05f92ddc43745299203ee8cc1d89da4ece6e5c9e6fc7e18691e0bcbc39710c}{D\+\_\+\+Right}}
+ \}
+\item 
+enum \mbox{\hyperlink{_controller_stuff_8hpp_a949b4a8624f2b4343a97e2f265d19aa7}{Controls}} \{ \newline
+\mbox{\hyperlink{_controller_stuff_8hpp_a949b4a8624f2b4343a97e2f265d19aa7ae204c9c3e62b1e9a6b60e40cd05256c5}{Forward}}
+, \mbox{\hyperlink{_controller_stuff_8hpp_a949b4a8624f2b4343a97e2f265d19aa7a9d4d8b0b72fc2659da772d761a3c5ecb}{Left}}
+, \mbox{\hyperlink{_controller_stuff_8hpp_a949b4a8624f2b4343a97e2f265d19aa7a36625780699489b5c3dfceadfb9c27d1}{Back}}
+, \mbox{\hyperlink{_controller_stuff_8hpp_a949b4a8624f2b4343a97e2f265d19aa7ad48f7af8c070184f3774c8e85854eb66}{Right}}
+, \newline
+\mbox{\hyperlink{_controller_stuff_8hpp_a949b4a8624f2b4343a97e2f265d19aa7ae0047bf03d9327f6eee214075d1a784b}{Shoot}}
+, \mbox{\hyperlink{_controller_stuff_8hpp_a949b4a8624f2b4343a97e2f265d19aa7ac18c85698a8e17ceb09f0393f47d43d3}{Special}}
+, \mbox{\hyperlink{_controller_stuff_8hpp_a949b4a8624f2b4343a97e2f265d19aa7aaa91a7c5a479ef5add68c761703fbaee}{Spawn}}
+, \mbox{\hyperlink{_controller_stuff_8hpp_a949b4a8624f2b4343a97e2f265d19aa7a4c035700b8afd918a45c8d8efb093b6d}{Fast\+Forward}}
+, \newline
+\mbox{\hyperlink{_controller_stuff_8hpp_a949b4a8624f2b4343a97e2f265d19aa7a28156e28735032cb52e9750039942250}{Select}}
+ \}
+\item 
+enum \mbox{\hyperlink{_controller_stuff_8hpp_ac791d7b38748d5cb97cbe978b62e5b5a}{Countries}} \{ \mbox{\hyperlink{_controller_stuff_8hpp_ac791d7b38748d5cb97cbe978b62e5b5aa927d8569da1251c6d9852ac42e176f8d}{STATES}}
+, \mbox{\hyperlink{_controller_stuff_8hpp_ac791d7b38748d5cb97cbe978b62e5b5aa2d5f40f6ad9f20b642e8ea5a40e88744}{JAPAN}}
+, \mbox{\hyperlink{_controller_stuff_8hpp_ac791d7b38748d5cb97cbe978b62e5b5aa146dcc5c6a7e41d56375b98738adbc2b}{SWEDEN}}
+, \mbox{\hyperlink{_controller_stuff_8hpp_ac791d7b38748d5cb97cbe978b62e5b5aafbfb4f53ab15064b951ad017a66b806f}{ENGLAND}}
+ \}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{_controller_stuff_8hpp_a89d05f92ddc43745299203ee8cc1d89d}\index{ControllerStuff.hpp@{ControllerStuff.hpp}!Controller@{Controller}}
+\index{Controller@{Controller}!ControllerStuff.hpp@{ControllerStuff.hpp}}
+\doxysubsubsection{\texorpdfstring{Controller}{Controller}}
+{\footnotesize\ttfamily \label{_controller_stuff_8hpp_a89d05f92ddc43745299203ee8cc1d89d} 
+enum \mbox{\hyperlink{_controller_stuff_8hpp_a89d05f92ddc43745299203ee8cc1d89d}{Controller}} \+: unsigned char}
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{A@{A}!ControllerStuff.hpp@{ControllerStuff.hpp}}\index{ControllerStuff.hpp@{ControllerStuff.hpp}!A@{A}}}\Hypertarget{_controller_stuff_8hpp_a89d05f92ddc43745299203ee8cc1d89da42a4ade1acd55a49164099104990e09f}\label{_controller_stuff_8hpp_a89d05f92ddc43745299203ee8cc1d89d} 
+A&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{B@{B}!ControllerStuff.hpp@{ControllerStuff.hpp}}\index{ControllerStuff.hpp@{ControllerStuff.hpp}!B@{B}}}\Hypertarget{_controller_stuff_8hpp_a89d05f92ddc43745299203ee8cc1d89da3f2a77ecd272aa6d6b5902faa5e5fc68}\label{_controller_stuff_8hpp_a89d05f92ddc43745299203ee8cc1d89d} 
+B&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{X@{X}!ControllerStuff.hpp@{ControllerStuff.hpp}}\index{ControllerStuff.hpp@{ControllerStuff.hpp}!X@{X}}}\Hypertarget{_controller_stuff_8hpp_a89d05f92ddc43745299203ee8cc1d89da58833a3110c570fb05130d40c365d1e4}\label{_controller_stuff_8hpp_a89d05f92ddc43745299203ee8cc1d89d} 
+X&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Y@{Y}!ControllerStuff.hpp@{ControllerStuff.hpp}}\index{ControllerStuff.hpp@{ControllerStuff.hpp}!Y@{Y}}}\Hypertarget{_controller_stuff_8hpp_a89d05f92ddc43745299203ee8cc1d89da5596231eabd6cf29050967d5ac83ad84}\label{_controller_stuff_8hpp_a89d05f92ddc43745299203ee8cc1d89d} 
+Y&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{L2@{L2}!ControllerStuff.hpp@{ControllerStuff.hpp}}\index{ControllerStuff.hpp@{ControllerStuff.hpp}!L2@{L2}}}\Hypertarget{_controller_stuff_8hpp_a89d05f92ddc43745299203ee8cc1d89da0adffb24dae0c41be5b803f4d444f066}\label{_controller_stuff_8hpp_a89d05f92ddc43745299203ee8cc1d89d} 
+L2&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{R2@{R2}!ControllerStuff.hpp@{ControllerStuff.hpp}}\index{ControllerStuff.hpp@{ControllerStuff.hpp}!R2@{R2}}}\Hypertarget{_controller_stuff_8hpp_a89d05f92ddc43745299203ee8cc1d89da629d7b403cea5f826352f3aefb9a6d6a}\label{_controller_stuff_8hpp_a89d05f92ddc43745299203ee8cc1d89d} 
+R2&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{L1@{L1}!ControllerStuff.hpp@{ControllerStuff.hpp}}\index{ControllerStuff.hpp@{ControllerStuff.hpp}!L1@{L1}}}\Hypertarget{_controller_stuff_8hpp_a89d05f92ddc43745299203ee8cc1d89dae5bc7ee7d6dda5340a28f91834f10543}\label{_controller_stuff_8hpp_a89d05f92ddc43745299203ee8cc1d89d} 
+L1&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{R1@{R1}!ControllerStuff.hpp@{ControllerStuff.hpp}}\index{ControllerStuff.hpp@{ControllerStuff.hpp}!R1@{R1}}}\Hypertarget{_controller_stuff_8hpp_a89d05f92ddc43745299203ee8cc1d89daf8d87ff07efe24755164f550526f4dac}\label{_controller_stuff_8hpp_a89d05f92ddc43745299203ee8cc1d89d} 
+R1&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Select\_BTN@{Select\_BTN}!ControllerStuff.hpp@{ControllerStuff.hpp}}\index{ControllerStuff.hpp@{ControllerStuff.hpp}!Select\_BTN@{Select\_BTN}}}\Hypertarget{_controller_stuff_8hpp_a89d05f92ddc43745299203ee8cc1d89da33e9c7d4643bf1c0f5662e6f683e128a}\label{_controller_stuff_8hpp_a89d05f92ddc43745299203ee8cc1d89d} 
+Select\+\_\+\+BTN&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Start@{Start}!ControllerStuff.hpp@{ControllerStuff.hpp}}\index{ControllerStuff.hpp@{ControllerStuff.hpp}!Start@{Start}}}\Hypertarget{_controller_stuff_8hpp_a89d05f92ddc43745299203ee8cc1d89dabd5f9c956752ce4dc707b4624b3a36f7}\label{_controller_stuff_8hpp_a89d05f92ddc43745299203ee8cc1d89d} 
+Start&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{L3@{L3}!ControllerStuff.hpp@{ControllerStuff.hpp}}\index{ControllerStuff.hpp@{ControllerStuff.hpp}!L3@{L3}}}\Hypertarget{_controller_stuff_8hpp_a89d05f92ddc43745299203ee8cc1d89da78d20b793a10e7c2f1012114803147c3}\label{_controller_stuff_8hpp_a89d05f92ddc43745299203ee8cc1d89d} 
+L3&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{R3@{R3}!ControllerStuff.hpp@{ControllerStuff.hpp}}\index{ControllerStuff.hpp@{ControllerStuff.hpp}!R3@{R3}}}\Hypertarget{_controller_stuff_8hpp_a89d05f92ddc43745299203ee8cc1d89daad0b4725f69a34fed2c914517bcd9baa}\label{_controller_stuff_8hpp_a89d05f92ddc43745299203ee8cc1d89d} 
+R3&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{D\_Up@{D\_Up}!ControllerStuff.hpp@{ControllerStuff.hpp}}\index{ControllerStuff.hpp@{ControllerStuff.hpp}!D\_Up@{D\_Up}}}\Hypertarget{_controller_stuff_8hpp_a89d05f92ddc43745299203ee8cc1d89da7086523a37233dece8e70cebe6309b22}\label{_controller_stuff_8hpp_a89d05f92ddc43745299203ee8cc1d89d} 
+D\+\_\+\+Up&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{D\_Down@{D\_Down}!ControllerStuff.hpp@{ControllerStuff.hpp}}\index{ControllerStuff.hpp@{ControllerStuff.hpp}!D\_Down@{D\_Down}}}\Hypertarget{_controller_stuff_8hpp_a89d05f92ddc43745299203ee8cc1d89da72531429f8c70f66f627701b97c63b0f}\label{_controller_stuff_8hpp_a89d05f92ddc43745299203ee8cc1d89d} 
+D\+\_\+\+Down&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{D\_Left@{D\_Left}!ControllerStuff.hpp@{ControllerStuff.hpp}}\index{ControllerStuff.hpp@{ControllerStuff.hpp}!D\_Left@{D\_Left}}}\Hypertarget{_controller_stuff_8hpp_a89d05f92ddc43745299203ee8cc1d89da94a922ea11286e2184c9400732ab0eeb}\label{_controller_stuff_8hpp_a89d05f92ddc43745299203ee8cc1d89d} 
+D\+\_\+\+Left&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{D\_Right@{D\_Right}!ControllerStuff.hpp@{ControllerStuff.hpp}}\index{ControllerStuff.hpp@{ControllerStuff.hpp}!D\_Right@{D\_Right}}}\Hypertarget{_controller_stuff_8hpp_a89d05f92ddc43745299203ee8cc1d89da4ece6e5c9e6fc7e18691e0bcbc39710c}\label{_controller_stuff_8hpp_a89d05f92ddc43745299203ee8cc1d89d} 
+D\+\_\+\+Right&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line \mbox{\hyperlink{_controller_stuff_8hpp_source_l00012}{12}} of file \mbox{\hyperlink{_controller_stuff_8hpp_source}{Controller\+Stuff.\+hpp}}.
+
+\Hypertarget{_controller_stuff_8hpp_a949b4a8624f2b4343a97e2f265d19aa7}\index{ControllerStuff.hpp@{ControllerStuff.hpp}!Controls@{Controls}}
+\index{Controls@{Controls}!ControllerStuff.hpp@{ControllerStuff.hpp}}
+\doxysubsubsection{\texorpdfstring{Controls}{Controls}}
+{\footnotesize\ttfamily \label{_controller_stuff_8hpp_a949b4a8624f2b4343a97e2f265d19aa7} 
+enum \mbox{\hyperlink{_controller_stuff_8hpp_a949b4a8624f2b4343a97e2f265d19aa7}{Controls}}}
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Forward@{Forward}!ControllerStuff.hpp@{ControllerStuff.hpp}}\index{ControllerStuff.hpp@{ControllerStuff.hpp}!Forward@{Forward}}}\Hypertarget{_controller_stuff_8hpp_a949b4a8624f2b4343a97e2f265d19aa7ae204c9c3e62b1e9a6b60e40cd05256c5}\label{_controller_stuff_8hpp_a949b4a8624f2b4343a97e2f265d19aa7} 
+Forward&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Left@{Left}!ControllerStuff.hpp@{ControllerStuff.hpp}}\index{ControllerStuff.hpp@{ControllerStuff.hpp}!Left@{Left}}}\Hypertarget{_controller_stuff_8hpp_a949b4a8624f2b4343a97e2f265d19aa7a9d4d8b0b72fc2659da772d761a3c5ecb}\label{_controller_stuff_8hpp_a949b4a8624f2b4343a97e2f265d19aa7} 
+Left&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Back@{Back}!ControllerStuff.hpp@{ControllerStuff.hpp}}\index{ControllerStuff.hpp@{ControllerStuff.hpp}!Back@{Back}}}\Hypertarget{_controller_stuff_8hpp_a949b4a8624f2b4343a97e2f265d19aa7a36625780699489b5c3dfceadfb9c27d1}\label{_controller_stuff_8hpp_a949b4a8624f2b4343a97e2f265d19aa7} 
+Back&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Right@{Right}!ControllerStuff.hpp@{ControllerStuff.hpp}}\index{ControllerStuff.hpp@{ControllerStuff.hpp}!Right@{Right}}}\Hypertarget{_controller_stuff_8hpp_a949b4a8624f2b4343a97e2f265d19aa7ad48f7af8c070184f3774c8e85854eb66}\label{_controller_stuff_8hpp_a949b4a8624f2b4343a97e2f265d19aa7} 
+Right&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Shoot@{Shoot}!ControllerStuff.hpp@{ControllerStuff.hpp}}\index{ControllerStuff.hpp@{ControllerStuff.hpp}!Shoot@{Shoot}}}\Hypertarget{_controller_stuff_8hpp_a949b4a8624f2b4343a97e2f265d19aa7ae0047bf03d9327f6eee214075d1a784b}\label{_controller_stuff_8hpp_a949b4a8624f2b4343a97e2f265d19aa7} 
+Shoot&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Special@{Special}!ControllerStuff.hpp@{ControllerStuff.hpp}}\index{ControllerStuff.hpp@{ControllerStuff.hpp}!Special@{Special}}}\Hypertarget{_controller_stuff_8hpp_a949b4a8624f2b4343a97e2f265d19aa7ac18c85698a8e17ceb09f0393f47d43d3}\label{_controller_stuff_8hpp_a949b4a8624f2b4343a97e2f265d19aa7} 
+Special&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Spawn@{Spawn}!ControllerStuff.hpp@{ControllerStuff.hpp}}\index{ControllerStuff.hpp@{ControllerStuff.hpp}!Spawn@{Spawn}}}\Hypertarget{_controller_stuff_8hpp_a949b4a8624f2b4343a97e2f265d19aa7aaa91a7c5a479ef5add68c761703fbaee}\label{_controller_stuff_8hpp_a949b4a8624f2b4343a97e2f265d19aa7} 
+Spawn&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FastForward@{FastForward}!ControllerStuff.hpp@{ControllerStuff.hpp}}\index{ControllerStuff.hpp@{ControllerStuff.hpp}!FastForward@{FastForward}}}\Hypertarget{_controller_stuff_8hpp_a949b4a8624f2b4343a97e2f265d19aa7a4c035700b8afd918a45c8d8efb093b6d}\label{_controller_stuff_8hpp_a949b4a8624f2b4343a97e2f265d19aa7} 
+Fast\+Forward&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Select@{Select}!ControllerStuff.hpp@{ControllerStuff.hpp}}\index{ControllerStuff.hpp@{ControllerStuff.hpp}!Select@{Select}}}\Hypertarget{_controller_stuff_8hpp_a949b4a8624f2b4343a97e2f265d19aa7a28156e28735032cb52e9750039942250}\label{_controller_stuff_8hpp_a949b4a8624f2b4343a97e2f265d19aa7} 
+Select&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line \mbox{\hyperlink{_controller_stuff_8hpp_source_l00032}{32}} of file \mbox{\hyperlink{_controller_stuff_8hpp_source}{Controller\+Stuff.\+hpp}}.
+
+\Hypertarget{_controller_stuff_8hpp_ac791d7b38748d5cb97cbe978b62e5b5a}\index{ControllerStuff.hpp@{ControllerStuff.hpp}!Countries@{Countries}}
+\index{Countries@{Countries}!ControllerStuff.hpp@{ControllerStuff.hpp}}
+\doxysubsubsection{\texorpdfstring{Countries}{Countries}}
+{\footnotesize\ttfamily \label{_controller_stuff_8hpp_ac791d7b38748d5cb97cbe978b62e5b5a} 
+enum \mbox{\hyperlink{_controller_stuff_8hpp_ac791d7b38748d5cb97cbe978b62e5b5a}{Countries}}}
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{STATES@{STATES}!ControllerStuff.hpp@{ControllerStuff.hpp}}\index{ControllerStuff.hpp@{ControllerStuff.hpp}!STATES@{STATES}}}\Hypertarget{_controller_stuff_8hpp_ac791d7b38748d5cb97cbe978b62e5b5aa927d8569da1251c6d9852ac42e176f8d}\label{_controller_stuff_8hpp_ac791d7b38748d5cb97cbe978b62e5b5a} 
+STATES&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{JAPAN@{JAPAN}!ControllerStuff.hpp@{ControllerStuff.hpp}}\index{ControllerStuff.hpp@{ControllerStuff.hpp}!JAPAN@{JAPAN}}}\Hypertarget{_controller_stuff_8hpp_ac791d7b38748d5cb97cbe978b62e5b5aa2d5f40f6ad9f20b642e8ea5a40e88744}\label{_controller_stuff_8hpp_ac791d7b38748d5cb97cbe978b62e5b5a} 
+JAPAN&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SWEDEN@{SWEDEN}!ControllerStuff.hpp@{ControllerStuff.hpp}}\index{ControllerStuff.hpp@{ControllerStuff.hpp}!SWEDEN@{SWEDEN}}}\Hypertarget{_controller_stuff_8hpp_ac791d7b38748d5cb97cbe978b62e5b5aa146dcc5c6a7e41d56375b98738adbc2b}\label{_controller_stuff_8hpp_ac791d7b38748d5cb97cbe978b62e5b5a} 
+SWEDEN&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ENGLAND@{ENGLAND}!ControllerStuff.hpp@{ControllerStuff.hpp}}\index{ControllerStuff.hpp@{ControllerStuff.hpp}!ENGLAND@{ENGLAND}}}\Hypertarget{_controller_stuff_8hpp_ac791d7b38748d5cb97cbe978b62e5b5aafbfb4f53ab15064b951ad017a66b806f}\label{_controller_stuff_8hpp_ac791d7b38748d5cb97cbe978b62e5b5a} 
+ENGLAND&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line \mbox{\hyperlink{_controller_stuff_8hpp_source_l00045}{45}} of file \mbox{\hyperlink{_controller_stuff_8hpp_source}{Controller\+Stuff.\+hpp}}.
+

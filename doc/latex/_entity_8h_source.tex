@@ -1,0 +1,72 @@
+\doxysection{Entity.\+h}
+\hypertarget{_entity_8h_source}{}\label{_entity_8h_source}\index{src/Entities/Entity.h@{src/Entities/Entity.h}}
+\mbox{\hyperlink{_entity_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_entity_8h_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{_entity_8h_source_l00002}00002\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{\Hypertarget{_entity_8h_source_l00003}00003\ \textcolor{preprocessor}{\#include\ <unordered\_map>}}
+\DoxyCodeLine{\Hypertarget{_entity_8h_source_l00004}00004\ \textcolor{preprocessor}{\#include\ <SFML/Graphics.hpp>}}
+\DoxyCodeLine{\Hypertarget{_entity_8h_source_l00005}00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_window_size_8h}{../Utility/WindowSize.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_entity_8h_source_l00006}00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_entity_i_d_8h}{../Utility/EntityID.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_entity_8h_source_l00007}00007\ \textcolor{preprocessor}{\#include\ "{}../EntityData.h"{}}}
+\DoxyCodeLine{\Hypertarget{_entity_8h_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{_entity_8h_source_l00009}\mbox{\hyperlink{_entity_8h_aa9af547c03f1b8c809c1a6de96a7ed3c}{00009}}\ \textcolor{keyword}{using\ }\mbox{\hyperlink{_entity_8h_aa9af547c03f1b8c809c1a6de96a7ed3c}{Vec2f}}\ =\ sf::Vector2f;}
+\DoxyCodeLine{\Hypertarget{_entity_8h_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{_entity_8h_source_l00011}\mbox{\hyperlink{class_entity}{00011}}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_entity}{Entity}}}
+\DoxyCodeLine{\Hypertarget{_entity_8h_source_l00012}00012\ \{\ }
+\DoxyCodeLine{\Hypertarget{_entity_8h_source_l00013}00013\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_entity_8h_source_l00014}\mbox{\hyperlink{struct_entity_1_1_entity_holder}{00014}}\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_entity_1_1_entity_holder}{EntityHolder}}}
+\DoxyCodeLine{\Hypertarget{_entity_8h_source_l00015}00015\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_entity_8h_source_l00016}00016\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ All\ enemy\ entities}}
+\DoxyCodeLine{\Hypertarget{_entity_8h_source_l00017}\mbox{\hyperlink{struct_entity_1_1_entity_holder_abad3bcf67139bf6b6f0e4af6adadd260}{00017}}\ \ \ \ \ \ \ \ \ std::vector<Entity*>\ \mbox{\hyperlink{struct_entity_1_1_entity_holder_abad3bcf67139bf6b6f0e4af6adadd260}{enemies}};}
+\DoxyCodeLine{\Hypertarget{_entity_8h_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{_entity_8h_source_l00019}00019\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ All\ projectile\ entities}}
+\DoxyCodeLine{\Hypertarget{_entity_8h_source_l00020}\mbox{\hyperlink{struct_entity_1_1_entity_holder_adfd38523da0119ef4907572cf07d4835}{00020}}\ \ \ \ \ \ \ \ \ std::vector<Entity*>\ \mbox{\hyperlink{struct_entity_1_1_entity_holder_adfd38523da0119ef4907572cf07d4835}{projectiles}};}
+\DoxyCodeLine{\Hypertarget{_entity_8h_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{_entity_8h_source_l00022}00022\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ All\ other\ entities}}
+\DoxyCodeLine{\Hypertarget{_entity_8h_source_l00023}\mbox{\hyperlink{struct_entity_1_1_entity_holder_a54793d81f14488b2cfd43f2cf266c82f}{00023}}\ \ \ \ \ \ \ \ \ std::vector<Entity*>\ \mbox{\hyperlink{struct_entity_1_1_entity_holder_a54793d81f14488b2cfd43f2cf266c82f}{other}};}
+\DoxyCodeLine{\Hypertarget{_entity_8h_source_l00024}00024\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{_entity_8h_source_l00025}00025\ \ \ \ \ \textcolor{comment}{//\ Generic\ definition\ for\ any\ entities\ tick\ function}}
+\DoxyCodeLine{\Hypertarget{_entity_8h_source_l00026}00026\ \ \ \ \ \textcolor{comment}{//\ Entity\ holder\ used\ for\ when\ entities\ need\ to\ check\ for\ collision\ themselves}}
+\DoxyCodeLine{\Hypertarget{_entity_8h_source_l00027}\mbox{\hyperlink{class_entity_a9b83139843435e4755af4cf654a24af9}{00027}}\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_entity_a9b83139843435e4755af4cf654a24af9}{tick}}(\mbox{\hyperlink{struct_entity_1_1_entity_holder}{EntityHolder}}\ entities)\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_entity_8h_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{_entity_8h_source_l00029}00029\ \ \ \ \ \textcolor{comment}{//\ Sets\ the\ variable\ used\ by\ entity\ for\ the\ size\ of\ the\ window.}}
+\DoxyCodeLine{\Hypertarget{_entity_8h_source_l00030}00030\ \ \ \ \ \textcolor{comment}{//\ Should\ only\ ever\ be\ called\ once,\ giving\ a\ variable\ held}}
+\DoxyCodeLine{\Hypertarget{_entity_8h_source_l00031}00031\ \ \ \ \ \textcolor{comment}{//\ before\ level\ is\ instantiated.}}
+\DoxyCodeLine{\Hypertarget{_entity_8h_source_l00032}\mbox{\hyperlink{class_entity_a3d0e1a6a41a6dcb652d4bfe878d8e8fd}{00032}}\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_entity_a3d0e1a6a41a6dcb652d4bfe878d8e8fd}{setWinSize}}(\mbox{\hyperlink{struct_window_size}{WindowSize}}\&\ winSize);}
+\DoxyCodeLine{\Hypertarget{_entity_8h_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{_entity_8h_source_l00034}00034\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{\Hypertarget{_entity_8h_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{_entity_8h_source_l00036}\mbox{\hyperlink{class_entity_a5b1eed88d9f4c3ec5240ce8fb22ada83}{00036}}\ \ \ \ \ \mbox{\hyperlink{class_entity_a5b1eed88d9f4c3ec5240ce8fb22ada83}{Entity}}(sf::Vector2f\ \mbox{\hyperlink{class_entity_ad329967c418fc97aae4745b68adebb11}{pos}},\ sf::Vector2f\ \mbox{\hyperlink{class_entity_aa84a7361118f092029908d97188374f3}{vel}},}
+\DoxyCodeLine{\Hypertarget{_entity_8h_source_l00037}00037\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_entity_i_d_8h_abf26b7b6a9a1dc0f488678f8511c3be6}{EntityID}}\ \mbox{\hyperlink{class_entity_a712837ff2925b8d49f04d4fb8b0eacca}{ID}},\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{class_entity_af761b48c7f05a79b16a00df52d48fce0}{orientation}}\ =\ 0)\ :}
+\DoxyCodeLine{\Hypertarget{_entity_8h_source_l00038}00038\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_entity_ad329967c418fc97aae4745b68adebb11}{pos}}(\mbox{\hyperlink{class_entity_ad329967c418fc97aae4745b68adebb11}{pos}}),\ \mbox{\hyperlink{class_entity_a712837ff2925b8d49f04d4fb8b0eacca}{ID}}(\mbox{\hyperlink{class_entity_a712837ff2925b8d49f04d4fb8b0eacca}{ID}}),\ \mbox{\hyperlink{class_entity_af761b48c7f05a79b16a00df52d48fce0}{orientation}}(\mbox{\hyperlink{class_entity_af761b48c7f05a79b16a00df52d48fce0}{orientation}})\ \{\}}
+\DoxyCodeLine{\Hypertarget{_entity_8h_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{_entity_8h_source_l00040}00040\ \ \ \ \ \textcolor{comment}{//\ Returns\ if\ this\ entity\ is\ currently\ visible}}
+\DoxyCodeLine{\Hypertarget{_entity_8h_source_l00041}00041\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_entity_aa1ff6c02e083e85f4c670ac5c83dcaa3}{onScreen}}()\ noexcept;}
+\DoxyCodeLine{\Hypertarget{_entity_8h_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{_entity_8h_source_l00043}00043\ \ \ \ \ inline\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_entity_a51eb209022b130024a519957bd010b20}{hasSpawned}}()\ noexcept;}
+\DoxyCodeLine{\Hypertarget{_entity_8h_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{_entity_8h_source_l00045}00045\ \ \ \ \ \textcolor{comment}{//\ The\ position\ of\ this\ entity}}
+\DoxyCodeLine{\Hypertarget{_entity_8h_source_l00046}\mbox{\hyperlink{class_entity_ad329967c418fc97aae4745b68adebb11}{00046}}\ \ \ \ \ sf::Vector2f\ \mbox{\hyperlink{class_entity_ad329967c418fc97aae4745b68adebb11}{pos}};}
+\DoxyCodeLine{\Hypertarget{_entity_8h_source_l00047}00047\ \ \ \ \ \textcolor{comment}{//\ The\ velocity\ of\ this\ entity}}
+\DoxyCodeLine{\Hypertarget{_entity_8h_source_l00048}00048\ \ \ \ \ \textcolor{comment}{//\ Derived\ during\ object\ construction}}
+\DoxyCodeLine{\Hypertarget{_entity_8h_source_l00049}\mbox{\hyperlink{class_entity_aa84a7361118f092029908d97188374f3}{00049}}\ \ \ \ \ sf::Vector2f\ \mbox{\hyperlink{class_entity_aa84a7361118f092029908d97188374f3}{vel}}\ =\ \mbox{\hyperlink{namespace_entity_data}{EntityData}}::EntityDataTable.at(static\_cast<\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}>(\mbox{\hyperlink{class_entity_a712837ff2925b8d49f04d4fb8b0eacca}{ID}})).DATA.velocity;}
+\DoxyCodeLine{\Hypertarget{_entity_8h_source_l00050}00050\ \ \ \ \ \textcolor{comment}{//\ The\ attack\ cooldown\ of\ this\ entity}}
+\DoxyCodeLine{\Hypertarget{_entity_8h_source_l00051}00051\ \ \ \ \ \textcolor{comment}{//\ Derived\ during\ object\ construction\ from\ the\ entity\ data\ table.}}
+\DoxyCodeLine{\Hypertarget{_entity_8h_source_l00052}\mbox{\hyperlink{class_entity_a4cac955655798b026f287d369a37220b}{00052}}\ \ \ \ \ \mbox{\hyperlink{namespace_entity_data}{EntityData}}::Cooldown\ \mbox{\hyperlink{class_entity_a4cac955655798b026f287d369a37220b}{cooldown}}\ =\ \mbox{\hyperlink{namespace_entity_data}{EntityData}}::EntityDataTable.at(static\_cast<\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}>(\mbox{\hyperlink{class_entity_a712837ff2925b8d49f04d4fb8b0eacca}{ID}})).DATA.\mbox{\hyperlink{class_entity_a4cac955655798b026f287d369a37220b}{cooldown}};}
+\DoxyCodeLine{\Hypertarget{_entity_8h_source_l00053}00053\ }
+\DoxyCodeLine{\Hypertarget{_entity_8h_source_l00054}00054\ \ \ \ \ \textcolor{comment}{//\ This\ entities\ current\ orientation}}
+\DoxyCodeLine{\Hypertarget{_entity_8h_source_l00055}00055\ \ \ \ \ \textcolor{comment}{//\ Only\ used\ when\ drawing\ -\/\ entity\ specific}}
+\DoxyCodeLine{\Hypertarget{_entity_8h_source_l00056}\mbox{\hyperlink{class_entity_af761b48c7f05a79b16a00df52d48fce0}{00056}}\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{class_entity_af761b48c7f05a79b16a00df52d48fce0}{orientation}};}
+\DoxyCodeLine{\Hypertarget{_entity_8h_source_l00057}00057\ }
+\DoxyCodeLine{\Hypertarget{_entity_8h_source_l00058}00058\ \ \ \ \ \textcolor{comment}{//\ The\ ID\ of\ this\ entity}}
+\DoxyCodeLine{\Hypertarget{_entity_8h_source_l00059}\mbox{\hyperlink{class_entity_a712837ff2925b8d49f04d4fb8b0eacca}{00059}}\ \ \ \ \ const\ \mbox{\hyperlink{_entity_i_d_8h_abf26b7b6a9a1dc0f488678f8511c3be6}{EntityID}}\ \mbox{\hyperlink{class_entity_a712837ff2925b8d49f04d4fb8b0eacca}{ID}};}
+\DoxyCodeLine{\Hypertarget{_entity_8h_source_l00060}00060\ private:}
+\DoxyCodeLine{\Hypertarget{_entity_8h_source_l00061}00061\ \ \ \ \ static\ \mbox{\hyperlink{struct_window_size}{WindowSize}}\&\ winSize;}
+\DoxyCodeLine{\Hypertarget{_entity_8h_source_l00062}00062\ }
+\DoxyCodeLine{\Hypertarget{_entity_8h_source_l00063}00063\ \ \ \ \ \textcolor{comment}{//\ null\ /\ null\ /\ null\ /\ null\ /\ null\ /\ null\ /\ null\ /\ hasSpawned}}
+\DoxyCodeLine{\Hypertarget{_entity_8h_source_l00064}00064\ \ \ \ \ \textcolor{keywordtype}{bool}\ entityFlags\ =\ 0b00000000;}
+\DoxyCodeLine{\Hypertarget{_entity_8h_source_l00065}00065\ \};}
+\DoxyCodeLine{\Hypertarget{_entity_8h_source_l00066}00066\ }
+
+\end{DoxyCode}

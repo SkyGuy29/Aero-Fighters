@@ -1,0 +1,104 @@
+\doxysection{Enemy.\+cpp}
+\hypertarget{_enemy_8cpp_source}{}\label{_enemy_8cpp_source}\index{src/Object/Enemy/Enemy.cpp@{src/Object/Enemy/Enemy.cpp}}
+\mbox{\hyperlink{_enemy_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_enemy_8h}{Enemy.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00003}\mbox{\hyperlink{class_enemy_a5cc670231ce470f49fc2ed77458bde08}{00003}}\ \mbox{\hyperlink{class_enemy_a825112967b5ada387776e3f4af97ad88}{Enemy::Enemy}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{short}\ \textcolor{keywordtype}{id},\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ left,\ \textcolor{keyword}{const}\ sf::Vector2f\ pos,\ \textcolor{keyword}{const}\ sf::Vector2f\ vel,\ \textcolor{keywordtype}{bool}\ levelEditor)}
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00004}00004\ \{}
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00005}00005\ \ \ \ \ this-\/>\textcolor{keywordtype}{id}\ =\ \mbox{\hyperlink{class_object_a5d56e2dbec4aab44d836760b698e0e9c}{id}};}
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00006}00006\ \ \ \ \ this-\/>left\ =\ \mbox{\hyperlink{class_enemy_a21d97250b5e8befe6d02aeeb0bb36de3}{left}};}
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00007}00007\ \ \ \ \ this-\/>pos\ =\ \mbox{\hyperlink{class_entity_ad329967c418fc97aae4745b68adebb11}{pos}};}
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00008}00008\ \ \ \ \ this-\/>vel\ =\ \mbox{\hyperlink{class_entity_aa84a7361118f092029908d97188374f3}{vel}};}
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00009}00009\ \ \ \ \ this-\/>levelEditor\ =\ \mbox{\hyperlink{class_enemy_a586ab31ee88fe7bf100413374a25d24b}{levelEditor}};}
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00010}00010\ \}}
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00012}\mbox{\hyperlink{class_enemy_a3473f9f24e815aebb44c85943204d31c}{00012}}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_enemy_a3473f9f24e815aebb44c85943204d31c}{Enemy::getHealth}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00013}00013\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00014}00014\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_enemy_aedd5e7bf8ef07ee97be433c853a10d8d}{health}};}
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00015}00015\ \}}
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00017}\mbox{\hyperlink{class_enemy_a53de27316ac6453fd0ce66999ff92694}{00017}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_enemy_a53de27316ac6453fd0ce66999ff92694}{Enemy::enemyUpdate}}(\textcolor{keyword}{const}\ sf::Vector2f\ winSize,\ std::vector<Object*>*\ objects)}
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00018}00018\ \{}
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00019}00019\ \ \ \ \ \mbox{\hyperlink{class_object_a5dd0a101abd877b8d7311c10cab4c145}{texInit}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00020}00020\ \ \ \ \ \mbox{\hyperlink{class_object_a9ae70955ceef5287048fcf627efb97e3}{objectUpdate}}(winSize,\ objects);}
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00021}00021\ \ \ \ \ \mbox{\hyperlink{class_object_aec9c0d84c1043f54de40f2863ec9c2fc}{nextFrame}}(3);}
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00023}00023\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{class_enemy_a60cd24cb36c9afb6d6a7f68c42930deb}{entered}}\ \&\&\ (!\mbox{\hyperlink{class_object_ab020d1ea9452f936dc258bc47392d777}{outOfBounds}}(winSize)\ ||\ \mbox{\hyperlink{class_enemy_a586ab31ee88fe7bf100413374a25d24b}{levelEditor}}))}
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00024}00024\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_enemy_a60cd24cb36c9afb6d6a7f68c42930deb}{entered}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00026}00026\ \ \ \ \ \textcolor{comment}{//Delete\ an\ enemy\ when\ it\ goes\ off\ screen}}
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00027}00027\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_object_ab020d1ea9452f936dc258bc47392d777}{outOfBounds}}(winSize)\ \&\&\ \mbox{\hyperlink{class_enemy_a60cd24cb36c9afb6d6a7f68c42930deb}{entered}})}
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00028}00028\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_object_a0637c58ae14ffe525de737632fa7b01c}{del}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00030}00030\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00031}00031\ \ \ \ \ \textcolor{comment}{//\ Go\ to\ spawn\ place}}
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00032}00032\ \ \ \ \ \textcolor{comment}{//\ If\ the\ enemy\ has\ not\ yet\ entered\ the\ screen,}}
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00033}00033\ \ \ \ \ \textcolor{comment}{//\ Knows\ the\ backgrounds\ position,}}
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00034}00034\ \ \ \ \ \textcolor{comment}{//\ and\ the\ background\ is\ showing\ the\ enemies\ spawn\ position}}
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00035}00035\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{class_enemy_a60cd24cb36c9afb6d6a7f68c42930deb}{entered}}\ \&\&\ \mbox{\hyperlink{class_object_a46bf1c4a8a577572b7ac2778adfaf007}{backgroundDist}}\ !=\ \textcolor{keyword}{nullptr}\ \&\&\ *\mbox{\hyperlink{class_object_a46bf1c4a8a577572b7ac2778adfaf007}{backgroundDist}}\ <=\ \mbox{\hyperlink{class_enemy_a7cf34adfd070a3067f0aabcf7967f317}{startMark}})}
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00036}00036\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00037}00037\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Spawn\ the\ enemy\ by\ setting\ its\ position\ and\ velocity}}
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00038}00038\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_entity_ad329967c418fc97aae4745b68adebb11}{pos}}\ =\ \mbox{\hyperlink{class_enemy_a6ed07c549f67500346c798fb9e1d223f}{spawnPos}};}
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00039}00039\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!\mbox{\hyperlink{class_enemy_a586ab31ee88fe7bf100413374a25d24b}{levelEditor}})}
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00040}00040\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_entity_aa84a7361118f092029908d97188374f3}{vel}}\ =\ \mbox{\hyperlink{class_enemy_ab941c00a952d8fc36051ca29d4a850b7}{spawnVel}};}
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00041}00041\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00043}00043\ \ \ \ \ \textcolor{comment}{//Am\ I\ being\ shot?}}
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00044}00044\ \ \ \ \ \textcolor{comment}{//\ For\ every\ entity}}
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00045}00045\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ objects-\/>size();\ i++)}
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00046}00046\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00047}00047\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ the\ entity\ is\ a\ players\ projectile,\ is\ colliding\ with\ me,\ is\ not\ hidden,\ and\ is\ active}}
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00048}00048\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (objects-\/>at(i)-\/>getType()\ ==\ \mbox{\hyperlink{class_object_aa30bdbe3657d9756611172b5f4ffcedfa439b5fdd5ad9e6e311e0f6f1b12a6306}{PLAYER\_PROJECTILE}}\ }
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00049}00049\ \ \ \ \ \ \ \ \ \ \ \ \ \&\&\ this-\/>intersect(objects-\/>at(i))\ \&\&\ \mbox{\hyperlink{class_object_a8137cf4265bcaaf2fc7c91a9ccd8e4f4}{type}}\ !=\ \mbox{\hyperlink{class_object_aa30bdbe3657d9756611172b5f4ffcedfaebc42d3e8a59ee83e897c37286bc0801}{HIDDEN}}}
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00050}00050\ \ \ \ \ \ \ \ \ \ \ \ \ \&\&\ \mbox{\hyperlink{class_enemy_a60cd24cb36c9afb6d6a7f68c42930deb}{entered}})}
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00051}00051\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00052}00052\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Decrement\ my\ health}}
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00053}00053\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_enemy_aedd5e7bf8ef07ee97be433c853a10d8d}{health}}-\/-\/;}
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00054}00054\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00055}00055\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00056}00056\ }
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00057}00057\ }
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00058}00058\ \ \ \ \ \textcolor{comment}{//\ Generates\ Collectable\ items\ when\ an\ enemy\ dies,\ presumably\ dropped\ items.\ -\/\ ricky}}
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00059}00059\ \ \ \ \ \textcolor{comment}{//\ If\ i'm\ dead,\ not\ scheduled\ to\ be\ deleted,\ and\ not\ hidden}}
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00060}00060\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_enemy_aedd5e7bf8ef07ee97be433c853a10d8d}{health}}\ <=\ 0\ \&\&\ \mbox{\hyperlink{class_object_a0637c58ae14ffe525de737632fa7b01c}{del}}\ ==\ \textcolor{keyword}{false}\ \&\&\ \mbox{\hyperlink{class_object_a8137cf4265bcaaf2fc7c91a9ccd8e4f4}{type}}\ !=\ \mbox{\hyperlink{class_object_aa30bdbe3657d9756611172b5f4ffcedfaebc42d3e8a59ee83e897c37286bc0801}{HIDDEN}})}
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00061}00061\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00062}00062\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Drop\ powerups\ based\ on\ my\ specific\ type}}
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00063}00063\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (\textcolor{keywordtype}{id})}
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00064}00064\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00065}00065\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ i'm\ a\ \_\_\_}}
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00066}00066\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 1:}
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00067}00067\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ i'm\ an\ Air\ \_\_\_}}
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00068}00068\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_object_a8137cf4265bcaaf2fc7c91a9ccd8e4f4}{type}}\ ==\ \mbox{\hyperlink{class_object_aa30bdbe3657d9756611172b5f4ffcedfad9b734065c178992981eb1f1258e7e22}{AIR}})}
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00069}00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ objects-\/>push\_back(\textcolor{keyword}{new}\ \mbox{\hyperlink{class_collectable}{Collectable}}(1,\ \mbox{\hyperlink{class_entity_ad329967c418fc97aae4745b68adebb11}{pos}},\ \mbox{\hyperlink{class_object_a8f0f94d918a9895dcf9e72d14b79a6b4}{backgroundSpeed}}));}
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00070}00070\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_object_a0637c58ae14ffe525de737632fa7b01c}{del}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00071}00071\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00072}00072\ }
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00073}00073\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ i'm\ a\ \_\_\_}}
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00074}00074\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 2:}
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00075}00075\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ i'm\ a\ land\ \_\_\_}}
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00076}00076\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{class_object_a8137cf4265bcaaf2fc7c91a9ccd8e4f4}{type}}\ ==\ \mbox{\hyperlink{class_object_aa30bdbe3657d9756611172b5f4ffcedfa5c76a9d1866a04538f64c9871e342452}{LAND}})}
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00077}00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ objects-\/>push\_back(\textcolor{keyword}{new}\ \mbox{\hyperlink{class_collectable}{Collectable}}(1,\ \mbox{\hyperlink{class_entity_ad329967c418fc97aae4745b68adebb11}{pos}},\ \mbox{\hyperlink{class_object_a8f0f94d918a9895dcf9e72d14b79a6b4}{backgroundSpeed}}));}
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00078}00078\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_object_a0637c58ae14ffe525de737632fa7b01c}{del}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00079}00079\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00080}00080\ }
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00081}00081\ \ \ \ \ \ \ \ \ \textcolor{comment}{//If\ i'm\ an\ \_\_\_}}
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00082}00082\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 8:}
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00083}00083\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ i'm\ a\ land\ \_\_\_}}
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00084}00084\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{class_object_a8137cf4265bcaaf2fc7c91a9ccd8e4f4}{type}}\ ==\ \mbox{\hyperlink{class_object_aa30bdbe3657d9756611172b5f4ffcedfa5c76a9d1866a04538f64c9871e342452}{LAND}})}
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00085}00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ objects-\/>push\_back(\textcolor{keyword}{new}\ \mbox{\hyperlink{class_collectable}{Collectable}}(0,\ \mbox{\hyperlink{class_entity_ad329967c418fc97aae4745b68adebb11}{pos}},\ \mbox{\hyperlink{class_object_a8f0f94d918a9895dcf9e72d14b79a6b4}{backgroundSpeed}}));}
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00086}00086\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_object_a0637c58ae14ffe525de737632fa7b01c}{del}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00088}00088\ }
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00089}00089\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Otherwise\ do\ nothing}}
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00090}00090\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00091}00091\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_object_a0637c58ae14ffe525de737632fa7b01c}{del}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00093}00093\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00094}00094\ }
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00095}00095\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Then\ spawn\ an\ explosion\ on\ my\ position}}
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00096}00096\ \ \ \ \ \ \ \ \ objects-\/>push\_back(\textcolor{keyword}{new}\ \mbox{\hyperlink{class_explosion}{Explosion}}(\mbox{\hyperlink{class_entity_ad329967c418fc97aae4745b68adebb11}{pos}},\ 0));}
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00097}00097\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_enemy_8cpp_source_l00098}00098\ \}}
+
+\end{DoxyCode}

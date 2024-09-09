@@ -1,0 +1,23 @@
+digraph "Air::update"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="LR";
+  Node1 [id="Node000001",label="Air::update",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [id="edge1_Node000001_Node000002",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="Enemy::enemyUpdate",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_enemy.html#a53de27316ac6453fd0ce66999ff92694",tooltip=" "];
+  Node2 -> Node3 [id="edge2_Node000002_Node000003",color="steelblue1",style="solid",tooltip=" "];
+  Node3 [id="Node000003",label="Object::nextFrame",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_object.html#aec9c0d84c1043f54de40f2863ec9c2fc",tooltip="This animator allows for different frame changes."];
+  Node2 -> Node4 [id="edge3_Node000002_Node000004",color="steelblue1",style="solid",tooltip=" "];
+  Node4 [id="Node000004",label="Object::objectUpdate",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_object.html#a9ae70955ceef5287048fcf627efb97e3",tooltip="Calls Object::move(winSize) (??? what is the point?)"];
+  Node4 -> Node5 [id="edge4_Node000004_Node000005",color="steelblue1",style="solid",tooltip=" "];
+  Node5 [id="Node000005",label="Object::move",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_object.html#a6077158280beade62fcb3e72f5946402",tooltip=" "];
+  Node2 -> Node6 [id="edge5_Node000002_Node000006",color="steelblue1",style="solid",tooltip=" "];
+  Node6 [id="Node000006",label="Object::outOfBounds",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_object.html#ab020d1ea9452f936dc258bc47392d777",tooltip="Returns if any part of an object is outside the viewing area."];
+  Node1 -> Node7 [id="edge6_Node000001_Node000007",color="steelblue1",style="solid",tooltip=" "];
+  Node7 [id="Node000007",label="Object::flagDelete",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_object.html#ad87fbb2ee8bc411982a421329c960874",tooltip=" "];
+  Node1 -> Node8 [id="edge7_Node000001_Node000008",color="steelblue1",style="solid",tooltip=" "];
+  Node8 [id="Node000008",label="Object::shouldDelete",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_object.html#af864dbd38aa32473d8964f113d0b20c1",tooltip=" "];
+}

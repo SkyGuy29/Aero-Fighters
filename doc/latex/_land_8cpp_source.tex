@@ -1,0 +1,236 @@
+\doxysection{Land.\+cpp}
+\hypertarget{_land_8cpp_source}{}\label{_land_8cpp_source}\index{src/Object/Enemy/Land/Land.cpp@{src/Object/Enemy/Land/Land.cpp}}
+\mbox{\hyperlink{_land_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_land_8h}{Land.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00004}\mbox{\hyperlink{class_land_a4488e126e7b40ffd3ad4fc367f110026}{00004}}\ \mbox{\hyperlink{class_land_a4488e126e7b40ffd3ad4fc367f110026}{Land::Land}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{short}\ \textcolor{keywordtype}{id},\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ left,}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00005}00005\ \ \ \ \ \textcolor{keywordtype}{float}*\ backgroundSpeed,}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00006}00006\ \ \ \ \ std::vector<Object*>*\ objects,\ \textcolor{keyword}{const}\ sf::Vector2f\ pos,}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00007}00007\ \ \ \ \ \textcolor{keyword}{const}\ sf::Vector2f\ vel,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ levelEditor}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00008}00008\ )}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00009}00009\ \ \ \ \ :\ \mbox{\hyperlink{class_enemy}{Enemy}}(id,\ left,\ pos,\ levelEditor\ ?\ sf::Vector2f(0,0)\ :\ vel,\ levelEditor)}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00010}00010\ \{}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00011}00011\ \ \ \ \ \mbox{\hyperlink{class_object_a8137cf4265bcaaf2fc7c91a9ccd8e4f4}{type}}\ =\ \mbox{\hyperlink{class_object_aa30bdbe3657d9756611172b5f4ffcedfa5c76a9d1866a04538f64c9871e342452}{LAND}};}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00013}00013\ \ \ \ \ this-\/>backgroundSpeed\ =\ \mbox{\hyperlink{class_object_a8f0f94d918a9895dcf9e72d14b79a6b4}{backgroundSpeed}};}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00014}00014\ \ \ \ \ target\ =\ rand()\ \%\ 2;}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00016}00016\ \ \ \ \ \textcolor{comment}{//All\ regular\ enemies\ are\ 32\ x\ 32}}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00017}00017\ \ \ \ \ \mbox{\hyperlink{class_object_aa9a24f326a7837ce7be255c436bb90f0}{setSize}}(32,\ 32);}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00018}00018\ \ \ \ \ \mbox{\hyperlink{class_object_a23ab535f9688d797674919157763c6ee}{setOrientation}}(0);}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00020}00020\ \ \ \ \ \textcolor{keywordflow}{switch}\ (\textcolor{keywordtype}{id})}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00021}00021\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00022}00022\ \ \ \ \ \ \ \ \ \textcolor{comment}{//ENGLAND}}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00023}00023\ \ \ \ \ \textcolor{keywordflow}{case}\ -\/1:\ \textcolor{comment}{//Tank\ Bottom}}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00024}00024\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_enemy_aedd5e7bf8ef07ee97be433c853a10d8d}{health}}\ =\ 99;}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00025}00025\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_object_a004999d115ca15135a66ee9dca51693c}{setSpriteNum}}(0);}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00027}00027\ \ \ \ \ \ \ \ \ angle\ =\ atan(\mbox{\hyperlink{class_entity_aa84a7361118f092029908d97188374f3}{vel}}.y\ /\ \mbox{\hyperlink{class_entity_aa84a7361118f092029908d97188374f3}{vel}}.x);}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00028}00028\ \ \ \ \ \ \ \ \ angle\ /=\ \mbox{\hyperlink{class_object_abdeb829aa5527c6fbd305b34656d0a60}{PI}};}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00029}00029\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_entity_aa84a7361118f092029908d97188374f3}{vel}}.x\ <\ 0)}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00030}00030\ \ \ \ \ \ \ \ \ \ \ \ \ angle\ +=\ 1;}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00031}00031\ \ \ \ \ \ \ \ \ angle\ +=\ .5;}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00032}00032\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (angle\ <\ 0)}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00033}00033\ \ \ \ \ \ \ \ \ \ \ \ \ angle\ +=\ 2;}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00034}00034\ \ \ \ \ \ \ \ \ angle\ *=\ 8;}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00036}00036\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_object_a23ab535f9688d797674919157763c6ee}{setOrientation}}((\textcolor{keywordtype}{int})angle);}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00038}00038\ \ \ \ \ \ \ \ \ topPart\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_land_a4488e126e7b40ffd3ad4fc367f110026}{Land}}(1,\ \mbox{\hyperlink{class_enemy_a21d97250b5e8befe6d02aeeb0bb36de3}{left}},\ \mbox{\hyperlink{class_object_a8f0f94d918a9895dcf9e72d14b79a6b4}{backgroundSpeed}},\ objects,}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00039}00039\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_entity_ad329967c418fc97aae4745b68adebb11}{pos}},\ \mbox{\hyperlink{class_entity_aa84a7361118f092029908d97188374f3}{vel}},\ \mbox{\hyperlink{class_enemy_a586ab31ee88fe7bf100413374a25d24b}{levelEditor}});\ \textcolor{comment}{//Creates\ the\ top}}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00040}00040\ \ \ \ \ \ \ \ \ objects-\/>push\_back(topPart);}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00041}00041\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00042}00042\ \ \ \ \ \textcolor{keywordflow}{case}\ 0:\ \textcolor{comment}{//Weak\ Tank}}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00043}00043\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_enemy_aedd5e7bf8ef07ee97be433c853a10d8d}{health}}\ =\ 1;}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00044}00044\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_object_a004999d115ca15135a66ee9dca51693c}{setSpriteNum}}(1);}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00045}00045\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_object_a23ab535f9688d797674919157763c6ee}{setOrientation}}(7);}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00046}00046\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00047}00047\ \ \ \ \ \textcolor{keywordflow}{case}\ 1:\ \textcolor{comment}{//STRONG\ Tank}}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00048}00048\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_enemy_aedd5e7bf8ef07ee97be433c853a10d8d}{health}}\ =\ 5;}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00049}00049\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_object_a004999d115ca15135a66ee9dca51693c}{setSpriteNum}}(2);}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00050}00050\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_object_a23ab535f9688d797674919157763c6ee}{setOrientation}}(7);}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00051}00051\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00052}00052\ \ \ \ \ \textcolor{keywordflow}{case}\ 2:\ \textcolor{comment}{//fort\ building}}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00053}00053\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_entity_a4cac955655798b026f287d369a37220b}{cooldown}}\ =\ 100;}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00054}00054\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_enemy_aedd5e7bf8ef07ee97be433c853a10d8d}{health}}\ =\ 90;}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00055}00055\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_object_aa9a24f326a7837ce7be255c436bb90f0}{setSize}}(60,\ 60);}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00056}00056\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_object_a004999d115ca15135a66ee9dca51693c}{setSpriteNum}}(20);}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00057}00057\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00058}00058\ \ \ \ \ \textcolor{keywordflow}{case}\ 3:\ \textcolor{comment}{//roofus}}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00059}00059\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_enemy_aedd5e7bf8ef07ee97be433c853a10d8d}{health}}\ =\ 30;}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00060}00060\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_object_aa9a24f326a7837ce7be255c436bb90f0}{setSize}}(60,\ 60);}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00061}00061\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_object_a004999d115ca15135a66ee9dca51693c}{setSpriteNum}}(25);}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00062}00062\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00063}00063\ \ \ \ \ \textcolor{keywordflow}{case}\ 9:\ \textcolor{comment}{//cone}}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00064}00064\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_enemy_aedd5e7bf8ef07ee97be433c853a10d8d}{health}}\ =\ 30;}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00065}00065\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_object_aa9a24f326a7837ce7be255c436bb90f0}{setSize}}(60,\ 60);}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00066}00066\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_object_a004999d115ca15135a66ee9dca51693c}{setSpriteNum}}(24);}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00067}00067\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00068}00068\ \ \ \ \ \textcolor{keywordflow}{case}\ 4:\ \textcolor{comment}{//house}}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00069}00069\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_enemy_aedd5e7bf8ef07ee97be433c853a10d8d}{health}}\ =\ 5;}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00070}00070\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_object_aa9a24f326a7837ce7be255c436bb90f0}{setSize}}(75,\ 50);}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00071}00071\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_object_a004999d115ca15135a66ee9dca51693c}{setSpriteNum}}(19);}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00072}00072\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00073}00073\ \ \ \ \ \textcolor{keywordflow}{case}\ 5:\ \textcolor{comment}{//road\ gate}}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00074}00074\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_enemy_aedd5e7bf8ef07ee97be433c853a10d8d}{health}}\ =\ 10;}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00075}00075\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_object_aa9a24f326a7837ce7be255c436bb90f0}{setSize}}(35,\ 35);}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00076}00076\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_object_a004999d115ca15135a66ee9dca51693c}{setSpriteNum}}(22);}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00077}00077\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00078}00078\ \ \ \ \ \textcolor{keywordflow}{case}\ 6:\ \textcolor{comment}{//Hangar}}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00079}00079\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_enemy_aedd5e7bf8ef07ee97be433c853a10d8d}{health}}\ =\ 30;}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00080}00080\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_object_aa9a24f326a7837ce7be255c436bb90f0}{setSize}}(80,\ 100);}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00081}00081\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_object_a004999d115ca15135a66ee9dca51693c}{setSpriteNum}}(23);}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00082}00082\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00083}00083\ \ \ \ \ \ \ \ \ \textcolor{comment}{//SWEDEN}}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00084}00084\ \ \ \ \ \textcolor{keywordflow}{case}\ 7:\ \textcolor{comment}{//mountain\ base}}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00085}00085\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_enemy_aedd5e7bf8ef07ee97be433c853a10d8d}{health}}\ =\ 10;}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00086}00086\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_object_aa9a24f326a7837ce7be255c436bb90f0}{setSize}}(50,\ 50);}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00087}00087\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_entity_a4cac955655798b026f287d369a37220b}{cooldown}}\ =\ 100;}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00088}00088\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00089}00089\ \ \ \ \ \textcolor{keywordflow}{case}\ 8:\ \textcolor{comment}{//landmine}}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00090}00090\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_enemy_aedd5e7bf8ef07ee97be433c853a10d8d}{health}}\ =\ 3;\ \textcolor{comment}{//\ Moving\ to\ be\ a\ Tile\ Entity}}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00091}00091\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_object_adc3c0e750a7f1b69b70ddb00ddbe59be}{timer}}\ =\ 7;}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00092}00092\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_object_a004999d115ca15135a66ee9dca51693c}{setSpriteNum}}(15);}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00093}00093\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00094}00094\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00095}00095\ }
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00096}00096\ \ \ \ \ \mbox{\hyperlink{class_object_a548162681111448527fb64c36dfca06f}{sprite}}.setSize(\mbox{\hyperlink{class_object_a7759c83a62b6a4b1f5d8a67fdc58b2e1}{size}});}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00097}00097\ \ \ \ \ \mbox{\hyperlink{class_object_a548162681111448527fb64c36dfca06f}{sprite}}.setOrigin(\mbox{\hyperlink{class_object_a7759c83a62b6a4b1f5d8a67fdc58b2e1}{size}}\ /\ 2.f);}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00098}00098\ \}}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00099}00099\ }
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00100}\mbox{\hyperlink{class_land_a82f318af9a42680b029b77966ad79459}{00100}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_land_a82f318af9a42680b029b77966ad79459}{Land::update}}(\textcolor{keyword}{const}\ sf::Vector2f\ winSize,\ std::vector<Object*>*\ objects,}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00101}00101\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ time)}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00102}00102\ \{}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00103}00103\ \ \ \ \ \mbox{\hyperlink{class_enemy_a53de27316ac6453fd0ce66999ff92694}{enemyUpdate}}(winSize,\ objects);}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00104}00104\ \ \ \ \ \textcolor{comment}{//Do\ things\ here\ only\ while\ time\ is\ moving.}}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00105}00105\ }
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00106}00106\ \ \ \ \ \textcolor{keywordflow}{if}\ (time\ !=\ 0)}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00107}00107\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00108}00108\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_object_a2149267e41bbb91d03d23eeb95caf8df}{setPos}}(\mbox{\hyperlink{class_object_a6c18e49c4c21c3d99ac214044202eb4c}{getPos}}().x,\ \mbox{\hyperlink{class_object_a6c18e49c4c21c3d99ac214044202eb4c}{getPos}}().y\ +\ *\mbox{\hyperlink{class_object_a8f0f94d918a9895dcf9e72d14b79a6b4}{backgroundSpeed}});}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00109}00109\ }
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00110}00110\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_entity_a4cac955655798b026f287d369a37220b}{cooldown}}\ !=\ 0)}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00111}00111\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_entity_a4cac955655798b026f287d369a37220b}{cooldown}}-\/-\/;}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00112}00112\ }
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00113}00113\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_object_adc3c0e750a7f1b69b70ddb00ddbe59be}{timer}}\ !=\ 0)}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00114}00114\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_object_adc3c0e750a7f1b69b70ddb00ddbe59be}{timer}}-\/-\/;}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00115}00115\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00116}00116\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (\textcolor{keywordtype}{id})}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00117}00117\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00118}00118\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ -\/1:\ \textcolor{comment}{//Tank\ bottom}}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00119}00119\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_object_a8137cf4265bcaaf2fc7c91a9ccd8e4f4}{type}}\ =\ \mbox{\hyperlink{class_object_aa30bdbe3657d9756611172b5f4ffcedfaebc42d3e8a59ee83e897c37286bc0801}{HIDDEN}};}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00120}00120\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (topPart\ !=\ \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00121}00121\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00122}00122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (topPart-\/>\mbox{\hyperlink{class_object_af864dbd38aa32473d8964f113d0b20c1}{shouldDelete}}())}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00123}00123\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00124}00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ topPart\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00125}00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_object_a5dd0a101abd877b8d7311c10cab4c145}{texInit}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00126}00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_object_a8137cf4265bcaaf2fc7c91a9ccd8e4f4}{type}}\ =\ \mbox{\hyperlink{class_object_aa30bdbe3657d9756611172b5f4ffcedfa5c76a9d1866a04538f64c9871e342452}{LAND}};}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_object_a004999d115ca15135a66ee9dca51693c}{setSpriteNum}}(17);}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_object_a23ab535f9688d797674919157763c6ee}{setOrientation}}(\mbox{\hyperlink{class_entity_af761b48c7f05a79b16a00df52d48fce0}{orientation}}\ \%\ 8);}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_entity_aa84a7361118f092029908d97188374f3}{vel}}\ =\ sf::Vector2f(0,\ 0);}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00130}00130\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00131}00131\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00132}00132\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00133}00133\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 0:\ \textcolor{keywordflow}{case}\ 1:\ \textcolor{comment}{//Tank\ top}}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00134}00134\ \ \ \ \ \ \ \ \ \ \ \ \ distance\ =\ objects-\/>at(target)-\/>getPos()\ -\/\ \mbox{\hyperlink{class_object_a6c18e49c4c21c3d99ac214044202eb4c}{getPos}}();}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00135}00135\ \ \ \ \ \ \ \ \ \ \ \ \ magnitude\ =\ sqrt((distance.x\ *\ distance.x)\ +\ (distance.y\ }
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00136}00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *\ distance.y));}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00137}00137\ \ \ \ \ \ \ \ \ \ \ \ \ projVelocity\ =\ sf::Vector2f(2\ *\ distance.x\ /\ magnitude,\ }
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00138}00138\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 2\ *\ distance.y\ /\ magnitude);}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00139}00139\ }
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00140}00140\ \ \ \ \ \ \ \ \ \ \ \ \ angle\ =\ atan(projVelocity.y\ /\ projVelocity.x);}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00141}00141\ \ \ \ \ \ \ \ \ \ \ \ \ angle\ /=\ \mbox{\hyperlink{class_object_abdeb829aa5527c6fbd305b34656d0a60}{PI}};}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00142}00142\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (distance.x\ <\ 0)}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00143}00143\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ angle\ +=\ 1;}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00144}00144\ \ \ \ \ \ \ \ \ \ \ \ \ angle\ +=\ .5f;}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00145}00145\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (angle\ <\ 0)}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00146}00146\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ angle\ +=\ 2;}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00147}00147\ \ \ \ \ \ \ \ \ \ \ \ \ angle\ *=\ 8;}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00148}00148\ }
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00149}00149\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_entity_af761b48c7f05a79b16a00df52d48fce0}{orientation}}\ !=\ (\textcolor{keywordtype}{int})\ angle\ \&\&\ \mbox{\hyperlink{class_object_adc3c0e750a7f1b69b70ddb00ddbe59be}{timer}}\ ==\ 0)}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00150}00150\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00151}00151\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_object_adc3c0e750a7f1b69b70ddb00ddbe59be}{timer}}\ =\ 15;}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00152}00152\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_entity_af761b48c7f05a79b16a00df52d48fce0}{orientation}}\ -\/\ (\textcolor{keywordtype}{int})angle\ <\ 0)}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00153}00153\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_object_a23ab535f9688d797674919157763c6ee}{setOrientation}}(\mbox{\hyperlink{class_entity_af761b48c7f05a79b16a00df52d48fce0}{orientation}}\ +\ 1);}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00154}00154\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00155}00155\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_object_a23ab535f9688d797674919157763c6ee}{setOrientation}}(\mbox{\hyperlink{class_entity_af761b48c7f05a79b16a00df52d48fce0}{orientation}}\ -\/\ 1);}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00156}00156\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00157}00157\ }
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00158}00158\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Shoot\ at\ target\ player}}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00159}00159\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{class_entity_a4cac955655798b026f287d369a37220b}{cooldown}}\ \&\&\ \mbox{\hyperlink{class_enemy_a60cd24cb36c9afb6d6a7f68c42930deb}{entered}}\ \&\&\ \mbox{\hyperlink{class_entity_af761b48c7f05a79b16a00df52d48fce0}{orientation}}\ ==\ (\textcolor{keywordtype}{int})\ angle)}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00160}00160\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00161}00161\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_entity_ad329967c418fc97aae4745b68adebb11}{pos}}.y\ -\/=\ 0.5f;}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00162}00162\ }
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00163}00163\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ objects-\/>push\_back(\textcolor{keyword}{new}\ \mbox{\hyperlink{class_projectile}{Projectile}}(\mbox{\hyperlink{class_object_a6c18e49c4c21c3d99ac214044202eb4c}{getPos}}().x,\ \mbox{\hyperlink{class_object_a6c18e49c4c21c3d99ac214044202eb4c}{getPos}}().y,}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00164}00164\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ projVelocity,\ sf::Vector2f(10,\ 10),\ ProjectileType::Basic,\ \textcolor{keyword}{false},\ 0,\ 0,\ 12));}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00165}00165\ }
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00166}00166\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_entity_a4cac955655798b026f287d369a37220b}{cooldown}}\ =\ 100\ +\ rand()\ \%\ 50;}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00167}00167\ }
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00168}00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ target\ =\ !target;}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00169}00169\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00170}00170\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00171}00171\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 2:\ \textcolor{comment}{//Building\ Shoot\ }}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00172}00172\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{class_entity_a4cac955655798b026f287d369a37220b}{cooldown}})}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00173}00173\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00174}00174\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_entity_ad329967c418fc97aae4745b68adebb11}{pos}}.y\ -\/=\ 0.5f;}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00175}00175\ }
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00176}00176\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_entity_a4cac955655798b026f287d369a37220b}{cooldown}}\ =\ 100;}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00177}00177\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ objects-\/>push\_back(\textcolor{keyword}{new}\ \mbox{\hyperlink{class_projectile}{Projectile}}(\mbox{\hyperlink{class_object_a6c18e49c4c21c3d99ac214044202eb4c}{getPos}}().x,\ \mbox{\hyperlink{class_object_a6c18e49c4c21c3d99ac214044202eb4c}{getPos}}().y,}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00178}00178\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sf::Vector2f(1.84776f,\ 0.76537f),\ sf::Vector2f(10,\ 10),\ ProjectileType::Basic,}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00179}00179\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{false},\ 0,\ 0,\ 12));}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00180}00180\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ objects-\/>push\_back(\textcolor{keyword}{new}\ \mbox{\hyperlink{class_projectile}{Projectile}}(\mbox{\hyperlink{class_object_a6c18e49c4c21c3d99ac214044202eb4c}{getPos}}().x,\ \mbox{\hyperlink{class_object_a6c18e49c4c21c3d99ac214044202eb4c}{getPos}}().y,}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00181}00181\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sf::Vector2f(-\/1.84776f,\ -\/0.76537f),\ sf::Vector2f(10,\ 10),\ ProjectileType::Basic,}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00182}00182\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{false},\ 0,\ 0,\ 12));}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00183}00183\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ objects-\/>push\_back(\textcolor{keyword}{new}\ \mbox{\hyperlink{class_projectile}{Projectile}}(\mbox{\hyperlink{class_object_a6c18e49c4c21c3d99ac214044202eb4c}{getPos}}().x,\ \mbox{\hyperlink{class_object_a6c18e49c4c21c3d99ac214044202eb4c}{getPos}}().y,}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00184}00184\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sf::Vector2f(-\/1.84776f,\ 0.76537f),\ sf::Vector2f(10,\ 10),\ ProjectileType::Basic,}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00185}00185\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{false},\ 0,\ 0,\ 12));}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00186}00186\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ objects-\/>push\_back(\textcolor{keyword}{new}\ \mbox{\hyperlink{class_projectile}{Projectile}}(\mbox{\hyperlink{class_object_a6c18e49c4c21c3d99ac214044202eb4c}{getPos}}().x,\ \mbox{\hyperlink{class_object_a6c18e49c4c21c3d99ac214044202eb4c}{getPos}}().y,}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00187}00187\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sf::Vector2f(1.84776f,\ -\/0.76537f),\ sf::Vector2f(10,\ 10),\ ProjectileType::Basic,}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00188}00188\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{false},\ 0,\ 0,\ 12));}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00189}00189\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ objects-\/>push\_back(\textcolor{keyword}{new}\ \mbox{\hyperlink{class_projectile}{Projectile}}(\mbox{\hyperlink{class_object_a6c18e49c4c21c3d99ac214044202eb4c}{getPos}}().x,\ \mbox{\hyperlink{class_object_a6c18e49c4c21c3d99ac214044202eb4c}{getPos}}().y,}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00190}00190\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sf::Vector2f(0.76537f,\ 1.84776f),\ sf::Vector2f(10,\ 10),\ ProjectileType::Basic,}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00191}00191\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{false},\ 0,\ 0,\ 12));}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00192}00192\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ objects-\/>push\_back(\textcolor{keyword}{new}\ \mbox{\hyperlink{class_projectile}{Projectile}}(\mbox{\hyperlink{class_object_a6c18e49c4c21c3d99ac214044202eb4c}{getPos}}().x,\ \mbox{\hyperlink{class_object_a6c18e49c4c21c3d99ac214044202eb4c}{getPos}}().y,}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00193}00193\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sf::Vector2f(-\/0.76537f,\ -\/1.84776f),\ sf::Vector2f(10,\ 10),\ ProjectileType::Basic,}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00194}00194\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{false},\ 0,\ 0,\ 12));}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00195}00195\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ objects-\/>push\_back(\textcolor{keyword}{new}\ \mbox{\hyperlink{class_projectile}{Projectile}}(\mbox{\hyperlink{class_object_a6c18e49c4c21c3d99ac214044202eb4c}{getPos}}().x,\ \mbox{\hyperlink{class_object_a6c18e49c4c21c3d99ac214044202eb4c}{getPos}}().y,}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00196}00196\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sf::Vector2f(-\/0.76537f,\ 1.84776f),\ sf::Vector2f(10,\ 10),\ ProjectileType::Basic,}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00197}00197\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{false},\ 0,\ 0,\ 12));}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00198}00198\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ objects-\/>push\_back(\textcolor{keyword}{new}\ \mbox{\hyperlink{class_projectile}{Projectile}}(\mbox{\hyperlink{class_object_a6c18e49c4c21c3d99ac214044202eb4c}{getPos}}().x,\ \mbox{\hyperlink{class_object_a6c18e49c4c21c3d99ac214044202eb4c}{getPos}}().y,}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00199}00199\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sf::Vector2f(0.76537f,\ -\/1.84776f),\ sf::Vector2f(10,\ 10),\ ProjectileType::Basic,}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00200}00200\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{false},\ 0,\ 0,\ 12));}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00201}00201\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00202}00202\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00203}00203\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 7:\ \textcolor{comment}{//Hangar}}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00204}00204\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{class_entity_a4cac955655798b026f287d369a37220b}{cooldown}}\ \&\&\ \mbox{\hyperlink{class_enemy_a60cd24cb36c9afb6d6a7f68c42930deb}{entered}})}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00205}00205\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00206}00206\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_entity_a4cac955655798b026f287d369a37220b}{cooldown}}\ =\ 100;}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00207}00207\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*objects-\/>push\_back(new\ Air(0,\ true,\ winSize,\ objects,}}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00208}00208\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pos,\ sf::Vector2f(0,\ 5)));*/}}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00209}00209\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00210}00210\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00211}00211\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 8:\ \textcolor{comment}{//Landmines}}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00212}00212\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{class_object_adc3c0e750a7f1b69b70ddb00ddbe59be}{timer}}\ \&\&\ \mbox{\hyperlink{class_entity_af761b48c7f05a79b16a00df52d48fce0}{orientation}}\ <\ 5\ \&\&\ \mbox{\hyperlink{class_object_a0637c58ae14ffe525de737632fa7b01c}{del}}\ ==\ \textcolor{keyword}{false}\ \&\&\ \mbox{\hyperlink{class_enemy_a60cd24cb36c9afb6d6a7f68c42930deb}{entered}})}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00213}00213\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00214}00214\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_object_a23ab535f9688d797674919157763c6ee}{setOrientation}}(\mbox{\hyperlink{class_entity_af761b48c7f05a79b16a00df52d48fce0}{orientation}}\ +\ 1);}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00215}00215\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_object_adc3c0e750a7f1b69b70ddb00ddbe59be}{timer}}\ =\ 7;}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00216}00216\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00217}00217\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_entity_af761b48c7f05a79b16a00df52d48fce0}{orientation}}\ ==\ 6)}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00218}00218\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_object_a8137cf4265bcaaf2fc7c91a9ccd8e4f4}{type}}\ =\ \mbox{\hyperlink{class_object_aa30bdbe3657d9756611172b5f4ffcedfaebc42d3e8a59ee83e897c37286bc0801}{HIDDEN}};}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00219}00219\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_object_a0637c58ae14ffe525de737632fa7b01c}{del}}\ ==\ \textcolor{keyword}{true})}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00220}00220\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00221}00221\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_object_a0637c58ae14ffe525de737632fa7b01c}{del}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00222}00222\ }
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00223}00223\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_object_a23ab535f9688d797674919157763c6ee}{setOrientation}}(6);}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00224}00224\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_enemy_aedd5e7bf8ef07ee97be433c853a10d8d}{health}}\ =\ 999;}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00225}00225\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_object_a5dd0a101abd877b8d7311c10cab4c145}{texInit}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00226}00226\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00227}00227\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00228}00228\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00229}00229\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_land_8cpp_source_l00230}00230\ \}}
+
+\end{DoxyCode}

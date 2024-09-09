@@ -1,0 +1,69 @@
+\doxysection{Variable\+Array.\+h}
+\hypertarget{_variable_array_8h_source}{}\label{_variable_array_8h_source}\index{src/Utility/Array/VariableArray.h@{src/Utility/Array/VariableArray.h}}
+\mbox{\hyperlink{_variable_array_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_variable_array_8h_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{_variable_array_8h_source_l00002}00002\ \textcolor{preprocessor}{\#include\ <stdexcept>}}
+\DoxyCodeLine{\Hypertarget{_variable_array_8h_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{_variable_array_8h_source_l00018}00018\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ RAW\_TYPE,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ TOTAL\_ELEMENTS,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ TOTAL\_UNIQUE\_OBJECTS>}
+\DoxyCodeLine{\Hypertarget{_variable_array_8h_source_l00019}\mbox{\hyperlink{class_variable_array}{00019}}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_variable_array}{VariableArray}}}
+\DoxyCodeLine{\Hypertarget{_variable_array_8h_source_l00020}00020\ \{}
+\DoxyCodeLine{\Hypertarget{_variable_array_8h_source_l00021}00021\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_variable_array_8h_source_l00027}\mbox{\hyperlink{struct_variable_array_1_1_spacing_element}{00027}}\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_variable_array_1_1_spacing_element}{SpacingElement}}}
+\DoxyCodeLine{\Hypertarget{_variable_array_8h_source_l00028}00028\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_variable_array_8h_source_l00029}00029\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ This\ elements\ starting\ index}}
+\DoxyCodeLine{\Hypertarget{_variable_array_8h_source_l00030}\mbox{\hyperlink{struct_variable_array_1_1_spacing_element_a6fb2af3eef2fdcf25313b5369c5c24c9}{00030}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{struct_variable_array_1_1_spacing_element_a6fb2af3eef2fdcf25313b5369c5c24c9}{STARTING\_INDEX}};}
+\DoxyCodeLine{\Hypertarget{_variable_array_8h_source_l00031}00031\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ This\ elements\ ending\ index}}
+\DoxyCodeLine{\Hypertarget{_variable_array_8h_source_l00032}\mbox{\hyperlink{struct_variable_array_1_1_spacing_element_a57d024a47e2e8c030dc4b4c96c47cb30}{00032}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{struct_variable_array_1_1_spacing_element_a57d024a47e2e8c030dc4b4c96c47cb30}{ENDING\_INDEX}};}
+\DoxyCodeLine{\Hypertarget{_variable_array_8h_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{_variable_array_8h_source_l00041}\mbox{\hyperlink{struct_variable_array_1_1_spacing_element_a51b67ce84e76d5804fa6e5168c63f4dc}{00041}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{struct_variable_array_1_1_spacing_element_a51b67ce84e76d5804fa6e5168c63f4dc}{SpacingElement}}(}
+\DoxyCodeLine{\Hypertarget{_variable_array_8h_source_l00042}00042\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{struct_variable_array_1_1_spacing_element_a6fb2af3eef2fdcf25313b5369c5c24c9}{STARTING\_INDEX}},}
+\DoxyCodeLine{\Hypertarget{_variable_array_8h_source_l00043}00043\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{struct_variable_array_1_1_spacing_element_a57d024a47e2e8c030dc4b4c96c47cb30}{ENDING\_INDEX}}}
+\DoxyCodeLine{\Hypertarget{_variable_array_8h_source_l00044}00044\ \ \ \ \ \ \ \ \ )\ :\ \mbox{\hyperlink{struct_variable_array_1_1_spacing_element_a6fb2af3eef2fdcf25313b5369c5c24c9}{STARTING\_INDEX}}(\mbox{\hyperlink{struct_variable_array_1_1_spacing_element_a6fb2af3eef2fdcf25313b5369c5c24c9}{STARTING\_INDEX}}),\ \mbox{\hyperlink{struct_variable_array_1_1_spacing_element_a57d024a47e2e8c030dc4b4c96c47cb30}{ENDING\_INDEX}}(\mbox{\hyperlink{struct_variable_array_1_1_spacing_element_a57d024a47e2e8c030dc4b4c96c47cb30}{ENDING\_INDEX}})\ \{\}}
+\DoxyCodeLine{\Hypertarget{_variable_array_8h_source_l00045}00045\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{_variable_array_8h_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{_variable_array_8h_source_l00051}\mbox{\hyperlink{struct_variable_array_1_1_return_data}{00051}}\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_variable_array_1_1_return_data}{ReturnData}}}
+\DoxyCodeLine{\Hypertarget{_variable_array_8h_source_l00052}00052\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_variable_array_8h_source_l00053}00053\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ beginning\ of\ the\ sub-\/array}}
+\DoxyCodeLine{\Hypertarget{_variable_array_8h_source_l00054}\mbox{\hyperlink{struct_variable_array_1_1_return_data_a0bedb7fa70f515d71054798bc131dda3}{00054}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ RAW\_TYPE*\ \mbox{\hyperlink{struct_variable_array_1_1_return_data_a0bedb7fa70f515d71054798bc131dda3}{DATA}};}
+\DoxyCodeLine{\Hypertarget{_variable_array_8h_source_l00055}00055\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ length\ of\ the\ sub-\/array}}
+\DoxyCodeLine{\Hypertarget{_variable_array_8h_source_l00056}\mbox{\hyperlink{struct_variable_array_1_1_return_data_a3ba96cdba4a72225c0bb094599920966}{00056}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{struct_variable_array_1_1_return_data_a3ba96cdba4a72225c0bb094599920966}{COUNT}};}
+\DoxyCodeLine{\Hypertarget{_variable_array_8h_source_l00057}00057\ }
+\DoxyCodeLine{\Hypertarget{_variable_array_8h_source_l00058}00058\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Can\ only\ be\ constructed\ by\ the\ VariableArray}}
+\DoxyCodeLine{\Hypertarget{_variable_array_8h_source_l00059}\mbox{\hyperlink{struct_variable_array_1_1_return_data_ac34cacf35ef5b4b8256c6759ec5dcb84}{00059}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_variable_array_1_1_return_data_ac34cacf35ef5b4b8256c6759ec5dcb84}{ReturnData}}()\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{\Hypertarget{_variable_array_8h_source_l00060}00060\ }
+\DoxyCodeLine{\Hypertarget{_variable_array_8h_source_l00061}00061\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{_variable_array_8h_source_l00069}00069\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_variable_array_1_1_return_data_ac34cacf35ef5b4b8256c6759ec5dcb84}{ReturnData}}(RAW\_TYPE\&\ \mbox{\hyperlink{struct_variable_array_1_1_return_data_a0bedb7fa70f515d71054798bc131dda3}{DATA}},\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{struct_variable_array_1_1_return_data_a3ba96cdba4a72225c0bb094599920966}{COUNT}})\ :\ \mbox{\hyperlink{struct_variable_array_1_1_return_data_a0bedb7fa70f515d71054798bc131dda3}{DATA}}(\mbox{\hyperlink{struct_variable_array_1_1_return_data_a0bedb7fa70f515d71054798bc131dda3}{DATA}}),\ \mbox{\hyperlink{struct_variable_array_1_1_return_data_a3ba96cdba4a72225c0bb094599920966}{COUNT}}(\mbox{\hyperlink{struct_variable_array_1_1_return_data_a3ba96cdba4a72225c0bb094599920966}{COUNT}})\ \{\}}
+\DoxyCodeLine{\Hypertarget{_variable_array_8h_source_l00070}00070\ }
+\DoxyCodeLine{\Hypertarget{_variable_array_8h_source_l00071}00071\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Declare\ VariableArray\ as\ a\ friend\ so\ it\ can\ access\ the\ private\ constructor.}}
+\DoxyCodeLine{\Hypertarget{_variable_array_8h_source_l00072}00072\ \ \ \ \ \ \ \ \ \textcolor{keyword}{friend}\ \mbox{\hyperlink{class_variable_array}{VariableArray}};}
+\DoxyCodeLine{\Hypertarget{_variable_array_8h_source_l00073}00073\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{_variable_array_8h_source_l00074}00074\ }
+\DoxyCodeLine{\Hypertarget{_variable_array_8h_source_l00081}\mbox{\hyperlink{class_variable_array_a1ec4289a2973211da412ebbc589f58f9}{00081}}\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{class_variable_array_a1ec4289a2973211da412ebbc589f58f9}{VariableArray}}(}
+\DoxyCodeLine{\Hypertarget{_variable_array_8h_source_l00082}00082\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ RAW\_TYPE(\&rawData)[TOTAL\_UNIQUE\_OBJECTS],}
+\DoxyCodeLine{\Hypertarget{_variable_array_8h_source_l00083}00083\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_variable_array_1_1_spacing_element}{SpacingElement}}(\&spacings)[TOTAL\_ELEMENTS]}
+\DoxyCodeLine{\Hypertarget{_variable_array_8h_source_l00084}00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )\ :\ SPACING(spacings),\ DATA(rawData)\ \{\}}
+\DoxyCodeLine{\Hypertarget{_variable_array_8h_source_l00085}00085\ }
+\DoxyCodeLine{\Hypertarget{_variable_array_8h_source_l00093}\mbox{\hyperlink{class_variable_array_ab9bf8853b4d4a5dbfee67ae48086d700}{00093}}\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_variable_array_1_1_return_data}{ReturnData}}\ \mbox{\hyperlink{class_variable_array_ab9bf8853b4d4a5dbfee67ae48086d700}{at}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ index)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{_variable_array_8h_source_l00094}00094\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{\Hypertarget{_variable_array_8h_source_l00095}00095\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ we\ are\ accessing\ an\ element\ out\ of\ the\ bounds\ of\ the\ array}}
+\DoxyCodeLine{\Hypertarget{_variable_array_8h_source_l00096}00096\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (index\ <\ 0\ ||\ index\ >\ TOTAL\_ELEMENTS)}
+\DoxyCodeLine{\Hypertarget{_variable_array_8h_source_l00097}00097\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::out\_of\_range(\textcolor{stringliteral}{"{}Invalid\ Element\ Specified!"{}});}
+\DoxyCodeLine{\Hypertarget{_variable_array_8h_source_l00098}00098\ }
+\DoxyCodeLine{\Hypertarget{_variable_array_8h_source_l00099}00099\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Return\ reference\ to\ array\ index\ \&\ the\ number\ of\ elements\ it\ holds.}}
+\DoxyCodeLine{\Hypertarget{_variable_array_8h_source_l00100}00100\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{struct_variable_array_1_1_return_data}{ReturnData}}(}
+\DoxyCodeLine{\Hypertarget{_variable_array_8h_source_l00101}00101\ \ \ \ \ \ \ \ \ \ \ \ \ DATA[SPACING[index].STARTING\_INDEX],}
+\DoxyCodeLine{\Hypertarget{_variable_array_8h_source_l00102}00102\ \ \ \ \ \ \ \ \ \ \ \ \ SPACING[index].ENDING\_INDEX\ -\/\ SPACING[index].STARTING\_INDEX\ +\ 1}
+\DoxyCodeLine{\Hypertarget{_variable_array_8h_source_l00103}00103\ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{\Hypertarget{_variable_array_8h_source_l00104}00104\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_variable_array_8h_source_l00105}00105\ }
+\DoxyCodeLine{\Hypertarget{_variable_array_8h_source_l00106}00106\ }
+\DoxyCodeLine{\Hypertarget{_variable_array_8h_source_l00107}00107\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{_variable_array_8h_source_l00108}00108\ \ \ \ \ \textcolor{comment}{//\ Internal\ object\ array}}
+\DoxyCodeLine{\Hypertarget{_variable_array_8h_source_l00109}00109\ \ \ \ \ \textcolor{keyword}{const}\ RAW\_TYPE(\&DATA)[TOTAL\_UNIQUE\_OBJECTS];}
+\DoxyCodeLine{\Hypertarget{_variable_array_8h_source_l00110}00110\ }
+\DoxyCodeLine{\Hypertarget{_variable_array_8h_source_l00111}00111\ \ \ \ \ \textcolor{comment}{//\ Internal\ object\ array\ element\ bound\ data}}
+\DoxyCodeLine{\Hypertarget{_variable_array_8h_source_l00112}00112\ \ \ \ \ \textcolor{keyword}{const}\ SpacingElement(\&SPACING)[TOTAL\_ELEMENTS];}
+\DoxyCodeLine{\Hypertarget{_variable_array_8h_source_l00113}00113\ \};}
+
+\end{DoxyCode}
