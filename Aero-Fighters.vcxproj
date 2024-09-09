@@ -176,7 +176,6 @@
     <ClInclude Include="src\Entities\PowerUp\PowerUp.h" />
     <ClInclude Include="src\Entities\Interfaces\ICollidable.h" />
     <ClInclude Include="src\ControllerStuff.hpp" />
-    <ClInclude Include="src\Level\Intermediary.h" />
     <ClInclude Include="src\Object\Projectile\Explosion\Explosion.h" />
     <ClInclude Include="src\Object\Collectable\Collectable.h" />
     <ClInclude Include="src\Object\Enemy\Boss\Boss.h" />

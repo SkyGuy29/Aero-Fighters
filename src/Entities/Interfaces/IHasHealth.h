@@ -11,7 +11,7 @@ public:
 
 protected:
 	IHasHealth(EntityID ID) :
-		health(EntityData::EntityDataTable.at(ID).health) {}
+		health(EntityData::EntityDataTable.at((unsigned char)ID).DATA.health) {}
 
 	unsigned short health;
 };

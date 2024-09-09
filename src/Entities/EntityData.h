@@ -1,4 +1,6 @@
 #pragma once
+#include <SFML/Graphics.hpp>
+#include "../Utility/EntityID.h"
 #include "../Utility/Array/StaticArray.h"
 
 using cstr = const char* const;
@@ -43,10 +45,7 @@ namespace EntityData
 	// TODO: Replace with array, static_cast accessor
 	// Stores Key value pairs, the Key is the EntityID,
 	// the value is the entities data
-	const StaticArray<
-		EntityData,
-		1 //static_cast<unsigned char>(EntityID::COUNT)
-	> EntityDataTable =
+	const EntityData EntityDataTable[] =
 	{
 		{
 			EntityData {

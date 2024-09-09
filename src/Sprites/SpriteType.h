@@ -12,18 +12,17 @@ namespace sprites
 {
 	struct SpriteData
 	{
-		constexpr cstr filename;
-		constexpr Vec2f size;
-		constexpr unsigned char animationFrameCount;
+		const cstr filename;
+		const Vec2f size;
+		const unsigned char animationFrameCount;
 		unsigned char currentFrame = 0;
 
-
-		constexpr SpriteData(cstr filename, const Vec2f size,
+		const SpriteData(cstr filename, const Vec2f size,
 			const unsigned char animationFrameCount) :
 			filename(filename), size(size), animationFrameCount(animationFrameCount) {}
 	};
 
-	constexpr std::unordered_map<EntityID, SpriteData> spriteDataTable =
+	const std::unordered_map<EntityID, SpriteData> spriteDataTable =
 	{
 		{EntityID::ENEMY_AIR_BABY_COPTER, {"baby_copter_filename", {0,0}, 0}}, // Set real filename & Frame count
 		{EntityID::ENEMY_AIR_BIG_PLANE, {"big_plane_filename", {0,0}, 0}}, // Set real filename & Frame count
