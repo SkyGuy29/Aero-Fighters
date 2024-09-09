@@ -37,7 +37,7 @@ public:
 
 	sf::Sprite sprite;
 protected:
-	Entity(sf::Vector2f pos, sf::Vector2f vel,
+	Entity(sf::Vector2f pos,
 		EntityID ID, unsigned char orientation = 0);
 
 	// Returns if this entity is currently visible

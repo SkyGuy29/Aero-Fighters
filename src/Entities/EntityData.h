@@ -56,11 +56,11 @@ public:
 
 private:
 	// Entity Data Table
-	static const EntityData EntityDataTable[] =
+	static constexpr EntityData EntityDataTable[1] =
 	{
 		{
 			EntityData {
-				{
+				Vec2f{
 					0, // X
 					0  // Y
 				},
