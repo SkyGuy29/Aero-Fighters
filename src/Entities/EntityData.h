@@ -45,7 +45,7 @@ namespace EntityData
 	// the value is the entities data
 	const StaticArray<
 		EntityData,
-		static_cast<unsigned char>(EntityID::COUNT)
+		1 //static_cast<unsigned char>(EntityID::COUNT)
 	> EntityDataTable =
 	{
 		{
