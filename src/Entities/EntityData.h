@@ -1,22 +1,27 @@
 #pragma once
+#include <SFML/Graphics.hpp>
+#include "../Utility/EntityID.h"
 #include "../Utility/Array/StaticArray.h"
 
 using cstr = const char* const;
 using Vec2f = sf::Vector2f;
 
-namespace EntityData
+class EntityDataStorage
 {
+public:
+	// Must never be constructed
+	EntityDataStorage() = delete;
+
 	// Stores a given entities cooldown information for quick access
 	struct Cooldown
 	{
 		// The base cooldown for this entity
-		short BaseCooldown;
-		// The current cooldown timer
-		// (CurrentCooldown != BaseCooldown ? ++CurrentCooldown)
-		short CurrentCooldown;
+		short baseCooldown;
+		// The current cooldown timer (Counts down to 0)
+		short currentCooldown;
 
 		Cooldown(const short BaseCooldown, short CurrentCooldown) :
-			BaseCooldown(BaseCooldown), CurrentCooldown(CurrentCooldown) {}
+			baseCooldown(BaseCooldown), currentCooldown(CurrentCooldown) {}
 	};
 
 	// The stored default information for a given entity; very generic.
@@ -37,20 +42,25 @@ namespace EntityData
 			velocity(velocity), health(health), cooldown(cooldown), CHILD_DATA(CHILD_DATA) {}
 	};
 
+	/**
+	 * Returns the baseline data for a given entity.
+	 *
+	 * @param ID The ID of the entity whose data is being requested
+	 * @return A constant reference to an EntityData object
+	 */
+	static const EntityData& getData(EntityID ID)
+	{
+		return EntityDataTable[static_cast<unsigned char>(ID)];
+	}
 
 
+private:
 	// Entity Data Table
-	// TODO: Replace with array, static_cast accessor
-	// Stores Key value pairs, the Key is the EntityID,
-	// the value is the entities data
-	const StaticArray<
-		EntityData,
-		static_cast<unsigned char>(EntityID::COUNT)
-	> EntityDataTable =
+	static constexpr EntityData EntityDataTable[1] =
 	{
 		{
 			EntityData {
-				Vec2f {
+				Vec2f{
 					0, // X
 					0  // Y
 				},
@@ -65,4 +75,4 @@ namespace EntityData
 	};
 
 	// Entity Child Table
-}
+};
