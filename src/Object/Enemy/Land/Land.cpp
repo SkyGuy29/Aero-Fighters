@@ -105,7 +105,7 @@ void Land::update(const sf::Vector2f winSize, std::vector<Object*>* objects,
 
 	if (time != 0)
 	{
-		setPos(getPos().x, getPos().y + *backgroundSpeed);
+		//setPos(getPos().x, getPos().y + *backgroundSpeed);
 
 		if (cooldown != 0)
 			cooldown--;

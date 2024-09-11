@@ -22,6 +22,7 @@ Game::Game()
 	view.setCenter(winSize.x / 2.f, winSize.y / 2.f);
 
 	Object::setView(view);
+	Level::setView(view);
 
 	resize();
 
@@ -153,6 +154,8 @@ void Game::run()
 
 		view.move(0, -1);
 		window.setView(view);
+		Object::setView(view);
+		Level::setView(view);
 
 		// Clear window display
 		window.clear();
