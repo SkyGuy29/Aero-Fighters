@@ -11,7 +11,7 @@ public:
         std::vector<Object*>* objects, bool levelEditor);
 
     void update(sf::Vector2f winSize, std::vector<Object*>* objects, 
-        bool time) override;
+        bool time, int& p1Score, int& p2Score) override;
 private:
     Boss* bossPiece1 = nullptr;
     Boss* bossPiece2 = nullptr;

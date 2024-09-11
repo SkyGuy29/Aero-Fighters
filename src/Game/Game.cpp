@@ -152,7 +152,7 @@ void Game::run()
 			}
 		}
 
-		view.move(0, -1);
+		//view.move(0, -1);
 		window.setView(view);
 		Object::setView(view);
 		Level::setView(view);
@@ -231,6 +231,7 @@ void Game::updateMenu()
 		{
 			playersDead = false;
 			countryChoose.set(10, ticksPerSec);
+			level = Level();
 		}
 	}
 	else // Start menu

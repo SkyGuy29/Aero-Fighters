@@ -18,7 +18,7 @@ public:
 	Object();
 
 	// 
-	virtual void update(sf::Vector2f winSize, std::vector<Object*>*, bool time) = 0;
+	virtual void update(sf::Vector2f winSize, std::vector<Object*>*, bool time, int& p1Score, int& p2Score) = 0;
 
 	static void setView(sf::View new_view);
 
