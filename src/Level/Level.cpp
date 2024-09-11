@@ -279,7 +279,7 @@ bool Level::update(const sf::Vector2f winSize)
 	for (unsigned int i = 0; i < objects.size(); i++)
 	{
 		objects[objects.size() - 1 - i]->update(winSize, &objects,
-			p[1]->getTime() && !levelEditor);
+			p[1]->getTime() && !levelEditor, player1Score, player2Score);
 		if (objects[objects.size() - 1 - i]->getType() == Object::EXPLOSION)
 		{
 			// I'm sorry.
@@ -304,13 +304,6 @@ bool Level::update(const sf::Vector2f winSize)
 			(!(objects[objects.size() - 1 - i]->getType() == Object::LAND ||
 			objects[objects.size() - 1 - i]->getType() == Object::AIR) || !levelEditor))
 		{
-			// Just temporary
-			// Deleting stuff adds score to random player
-			if (rand() % 2 == 0)
-				player1Score += 100;
-			else
-				player2Score += 100;
-
 			delete objects[objects.size() - 1 - i];
 			objects.erase(objects.end() - 1 - i);
 		}
