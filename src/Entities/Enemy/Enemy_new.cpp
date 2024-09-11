@@ -1,6 +1,6 @@
 #include "Enemy_new.h"  
 
-void Enemy::tick(EntityHolder& entities)
+void Enemy_new::tick(EntityHolder& entities)
 {
 	
 }

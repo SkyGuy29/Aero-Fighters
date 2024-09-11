@@ -2,7 +2,6 @@
 #include <unordered_map>
 #include <SFML/Graphics.hpp>
 #include "../Utility/EntityID.h"
-#include "../Utility/Array/StaticArray.h"
 
 // Included by src/Entities/Entity.h
 
@@ -23,11 +22,11 @@ public:
 	struct SpriteData
 	{
 		// The filename where the texture is stored
-		constexpr cstr filename;
+		const cstr filename;
 		// The size of the sprite
-		constexpr Vec2f size;
+		const Vec2f size;
 		// The number of animation frames
-		constexpr unsigned char animationFrameCount;
+		const unsigned char animationFrameCount;
 
 		/**
 		 * Constructs the SpriteData object using known baseline data.
@@ -36,7 +35,7 @@ public:
 		 * @param size The size of the sprite
 		 * @param animationFrameCount The number of animation frames
 		 */
-		constexpr SpriteData(cstr filename, const Vec2f size,
+		SpriteData(cstr filename, const Vec2f size,
 			const unsigned char animationFrameCount) :
 			filename(filename), size(size), animationFrameCount(animationFrameCount) {}
 	};
@@ -48,9 +47,9 @@ public:
 	 * @param ID The ID of the entity being requested
 	 * @return The SpriteData for the requested entity
 	 */
-	static const SpriteData& getSpriteData(EntityID ID) const
+	static const SpriteData& getSpriteData(EntityID ID)
 	{
-		return SPRITE_DATA_TABLE.at(static_cast<unsigned char>(ID));
+		return SPRITE_DATA_TABLE[static_cast<unsigned char>(ID)];
 	}
 
 	/**
@@ -70,20 +69,15 @@ public:
 	 * @param ID The ID of the entity texture being requested
 	 * @return The requested texture
 	 */
-	static const sf::Texture& getTexture(EntityID ID) const
+	static const sf::Texture& getTexture(EntityID ID)
 	{
 		return textureTable.at(ID);
 	}
 
 private:
-	// Compile-time constant data for sprite baselines.
-	static constexpr StaticArray<SpriteData> SPRITE_DATA_TABLE =
-	{
-		{"baby_copter_filename", {0,0}, 0}, // Set real filename & Frame count
-		{"big_plane_filename", {0,0}, 0}, // Set real filename & Frame count
-		{"spinny_plane_filename", {0,0}, 0}, // Set real filename & Frame count
-		{"chopper_blades_filename", {0,0}, 0}, // Set real filename & Frame count
-	};
+
+	// Constant data for sprite baselines.
+	static const SpriteData SPRITE_DATA_TABLE[];
 
 	static std::unordered_map<EntityID, sf::Texture> textureTable;
 };

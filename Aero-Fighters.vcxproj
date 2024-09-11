@@ -155,9 +155,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\Entities\Enemy\EnemyCollidable.cpp" />
     <ClCompile Include="src\Entities\Enemy\Enemy_new.cpp" />
     <ClCompile Include="src\Entities\Entity.cpp" />
+    <ClCompile Include="src\Entities\EntityData.cpp" />
     <ClCompile Include="src\Entities\Player\Player_new.cpp" />
     <ClCompile Include="src\Entities\PowerUp\PowerUp.cpp" />
     <ClCompile Include="src\Entities\Projectile\Projectile_new.cpp" />
@@ -174,9 +174,9 @@
     <ClCompile Include="src\Object\Projectile\Explosion\Explosion.cpp" />
     <ClCompile Include="src\Object\Projectile\Projectile.cpp" />
     <ClCompile Include="src\Entities\TileEntity\TileEntity.cpp" />
+    <ClCompile Include="src\Sprites\SpriteType.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Entities\Enemy\EnemyCollidable.h" />
     <ClInclude Include="src\Entities\Enemy\Enemy_new.h" />
     <ClInclude Include="src\Entities\Entity.h" />
     <ClInclude Include="src\Entities\EntityData.h" />

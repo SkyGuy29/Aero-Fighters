@@ -1,7 +1,6 @@
 #pragma once
-#include <SFML/Graphics.hpp>
 #include "../Utility/EntityID.h"
-#include "../Utility/Array/StaticArray.h"
+#include "SFML/System/Vector2.hpp"
 
 using cstr = const char* const;
 using Vec2f = sf::Vector2f;
@@ -12,34 +11,22 @@ public:
 	// Must never be constructed
 	EntityDataStorage() = delete;
 
-	// Stores a given entities cooldown information for quick access
-	struct Cooldown
-	{
-		// The base cooldown for this entity
-		short baseCooldown;
-		// The current cooldown timer (Counts down to 0)
-		short currentCooldown;
-
-		Cooldown(const short BaseCooldown, short CurrentCooldown) :
-			baseCooldown(BaseCooldown), currentCooldown(CurrentCooldown) {}
-	};
-
 	// The stored default information for a given entity; very generic.
 	struct EntityData
 	{
 		// This entities base velocity
-		Vec2f velocity;
+		const Vec2f velocity;
 		// This entities base health
-		unsigned short health;
+		const unsigned short health;
 		// This entities base cooldown information
-		Cooldown cooldown;
+		const short baseCooldown;
 
-		// Holds data regarding is the entity has children (least significant bit IE right-most)
-		// And if it does then the array element holding its children (left-most 7 most significant bits)
+		// Holds data regarding is the entity has children (LSB IE right-most bit)
+		// And if it does then the array element holding its children (left-most 7 MSBs)
 		const unsigned char CHILD_DATA;
 
-		EntityData(Vec2f velocity, unsigned short health, Cooldown cooldown, unsigned char CHILD_DATA) :
-			velocity(velocity), health(health), cooldown(cooldown), CHILD_DATA(CHILD_DATA) {}
+		EntityData(const Vec2f velocity, const unsigned short health, const short baseCooldown, const unsigned char CHILD_DATA) :
+			velocity(velocity), health(health), baseCooldown(baseCooldown), CHILD_DATA(CHILD_DATA) {}
 	};
 
 	/**
@@ -56,23 +43,7 @@ public:
 
 private:
 	// Entity Data Table
-	static constexpr EntityData EntityDataTable[1] =
-	{
-		{
-			EntityData {
-				Vec2f{
-					0, // X
-					0  // Y
-				},
-				0, // Health
-				Cooldown {
-					0, // Base Cooldown
-					0  // Current Cooldown
-				},
-				0 // CHILD_DATA
-			} // Add other values
-		}
-	};
+	static const EntityData EntityDataTable[];
 
 	// Entity Child Table
 };
