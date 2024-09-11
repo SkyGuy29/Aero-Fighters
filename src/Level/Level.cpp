@@ -259,7 +259,7 @@ bool Level::update(const sf::Vector2f winSize)
 	{
 		backgroundDist -= backgroundSpeed;
 		rect.top = (int)backgroundDist;
-		background.setTextureRect(rect);
+		//background.setTextureRect(rect);
 	}
 	updateInfScroll();
 
