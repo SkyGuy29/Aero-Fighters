@@ -9,3 +9,4 @@
 # Ignore non-program code for language detection
 lib/** linguist-vendored
 doc/** linguist-vendored
+CMakeLists.txt linguist-vendored

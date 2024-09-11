@@ -18,6 +18,8 @@ enum class EntityID : unsigned char
 	TILE_GATE_ENGLAND,
 	TILE_HANGAR_ENGLAND,
 
+	SPAWNER,
+
 	// DO NOT USE
 	// MUST BE AT THE END OF THE ENUM
 	// Used as a compile-tile constant for entity related tables.

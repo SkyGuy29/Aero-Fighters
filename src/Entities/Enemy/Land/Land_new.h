@@ -1,17 +1,18 @@
 #include "../Enemy_new.h"
 #pragma once
+#define PI 3.14159
 
 
-class Land : public Enemy
+class Land_new : public Enemy_new
 {
 public:
-	Land(sf::Vector2f pos, sf::Vector2f vel,
+	Land_new(sf::Vector2f pos, sf::Vector2f vel,
 		EntityID ID, int* backgroundSpeed, unsigned char orientation = 0) :
-		Enemy(pos, vel, ID, backgroundSpeed, orientation) {}
+		Enemy_new(pos, vel, ID, backgroundSpeed, orientation) {}
 
-	void tick(EntityHolder& entities) override;
+	void tick() override;
 private:
 	short rotateTimer = 0;
 	// the player the enemy targets (0/1) -> (player one/player two)
-	short target = 0;
+	bool targetP1 = 0;
 };

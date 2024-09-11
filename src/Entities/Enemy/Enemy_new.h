@@ -8,12 +8,11 @@ class Enemy_new :
 {
 public:
 	Enemy_new(sf::Vector2f pos, sf::Vector2f vel,
-		EntityID ID, int* backgroundSpeed, unsigned char orientation = 0) :
-		backgroundSpeed(backgroundSpeed), Entity(pos, ID, orientation), IHasHealth(ID) {}
+		EntityID ID, int* backgroundSpeed, unsigned char orientation = 0);
 
 	~Enemy_new();
 
-	void tick(EntityHolder& entities) override;
+	void tick() override;
 protected:
 	int* backgroundSpeed = nullptr;
 	bool entered = false;

@@ -11,11 +11,7 @@ Level::Level()
 
 Level::~Level()
 {
-	while (!objects.empty())
-	{
-		delete objects[objects.size() - 1];
-		objects.erase(objects.end() - 1);
-	}
+	
 }
 
 
@@ -88,8 +84,8 @@ void Level::load(sf::Vector2f winSize, const short country,
 			break;
 	}
 
-	p[0] = new Player(country, true, &backgroundSpeed);
-	p[1] = new Player(country, false, &backgroundSpeed);
+	p[0] = new Player_new(country, true, &backgroundSpeed);
+	p[1] = new Player_new(country, false, &backgroundSpeed);
 	objects.push_back(p[0]);
 	objects.push_back(p[1]);
 
@@ -104,9 +100,9 @@ void Level::load(sf::Vector2f winSize, const short country,
 		sf::Vector2i(0, 16), 5, false);
 
 	// ?
-	objects.push_back(new Air(0, true, &backgroundDist, 0, winSize, 
+	/*objects.push_back(new Air(0, true, &backgroundDist, 0, winSize,
 		&objects, sf::Vector2f(winSize.x * 0.5f,
-	winSize.y * 0.5f), sf::Vector2f(0, 0), levelEditor));
+	winSize.y * 0.5f), sf::Vector2f(0, 0), levelEditor));*/
 
 	short type, id;
 	int startMark;
