@@ -58,6 +58,8 @@ public:
 	Level();
 	~Level();
 
+	static void setView(sf::View new_view);
+
 	void load(sf::Vector2f winSize, short country, Map map, bool levelEditor);
 	bool update(sf::Vector2f winSize);
 
@@ -168,4 +170,6 @@ private:
 	sf::IntRect frontRect;
 
 	bool playerShootLast[2] = { false, false };
+
+	static sf::View view;
 };

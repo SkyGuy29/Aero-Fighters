@@ -191,7 +191,6 @@ void Object::setVel(const float x, const float y)
 /// <returns></returns>
 bool Object::outOfBounds(const sf::Vector2f winSize) const
 {
-	return pos.x + size.x/2.f < 0 || pos.y + size.y/2.f < 0 ||
-		pos.x - size.x/2.f >= winSize.x || pos.y - size.y/2.f
-		>= winSize.y;
+	return pos.x + size.x / 2.f < 0 || pos.y + size.y / 2.f < view.getCenter().y - view.getSize().y / 2.f ||
+		pos.x - size.x / 2.f >= view.getCenter().x + view.getSize().x / 2.f || pos.y - size.y / 2.f >= view.getCenter().y + view.getSize().y / 2.f;
 }

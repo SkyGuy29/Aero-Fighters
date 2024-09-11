@@ -8,7 +8,7 @@ Projectile::Projectile()
 
 
 Projectile::Projectile(float posX, float posY, sf::Vector2f vel,
-	sf::Vector2f size, ProjectileType ID, bool player, short cool, short sprit)
+	sf::Vector2f size, ProjectileType ID, bool player, short cool, short sprit, bool fromP1)
 {
 	id = ID;
 	setSize(size);
@@ -23,12 +23,13 @@ Projectile::Projectile(float posX, float posY, sf::Vector2f vel,
 	else
 		type = ENEMY_PROJECTILE;
 	cooldown = cool;
+	this->fromP1 = fromP1;
 }
 
 
 //Use when you want to delay the projectiles spawn
 Projectile::Projectile(float posX, float posY, sf::Vector2f vel,
-	sf::Vector2f size, ProjectileType ID, bool player, short cool, short delay, short spriteNum)
+	sf::Vector2f size, ProjectileType ID, bool player, short cool, short delay, short spriteNum, bool fromP1)
 {
 	this->delay = delay;
 	id = ID;
@@ -44,12 +45,13 @@ Projectile::Projectile(float posX, float posY, sf::Vector2f vel,
 	else
 		type = ENEMY_PROJECTILE;
 	cooldown = cool;
+	this->fromP1 = fromP1;
 }
 
 
 //The bulk of projectiles, all it does is move and check when to die.
 void Projectile::update(sf::Vector2f winSize, std::vector<Object*>* objects,
-	bool time)
+	bool time, int& p1Score, int& p2Score)
 {
 	nextFrame(4);
 	if (delay > 0) //If the delay is not up the projectile doesn't exist.
