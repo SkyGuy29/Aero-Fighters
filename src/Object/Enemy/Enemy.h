@@ -15,7 +15,7 @@ public:
 	int getHealth() const;
 
 	// Enemy ticking function
-	void enemyUpdate(sf::Vector2f winSize, std::vector<Object*>* objects);
+	void enemyUpdate(sf::Vector2f winSize, std::vector<Object*>* objects, int& p1Score, int& p2Score);
 protected:
 	// Enemies health
 	int health;

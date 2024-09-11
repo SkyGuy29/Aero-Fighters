@@ -6,5 +6,13 @@
 class Projectile_new :
 	public Entity, public ICollidable
 {
+public:
 	Projectile_new() = default;
+	Projectile_new& operator=(const EntityDataStorage::ProjectilePrototype rhs)
+	{
+		// @TODO ADD CODE HERE
+	}
+
+
+private:
 };
