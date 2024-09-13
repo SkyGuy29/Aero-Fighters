@@ -143,7 +143,7 @@ void Game::run()
 					playersDead = true;
 					inGame = false;
 				}
-				view.move(0, -1);
+				viewportScroll--;
 			}
 			else
 			{
@@ -163,9 +163,11 @@ void Game::run()
 		// draw objects here
 
 		// Draw the level gameplay if players are playing or dead
+		view.setCenter(winSize.x / 2.f, viewportScroll);
 		if (inGame || playersDead)
 			window.draw(level);
 		// This does have to be it's own 'if' so the game over screen can overlay the gameplay
+		view.setCenter(winSize.x / 2.f, viewportScroll);
 		if (!inGame)
 			drawMenu();
 
@@ -232,6 +234,7 @@ void Game::updateMenu()
 			playersDead = false;
 			countryChoose.set(10, ticksPerSec);
 			level = Level();
+			viewportScroll = winSize.y / 2.f;
 		}
 	}
 	else // Start menu
