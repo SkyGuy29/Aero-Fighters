@@ -24,10 +24,10 @@ public:
 		const sf::Vector2f BASE_VELOCITY;
 		const EntityID ID;
 
-		operator Projectile*() const
+		/*operator Projectile* () const
 		{
 			new Projectile()
-		}
+		}*/
 	};
 
 	class AttackPrototype
@@ -79,7 +79,7 @@ private:
 	static const EntityData EntityDataTable[];
 
 	// Attack Spawning Table
-	static const VariableArray<Projectile>
+	//static const VariableArray<Projectile>
 
 
 	// Projectile Data Table
