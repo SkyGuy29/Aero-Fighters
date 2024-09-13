@@ -11,5 +11,5 @@ Player_new::Player_new(sf::Vector2f pos, sf::Vector2f vel,
 
 void Player_new::tick()
 {
-
+	
 }

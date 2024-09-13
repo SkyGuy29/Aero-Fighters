@@ -100,48 +100,7 @@ private:
 
 	// All "objects" in the game.
 	// std::vector<Object*> objects;
-	struct EntityHolder
-	{
-		// All enemy entities
-		std::vector<Enemy_new*> enemies;
-
-		// All projectile entities
-		std::vector<Projectile_new*> projectiles;
-
-		// Players
-		std::vector<Player_new*> players;
-
-		// All other entities
-		std::vector<Entity*> other;
-
-		~EntityHolder()
-		{
-			while (!enemies.empty())
-			{
-				delete enemies[enemies.size() - 1];
-				enemies.pop_back();
-			}
-
-			while (!projectiles.empty())
-			{
-				delete projectiles[projectiles.size() - 1];
-				projectiles.pop_back();
-			}
-
-			while (!players.empty())
-			{
-				delete players[players.size() - 1];
-				players.pop_back();
-			}
-
-			while (!other.empty())
-			{
-				delete other[other.size() - 1];
-				other.pop_back();
-			}
-		}
-	};
-	EntityHolder entities;
+	EntityHolder& entities = Entity::getEntities();
 
 	sf::Font font;
 	sf::Text p1Score, p2Score;
@@ -162,7 +121,6 @@ private:
 	short country, orient = 0;
 	//float backgroundSpeedup = 0.f;
 	//float backgroundSpeedupMax = 2.f;
-	std::vector<Player_new*>& p = entities.players;
 	int player1Score = 0, player2Score = 0;
 
 	sf::Vector2f winSize;

@@ -96,8 +96,8 @@ void Level::load(sf::Vector2f winSize, const short country,
 			break;
 	}
 
-	entities.players.push_back(new Player_new(country, true, &backgroundSpeed));
-	entities.players.push_back(new Player_new(country, false, &backgroundSpeed));
+	entities.players[0] = new Player_new(country, true, &backgroundSpeed);
+	entities.players[1] = new Player_new(country, false, &backgroundSpeed);
 
 	// Change later. This just spaces out the players
 	entities.players[0]->getSprite().setPosition(sf::Vector2f(winSize.x * 0.25f, winSize.y * 0.75f));
@@ -187,14 +187,14 @@ void Level::load(sf::Vector2f winSize, const short country,
 /// </summary>
 void Level::debugMode() const
 {
-	entities.players[0]->setHealth(HP_MAX);
-	entities.players[0]->setHealth(HP_MAX);
+	((Player_new*)(entities.players[0]))->setHealth(HP_MAX);
+	entities.players[1]->setHealth(HP_MAX);
 }
 
 void Level::respawnPlayers() const
 {
-	p[0]->setHealth(3);
-	p[1]->setHealth(3);
+	entities.players[0]->setHealth(3);
+	entities.players[1]->setHealth(3);
 }
 
 
@@ -208,7 +208,7 @@ void Level::initializeTextures(const int index)
 	int frameCount = 0;
 	sf::Texture* texPtr = nullptr;
 
-	Object* object = objects[objects.size() - 1 - index];
+	Entity* entity = entities[entities.size() - 1 - index];
 
 	// if the texture is not initialized
 	if (!object->isTexInit())
@@ -281,11 +281,12 @@ bool Level::update(const sf::Vector2f winSize)
 
 	//polymorphism -- All objects are stored in this vector, they can be
 	//identified using getType()
-	for (unsigned int i = 0; i < objects.size(); i++)
+	std::vector<Entity*> all = entities.getAllEntities();
+	for (unsigned int i = 0; i < all.size(); i++)
 	{
-		objects[objects.size() - 1 - i]->update(winSize, &objects,
-			p[1]->getTime() && !levelEditor, player1Score, player2Score);
-		if (objects[objects.size() - 1 - i]->getType() == Object::EXPLOSION)
+		all[all.size() - 1 - i]->tick(
+			p[1]->getTime() && player1Score, player2Score);
+		/*if (objects[objects.size() - 1 - i]->getType() == Object::EXPLOSION)
 		{
 			// I'm sorry.
 			// Explosions didn't move before. They move now
@@ -293,16 +294,16 @@ bool Level::update(const sf::Vector2f winSize)
 			// Pointers are cool
 			Explosion* exp = (Explosion*)objects[objects.size() - 1 - i];
 			exp->backgroundSpeed = backgroundSpeed;
-		}
+		}*/
 	}
 
 	// Calling init textures after everything is updated.
 	// Objects may create explosions that won't be drawn, 
 	// because the loop won't reach them
-	for (unsigned int i = 0; i < objects.size(); i++)
+	for (unsigned int i = 0; i < all.size(); i++)
 		initializeTextures(i);
 
-	for (unsigned int i = 0; i < objects.size(); i++)
+	/*for (unsigned int i = 0; i < all.size(); i++)
 	{
 		// logic after && symbol is for when the level editor is active we dont want to remove enemies when offscreen
 		if (objects[objects.size() - 1 - i]->shouldDelete() &&
@@ -312,7 +313,7 @@ bool Level::update(const sf::Vector2f winSize)
 			delete objects[objects.size() - 1 - i];
 			objects.erase(objects.end() - 1 - i);
 		}
-	}
+	}*/
 
 	englandUpdate();
 

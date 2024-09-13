@@ -11,4 +11,5 @@ public:
         EntityID ID, int* backgroundSpeed, unsigned char orientation = 0);
 
     void tick();
+    void setHealth(short h) { health = h; };
 };

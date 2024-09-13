@@ -4,6 +4,58 @@
 #include "EntityData.h"
 #include "../Utility/WindowSize.h"
 #include "../Utility/EntityID.h"
+// only use pointer
+class Player_new;
+class Enemy_new;
+class Projectile_new;
+
+
+class EntityHolder
+{
+public:
+	~EntityHolder()
+	{
+		while (!enemies.empty())
+		{
+			delete enemies[enemies.size() - 1];
+			enemies.pop_back();
+		}
+
+		while (!projectiles.empty())
+		{
+			delete projectiles[projectiles.size() - 1];
+			projectiles.pop_back();
+		}
+
+		delete players[0];
+		delete players[1];
+
+		while (!other.empty())
+		{
+			delete other[other.size() - 1];
+			other.pop_back();
+		}
+	}
+	friend Entity;
+
+	const std::vector<Entity*>& getAllEntities() { return all; };
+
+	// All enemy entities
+	std::vector<Enemy_new*> enemies;
+
+	// All projectile entities
+	std::vector<Projectile_new*> projectiles;
+
+	// Players
+	Player_new* players[2];
+
+	// All other entities
+	std::vector<Entity*> other;
+private:
+	// contains all entities (basically old objects)
+	std::vector<Entity*> all;
+};
+
 
 class Entity
 { 
@@ -20,6 +72,7 @@ public:
 	void setWinSize(WindowSize& winSize);
 
 	sf::Sprite& getSprite() { return sprite; };
+	static EntityHolder& getEntities() { return entities;  };
 protected:
 	Entity(sf::Vector2f pos, EntityID ID, unsigned char orientation = 0);
 
@@ -53,7 +106,8 @@ protected:
 private:
 	static WindowSize& winSize;
 	static bool& levelEditor;
-	static EntityHolder& entities;
+	static EntityHolder entities;
+
 
 	// Texture specific data mambers //
 	short currentFrame = 0;

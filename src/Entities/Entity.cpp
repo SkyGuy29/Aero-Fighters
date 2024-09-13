@@ -2,15 +2,25 @@
 #include "../Sprites/SpriteType.h"
 
 
+void Entity::setWinSize(WindowSize& winSize)
+{
+	this->winSize = winSize;
+}
+
 Entity::Entity(sf::Vector2f pos,
 	EntityID ID, unsigned char orientation) : ID(ID), orientation(orientation)
 {
 	this->sprite.setPosition(pos);
+
+	// Tracks into our all array
+	entities.all.push_back(this);
 }
 
 
 bool Entity::onScreen() const noexcept
 {
+	sf::Vector2f pos = sprite.getPosition();
+
 	return !(pos.x + SpriteDataStorage::getSpriteData(ID).size.x / 2.f < 0 ||              // Off the left
 		     pos.y + SpriteDataStorage::getSpriteData(ID).size.y / 2.f < 0 ||              // Off the top
 		     pos.x - SpriteDataStorage::getSpriteData(ID).size.x / 2.f >= winSize.width || // Off the right
