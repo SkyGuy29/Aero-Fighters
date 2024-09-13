@@ -19,9 +19,7 @@ public:
 	// before level is instantiated.
 	void setWinSize(WindowSize& winSize);
 
-	// Sprite SHOULD be publicly modifiable because
-	// I am not creating wrapper methods for all the things available in sprite
-	sf::Sprite sprite;
+	sf::Sprite& getSprite() { return sprite; };
 protected:
 	Entity(sf::Vector2f pos, EntityID ID, unsigned char orientation = 0);
 
@@ -50,6 +48,8 @@ protected:
 
 	// The ID of this entity
 	const EntityID ID;
+
+	sf::Sprite sprite;
 private:
 	static WindowSize& winSize;
 	static bool& levelEditor;

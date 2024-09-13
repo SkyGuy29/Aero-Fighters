@@ -7,7 +7,7 @@ class Land_new : public Enemy_new
 {
 public:
 	Land_new(sf::Vector2f pos, sf::Vector2f vel,
-		EntityID ID, int* backgroundSpeed, unsigned char orientation = 0) :
+		EntityID ID, float* backgroundSpeed, unsigned char orientation = 0) :
 		Enemy_new(pos, vel, ID, backgroundSpeed, orientation) {}
 
 	void tick() override;

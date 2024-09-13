@@ -96,20 +96,18 @@ void Level::load(sf::Vector2f winSize, const short country,
 			break;
 	}
 
-	p[0] = new Player_new(country, true, &backgroundSpeed);
-	p[1] = new Player_new(country, false, &backgroundSpeed);
-	objects.push_back(p[0]);
-	objects.push_back(p[1]);
+	entities.players.push_back(new Player_new(country, true, &backgroundSpeed));
+	entities.players.push_back(new Player_new(country, false, &backgroundSpeed));
 
 	// Change later. This just spaces out the players
-	objects.at(0)->setPos(sf::Vector2f(winSize.x * 0.25f, winSize.y * 0.75f));
-	objects.at(1)->setPos(sf::Vector2f(winSize.x * 0.75f, winSize.y * 0.75f));
+	entities.players[0]->getSprite().setPosition(sf::Vector2f(winSize.x * 0.25f, winSize.y * 0.75f));
+	entities.players[1]->getSprite().setPosition(sf::Vector2f(winSize.x * 0.75f, winSize.y * 0.75f));
 
 	// just a test to try out the moved animator to object
-	objects.at(0)->setTexture(&playerImg, sf::Vector2i(32, 32), 
+	/*objects.at(0)->setTexture(&playerImg, sf::Vector2i(32, 32),
 		sf::Vector2i(0, 16), 5, false);
 	objects.at(1)->setTexture(&playerImg, sf::Vector2i(32, 32), 
-		sf::Vector2i(0, 16), 5, false);
+		sf::Vector2i(0, 16), 5, false);*/
 
 	// ?
 	/*objects.push_back(new Air(0, true, &backgroundDist, 0, winSize,
@@ -169,16 +167,15 @@ void Level::load(sf::Vector2f winSize, const short country,
 		switch (type)
 		{
 		case 0: //land
-			objects.push_back(new Land(id, true, &backgroundSpeed,
-				&objects, pos, vel, levelEditor));
+			entities.enemies.push_back(new Land_new(pos, vel, (EntityID)id, &backgroundSpeed));
 			break;
-		case 1: //air 
+		/*case 1: //air // TODO: Changing this
 			file >> startMark;
-			objects.push_back(new Air(id, true, &backgroundDist, startMark, 
+			objects.push_back(new Air_new(id, true, &backgroundDist, startMark, 
 				winSize, &objects, pos, vel, levelEditor));
 			break;
 		case 2:
-			break;
+			break;*/
 		}
 	}
 	//I am so sorry -Gabe
@@ -190,8 +187,8 @@ void Level::load(sf::Vector2f winSize, const short country,
 /// </summary>
 void Level::debugMode() const
 {
-	p[0]->setHealth(HP_MAX);
-	p[1]->setHealth(HP_MAX);
+	entities.players[0]->setHealth(HP_MAX);
+	entities.players[0]->setHealth(HP_MAX);
 }
 
 void Level::respawnPlayers() const
