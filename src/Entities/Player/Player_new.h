@@ -1,14 +1,8 @@
 #pragma once
 #include "../Entity.h"
 #include "../Interfaces/ICollidable.h"
-#include "../Interfaces/IHasHealth.h"
 
-class Player_new :
-    public Entity, public IHasHealth
+class Player :
+    public Entity, public ICollidable
 {
-public:
-    Player_new(sf::Vector2f pos, sf::Vector2f vel,
-        EntityID ID, int* backgroundSpeed, unsigned char orientation = 0);
-
-    void tick();
 };

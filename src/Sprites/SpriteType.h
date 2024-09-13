@@ -27,8 +27,6 @@ public:
 		const Vec2f size;
 		// The number of animation frames
 		const unsigned char animationFrameCount;
-		// The offset the texture is off by.
-		const Vec2f textureOffset;
 
 		/**
 		 * Constructs the SpriteData object using known baseline data.
@@ -38,9 +36,8 @@ public:
 		 * @param animationFrameCount The number of animation frames
 		 */
 		SpriteData(cstr filename, const Vec2f size,
-			const unsigned char animationFrameCount, const Vec2f textureOffset) :
-			filename(filename), size(size), animationFrameCount(animationFrameCount),
-			textureOffset(textureOffset) {}
+			const unsigned char animationFrameCount) :
+			filename(filename), size(size), animationFrameCount(animationFrameCount) {}
 	};
 
 	/**

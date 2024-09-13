@@ -155,10 +155,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\Entities\Enemy\Land\Land_new.cpp" />
-    <ClCompile Include="src\Entities\Spawner\EnemySpawner.cpp" />
-    <ClCompile Include="src\Entities\Spawner\PermanentSpawner\PermanentSpawner.cpp" />
-    <ClCompile Include="src\Entities\Enemy\Air\Air_new.cpp" />
     <ClCompile Include="src\Entities\Enemy\Enemy_new.cpp" />
     <ClCompile Include="src\Entities\Entity.cpp" />
     <ClCompile Include="src\Entities\EntityData.cpp" />
@@ -179,13 +175,8 @@
     <ClCompile Include="src\Object\Projectile\Projectile.cpp" />
     <ClCompile Include="src\Entities\TileEntity\TileEntity.cpp" />
     <ClCompile Include="src\Sprites\SpriteType.cpp" />
-    <ClCompile Include="src\Entities\Spawner\TemporarySpawner\TemporarySpawner.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Entities\Enemy\Land\Land_new.h" />
-    <ClInclude Include="src\Entities\Spawner\EnemySpawner.h" />
-    <ClInclude Include="src\Entities\Spawner\PermanentSpawner\PermanentSpawner.h" />
-    <ClInclude Include="src\Entities\Enemy\Air\Air_new.h" />
     <ClInclude Include="src\Entities\Enemy\Enemy_new.h" />
     <ClInclude Include="src\Entities\Entity.h" />
     <ClInclude Include="src\Entities\EntityData.h" />
@@ -214,7 +205,6 @@
     <ClInclude Include="src\Utility\Array\StaticArray.h" />
     <ClInclude Include="src\Utility\WindowSize.h" />
     <ClInclude Include="src\Utility\Array\VariableArray.h" />
-    <ClInclude Include="src\Entities\Spawner\TemporarySpawner\TemporarySpawner.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lib\SFML64\lib\sfml-audio-s-d.pdb" />

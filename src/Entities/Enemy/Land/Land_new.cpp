@@ -1,19 +1,19 @@
 #include "Land_new.h"
 
 
-void Land_new::tick()
+void Land::tick(Entity::EntityHolder& entities)
 {
-	Enemy_new::tick();
+	Enemy::tick(entities);
 	//Do things here only while time is moving.
 
-	/*if (time != 0)
+	if (time != 0)
 	{
 		sprite.setPosition(sprite.getPosition().x,
 			sprite.getPosition().y + *backgroundSpeed
 		);
 		
-		if (curCooldown != 0)
-			curCooldown--;
+		if (cooldown.currentCooldown != 0)
+			cooldown.currentCooldown--;
 
 		if (rotateTimer != 0)
 			rotateTimer--;
@@ -36,7 +36,7 @@ void Land_new::tick()
 			}
 			break;
 		case EntityID::ENEMY_LAND_TANK_WEAK: case EntityID::ENEMY_LAND_TANK_STRONG: //Tank top
-			sf::Vector2f distance = (*entities.players[targetP1]).sprite.getPosition() - sprite.getPosition();
+			sf::Vector2f distance = entities.players[target].sprite.getPosition() - sprite.getPosition();
 			float magnitude = sqrt((distance.x * distance.x) + (distance.y
 				* distance.y));
 			sf::Vector2f projVelocity = sf::Vector2f(2 * distance.x / magnitude,
@@ -60,25 +60,25 @@ void Land_new::tick()
 					orientation = orientation - 1;
 			}
 
-			//Shoot at targetP1 player
-			if (!curCooldown && entered && orientation == (int)angle)
+			//Shoot at target player
+			if (!cooldown.currentCooldown && entered && orientation == (int)angle)
 			{
 				sprite.setPosition(sprite.getPosition().x, sprite.getPosition().y - 0.5f);
 
 				entities.projectiles.push_back(new Projectile(getPos().x, getPos().y,
 					projVelocity, sf::Vector2f(10, 10), ProjectileType::Basic, false, 0, 0, 12));
 
-				curCooldown = 100 + rand() % 50;
+				cooldown.currentCooldown = 100 + rand() % 50;
 
-				targetP1 = !targetP1;
+				target = !target;
 			}
 			break;
 		case 2: //Building Shoot 
-			if (!curCooldown)
+			if (!cooldown)
 			{
 				pos.y -= 0.5f;
 
-				curCooldown = 100;
+				cooldown = 100;
 				entities.projectiles.push_back(new Projectile(getPos().x, getPos().y,
 					sf::Vector2f(1.84776f, 0.76537f), sf::Vector2f(10, 10), ProjectileType::Basic,
 					false, 0, 0, 12));
@@ -106,11 +106,11 @@ void Land_new::tick()
 			}
 			break;
 		case EntityID::TILE_HANGAR_ENGLAND: //Hangar
-			if (!curCooldown && entered)
+			if (!cooldown.currentCooldown && entered)
 			{
-				curCooldown = 100;
-				//objects->push_back(new Air(0, true, winSize, objects,
-				//	pos, sf::Vector2f(0, 5)));
+				cooldown.currentCooldown = 100;
+				/*objects->push_back(new Air(0, true, winSize, objects,
+					pos, sf::Vector2f(0, 5)));*/
 			}
 			break;
 		case EntityID::LANDMINE: //Landmines
@@ -131,5 +131,5 @@ void Land_new::tick()
 			}
 			break;
 		}
-	}*/
+	}
 }

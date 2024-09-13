@@ -5,7 +5,7 @@ pos.x       Spawn position
 pos.y
 vel.x       Spawn velocity
 vel.y
-startMark   only if type == 1;  -Y value that indicates when the air enemy should spawn (will be replaced later)
+startMark   only if type == 1;  -Y value that indicates when the air enemy should spawn
 (empty line)
 # Below is the example.
 0
