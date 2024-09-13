@@ -143,6 +143,7 @@ void Game::run()
 					playersDead = true;
 					inGame = false;
 				}
+				view.move(0, -1);
 			}
 			else
 			{
@@ -152,7 +153,6 @@ void Game::run()
 			}
 		}
 
-		//view.move(0, -1);
 		window.setView(view);
 		Object::setView(view);
 		Level::setView(view);
