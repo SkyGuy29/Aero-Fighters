@@ -167,7 +167,7 @@ void Game::run()
 		if (inGame || playersDead)
 			window.draw(level);
 		// This does have to be it's own 'if' so the game over screen can overlay the gameplay
-		view.setCenter(winSize.x / 2.f, viewportScroll);
+		view.setCenter(winSize.x / 2.f, winSize.y / 2.f);
 		if (!inGame)
 			drawMenu();
 
