@@ -1,36 +1,66 @@
 #include "Entity.h"
 #include "../Sprites/SpriteType.h"
 
+// Static member must be defined outside the class definition.
+unsigned int Entity::next_uuid = 0;
 
 void Entity::setWinSize(WindowSize& winSize)
 {
 	this->winSize = winSize;
 }
 
-Entity::Entity(sf::Vector2f pos,
-	EntityID ID, unsigned char orientation) : ID(ID), orientation(orientation)
+Entity::Entity(sf::Vector2f pos, EntityID ID, unsigned char orientation) :
+	pos(pos), ID(ID), orientation(orientation), UUID(next_uuid++)
 {
-	this->sprite.setPosition(pos);
 
 	// Tracks into our all array
 	entities.push_back(this);
 }
 
 
-bool Entity::onScreen() const noexcept
+Entity::EntityObjectAction Entity::onScreen() noexcept
 {
-	sf::Vector2f pos = sprite.getPosition();
+	sf::Vector2f pos = sprite->getPosition();
+	EntityObjectAction ret = EntityObjectAction::NOTHING;
 
-	return !(pos.x + SpriteDataStorage::getSpriteData(ID).size.x / 2.f < 0 ||              // Off the left
-		     pos.y + SpriteDataStorage::getSpriteData(ID).size.y / 2.f < 0 ||              // Off the top
-		     pos.x - SpriteDataStorage::getSpriteData(ID).size.x / 2.f >= winSize.width || // Off the right
-		     pos.y - SpriteDataStorage::getSpriteData(ID).size.y / 2.f >= winSize.height); // Off the bottom
+	// If on screen
+	if (!(pos.x + SpriteDataStorage::getSpriteData(ID).size.x / 2.f < 0 ||              // Off the left
+		  pos.y + SpriteDataStorage::getSpriteData(ID).size.y / 2.f < 0 ||              // Off the top
+		  pos.x - SpriteDataStorage::getSpriteData(ID).size.x / 2.f >= winSize.width || // Off the right
+		  pos.y - SpriteDataStorage::getSpriteData(ID).size.y / 2.f >= winSize.height)) // Off the bottom
+	{
+		if ((entityFlags & 0b00000001) != 0b00000001) // If not spawned
+		{
+			// Set the hasSpawned flag
+			entityFlags |= 0b00000001;
+
+			// Generate a new sprite
+			spriteMap.emplace(UUID, sf::Sprite(SpriteDataStorage::getTexture(ID)));
+
+			// Set this entities sprite address
+			sprite = &spriteMap.at(UUID);
+
+			// Is on screen, do not delete.
+			ret = EntityObjectAction::DRAW;
+		}
+
+		// Maintains action of "NOTHING" if it has been 'spawned' and is still on screen.
+	}
+	// If not on screen and has spawned
+	else if ((entityFlags & 0b00000001) == 0b00000001)
+		// Not on screen, please delete.
+		ret = EntityObjectAction::DELETE;
+
+
+	return ret;
 }
 
 
-bool Entity::hasSpawned() const noexcept
+void Entity::move() noexcept
 {
-	return entityFlags & 0b00000001;
+	pos += vel;
+	if (sprite != nullptr)
+		sprite->setPosition(pos);
 }
 
 
@@ -38,7 +68,7 @@ bool Entity::hasSpawned() const noexcept
 /// This animator allows for different frame changes.
 /// </summary>
 /// <param name="frameRate"></param>
-void Entity::nextFrame(const int frameRate = 15)
+void Entity::nextFrame(const int frameRate)
 {
 	// Increases the image rectangle by its height and loops back when 
 	//it reaches the end
@@ -54,7 +84,7 @@ void Entity::nextFrame(const int frameRate = 15)
 	sf::Vector2f texOffset = SpriteDataStorage::getSpriteData(ID).textureOffset;
 
 	// the dividing to an int is needed for the updates per frame delay.
-	sprite.setTextureRect(sf::IntRect(
+	sprite->setTextureRect(sf::IntRect(
 		texOffset.x + (currentFrame / frameRate) * texSize.x
 		* !verticalAnimation,
 		texOffset.y + (currentFrame / frameRate) * texSize.y

@@ -1,5 +1,5 @@
 #pragma once
-#include <vector>
+#include <unordered_map>
 #include <SFML/Graphics.hpp>
 #include "EntityData.h"
 #include "../Utility/WindowSize.h"
@@ -20,23 +20,44 @@ public:
 	// before level is instantiated.
 	void setWinSize(WindowSize& winSize);
 
-	sf::Sprite& getSprite() { return sprite; };
+	static void setBackgroundSpeed(int& speed) { backgroundSpeed = speed; }
+
+	/**
+	 * Utility method that returns one of three states defining what action must
+	 * be performed next on the object.
+	 *
+	 *
+	 * @return What action should be performed on the object.
+	 * @retval EntityObjectAction::NOTHING The entity has not been 'spawned',
+	 *		   you don't have to do anything.
+	 *
+	 * @retval EntityObjectAction::DRAW The entity has been spawned and has not
+	 *		   left the screen, just draw it.
+	 *
+	 * @retval EntityObjectAction::DELETE The entity has been 'spawned', however
+	 *		   it has just left the screen and thus should be deleted.
+	 */
+	inline EntityObjectAction onScreen() noexcept;
+
+	sf::Sprite* getSprite() { return sprite; };
 	static std::vector<Entity*>& getEntities() { return entities;  };
 protected:
 	Entity(sf::Vector2f pos, EntityID ID, unsigned char orientation = 0);
 
-	// Returns if this entity is currently visible
-	inline bool onScreen() const noexcept;
-
-	inline bool hasSpawned() const noexcept;
+	inline bool hasSpawned() noexcept { return entityFlags & 0b0000001; }
 
 	void nextFrame(const int frameRate = 15);
 
-	bool getLevelEdtior() { return levelEditor; }
+	static bool getLevelEditor() { return levelEditor; }
+
+	void move() noexcept;
+
+	static int& backgroundSpeed;
 
 	// The velocity of this entity
 	// Derived during object construction
 	sf::Vector2f vel = EntityDataStorage::getData(ID).velocity;
+	sf::Vector2f pos;
 
 	// The attack cooldown of this entity
 	// Derived during object construction from the entity data table.
@@ -51,9 +72,13 @@ protected:
 	// The ID of this entity
 	const EntityID ID;
 
-	sf::Sprite sprite;
+	sf::Sprite* sprite = nullptr;
 private:
+
+	// The size of the window
 	static WindowSize& winSize;
+
+	//  If running in level editor mode
 	static bool& levelEditor;
 	/*  See Entity layout below.
 	    These NEED to be deleted in the Level or Game destructor.
@@ -61,7 +86,16 @@ private:
 	*/
 	static std::vector<Entity*> entities;
 
-	// Texture specific data mambers //
+	// The next UUID that will be assigned.
+	static unsigned int next_uuid;
+
+	// A map of all UUIDs to sprites
+	static std::unordered_map<unsigned int, sf::Sprite> spriteMap;
+
+
+	const unsigned int UUID;
+
+	// Texture specific data members //
 	short currentFrame = 0;
 	bool animationFinished = false, verticalAnimation = false;
 

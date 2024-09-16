@@ -69,25 +69,22 @@ void Enemy::enemyUpdate(const sf::Vector2f winSize, std::vector<Object*>* object
 		// Drop powerups based on my specific type
 		switch (id)
 		{
-			// If i'm a ___
 		case 1:
-			// If i'm an Air ___
+			// If i'm an air - big plane
 			if (type == AIR)
 				objects->push_back(new Collectable(1, pos, backgroundSpeed));
 			del = true;
 			break;
 
-		// If i'm a ___
 		case 2:
-			// If i'm a land ___
+			// If i'm a land - fort building
 			if(type == LAND)
 				objects->push_back(new Collectable(1, pos, backgroundSpeed));
 			del = true;
 			break;
 
-		//If i'm an ___
 		case 8:
-			// If i'm a land ___
+			// If i'm a land - landmine
 			if(type == LAND)
 				objects->push_back(new Collectable(0, pos, backgroundSpeed));
 			del = true;
