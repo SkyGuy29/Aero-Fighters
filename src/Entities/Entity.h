@@ -1,65 +1,25 @@
 #pragma once
-#include <vector>
+#include <unordered_map>
 #include <SFML/Graphics.hpp>
 #include "EntityData.h"
 #include "../Utility/WindowSize.h"
 #include "../Utility/EntityID.h"
-// only use pointer
-class Player_new;
-class Enemy_new;
-class Projectile_new;
-
-
-class EntityHolder
-{
-public:
-	~EntityHolder()
-	{
-		while (!enemies.empty())
-		{
-			delete enemies[enemies.size() - 1];
-			enemies.pop_back();
-		}
-
-		while (!projectiles.empty())
-		{
-			delete projectiles[projectiles.size() - 1];
-			projectiles.pop_back();
-		}
-
-		delete players[0];
-		delete players[1];
-
-		while (!other.empty())
-		{
-			delete other[other.size() - 1];
-			other.pop_back();
-		}
-	}
-	friend Entity;
-
-	const std::vector<Entity*>& getAllEntities() { return all; };
-
-	// All enemy entities
-	std::vector<Enemy_new*> enemies;
-
-	// All projectile entities
-	std::vector<Projectile_new*> projectiles;
-
-	// Players
-	Player_new* players[2];
-
-	// All other entities
-	std::vector<Entity*> other;
-private:
-	// contains all entities (basically old objects)
-	std::vector<Entity*> all;
-};
 
 
 class Entity
 { 
 public:
+	// Base may not be constructed unless by its derivatives
+	Entity() = delete;
+
+	// Helper enum for return action
+	enum class EntityObjectAction : unsigned char
+	{
+		NOTHING = 0,
+		DRAW = 1,
+		DELETE  = 2
+	};
+
 	virtual ~Entity() = default;
 
 	// Generic definition for any entities tick function
@@ -71,23 +31,43 @@ public:
 	// before level is instantiated.
 	void setWinSize(WindowSize& winSize);
 
-	sf::Sprite& getSprite() { return sprite; };
-	static EntityHolder& getEntities() { return entities;  };
+	static void setBackgroundSpeed(int& speed) { backgroundSpeed = speed; }
+
+	/**
+	 * Utility method that returns one of three states defining what action must
+	 * be performed next on the object.
+	 *
+	 *
+	 * @return What action should be performed on the object.
+	 * @retval EntityObjectAction::NOTHING The entity has not been 'spawned',
+	 *		   you don't have to do anything.
+	 *
+	 * @retval EntityObjectAction::DRAW The entity has been spawned and has not
+	 *		   left the screen, just draw it.
+	 *
+	 * @retval EntityObjectAction::DELETE The entity has been 'spawned', however
+	 *		   it has just left the screen and thus should be deleted.
+	 */
+	inline EntityObjectAction onScreen() noexcept;
+
+	sf::Sprite* getSprite() { return sprite; };
 protected:
 	Entity(sf::Vector2f pos, EntityID ID, unsigned char orientation = 0);
 
-	// Returns if this entity is currently visible
-	inline bool onScreen() const noexcept;
-
-	inline bool hasSpawned() const noexcept;
+	inline bool hasSpawned() noexcept { return entityFlags & 0b0000001; }
 
 	void nextFrame(const int frameRate = 15);
 
-	bool getLevelEdtior() { return levelEditor; }
+	static bool getLevelEditor() { return levelEditor; }
+
+	void move() noexcept;
+
+	static int& backgroundSpeed;
 
 	// The velocity of this entity
 	// Derived during object construction
 	sf::Vector2f vel = EntityDataStorage::getData(ID).velocity;
+	sf::Vector2f pos;
 
 	// The attack cooldown of this entity
 	// Derived during object construction from the entity data table.
@@ -102,17 +82,28 @@ protected:
 	// The ID of this entity
 	const EntityID ID;
 
-	sf::Sprite sprite;
+	sf::Sprite* sprite = nullptr;
 private:
+
+	// The size of the window
 	static WindowSize& winSize;
+
+	//  If running in level editor mode
 	static bool& levelEditor;
-	static EntityHolder entities;
+
+	// The next UUID that will be assigned.
+	static unsigned int next_uuid;
+
+	// A map of all UUIDs to sprites
+	static std::unordered_map<unsigned int, sf::Sprite> spriteMap;
 
 
-	// Texture specific data mambers //
+	const unsigned int UUID;
+
+	// Texture specific data members //
 	short currentFrame = 0;
 	bool animationFinished = false, verticalAnimation = false;
 
 	// null / null / null / null / null / null / null / hasSpawned
-	bool entityFlags = 0b00000000;
+	unsigned char entityFlags = 0b00000000;
 };
