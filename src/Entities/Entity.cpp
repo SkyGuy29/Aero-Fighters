@@ -4,17 +4,16 @@
 // Static member must be defined outside the class definition.
 unsigned int Entity::next_uuid = 0;
 
-void Entity::setWinSize(WindowSize& winSize)
+void Entity::setWinSize(WindowSize& winSize_)
 {
-	this->winSize = winSize;
+	winSize = winSize_;
 }
 
 Entity::Entity(sf::Vector2f pos, EntityID ID, unsigned char orientation) :
 	pos(pos), ID(ID), orientation(orientation), UUID(next_uuid++)
 {
 
-	// Tracks into our all array
-	entities.push_back(this);
+	
 }
 
 
@@ -50,7 +49,6 @@ Entity::EntityObjectAction Entity::onScreen() noexcept
 	else if ((entityFlags & 0b00000001) == 0b00000001)
 		// Not on screen, please delete.
 		ret = EntityObjectAction::DELETE;
-
 
 	return ret;
 }

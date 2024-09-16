@@ -9,6 +9,16 @@
 class Entity
 { 
 public:
+	// Base may not be constructed unless by its derivatives
+	Entity() = delete;
+
+	// Helper enum for return action
+	enum class EntityObjectAction : unsigned char
+	{
+		NOTHING = 0,
+		DRAW = 1,
+		DELETE = 2
+	};
 	virtual ~Entity() = default;
 
 	// Generic definition for any entities tick function
@@ -18,9 +28,9 @@ public:
 	// Sets the variable used by entity for the size of the window.
 	// Should only ever be called once, giving a variable held
 	// before level is instantiated.
-	void setWinSize(WindowSize& winSize);
+	static void setWinSize(WindowSize& winSize);
 
-	static void setBackgroundSpeed(int& speed) { backgroundSpeed = speed; }
+	static void setBackgroundSpeed(float& speed) { backgroundSpeed = speed; }
 
 	/**
 	 * Utility method that returns one of three states defining what action must
@@ -37,10 +47,9 @@ public:
 	 * @retval EntityObjectAction::DELETE The entity has been 'spawned', however
 	 *		   it has just left the screen and thus should be deleted.
 	 */
-	inline EntityObjectAction onScreen() noexcept;
+	EntityObjectAction onScreen() noexcept;
 
 	sf::Sprite* getSprite() { return sprite; };
-	static std::vector<Entity*>& getEntities() { return entities;  };
 protected:
 	Entity(sf::Vector2f pos, EntityID ID, unsigned char orientation = 0);
 
@@ -52,7 +61,7 @@ protected:
 
 	void move() noexcept;
 
-	static int& backgroundSpeed;
+	static float& backgroundSpeed;
 
 	// The velocity of this entity
 	// Derived during object construction
@@ -80,18 +89,12 @@ private:
 
 	//  If running in level editor mode
 	static bool& levelEditor;
-	/*  See Entity layout below.
-	    These NEED to be deleted in the Level or Game destructor.
-	    Only these need to be deleted, none of the children vectors, cause this contains all entities.
-	*/
-	static std::vector<Entity*> entities;
 
 	// The next UUID that will be assigned.
 	static unsigned int next_uuid;
 
 	// A map of all UUIDs to sprites
 	static std::unordered_map<unsigned int, sf::Sprite> spriteMap;
-
 
 	const unsigned int UUID;
 
@@ -102,23 +105,3 @@ private:
 	// null / null / null / null / null / null / null / hasSpawned
 	bool entityFlags = 0b00000000;
 };
-/* Entity layout:
-All 4*n
-|-Enemies 4*n
-|    |-Land 4*n
-|    |-Air
-|    |-Water
-|-Tile Entities
-|-Projectiles
-|-Spawners
-|    |-Temporary
-|    |-Permanent
-|-Other
-
-All vectors w/ pointers to respective elements.
-Implemented as static vectors on all of these classes.
-
-get...() returns vector w/ pointers to respective entities
-
-Memory: absolutely <= 4(bytes)*3(tree depth)*n(size of all entities vector)
-*/

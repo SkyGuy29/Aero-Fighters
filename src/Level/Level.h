@@ -29,7 +29,7 @@
 /// ALL objects in a level are held here. UIs, menus, and things that span
 /// through multiple levels are held by Game.
 /// </summary>
-class Level final : public sf::Drawable
+class Level final
 {
 public:
 	enum Map
@@ -55,7 +55,7 @@ public:
 		"Space"
 	};
 
-	Level();
+	Level(sf::RenderWindow& window);
 	~Level();
 
 	static void setView(sf::View new_view);
@@ -80,8 +80,23 @@ private:
 	void swedenUpdate();
 	void englandUpdate();
 
+	struct EntityHolder
+	{
+	public:
+		std::vector<Enemy_new*> landEnemies;
+		std::vector<Enemy_new*> airEnemies;
+		std::vector<Enemy_new*> waterEnemies;
+		std::vector<Enemy_new*> bossEnemies;
+		std::vector<Player_new*> players;
+		std::vector<Projectile*> projectiles;
+		std::vector<PermanentSpawner*> permanentSpawners;
+		std::vector<TemporarySpawner*> temporarySpawners;
+		std::vector<TileEntity*> tileEntities;
+		std::vector<PowerUp*> powerUps;
+	};
+	void deleteVector(std::vector<void*>& a);
 
-	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
+	void generalTick(std::vector<Entity*>& e);
 
 	void initializeTextures(int);
 
@@ -100,7 +115,7 @@ private:
 
 	// All "objects" in the game.
 	// std::vector<Object*> objects;
-	std::vector<Entity*>& entities = Entity::getEntities();
+	EntityHolder entities;
 
 	sf::Font font;
 	sf::Text p1Score, p2Score;
@@ -115,6 +130,8 @@ private:
 	// Textures that only the map England needs
 	sf::Texture houseImg, domeImg, gateImg, hoodImg,
 		coneImg, roofusImg, domeAnimationImg, avroBomberImg;
+
+	sf::RenderWindow& window;
 
 	sf::IntRect rect;
 	float backgroundSpeed = 1, backgroundDist = 0, frontbackgroundDist = 0;

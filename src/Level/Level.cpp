@@ -3,7 +3,8 @@
 #include <string>
 
 
-Level::Level()
+Level::Level(sf::RenderWindow& window) :
+	window(window)
 {
 	font.loadFromFile("res/aero-fighters.ttf");
 }
@@ -11,14 +12,18 @@ Level::Level()
 
 Level::~Level()
 {
-	// Frees memory for every entity.
-	for (int i = 0; i < entities.size(); i++)
-		delete entities[i];
-	entities.clear();
+	deleteVector((std::vector<void*>&)entities.landEnemies);
+	deleteVector((std::vector<void*>&)entities.airEnemies);
+	deleteVector((std::vector<void*>&)entities.waterEnemies);
+	deleteVector((std::vector<void*>&)entities.bossEnemies);
+	deleteVector((std::vector<void*>&)entities.players);
+	deleteVector((std::vector<void*>&)entities.projectiles);
+	deleteVector((std::vector<void*>&)entities.permanentSpawners);
+	deleteVector((std::vector<void*>&)entities.temporarySpawners);
+	deleteVector((std::vector<void*>&)entities.tileEntities);
+	deleteVector((std::vector<void*>&)entities.powerUps);
+
 }
-
-
-sf::View Level::view;
 
 
 void Level::setView(sf::View new_view)
@@ -99,13 +104,12 @@ void Level::load(sf::Vector2f winSize, const short country,
 			break;
 	}
 
-	// Dont need to be put anywhere. Automagically handled.
-	new Player_new(country, true, &backgroundSpeed);
-	new Player_new(country, false, &backgroundSpeed);
+	entities.players.push_back(new Player_new(country, true, &backgroundSpeed));
+	entities.players.push_back(new Player_new(country, false, &backgroundSpeed));
 
 	// Change later. This just spaces out the players
-	Player_new::getPlayers()[0]->getSprite().setPosition(sf::Vector2f(winSize.x * 0.25f, winSize.y * 0.75f));
-	Player_new::getPlayers()[1]->getSprite().setPosition(sf::Vector2f(winSize.x * 0.75f, winSize.y * 0.75f));
+	entities.players[0]->getSprite()->setPosition(sf::Vector2f(winSize.x * 0.25f, winSize.y * 0.75f));
+	entities.players[1]->getSprite()->setPosition(sf::Vector2f(winSize.x * 0.75f, winSize.y * 0.75f));
 
 	// just a test to try out the moved animator to object
 	/*objects.at(0)->setTexture(&playerImg, sf::Vector2i(32, 32),
@@ -171,7 +175,7 @@ void Level::load(sf::Vector2f winSize, const short country,
 		switch (type)
 		{
 		case 0: //land
-			Enemy_new::getEnemies().push_back(new Land_new(pos, vel, (EntityID)id, &backgroundSpeed));
+			new Land_new(pos, vel, (EntityID)id, &backgroundSpeed);
 			break;
 		/*case 1: //air // TODO: Changing this
 			file >> startMark;
@@ -303,20 +307,23 @@ bool Level::update(const sf::Vector2f winSize)
 	// Calling init textures after everything is updated.
 	// Objects may create explosions that won't be drawn, 
 	// because the loop won't reach them
-	for (unsigned int i = 0; i < entities.size(); i++)
-		initializeTextures(i); // ?? - Andrew 9/16/24
+	//for (unsigned int i = 0; i < entities.size(); i++)
+	//	initializeTextures(i); // ?? - Andrew 9/16/24
+	
+	// Drawing order
+	generalTick((std::vector<Entity*>&)entities.landEnemies);
+	generalTick((std::vector<Entity*>&)entities.tileEntities);
+	generalTick((std::vector<Entity*>&)entities.waterEnemies);
 
-	/*for (unsigned int i = 0; i < all.size(); i++)
-	{
-		// logic after && symbol is for when the level editor is active we dont want to remove enemies when offscreen
-		if (objects[objects.size() - 1 - i]->shouldDelete() &&
-			(!(objects[objects.size() - 1 - i]->getType() == Object::LAND ||
-			objects[objects.size() - 1 - i]->getType() == Object::AIR) || !levelEditor))
-		{
-			delete objects[objects.size() - 1 - i];
-			objects.erase(objects.end() - 1 - i);
-		}
-	}*/
+	generalTick((std::vector<Entity*>&)entities.powerUps);
+	generalTick((std::vector<Entity*>&)entities.players);
+	generalTick((std::vector<Entity*>&)entities.projectiles);
+	
+	generalTick((std::vector<Entity*>&)entities.bossEnemies);
+	generalTick((std::vector<Entity*>&)entities.airEnemies);
+
+	generalTick((std::vector<Entity*>&)entities.permanentSpawners);
+	generalTick((std::vector<Entity*>&)entities.temporarySpawners);
 
 	englandUpdate();
 
@@ -338,6 +345,12 @@ bool Level::update(const sf::Vector2f winSize)
 		view.getCenter().y - view.getSize().y / 2.f -p2Score.getLocalBounds().height ));
 	p2Score.setPosition(sf::Vector2f(winSize.x / 2 + 20,
 		view.getCenter().y - view.getSize().y / 2.f -p2Score.getLocalBounds().height));
+
+	window.draw(p1Score);
+	window.draw(p2Score);
+
+	window.draw(p1LivesRect);
+	window.draw(p2LivesRect);
 
 	return p[0]->getHealth() > 0 || p[1]->getHealth() > 0;
 }
@@ -400,75 +413,37 @@ void Level::updateLevelEditor()
 		backgroundDist -= backgroundSpeed;
 		//rect.top = (int)backgroundDist;
 		//background.setTextureRect(rect);
-
-		for (Entity*& entity : entities)
-			entity->getSprite().move(0, backgroundSpeed);
 	}
-
-
 }
 
 
-/// <summary>
-/// Draws the level.
-/// </summary>
-/// <param name="target"></param>
-/// <param name="states"></param>
-void Level::draw(sf::RenderTarget& target, const sf::RenderStates states) const
+void Level::generalTick(std::vector<Entity*>& e)
 {
-	target.draw(background, states);
-	target.draw(frontbackground, states);
-	
-	// Drawing priority
-	// Slightly cleaner than what was here
-	// Explosions and projectiles first
-
-	// Land
-	for (Entity* e : Land_new::getLandEnemies())
-		if (e->isTexInit())
-			target.draw(e->getSprite());
-
-	// Air, boss, boss children, collectables, players
-	for(Entity* e : Air_new::getAirEnemies())
-		if (e->isTexInit())
-			target.draw(e->getSprite());
-
-	for (int i = (int)objects.size() - 1; i >= 0; i--)
+	for (unsigned int i = 0; i < e.size(); i++)
 	{
-		if (objects[i]->isTexInit())
-			switch (objects.at(i)->getType())
-			{
-			case Object::AIR:
-			case Object::BOSS_PIECE:
-			case Object::COLLECTABLE:
-			case Object::PLAYER:
-			case Object::BOSS:
-				target.draw(*objects[i]);
-			}
+		Entity::EntityObjectAction act = e[i]->onScreen();
+
+		if (act == Entity::EntityObjectAction::DELETE && !levelEditor)
+		{
+			delete e[i];
+			e.erase(e.begin() + i);
+		}
+		else if (act == Entity::EntityObjectAction::DRAW)
+		{
+			e[i]->tick();
+			window.draw(*e[i]->getSprite());
+		}
+		else // NOTHING
+		{ }
 	}
-	
-	// Projectiles with a delay think they have a texture to prevent them from 
-	// loading their texture early.
-	// The draw loop only checked if an object had a texture. 
-	// It now also checks if an object has a non-zero width.
+}
 
-	for (int i = (int)objects.size() - 1; i >= 0; i--)
-	{
-		if (objects[i]->isTexInit() && objects[i]->getSize().x > 0)
-			switch (objects[i]->getType())
-			{
-			case Object::ENEMY_PROJECTILE:
-			case Object::EXPLOSION:
-			case Object::PLAYER_PROJECTILE:
-				target.draw(*objects[i]);
-			}
-	}
 
-	target.draw(p1Score, states);
-	target.draw(p2Score, states);
-
-	target.draw(p1LivesRect, states);
-	target.draw(p2LivesRect, states);
+void Level::deleteVector(std::vector<void*>& a)
+{
+	for (int i = 0; i < a.size(); i++)
+		delete a[i];
+	a.clear();
 }
 
 
@@ -509,23 +484,23 @@ void Level::updatePlayers()
 			spawn = key(i, Controls::Spawn);
 		}
 
-		objects.at(i)->setVel(move * 5.f);
+		entities.players.at(i)->setVel(move * 5.f);
 		if (shoot)
 		{
 			if (!playerShootLast[i])
-				p[i]->shoot(objects);
+				entities.players[i]->shoot(objects);
 			playerShootLast[i] = true;
 		}
 		else
 			playerShootLast[i] = false;
 
 		if (special)
-			p[i]->special(objects, winSize);
+			entities.players[i]->special(objects, winSize);
 
 		if (spawn) //Temporary and should be changed to continue.
 		{
-			p[0]->setHealth(3);
-			p[1]->setHealth(3);
+			entities.players[0]->setHealth(3);
+			entities.players[1]->setHealth(3);
 		}
 	}
 }
@@ -564,8 +539,8 @@ void Level::englandUpdate()
 		setInfScroll(true);
 		if (bossSpawned == false)
 		{
-			objects.push_back(new Boss(0, true, sf::Vector2f(winSize.x / 2,
-				-150), sf::Vector2f(0, 5), &objects, levelEditor));
+			entities.bossEnemies.push_back(Enemy_new(sf::Vector2f(winSize.x / 2,
+				-150), sf::Vector2f(0, 5), EntityID::BOSS_ENGLAND));
 			bossSpawned = true;
 		}
 	}

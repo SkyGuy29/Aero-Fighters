@@ -5,7 +5,7 @@ Land_new::Land_new(sf::Vector2f pos, sf::Vector2f vel,
 	EntityID ID, float* backgroundSpeed, unsigned char orientation) :
 	Enemy_new(pos, vel, ID, backgroundSpeed, orientation)
 {
-	landEnemies.push_back(this);
+
 }
 
 
