@@ -100,7 +100,7 @@ private:
 
 	// All "objects" in the game.
 	// std::vector<Object*> objects;
-	EntityHolder& entities = Entity::getEntities();
+	std::vector<Entity*>& entities = Entity::getEntities();
 
 	sf::Font font;
 	sf::Text p1Score, p2Score;

@@ -13,7 +13,7 @@ Entity::Entity(sf::Vector2f pos,
 	this->sprite.setPosition(pos);
 
 	// Tracks into our all array
-	entities.all.push_back(this);
+	entities.push_back(this);
 }
 
 

@@ -2,10 +2,10 @@
 
 
 Enemy_new::Enemy_new(sf::Vector2f pos, sf::Vector2f vel,
-	EntityID ID, int* backgroundSpeed, unsigned char orientation = 0) :
+	EntityID ID, float* backgroundSpeed, unsigned char orientation = 0) :
 	backgroundSpeed(backgroundSpeed), Entity(pos, ID, orientation), IHasHealth(ID)
 {
-
+	enemies.push_back(this);
 }
 
 

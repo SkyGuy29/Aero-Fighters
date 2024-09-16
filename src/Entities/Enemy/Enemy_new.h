@@ -4,17 +4,20 @@
 
 // Primarily used by 
 class Enemy_new :
-	protected Entity, protected IHasHealth
+	public Entity, protected IHasHealth
 {
 public:
 	Enemy_new(sf::Vector2f pos, sf::Vector2f vel,
-		EntityID ID, int* backgroundSpeed, unsigned char orientation = 0);
+		EntityID ID, float* backgroundSpeed, unsigned char orientation = 0);
 
 	~Enemy_new();
 
 	void tick() override;
+
+	static std::vector<Enemy_new*>& getEnemies() { return enemies; };
 protected:
-	int* backgroundSpeed = nullptr;
+	float* backgroundSpeed = nullptr;
 	bool entered = false;
 private:
+	static std::vector<Enemy_new*> enemies;
 };

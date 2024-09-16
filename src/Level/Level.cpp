@@ -11,7 +11,10 @@ Level::Level()
 
 Level::~Level()
 {
-	
+	// Frees memory for every entity.
+	for (int i = 0; i < entities.size(); i++)
+		delete entities[i];
+	entities.clear();
 }
 
 
@@ -96,12 +99,13 @@ void Level::load(sf::Vector2f winSize, const short country,
 			break;
 	}
 
-	entities.players[0] = new Player_new(country, true, &backgroundSpeed);
-	entities.players[1] = new Player_new(country, false, &backgroundSpeed);
+	// Dont need to be put anywhere. Automagically handled.
+	new Player_new(country, true, &backgroundSpeed);
+	new Player_new(country, false, &backgroundSpeed);
 
 	// Change later. This just spaces out the players
-	entities.players[0]->getSprite().setPosition(sf::Vector2f(winSize.x * 0.25f, winSize.y * 0.75f));
-	entities.players[1]->getSprite().setPosition(sf::Vector2f(winSize.x * 0.75f, winSize.y * 0.75f));
+	Player_new::getPlayers()[0]->getSprite().setPosition(sf::Vector2f(winSize.x * 0.25f, winSize.y * 0.75f));
+	Player_new::getPlayers()[1]->getSprite().setPosition(sf::Vector2f(winSize.x * 0.75f, winSize.y * 0.75f));
 
 	// just a test to try out the moved animator to object
 	/*objects.at(0)->setTexture(&playerImg, sf::Vector2i(32, 32),
@@ -167,7 +171,7 @@ void Level::load(sf::Vector2f winSize, const short country,
 		switch (type)
 		{
 		case 0: //land
-			entities.enemies.push_back(new Land_new(pos, vel, (EntityID)id, &backgroundSpeed));
+			Enemy_new::getEnemies().push_back(new Land_new(pos, vel, (EntityID)id, &backgroundSpeed));
 			break;
 		/*case 1: //air // TODO: Changing this
 			file >> startMark;
@@ -187,14 +191,14 @@ void Level::load(sf::Vector2f winSize, const short country,
 /// </summary>
 void Level::debugMode() const
 {
-	((Player_new*)(entities.players[0]))->setHealth(HP_MAX);
-	entities.players[1]->setHealth(HP_MAX);
+	Player_new::getPlayers()[0]->setHealth(HP_MAX);
+	Player_new::getPlayers()[1]->setHealth(HP_MAX);
 }
 
 void Level::respawnPlayers() const
 {
-	entities.players[0]->setHealth(3);
-	entities.players[1]->setHealth(3);
+	Player_new::getPlayers()[0]->setHealth(3);
+	Player_new::getPlayers()[1]->setHealth(3);
 }
 
 
@@ -281,11 +285,10 @@ bool Level::update(const sf::Vector2f winSize)
 
 	//polymorphism -- All objects are stored in this vector, they can be
 	//identified using getType()
-	std::vector<Entity*> all = entities.getAllEntities();
-	for (unsigned int i = 0; i < all.size(); i++)
+	for (unsigned int i = 0; i < entities.size(); i++)
 	{
-		all[all.size() - 1 - i]->tick(
-			p[1]->getTime() && player1Score, player2Score);
+		entities[entities.size() - 1 - i]->tick(
+			Player_new::getPlayers()[1]->getTime() && player1Score, player2Score);
 		/*if (objects[objects.size() - 1 - i]->getType() == Object::EXPLOSION)
 		{
 			// I'm sorry.
@@ -300,8 +303,8 @@ bool Level::update(const sf::Vector2f winSize)
 	// Calling init textures after everything is updated.
 	// Objects may create explosions that won't be drawn, 
 	// because the loop won't reach them
-	for (unsigned int i = 0; i < all.size(); i++)
-		initializeTextures(i);
+	for (unsigned int i = 0; i < entities.size(); i++)
+		initializeTextures(i); // ?? - Andrew 9/16/24
 
 	/*for (unsigned int i = 0; i < all.size(); i++)
 	{
@@ -398,14 +401,8 @@ void Level::updateLevelEditor()
 		//rect.top = (int)backgroundDist;
 		//background.setTextureRect(rect);
 
-		for (Object* object : objects)
-		{
-			switch (object->getType())
-			{
-				case Object::LAND:
-					object->setPos(object->getPos().x, object->getPos().y + backgroundSpeed);
-			}
-		}
+		for (Entity*& entity : entities)
+			entity->getSprite().move(0, backgroundSpeed);
 	}
 
 
@@ -426,17 +423,15 @@ void Level::draw(sf::RenderTarget& target, const sf::RenderStates states) const
 	// Slightly cleaner than what was here
 	// Explosions and projectiles first
 
-	for (int i = (int)objects.size() - 1; i >= 0; i--)
-	{
-		if (objects[i]->isTexInit())
-		{
-			switch (objects.at(i)->getType())
-			{
-			case Object::LAND:
-				target.draw(*objects[i]);
-			}
-		}
-	}
+	// Land
+	for (Entity* e : Land_new::getLandEnemies())
+		if (e->isTexInit())
+			target.draw(e->getSprite());
+
+	// Air, boss, boss children, collectables, players
+	for(Entity* e : Air_new::getAirEnemies())
+		if (e->isTexInit())
+			target.draw(e->getSprite());
 
 	for (int i = (int)objects.size() - 1; i >= 0; i--)
 	{

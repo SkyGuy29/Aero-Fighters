@@ -76,6 +76,9 @@ static sf::Keyboard::Key p2Ctrl[] =
 	sf::Keyboard::Key::Enter, // Select
 };
 
+// global for when level editor is active.
+static bool levelEditorActive;
+
 // These two are for shortening code
 
 /// <summary>

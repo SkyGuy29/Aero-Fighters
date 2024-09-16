@@ -4,57 +4,6 @@
 #include "EntityData.h"
 #include "../Utility/WindowSize.h"
 #include "../Utility/EntityID.h"
-// only use pointer
-class Player_new;
-class Enemy_new;
-class Projectile_new;
-
-
-class EntityHolder
-{
-public:
-	~EntityHolder()
-	{
-		while (!enemies.empty())
-		{
-			delete enemies[enemies.size() - 1];
-			enemies.pop_back();
-		}
-
-		while (!projectiles.empty())
-		{
-			delete projectiles[projectiles.size() - 1];
-			projectiles.pop_back();
-		}
-
-		delete players[0];
-		delete players[1];
-
-		while (!other.empty())
-		{
-			delete other[other.size() - 1];
-			other.pop_back();
-		}
-	}
-	friend Entity;
-
-	const std::vector<Entity*>& getAllEntities() { return all; };
-
-	// All enemy entities
-	std::vector<Enemy_new*> enemies;
-
-	// All projectile entities
-	std::vector<Projectile_new*> projectiles;
-
-	// Players
-	Player_new* players[2];
-
-	// All other entities
-	std::vector<Entity*> other;
-private:
-	// contains all entities (basically old objects)
-	std::vector<Entity*> all;
-};
 
 
 class Entity
@@ -72,7 +21,7 @@ public:
 	void setWinSize(WindowSize& winSize);
 
 	sf::Sprite& getSprite() { return sprite; };
-	static EntityHolder& getEntities() { return entities;  };
+	static std::vector<Entity*>& getEntities() { return entities;  };
 protected:
 	Entity(sf::Vector2f pos, EntityID ID, unsigned char orientation = 0);
 
@@ -106,8 +55,11 @@ protected:
 private:
 	static WindowSize& winSize;
 	static bool& levelEditor;
-	static EntityHolder entities;
-
+	/*  See Entity layout below.
+	    These NEED to be deleted in the Level or Game destructor.
+	    Only these need to be deleted, none of the children vectors, cause this contains all entities.
+	*/
+	static std::vector<Entity*> entities;
 
 	// Texture specific data mambers //
 	short currentFrame = 0;
@@ -116,3 +68,23 @@ private:
 	// null / null / null / null / null / null / null / hasSpawned
 	bool entityFlags = 0b00000000;
 };
+/* Entity layout:
+All 4*n
+|-Enemies 4*n
+|    |-Land 4*n
+|    |-Air
+|    |-Water
+|-Tile Entities
+|-Projectiles
+|-Spawners
+|    |-Temporary
+|    |-Permanent
+|-Other
+
+All vectors w/ pointers to respective elements.
+Implemented as static vectors on all of these classes.
+
+get...() returns vector w/ pointers to respective entities
+
+Memory: absolutely <= 4(bytes)*3(tree depth)*n(size of all entities vector)
+*/
