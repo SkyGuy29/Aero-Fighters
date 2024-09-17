@@ -143,7 +143,11 @@ void Game::run()
 					playersDead = true;
 					inGame = false;
 				}
-				viewportScroll--;
+				viewportScroll -= level.getBackgroundSpeed();
+				view.setCenter(winSize.x / 2.f, viewportScroll);
+				window.setView(view);
+				Object::setView(view);
+				Level::setView(view);
 			}
 			else
 			{
@@ -153,9 +157,6 @@ void Game::run()
 			}
 		}
 
-		window.setView(view);
-		Object::setView(view);
-		Level::setView(view);
 
 		// Clear window display
 		window.clear();
@@ -163,13 +164,19 @@ void Game::run()
 		// draw objects here
 
 		// Draw the level gameplay if players are playing or dead
-		view.setCenter(winSize.x / 2.f, viewportScroll);
+		//view.setCenter(winSize.x / 2.f, viewportScroll);
+
 		if (inGame || playersDead)
 			window.draw(level);
 		// This does have to be it's own 'if' so the game over screen can overlay the gameplay
-		view.setCenter(winSize.x / 2.f, winSize.y / 2.f);
 		if (!inGame)
+		{
+			view.setCenter(winSize.x / 2.f, winSize.y / 2.f);
+			window.setView(view);
+			Object::setView(view);
+			Level::setView(view);
 			drawMenu();
+		}
 
 		window.display();
 	}

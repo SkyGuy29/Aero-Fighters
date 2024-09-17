@@ -351,6 +351,7 @@ bool Level::update(const sf::Vector2f winSize)
 	p2Score.setPosition(sf::Vector2f(winSize.x / 2 + 20,
 		view.getCenter().y - view.getSize().y / 2.f -p2Score.getLocalBounds().height));
 
+
 	return p[0]->getHealth() > 0 || p[1]->getHealth() > 0;
 }
 
