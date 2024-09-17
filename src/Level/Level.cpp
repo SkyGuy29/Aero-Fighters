@@ -433,8 +433,7 @@ void Level::generalTick(std::vector<Entity*>& e)
 			e[i]->tick();
 			window.draw(*e[i]->getSprite());
 		}
-		else // NOTHING
-		{ }
+		//else NOTHING why do we need code for this lol
 	}
 }
 
