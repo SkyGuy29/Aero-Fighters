@@ -143,7 +143,7 @@ void Game::run()
 					playersDead = true;
 					inGame = false;
 				}
-				view.move(0, -1);
+				view.move(0, -level.getBackgroundSpeed());
 			}
 			else
 			{

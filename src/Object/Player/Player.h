@@ -23,6 +23,8 @@ public:
 	void update(sf::Vector2f winSize, std::vector<Object*>* objects, 
 		bool time, int& p1Score, int& p2Score) override;
 
+	void updateBgSpeed(float* bgSpeed);
+
 	void move(sf::Vector2f winSize) override;
 
 	bool getTime() const;

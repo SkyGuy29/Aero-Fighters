@@ -451,6 +451,12 @@ void Player::update(const sf::Vector2f winSize, std::vector<Object*>* objects, b
 }
 
 
+void Player::updateBgSpeed(float* bgSpeed)
+{
+	backgroundSpeed = bgSpeed;
+}
+
+
 void Player::draw(sf::RenderTarget& target, const sf::RenderStates states) const
 {
 	if(health && !timerDeath)
@@ -509,6 +515,8 @@ void Player::move(sf::Vector2f winSize)
 		pos.x = view.getCenter().x + view.getSize().x / 2.f - size.x / 2.f;
 	if (pos.y + size.y / 2.f >= view.getCenter().y + view.getSize().y / 2.f)
 		pos.y = view.getCenter().y + view.getSize().y / 2.f - size.y / 2.f;
+
+	vel.y -= *backgroundSpeed;
 
 	Object::move(winSize);
 }

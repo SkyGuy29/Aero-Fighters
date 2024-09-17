@@ -28,6 +28,12 @@ void Level::setView(sf::View new_view)
 }
 
 
+float Level::getBackgroundSpeed()
+{
+	return backgroundSpeed;
+}
+
+
 /// <summary>
 /// Initializes the level with the given country and map.
 /// </summary>
@@ -281,6 +287,9 @@ bool Level::update(const sf::Vector2f winSize)
 	//background.setPosition(0, 0-backgroundImg.getSize().y - backgroundDist);
 	
 	updatePlayers();
+	p[0]->updateBgSpeed(&backgroundSpeed);
+	p[1]->updateBgSpeed(&backgroundSpeed);
+	
 
 	// checking the back of the vector first is needed,
 	// so deleting doesn't shift everything down and mess up the for loop
