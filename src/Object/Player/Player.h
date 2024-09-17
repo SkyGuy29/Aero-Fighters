@@ -21,7 +21,9 @@ public:
 	void special(std::vector<Object*>& objects, sf::Vector2f winSize);
 
 	void update(sf::Vector2f winSize, std::vector<Object*>* objects, 
-		bool time) override;
+		bool time, int& p1Score, int& p2Score) override;
+
+	void updateBgSpeed(float* bgSpeed);
 
 	void move(sf::Vector2f winSize) override;
 

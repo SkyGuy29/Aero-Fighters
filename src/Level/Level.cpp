@@ -19,6 +19,21 @@ Level::~Level()
 }
 
 
+sf::View Level::view;
+
+
+void Level::setView(sf::View new_view)
+{
+	view = new_view;
+}
+
+
+float Level::getBackgroundSpeed()
+{
+	return backgroundSpeed;
+}
+
+
 /// <summary>
 /// Initializes the level with the given country and map.
 /// </summary>
@@ -38,15 +53,18 @@ void Level::load(sf::Vector2f winSize, const short country,
 	if(map == England)
 		frontbackgroundImg.loadFromFile("res/"  + mapStrings[map] + "/Front"  + mapStrings[map] + ".png");
 
-	background.setSize(sf::Vector2f(winSize));
+	background.setSize(sf::Vector2f(backgroundImg.getSize()));
+	background.setPosition(0, 0 - 2240 + winSize.y);
+	
 	frontbackground.setSize(sf::Vector2f(winSize));
+	frontbackground.setPosition(0, 0 - 2240 + 320);
 	backgroundDist = (float)backgroundImg.getSize().y - winSize.y;
-	rect = sf::IntRect(0, (int)backgroundDist, (int)winSize.x, (int)winSize.y);
-	frontRect = rect;
+	//rect = sf::IntRect(0, (int)backgroundDist, (int)winSize.x, (int)winSize.y);
+	//frontRect = rect;
 	background.setTexture(&backgroundImg);
 	frontbackground.setTexture(&frontbackgroundImg);
-	background.setTextureRect(rect);
-	frontbackground.setTextureRect(rect);
+	//background.setTextureRect(rect);
+	//frontbackground.setTextureRect(rect);
 	frontbackgroundImg.setRepeated(true);
 	frontbackgroundDist = winSize.y;
 	frontbackground.setPosition(0, frontbackgroundDist);
@@ -258,17 +276,20 @@ bool Level::update(const sf::Vector2f winSize)
 	if (infScrollInPos || infScrollEnabled)
 	{
 		backgroundDist -= backgroundSpeed;
-		rect.top = (int)backgroundDist;
-		//background.setTextureRect(rect);
+	
 	}
+
 	updateInfScroll();
 
 	// for smoothing out background. 
 	// Take the decimal, leave the whole number
 	// SFML will smooth out not pixel aligned things.
-	background.setPosition(0, float((int)backgroundDist - backgroundDist));
+	//background.setPosition(0, 0-backgroundImg.getSize().y - backgroundDist);
 	
 	updatePlayers();
+	p[0]->updateBgSpeed(&backgroundSpeed);
+	p[1]->updateBgSpeed(&backgroundSpeed);
+	
 
 	// checking the back of the vector first is needed,
 	// so deleting doesn't shift everything down and mess up the for loop
@@ -279,7 +300,7 @@ bool Level::update(const sf::Vector2f winSize)
 	for (unsigned int i = 0; i < objects.size(); i++)
 	{
 		objects[objects.size() - 1 - i]->update(winSize, &objects,
-			p[1]->getTime() && !levelEditor);
+			p[1]->getTime() && !levelEditor, player1Score, player2Score);
 		if (objects[objects.size() - 1 - i]->getType() == Object::EXPLOSION)
 		{
 			// I'm sorry.
@@ -304,13 +325,6 @@ bool Level::update(const sf::Vector2f winSize)
 			(!(objects[objects.size() - 1 - i]->getType() == Object::LAND ||
 			objects[objects.size() - 1 - i]->getType() == Object::AIR) || !levelEditor))
 		{
-			// Just temporary
-			// Deleting stuff adds score to random player
-			if (rand() % 2 == 0)
-				player1Score += 100;
-			else
-				player2Score += 100;
-
 			delete objects[objects.size() - 1 - i];
 			objects.erase(objects.end() - 1 - i);
 		}
@@ -327,15 +341,15 @@ bool Level::update(const sf::Vector2f winSize)
 	p2LivesRect.setSize(sf::Vector2f(16.f * p[1]->getHealth(), 16));
 	p1LivesRect.setTextureRect(sf::IntRect(0, 16, 32 * p[0]->getHealth(), 32));
 	p2LivesRect.setTextureRect(sf::IntRect(0, 16, 32 * p[1]->getHealth(), 32));
-	p1LivesRect.setPosition(sf::Vector2f(0, 16));
-	p2LivesRect.setPosition(sf::Vector2f(winSize.x - p2LivesRect.getLocalBounds().width, 16));
+	p1LivesRect.setPosition(sf::Vector2f(0, view.getCenter().y - view.getSize().y / 2.f));
+	p2LivesRect.setPosition(sf::Vector2f(view.getCenter().x + view.getSize().x / 2.f - p2LivesRect.getLocalBounds().width, view.getCenter().y - view.getSize().y / 2.f));
 
 	// Place scores in middle top
 	// Scores were not implemented, so these values never change for now
 	p1Score.setPosition(sf::Vector2f(winSize.x / 2 - 20 - p1Score.getLocalBounds().width,
-		-p2Score.getLocalBounds().height));
+		view.getCenter().y - view.getSize().y / 2.f -p2Score.getLocalBounds().height ));
 	p2Score.setPosition(sf::Vector2f(winSize.x / 2 + 20,
-		-p2Score.getLocalBounds().height));
+		view.getCenter().y - view.getSize().y / 2.f -p2Score.getLocalBounds().height));
 
 	return p[0]->getHealth() > 0 || p[1]->getHealth() > 0;
 }
@@ -352,8 +366,8 @@ void Level::setInfScroll(const bool enable)
 
 	if (enable)
 	{
-		frontRect.top = 0;
-		frontbackground.setTextureRect(rect);
+		//frontRect.top = 0;
+		//frontbackground.setTextureRect(rect);
 		frontbackgroundDist = (float) -(int)winSize.y;
 		frontbackground.setPosition(0, frontbackgroundDist);
 	}
@@ -370,8 +384,8 @@ void Level::updateInfScroll()
 
 	if (infScrollInPos)
 	{
-		frontRect.top -= (int)backgroundSpeed;
-		frontbackground.setTextureRect(frontRect);
+		//frontRect.top -= (int)backgroundSpeed;
+		//frontbackground.setTextureRect(frontRect);
 	}
 	else
 	{
@@ -396,8 +410,8 @@ void Level::updateLevelEditor()
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::PageDown))
 			backgroundSpeed = -25;
 		backgroundDist -= backgroundSpeed;
-		rect.top = (int)backgroundDist;
-		background.setTextureRect(rect);
+		//rect.top = (int)backgroundDist;
+		//background.setTextureRect(rect);
 
 		for (Object* object : objects)
 		{

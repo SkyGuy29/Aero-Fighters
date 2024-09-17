@@ -26,13 +26,15 @@ public:
 	Projectile();
 	Projectile(float posX, float posY, sf::Vector2f vel,
 		sf::Vector2f size, ProjectileType ID, bool player, short cool, short delay,
-		short sprite); //Adds delay
+		short sprite, bool fromP1); //Adds delay
 	Projectile(float posX, float posY, sf::Vector2f vel,
-		sf::Vector2f size, ProjectileType ID, bool player, short cool, short spriteNum);
-	
+		sf::Vector2f size, ProjectileType ID, bool player, short cool, short spriteNum, bool fromP1);
 
-	void update(sf::Vector2f winSize, std::vector<Object*>* objects, bool time);
+	void update(sf::Vector2f winSize, std::vector<Object*>* objects, bool time, int& p1Score, int& p2Score);
+
+	bool isFromP1() const { return fromP1; }
 private:
+	bool fromP1 = false;
 	short delay = 0;
 	sf::Vector2f tempSize;
 

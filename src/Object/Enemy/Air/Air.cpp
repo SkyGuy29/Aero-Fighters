@@ -49,7 +49,7 @@ Air::Air(const short id, bool left, float* backgroundDist, int startMark,
 }
 
 void Air::update(const sf::Vector2f winSize, std::vector<Object*>* objects, 
-	const bool time)
+	const bool time, int& p1Score, int& p2Score)
 {
 	//Do things here only if time is moving
 	if(time != 0)
@@ -66,6 +66,6 @@ void Air::update(const sf::Vector2f winSize, std::vector<Object*>* objects,
 				vel.y *= 0.95f;
 			}
 		}
-	enemyUpdate(winSize, objects);	
+	enemyUpdate(winSize, objects, p1Score, p2Score);	
 	}
 }

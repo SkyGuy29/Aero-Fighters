@@ -98,14 +98,14 @@ Land::Land(const short id, const bool left,
 }
 
 void Land::update(const sf::Vector2f winSize, std::vector<Object*>* objects,
-    const bool time)
+    const bool time, int& p1Score, int& p2Score)
 {
-	enemyUpdate(winSize, objects);
+	enemyUpdate(winSize, objects, p1Score, p2Score);
 	//Do things here only while time is moving.
 
 	if (time != 0)
 	{
-		setPos(getPos().x, getPos().y + *backgroundSpeed);
+		//setPos(getPos().x, getPos().y + *backgroundSpeed);
 
 		if (cooldown != 0)
 			cooldown--;
@@ -161,7 +161,7 @@ void Land::update(const sf::Vector2f winSize, std::vector<Object*>* objects,
 				pos.y -= 0.5f;
 
 				objects->push_back(new Projectile(getPos().x, getPos().y,
-				projVelocity, sf::Vector2f(10, 10), ProjectileType::Basic, false, 0, 0, 12));
+				projVelocity, sf::Vector2f(10, 10), ProjectileType::Basic, false, 0, 0, 12, 0));
 
 				cooldown = 100 + rand() % 50;
 
@@ -176,28 +176,28 @@ void Land::update(const sf::Vector2f winSize, std::vector<Object*>* objects,
 				cooldown = 100;
 				objects->push_back(new Projectile(getPos().x, getPos().y,
 				sf::Vector2f(1.84776f, 0.76537f), sf::Vector2f(10, 10), ProjectileType::Basic,
-				false, 0, 0, 12));
+				false, 0, 0, 12, 0));
 				objects->push_back(new Projectile(getPos().x, getPos().y,
 				sf::Vector2f(-1.84776f, -0.76537f), sf::Vector2f(10, 10), ProjectileType::Basic,
-				false, 0, 0, 12));
+				false, 0, 0, 12, 0));
 				objects->push_back(new Projectile(getPos().x, getPos().y,
 				sf::Vector2f(-1.84776f, 0.76537f), sf::Vector2f(10, 10), ProjectileType::Basic,
-				false, 0, 0, 12));
+				false, 0, 0, 12, 0));
 				objects->push_back(new Projectile(getPos().x, getPos().y,
 				sf::Vector2f(1.84776f, -0.76537f), sf::Vector2f(10, 10), ProjectileType::Basic,
-				false, 0, 0, 12));
+				false, 0, 0, 12, 0));
 				objects->push_back(new Projectile(getPos().x, getPos().y,
 				sf::Vector2f(0.76537f, 1.84776f), sf::Vector2f(10, 10), ProjectileType::Basic,
-				false, 0, 0, 12));
+				false, 0, 0, 12, 0));
 				objects->push_back(new Projectile(getPos().x, getPos().y,
 				sf::Vector2f(-0.76537f, -1.84776f), sf::Vector2f(10, 10), ProjectileType::Basic,
-				false, 0, 0, 12));
+				false, 0, 0, 12, 0));
 				objects->push_back(new Projectile(getPos().x, getPos().y,
 				sf::Vector2f(-0.76537f, 1.84776f), sf::Vector2f(10, 10), ProjectileType::Basic,
-				false, 0, 0, 12));
+				false, 0, 0, 12, 0));
 				objects->push_back(new Projectile(getPos().x, getPos().y,
 				sf::Vector2f(0.76537f, -1.84776f), sf::Vector2f(10, 10), ProjectileType::Basic,
-				false, 0, 0, 12));
+				false, 0, 0, 12, 0));
 			}
 			break;
 		case 7: //Hangar

@@ -11,7 +11,7 @@ public:
 	Collectable(short, float, float, float*);
 
 	void update(sf::Vector2f winSize, std::vector<Object*>* objects, 
-		bool time) override;
+		bool time, int& p1Score, int& p2Score) override;
 private:
 	float* backgroundSpeed;
 };

@@ -31,7 +31,7 @@ Explosion::Explosion(const sf::Vector2f pos, const int type)
 }
 
 
-void Explosion::update(sf::Vector2f winSize, std::vector<Object*>*, bool time)
+void Explosion::update(sf::Vector2f winSize, std::vector<Object*>*, bool time, int& p1Score, int& p2Score)
 {
 	nextFrame(2);
 	sprite.move(0, backgroundSpeed);
