@@ -269,6 +269,13 @@ bool Level::update(const sf::Vector2f winSize)
 	//if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter) && infScrollInPos)
 		//setInfScroll(false);
 
+	// Debugging death screen kill players
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::K))
+	{
+		p[0]->setHealth(0);
+		p[1]->setHealth(0);
+	}
+
 	if(levelEditor)
 		updateLevelEditor();
 
