@@ -176,7 +176,6 @@
     <ClCompile Include="src\Object\Projectile\Projectile.cpp" />
     <ClCompile Include="src\Entities\TileEntity\TileEntity.cpp" />
     <ClCompile Include="src\Sprites\SpriteType.cpp" />
-    <ClCompile Include="VisualElement.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cutscene.h" />
@@ -208,7 +207,6 @@
     <ClInclude Include="src\Utility\Array\StaticArray.h" />
     <ClInclude Include="src\Utility\WindowSize.h" />
     <ClInclude Include="src\Utility\Array\VariableArray.h" />
-    <ClInclude Include="VisualElement.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lib\SFML64\lib\sfml-audio-s-d.pdb" />

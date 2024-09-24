@@ -144,6 +144,7 @@ void Game::run()
 					inGame = false;
 				}
 				viewportScroll -= level.getBackgroundSpeed();
+				window.setView(view);
 				Object::setView(view);
 				Level::setView(view);
 			}
@@ -168,6 +169,8 @@ void Game::run()
 		{
 			view.setCenter(winSize.x / 2.f, viewportScroll);
 			window.setView(view);
+			Object::setView(view);
+			Level::setView(view);
 			window.draw(level);
 		}
 		// This does have to be it's own 'if' so the game over screen can overlay the gameplay
