@@ -8,6 +8,20 @@
 class Entity
 { 
 public:
+	struct TickData
+	{
+		const bool attack;
+		const EntityDataStorage::AttackID ID;
+
+		TickData() = delete;
+
+	private:
+		friend Entity;
+
+		TickData(bool attack, EntityDataStorage::AttackID ID) :
+			attack(attack), ID(ID) {}
+	};
+
 	struct EntityHolder
 	{
 		// All enemy entities
@@ -19,6 +33,7 @@ public:
 		// All other entities
 		std::vector<Entity*> other;
 	};
+
 	virtual ~Entity() = default;
 
 	// Generic definition for any entities tick function

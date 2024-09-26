@@ -7,43 +7,26 @@
 
 #include "../Utility/Array/VariableArray.h"
 
-class Projectile;
-class Entity;
 using cstr = const char* const;
 using Vec2f = sf::Vector2f;
 
 class EntityDataStorage
 {
 public:
-	// Must never be constructed
-	EntityDataStorage() = delete;
-
 	struct ProjectilePrototype
 	{
 		const sf::Vector2f SPAWN_OFFSET;
 		const sf::Vector2f BASE_VELOCITY;
 		const EntityID ID;
-
-		operator Projectile*() const
-		{
-			new Projectile()
-		}
 	};
 
-	class AttackPrototype
+	enum class AttackID
 	{
-	public:
-		AttackPrototype(const uint8_t SPAWN_INDEX) : SPAWN_INDEX(SPAWN_INDEX) {}
-
-
-		void spawn(std::vector<Entity*>& projectiles)
-		{
-			
-		}
-
-	private:
-		const uint8_t SPAWN_INDEX;
+		// Insert attacks here
 	};
+
+	// Must never be constructed
+	EntityDataStorage() = delete;
 
 	// The stored default information for a given entity; very generic.
 	struct EntityData
@@ -79,7 +62,7 @@ private:
 	static const EntityData EntityDataTable[];
 
 	// Attack Spawning Table
-	static const VariableArray<Projectile>
+	static const VariableArray<ProjectilePrototype, 0/*Total Elements*/, 0/*Total Unique Objects*/> AttackData;
 
 
 	// Projectile Data Table

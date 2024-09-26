@@ -75,6 +75,7 @@ private:
 
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
+	// These will no longer be necessary
 	void initializeTextures(int);
 	void initTexturesBoss(Object* object, sf::IntRect& objRect,
 		int& frameCount, sf::Texture*& texPtr);
