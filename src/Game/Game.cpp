@@ -1,6 +1,5 @@
 #include "Game.h"
 
-
 Game::Game()
 {
 	long long seed = time(nullptr);
@@ -21,8 +20,8 @@ Game::Game()
 	view.setSize(winSize.x, winSize.y);
 	view.setCenter(winSize.x / 2.f, winSize.y / 2.f);
 
-	Object::setView(view);
-	Level::setView(view);
+	//Object::setView(view);
+	//Level::setView(view);
 
 	resize();
 
@@ -50,6 +49,10 @@ Game::Game()
 	menuSelectRect.setOutlineThickness(2);
 
 	font.loadFromFile("res/aero-fighters.ttf");
+
+	// debugging always on top window
+	// can't see window while exec paused
+	setWindowTopmost(window);
 }
 
 
@@ -137,6 +140,10 @@ void Game::run()
 			if (inGame)
 			{
 				// level::update() runs most of the gameplay.
+				//view.setCenter(winSize.x / 2.f, viewportScroll);
+				window.setView(view);
+				Object::setView(view);
+				Level::setView(view);
 				if (!level.update(winSize))
 				{
 					gameOver.set(10, ticksPerSec);
@@ -144,9 +151,6 @@ void Game::run()
 					inGame = false;
 				}
 				viewportScroll -= level.getBackgroundSpeed();
-				window.setView(view);
-				Object::setView(view);
-				Level::setView(view);
 			}
 			else
 			{
@@ -169,8 +173,8 @@ void Game::run()
 		{
 			view.setCenter(winSize.x / 2.f, viewportScroll);
 			window.setView(view);
-			Object::setView(view);
-			Level::setView(view);
+			//Object::setView(view);
+			//Level::setView(view);
 			window.draw(level);
 		}
 		// This does have to be it's own 'if' so the game over screen can overlay the gameplay
@@ -178,8 +182,8 @@ void Game::run()
 		{
 			view.setCenter(winSize.x / 2.f, winSize.y / 2.f);
 			window.setView(view);
-			Object::setView(view);
-			Level::setView(view);
+			//Object::setView(view);
+			//Level::setView(view);
 			drawMenu();
 		}
 
