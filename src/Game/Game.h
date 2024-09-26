@@ -48,6 +48,37 @@ private:
 };
 
 
+enum class cutsceneID
+{
+	START,
+	OSARU,
+	PANDORA,
+	STATES1,
+	STATES2,
+	STATES,
+	JAPAN1,
+	JAPAN2,
+	JAPAN,
+	SWEDEN1,
+	SWEDEN2,
+	SWEDEN,
+	ENGLAND1,
+	ENGLAND2,
+	ENGLAND
+};
+
+
+struct VideoCutscene
+{
+	void load(cutsceneID);
+	void unload();
+	void draw(sf::RenderWindow&);
+	cutsceneID getID(bool player, bool win);
+	unsigned short count, index;
+	sf::Sprite* frames;
+};
+
+
 /// <summary>
 /// Big class that handles the whole game. 
 /// It is created and ran once in Main.cpp. 
