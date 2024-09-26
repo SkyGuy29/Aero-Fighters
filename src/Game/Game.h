@@ -3,6 +3,19 @@
 #include "../Level/Level.h"
 #include <cmath>
 
+#ifdef _WIN32
+extern "C" { extern int SetWindowPos(void*, void*, int, int, int, int, unsigned); }
+#endif
+
+static void setWindowTopmost(sf::RenderWindow& window)
+{
+#ifdef _WIN32
+	SetWindowPos(window.getSystemHandle(), (void*)(-1), 0, 0, 0, 0, 2 | 1);
+#else
+	printf("Sorry, setWindowTopmost only supports Win32 at this time.\nChange it here: \"src/Game/Game.h\" | Line:%d\n", __LINE__);
+#endif
+}
+
 
 class Countdown
 {
