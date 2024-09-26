@@ -6,6 +6,9 @@
 class Cutscene
 {
 public:
+	Cutscene();
+	~Cutscene();
+	
 private:
 	std::queue<VisualElement<sf::Sprite>> spriteElements;
 	std::queue<VisualElement<sf::String>> stringElements;
