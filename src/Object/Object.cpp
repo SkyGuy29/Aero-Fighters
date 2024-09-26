@@ -193,7 +193,7 @@ void Object::setVel(const float x, const float y)
 bool Object::outOfBounds(const sf::Vector2f winSize) const
 {
 	float scrLeft = view.getCenter().x - view.getSize().x / 2.f;
-	float scrTop = view.getCenter().y + view.getSize().y / 2.f;
+	float scrTop = view.getCenter().y - view.getSize().y / 2.f;
 	float scrRight = view.getCenter().x + view.getSize().x / 2.f;
 	float scrBottom = view.getCenter().y - view.getSize().y / 2.f;
 
@@ -216,4 +216,22 @@ bool Object::outOfBounds(const sf::Vector2f winSize) const
 
 	//return pos.x + size.x / 2.f < 0 || pos.y + size.y / 2.f < view.getCenter().y - view.getSize().y / 2.f ||
 		//pos.x - size.x / 2.f >= view.getCenter().x + view.getSize().x / 2.f || pos.y - size.y / 2.f >= view.getCenter().y + view.getSize().y / 2.f;
+}
+
+
+bool Object::outOfTopBounds(sf::Vector2f winSize) const
+{
+	if (view.getCenter().y - view.getSize().y / 2.f > pos.y + size.y / 2.f)
+		return true;
+	else
+		return false;
+}
+
+
+bool Object::outOfBottomBounds(sf::Vector2f winSize) const
+{
+	if (view.getCenter().y + view.getSize().y / 2.f < pos.y - size.y / 2.f)
+		return true;
+	else
+		return false;
 }

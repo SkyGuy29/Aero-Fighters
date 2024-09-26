@@ -82,7 +82,7 @@ void Projectile::update(sf::Vector2f winSize, std::vector<Object*>* objects,
 	if (cooldown == 0 && (id == 3 || id == 1))
 		del = true;
 
-	if (outOfBounds(winSize))
+	if (outOfBottomBounds(winSize))
 		del = true;
 
 	Object* closestEnemy = nullptr;
