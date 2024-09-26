@@ -1,6 +1,5 @@
 #include "Game.h"
 
-
 Game::Game()
 {
 	long long seed = time(nullptr);
@@ -21,7 +20,8 @@ Game::Game()
 	view.setSize(winSize.x, winSize.y);
 	view.setCenter(winSize.x / 2.f, winSize.y / 2.f);
 
-	Object::setView(view);
+	//Object::setView(view);
+	//Level::setView(view);
 
 	resize();
 
@@ -49,6 +49,10 @@ Game::Game()
 	menuSelectRect.setOutlineThickness(2);
 
 	font.loadFromFile("res/aero-fighters.ttf");
+
+	// debugging always on top window
+	// can't see window while exec paused
+	//setWindowTopmost(window);
 }
 
 
@@ -136,12 +140,17 @@ void Game::run()
 			if (inGame)
 			{
 				// level::update() runs most of the gameplay.
+				//view.setCenter(winSize.x / 2.f, viewportScroll);
+				window.setView(view);
+				Object::setView(view);
+				Level::setView(view);
 				if (!level.update(winSize))
 				{
 					gameOver.set(10, ticksPerSec);
 					playersDead = true;
 					inGame = false;
 				}
+				viewportScroll -= level.getBackgroundSpeed();
 			}
 			else
 			{
@@ -151,8 +160,6 @@ void Game::run()
 			}
 		}
 
-		view.move(0, -1);
-		window.setView(view);
 
 		// Clear window display
 		window.clear();
@@ -160,11 +167,25 @@ void Game::run()
 		// draw objects here
 
 		// Draw the level gameplay if players are playing or dead
+		//view.setCenter(winSize.x / 2.f, viewportScroll);
+
 		if (inGame || playersDead)
+		{
+			view.setCenter(winSize.x / 2.f, viewportScroll);
+			window.setView(view);
+			//Object::setView(view);
+			//Level::setView(view);
 			window.draw(level);
+		}
 		// This does have to be it's own 'if' so the game over screen can overlay the gameplay
 		if (!inGame)
+		{
+			view.setCenter(winSize.x / 2.f, winSize.y / 2.f);
+			window.setView(view);
+			//Object::setView(view);
+			//Level::setView(view);
 			drawMenu();
+		}
 
 		window.display();
 	}
@@ -228,6 +249,8 @@ void Game::updateMenu()
 		{
 			playersDead = false;
 			countryChoose.set(10, ticksPerSec);
+			level = Level();
+			viewportScroll = winSize.y / 2.f;
 		}
 	}
 	else // Start menu

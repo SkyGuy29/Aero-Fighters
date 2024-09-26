@@ -25,7 +25,7 @@ Collectable::Collectable(const short id, const float xPosition, const float yPos
 
 
 void Collectable::update(const sf::Vector2f winSize, std::vector<Object*>* objects,
-	const bool time)
+	const bool time, int& p1Score, int& p2Score)
 {
 	if (id == 0)
 		vel.y = *backgroundSpeed;

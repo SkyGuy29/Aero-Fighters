@@ -7,6 +7,7 @@ sf::View Object::view;
 void Object::setView(sf::View new_view)
 {
 	view = new_view;
+	printf("y:%f\n", view.getCenter().y);
 }
 
 
@@ -185,13 +186,34 @@ void Object::setVel(const float x, const float y)
 
 
 /// <summary>
-/// Returns if any part of an object is outside the viewing area.
+/// Returns if the whole hitbox of an object is outside the viewing area.
 /// </summary>
 /// <param name="winSize"></param>
 /// <returns></returns>
 bool Object::outOfBounds(const sf::Vector2f winSize) const
 {
-	return pos.x + size.x/2.f < 0 || pos.y + size.y/2.f < 0 ||
-		pos.x - size.x/2.f >= winSize.x || pos.y - size.y/2.f
-		>= winSize.y;
+	float scrLeft = view.getCenter().x - view.getSize().x / 2.f;
+	float scrTop = view.getCenter().y + view.getSize().y / 2.f;
+	float scrRight = view.getCenter().x + view.getSize().x / 2.f;
+	float scrBottom = view.getCenter().y - view.getSize().y / 2.f;
+
+	float objLeft = pos.x;
+	float objTop = pos.y;
+	float objRight = pos.x + size.x;
+	float objBottom = pos.y + size.y;
+
+	return                          objBottom < 
+		                            scrTop ||
+
+
+
+		objRight < scrLeft ||                       scrRight < objLeft || 
+
+
+
+		                            scrBottom <
+		                            objTop;
+
+	//return pos.x + size.x / 2.f < 0 || pos.y + size.y / 2.f < view.getCenter().y - view.getSize().y / 2.f ||
+		//pos.x - size.x / 2.f >= view.getCenter().x + view.getSize().x / 2.f || pos.y - size.y / 2.f >= view.getCenter().y + view.getSize().y / 2.f;
 }

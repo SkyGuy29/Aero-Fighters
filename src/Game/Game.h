@@ -3,6 +3,21 @@
 #include "../Level/Level.h"
 #include <cmath>
 
+/*
+#ifdef _WIN32
+extern "C" { extern int SetWindowPos(void*, void*, int, int, int, int, unsigned); }
+#endif
+
+static void setWindowTopmost(sf::RenderWindow& window)
+{
+#ifdef _WIN32
+	SetWindowPos(window.getSystemHandle(), (void*)(-1), 0, 0, 0, 0, 2 | 1);
+#else
+	printf("Sorry, setWindowTopmost only supports Win32 at this time.\nChange it here: \"src/Game/Game.h\" | Line:%d\n", __LINE__);
+#endif
+}
+*/
+
 
 class Countdown
 {
@@ -48,6 +63,37 @@ private:
 };
 
 
+enum class cutsceneID
+{
+	START,
+	OSARU,
+	PANDORA,
+	STATES1,
+	STATES2,
+	STATES,
+	JAPAN1,
+	JAPAN2,
+	JAPAN,
+	SWEDEN1,
+	SWEDEN2,
+	SWEDEN,
+	ENGLAND1,
+	ENGLAND2,
+	ENGLAND
+};
+
+
+struct VideoCutscene
+{
+	void load(cutsceneID);
+	void unload();
+	void draw(sf::RenderWindow&);
+	cutsceneID getID(bool player, bool win);
+	unsigned short count, index;
+	sf::Sprite* frames;
+};
+
+
 /// <summary>
 /// Big class that handles the whole game. 
 /// It is created and ran once in Main.cpp. 
@@ -72,11 +118,12 @@ private:
 	// The game window
 	sf::RenderWindow window;
 
-	// The in game view area
-	sf::View view;
-
 	// The size of the window
 	sf::Vector2f winSize = sf::Vector2f(224.f, 320.f);
+
+	// The in game view area
+	sf::View view;
+	float viewportScroll = winSize.y / 2.f;
 
 	// Deltatime clock
 	sf::Clock clock;

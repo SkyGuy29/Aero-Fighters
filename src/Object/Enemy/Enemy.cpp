@@ -14,7 +14,7 @@ int Enemy::getHealth() const
 	return health;
 }
 
-void Enemy::enemyUpdate(const sf::Vector2f winSize, std::vector<Object*>* objects)
+void Enemy::enemyUpdate(const sf::Vector2f winSize, std::vector<Object*>* objects, int& p1Score, int& p2Score)
 {
 	texInit = false;
 	objectUpdate(winSize, objects);
@@ -51,6 +51,13 @@ void Enemy::enemyUpdate(const sf::Vector2f winSize, std::vector<Object*>* object
 		{
 			// Decrement my health
 			health--;
+
+			// Very hacky way to increase score
+			// I'm sorry, but also not
+			if (((Projectile*)(objects->at(i)))->isFromP1())
+				p1Score += 100;
+			else
+				p2Score += 100;
 		}
 	}
 

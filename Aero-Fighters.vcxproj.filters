@@ -60,16 +60,25 @@
     <ClCompile Include="src\Entities\Enemy\Enemy_new.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Entities\Enemy\EnemyCollidable.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\Entities\Projectile\Projectile_new.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Entities\Entity.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Entities\Player\Player.cpp">
+    <ClCompile Include="src\Entities\EntityData.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Entities\Player\Player_new.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Sprites\SpriteType.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Cutscene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VisualElement.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -146,16 +155,22 @@
     <ClInclude Include="src\Entities\Enemy\Enemy_new.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Entities\Enemy\EnemyCollidable.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\Entities\Projectile\Projectile_new.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Entities\Entity.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Entities\Player\Player.h">
+    <ClInclude Include="src\Entities\Player\Player_new.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Level\Intermediary.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Cutscene.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VisualElement.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
