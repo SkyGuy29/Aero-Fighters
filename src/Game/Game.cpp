@@ -52,7 +52,7 @@ Game::Game()
 
 	// debugging always on top window
 	// can't see window while exec paused
-	setWindowTopmost(window);
+	//setWindowTopmost(window);
 }
 
 

@@ -195,12 +195,12 @@ bool Object::outOfBounds(const sf::Vector2f winSize) const
 	float scrLeft = view.getCenter().x - view.getSize().x / 2.f;
 	float scrTop = view.getCenter().y + view.getSize().y / 2.f;
 	float scrRight = view.getCenter().x + view.getSize().x / 2.f;
-	float scrBottom = view.getCenter().y + view.getSize().y / 2.f;
+	float scrBottom = view.getCenter().y - view.getSize().y / 2.f;
 
-	float objLeft = pos.x - size.x / 2.f;
-	float objTop = pos.y - size.y / 2.f;
-	float objRight = pos.x + size.x / 2.f;
-	float objBottom = pos.y + size.y / 2.f;
+	float objLeft = pos.x;
+	float objTop = pos.y;
+	float objRight = pos.x + size.x;
+	float objBottom = pos.y + size.y;
 
 	return                          objBottom < 
 		                            scrTop ||
