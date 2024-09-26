@@ -20,11 +20,11 @@ void Enemy::enemyUpdate(const sf::Vector2f winSize, std::vector<Object*>* object
 	objectUpdate(winSize, objects);
 	nextFrame(3);
 
-	if (!entered && (!outOfBounds(winSize) || levelEditor))
+	if ((outOfTopBounds(winSize) == false && outOfBottomBounds(winSize) == false)  || levelEditor)
 		entered = true;
 
 	//Delete an enemy when it goes off screen
-	if (outOfBounds(winSize) && entered)
+	if (outOfBottomBounds(winSize) == true)
 		del = true;
 
 	//
@@ -45,7 +45,7 @@ void Enemy::enemyUpdate(const sf::Vector2f winSize, std::vector<Object*>* object
 	for (int i = 0; i < objects->size(); i++)
 	{
 		// If the entity is a players projectile, is colliding with me, is not hidden, and is active
-		if (objects->at(i)->getType() == PLAYER_PROJECTILE 
+		if (objects->at(i)->getType() == PLAYER_PROJECTILE
 			&& this->intersect(objects->at(i)) && type != HIDDEN
 			&& entered)
 		{
