@@ -89,7 +89,7 @@ void Game::run()
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::B) && !levelEditor &&
 			sf::Keyboard::isKeyPressed(sf::Keyboard::LControl) && !countryChoose.isDone())
 		{
-			levelEditor = true;
+			inLevelEditor = true;
 			// static casts are annyoing to look at
 			window.setSize(sf::Vector2u(
 				static_cast<unsigned int>(winSize.x) * 4,

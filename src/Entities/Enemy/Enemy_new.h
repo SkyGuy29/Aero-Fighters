@@ -14,10 +14,7 @@ public:
 
 	void tick() override;
 
-	static std::vector<Enemy_new*>& getEnemies() { return enemies; };
 protected:
 	float* backgroundSpeed = nullptr;
 	bool entered = false;
-private:
-	static std::vector<Enemy_new*> enemies;
 };

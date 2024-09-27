@@ -155,13 +155,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\Entities\Enemy\Land\Land_new.cpp" />
+    <ClCompile Include="src\Utility\EntityData\EntityManagementInterface.cpp" />
+    <ClCompile Include="src\Entities\Enemy\Boss\Boss_new.cpp" />
     <ClCompile Include="src\Entities\Spawner\EnemySpawner.cpp" />
     <ClCompile Include="src\Entities\Spawner\PermanentSpawner\PermanentSpawner.cpp" />
-    <ClCompile Include="src\Entities\Enemy\Air\Air_new.cpp" />
     <ClCompile Include="src\Entities\Enemy\Enemy_new.cpp" />
     <ClCompile Include="src\Entities\Entity.cpp" />
-    <ClCompile Include="src\Entities\EntityData.cpp" />
+    <ClCompile Include="src\Utility\EntityData\EntityDataStorage.cpp" />
     <ClCompile Include="src\Entities\Player\Player_new.cpp" />
     <ClCompile Include="src\Entities\PowerUp\PowerUp.cpp" />
     <ClCompile Include="src\Entities\Projectile\Projectile_new.cpp" />
@@ -173,13 +173,15 @@
     <ClCompile Include="src\Entities\Spawner\TemporarySpawner\TemporarySpawner.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Entities\Enemy\Land\Land_new.h" />
+    <ClInclude Include="src\Utility\EntityData\AttackPrototype.h" />
+    <ClInclude Include="src\Utility\EntityData\EntityData.h" />
+    <ClInclude Include="src\Utility\EntityData\EntityManagementInterface.h" />
+    <ClInclude Include="src\Entities\Enemy\Boss\Boss_new.h" />
     <ClInclude Include="src\Entities\Spawner\EnemySpawner.h" />
     <ClInclude Include="src\Entities\Spawner\PermanentSpawner\PermanentSpawner.h" />
-    <ClInclude Include="src\Entities\Enemy\Air\Air_new.h" />
     <ClInclude Include="src\Entities\Enemy\Enemy_new.h" />
     <ClInclude Include="src\Entities\Entity.h" />
-    <ClInclude Include="src\Entities\EntityData.h" />
+    <ClInclude Include="src\Utility\EntityData\EntityDataStorage.h" />
     <ClInclude Include="src\Entities\Interfaces\IHasHealth.h" />
     <ClInclude Include="src\Entities\Interfaces\IHasChildren.h" />
     <ClInclude Include="src\Entities\Player\Player_new.h" />
@@ -192,6 +194,8 @@
     <ClInclude Include="src\Level\Level.h" />
     <ClInclude Include="src\Entities\TileEntity\TileEntity.h" />
     <ClInclude Include="src\Sprites\SpriteType.h" />
+    <ClInclude Include="src\Utility\EntityData\EntityData.hpp" />
+    <ClInclude Include="src\Utility\EntityData\ProjectilePrototype.h" />
     <ClInclude Include="src\Utility\EntityID.h" />
     <ClInclude Include="src\Utility\Array\StaticArray.h" />
     <ClInclude Include="src\Utility\WindowSize.h" />

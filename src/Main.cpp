@@ -21,6 +21,9 @@
 	Projectiles just fly in a straight line at their angle. Other types will be added later.
 */
 
+// Global variable for level editor.
+bool inLevelEditor = false;
+
 #include "Game/Game.h"
 
 int main()

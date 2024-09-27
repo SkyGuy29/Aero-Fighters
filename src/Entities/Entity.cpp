@@ -17,7 +17,7 @@ Entity::Entity(sf::Vector2f pos, EntityID ID, unsigned char orientation) :
 }
 
 
-Entity::EntityObjectAction Entity::onScreen() noexcept
+Entity::EntityObjectAction Entity::getEntityAction() noexcept
 {
 	sf::Vector2f pos = sprite->getPosition();
 	EntityObjectAction ret = EntityObjectAction::NOTHING;

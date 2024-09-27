@@ -79,21 +79,6 @@ private:
 	void japanUpdate();
 	void swedenUpdate();
 	void englandUpdate();
-
-	struct EntityHolder
-	{
-	public:
-		std::vector<Enemy_new*> landEnemies;
-		std::vector<Enemy_new*> airEnemies;
-		std::vector<Enemy_new*> waterEnemies;
-		std::vector<Enemy_new*> bossEnemies;
-		std::vector<Player_new*> players;
-		std::vector<Projectile*> projectiles;
-		std::vector<PermanentSpawner*> permanentSpawners;
-		std::vector<TemporarySpawner*> temporarySpawners;
-		std::vector<TileEntity*> tileEntities;
-		std::vector<PowerUp*> powerUps;
-	};
 	void deleteVector(std::vector<void*>& a);
 
 	void generalTick(std::vector<Entity*>& e);
@@ -141,7 +126,8 @@ private:
 	int player1Score = 0, player2Score = 0;
 
 	sf::Vector2f winSize;
-	bool infScrollInPos = true, infScrollEnabled = false, bossSpawned = false, levelEditor = false;
+	bool infScrollInPos = true, infScrollEnabled = false, bossSpawned = false;
+	static bool levelEditor;
 	sf::IntRect frontRect;
 
 	bool playerShootLast[2] = { false, false };

@@ -47,7 +47,7 @@ public:
 	 * @retval EntityObjectAction::DELETE The entity has been 'spawned', however
 	 *		   it has just left the screen and thus should be deleted.
 	 */
-	EntityObjectAction onScreen() noexcept;
+	EntityObjectAction getEntityAction() noexcept;
 
 	sf::Sprite* getSprite() { return sprite; };
 protected:

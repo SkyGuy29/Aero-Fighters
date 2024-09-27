@@ -2,6 +2,7 @@
 #include <fstream>
 #include <string>
 
+bool Level::levelEditor = false;
 
 Level::Level(sf::RenderWindow& window) :
 	window(window)
@@ -413,27 +414,6 @@ void Level::updateLevelEditor()
 		backgroundDist -= backgroundSpeed;
 		//rect.top = (int)backgroundDist;
 		//background.setTextureRect(rect);
-	}
-}
-
-
-void Level::generalTick(std::vector<Entity*>& e)
-{
-	for (unsigned int i = 0; i < e.size(); i++)
-	{
-		Entity::EntityObjectAction act = e[i]->onScreen();
-
-		if (act == Entity::EntityObjectAction::DELETE && !levelEditor)
-		{
-			delete e[i];
-			e.erase(e.begin() + i);
-		}
-		else if (act == Entity::EntityObjectAction::DRAW)
-		{
-			e[i]->tick();
-			window.draw(*e[i]->getSprite());
-		}
-		//else NOTHING why do we need code for this lol
 	}
 }
 
