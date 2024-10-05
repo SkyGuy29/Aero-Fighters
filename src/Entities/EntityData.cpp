@@ -12,8 +12,8 @@ EntityDataStorage::EntityData const EntityDataStorage::EntityDataTable[] = {
     // Add other values if necessary
 };
 
-VariableArray<EntityDataStorage::ProjectilePrototype, 0/*Total Elements*/, 0/*Total Unique Objects*/> const EntityDataStorage::AttackData =
-{
+//VariableArray<EntityDataStorage::ProjectilePrototype, 0/*Total Elements*/, 0/*Total Unique Objects*/> const EntityDataStorage::AttackData =
+/*{
     {
         ProjectilePrototype { // Example case
         	{0, 0},
@@ -28,4 +28,4 @@ VariableArray<EntityDataStorage::ProjectilePrototype, 0/*Total Elements*/, 0/*To
             20
 		}
     }, //VariableArray<EntityDataStorage::ProjectilePrototype,0,0>::SpacingElement
-};
+};*/
