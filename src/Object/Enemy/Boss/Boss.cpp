@@ -65,7 +65,10 @@ void Boss::update(const sf::Vector2f winSize, std::vector<Object*>* objects,
 	switch (id)
 	{
 	case 0: //England Boss Movement
-		vel.y *= .98f; 
+		setPos(view.getCenter().x,view.getCenter().y - view.getSize().y / 3.5f);
+		/*if (vel.y > -7.f)
+			vel.y -= 0.01f;*/
+		//vel.y *= .98f; 
 		bossPiece1->setPos(sf::Vector2f(pos.x - 54, pos.y + 40));
 		bossPiece2->setPos(sf::Vector2f(pos.x, pos.y + 40)); 
 		bossPiece3->setPos(sf::Vector2f(pos.x + 54, pos.y + 40));

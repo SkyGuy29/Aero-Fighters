@@ -551,7 +551,7 @@ void Level::englandUpdate()
 		if (bossSpawned == false)
 		{
 			objects.push_back(new Boss(0, true, sf::Vector2f(winSize.x / 2,
-				-150), sf::Vector2f(0, 5), &objects, levelEditor));
+				view.getCenter().y - 150), sf::Vector2f(0, 5), &objects, levelEditor));
 			bossSpawned = true;
 		}
 	}
