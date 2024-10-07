@@ -1,10 +1,16 @@
 #pragma once
 #include <SFML/System/Vector2.hpp>
-#include "../EntityID.h"
+#include "./EntityPrototype.h"
 
-struct ProjectilePrototype
+struct ProjectilePrototype : EntityPrototype
 {
-	const sf::Vector2f SPAWN_OFFSET;
-	const sf::Vector2f BASE_VELOCITY;
-	const EntityID ID;
+	enum class Owner
+	{
+		Enemy,
+		Player1,
+		Player2
+	};
+	// 0/0/0/0/0/0/0/set velocity on start to go to nearest player
+	uint8_t FLAGS;
+	Owner OWNER;
 };

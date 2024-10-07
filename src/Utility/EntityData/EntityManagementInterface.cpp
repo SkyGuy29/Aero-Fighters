@@ -50,6 +50,50 @@ void EntityManagementInterface::tick()
 
 void EntityManagementInterface::draw(sf::RenderWindow& win)
 {
+	for (auto land : landEnemies)
+	{
+		generalTick(land);
+	}
+
+	for (auto air : airEnemies)
+	{
+		generalTick(air);
+	}
+
+	for (auto water : waterEnemies)
+	{
+		generalTick(water);
+	}
+
+	for (auto boss : bossEnemies)
+	{
+		generalTick(boss);
+	}
+
+	for (auto projectile : projectiles)
+	{
+		generalTick(projectile);
+	}
+
+	for (auto permSpawner : permanentSpawners)
+	{
+		generalTick(permSpawner);
+	}
+
+	for (auto tempSpawner : temporarySpawners)
+	{
+		generalTick(tempSpawner);
+	}
+
+	for (auto tile : tileEntities)
+	{
+		generalTick(tile);
+	}
+
+	for (auto powerUp : powerUps)
+	{
+		generalTick(powerUp);
+	}
 }
 
 void EntityManagementInterface::generalTick(Entity* entity)
