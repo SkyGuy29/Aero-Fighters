@@ -3,6 +3,7 @@
 #include "../Level/Level.h"
 #include <cmath>
 
+/*
 #ifdef _WIN32
 extern "C" { extern int SetWindowPos(void*, void*, int, int, int, int, unsigned); }
 #endif
@@ -15,6 +16,7 @@ static void setWindowTopmost(sf::RenderWindow& window)
 	printf("Sorry, setWindowTopmost only supports Win32 at this time.\nChange it here: \"src/Game/Game.h\" | Line:%d\n", __LINE__);
 #endif
 }
+*/
 
 
 class Countdown
@@ -58,6 +60,37 @@ private:
 	unsigned seconds = 0,
 		progress = 0,
 		ticksPerSec = 0;
+};
+
+
+enum class cutsceneID
+{
+	START,
+	OSARU,
+	PANDORA,
+	STATES1,
+	STATES2,
+	STATES,
+	JAPAN1,
+	JAPAN2,
+	JAPAN,
+	SWEDEN1,
+	SWEDEN2,
+	SWEDEN,
+	ENGLAND1,
+	ENGLAND2,
+	ENGLAND
+};
+
+
+struct VideoCutscene
+{
+	void load(cutsceneID);
+	void unload();
+	void draw(sf::RenderWindow&);
+	cutsceneID getID(bool player, bool win);
+	unsigned short count, index;
+	sf::Sprite* frames;
 };
 
 

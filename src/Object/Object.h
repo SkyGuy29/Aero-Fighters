@@ -42,6 +42,8 @@ public:
 	sf::Vector2f getVel() const { return vel; };
 
 	bool outOfBounds(sf::Vector2f winSize) const;
+	bool outOfTopBounds(sf::Vector2f winSize) const;
+	bool outOfBottomBounds(sf::Vector2f winSize) const;
 
 	void flagDelete() { del = true; };
 	bool shouldDelete() const { return del; };

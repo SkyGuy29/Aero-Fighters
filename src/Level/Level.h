@@ -64,8 +64,6 @@ public:
 	void respawnPlayers() const;
 
 private:
-	void setInfScroll(bool enable);
-	void updateInfScroll();
 
 	void updateLevelEditor();
 	void updatePlayers();
@@ -79,6 +77,7 @@ private:
 
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
+	// These will no longer be necessary
 	void initializeTextures(int);
 	void initTexturesBoss(Object* object, sf::IntRect& objRect,
 		int& frameCount, sf::Texture*& texPtr);
@@ -101,8 +100,8 @@ private:
 	sf::RectangleShape p1LivesRect, p2LivesRect;
 	sf::Texture playerImgRepeat;
 
-	sf::RectangleShape background, frontbackground;
-	sf::Texture backgroundImg, frontbackgroundImg, playerImg, projectileImg,
+	sf::RectangleShape background, bossBackground;
+	sf::Texture backgroundImg, bossBackgroundImg, playerImg, projectileImg,
 		powerUpImg, moneyImg, explosionImg, enemyImg,
 		enemyProjectileImg, missileImg;
 
@@ -111,7 +110,7 @@ private:
 		coneImg, roofusImg, domeAnimationImg, avroBomberImg;
 
 	sf::IntRect rect;
-	float backgroundSpeed = 1, backgroundDist = 0, frontbackgroundDist = 0;
+	float backgroundSpeed = 1, backgroundDist = 0;
 	short country, orient = 0;
 	//float backgroundSpeedup = 0.f;
 	//float backgroundSpeedupMax = 2.f;
@@ -119,8 +118,7 @@ private:
 	int player1Score = 0, player2Score = 0;
 
 	sf::Vector2f winSize;
-	bool infScrollInPos = true, infScrollEnabled = false, bossSpawned = false, levelEditor = false;
-	sf::IntRect frontRect;
+	bool bossSpawned = false, levelEditor = false, bossBackgroundSet = false;
 
 	bool playerShootLast[2] = { false, false };
 
