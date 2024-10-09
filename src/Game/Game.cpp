@@ -141,6 +141,7 @@ void Game::run()
 			{
 				// level::update() runs most of the gameplay.
 				//view.setCenter(winSize.x / 2.f, viewportScroll);
+				view.setCenter(winSize.x / 2.f, viewportScroll);
 				window.setView(view);
 				Object::setView(view);
 				Level::setView(view);
@@ -171,7 +172,6 @@ void Game::run()
 
 		if (inGame || playersDead)
 		{
-			view.setCenter(winSize.x / 2.f, viewportScroll);
 			window.setView(view);
 			//Object::setView(view);
 			//Level::setView(view);

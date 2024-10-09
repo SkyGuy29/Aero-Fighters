@@ -19,5 +19,6 @@ private:
     short pattern = 0;
     short cooldown2 = 250;
     short cooldown3 = 0;
+    short timer = 0;
 };
 
