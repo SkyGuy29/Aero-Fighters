@@ -290,7 +290,7 @@ bool Level::update(const sf::Vector2f winSize)
 	//		fastforwarding moves the boss background down to a third of the screen.
 	// Doesn't speed up yet, only uses view instead of backgroundSpeed,
 	// I just wanted to get this sort of working. - Ben
-	bossBackground.setPosition(0, view.getCenter().y - winSize.y / 2.f - 7);
+	bossBackground.setPosition(0, view.getCenter().y - winSize.y / 2.f);
 
 	// for smoothing out background. 
 	// Take the decimal, leave the whole number
