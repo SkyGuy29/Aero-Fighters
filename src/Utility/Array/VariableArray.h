@@ -51,9 +51,9 @@ public:
 	struct ReturnData
 	{
 		// The beginning of the sub-array
-		const RAW_TYPE* DATA;
+		RAW_TYPE* DATA;
 		// The length of the sub-array
-		const unsigned char COUNT;
+		unsigned char COUNT;
 
 		// Can only be constructed by the VariableArray
 		ReturnData() = delete;

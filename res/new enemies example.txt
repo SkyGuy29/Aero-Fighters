@@ -1,5 +1,5 @@
 # This is the format for enemies files.
-type        0: Land enemy     1: Temporary Enemy Spawner    2: Permanent Enemy Spawner
+NEW LAND/AIR/WATER
 id          ID of the enemy (corrosponds to sprite and behavior) (alternatively the enemy that is spawned with spawners)
 pos.x       Spawn position
 pos.y
@@ -7,35 +7,31 @@ vel.x       Spawn velocity  (Set to 0 with spawners)
 vel.y
 (empty line)
 # Below is the example.
-0
+NEW LAND
 0
 32
 -46
 0
 0
-
-0
+NEW LAND
 0
 79
 -63
 0
 0
 
-0
 6
 155
 -1711
 0
 0
 
-1
 0
 85
 0
 0
 0
 
-1
 0
 112
 0

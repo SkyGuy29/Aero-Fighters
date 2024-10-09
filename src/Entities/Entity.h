@@ -21,6 +21,14 @@ public:
 	};
 	virtual ~Entity() = default;
 
+	enum class AttackID : unsigned char {
+		COUNT
+	};
+
+	struct TickData {
+			
+	};
+
 	// Generic definition for any entities tick function
 	// Entity holder used for when entities need to check for collision themselves
 	virtual void tick() = 0;

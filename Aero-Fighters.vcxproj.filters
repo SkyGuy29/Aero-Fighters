@@ -146,12 +146,6 @@
     <ClInclude Include="src\Utility\EntityData\ProjectilePrototype.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Utility\EntityData\AttackPrototype.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Utility\EntityData\EntityData.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\Utility\EntityData\EntityPrototype.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -177,5 +171,9 @@
     <None Include="lib\SFML64\lib\sfml-audio.pdb" />
     <None Include="lib\SFML64\lib\sfml-network.pdb" />
     <None Include="lib\SFML64\lib\sfml-system.pdb" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="res\attacks.txt" />
+    <Text Include="res\attacks example.txt" />
   </ItemGroup>
 </Project>

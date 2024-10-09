@@ -32,28 +32,7 @@
 class Level final
 {
 public:
-	enum Map
-	{
-		England,
-		Israel,
-		Japan,
-		Meddit,
-		Russia,
-		States,
-		Sweden,
-		Space
-	};
-
-	std::vector<std::string> mapStrings = {
-		"England",
-		"Israel",
-		"Japan",
-		"Meddit",
-		"Russia",
-		"States",
-		"Sweden",
-		"Space"
-	};
+	
 
 	Level(sf::RenderWindow& window);
 	~Level();

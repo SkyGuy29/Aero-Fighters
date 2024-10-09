@@ -1,5 +1,6 @@
 #pragma once
 
+#include <fstream>
 #include "EntityDataStorage.h"
 #include "../../Entities/Enemy/Enemy_new.h"
 #include "../../Entities/Player/Player_new.h"
@@ -9,6 +10,33 @@
 #include "../../Entities/TileEntity/TileEntity.h"
 #include "../../Entities/Enemy/Boss/Boss_new.h"
 #include "./EntityPrototype.h"
+#include "../Array/VariableArray.h"
+#include "./ProjectilePrototype.h"
+
+
+enum Map
+{
+	England,
+	Israel,
+	Japan,
+	Meddit,
+	Russia,
+	States,
+	Sweden,
+	Space
+};
+
+
+const std::vector<std::string> mapStrings = {
+	"England",
+	"Israel",
+	"Japan",
+	"Meddit",
+	"Russia",
+	"States",
+	"Sweden",
+	"Space"
+};
 
 
 class EntityManagementInterface
@@ -20,6 +48,8 @@ public:
 
 	static inline void tick(Entity* entity);
 	static inline void draw(sf::RenderWindow& win);
+	static inline void loadAttacks();
+	static inline void loadEnemies(Map map);
 private:
 	// DO NOT REMOVE THE INLINE FROM THIS METHOD
 	static inline void generalTick(Entity* entity);
@@ -35,5 +65,5 @@ private:
 	static std::vector<TemporarySpawner*> temporarySpawners; // spawned at start ??
 	static std::vector<TileEntity*> tileEntities; // spawned at start (spawnMap:0)
 	static std::vector<PowerUp*> powerUps; // spawned dynamically by enemies
+	static std::vector<std::vector<ProjectilePrototype>> attackData;
 };
-
