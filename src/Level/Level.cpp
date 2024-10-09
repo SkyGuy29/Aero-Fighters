@@ -202,6 +202,13 @@ void Level::debugMode() const
 	p[1]->setHealth(HP_MAX);
 }
 
+int Level::skipToBoss()
+{
+	int offset = 200;
+	backgroundDist = -offset;
+	return offset-backgroundImg.getSize().y;
+}
+
 void Level::respawnPlayers() const
 {
 	p[0]->setHealth(3);
@@ -290,7 +297,7 @@ bool Level::update(const sf::Vector2f winSize)
 	//		fastforwarding moves the boss background down to a third of the screen.
 	// Doesn't speed up yet, only uses view instead of backgroundSpeed,
 	// I just wanted to get this sort of working. - Ben
-	bossBackground.setPosition(0, view.getCenter().y - winSize.y / 2.f - 7);
+	bossBackground.setPosition(0, view.getCenter().y - winSize.y / 2.f);
 
 	// for smoothing out background. 
 	// Take the decimal, leave the whole number
@@ -358,7 +365,7 @@ bool Level::update(const sf::Vector2f winSize)
 	// Place scores in middle top
 	// Scores were not implemented, so these values never change for now
 	p1Score.setPosition(sf::Vector2f(winSize.x / 2 - 20 - p1Score.getLocalBounds().width,
-		view.getCenter().y - view.getSize().y / 2.f -p2Score.getLocalBounds().height ));
+		view.getCenter().y - view.getSize().y / 2.f -p1Score.getLocalBounds().height ));
 	p2Score.setPosition(sf::Vector2f(winSize.x / 2 + 20,
 		view.getCenter().y - view.getSize().y / 2.f -p2Score.getLocalBounds().height));
 
