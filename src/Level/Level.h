@@ -60,6 +60,7 @@ public:
 	bool update(sf::Vector2f winSize);
 
 	void debugMode() const;
+	int skipToBoss();
 
 	void respawnPlayers() const;
 
