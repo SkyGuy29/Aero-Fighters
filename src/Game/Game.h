@@ -85,12 +85,53 @@ enum class cutsceneID
 
 struct VideoCutscene
 {
-	void load(cutsceneID);
+	//id determines the cutscene, size is the total size of the cutscene, and images are the images in memory
+	void loadImage(cutsceneID id, const int size, sf::Texture* images)
+	{
+		switch (id)
+		{
+		case cutsceneID::START:
+			break;
+		case cutsceneID::OSARU:
+			break;
+		case cutsceneID::PANDORA:
+			break;
+		case cutsceneID::KEATON:
+			break;
+		case cutsceneID::KEATH:
+			break;
+		case cutsceneID::STATES:
+			break;
+		case cutsceneID::HEIN:
+			break;
+		case cutsceneID::MAO:
+			break;
+		case cutsceneID::JAPAN:
+			break;
+		case cutsceneID::KOHFUL:
+			break;
+		case cutsceneID::TEEBEE:
+			break;
+		case cutsceneID::SWEDEN:
+			break;
+		case cutsceneID::VILLIAM:
+			break;
+		case cutsceneID::WHITE:
+			break;
+		case cutsceneID::ENGLAND:
+			break;
+		default:
+			break;
+		}
+	}
 	void unload();
-	void draw(sf::RenderWindow&);
+	void draw(sf::RenderWindow&)
+	{
+		//load();
+	}
 	cutsceneID getID(bool player, bool win);
-	unsigned short count, index;
-	sf::Sprite* frames;
+	unsigned short size, index;
+	sf::Sprite frames;
 };
 
 
@@ -137,7 +178,9 @@ private:
 	// Menu Map texture, unsure what it does? - Ricky
 	sf::Texture menuMap,
 		// Also unsure what it does... - ricky
-		menuFlags;
+		menuFlags,
+		//Heap array used for loading video cutscene images before they are utilized by VideoCutscene
+		*cutsceneImages;
 
 	// These should all be wrapped in a struct to structure the data; make it easier to understand its all related
 	sf::RectangleShape
