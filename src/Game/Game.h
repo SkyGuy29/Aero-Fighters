@@ -223,4 +223,6 @@ private:
 	Countdown countryChoose, gameOver;
 
 	bool inGame = false, playersDead = false;
+
+	bool debugSkipToBoss = !!!!!true; //!!!false;
 };

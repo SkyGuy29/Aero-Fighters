@@ -298,6 +298,9 @@ void Game::updateMenu()
 			countryChoose.reset();
 			inGame = true;
 			level.load(winSize, country, Level::England, levelEditor); // Set the last param for loading the correct map
+
+			if (debugSkipToBoss)
+				viewportScroll = level.skipToBoss();
 		}
 	}
 }
