@@ -28,6 +28,14 @@ public:
 
 	virtual ~Entity() = default;
 
+	enum class AttackID : unsigned char {
+		COUNT
+	};
+
+	struct TickData {
+			
+	};
+
 	// Generic definition for any entities tick function
 	// Entity holder used for when entities need to check for collision themselves
 	virtual void tick() = 0;
@@ -38,6 +46,8 @@ public:
 	static void setWinSize(WindowSize& winSize);
 
 	static void setBackgroundSpeed(float& speed) { backgroundSpeed = speed; }
+	
+	void setPosition(sf::Vector2f pos);
 
 	/**
 	 * Utility method that returns one of three states defining what action must
@@ -56,12 +66,11 @@ public:
 	 */
 	EntityObjectAction getEntityAction() noexcept;
 
-	sf::Sprite* getSprite() { return sprite; };
-
 	unsigned int getUUID() const { return UUID; }
 
-	sf::Vector2f getPos() { return pos; }
+	sf::Sprite* getSprite() { return sprite; }
 
+	sf::Vector2f getPosition() const { return pos; }
 protected:
 	Entity(sf::Vector2f pos, EntityID ID, unsigned char orientation = 0);
 
@@ -78,7 +87,6 @@ protected:
 	// The velocity of this entity
 	// Derived during object construction
 	sf::Vector2f vel = EntityDataStorage::getData(ID).velocity;
-	sf::Vector2f pos;
 
 	// The attack cooldown of this entity
 	// Derived during object construction from the entity data table.
@@ -109,6 +117,7 @@ private:
 	static std::unordered_map<unsigned int, sf::Sprite> spriteMap;
 
 	const unsigned int UUID;
+	sf::Vector2f pos;
 
 	// Texture specific data members //
 	short currentFrame = 0;

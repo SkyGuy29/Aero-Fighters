@@ -17,6 +17,14 @@ Entity::Entity(sf::Vector2f pos, EntityID ID, unsigned char orientation) :
 }
 
 
+void Entity::setPosition(sf::Vector2f pos)
+{
+	this->pos = pos;
+	if (sprite != nullptr)
+		sprite->setPosition(pos);
+}
+
+
 Entity::EntityObjectAction Entity::getEntityAction() noexcept
 {
 	sf::Vector2f pos = sprite->getPosition();

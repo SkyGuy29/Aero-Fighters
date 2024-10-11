@@ -25,7 +25,7 @@ public:
 
 	struct ProjectilePrototype;
 
-	class AttackPrototype;
+	struct AttackPrototype;
 
 	// The stored default information for a given entity; very generic.
 	struct EntityData;

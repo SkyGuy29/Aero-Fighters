@@ -10,6 +10,7 @@
 class TemporarySpawner : public EnemySpawner
 {
 public:
+	void tick() override;
 private:
 };
 

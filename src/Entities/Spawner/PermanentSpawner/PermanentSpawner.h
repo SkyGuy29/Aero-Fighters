@@ -9,6 +9,7 @@
 class PermanentSpawner : public EnemySpawner
 {
 public:
+	void tick() override;
 private:
 
 };

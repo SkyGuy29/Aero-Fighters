@@ -1,0 +1,13 @@
+NEW // declares new attack
+PROJ //declares new projectile
+0 0 // positional offset from enemy shooting attack
+1.5 1.5 // vX, vY or magnitude (vX if target player) (velocity)
+13 // EntityID of projectile
+0 // Tick count from last projectile
+0 // targets a player?
+PROJ
+1 1
+0.5 0.5
+13
+0
+0
