@@ -1,7 +1,7 @@
 #pragma once
 #include <unordered_map>
 #include <SFML/Graphics.hpp>
-#include "EntityData.h"
+#include "../Utility/EntityData/EntityDataStorage.h"
 #include "../Utility/WindowSize.h"
 #include "../Utility/EntityID.h"
 
@@ -19,6 +19,13 @@ public:
 		DRAW = 1,
 		DELETE = 2
 	};
+
+	struct TickData
+	{
+		bool hasAttacked;
+		EntityDataStorage::AttackID attack;
+	};
+
 	virtual ~Entity() = default;
 
 	// Generic definition for any entities tick function
@@ -50,6 +57,11 @@ public:
 	EntityObjectAction getEntityAction() noexcept;
 
 	sf::Sprite* getSprite() { return sprite; };
+
+	unsigned int getUUID() const { return UUID; }
+
+	sf::Vector2f getPos() { return pos; }
+
 protected:
 	Entity(sf::Vector2f pos, EntityID ID, unsigned char orientation = 0);
 

@@ -173,6 +173,8 @@
     <ClCompile Include="src\Entities\Spawner\TemporarySpawner\TemporarySpawner.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Utility\Array\ReturnData.h" />
+    <ClInclude Include="src\Utility\Array\SpacingElement.h" />
     <ClInclude Include="src\Utility\EntityData\AttackPrototype.h" />
     <ClInclude Include="src\Utility\EntityData\EntityData.h" />
     <ClInclude Include="src\Utility\EntityData\EntityManagementInterface.h" />

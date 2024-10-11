@@ -149,6 +149,12 @@
     <ClInclude Include="src\Utility\EntityData\EntityData.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\Utility\Array\SpacingElement.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Utility\Array\ReturnData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="lib\SFML64\lib\sfml-graphics-s.pdb" />
