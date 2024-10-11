@@ -92,7 +92,7 @@ void EntityManagementInterface::generalTick(std::vector<T*>& entities, sf::Rende
 			i--;
 			action = Entity::EntityObjectAction::DELETE;
 			break;
-
+			
 		case Entity::EntityObjectAction::DRAW:
 			win.draw(EntityDataStorage::getEntity(entities.at(i).getUUID()));
 			action = Entity::EntityObjectAction::DRAW;
