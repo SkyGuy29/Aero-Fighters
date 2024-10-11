@@ -85,12 +85,17 @@ enum class cutsceneID
 
 struct VideoCutscene
 {
-	//id determines the cutscene, size is the total size of the cutscene, and images are the images in memory
-	void loadImage(cutsceneID id, const int size, sf::Texture* images)
+	unsigned short size, index;
+	sf::Sprite frames;
+
+	//id determines the cutscene, and images are the images in memory
+	void loadImage(cutsceneID id, sf::Texture* &images)
 	{
 		switch (id)
 		{
 		case cutsceneID::START:
+			images = new sf::Texture[37];
+				images->loadFromFile("intro" + std::to_string(index) + ".png");
 			break;
 		case cutsceneID::OSARU:
 			break;
@@ -123,15 +128,73 @@ struct VideoCutscene
 		default:
 			break;
 		}
+			frames.setTexture(*images);
 	}
 	void unload();
-	void draw(sf::RenderWindow&)
+	void draw(sf::RenderWindow& window)
 	{
-		//load();
+		//load(getID(), images);
+		window.draw(frames);
+		//unload(images);
 	}
-	cutsceneID getID(bool player, bool win);
-	unsigned short size, index;
-	sf::Sprite frames;
+
+	//things needed to determine the videoCutscene:
+	//if the boss was killed before the time ran out		bool, is this in Game or Level?
+	//if it was, which country are we and which				4 options stored in Game
+	//players are playing.									3 options stored in Game (p1 p2 or both)
+	//if not, which final boss it was						2 options, is this in Game or Level?
+	cutsceneID getID(bool bossKilled, bool pandoraWasBoss, int player, int country)
+	{
+		if (bossKilled)
+			switch (country)
+			{
+			case STATES:
+				switch (player)
+				{
+				case 1:
+					return cutsceneID::KEATON;
+				case 2:
+					return cutsceneID::KEATH;
+				case 3:
+					return cutsceneID::STATES;
+				}
+			case JAPAN:
+				switch (player)
+				{
+				case 1:
+					return cutsceneID::HEIN;
+				case 2:
+					return cutsceneID::MAO;
+				case 3:
+					return cutsceneID::JAPAN;
+				}
+			case SWEDEN:
+				switch (player)
+				{
+				case 1:
+					return cutsceneID::KOHFUL;
+				case 2:
+					return cutsceneID::TEEBEE;
+				case 3:
+					return cutsceneID::SWEDEN;
+				}
+			case ENGLAND:
+				switch (player)
+				{
+				case 1:
+					return cutsceneID::VILLIAM;
+				case 2:
+					return cutsceneID::WHITE;
+				case 3:
+					return cutsceneID::ENGLAND;
+				}
+			}
+		else
+			if (pandoraWasBoss)
+				return cutsceneID::PANDORA;
+			else
+				return cutsceneID::OSARU;
+	}
 };
 
 
