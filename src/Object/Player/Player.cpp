@@ -373,34 +373,51 @@ void Player::update(const sf::Vector2f winSize, std::vector<Object*>* objects, b
 	if (health == 0)
 		return;
 	//Am I being shot?
+
+	//  For every object
 	for (unsigned int i = 0; i < objects->size(); i++)
 	{
+		// If the object is an enemies projectile
 		if (((objects->at(i)->getType() == ENEMY_PROJECTILE)
-			|| (objects->at(i)->getType() == AIR))
-			&& this->intersect(objects->at(i))
-			&& !invincibility)
+			|| (objects->at(i)->getType() == AIR)) // or if its an air projectile
+			&& this->intersect(objects->at(i)) // and if i'm colliding with it
+			&& !invincibility) // and if i'm not invincible
 		{
 			//If the player is hit while not invincible
 			health--;
+
+			// Create an explosion
 			objects->push_back(new Explosion(pos, 0));
+			// Drop an item
 			objects->push_back(new Collectable(1, pos, backgroundSpeed));
+
+			// Reset special charge
 			specialCharge = 2;
+			// Drop 0-4 of another item
 			if (rand() % 5 == 0)
 				objects->push_back(new Collectable(2, pos, backgroundSpeed));
+
+			// If dead
 			if (!health)
 			{
+				// Drop 0-24 of another item
 				if(rand() % 25 == 0)
 					objects->push_back(new Collectable(3, pos, 
 					backgroundSpeed));
 			}
+			// Reset the players position to the bottom middle of the screen
 			pos = sf::Vector2f(winSize.x * 0.5f, winSize.y * 0.75f);
+
+			// Reset counters
 			invincibility = 61;
 			timerDeath = 61;
+			// Reset size
 			setSize(0, 0);
 		}
-		else if (objects->at(i)->getType() == COLLECTABLE 
-				&& this->intersect(objects->at(i)))
+		else if (objects->at(i)->getType() == COLLECTABLE // Else if it is an item
+				&& this->intersect(objects->at(i))) // and i have collided with it
 		{
+			// Get the item ID
 			switch (objects->at(i)->getId())
 			{
 			case 0: //Interact with money
@@ -425,8 +442,12 @@ void Player::update(const sf::Vector2f winSize, std::vector<Object*>* objects, b
 		}
 	}
 
+	// Decrement cooldowns
 	if (cooldown != 0)
 		cooldown--;
+
+	if (cooldownTime != 0)
+		cooldownTime--;
 
 	if (cooldownSecondary != 0)
 		cooldownSecondary--;
@@ -437,13 +458,12 @@ void Player::update(const sf::Vector2f winSize, std::vector<Object*>* objects, b
 	if (timer > 0)
 	{
 		timer--;
+		// Unreachable
 		if (timer <= 0)
 			movingProjectile = nullptr;
 	}
 
-	if (cooldownTime != 0)
-		cooldownTime--;
-
+	// Move
 	Player::move(winSize);
 
 	if (movingProjectile != nullptr)
@@ -453,6 +473,7 @@ void Player::update(const sf::Vector2f winSize, std::vector<Object*>* objects, b
 
 void Player::draw(sf::RenderTarget& target, const sf::RenderStates states) const
 {
+	// Draw if alive
 	if(health && !timerDeath)
 		target.draw(sprite, states);
 }
@@ -479,6 +500,7 @@ short Player::getSpecialCharge() const
 //moves the player on the window
 void Player::move(sf::Vector2f winSize)
 {
+	// If moving right
 	if (vel.x > 0)
 		sideAnimation++;
 	else if (vel.x < 0)
