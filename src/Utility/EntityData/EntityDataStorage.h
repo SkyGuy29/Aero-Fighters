@@ -48,21 +48,21 @@ public:
 	}
 
 
-	static inline void addEntity(unsigned short UUID, sf::Sprite sprite)
+	static inline void addEntity(unsigned int UUID, sf::Sprite sprite)
 	{
 		spriteTable.emplace(UUID, sprite);
 	}
-	static inline void deleteEntity(unsigned short UUID)
+	static inline void deleteEntity(unsigned int UUID)
 	{
 		spriteTable.erase(UUID);
 	}
-	static inline sf::Sprite& getEntity(unsigned short UUID)
+	static inline sf::Sprite& getEntity(unsigned int UUID)
 	{
 		return spriteTable.at(UUID);
 	}
 
 private:
-	static std::unordered_map<unsigned short, sf::Sprite> spriteTable;
+	static std::unordered_map<unsigned int, sf::Sprite> spriteTable;
 	// Entity Data Table
 	static EntityData const EntityDataTable[static_cast<unsigned char>(EntityID::COUNT)];
 
