@@ -4,20 +4,8 @@
 #include <SFML/Graphics.hpp>
 #include <climits>
 #include <iostream>
-/*
-#include "../Object/Enemy/Boss/Boss.h"
-#include "../Object/Enemy/Air/Air.h"
-#include "../Object/Enemy/Land/Land.h"
-#include "../Object/Player/Player.h"
-#include "../Object/Projectile/Projectile.h"
-#include "../Object/Collectable/Collectable.h"*/
 
-#include "../Entities/Enemy/Air/Air_new.h"
-#include "../Entities/Enemy/Land/Land_new.h"
-#include "../Entities/Player/Player_new.h"
-#include "../Entities/Projectile/Projectile_new.h"
-#include "../Entities/PowerUp/PowerUp.h"
-
+#include "../Utility/EntityData/EntityManagementInterface.h"
 #include "../ControllerStuff.hpp"
 
 // Renamed from TACO_BELL

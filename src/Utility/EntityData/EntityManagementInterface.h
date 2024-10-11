@@ -59,7 +59,6 @@ private:
 	template<typename T> requires std::derived_from<T, Entity>
 	static inline void processAttack(EntityDataStorage::AttackID ID, T& entity);
 
-
 	// tick->list of enemies to spawn. dont delete after spawned cause level editor
 	static std::unordered_map<unsigned int, std::vector<EntityPrototype*>> spawnMap;
 	static std::vector<Enemy_new*> landEnemies; // spawned at start (spawnMap:0)

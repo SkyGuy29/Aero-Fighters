@@ -25,6 +25,7 @@ enum class EntityID : unsigned char
 	TILE_ENTITY_COUNT, // DO NOT MOVE; DO NOT USE
 
 	SPAWNER,
+	PLAYER,
 
 	// DO NOT USE
 	// MUST BE AT THE END OF THE ENUM

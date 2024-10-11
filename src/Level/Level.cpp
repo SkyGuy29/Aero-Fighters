@@ -105,7 +105,7 @@ void Level::load(sf::Vector2f winSize, const short country,
 			break;
 	}
 
-	entities.players.push_back(new Player_new(country, true, &backgroundSpeed));
+	entities.players.push_back(new Player_new(sf::Vector2(0,0), sf::Vector2f(0,0), EntityID::PLAYER, backgroundSpeed, country, true, &backgroundSpeed));
 	entities.players.push_back(new Player_new(country, false, &backgroundSpeed));
 
 	// Change later. This just spaces out the players
