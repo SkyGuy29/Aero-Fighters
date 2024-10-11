@@ -176,6 +176,9 @@
   <ItemGroup>
     <ClInclude Include="src\Entities\Projectile\Missile\Missile.h" />
     <ClInclude Include="src\Utility\EntityData\EntityPrototype.h" />
+    <ClInclude Include="src\Utility\Array\ReturnData.h" />
+    <ClInclude Include="src\Utility\Array\SpacingElement.h" />
+    <ClInclude Include="src\Utility\EntityData\EntityData.h" />
     <ClInclude Include="src\Utility\EntityData\EntityManagementInterface.h" />
     <ClInclude Include="src\Entities\Enemy\Boss\Boss_new.h" />
     <ClInclude Include="src\Entities\Spawner\EnemySpawner.h" />

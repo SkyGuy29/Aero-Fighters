@@ -1,13 +1,16 @@
 #include "EntityDataStorage.h"
 
+#include <stdexcept>
+#include <SFML/Graphics/Rect.hpp>
 
-struct EntityDataStorage::EntityDataStorage
+#include "EntityData.h"
+#include "ProjectilePrototype.h"
+#include "../EntityID.h"
+
+
+struct EntityDataStorage::EntityData
 {
-	// need to store sprites...
-	// Entities either have a sprite variant set, OR an animation, or only 1 image...
-	// Store image section rectangle
-	// store is animated
-	// store count
+
 	class SpriteData
 	{
 	public:
@@ -106,7 +109,7 @@ struct EntityDataStorage::EntityDataStorage
 	const uint8_t CHILD_DATA;
 
 
-	EntityDataStorage(const SpriteData sprite, const Vec2f velocity, const unsigned short health, const short baseCooldown, const uint8_t CHILD_DATA) :
+	EntityData(const SpriteData sprite, const Vec2f velocity, const unsigned short health, const short baseCooldown, const uint8_t CHILD_DATA) :
 		sprite(sprite), velocity(velocity), health(health), baseCooldown(baseCooldown), CHILD_DATA(CHILD_DATA) {}
 
 private:
@@ -114,12 +117,30 @@ private:
 	// Insert texture ptr references here
 };
 
+VariableArray<
+	EntityDataStorage::ProjectilePrototype,
+	/*get Total*/0,
+	static_cast<unsigned char>(EntityDataStorage::AttackID::COUNT)
+> const EntityDataStorage::attackData =
+{
+	{
+		ProjectilePrototype {
+
+		}
+	},
+	{
+		SpacingElement {
+			0, // Start
+			0  // End
+		}
+	}
+};
 
 // Initialize the EntityDataTable here
-EntityDataStorage::EntityDataStorage const EntityDataStorage::EntityDataTable[static_cast<unsigned char>(EntityID::COUNT)] = {
+EntityDataStorage::EntityData const EntityDataStorage::EntityDataTable[static_cast<unsigned char>(EntityID::COUNT)] = {
 	// EntityID::ENEMY_AIR_BABY_COPTER
-	EntityDataStorage {
-		EntityDataStorage::SpriteData {
+	EntityData {
+		EntityData::SpriteData {
 			sf::IntRect {
 				32,240,32,32
 			},
@@ -127,7 +148,7 @@ EntityDataStorage::EntityDataStorage const EntityDataStorage::EntityDataTable[st
 			false,
 			false,
 			false,
-			EntityDataStorage::SpriteData::TextureType::ENEMY
+			EntityData::SpriteData::TextureType::ENEMY
 		},
 		Vec2f { 0, 0 },
 		0,
@@ -138,8 +159,8 @@ EntityDataStorage::EntityDataStorage const EntityDataStorage::EntityDataTable[st
 
 // Generic entity
 /*
-	EntityDataStorage {
-		EntityDataStorage::SpriteData {
+	EntityData {
+		EntityData::SpriteData {
 			sf::IntRect {
 				0,0,0,0
 			},
@@ -147,7 +168,7 @@ EntityDataStorage::EntityDataStorage const EntityDataStorage::EntityDataTable[st
 			false,
 			false,
 			false,
-			EntityDataStorage::SpriteData::TextureType::PROJECTILE
+			EntityData::SpriteData::TextureType::PROJECTILE
 		},
 		Vec2f { 0, 0 },
 		0,
