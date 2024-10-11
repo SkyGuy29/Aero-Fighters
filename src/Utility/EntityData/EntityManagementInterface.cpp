@@ -7,8 +7,29 @@
 #include "../../Entities/TileEntity/TileEntity.h"
 #include "../../Entities/Enemy/Boss/Boss_new.h"
 
-void EntityManagementInterface::tick(sf::RenderWindow& win)
+
+void EntityManagementInterface::tick(sf::RenderWindow& win, unsigned int currentTick)
 {
+	// spawn the entities on the map with the current tick.
+	if (spawnMap.count(currentTick))
+	{
+		std::vector<EntityPrototype*>& spawnableEntities = spawnMap[currentTick];
+		for (EntityPrototype* entityPrototype : spawnableEntities)
+		{
+			if (entityPrototype->ID < EntityID::ENEMY_COUNT)
+			{
+				if (entityPrototype->ID < EntityID::ENEMY_AIR_COUNT)
+					airEnemies.push_back(new Enemy_new(entityPrototype));
+				else if (entityPrototype->ID < EntityID::ENEMY_LAND_COUNT)
+					landEnemies.push_back(new Enemy_new(entityPrototype));
+				else if (entityPrototype->ID < EntityID::ENEMY_WATER_COUNT)
+					waterEnemies.push_back(new Enemy_new(entityPrototype));
+			}
+			else if (entityPrototype->ID < EntityID::TILE_ENTITY_COUNT)
+				tileEntities.push_back(new TileEntity(entityPrototype));
+		}
+	}
+
 	generalTick<Enemy_new>(landEnemies, win);
 	for (auto land : landEnemies)
 	{
@@ -168,25 +189,8 @@ inline void EntityManagementInterface::loadEnemies(Map map)
 		{
 			if(!spawnMap.count(tempData.spawnTick))
 				spawnMap[tempData.spawnTick] = std::vector<EntityPrototype*>();
+			// TODO: CLEAN THIS UP ON PROGRAM CLOSE (memory leaks rn)
 			spawnMap[tempData.spawnTick].push_back(new EntityPrototype(tempData.pos, tempData.vel, (EntityID)tempData.id, 0));
 		}
 	}
-}
-
-
-void EntityManagementInterface::generalTick(Entity* entity)
-{
-	Entity::EntityObjectAction act = entity->getEntityAction();
-
-	if (act == Entity::EntityObjectAction::DELETE && !Level::levelEditorActive())
-	{
-		delete e[i];
-		e.erase(e.begin() + i);
-	}
-	else if (act == Entity::EntityObjectAction::DRAW)
-	{
-		e[i]->tick();
-		window.draw(*e[i]->getSprite());
-	}
-	// else do nothing
 }

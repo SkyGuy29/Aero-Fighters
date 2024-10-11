@@ -12,7 +12,6 @@ void Entity::setWinSize(WindowSize& winSize_)
 Entity::Entity(sf::Vector2f pos, EntityID ID, unsigned char orientation) :
 	pos(pos), ID(ID), orientation(orientation), UUID(next_uuid++)
 {
-
 	
 }
 
@@ -54,7 +53,7 @@ Entity::EntityObjectAction Entity::getEntityAction() noexcept
 		// Maintains action of "NOTHING" if it has been 'spawned' and is still on screen.
 	}
 	// If not on screen and has spawned
-	else if ((entityFlags & 0b00000001) == 0b00000001)
+	else if ((entityFlags & 0b00000001) == 0b00000001 && !getLevelEditor())
 		// Not on screen, please delete.
 		ret = EntityObjectAction::DELETE;
 

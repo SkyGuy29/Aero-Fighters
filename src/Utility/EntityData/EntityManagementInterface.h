@@ -9,6 +9,7 @@
 #include "../../Entities/Spawner/TemporarySpawner/TemporarySpawner.h"
 #include "../../Entities/TileEntity/TileEntity.h"
 #include "../../Entities/Enemy/Boss/Boss_new.h"
+#include "../../Entities/Projectile/Projectile_new.h"
 #include "./EntityPrototype.h"
 #include "../Array/VariableArray.h"
 #include "./ProjectilePrototype.h"
@@ -46,11 +47,9 @@ public:
 	~EntityManagementInterface() = delete;
 
 
-	static inline void tick(Entity* entity);
-	static inline void draw(sf::RenderWindow& win);
 	static inline void loadAttacks();
 	static inline void loadEnemies(Map map);
-	static inline void tick(sf::RenderWindow& win);\
+	static inline void tick(sf::RenderWindow& win, unsigned int currentTick);
 
 private:
 	// DO NOT REMOVE THE INLINE FROM THIS METHOD
@@ -67,7 +66,7 @@ private:
 	static std::vector<Enemy_new*> airEnemies; // spawnMap
 	static std::vector<Enemy_new*> waterEnemies; // spawnMap
 	static std::vector<Boss_new*> bossEnemies; // ?
-	static std::vector<Projectile*> projectiles; // spawned dynamically by enemies
+	static std::vector<Projectile_new*> projectiles; // spawned dynamically by enemies
 	static std::vector<PermanentSpawner*> permanentSpawners; // spawned at start ??
 	static std::vector<TemporarySpawner*> temporarySpawners; // spawned at start ??
 	static std::vector<TileEntity*> tileEntities; // spawned at start (spawnMap:0)
@@ -88,12 +87,12 @@ void EntityManagementInterface::generalTick(std::vector<T*>& entities, sf::Rende
 		{
 		case Entity::EntityObjectAction::DELETE:
 			delete entities.at(i);
-			entities.erase(i);
+			entities.erase(i); // and you say you like optimization...
 			i--;
 			action = Entity::EntityObjectAction::DELETE;
 			break;
-			
-		case Entity::EntityObjectAction::DRAW:
+
+		case Entity::EntityObjectAction::DRAW: // draw the entity's sprite
 			win.draw(EntityDataStorage::getEntity(entities.at(i).getUUID()));
 			action = Entity::EntityObjectAction::DRAW;
 			break;
