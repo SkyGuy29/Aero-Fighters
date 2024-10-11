@@ -1,5 +1,5 @@
 #pragma once
-#include "../EntityData.h"
+#include "../../Utility/EntityData/EntityData.h"
 
 class IHasHealth
 {

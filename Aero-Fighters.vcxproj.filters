@@ -63,6 +63,9 @@
     <ClCompile Include="src\Utility\EntityData\EntityManagementInterface.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Entities\Projectile\Missile\Missile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Game\Game.h">
@@ -143,10 +146,16 @@
     <ClInclude Include="src\Utility\EntityData\ProjectilePrototype.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Utility\EntityData\AttackPrototype.h">
+    <ClInclude Include="src\Utility\EntityData\EntityPrototype.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Utility\EntityData\EntityData.h">
+    <ClInclude Include="src\Entities\Projectile\Missile\Missile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Utility\Array\SpacingElement.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Utility\Array\ReturnData.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -168,5 +177,9 @@
     <None Include="lib\SFML64\lib\sfml-audio.pdb" />
     <None Include="lib\SFML64\lib\sfml-network.pdb" />
     <None Include="lib\SFML64\lib\sfml-system.pdb" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="res\attacks.txt" />
+    <Text Include="res\attacks example.txt" />
   </ItemGroup>
 </Project>

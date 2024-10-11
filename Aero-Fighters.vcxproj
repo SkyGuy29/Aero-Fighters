@@ -155,6 +155,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Entities\Projectile\Missile\Missile.cpp" />
     <ClCompile Include="src\Utility\EntityData\EntityManagementInterface.cpp" />
     <ClCompile Include="src\Entities\Enemy\Boss\Boss_new.cpp" />
     <ClCompile Include="src\Entities\Spawner\EnemySpawner.cpp" />
@@ -173,7 +174,10 @@
     <ClCompile Include="src\Entities\Spawner\TemporarySpawner\TemporarySpawner.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Utility\EntityData\AttackPrototype.h" />
+    <ClInclude Include="src\Entities\Projectile\Missile\Missile.h" />
+    <ClInclude Include="src\Utility\EntityData\EntityPrototype.h" />
+    <ClInclude Include="src\Utility\Array\ReturnData.h" />
+    <ClInclude Include="src\Utility\Array\SpacingElement.h" />
     <ClInclude Include="src\Utility\EntityData\EntityData.h" />
     <ClInclude Include="src\Utility\EntityData\EntityManagementInterface.h" />
     <ClInclude Include="src\Entities\Enemy\Boss\Boss_new.h" />
@@ -220,6 +224,10 @@
     <None Include="lib\SFML64\lib\sfml-window-s-d.pdb" />
     <None Include="lib\SFML64\lib\sfml-window-s.pdb" />
     <None Include="lib\SFML64\lib\sfml-window.pdb" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="res\attacks example.txt" />
+    <Text Include="res\attacks.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
