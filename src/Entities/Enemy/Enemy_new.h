@@ -13,7 +13,6 @@ public:
 	~Enemy_new() override;
 
 	void tick() override;
-
 protected:
 	float* backgroundSpeed = nullptr;
 	bool entered = false;

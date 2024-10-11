@@ -142,10 +142,9 @@ inline void EntityManagementInterface::loadEnemies(Map map)
 {
 	struct TempData
 	{
-		short type, id;
-		int startMark;
+		short id;
+		unsigned int spawnTick;
 		sf::Vector2f pos, vel;
-		std::fstream file;
 	};
 	TempData tempData;
 	std::string input;
@@ -185,7 +184,8 @@ inline void EntityManagementInterface::loadEnemies(Map map)
 		it is able to obtain the deviation and its variation,
 		which is called error.
 	*/
-
+	
+	spawnMap[0] = std::vector<EntityPrototype*>();
 	// loading the enemies
 	while (f.is_open() && !f.eof())
 	{
@@ -194,18 +194,15 @@ inline void EntityManagementInterface::loadEnemies(Map map)
 
 		if (input == "NEW LAND")
 		{
-			new Land_new(pos, vel, (EntityID)id, &backgroundSpeed);
+			spawnMap[0].push_back(new EntityPrototype(tempData.pos, tempData.vel, (EntityID)tempData.id, 0));
 		}
-		else if (input == "NEW WATER")
+		else if (input == "NEW WATER" || input == "NEW AIR")
 		{
-			
-		}
-		else if (input == "NEW AIR")
-		{
-			
+			if(!spawnMap.count(tempData.spawnTick))
+				spawnMap[tempData.spawnTick] = std::vector<EntityPrototype*>();
+			spawnMap[tempData.spawnTick].push_back(new EntityPrototype(tempData.pos, tempData.vel, (EntityID)tempData.id, 0));
 		}
 	}
-	//I am so sorry -Gabe
 }
 
 
