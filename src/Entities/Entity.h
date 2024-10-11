@@ -16,8 +16,8 @@ public:
 	enum class EntityObjectAction : unsigned char
 	{
 		NOTHING = 0,
-		DRAW = 1,
-		DELETE = 2
+		DRAW,
+		DELETE
 	};
 
 	struct TickData
@@ -80,6 +80,7 @@ protected:
 
 	static bool getLevelEditor() { return levelEditor; }
 
+	// moves the entity by it's velocity.
 	void move() noexcept;
 
 	static float& backgroundSpeed;

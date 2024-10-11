@@ -11,6 +11,8 @@ Enemy_new::Enemy_new(sf::Vector2f pos, sf::Vector2f vel,
 
 void Enemy_new::tick()
 {
+	if (hasSpawned())
+		move();
 	if (hasSpawned() || getLevelEditor())
 	{
 		// Process next animation frame - subject to change
