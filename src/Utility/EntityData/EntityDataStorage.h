@@ -25,7 +25,7 @@ public:
 	class AttackPrototype;
 
 	// The stored default information for a given entity; very generic.
-	struct EntityDataStorage;
+	struct EntityData;
 
 	/**
 	 * Returns the baseline data for a given entity.
