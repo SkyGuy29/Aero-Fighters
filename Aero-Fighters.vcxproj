@@ -170,7 +170,6 @@
     <ClCompile Include="src\Level\Level.cpp" />
     <ClCompile Include="src\Main.cpp" />
     <ClCompile Include="src\Entities\TileEntity\TileEntity.cpp" />
-    <ClCompile Include="src\Sprites\SpriteType.cpp" />
     <ClCompile Include="src\Entities\Spawner\TemporarySpawner\TemporarySpawner.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -197,7 +196,6 @@
     <ClInclude Include="src\Game\Game.h" />
     <ClInclude Include="src\Level\Level.h" />
     <ClInclude Include="src\Entities\TileEntity\TileEntity.h" />
-    <ClInclude Include="src\Sprites\SpriteType.h" />
     <ClInclude Include="src\Utility\EntityData\EntityData.hpp" />
     <ClInclude Include="src\Utility\EntityData\ProjectilePrototype.h" />
     <ClInclude Include="src\Utility\EntityID.h" />
