@@ -83,62 +83,82 @@ enum class cutsceneID
 };
 
 
-struct VideoCutscene
+class VideoCutscene
 {
-	unsigned short size, index;
-	sf::Sprite frames;
-
-	//id determines the cutscene, and images are the images in memory
-	void loadImage(cutsceneID id, sf::Texture* &images)
+public:
+	void loadImage(cutsceneID id)
 	{
+		//the while loop keeps increasing the index variable until it finds a successful load.
 		switch (id)
 		{
 		case cutsceneID::START:
-			images = new sf::Texture[37];
-				images->loadFromFile("intro" + std::to_string(index) + ".png");
+			while (!image.loadFromFile("intro" + std::to_string(index++) + ".png")){}
 			break;
 		case cutsceneID::OSARU:
+			while (!image.loadFromFile("osaru" + std::to_string(index++) + ".png")){}
 			break;
 		case cutsceneID::PANDORA:
+			while (!image.loadFromFile("pandora" + std::to_string(index++) + ".png")){}
 			break;
 		case cutsceneID::KEATON:
+			while (!image.loadFromFile("keaton" + std::to_string(index++) + ".png")){}
 			break;
 		case cutsceneID::KEATH:
+			while (!image.loadFromFile("keath" + std::to_string(index++) + ".png")){}
 			break;
 		case cutsceneID::STATES:
+			while (!image.loadFromFile("states" + std::to_string(index++) + ".png")){}
 			break;
 		case cutsceneID::HEIN:
+			while (!image.loadFromFile("hein" + std::to_string(index++) + ".png")){}
 			break;
 		case cutsceneID::MAO:
+			while (!image.loadFromFile("mao" + std::to_string(index++) + ".png")){}
 			break;
 		case cutsceneID::JAPAN:
+			while (!image.loadFromFile("japan" + std::to_string(index++) + ".png")){}
 			break;
 		case cutsceneID::KOHFUL:
+			while (!image.loadFromFile("kohful" + std::to_string(index++) + ".png")){}
 			break;
 		case cutsceneID::TEEBEE:
+			while (!image.loadFromFile("teebee" + std::to_string(index++) + ".png")){}
 			break;
 		case cutsceneID::SWEDEN:
+			while (!image.loadFromFile("sweden" + std::to_string(index++) + ".png")){}
 			break;
 		case cutsceneID::VILLIAM:
+			while (!image.loadFromFile("villiam" + std::to_string(index++) + ".png")){}
 			break;
 		case cutsceneID::WHITE:
+			while (!image.loadFromFile("white" + std::to_string(index++) + ".png")){}
 			break;
 		case cutsceneID::ENGLAND:
-			break;
-		default:
-			break;
+			while (!image.loadFromFile("england" + std::to_string(index++) + ".png")){}
 		}
-			frames.setTexture(*images);
-	}
-	void unload();
-	void draw(sf::RenderWindow& window)
-	{
-		//load(getID(), images);
-		window.draw(frames);
-		//unload(images);
+		frame.setTexture(image);
 	}
 
-	//things needed to determine the videoCutscene:
+	//returns false when the cutscene is over, when the index is on the last frame
+	bool draw(sf::RenderWindow& window)
+	{
+		load(cutsceneID::START, image);
+		window.draw(frame);
+		return index < size;
+	}
+
+	void resetIndex() { index = 0; }
+
+	//DO NOT USE THIS CLASS UNTIL THIS FUNCTION WORKS
+	void initSize(cutsceneID)
+	{
+		//based on the cutsceneID, check the frame files to see what the last one is.
+		//WHILE THE LAST FRAME MAY NOT REPRESENT THE VIDEO SIZE, THAT IS HOW THE SIZE VARIABLE WILL BE USED.
+		//i have no idea how to code this other than to use sf::Texture.loadFromFile
+		//which is obviously not okay at all
+	}
+
+	//things needed to determine the VideoCutscene:
 	//if the boss was killed before the time ran out		bool, is this in Game or Level?
 	//if it was, which country are we and which				4 options stored in Game
 	//players are playing.									3 options stored in Game (p1 p2 or both)
@@ -195,6 +215,11 @@ struct VideoCutscene
 			else
 				return cutsceneID::OSARU;
 	}
+
+private:
+	unsigned short size, index; //should we rename size to lastFrame? might be more clear that way
+	sf::Texture image; //i moved image to here, if we are only loading one at a time this makes it easy - Christian
+	sf::Sprite frame;
 };
 
 
@@ -240,10 +265,8 @@ private:
 
 	// Menu Map texture, unsure what it does? - Ricky
 	sf::Texture menuMap,
-		// Also unsure what it does... - ricky
-		menuFlags,
-		//Heap array used for loading video cutscene images before they are utilized by VideoCutscene
-		*cutsceneImages;
+		// Also unsure what it does... - Ricky
+		menuFlags;
 
 	// These should all be wrapped in a struct to structure the data; make it easier to understand its all related
 	sf::RectangleShape
