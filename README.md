@@ -8,4 +8,6 @@ If any project member sees this, Christian is terribly sorry for any pain or str
 there are absolutely no easter eggs or inside jokes in this project because we are good and
 hardworking students at all times no matter what. Do not go and fact-check this claim.
 
+[spritesheet info](https://docs.google.com/spreadsheets/d/1S6oiYW31RMlV090vTEgLhkFIjzwHSgbqcVWCdjcCovY/edit?gid=0#gid=0) help out, its fun!
+
 ![inchcat](inchcat.png)
