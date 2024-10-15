@@ -155,7 +155,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Cutscene.cpp" />
+    <ClCompile Include="src\Cutscene\Cutscene.cpp" />
     <ClCompile Include="src\Entities\Enemy\Enemy_new.cpp" />
     <ClCompile Include="src\Entities\Entity.cpp" />
     <ClCompile Include="src\Entities\EntityData.cpp" />
@@ -178,7 +178,7 @@
     <ClCompile Include="src\Sprites\SpriteType.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Cutscene.h" />
+    <ClInclude Include="src\Cutscene\Cutscene.h" />
     <ClInclude Include="src\Entities\Enemy\Enemy_new.h" />
     <ClInclude Include="src\Entities\Entity.h" />
     <ClInclude Include="src\Entities\EntityData.h" />
