@@ -227,6 +227,12 @@
     <None Include="lib\SFML64\lib\sfml-window-s.pdb" />
     <None Include="lib\SFML64\lib\sfml-window.pdb" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="src\Cutscene\englandDialog.txt" />
+    <Text Include="src\Cutscene\japanDialog.txt" />
+    <Text Include="src\Cutscene\statesDialog.txt" />
+    <Text Include="src\Cutscene\swedenDialog.txt" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
