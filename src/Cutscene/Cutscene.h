@@ -2,6 +2,7 @@
 #include <queue>
 #include <SFML/Graphics.hpp>
 #include "VisualElement.h"
+#include "fstream"
 
 class Cutscene
 {
@@ -16,14 +17,18 @@ public:
 		Meddit,
 		Russia,
 		States,
-		Sweden
+		Sweden,
+		Space
 	};
-	void load(int, int, bool, bool, sf::RenderWindow&);
+	void load(int, int, int, sf::RenderWindow&);
 	
 private:
 	std::queue<VisualElement<sf::Sprite>> spriteElements;
 	std::queue<VisualElement<sf::String>> stringElements;
-	bool countries[7] = { false, false, false, false, false, false, false };
+
+	//static VisualElement<sf::String> stringElements[4][8][3];
+	static bool countries[7];
+	std::string dialog[4][8][6];
 
 };
 
