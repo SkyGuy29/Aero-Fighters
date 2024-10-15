@@ -142,7 +142,7 @@ public:
 	//returns false when the cutscene is over, when the index is on the last frame
 	bool draw(sf::RenderWindow& window)
 	{
-		load(cutsceneID::START, image);
+		loadImage(cutsceneID::START);
 		window.draw(frame);
 		return index < size;
 	}
