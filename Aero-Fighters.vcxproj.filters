@@ -75,7 +75,10 @@
     <ClCompile Include="src\Sprites\SpriteType.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Cutscene\Cutscene.cpp">
+    <ClCompile Include="Cutscene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VideoCutscene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -164,7 +167,10 @@
     <ClInclude Include="src\Level\Intermediary.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Cutscene\Cutscene.h">
+    <ClInclude Include="Cutscene.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VisualElement.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
