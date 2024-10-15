@@ -172,6 +172,7 @@ void Game::run()
 
 		if (inGame || playersDead)
 		{
+			view.setCenter(winSize.x / 2.f, viewportScroll);
 			window.setView(view);
 			//Object::setView(view);
 			//Level::setView(view);
