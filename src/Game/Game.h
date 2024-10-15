@@ -127,6 +127,9 @@ private:
 		// Selection outline
 		menuSelectRect;
 
+	//The video cutscene, works for any of them. will be reloaded for each new one.
+	VideoCutscene video;
+
 	// The game level
 	Level level;
 
