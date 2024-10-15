@@ -51,7 +51,7 @@ Land::Land(const short id, const bool left,
 		break;
 	case 2: //fort building
 		cooldown = 100;
-		health = 90;
+		health = 30;
 		setSize(60, 60);
 		setSpriteNum(20);
 		break;

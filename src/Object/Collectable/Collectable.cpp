@@ -27,15 +27,15 @@ Collectable::Collectable(const short id, const float xPosition, const float yPos
 void Collectable::update(const sf::Vector2f winSize, std::vector<Object*>* objects,
 	const bool time, int& p1Score, int& p2Score)
 {
-	if (id == 0)
-		vel.y = *backgroundSpeed;
+	//if (id == 0)
+		//vel.y = *backgroundSpeed;
 
 	nextFrame(8);
 
 	if (outOfBounds(winSize) && (id == 0))
 		del = true;
 	//making it bounce
-	else if ((pos.y >= 240 || pos.y <= 30 || outOfBounds(winSize))
+	else if (( outOfBounds(winSize))
 			&& id != 0)
 	{
 		if (pos.x <= 0)
@@ -48,14 +48,14 @@ void Collectable::update(const sf::Vector2f winSize, std::vector<Object*>* objec
 			pos.x = winSize.x;
 			vel.x *= -1;
 		}
-		if (pos.y <= 30)
+		if (pos.y <= 30 + view.getCenter().y - view.getSize().y / 2.f)
 		{
-			pos.y = 30;
+			pos.y = 30 + view.getCenter().y - view.getSize().y / 2.f;
 			vel.y *= -1;
 		}
-		else if (pos.y >= 240)
+		else if (pos.y >= 240 + view.getCenter().y - view.getSize().y / 2.f)
 		{
-			pos.y = 240;
+			pos.y = 240 + view.getCenter().y - view.getSize().y / 2.f;
 			vel.y *= -1;
 		}
 	}
@@ -69,10 +69,10 @@ void Collectable::update(const sf::Vector2f winSize, std::vector<Object*>* objec
 			del = true;
 	}
 
-	if (!id && !time)
+	/*if (!id && !time)
 		vel.y = 0;
 	else
-		vel.y = 1;
+		vel.y = 1;*/
 
 	objectUpdate(winSize, objects);
 }

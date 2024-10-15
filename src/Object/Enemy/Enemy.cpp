@@ -58,6 +58,7 @@ void Enemy::enemyUpdate(const sf::Vector2f winSize, std::vector<Object*>* object
 				p1Score += 100;
 			else
 				p2Score += 100;
+			objects->at(i)->setPos(-100, -100);
 		}
 	}
 

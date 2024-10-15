@@ -42,7 +42,7 @@ enum Controls
 	Select,
 };
 
-enum Countries
+enum class Countries
 {
 	STATES,
 	JAPAN,
