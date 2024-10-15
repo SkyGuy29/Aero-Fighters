@@ -32,10 +32,10 @@ VisualElement<sf::String> Cutscene::stringElements[4][8][3] =
 Cutscene::Cutscene()
 {
 	std::fstream englandFile, japanFile, statesFile, swedenFile;
-	englandFile.open("res/England/england.txt");
-	japanFile.open("res/Japan/japan.txt");
-	statesFile.open("res/States/states.txt");
-	swedenFile.open("res/Sweden/sweden.txt");
+	englandFile.open("englandDialog.txt");
+	japanFile.open("japanDialog.txt");
+	statesFile.open("statesDialog.txt");
+	swedenFile.open("swedenDialog.txt");
 	if (englandFile.is_open() && japanFile.is_open() && statesFile.is_open() && swedenFile.is_open())
 		for (int i = 0; i < 8; i++)
 			for (int z = 0; z < 6; z++)

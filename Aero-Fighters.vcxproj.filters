@@ -193,4 +193,10 @@
     <None Include="lib\SFML64\lib\sfml-network.pdb" />
     <None Include="lib\SFML64\lib\sfml-system.pdb" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="src\Cutscene\englandDialog.txt" />
+    <Text Include="src\Cutscene\japanDialog.txt" />
+    <Text Include="src\Cutscene\statesDialog.txt" />
+    <Text Include="src\Cutscene\swedenDialog.txt" />
+  </ItemGroup>
 </Project>
