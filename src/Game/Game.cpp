@@ -98,8 +98,8 @@ void Game::run()
 				static_cast<unsigned int>(winSize.x) * 4,
 				static_cast<unsigned int>(winSize.y) * 2)
 			);
-
 		}
+
 #endif
 
 		// Keeps constant update rate.
@@ -298,7 +298,7 @@ void Game::updateSelectMenu()
 			// Reset player choose, load the respective level, and early escape
 			countryChoose.reset();
 			inLevel = true;
-			level.load(winSize, country, Level::England, levelEditor); // Set the last param for loading the correct map
+			level.load(winSize, country, Map::England, levelEditor); // Set the last param for loading the correct map
 
 			if (debugSkipToBoss)
 				viewportScroll = level.skipToBoss();
