@@ -27,8 +27,6 @@ private:
 	//std::queue<VisualElement<sf::String>> stringElements;
 
 	//static VisualElement<sf::String> stringElements[4][8][3];
-	static bool countries[7];
-	std::string dialog[4][8][6];
-
+	std::string dialog[8][8][3][6];
 };
 
