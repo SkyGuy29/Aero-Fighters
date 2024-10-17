@@ -158,7 +158,7 @@ inline void EntityManagementInterface::loadEnemies(Map map)
 		short id;
 		unsigned int spawnTick;
 		sf::Vector2f pos, vel;
-		unsigned int line;
+		unsigned int line = 0;
 	};
 	TempData tempData;
 	std::string input;
@@ -208,12 +208,16 @@ inline void EntityManagementInterface::loadEnemies(Map map)
 
 		if (input == "NEW LAND")
 		{
+			f >> tempData.pos.x >> tempData.pos.y >> tempData.vel.x >> tempData.vel.y;
+			tempData.line += 4;
 			spawnMap[0].push_back(new EntityPrototype(tempData.pos, tempData.vel, (EntityID)tempData.id, 0, tempData.line));
 		}
 		else if (input == "NEW WATER" || input == "NEW AIR")
 		{
 			if(!spawnMap.count(tempData.spawnTick))
 				spawnMap[tempData.spawnTick] = std::vector<EntityPrototype*>();
+			f >> tempData.pos.x >> tempData.pos.y >> tempData.vel.x >> tempData.vel.y >> tempData.spawnTick;
+			tempData.line += 5;
 			// TODO: CLEAN THIS UP ON PROGRAM CLOSE (memory leaks rn)
 			spawnMap[tempData.spawnTick].push_back(new EntityPrototype(tempData.pos, tempData.vel, (EntityID)tempData.id, 0, tempData.line));
 		}

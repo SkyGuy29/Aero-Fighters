@@ -140,7 +140,7 @@ inline void EntityManagementInterface::generalLevelEditorUpdate(std::vector<T*> 
 	{
 		// if player clicking an entity
 		if (entity->getSprite() != nullptr && entity->getSprite()->getGlobalBounds().intersects(sf::Mouse::getPosition()))
-			std::cout << 
+			std::cout << // HERE
 	}
 
 }

@@ -5,6 +5,7 @@ pos.x       Spawn position
 pos.y
 vel.x       Spawn velocity  (Set to 0 with spawners)
 vel.y
+spawnTick   Tick that water/air enemies spawn. Omit with land enemies.
 (empty line)
 # Below is the example.
 NEW LAND
