@@ -16,5 +16,9 @@ public:
 	void move() override;
 private:
 	Entity* target;
+	int magnitude; // Do something with this andrew
+
+
+	void normalize();
 };
 

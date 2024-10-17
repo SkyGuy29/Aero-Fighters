@@ -1,10 +1,22 @@
 #include "Missile.h"
+#include <cmath>
 
 
 void Missile::move()
 {
-	float dx = getPosition().x - target->getPosition().x;
-	float dy = getPosition().y - target->getPosition().y;
-	vel.x = dx * mag / hypotf(dx, dy);
-	vel.y = dy * mag / hypotf(dx, dy);
+	vel = {
+		getPosition().x - target->getPosition().x,
+		getPosition().y - target->getPosition().y
+	};
+	normalize();
+}
+
+void Missile::normalize()
+{
+	double normalizationFactor = magnitude / hypot<double>(vel.x, vel.y);
+
+	vel = {
+		static_cast<float>(vel.x * normalizationFactor),
+		static_cast<float>(vel.y * normalizationFactor)
+	};
 }
