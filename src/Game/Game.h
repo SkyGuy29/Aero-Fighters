@@ -165,8 +165,9 @@ private:
 
 	Menu currentMenu = Menu::INTRO;
 	Map currentLevel = Map::England;
+	std::vector<Map> completedLevels;
 
-	bool inLevel = false, playersDead = false;
+	bool playersDead = false;
 
 	bool debugSkipToBoss = !!!!!true; //!!!false;
 };
