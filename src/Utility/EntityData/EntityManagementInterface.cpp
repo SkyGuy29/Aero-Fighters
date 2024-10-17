@@ -8,6 +8,14 @@
 #include "../../Entities/Enemy/Boss/Boss_new.h"
 
 
+inline void EntityManagementInterface::load(Map map)
+{
+	players.push_back(new Player_new(sf::Vector2(0, 0), sf::Vector2f(0, 0), EntityID::PLAYER, country, true));
+	players.push_back(new Player_new(sf::Vector2(0, 0), sf::Vector2f(0, 0), EntityID::PLAYER, ));
+	loadAttacks();
+	loadEnemies(map);
+}
+
 void EntityManagementInterface::tick(sf::RenderWindow& win, unsigned int currentTick)
 {
 	// spawn the entities on the map with the current tick.
@@ -36,17 +44,31 @@ void EntityManagementInterface::tick(sf::RenderWindow& win, unsigned int current
 		
 	}
 
+	generalTick<Enemy_new>(waterEnemies, win);
+	for (auto water : waterEnemies)
+	{
+
+	}
+
+	generalTick<TileEntity>(tileEntities, win);
+	for (auto tile : tileEntities)
+	{
+
+	}
+
+	generalTick<Player_new>(players, win);
+	for (auto player : players)
+	{
+	
+	}
+
 	generalTick<Enemy_new>(airEnemies, win);
 	for (auto air : airEnemies)
 	{
 		
 	}
 
-	generalTick<Enemy_new>(waterEnemies, win);
-	for (auto water : waterEnemies )
-	{
-
-	}
+	
 
 	generalTick<Boss_new>(bossEnemies, win);
 	for (auto boss : bossEnemies)
@@ -68,12 +90,6 @@ void EntityManagementInterface::tick(sf::RenderWindow& win, unsigned int current
 
 	generalTick<TemporarySpawner>(temporarySpawners, win);
 	for (auto tempSpawner : temporarySpawners)
-	{
-
-	}
-
-	generalTick<TileEntity>(tileEntities, win);
-	for (auto tile : tileEntities)
 	{
 
 	}

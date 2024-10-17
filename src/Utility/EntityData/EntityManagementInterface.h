@@ -47,11 +47,12 @@ public:
 	~EntityManagementInterface() = delete;
 
 
+	static inline void load(Map map);
+	static inline void tick(sf::RenderWindow& win, unsigned int currentTick);
+	static inline std::vector<Player_new*>& getPlayers() { return players; };
+private:
 	static inline void loadAttacks();
 	static inline void loadEnemies(Map map);
-	static inline void tick(sf::RenderWindow& win, unsigned int currentTick);
-
-private:
 	// DO NOT REMOVE THE INLINE FROM THIS METHOD
 	template<typename T> requires std::derived_from<T, Entity> 
 	static inline void generalTick(std::vector<T*>& entities, sf::RenderWindow& win);
@@ -61,6 +62,7 @@ private:
 
 	// tick->list of enemies to spawn. dont delete after spawned cause level editor
 	static std::unordered_map<unsigned int, std::vector<EntityPrototype*>> spawnMap;
+	static std::vector<Player_new*> players; // spawned at start
 	static std::vector<Enemy_new*> landEnemies; // spawned at start (spawnMap:0)
 	static std::vector<Enemy_new*> airEnemies; // spawnMap
 	static std::vector<Enemy_new*> waterEnemies; // spawnMap

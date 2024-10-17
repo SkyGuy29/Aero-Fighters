@@ -65,10 +65,6 @@ private:
 	void initTexturesCollectable(Entity* object, sf::IntRect& objRect,
 		int& frameCount, sf::Texture*& texPtr);
 
-	// All "objects" in the game.
-	// std::vector<Object*> objects;
-	EntityHolder entities;
-
 	sf::Font font;
 	sf::Text p1Score, p2Score;
 	sf::RectangleShape p1LivesRect, p2LivesRect;

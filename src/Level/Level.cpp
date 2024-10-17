@@ -105,12 +105,7 @@ void Level::load(sf::Vector2f winSize, const short country,
 			break;
 	}
 
-	entities.players.push_back(new Player_new(sf::Vector2(0,0), sf::Vector2f(0,0), EntityID::PLAYER, backgroundSpeed, country, true, &backgroundSpeed));
-	entities.players.push_back(new Player_new(country, false, &backgroundSpeed));
-
-	// Change later. This just spaces out the players
-	entities.players[0]->getSprite()->setPosition(sf::Vector2f(winSize.x * 0.25f, winSize.y * 0.75f));
-	entities.players[1]->getSprite()->setPosition(sf::Vector2f(winSize.x * 0.75f, winSize.y * 0.75f));
+	EntityManagementInterface::load(map);
 
 	// just a test to try out the moved animator to object
 	/*objects.at(0)->setTexture(&playerImg, sf::Vector2i(32, 32),

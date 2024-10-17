@@ -13,7 +13,6 @@ public:
     void tick();
     void setHealth(short h) { health = h; };
 
-    static std::vector<Player_new*>& getPlayers() { return players; }
 private:
-    static std::vector<Player_new*> players;
+
 };
