@@ -17,6 +17,18 @@
 // Renamed from TACO_BELL
 #define HP_MAX SHRT_MAX
 
+enum Map
+{
+	England,
+	Israel,
+	Japan,
+	Meddit,
+	Russia,
+	States,
+	Sweden,
+	Space
+};
+
 
 /// <summary>
 /// This takes a file and interprets it to create the level.
@@ -26,17 +38,6 @@
 class Level final : public sf::Drawable
 {
 public:
-	enum Map
-	{
-		England,
-		Israel,
-		Japan,
-		Meddit,
-		Russia,
-		States,
-		Sweden,
-		Space
-	};
 
 	std::vector<std::string> mapStrings = {
 		"England",

@@ -137,7 +137,7 @@ void Game::run()
 			// Game over countdown ends -> playersDead = true
 			// -Ben
 
-			if (inGame)
+			if (inLevel)
 			{
 				// level::update() runs most of the gameplay.
 				//view.setCenter(winSize.x / 2.f, viewportScroll);
@@ -149,7 +149,7 @@ void Game::run()
 				{
 					gameOver.set(10, ticksPerSec);
 					playersDead = true;
-					inGame = false;
+					inLevel = false;
 				}
 				viewportScroll -= level.getBackgroundSpeed();
 			}
@@ -157,7 +157,7 @@ void Game::run()
 			{
 				countryChoose.tick();
 				gameOver.tick();
-				updateMenu();
+				updateSelectMenu();
 			}
 		}
 
@@ -170,7 +170,7 @@ void Game::run()
 		// Draw the level gameplay if players are playing or dead
 		//view.setCenter(winSize.x / 2.f, viewportScroll);
 
-		if (inGame || playersDead)
+		if (inLevel || playersDead)
 		{
 			view.setCenter(winSize.x / 2.f, viewportScroll);
 			window.setView(view);
@@ -179,13 +179,13 @@ void Game::run()
 			window.draw(level);
 		}
 		// This does have to be it's own 'if' so the game over screen can overlay the gameplay
-		if (!inGame)
+		if (!inLevel)
 		{
 			view.setCenter(winSize.x / 2.f, winSize.y / 2.f);
 			window.setView(view);
 			//Object::setView(view);
 			//Level::setView(view);
-			drawMenu();
+			drawSelectMenu();
 		}
 
 		window.display();
@@ -196,7 +196,7 @@ void Game::run()
 /// <summary>
 /// Draws the country select menu.
 /// </summary>
-void Game::drawMenu()
+void Game::drawSelectMenu()
 {
 	if (playersDead) // Game over menu
 	{
@@ -232,7 +232,7 @@ void Game::drawMenu()
 /// <summary>
 /// Updates the country select menu.
 /// </summary>
-void Game::updateMenu()
+void Game::updateSelectMenu()
 {
 	if (playersDead) // Game over menu
 	{
@@ -241,7 +241,7 @@ void Game::updateMenu()
 		if (key(0, Controls::Select) || button(0, Controller::Select_BTN))
 		{
 			playersDead = false;
-			inGame = true;
+			inLevel = true;
 			level.respawnPlayers();
 		}
 
@@ -297,7 +297,7 @@ void Game::updateMenu()
 		{
 			// Reset player choose, load the respective level, and early escape
 			countryChoose.reset();
-			inGame = true;
+			inLevel = true;
 			level.load(winSize, country, Level::England, levelEditor); // Set the last param for loading the correct map
 
 			if (debugSkipToBoss)
