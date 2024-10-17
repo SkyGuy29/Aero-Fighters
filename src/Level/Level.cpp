@@ -92,7 +92,7 @@ void Level::load(sf::Vector2f winSize, const short country,
 
 	switch (map)
 	{
-		case England:
+	case Map::England:
 			houseImg.loadFromFile("res/England/House.png");
 			domeImg.loadFromFile("res/England/Dome.png");
 			gateImg.loadFromFile("res/England/Gate.png");

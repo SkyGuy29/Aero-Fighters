@@ -63,12 +63,16 @@ private:
 		ticksPerSec = 0;
 };
 
-/*
 
-
-
-
-*/
+enum class Menu
+{
+	INTRO,
+	SELECT,
+	LEVEL,
+	MISSION,
+	LEADERBOARD,
+	END
+};
 
 
 /// <summary>
@@ -87,8 +91,8 @@ public:
 
 	void run();
 
-	void drawMenu();
-	void updateMenu();
+	void drawSelectMenu();
+	void updateSelectMenu();
 private:
 	void resize();
 
@@ -127,6 +131,9 @@ private:
 		// Selection outline
 		menuSelectRect;
 
+	//The video cutscene, works for any of them. will be reloaded for each new one.
+	VideoCutscene video;
+
 	// The game level
 	Level level;
 
@@ -149,14 +156,17 @@ private:
 
 	// Selected Country
 	unsigned char country = 0,
-		// The rate at which the blick state changes in ticks
+		// The rate at which the blink state changes in ticks
 		menuBlinkRate = 5,
 		// Current progress int he blink rate
 		menuBlinkTimer = 0;
 
 	Countdown countryChoose, gameOver;
 
-	bool inGame = false, playersDead = false;
+	Menu currentMenu = Menu::INTRO;
+	Map currentLevel = Map::England;
+
+	bool inLevel = false, playersDead = false;
 
 	bool debugSkipToBoss = !!!!!true; //!!!false;
 };
