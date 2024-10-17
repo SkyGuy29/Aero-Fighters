@@ -163,7 +163,7 @@ private:
 
 	Countdown countryChoose, gameOver;
 
-	Menu currentMenu = Menu::INTRO;
+	Menu currentMenu = Menu::SELECT;
 	Map currentLevel = Map::England;
 	std::vector<Map> completedLevels;
 
