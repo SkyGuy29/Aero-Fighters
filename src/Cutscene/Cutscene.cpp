@@ -1,34 +1,5 @@
 #include "Cutscene.h"
 
-bool Cutscene::countries[] = {false, false, false, false, false, false, false};
-
-/*
-VisualElement<sf::String> Cutscene::stringElements[4][8][3] =
-{
-	{
-		{
-			{
-				std::queue<VisualElement<sf::String>> {
-					VisualElement<sf::String>{{},{},"",false}
-				}
-			},
-			{},
-			{},
-		},
-		{},
-		{},
-		{},
-		{},
-		{},
-		{},
-		{},
-	},
-	{},
-	{},
-	{}
-};
-*/
-
 Cutscene::Cutscene()
 {
 	std::fstream englandFile, japanFile, statesFile, swedenFile;
@@ -37,14 +8,15 @@ Cutscene::Cutscene()
 	statesFile.open("statesDialog.txt");
 	swedenFile.open("swedenDialog.txt");
 	if (englandFile.is_open() && japanFile.is_open() && statesFile.is_open() && swedenFile.is_open())
-		for (int i = 0; i < 8; i++)
-			for (int z = 0; z < 6; z++)
-			{
-				std::getline(englandFile, dialog[0][i][z]);
-				std::getline(japanFile, dialog[0][i][z]);
-				std::getline(statesFile, dialog[0][i][z]);
-				std::getline(swedenFile, dialog[0][i][z]);
-			}
+		for (int l = 0; l < 8; l++)
+			for (int p = 0; p < 3; p++)
+				for(int d = 0; d < 6; d++)
+				{
+					std::getline(englandFile, dialog[0][l][p][d]);
+					std::getline(japanFile, dialog[2][l][p][d]);
+					std::getline(statesFile, dialog[5][l][p][d]);
+					std::getline(swedenFile, dialog[6][l][p][d]);
+				}
 	englandFile.close();
 	japanFile.close();
 	statesFile.close();
