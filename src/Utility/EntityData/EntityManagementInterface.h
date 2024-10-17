@@ -49,16 +49,20 @@ public:
 
 	static inline void load(Map map);
 	static inline void tick(sf::RenderWindow& win, unsigned int currentTick);
+	static void updateLevelEditor();
 	static inline std::vector<Player_new*>& getPlayers() { return players; };
 private:
 	static inline void loadAttacks();
 	static inline void loadEnemies(Map map);
-	// DO NOT REMOVE THE INLINE FROM THIS METHOD
+
 	template<typename T> requires std::derived_from<T, Entity> 
-	static inline void generalTick(std::vector<T*>& entities, sf::RenderWindow& win);
+	static void generalTick(std::vector<T*>& entities, sf::RenderWindow& win);
 
 	template<typename T> requires std::derived_from<T, Entity>
-	static inline void processAttack(EntityDataStorage::AttackID ID, T& entity);
+	static void processAttack(EntityDataStorage::AttackID ID, T& entity);
+
+	template<typename T> requires std::derived_from<T, Entity>
+	static void generalLevelEditorUpdate(std::vector<T*> entities);
 
 	// tick->list of enemies to spawn. dont delete after spawned cause level editor
 	static std::unordered_map<unsigned int, std::vector<EntityPrototype*>> spawnMap;
@@ -73,6 +77,8 @@ private:
 	static std::vector<TileEntity*> tileEntities; // spawned at start (spawnMap:0)
 	static std::vector<PowerUp*> powerUps; // spawned dynamically by enemies
 	static std::vector<std::vector<ProjectilePrototype>> attackData;
+
+	static unsigned int lastTick;
 };
 
 template <typename T> requires std::derived_from<T, Entity>
@@ -116,6 +122,7 @@ void EntityManagementInterface::generalTick(std::vector<T*>& entities, sf::Rende
 	}
 }
 
+
 template <typename T> requires std::derived_from<T, Entity>
 void EntityManagementInterface::processAttack(EntityDataStorage::AttackID ID, T& entity)
 {
@@ -123,4 +130,17 @@ void EntityManagementInterface::processAttack(EntityDataStorage::AttackID ID, T&
 	sf::Vector2f position = entity.getPos();
 
 	projectiles.emplace(new Projectile_new())
+}
+
+
+template<typename T> requires std::derived_from<T, Entity>
+inline void EntityManagementInterface::generalLevelEditorUpdate(std::vector<T*> entities)
+{
+	for (Entity* entity : entities)
+	{
+		// if player clicking an entity
+		if (entity->getSprite() != nullptr && entity->getSprite()->getGlobalBounds().intersects(sf::Mouse::getPosition()))
+			std::cout << 
+	}
+
 }

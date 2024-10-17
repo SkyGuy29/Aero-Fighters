@@ -18,8 +18,8 @@ inline void EntityManagementInterface::load(Map map)
 
 void EntityManagementInterface::tick(sf::RenderWindow& win, unsigned int currentTick)
 {
-	// spawn the entities on the map with the current tick.
-	if (spawnMap.count(currentTick))
+	// spawn the entities on the map with the current tick. Also make sure that we are not spawning enemies over and over if the tick is the same.
+	if (spawnMap.count(currentTick) && currentTick != lastTick)
 	{
 		std::vector<EntityPrototype*>& spawnableEntities = spawnMap[currentTick];
 		for (EntityPrototype* entityPrototype : spawnableEntities)
@@ -68,8 +68,6 @@ void EntityManagementInterface::tick(sf::RenderWindow& win, unsigned int current
 		
 	}
 
-	
-
 	generalTick<Boss_new>(bossEnemies, win);
 	for (auto boss : bossEnemies)
 	{
@@ -99,6 +97,16 @@ void EntityManagementInterface::tick(sf::RenderWindow& win, unsigned int current
 	{
 
 	}
+
+	lastTick = currentTick;
+}
+
+void EntityManagementInterface::updateLevelEditor()
+{
+	generalLevelEditorUpdate(airEnemies);
+	generalLevelEditorUpdate(waterEnemies);
+	generalLevelEditorUpdate(landEnemies);
+	generalLevelEditorUpdate(tileEntities);
 }
 
 
@@ -150,6 +158,7 @@ inline void EntityManagementInterface::loadEnemies(Map map)
 		short id;
 		unsigned int spawnTick;
 		sf::Vector2f pos, vel;
+		unsigned int line;
 	};
 	TempData tempData;
 	std::string input;
@@ -199,14 +208,14 @@ inline void EntityManagementInterface::loadEnemies(Map map)
 
 		if (input == "NEW LAND")
 		{
-			spawnMap[0].push_back(new EntityPrototype(tempData.pos, tempData.vel, (EntityID)tempData.id, 0));
+			spawnMap[0].push_back(new EntityPrototype(tempData.pos, tempData.vel, (EntityID)tempData.id, 0, tempData.line));
 		}
 		else if (input == "NEW WATER" || input == "NEW AIR")
 		{
 			if(!spawnMap.count(tempData.spawnTick))
 				spawnMap[tempData.spawnTick] = std::vector<EntityPrototype*>();
 			// TODO: CLEAN THIS UP ON PROGRAM CLOSE (memory leaks rn)
-			spawnMap[tempData.spawnTick].push_back(new EntityPrototype(tempData.pos, tempData.vel, (EntityID)tempData.id, 0));
+			spawnMap[tempData.spawnTick].push_back(new EntityPrototype(tempData.pos, tempData.vel, (EntityID)tempData.id, 0, tempData.line));
 		}
 	}
 }

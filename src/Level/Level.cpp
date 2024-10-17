@@ -45,7 +45,8 @@ void Level::load(sf::Vector2f winSize, const short country,
 {
 	this->country = country;
 	this->winSize = winSize;
-	this->levelEditor = levelEditor;
+	levelEditorActive = levelEditor;
+	Entity::setCurrentTick(currentTick);
 
 	// setting up the background
 	backgroundImg.loadFromFile("res/"  + mapStrings[map] + "/" + mapStrings[map] + ".png");
@@ -125,58 +126,14 @@ void Level::load(sf::Vector2f winSize, const short country,
 /// </summary>
 void Level::debugMode() const
 {
-	Player_new::getPlayers()[0]->setHealth(HP_MAX);
-	Player_new::getPlayers()[1]->setHealth(HP_MAX);
+	EntityManagementInterface::getPlayers()[0]->setHealth(HP_MAX);
+	EntityManagementInterface::getPlayers()[1]->setHealth(HP_MAX);
 }
 
 void Level::respawnPlayers() const
 {
-	Player_new::getPlayers()[0]->setHealth(3);
-	Player_new::getPlayers()[1]->setHealth(3);
-}
-
-
-/// <summary>
-/// Initializes textures of objects in the object list based on the provided index. You need to set spriteNum to change the texture.
-/// </summary>
-/// <param name="index"></param>
-void Level::initializeTextures(const int index)
-{
-	sf::IntRect objRect;
-	int frameCount = 0;
-	sf::Texture* texPtr = nullptr;
-
-	Entity* entity = entities[entities.size() - 1 - index];
-
-	// if the texture is not initialized
-	if (!object->isTexInit())
-	{
-		switch (object->getType())
-		{
-		case Object::BOSS:
-			initTexturesBoss(object, objRect, frameCount, texPtr);
-			break;
-		case Object::LAND:
-			initTexturesLand(object, objRect, frameCount, texPtr);
-			break;
-		case Object::EXPLOSION:
-			initTexturesExplosion(object, objRect, frameCount, texPtr);
-			break;
-		case Object::AIR:
-			initTexturesAir(object, objRect, frameCount, texPtr);
-			break;
-		case Object::PLAYER_PROJECTILE:
-		case Object::ENEMY_PROJECTILE:
-			initTexturesProjectile(object, objRect, frameCount, texPtr);
-			break;
-		case Object::COLLECTABLE:
-			initTexturesCollectable(object, objRect, frameCount, texPtr);
-		}
-	}
-
-	if (texPtr)
-		object->setTexture(texPtr, objRect.getSize(),
-			objRect.getPosition(), frameCount, false);
+	EntityManagementInterface::getPlayers()[0]->setHealth(3);
+	EntityManagementInterface::getPlayers()[1]->setHealth(3);
 }
 
 
@@ -194,15 +151,12 @@ bool Level::update(const sf::Vector2f winSize)
 	//if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter) && infScrollInPos)
 		//setInfScroll(false);
 
-	if(levelEditor)
+	if(levelEditorActive)
 		updateLevelEditor();
 
 	// The background has to scroll backwards to get the effect that we want.
 	if (infScrollInPos || infScrollEnabled)
-	{
 		backgroundDist -= backgroundSpeed;
-	
-	}
 
 	updateInfScroll();
 
@@ -210,50 +164,9 @@ bool Level::update(const sf::Vector2f winSize)
 	// Take the decimal, leave the whole number
 	// SFML will smooth out not pixel aligned things.
 	//background.setPosition(0, 0-backgroundImg.getSize().y - backgroundDist);
-	
-	updatePlayers();
 
-	// checking the back of the vector first is needed,
-	// so deleting doesn't shift everything down and mess up the for loop
-	// delete first, then erase
-
-	//polymorphism -- All objects are stored in this vector, they can be
-	//identified using getType()
-	for (unsigned int i = 0; i < entities.size(); i++)
-	{
-		entities[entities.size() - 1 - i]->tick(
-			Player_new::getPlayers()[1]->getTime() && player1Score, player2Score);
-		/*if (objects[objects.size() - 1 - i]->getType() == Object::EXPLOSION)
-		{
-			// I'm sorry.
-			// Explosions didn't move before. They move now
-			// I didn't want to add more polymorphism stuff
-			// Pointers are cool
-			Explosion* exp = (Explosion*)objects[objects.size() - 1 - i];
-			exp->backgroundSpeed = backgroundSpeed;
-		}*/
-	}
-
-	// Calling init textures after everything is updated.
-	// Objects may create explosions that won't be drawn, 
-	// because the loop won't reach them
-	//for (unsigned int i = 0; i < entities.size(); i++)
-	//	initializeTextures(i); // ?? - Andrew 9/16/24
-	
 	// Drawing order
-	generalTick((std::vector<Entity*>&)entities.landEnemies);
-	generalTick((std::vector<Entity*>&)entities.tileEntities);
-	generalTick((std::vector<Entity*>&)entities.waterEnemies);
-
-	generalTick((std::vector<Entity*>&)entities.powerUps);
-	generalTick((std::vector<Entity*>&)entities.players);
-	generalTick((std::vector<Entity*>&)entities.projectiles);
-	
-	generalTick((std::vector<Entity*>&)entities.bossEnemies);
-	generalTick((std::vector<Entity*>&)entities.airEnemies);
-
-	generalTick((std::vector<Entity*>&)entities.permanentSpawners);
-	generalTick((std::vector<Entity*>&)entities.temporarySpawners);
+	EntityManagementInterface::tick(window, currentTick);
 
 	englandUpdate();
 
@@ -281,6 +194,9 @@ bool Level::update(const sf::Vector2f winSize)
 
 	window.draw(p1LivesRect);
 	window.draw(p2LivesRect);
+
+	if (!levelEditorActive)
+		currentTick++;
 
 	return p[0]->getHealth() > 0 || p[1]->getHealth() > 0;
 }
@@ -336,14 +252,30 @@ void Level::updateLevelEditor()
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::PageUp) ||
 		sf::Keyboard::isKeyPressed(sf::Keyboard::PageDown))
 	{
-		if(sf::Keyboard::isKeyPressed(sf::Keyboard::PageUp))
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::PageUp))
+		{
 			backgroundSpeed = 25;
-		if(sf::Keyboard::isKeyPressed(sf::Keyboard::PageDown))
+			while (currentTick <= currentTick + 25)
+			{
+				currentTick++;
+				EntityManagementInterface::tick(window, currentTick);
+			}
+		}
+
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::PageDown))
+		{
 			backgroundSpeed = -25;
+			while (currentTick >= currentTick - 25)
+			{
+				currentTick--;
+				EntityManagementInterface::tick(window, currentTick);
+			}
+		}
 		backgroundDist -= backgroundSpeed;
 		//rect.top = (int)backgroundDist;
 		//background.setTextureRect(rect);
 	}
+	EntityManagementInterface::updateLevelEditor();
 }
 
 
@@ -352,65 +284,6 @@ void Level::deleteVector(std::vector<void*>& a)
 	for (int i = 0; i < a.size(); i++)
 		delete a[i];
 	a.clear();
-}
-
-
-/// <summary>
-/// Controls the players.
-/// </summary>
-void Level::updatePlayers()
-{
-	// controller controls
-	// works with 2 controllers
-
-	// Move Offset
-	sf::Vector2f move;
-
-	// If the player should shoot
-	bool shoot, special;
-	bool spawn;
-
-	for (int i = 0; i < 2; i++)
-	{
-		if (sf::Joystick::isConnected(i))
-		{
-			move = joystick(i);
-
-			shoot = button(i, Controller::Y);
-			special = button(i, Controller::B);
-
-			spawn = button(i, Controller::A);
-		}
-		else
-		{
-			move.x = (float)key(i, Controls::Right) - key(i, Controls::Left);
-			move.y = (float)key(i, Controls::Back) - key(i, Controls::Forward);
-
-			shoot = key(i, Controls::Shoot);
-			special = key(i, Controls::Special);
-
-			spawn = key(i, Controls::Spawn);
-		}
-
-		entities.players.at(i)->setVel(move * 5.f);
-		if (shoot)
-		{
-			if (!playerShootLast[i])
-				entities.players[i]->shoot(objects);
-			playerShootLast[i] = true;
-		}
-		else
-			playerShootLast[i] = false;
-
-		if (special)
-			entities.players[i]->special(objects, winSize);
-
-		if (spawn) //Temporary and should be changed to continue.
-		{
-			entities.players[0]->setHealth(3);
-			entities.players[1]->setHealth(3);
-		}
-	}
 }
 
 

@@ -2,6 +2,8 @@
 #include "../Entity.h"
 #include "../Interfaces/ICollidable.h"
 #include "../Interfaces/IHasHealth.h"
+#include "../../ControllerStuff.hpp"
+
 
 class Player_new :
     public Entity, public IHasHealth

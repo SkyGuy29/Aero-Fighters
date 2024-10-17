@@ -46,6 +46,8 @@ public:
 	static void setWinSize(WindowSize& winSize);
 
 	static void setBackgroundSpeed(float& speed) { backgroundSpeed = speed; }
+
+	static void setCurrentTick(unsigned int& ct) { currentTick = ct; }
 	
 	void setPosition(sf::Vector2f pos);
 
@@ -72,15 +74,13 @@ public:
 
 	sf::Vector2f getPosition() const { return pos; }
 protected:
-	Entity(sf::Vector2f pos, EntityID ID, unsigned char orientation = 0);
+	Entity(sf::Vector2f pos, EntityID ID);
 
 	inline bool hasSpawned() noexcept { return entityFlags & 0b0000001; }
 
 	void nextFrame(const int frameRate = 15);
 
-	static bool getLevelEditor() { return levelEditor; }
-
-	// moves the entity by it's velocity.
+	// moves the entity by it's velocity multiplied by (currentTick-spawnTick).
 	void move() noexcept;
 
 	static float& backgroundSpeed;
@@ -103,16 +103,17 @@ protected:
 	const EntityID ID;
 
 	sf::Sprite* sprite = nullptr;
+
+	unsigned int spawnTick;
 private:
 
 	// The size of the window
 	static WindowSize& winSize;
 
-	//  If running in level editor mode
-	static bool& levelEditor;
-
 	// The next UUID that will be assigned.
 	static unsigned int next_uuid;
+
+	static unsigned int& currentTick;
 
 	// A map of all UUIDs to sprites
 	static std::unordered_map<unsigned int, sf::Sprite> spriteMap;
