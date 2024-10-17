@@ -31,58 +31,14 @@ void EntityManagementInterface::tick(sf::RenderWindow& win, unsigned int current
 	}
 
 	generalTick<Enemy_new>(landEnemies, win);
-	for (auto land : landEnemies)
-	{
-		
-	}
-
-	generalTick<Enemy_new>(airEnemies, win);
-	for (auto air : airEnemies)
-	{
-		
-	}
-
-	generalTick<Enemy_new>(waterEnemies, win);
-	for (auto water : waterEnemies )
-	{
-
-	}
-
-	generalTick<Boss_new>(bossEnemies, win);
-	for (auto boss : bossEnemies)
-	{
-
-	}
-
 	generalTick<Projectile_new>(projectiles, win);
-	for (auto projectile : projectiles)
-	{
-
-	}
-
+	generalTick<Enemy_new>(airEnemies, win);
+	generalTick<Enemy_new>(waterEnemies, win);
+	generalTick<Boss_new>(bossEnemies, win);
 	generalTick<PermanentSpawner>(permanentSpawners, win);
-	for (auto permSpawner : permanentSpawners)
-	{
-
-	}
-
 	generalTick<TemporarySpawner>(temporarySpawners, win);
-	for (auto tempSpawner : temporarySpawners)
-	{
-
-	}
-
 	generalTick<TileEntity>(tileEntities, win);
-	for (auto tile : tileEntities)
-	{
-
-	}
-
 	generalTick<PowerUp>(powerUps, win);
-	for (auto powerUp : powerUps)
-	{
-
-	}
 }
 
 

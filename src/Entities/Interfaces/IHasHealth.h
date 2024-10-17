@@ -8,6 +8,7 @@ public:
 	{
 		return health;
 	}
+	void damage() { health--; }
 
 protected:
 	IHasHealth(EntityID ID) :

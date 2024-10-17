@@ -32,10 +32,6 @@ public:
 		COUNT
 	};
 
-	struct TickData {
-			
-	};
-
 	// Generic definition for any entities tick function
 	// Entity holder used for when entities need to check for collision themselves
 	virtual void tick() = 0;
@@ -71,6 +67,7 @@ public:
 	sf::Sprite* getSprite() { return sprite; }
 
 	sf::Vector2f getPosition() const { return pos; }
+
 protected:
 	Entity(sf::Vector2f pos, EntityID ID, unsigned char orientation = 0);
 
