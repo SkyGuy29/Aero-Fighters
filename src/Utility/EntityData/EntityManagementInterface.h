@@ -172,7 +172,6 @@ bool EntityManagementInterface::collide(std::vector<T*>& entities, T& entity)
 	}
 	return done;
 }
-}
 
 
 template<typename T> requires std::derived_from<T, Entity>
