@@ -3,9 +3,9 @@
 
 bool VideoCutscene::draw(sf::RenderWindow& window)
 {
-		loadImage(id);
+		loadImage();
 		window.draw(frame);
-		return index < lastFrame;
+		return index < id;
 }
 
 
