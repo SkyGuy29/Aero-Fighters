@@ -9,10 +9,10 @@ class Enemy_new :
 {
 public:
 	Enemy_new(sf::Vector2f pos, sf::Vector2f vel,
-		EntityID ID, unsigned char orientation = 0);
+		EntityID ID, unsigned int line = 0);
 	// dont be null :pray:
 	// ANDREW HERE make line work
-	Enemy_new(EntityPrototype* prototype) : line(prototype->LINE), Enemy_new(prototype->SPAWN_POS, prototype->SPAWN_VELOCITY, prototype->ID) {};
+	Enemy_new(EntityPrototype* prototype) : Enemy_new(prototype->SPAWN_POS, prototype->SPAWN_VELOCITY, prototype->ID, prototype->LINE) {};
 	~Enemy_new() override;
 
 	void tick() override;
