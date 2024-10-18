@@ -90,6 +90,38 @@ public:
 	Game();
 
 	void run();
+	//returns true if changes were made
+	bool changeMenu(Menu newMenu)
+	{
+		if (currentMenu != newMenu)
+		{
+			currentMenu = newMenu;
+			switch (newMenu)
+			{
+				case INTRO:
+					//reset intro
+					break;
+				case SELECT:
+					//reset select
+					break;
+				case LEVEL:
+					//load new level, make sure things that need to be reset are
+					break;
+				case MISSION:
+					//reset and load the mission cutscene
+					break;
+				case LEADERBOARD:
+					//reset leaderboard stuff
+					break;
+				case END:
+					//load the end cutscene
+					break;
+			}
+			
+			return true;
+		}
+		return false;
+	}
 
 	void drawSelectMenu();
 	void updateSelectMenu();
