@@ -64,14 +64,18 @@ private:
 	template<typename T> requires std::derived_from<T, Entity>
 	static void generalLevelEditorUpdate(std::vector<T*> entities);
 
+	template<typename T> requires std::derived_from<T, ICollidable>
+	static inline bool collide(std::vector<T*>& entities, T& entity);
+
+
 	// tick->list of enemies to spawn. dont delete after spawned cause level editor
 	static std::unordered_map<unsigned int, std::vector<EntityPrototype*>> spawnMap;
 	static std::vector<Player_new*> players; // spawned at start
 	static std::vector<Enemy_new*> landEnemies; // spawned at start (spawnMap:0)
+	static std::vector<Projectile_new*> projectiles; // spawned dynamically by enemies
 	static std::vector<Enemy_new*> airEnemies; // spawnMap
 	static std::vector<Enemy_new*> waterEnemies; // spawnMap
 	static std::vector<Boss_new*> bossEnemies; // ?
-	static std::vector<Projectile_new*> projectiles; // spawned dynamically by enemies
 	static std::vector<PermanentSpawner*> permanentSpawners; // spawned at start ??
 	static std::vector<TemporarySpawner*> temporarySpawners; // spawned at start ??
 	static std::vector<TileEntity*> tileEntities; // spawned at start (spawnMap:0)
@@ -94,7 +98,7 @@ void EntityManagementInterface::generalTick(std::vector<T*>& entities, sf::Rende
 		{
 		case Entity::EntityObjectAction::DELETE:
 			delete entities.at(i);
-			entities.erase(i); // and you say you like optimization...
+			entities.erase(i);
 			i--;
 			action = Entity::EntityObjectAction::DELETE;
 			break;
@@ -111,6 +115,25 @@ void EntityManagementInterface::generalTick(std::vector<T*>& entities, sf::Rende
 
 		if (action != Entity::EntityObjectAction::DELETE)
 		{
+			if (action != Entity::EntityObjectAction::NOTHING && dynamic_cast<ICollidable>(entities.at(i)))
+			{
+				if (collide(projectiles, entities.at(i)))
+				{
+					if (!dynamic_cast<IHasHealth>(entities.at(i)) ||
+							(dynamic_cast<IHasHealth>(entities.at(i)) &&
+							entities.at(i)->getHealth() == 0))
+					{
+						delete entities.at(i);
+						entities.erase(i);
+						i--;
+					}
+					else
+					{
+						entities.at(i).damage();
+					}
+				}
+			}
+
 			data = entities.at(i).tick();
 
 			if (data.hasAttacked)
@@ -130,6 +153,25 @@ void EntityManagementInterface::processAttack(EntityDataStorage::AttackID ID, T&
 	sf::Vector2f position = entity.getPos();
 
 	projectiles.emplace(new Projectile_new())
+}
+
+template <typename T> requires std::derived_from<T, ICollidable>
+bool EntityManagementInterface::collide(std::vector<T*>& entities, T& entity)
+{
+	bool done = false;
+	size_t index = 0;
+
+	while (!done && index < entities.size())
+	{
+		if (entities.at(index).collidesWith(entity.getBounds()))
+		{
+			delete entities.at(index);
+			entities.erase(index);
+			done = true;
+		}
+	}
+	return done;
+}
 }
 
 
