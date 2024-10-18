@@ -5,19 +5,63 @@ Player_new::Player_new(sf::Vector2f pos, sf::Vector2f vel,
 	EntityID ID, int* backgroundSpeed, unsigned char orientation = 0) :
 	Entity(pos, ID, orientation), IHasHealth(ID)
 {
-	if (players.size() == 0)
-		players.resize(2);
 
-	if (players[0] == nullptr)
-		players[0] = this;
-	else if (players[1] == nullptr)
-		players[1] = this;
-	else
-		throw std::out_of_range("Generating too many players! Check Player_new.cpp::Player_new().");
 }
 
 
 void Player_new::tick()
 {
-	
+	// controller controls
+	// works with 2 controllers
+
+	// Move Offset
+	sf::Vector2f move;
+
+	// If the player should shoot
+	bool shoot, special;
+	bool spawn;
+
+	for (int i = 0; i < 2; i++)
+	{
+		if (sf::Joystick::isConnected(i))
+		{
+			move = joystick(i);
+
+			shoot = button(i, Controller::Y);
+			special = button(i, Controller::B);
+
+			spawn = button(i, Controller::A);
+		}
+		else
+		{
+			move.x = (float)key(i, Controls::Right) - key(i, Controls::Left);
+			move.y = (float)key(i, Controls::Back) - key(i, Controls::Forward);
+
+			shoot = key(i, Controls::Shoot);
+			special = key(i, Controls::Special);
+
+			spawn = key(i, Controls::Spawn);
+		}
+		vel = move * 5.f;
+
+		/*
+		if (shoot)
+		{
+			if (!playerShootLast[i])
+				entities.players[i]->shoot(objects);
+			playerShootLast[i] = true;
+		}
+		else
+			playerShootLast[i] = false;*/
+		// projectiles have owners now
+
+		if (special)
+			special();
+
+		if (spawn) //Temporary and should be changed to continue.
+		{
+			entities.players[0]->setHealth(3);
+			entities.players[1]->setHealth(3);
+		}
+	}
 }

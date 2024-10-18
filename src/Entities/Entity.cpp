@@ -9,8 +9,10 @@ void Entity::setWinSize(WindowSize& winSize_)
 	winSize = winSize_;
 }
 
-Entity::Entity(sf::Vector2f pos, EntityID ID, unsigned char orientation) :
-	pos(pos), ID(ID), orientation(orientation), UUID(next_uuid++)
+
+// spawns on the current tick.
+Entity::Entity(sf::Vector2f pos, EntityID ID) :
+	pos(pos), ID(ID), UUID(next_uuid++), spawnTick(currentTick)
 {
 	
 }
@@ -63,7 +65,7 @@ Entity::EntityObjectAction Entity::getEntityAction() noexcept
 
 void Entity::move() noexcept
 {
-	pos += vel;
+	pos += sf::Vector2f(vel.x*(currentTick-spawnTick), vel.y*(currentTick-spawnTick));
 	if (sprite != nullptr)
 		sprite->setPosition(pos);
 }

@@ -2,6 +2,8 @@
 #include "../Entity.h"
 #include "../Interfaces/ICollidable.h"
 #include "../Interfaces/IHasHealth.h"
+#include "../../ControllerStuff.hpp"
+
 
 class Player_new :
     public Entity, public IHasHealth
@@ -13,7 +15,6 @@ public:
     void tick();
     void setHealth(short h) { health = h; };
 
-    static std::vector<Player_new*>& getPlayers() { return players; }
 private:
-    static std::vector<Player_new*> players;
+
 };

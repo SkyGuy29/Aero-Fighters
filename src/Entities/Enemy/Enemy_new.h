@@ -12,7 +12,8 @@ public:
 	Enemy_new(sf::Vector2f pos, sf::Vector2f vel,
 		EntityID ID, unsigned char orientation = 0);
 	// dont be null :pray:
-	Enemy_new(EntityPrototype* prototype) : Enemy_new(prototype->SPAWN_POS, prototype->SPAWN_VELOCITY, prototype->ID) {};
+	// ANDREW HERE make line work
+	Enemy_new(EntityPrototype* prototype) : line(prototype->LINE), Enemy_new(prototype->SPAWN_POS, prototype->SPAWN_VELOCITY, prototype->ID) {};
 	~Enemy_new() override;
 
 	void tick() override;
@@ -28,5 +29,6 @@ public:
 protected:
 	float* backgroundSpeed = nullptr;
 	bool entered = false;
-
+	// the line in the enemies file that the enemy is spawned from (for level editor), provided by prototype only
+	unsigned int line;
 };

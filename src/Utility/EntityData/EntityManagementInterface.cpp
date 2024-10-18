@@ -8,10 +8,18 @@
 #include "../../Entities/Enemy/Boss/Boss_new.h"
 
 
+inline void EntityManagementInterface::load(Map map)
+{
+	players.push_back(new Player_new(sf::Vector2(0, 0), sf::Vector2f(0, 0), EntityID::PLAYER, country, true));
+	players.push_back(new Player_new(sf::Vector2(0, 0), sf::Vector2f(0, 0), EntityID::PLAYER, ));
+	loadAttacks();
+	loadEnemies(map);
+}
+
 void EntityManagementInterface::tick(sf::RenderWindow& win, unsigned int currentTick)
 {
-	// spawn the entities on the map with the current tick.
-	if (spawnMap.count(currentTick))
+	// spawn the entities on the map with the current tick. Also make sure that we are not spawning enemies over and over if the tick is the same.
+	if (spawnMap.count(currentTick) && currentTick != lastTick)
 	{
 		std::vector<EntityPrototype*>& spawnableEntities = spawnMap[currentTick];
 		for (EntityPrototype* entityPrototype : spawnableEntities)
@@ -90,6 +98,7 @@ inline void EntityManagementInterface::loadEnemies(Map map)
 		short id;
 		unsigned int spawnTick;
 		sf::Vector2f pos, vel;
+		unsigned int line = 0;
 	};
 	TempData tempData;
 	std::string input;
@@ -139,14 +148,18 @@ inline void EntityManagementInterface::loadEnemies(Map map)
 
 		if (input == "NEW LAND")
 		{
-			spawnMap[0].push_back(new EntityPrototype(tempData.pos, tempData.vel, (EntityID)tempData.id, 0));
+			f >> tempData.pos.x >> tempData.pos.y >> tempData.vel.x >> tempData.vel.y;
+			tempData.line += 4;
+			spawnMap[0].push_back(new EntityPrototype(tempData.pos, tempData.vel, (EntityID)tempData.id, 0, tempData.line));
 		}
 		else if (input == "NEW WATER" || input == "NEW AIR")
 		{
 			if(!spawnMap.count(tempData.spawnTick))
 				spawnMap[tempData.spawnTick] = std::vector<EntityPrototype*>();
+			f >> tempData.pos.x >> tempData.pos.y >> tempData.vel.x >> tempData.vel.y >> tempData.spawnTick;
+			tempData.line += 5;
 			// TODO: CLEAN THIS UP ON PROGRAM CLOSE (memory leaks rn)
-			spawnMap[tempData.spawnTick].push_back(new EntityPrototype(tempData.pos, tempData.vel, (EntityID)tempData.id, 0));
+			spawnMap[tempData.spawnTick].push_back(new EntityPrototype(tempData.pos, tempData.vel, (EntityID)tempData.id, 0, tempData.line));
 		}
 	}
 }

@@ -47,16 +47,22 @@ public:
 	~EntityManagementInterface() = delete;
 
 
+	static inline void load(Map map);
+	static inline void tick(sf::RenderWindow& win, unsigned int currentTick);
+	static void updateLevelEditor();
+	static inline std::vector<Player_new*>& getPlayers() { return players; };
+private:
 	static inline void loadAttacks();
 	static inline void loadEnemies(Map map);
-	static inline void tick(sf::RenderWindow& win, unsigned int currentTick);
 
-private:
 	template<typename T> requires std::derived_from<T, Entity> 
-	static inline void generalTick(std::vector<T*>& entities, sf::RenderWindow& win);
+	static void generalTick(std::vector<T*>& entities, sf::RenderWindow& win);
 
 	template<typename T> requires std::derived_from<T, Entity>
-	static inline void processAttack(EntityDataStorage::AttackID ID, T& entity);
+	static void processAttack(EntityDataStorage::AttackID ID, T& entity);
+
+	template<typename T> requires std::derived_from<T, Entity>
+	static void generalLevelEditorUpdate(std::vector<T*> entities);
 
 	template<typename T> requires std::derived_from<T, ICollidable>
 	static inline bool collide(std::vector<T*>& entities, T& entity);
@@ -64,6 +70,7 @@ private:
 
 	// tick->list of enemies to spawn. dont delete after spawned cause level editor
 	static std::unordered_map<unsigned int, std::vector<EntityPrototype*>> spawnMap;
+	static std::vector<Player_new*> players; // spawned at start
 	static std::vector<Enemy_new*> landEnemies; // spawned at start (spawnMap:0)
 	static std::vector<Projectile_new*> projectiles; // spawned dynamically by enemies
 	static std::vector<Enemy_new*> airEnemies; // spawnMap
@@ -74,6 +81,8 @@ private:
 	static std::vector<TileEntity*> tileEntities; // spawned at start (spawnMap:0)
 	static std::vector<PowerUp*> powerUps; // spawned dynamically by enemies
 	static std::vector<std::vector<ProjectilePrototype>> attackData;
+
+	static unsigned int lastTick;
 };
 
 template <typename T> requires std::derived_from<T, Entity>
@@ -136,6 +145,7 @@ void EntityManagementInterface::generalTick(std::vector<T*>& entities, sf::Rende
 	}
 }
 
+
 template <typename T> requires std::derived_from<T, Entity>
 void EntityManagementInterface::processAttack(EntityDataStorage::AttackID ID, T& entity)
 {
@@ -161,4 +171,18 @@ bool EntityManagementInterface::collide(std::vector<T*>& entities, T& entity)
 		}
 	}
 	return done;
+}
+}
+
+
+template<typename T> requires std::derived_from<T, Entity>
+inline void EntityManagementInterface::generalLevelEditorUpdate(std::vector<T*> entities)
+{
+	for (Entity* entity : entities)
+	{
+		// if player clicking an entity
+		if (entity->getSprite() != nullptr && entity->getSprite()->getGlobalBounds().intersects(sf::Mouse::getPosition()))
+			std::cout << // HERE
+	}
+
 }
