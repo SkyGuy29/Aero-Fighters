@@ -101,6 +101,9 @@ protected:
 
 	sf::Sprite* sprite = nullptr;
 
+	// the line of the file the entity is loaded from. (only tile entities, air, water)
+	unsigned int line;
+
 	unsigned int spawnTick;
 private:
 

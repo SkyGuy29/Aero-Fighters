@@ -3,9 +3,9 @@
 
 Enemy_new::Enemy_new(sf::Vector2f pos, sf::Vector2f vel,
 	EntityID ID, unsigned int line) :
-	Entity(pos, ID), IHasHealth(ID), line(line)
+	Entity(pos, ID), IHasHealth(ID)
 {
-
+	this->line = line;
 }
 
 

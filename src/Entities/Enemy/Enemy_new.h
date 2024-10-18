@@ -26,9 +26,9 @@ public:
 	{
 		return other->getBounds().intersects(getBounds());
 	}
+
+	unsigned int getLine() { return line; }
 protected:
 	float* backgroundSpeed = nullptr;
 	bool entered = false;
-	// the line in the enemies file that the enemy is spawned from (for level editor), provided by prototype only
-	unsigned int line;
 };
