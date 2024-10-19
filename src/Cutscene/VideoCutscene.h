@@ -1,13 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 
-//enum class Countries
-//{
-//	STATES,
-//	JAPAN,
-//	SWEDEN,
-//	ENGLAND
-//};
 
 //used to determine what cutscene is used AND holds the value of the last frame for that respective cutscene
 enum cutsceneID
@@ -17,16 +10,16 @@ enum cutsceneID
 	PANDORA = 1991,
 	KEATON = 645,
 	KEATH = 567,
-	STATES = 705,
+	P1P2STATES = 705,
 	HEIN = 843,
 	MAO = 568,
-	JAPAN = 555,
+	P1P2JAPAN = 555,
 	KOHFUL = 746,
 	TEEBEE = 633,
-	SWEDEN = 661,
+	P1P2SWEDEN = 661,
 	VILLIAM = 680,
 	WHITE = 731,
-	ENGLAND = 846
+	P1P2ENGLAND = 846
 };
 
 

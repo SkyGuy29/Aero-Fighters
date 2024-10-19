@@ -98,29 +98,29 @@ public:
 			currentMenu = newMenu;
 			switch (newMenu)
 			{
-				case INTRO:
-					video.setID(Menu::START);
-					video.resetVideo();
-					break;
-				case SELECT:
-					//reset select
-					break;
-				case LEVEL:
-					//load new level, make sure things that need to be reset are reset
-					//level.load(winSize, some other stuff idk)
-					break;
-				case MISSION:
-					//reset and load the mission cutscene
-					//imma leave this one to Ray lol
-					break;
-				case LEADERBOARD:
-					//reset leaderboard stuff
-					//leave this like this until we actually do something with leaderboard
-					break;
-				case END:
-					video.setID(getID(true, true, 1, Countries::JAPAN)); //i think this would be Mao, placeholder ofc
-					video.resetVideo();
-					break;
+			case Menu::INTRO:
+				video.setID(cutsceneID::START);
+				video.resetVideo();
+				break;
+			case Menu::SELECT:
+				//reset select
+				break;
+			case Menu::LEVEL:
+				//load new level, make sure things that need to be reset are reset
+				level.load(winSize, country, currentLevel, false);
+				break;
+			case Menu::MISSION:
+				//reset and load the mission cutscene
+				//imma leave this one to Ray lol
+				break;
+			case Menu::LEADERBOARD:
+				//reset leaderboard stuff
+				//leave this like this until we actually do something with leaderboard
+				break;
+			case Menu::END:
+				video.setID(video.getID(true, true, 1, Countries::JAPAN)); //i think this would be Mao, placeholder ofc
+				video.resetVideo();
+				break;
 			}
 			
 			return true;

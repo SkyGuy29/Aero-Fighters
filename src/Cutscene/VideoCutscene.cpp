@@ -19,17 +19,17 @@ cutsceneID VideoCutscene::getID(bool bossKilled, bool pandoraWasBoss, int player
 	if (bossKilled)
 		switch (country)
 		{
-		  case Countries::STATES:
-			  switch (player)
-			  {
-			  case 1:
-				  return cutsceneID::KEATON;
-			  case 2:
-				  return cutsceneID::KEATH;
-			  case 3:
-				  return cutsceneID::STATES;
-		    }
-  	  case Countries::JAPAN:
+		case Countries::STATES:
+			switch (player)
+			{
+				case 1:
+					return cutsceneID::KEATON;
+				case 2:
+					return cutsceneID::KEATH;
+				case 3:
+					return cutsceneID::P1P2STATES;
+			}
+  		case Countries::JAPAN:
 			  switch (player)
 			  {
 			  case 1:
@@ -37,34 +37,34 @@ cutsceneID VideoCutscene::getID(bool bossKilled, bool pandoraWasBoss, int player
 			  case 2:
 				  return cutsceneID::MAO;
 			  case 3:
-				  return cutsceneID::JAPAN;
+				  return cutsceneID::P1P2JAPAN;
 			  }
-      case Countries::SWEDEN:
-				switch (player)
-				{
-				  case 1:
-					  return cutsceneID::KOHFUL;
-				  case 2:
-					  return cutsceneID::TEEBEE;
-				  case 3:
-					  return cutsceneID::SWEDEN;
-				}
-			case Countries::ENGLAND:
-				switch (player)
-				{
-				case 1:
-					return cutsceneID::VILLIAM;
-				case 2:
-					return cutsceneID::WHITE;
-				case 3:
-					return cutsceneID::ENGLAND;
-				}
+		case Countries::SWEDEN:
+			switch (player)
+			{
+			  case 1:
+				  return cutsceneID::KOHFUL;
+			  case 2:
+				  return cutsceneID::TEEBEE;
+			  case 3:
+				  return cutsceneID::P1P2SWEDEN;
+			}
+		case Countries::ENGLAND:
+			switch (player)
+			{
+			case 1:
+				return cutsceneID::VILLIAM;
+			case 2:
+				return cutsceneID::WHITE;
+			case 3:
+				return cutsceneID::P1P2ENGLAND;
+			}
 		}
 		else
- 		  if (pandoraWasBoss)
-	 	  	return cutsceneID::PANDORA;
-		  else
-			  return cutsceneID::OSARU;
+ 			if (pandoraWasBoss)
+				return cutsceneID::PANDORA;
+			else
+				return cutsceneID::OSARU;
 }
 
 
@@ -88,7 +88,7 @@ void VideoCutscene::loadImage()
 		case cutsceneID::KEATH:
 			while (!image.loadFromFile("keath" + std::to_string(index++) + ".png")) {}
 			break;
-		case cutsceneID::STATES:
+		case cutsceneID::P1P2STATES:
 			while (!image.loadFromFile("states" + std::to_string(index++) + ".png")) {}
 			break;
 		case cutsceneID::HEIN:
@@ -97,7 +97,7 @@ void VideoCutscene::loadImage()
 		case cutsceneID::MAO:
 			while (!image.loadFromFile("mao" + std::to_string(index++) + ".png")) {}
 			break;
-		case cutsceneID::JAPAN:
+		case cutsceneID::P1P2JAPAN:
 			while (!image.loadFromFile("japan" + std::to_string(index++) + ".png")) {}
 			break;
 		case cutsceneID::KOHFUL:
@@ -106,7 +106,7 @@ void VideoCutscene::loadImage()
 		case cutsceneID::TEEBEE:
 			while (!image.loadFromFile("teebee" + std::to_string(index++) + ".png")) {}
 			break;
-		case cutsceneID::SWEDEN:
+		case cutsceneID::P1P2SWEDEN:
 			while (!image.loadFromFile("sweden" + std::to_string(index++) + ".png")) {}
 			break;
 		case cutsceneID::VILLIAM:
@@ -115,7 +115,7 @@ void VideoCutscene::loadImage()
 		case cutsceneID::WHITE:
 			while (!image.loadFromFile("white" + std::to_string(index++) + ".png")) {}
 			break;
-		case cutsceneID::ENGLAND:
+		case cutsceneID::P1P2ENGLAND:
 			while (!image.loadFromFile("england" + std::to_string(index++) + ".png")) {}
 		}
 		frame.setTexture(image);
