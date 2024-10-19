@@ -99,22 +99,27 @@ public:
 			switch (newMenu)
 			{
 				case INTRO:
-					//reset intro
+					video.setID(Menu::START);
+					video.resetVideo();
 					break;
 				case SELECT:
 					//reset select
 					break;
 				case LEVEL:
-					//load new level, make sure things that need to be reset are
+					//load new level, make sure things that need to be reset are reset
+					//level.load(winSize, some other stuff idk)
 					break;
 				case MISSION:
 					//reset and load the mission cutscene
+					//imma leave this one to Ray lol
 					break;
 				case LEADERBOARD:
 					//reset leaderboard stuff
+					//leave this like this until we actually do something with leaderboard
 					break;
 				case END:
-					//load the end cutscene
+					video.setID(getID(true, true, 1, Countries::JAPAN)); //i think this would be Mao, placeholder ofc
+					video.resetVideo();
 					break;
 			}
 			
