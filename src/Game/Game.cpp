@@ -102,18 +102,18 @@ void Game::run()
 		//switching menus with equals hotkey
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Equal))
 		{
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num0) && currentMenu != Menu::INTRO)
-				currentMenu = Menu::INTRO;
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1) && currentMenu != Menu::SELECT)
-				currentMenu = Menu::SELECT;
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num2) && currentMenu != Menu::LEVEL)
-				currentMenu = Menu::LEVEL;
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num3) && currentMenu != Menu::MISSION)
-				currentMenu = Menu::MISSION;
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num4) && currentMenu != Menu::LEADERBOARD)
-				currentMenu = Menu::LEADERBOARD;
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num5) && currentMenu != Menu::END)
-				currentMenu = Menu::END;
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num0))
+				changeMenu(Menu::INTRO);
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1))
+				changeMenu(Menu::SELECT);
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num2))
+				changeMenu(Menu::LEVEL);
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num3))
+				changeMenu(Menu::MISSION);
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num4))
+				changeMenu(Menu::LEADERBOARD);
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num5))
+				changeMenu(Menu::END);
 		}
 #endif
 
@@ -152,30 +152,6 @@ void Game::run()
 			// Game over countdown ends -> playersDead = true
 			// -Ben
 
-			switch (currentMenu)
-			{
-			case Menu::INTRO:
-				//draw cutscene on each frame
-				//wait for player input
-				break;
-			case Menu::SELECT:
-				//run select menu
-				break;
-			case Menu::LEVEL:
-				//run level
-				break;
-			case Menu::MISSION:
-				//run mission cutsccenes
-				break;
-			case Menu::LEADERBOARD:
-				//run whatever the heck we are doing for the leaderboard
-				break;
-			case Menu::END:
-				//draw end cutscene
-				break;
-			default:
-				break;
-			}
 
 			if (currentMenu == Menu::LEVEL)
 			{
@@ -188,7 +164,7 @@ void Game::run()
 				//level::update() runs most of the gameplay.
 				if (!level.update(winSize))
 				{
-					if (false) //game over, both players dead + animations finished
+					if (false) //game over, both players dead + animations finished - Christian
 					{
 						gameOver.set(10, ticksPerSec);
 						playersDead = true;
@@ -211,6 +187,33 @@ void Game::run()
 		}
 
 
+		//code per menu? not sure how to use this yet - Christian
+		switch (currentMenu)
+		{
+		case Menu::INTRO:
+			//draw cutscene on each frame
+			//wait for player input
+			break;
+		case Menu::SELECT:
+			//run select menu
+			break;
+		case Menu::LEVEL:
+			//run level
+			break;
+		case Menu::MISSION:
+			//run mission cutsccenes
+			break;
+		case Menu::LEADERBOARD:
+			//run whatever the heck we are doing for the leaderboard
+			break;
+		case Menu::END:
+			//draw end cutscene
+			break;
+		default:
+			break;
+		}
+
+
 		// Clear window display
 		window.clear();
 
@@ -219,7 +222,7 @@ void Game::run()
 		// Draw the level gameplay if players are playing or dead
 		//view.setCenter(winSize.x / 2.f, viewportScroll);
 
-		if (currentMenu == Menu::LEVEL || playersDead)
+		if (currentMenu == Menu::LEVEL || playersDead) //this wont need the || playersDead at the end, well just swap the menu later - Christian
 		{
 			view.setCenter(winSize.x / 2.f, viewportScroll);
 			window.setView(view);
@@ -228,16 +231,14 @@ void Game::run()
 			window.draw(level);
 		}
 		// This does have to be it's own 'if' so the game over screen can overlay the gameplay
-		if (currentMenu != Menu::LEVEL) //placeholder, will be rearranged later
+		if (currentMenu != Menu::LEVEL) //placeholder, will be rearranged later - Christian
 		{
 			view.setCenter(winSize.x / 2.f, winSize.y / 2.f);
 			window.setView(view);
 			//Object::setView(view);
 			//Level::setView(view);
-			drawSelectMenu();
+			drawSelectMenu(); //i hate how this is dual purpose that will be fixed lol - Christian
 		}
-
-
 
 		//draws the intro cutscene I CANT BELIEVE THIS WORKED LASDKLHASDLJSDAJKLASDFKLH
 		if (currentMenu == Menu::INTRO)
@@ -252,9 +253,6 @@ void Game::run()
 				videoDraw = true;
 			}
 		}
-
-
-
 
 		window.display();
 	}

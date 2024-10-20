@@ -6,7 +6,6 @@ bool VideoCutscene::drawTo(sf::RenderWindow& window)
 {
 	loadImage();
 	window.draw(frame);
-	//std::cout << index << ' ' << id << std::endl;
 	return index < id;
 }
 
@@ -77,8 +76,7 @@ void VideoCutscene::loadImage()
 	switch (id)
 	{
 	case cutsceneID::START:
-		while (!image.loadFromFile("res/Cutscenes/intro/intro" + std::to_string(index++) + ".png")) { /*std::cout << "hi ";*/ }
-		//std::cout << "check check ";
+		while (!image.loadFromFile("res/Cutscenes/intro/intro" + std::to_string(index++) + ".png")) {}
 		break;						   	
 	case cutsceneID::OSARU:			   	
 		while (!image.loadFromFile("res/Cutscenes/osaru/osaru" + std::to_string(index++) + ".png")) {}
