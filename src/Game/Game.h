@@ -90,12 +90,12 @@ public:
 	Game();
 
 	void run();
+private:
 	//returns true if changes were made
 	bool changeMenu(Menu newMenu);
 
-	void drawSelectMenu();
 	void updateSelectMenu();
-private:
+	void drawSelectMenu();
 	void resize();
 
 	// The game window

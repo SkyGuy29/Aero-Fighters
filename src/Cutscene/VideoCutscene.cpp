@@ -1,10 +1,12 @@
 #include "VideoCutscene.h"
+#include <iostream>
 
 
 bool VideoCutscene::drawTo(sf::RenderWindow& window)
 {
 	loadImage();
 	window.draw(frame);
+	//std::cout << index << ' ' << id << std::endl;
 	return index < id;
 }
 
@@ -14,6 +16,7 @@ bool VideoCutscene::drawTo(sf::RenderWindow& window)
 //if it was, which country are we and which				4 options stored in Game
 //players are playing.									3 options stored in Game (p1 p2 or both)
 //if not, which final boss it was						2 options, is this in Game or Level?
+
 cutsceneID VideoCutscene::getID(bool bossKilled, bool pandoraWasBoss, int player, Countries country)
 {
 	if (bossKilled)
@@ -74,49 +77,50 @@ void VideoCutscene::loadImage()
 	switch (id)
 	{
 	case cutsceneID::START:
-		while (!image.loadFromFile("intro" + std::to_string(index++) + ".png")) {}
-		break;
-	case cutsceneID::OSARU:
-		while (!image.loadFromFile("osaru" + std::to_string(index++) + ".png")) {}
-		break;
-	case cutsceneID::PANDORA:
-		while (!image.loadFromFile("pandora" + std::to_string(index++) + ".png")) {}
-		break;
-	case cutsceneID::KEATON:
-		while (!image.loadFromFile("keaton" + std::to_string(index++) + ".png")) {}
-		break;
-	case cutsceneID::KEATH:
-		while (!image.loadFromFile("keath" + std::to_string(index++) + ".png")) {}
-		break;
-	case cutsceneID::P1P2STATES:
-		while (!image.loadFromFile("states" + std::to_string(index++) + ".png")) {}
-		break;
-	case cutsceneID::HEIN:
-		while (!image.loadFromFile("hein" + std::to_string(index++) + ".png")) {}
-		break;
-	case cutsceneID::MAO:
-		while (!image.loadFromFile("mao" + std::to_string(index++) + ".png")) {}
-		break;
-	case cutsceneID::P1P2JAPAN:
-		while (!image.loadFromFile("japan" + std::to_string(index++) + ".png")) {}
-		break;
-	case cutsceneID::KOHFUL:
-		while (!image.loadFromFile("kohful" + std::to_string(index++) + ".png")) {}
-		break;
-	case cutsceneID::TEEBEE:
-		while (!image.loadFromFile("teebee" + std::to_string(index++) + ".png")) {}
-		break;
-	case cutsceneID::P1P2SWEDEN:
-		while (!image.loadFromFile("sweden" + std::to_string(index++) + ".png")) {}
-		break;
-	case cutsceneID::VILLIAM:
-		while (!image.loadFromFile("villiam" + std::to_string(index++) + ".png")) {}
-		break;
-	case cutsceneID::WHITE:
-		while (!image.loadFromFile("white" + std::to_string(index++) + ".png")) {}
-		break;
-	case cutsceneID::P1P2ENGLAND:
-		while (!image.loadFromFile("england" + std::to_string(index++) + ".png")) {}
+		while (!image.loadFromFile("res/Cutscenes/intro/intro" + std::to_string(index++) + ".png")) { /*std::cout << "hi ";*/ }
+		//std::cout << "check check ";
+		break;						   	
+	case cutsceneID::OSARU:			   	
+		while (!image.loadFromFile("res/Cutscenes/osaru/osaru" + std::to_string(index++) + ".png")) {}
+		break;						   	
+	case cutsceneID::PANDORA:		   	
+		while (!image.loadFromFile("res/Cutscenes/pandora/pandora" + std::to_string(index++) + ".png")) {}
+		break;						   	
+	case cutsceneID::KEATON:		   	
+		while (!image.loadFromFile("res/Cutscenes/keaton/keaton" + std::to_string(index++) + ".png")) {}
+		break;						   	
+	case cutsceneID::KEATH:			   	
+		while (!image.loadFromFile("res/Cutscenes/keath/keath" + std::to_string(index++) + ".png")) {}
+		break;						   	
+	case cutsceneID::P1P2STATES:	   	
+		while (!image.loadFromFile("res/Cutscenes/states/states" + std::to_string(index++) + ".png")) {}
+		break;						   	
+	case cutsceneID::HEIN:			   	
+		while (!image.loadFromFile("res/Cutscenes/hein/hein" + std::to_string(index++) + ".png")) {}
+		break;						   	
+	case cutsceneID::MAO:			   	
+		while (!image.loadFromFile("res/Cutscenes/mao/mao" + std::to_string(index++) + ".png")) {}
+		break;						   	
+	case cutsceneID::P1P2JAPAN:		   	
+		while (!image.loadFromFile("res/Cutscenes/japan/japan" + std::to_string(index++) + ".png")) {}
+		break;						   	
+	case cutsceneID::KOHFUL:		   	
+		while (!image.loadFromFile("res/Cutscenes/kohful/kohful" + std::to_string(index++) + ".png")) {}
+		break;						   	
+	case cutsceneID::TEEBEE:		   	
+		while (!image.loadFromFile("res/Cutscenes/teebee/teebee" + std::to_string(index++) + ".png")) {}
+		break;						   	
+	case cutsceneID::P1P2SWEDEN:	   	
+		while (!image.loadFromFile("res/Cutscenes/sweden/sweden" + std::to_string(index++) + ".png")) {}
+		break;						   	
+	case cutsceneID::VILLIAM:		   	
+		while (!image.loadFromFile("res/Cutscenes/villiam/villiam" + std::to_string(index++) + ".png")) {}
+		break;						   	
+	case cutsceneID::WHITE:			   	
+		while (!image.loadFromFile("res/Cutscenes/white/white" + std::to_string(index++) + ".png")) {}
+		break;						   	
+	case cutsceneID::P1P2ENGLAND:	   	
+		while (!image.loadFromFile("res/Cutscenes/england" + std::to_string(index++) + ".png")) {}
 	}
 	frame.setTexture(image);
 }

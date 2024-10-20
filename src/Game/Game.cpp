@@ -202,7 +202,7 @@ void Game::run()
 				}
 				viewportScroll -= level.getBackgroundSpeed();
 			}
-
+			else if (currentMenu == Menu::SELECT)
 			{
 				countryChoose.tick();
 				gameOver.tick();
@@ -218,14 +218,6 @@ void Game::run()
 
 		// Draw the level gameplay if players are playing or dead
 		//view.setCenter(winSize.x / 2.f, viewportScroll);
-		if (currentMenu == Menu::INTRO)
-		{
-			if (videoDraw)
-			{
-				videoDraw = !video.drawTo(window);
-			}
-		}
-
 
 		if (currentMenu == Menu::LEVEL || playersDead)
 		{
@@ -244,6 +236,25 @@ void Game::run()
 			//Level::setView(view);
 			drawSelectMenu();
 		}
+
+
+
+		//draws the intro cutscene I CANT BELIEVE THIS WORKED LASDKLHASDLJSDAJKLASDFKLH
+		if (currentMenu == Menu::INTRO)
+		{
+			if (videoDraw)
+			{
+				videoDraw = video.drawTo(window);
+			}
+			else
+			{
+				video.resetVideo();
+				videoDraw = true;
+			}
+		}
+
+
+
 
 		window.display();
 	}
