@@ -42,14 +42,6 @@ enum Controls
 	Select,
 };
 
-enum class Countries
-{
-	STATES,
-	JAPAN,
-	SWEDEN,
-	ENGLAND
-};
-
 static sf::Keyboard::Key p1Ctrl[] =
 {
 	sf::Keyboard::Key::W, // Forward

@@ -91,42 +91,7 @@ public:
 
 	void run();
 	//returns true if changes were made
-	bool changeMenu(Menu newMenu)
-	{
-		if (currentMenu != newMenu)
-		{
-			currentMenu = newMenu;
-			switch (newMenu)
-			{
-			case Menu::INTRO:
-				video.setID(cutsceneID::START);
-				video.resetVideo();
-				break;
-			case Menu::SELECT:
-				//reset select
-				break;
-			case Menu::LEVEL:
-				//load new level, make sure things that need to be reset are reset
-				level.load(winSize, country, currentLevel, false);
-				break;
-			case Menu::MISSION:
-				//reset and load the mission cutscene
-				//imma leave this one to Ray lol
-				break;
-			case Menu::LEADERBOARD:
-				//reset leaderboard stuff
-				//leave this like this until we actually do something with leaderboard
-				break;
-			case Menu::END:
-				video.setID(video.getID(true, true, 1, Countries::JAPAN)); //i think this would be Mao, placeholder ofc
-				video.resetVideo();
-				break;
-			}
-			
-			return true;
-		}
-		return false;
-	}
+	bool changeMenu(Menu newMenu);
 
 	void drawSelectMenu();
 	void updateSelectMenu();
@@ -203,6 +168,8 @@ private:
 	Menu currentMenu = Menu::SELECT;
 	Map currentLevel = Map::England;
 	std::vector<Map> completedLevels;
+
+	bool videoDraw = true;
 
 	bool playersDead = false;
 

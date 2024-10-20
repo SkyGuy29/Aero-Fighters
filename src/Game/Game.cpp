@@ -26,8 +26,7 @@ Game::Game()
 	resize();
 
 
-	// Initializes Menu Data //
-
+	// Initializes Menu Data
 	menuCountdown.setFont(font);
 	menuCountdown.setString("0");
 	menuCountdown.setPosition(213.25f - menuCountdown.getLocalBounds().width, 0);
@@ -116,7 +115,6 @@ void Game::run()
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num5) && currentMenu != Menu::END)
 				currentMenu = Menu::END;
 		}
-
 #endif
 
 		// Keeps constant update rate.
@@ -220,6 +218,14 @@ void Game::run()
 
 		// Draw the level gameplay if players are playing or dead
 		//view.setCenter(winSize.x / 2.f, viewportScroll);
+		if (currentMenu == Menu::INTRO)
+		{
+			if (videoDraw)
+			{
+				videoDraw = !video.drawTo(window);
+			}
+		}
+
 
 		if (currentMenu == Menu::LEVEL || playersDead)
 		{
@@ -241,6 +247,45 @@ void Game::run()
 
 		window.display();
 	}
+}
+
+
+//handles resets needed for sucessful menu changes
+bool Game::changeMenu(Menu newMenu)
+{
+	if (currentMenu != newMenu)
+	{
+		currentMenu = newMenu;
+		switch (newMenu)
+		{
+		case Menu::INTRO:
+			video.setID(cutsceneID::START);
+			video.resetVideo();
+			break;
+		case Menu::SELECT:
+			//reset select
+			break;
+		case Menu::LEVEL:
+			//load new level, make sure things that need to be reset are reset
+			level.load(winSize, country, currentLevel, false);
+			break;
+		case Menu::MISSION:
+			//reset and load the mission cutscene
+			//imma leave this one to Ray lol
+			break;
+		case Menu::LEADERBOARD:
+			//reset leaderboard stuff
+			//leave this like this until we actually do something with leaderboard
+			break;
+		case Menu::END:
+			video.setID(video.getID(true, true, 1, Countries::JAPAN)); //i think this would be Mao, placeholder ofc
+			video.resetVideo();
+			break;
+		}
+
+		return true;
+	}
+	return false;
 }
 
 

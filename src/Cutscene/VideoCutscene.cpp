@@ -1,11 +1,11 @@
 #include "VideoCutscene.h"
 
 
-bool VideoCutscene::draw(sf::RenderWindow& window)
+bool VideoCutscene::drawTo(sf::RenderWindow& window)
 {
-		loadImage();
-		window.draw(frame);
-		return index < id;
+	loadImage();
+	window.draw(frame);
+	return index < id;
 }
 
 
@@ -70,53 +70,53 @@ cutsceneID VideoCutscene::getID(bool bossKilled, bool pandoraWasBoss, int player
 
 void VideoCutscene::loadImage()
 {
-		//the while loop keeps increasing the index variable until it finds a successful load.
-		switch (id)
-		{
-		case cutsceneID::START:
-			while (!image.loadFromFile("intro" + std::to_string(index++) + ".png")) {}
-			break;
-		case cutsceneID::OSARU:
-			while (!image.loadFromFile("osaru" + std::to_string(index++) + ".png")) {}
-			break;
-		case cutsceneID::PANDORA:
-			while (!image.loadFromFile("pandora" + std::to_string(index++) + ".png")) {}
-			break;
-		case cutsceneID::KEATON:
-			while (!image.loadFromFile("keaton" + std::to_string(index++) + ".png")) {}
-			break;
-		case cutsceneID::KEATH:
-			while (!image.loadFromFile("keath" + std::to_string(index++) + ".png")) {}
-			break;
-		case cutsceneID::P1P2STATES:
-			while (!image.loadFromFile("states" + std::to_string(index++) + ".png")) {}
-			break;
-		case cutsceneID::HEIN:
-			while (!image.loadFromFile("hein" + std::to_string(index++) + ".png")) {}
-			break;
-		case cutsceneID::MAO:
-			while (!image.loadFromFile("mao" + std::to_string(index++) + ".png")) {}
-			break;
-		case cutsceneID::P1P2JAPAN:
-			while (!image.loadFromFile("japan" + std::to_string(index++) + ".png")) {}
-			break;
-		case cutsceneID::KOHFUL:
-			while (!image.loadFromFile("kohful" + std::to_string(index++) + ".png")) {}
-			break;
-		case cutsceneID::TEEBEE:
-			while (!image.loadFromFile("teebee" + std::to_string(index++) + ".png")) {}
-			break;
-		case cutsceneID::P1P2SWEDEN:
-			while (!image.loadFromFile("sweden" + std::to_string(index++) + ".png")) {}
-			break;
-		case cutsceneID::VILLIAM:
-			while (!image.loadFromFile("villiam" + std::to_string(index++) + ".png")) {}
-			break;
-		case cutsceneID::WHITE:
-			while (!image.loadFromFile("white" + std::to_string(index++) + ".png")) {}
-			break;
-		case cutsceneID::P1P2ENGLAND:
-			while (!image.loadFromFile("england" + std::to_string(index++) + ".png")) {}
-		}
-		frame.setTexture(image);
+	//the while loop keeps increasing the index variable until it finds a successful load.
+	switch (id)
+	{
+	case cutsceneID::START:
+		while (!image.loadFromFile("intro" + std::to_string(index++) + ".png")) {}
+		break;
+	case cutsceneID::OSARU:
+		while (!image.loadFromFile("osaru" + std::to_string(index++) + ".png")) {}
+		break;
+	case cutsceneID::PANDORA:
+		while (!image.loadFromFile("pandora" + std::to_string(index++) + ".png")) {}
+		break;
+	case cutsceneID::KEATON:
+		while (!image.loadFromFile("keaton" + std::to_string(index++) + ".png")) {}
+		break;
+	case cutsceneID::KEATH:
+		while (!image.loadFromFile("keath" + std::to_string(index++) + ".png")) {}
+		break;
+	case cutsceneID::P1P2STATES:
+		while (!image.loadFromFile("states" + std::to_string(index++) + ".png")) {}
+		break;
+	case cutsceneID::HEIN:
+		while (!image.loadFromFile("hein" + std::to_string(index++) + ".png")) {}
+		break;
+	case cutsceneID::MAO:
+		while (!image.loadFromFile("mao" + std::to_string(index++) + ".png")) {}
+		break;
+	case cutsceneID::P1P2JAPAN:
+		while (!image.loadFromFile("japan" + std::to_string(index++) + ".png")) {}
+		break;
+	case cutsceneID::KOHFUL:
+		while (!image.loadFromFile("kohful" + std::to_string(index++) + ".png")) {}
+		break;
+	case cutsceneID::TEEBEE:
+		while (!image.loadFromFile("teebee" + std::to_string(index++) + ".png")) {}
+		break;
+	case cutsceneID::P1P2SWEDEN:
+		while (!image.loadFromFile("sweden" + std::to_string(index++) + ".png")) {}
+		break;
+	case cutsceneID::VILLIAM:
+		while (!image.loadFromFile("villiam" + std::to_string(index++) + ".png")) {}
+		break;
+	case cutsceneID::WHITE:
+		while (!image.loadFromFile("white" + std::to_string(index++) + ".png")) {}
+		break;
+	case cutsceneID::P1P2ENGLAND:
+		while (!image.loadFromFile("england" + std::to_string(index++) + ".png")) {}
+	}
+	frame.setTexture(image);
 }

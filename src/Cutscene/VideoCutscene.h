@@ -2,6 +2,15 @@
 #include <SFML/Graphics.hpp>
 
 
+enum class Countries
+{
+	STATES,
+	JAPAN,
+	SWEDEN,
+	ENGLAND
+};
+
+
 //used to determine what cutscene is used AND holds the value of the last frame for that respective cutscene
 enum cutsceneID
 {
@@ -32,7 +41,7 @@ public:
 
 	//draws the VideoCutscene to the passed in RenderWindow
 	//returns false when the cutscene is over, when the index is on the last frame
-	bool draw(sf::RenderWindow& window);
+	bool drawTo(sf::RenderWindow&);
 
 	//sets the video back to the beginning.
 	void resetVideo() { index = 0; }
@@ -44,8 +53,8 @@ public:
 	cutsceneID getID(bool bossKilled, bool pandoraWasBoss, int player, Countries country);
 
 private:
-	unsigned short index;
-	cutsceneID id; //used as both the id of the cutscene and the count of the last frame of that cutscene
+	unsigned short index = 0;
+	cutsceneID id = cutsceneID::START; //used as both the id of the cutscene and the count of the last frame of that cutscene
 	sf::Texture image; //i moved image to here, if we are only loading one at a time this makes it easy - Christian
 	sf::Sprite frame;
 
