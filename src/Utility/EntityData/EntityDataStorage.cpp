@@ -3,8 +3,7 @@
 #include <stdexcept>
 #include <SFML/Graphics/Rect.hpp>
 
-#include "EntityData.h"
-#include "ProjectilePrototype.h"
+#include "EntityData.hpp"
 #include "../EntityID.h"
 
 
@@ -142,9 +141,25 @@ EntityDataStorage::EntityData const EntityDataStorage::EntityDataTable[static_ca
 	EntityData {
 		EntityData::SpriteData {
 			sf::IntRect {
+				0,240,32,32
+			},
+			1,
+			false,
+			false,
+			false,
+			EntityData::SpriteData::TextureType::ENEMY
+		},
+		Vec2f { 0, 0 },
+		0,
+		0,
+		0b00000000
+	},
+	EntityData {
+		EntityData::SpriteData {
+			sf::IntRect {
 				32,240,32,32
 			},
-			16   ,
+			16,
 			false,
 			false,
 			false,
