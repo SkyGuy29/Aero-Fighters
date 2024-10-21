@@ -1,5 +1,6 @@
 #pragma once
 
+#include <iostream>
 #include <fstream>
 #include "EntityDataStorage.h"
 #include "../../Entities/Enemy/Enemy_new.h"
