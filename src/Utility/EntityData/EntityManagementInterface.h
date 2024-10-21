@@ -51,6 +51,9 @@ public:
 	static inline void tick(sf::RenderWindow& win, unsigned int currentTick);
 	static void updateLevelEditor();
 	static inline std::vector<Player_new*>& getPlayers() { return players; };
+	
+	// frees memory
+	static inline void unload();
 private:
 	static inline void loadAttacks();
 	static inline void loadEnemies(Map map);
@@ -67,6 +70,7 @@ private:
 	template<typename T> requires std::derived_from<T, ICollidable>
 	static inline bool collide(std::vector<T*>& entities, T& entity);
 
+	static void deleteVector(std::vector<void*>& a);
 
 	// tick->list of enemies to spawn. dont delete after spawned cause level editor
 	static std::unordered_map<unsigned int, std::vector<EntityPrototype*>> spawnMap;
@@ -180,8 +184,11 @@ inline void EntityManagementInterface::generalLevelEditorUpdate(std::vector<T*> 
 	for (Entity* entity : entities)
 	{
 		// if player clicking an entity
-		if (entity->getSprite() != nullptr && entity->getSprite()->getGlobalBounds().intersects(sf::Mouse::getPosition()))
-			std::cout << entity->getLine();
+		if (entity->getSprite() != nullptr &&
+			sf::Mouse::isButtonPressed(sf::Mouse::Left) &&
+			entity->getSprite()->getGlobalBounds().intersects(sf::Mouse::getPosition())
+		)
+			std::cout << entity->getLine() << "\n";
 	}
 
 }

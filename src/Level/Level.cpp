@@ -2,7 +2,6 @@
 #include <fstream>
 #include <string>
 
-bool Level::levelEditor = false;
 
 Level::Level(sf::RenderWindow& window) :
 	window(window)
@@ -13,17 +12,7 @@ Level::Level(sf::RenderWindow& window) :
 
 Level::~Level()
 {
-	deleteVector((std::vector<void*>&)entities.landEnemies);
-	deleteVector((std::vector<void*>&)entities.airEnemies);
-	deleteVector((std::vector<void*>&)entities.waterEnemies);
-	deleteVector((std::vector<void*>&)entities.bossEnemies);
-	deleteVector((std::vector<void*>&)entities.players);
-	deleteVector((std::vector<void*>&)entities.projectiles);
-	deleteVector((std::vector<void*>&)entities.permanentSpawners);
-	deleteVector((std::vector<void*>&)entities.temporarySpawners);
-	deleteVector((std::vector<void*>&)entities.tileEntities);
-	deleteVector((std::vector<void*>&)entities.powerUps);
-
+	EntityManagementInterface::unload();
 }
 
 
@@ -70,14 +59,14 @@ void Level::load(sf::Vector2f winSize, const short country,
 	frontbackground.setPosition(0, frontbackgroundDist);
 
 	// loading resources
-	playerImg.loadFromFile("res/Misc/players.png");
+	/*playerImg.loadFromFile("res/Misc/players.png");
 	projectileImg.loadFromFile("res/Misc/Projectiles.png");
 	powerUpImg.loadFromFile("res/Misc/Powerups.png");
 	moneyImg.loadFromFile("res/Misc/money.png");
 	explosionImg.loadFromFile("res/Misc/Explosion.png");
 	enemyImg.loadFromFile("res/Misc/enemies.png");
 	enemyProjectileImg.loadFromFile("res/Misc/Enemy projectiles.png");
-	missileImg.loadFromFile("res/Misc/missles.png");
+	missileImg.loadFromFile("res/Misc/missles.png");*/
 
 	// Seperate player texture for drawing lives
 	playerImgRepeat = playerImg;
@@ -276,14 +265,6 @@ void Level::updateLevelEditor()
 		//background.setTextureRect(rect);
 	}
 	EntityManagementInterface::updateLevelEditor();
-}
-
-
-void Level::deleteVector(std::vector<void*>& a)
-{
-	for (int i = 0; i < a.size(); i++)
-		delete a[i];
-	a.clear();
 }
 
 

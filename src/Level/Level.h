@@ -44,7 +44,6 @@ private:
 	void japanUpdate();
 	void swedenUpdate();
 	void englandUpdate();
-	void deleteVector(std::vector<void*>& a);
 
 	sf::Font font;
 	sf::Text p1Score, p2Score;

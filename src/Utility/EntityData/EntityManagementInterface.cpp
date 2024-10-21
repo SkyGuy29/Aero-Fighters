@@ -49,6 +49,29 @@ void EntityManagementInterface::tick(sf::RenderWindow& win, unsigned int current
 	generalTick<PowerUp>(powerUps, win);
 }
 
+void EntityManagementInterface::updateLevelEditor()
+{
+	generalLevelEditorUpdate(tileEntities);
+	generalLevelEditorUpdate(airEnemies);
+	generalLevelEditorUpdate(waterEnemies);
+	generalLevelEditorUpdate(landEnemies);
+}
+
+
+inline void EntityManagementInterface::unload()
+{
+	deleteVector((std::vector<void*>&)landEnemies);
+	deleteVector((std::vector<void*>&)airEnemies);
+	deleteVector((std::vector<void*>&)waterEnemies);
+	deleteVector((std::vector<void*>&)bossEnemies);
+	deleteVector((std::vector<void*>&)players);
+	deleteVector((std::vector<void*>&)projectiles);
+	deleteVector((std::vector<void*>&)permanentSpawners);
+	deleteVector((std::vector<void*>&)temporarySpawners);
+	deleteVector((std::vector<void*>&)tileEntities);
+	deleteVector((std::vector<void*>&)powerUps);
+}
+
 
 inline void EntityManagementInterface::loadAttacks()
 {
@@ -162,4 +185,12 @@ inline void EntityManagementInterface::loadEnemies(Map map)
 			spawnMap[tempData.spawnTick].push_back(new EntityPrototype(tempData.pos, tempData.vel, (EntityID)tempData.id, 0, tempData.line));
 		}
 	}
+}
+
+
+void EntityManagementInterface::deleteVector(std::vector<void*>& a)
+{
+	for (int i = 0; i < a.size(); i++)
+		delete a[i];
+	a.clear();
 }
