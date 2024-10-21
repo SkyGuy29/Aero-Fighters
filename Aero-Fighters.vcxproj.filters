@@ -51,15 +51,28 @@
     <ClCompile Include="src\Entities\Player\Player_new.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Entities\Projectile\Projectile_new.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Entities\Entity.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Entities\EntityData.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Entities\Player\Player_new.cpp">
     <ClCompile Include="src\Sprites\SpriteType.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Sprites\SpriteType.cpp">
     <ClCompile Include="src\Entities\Spawner\TemporarySpawner\TemporarySpawner.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Cutscene\Cutscene.cpp">
     <ClCompile Include="src\Entities\Enemy\Boss\Boss_new.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Cutscene\VideoCutscene.cpp">
     <ClCompile Include="src\Utility\EntityData\EntityManagementInterface.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -146,15 +159,25 @@
     <ClInclude Include="src\Utility\EntityData\ProjectilePrototype.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\Entities\Projectile\Projectile_new.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Entities\Entity.h">
     <ClInclude Include="src\Utility\EntityData\EntityPrototype.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\Entities\Player\Player_new.h">
     <ClInclude Include="src\Entities\Projectile\Missile\Missile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\Level\Intermediary.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Cutscene\Cutscene.h">
     <ClInclude Include="src\Utility\Array\SpacingElement.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\Cutscene\VideoCutscene.h">
     <ClInclude Include="src\Utility\Array\ReturnData.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -177,6 +200,12 @@
     <None Include="lib\SFML64\lib\sfml-audio.pdb" />
     <None Include="lib\SFML64\lib\sfml-network.pdb" />
     <None Include="lib\SFML64\lib\sfml-system.pdb" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="src\Cutscene\englandDialog.txt" />
+    <Text Include="src\Cutscene\japanDialog.txt" />
+    <Text Include="src\Cutscene\statesDialog.txt" />
+    <Text Include="src\Cutscene\swedenDialog.txt" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="res\attacks.txt" />

@@ -16,9 +16,18 @@ Level::~Level()
 }
 
 
+sf::View Level::view;
+
+
 void Level::setView(sf::View new_view)
 {
 	view = new_view;
+}
+
+
+float Level::getBackgroundSpeed()
+{
+	return backgroundSpeed;
 }
 
 
@@ -45,18 +54,17 @@ void Level::load(sf::Vector2f winSize, const short country,
 	background.setSize(sf::Vector2f(backgroundImg.getSize()));
 	background.setPosition(0, 0 - 2240 + winSize.y);
 	
-	frontbackground.setSize(sf::Vector2f(winSize));
-	frontbackground.setPosition(0, 0 - 2240 + 320);
+	bossBackground.setSize(sf::Vector2f(winSize));
+	bossBackground.setPosition(0, 0 - 2240 + 320);
 	backgroundDist = (float)backgroundImg.getSize().y - winSize.y;
 	//rect = sf::IntRect(0, (int)backgroundDist, (int)winSize.x, (int)winSize.y);
 	//frontRect = rect;
 	background.setTexture(&backgroundImg);
-	frontbackground.setTexture(&frontbackgroundImg);
+	bossBackground.setTexture(&bossBackgroundImg);
 	//background.setTextureRect(rect);
 	//frontbackground.setTextureRect(rect);
-	frontbackgroundImg.setRepeated(true);
-	frontbackgroundDist = winSize.y;
-	frontbackground.setPosition(0, frontbackgroundDist);
+	bossBackgroundImg.setRepeated(true);
+	bossBackground.setPosition(0, 0);
 
 	// loading resources
 	/*playerImg.loadFromFile("res/Misc/players.png");
@@ -83,7 +91,7 @@ void Level::load(sf::Vector2f winSize, const short country,
 
 	switch (map)
 	{
-		case England:
+	case Map::England:
 			houseImg.loadFromFile("res/England/House.png");
 			domeImg.loadFromFile("res/England/Dome.png");
 			gateImg.loadFromFile("res/England/Gate.png");
@@ -119,6 +127,13 @@ void Level::debugMode() const
 	EntityManagementInterface::getPlayers()[1]->setHealth(HP_MAX);
 }
 
+int Level::skipToBoss()
+{
+	int offset = 200;
+	backgroundDist = -offset;
+	return offset-backgroundImg.getSize().y;
+}
+
 void Level::respawnPlayers() const
 {
 	EntityManagementInterface::getPlayers()[0]->setHealth(3);
@@ -144,10 +159,19 @@ bool Level::update(const sf::Vector2f winSize)
 		updateLevelEditor();
 
 	// The background has to scroll backwards to get the effect that we want.
-	if (infScrollInPos || infScrollEnabled)
+	if (!bossBackgroundSet)
 		backgroundDist -= backgroundSpeed;
+	else
+		bossBackground.setTextureRect(sf::IntRect(
+			0, view.getCenter().y - winSize.y / 2.f, winSize.x, winSize.y));
 
-	updateInfScroll();
+	// There was a gap, 7 worked perfect on the 5th try
+	// There is still some weird jumpyness when: 
+	//		the boss background is first shown, but it fixes itself,
+	//		fastforwarding moves the boss background down to a third of the screen.
+	// Doesn't speed up yet, only uses view instead of backgroundSpeed,
+	// I just wanted to get this sort of working. - Ben
+	bossBackground.setPosition(0, view.getCenter().y - winSize.y / 2.f);
 
 	// for smoothing out background. 
 	// Take the decimal, leave the whole number
@@ -156,6 +180,15 @@ bool Level::update(const sf::Vector2f winSize)
 
 	// Drawing order
 	EntityManagementInterface::tick(window, currentTick);
+	
+	updatePlayers();
+	p[0]->updateBgSpeed(&backgroundSpeed);
+	p[1]->updateBgSpeed(&backgroundSpeed);
+	
+
+	// checking the back of the vector first is needed,
+	// so deleting doesn't shift everything down and mess up the for loop
+	// delete first, then erase
 
 	englandUpdate();
 
@@ -174,7 +207,7 @@ bool Level::update(const sf::Vector2f winSize)
 	// Place scores in middle top
 	// Scores were not implemented, so these values never change for now
 	p1Score.setPosition(sf::Vector2f(winSize.x / 2 - 20 - p1Score.getLocalBounds().width,
-		view.getCenter().y - view.getSize().y / 2.f -p2Score.getLocalBounds().height ));
+		view.getCenter().y - view.getSize().y / 2.f -p1Score.getLocalBounds().height ));
 	p2Score.setPosition(sf::Vector2f(winSize.x / 2 + 20,
 		view.getCenter().y - view.getSize().y / 2.f -p2Score.getLocalBounds().height));
 
@@ -190,54 +223,8 @@ bool Level::update(const sf::Vector2f winSize)
 	return p[0]->getHealth() > 0 || p[1]->getHealth() > 0;
 }
 
-
-/// <summary>
-/// Changes whether we should scroll or not.
-/// </summary>
-/// <param name="enable"></param>
-void Level::setInfScroll(const bool enable)
-{
-	infScrollEnabled = enable;
-	infScrollInPos = false;
-
-	if (enable)
-	{
-		//frontRect.top = 0;
-		//frontbackground.setTextureRect(rect);
-		frontbackgroundDist = (float) -(int)winSize.y;
-		frontbackground.setPosition(0, frontbackgroundDist);
-	}
-}
-
-
-/// <summary>
-/// Updates the background based on if we're scrolling or not.
-/// </summary>
-void Level::updateInfScroll()
-{
-	if (!(infScrollEnabled || !infScrollInPos))
-		return;
-
-	if (infScrollInPos)
-	{
-		//frontRect.top -= (int)backgroundSpeed;
-		//frontbackground.setTextureRect(frontRect);
-	}
-	else
-	{
-		frontbackgroundDist += backgroundSpeed;
-		frontbackground.setPosition(0, frontbackgroundDist);
-	}
-
-	if ((frontbackgroundDist == winSize.y || frontbackgroundDist >= 0) 
-		&& !infScrollInPos)
-		infScrollInPos = true;
-}
-
-
 void Level::updateLevelEditor()
 {
-	setInfScroll(false);
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::PageUp) ||
 		sf::Keyboard::isKeyPressed(sf::Keyboard::PageDown))
 	{
@@ -260,18 +247,102 @@ void Level::updateLevelEditor()
 				EntityManagementInterface::tick(window, currentTick);
 			}
 		}
-		backgroundDist -= backgroundSpeed;
-		//rect.top = (int)backgroundDist;
-		//background.setTextureRect(rect);
 	}
-	EntityManagementInterface::updateLevelEditor();
+
+	for (int i = (int)objects.size() - 1; i >= 0; i--)
+	{
+		if (objects[i]->isTexInit())
+			switch (objects.at(i)->getType())
+			{
+			case Object::AIR:
+			case Object::BOSS_PIECE:
+			case Object::COLLECTABLE:
+			case Object::PLAYER:
+			case Object::BOSS:
+				target.draw(*objects[i]);
+			}
+	}
+	
+	// Projectiles with a delay think they have a texture to prevent them from 
+	// loading their texture early.
+	// The draw loop only checked if an object had a texture. 
+	// It now also checks if an object has a non-zero width.
+
+	for (int i = (int)objects.size() - 1; i >= 0; i--)
+	{
+		if (objects[i]->isTexInit() && objects[i]->getSize().x > 0)
+			switch (objects[i]->getType())
+			{
+			case Object::ENEMY_PROJECTILE:
+			case Object::EXPLOSION:
+			case Object::PLAYER_PROJECTILE:
+				target.draw(*objects[i]);
+			}
+	}
+
+	target.draw(p1Score, states);
+	target.draw(p2Score, states);
+
+	target.draw(p1LivesRect, states);
+	target.draw(p2LivesRect, states);
 }
+
+
+/// <summary>
+/// Controls the players.
+/// </summary>
+void Level::updatePlayers()
+{
+	// controller controls
+	// works with 2 controllers
+
+	// Move Offset
+	sf::Vector2f move;
+
+	// If the player should shoot
+	bool shoot, special;
+	bool spawn;
+
+	for (int i = 0; i < 2; i++)
+	{
+		if (sf::Joystick::isConnected(i))
+		{
+			move = joystick(i);
+
+			shoot = button(i, Controller::Y);
+			special = button(i, Controller::B);
+
+			spawn = button(i, Controller::A);
+		}
+		else
+		{
+			move.x = (float)key(i, Controls::Right) - key(i, Controls::Left);
+			move.y = (float)key(i, Controls::Back) - key(i, Controls::Forward);
+
+			shoot = key(i, Controls::Shoot);
+			special = key(i, Controls::Special);
+
+			spawn = key(i, Controls::Spawn);
+		}
+
+		objects.at(i)->setVel(move * 5.f);
+		if (shoot)
+		{
+			if (!playerShootLast[i])
+				p[i]->shoot(objects);
+			playerShootLast[i] = true;
+		}
+		else
+			playerShootLast[i] = false;
+
+		if (special)
+			p[i]->special(objects, winSize);
 
 
 void Level::statesUpdate()
 {
-	if (backgroundDist == 0 && !infScrollEnabled)
-		setInfScroll(true);
+	if (backgroundDist == 0 && !bossBackgroundSet)
+		bossBackgroundSet = true;
 }
 
 
@@ -279,8 +350,8 @@ void Level::japanUpdate()
 {
 	if (!(p[1]->getTime()))
 		backgroundSpeed = 0;
-	if (backgroundDist == 0 && !infScrollEnabled)
-		setInfScroll(true);
+	if (backgroundDist == 0 && !bossBackgroundSet)
+		bossBackgroundSet = true;
 	else
 		backgroundSpeed = 1;
 }
@@ -296,9 +367,9 @@ void Level::swedenUpdate()
 
 void Level::englandUpdate()
 {
-	if (backgroundDist <= 0 && !levelEditor && !infScrollEnabled)
+	if (backgroundDist <= 0 && !levelEditor && !bossBackgroundSet)
 	{
-		setInfScroll(true);
+		bossBackgroundSet = true;
 		if (bossSpawned == false)
 		{
 			entities.bossEnemies.push_back(Enemy_new(sf::Vector2f(winSize.x / 2,
@@ -309,8 +380,9 @@ void Level::englandUpdate()
 	//Slow down for fort
 	else if (backgroundDist <= 1405 && backgroundDist > 1264)
 		backgroundSpeed = 0.5;
-	else if (!infScrollEnabled)
+	else if (!bossBackgroundSet)
 		backgroundSpeed = 1;
-	else if (infScrollEnabled && backgroundSpeed < 7)
+	// We are using viewport now, needs to change view scroll speed.
+	else if (bossBackgroundSet && backgroundSpeed < 7)
 		backgroundSpeed *= 1.01f;
 }

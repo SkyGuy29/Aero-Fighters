@@ -27,15 +27,16 @@ public:
 
 	static void setView(sf::View new_view);
 
+	float getBackgroundSpeed();
+
 	void load(sf::Vector2f winSize, short country, Map map, bool levelEditor);
 	bool update(sf::Vector2f winSize);
 
 	void debugMode() const;
+	int skipToBoss();
 
 	void respawnPlayers() const;
 private:
-	void setInfScroll(bool enable);
-	void updateInfScroll();
 
 	void updateLevelEditor();
 
@@ -50,8 +51,8 @@ private:
 	sf::RectangleShape p1LivesRect, p2LivesRect;
 	sf::Texture playerImgRepeat;
 
-	sf::RectangleShape background, frontbackground;
-	sf::Texture backgroundImg, frontbackgroundImg, playerImg, projectileImg,
+	sf::RectangleShape background, bossBackground;
+	sf::Texture backgroundImg, bossBackgroundImg, playerImg, projectileImg,
 		powerUpImg, moneyImg, explosionImg, enemyImg,
 		enemyProjectileImg, missileImg;
 
@@ -62,7 +63,7 @@ private:
 	sf::RenderWindow& window;
 
 	sf::IntRect rect;
-	float backgroundSpeed = 1, backgroundDist = 0, frontbackgroundDist = 0;
+	float backgroundSpeed = 1, backgroundDist = 0;
 	short country, orient = 0;
 	//float backgroundSpeedup = 0.f;
 	//float backgroundSpeedupMax = 2.f;
@@ -70,8 +71,7 @@ private:
 	unsigned int currentTick = 0;
 
 	sf::Vector2f winSize;
-	bool infScrollInPos = true, infScrollEnabled = false, bossSpawned = false;
-	sf::IntRect frontRect;
+	bool bossSpawned = false, levelEditor = false, bossBackgroundSet = false;
 
 	bool playerShootLast[2] = { false, false };
 

@@ -1,7 +1,23 @@
 #pragma once
 
 #include "../Level/Level.h"
+#include "../Cutscene/VideoCutscene.h"
 #include <cmath>
+
+/*
+#ifdef _WIN32
+extern "C" { extern int SetWindowPos(void*, void*, int, int, int, int, unsigned); }
+#endif
+
+static void setWindowTopmost(sf::RenderWindow& window)
+{
+#ifdef _WIN32
+	SetWindowPos(window.getSystemHandle(), (void*)(-1), 0, 0, 0, 0, 2 | 1);
+#else
+	printf("Sorry, setWindowTopmost only supports Win32 at this time.\nChange it here: \"src/Game/Game.h\" | Line:%d\n", __LINE__);
+#endif
+}
+*/
 
 
 class Countdown
@@ -48,6 +64,17 @@ private:
 };
 
 
+enum class Menu
+{
+	INTRO,
+	SELECT,
+	LEVEL,
+	MISSION,
+	LEADERBOARD,
+	END
+};
+
+
 /// <summary>
 /// Big class that handles the whole game. 
 /// It is created and ran once in Main.cpp. 
@@ -63,20 +90,23 @@ public:
 	Game();
 
 	void run();
-
-	void drawMenu();
-	void updateMenu();
 private:
+	//returns true if changes were made
+	bool changeMenu(Menu newMenu);
+
+	void updateSelectMenu();
+	void drawSelectMenu();
 	void resize();
 
 	// The game window
 	sf::RenderWindow window;
 
-	// The in game view area
-	sf::View view;
-
 	// The size of the window
 	sf::Vector2f winSize = sf::Vector2f(224.f, 320.f);
+
+	// The in game view area
+	sf::View view;
+	float viewportScroll = winSize.y / 2.f;
 
 	// Deltatime clock
 	sf::Clock clock;
@@ -89,7 +119,7 @@ private:
 
 	// Menu Map texture, unsure what it does? - Ricky
 	sf::Texture menuMap,
-		// Also unsure what it does... - ricky
+		// Also unsure what it does... - Ricky
 		menuFlags;
 
 	// These should all be wrapped in a struct to structure the data; make it easier to understand its all related
@@ -102,6 +132,9 @@ private:
 		menuCountDownRect,
 		// Selection outline
 		menuSelectRect;
+
+	//The video cutscene, works for any of them. will be reloaded for each new one.
+	VideoCutscene video;
 
 	// The game level
 	Level level;
@@ -125,12 +158,20 @@ private:
 
 	// Selected Country
 	unsigned char country = 0,
-		// The rate at which the blick state changes in ticks
+		// The rate at which the blink state changes in ticks
 		menuBlinkRate = 5,
 		// Current progress int he blink rate
 		menuBlinkTimer = 0;
 
 	Countdown countryChoose, gameOver;
 
-	bool inGame = false, playersDead = false;
+	Menu currentMenu = Menu::SELECT;
+	Map currentLevel = Map::England;
+	std::vector<Map> completedLevels;
+
+	bool videoDraw = true;
+
+	bool playersDead = false;
+
+	bool debugSkipToBoss = !!!!!true; //!!!false;
 };

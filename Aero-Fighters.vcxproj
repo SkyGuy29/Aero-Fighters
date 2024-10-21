@@ -155,6 +155,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Cutscene\Cutscene.cpp" />
+    <ClCompile Include="src\Cutscene\VideoCutscene.cpp" />
     <ClCompile Include="src\Entities\Projectile\Missile\Missile.cpp" />
     <ClCompile Include="src\Utility\EntityData\EntityManagementInterface.cpp" />
     <ClCompile Include="src\Entities\Enemy\Boss\Boss_new.cpp" />
@@ -170,9 +172,12 @@
     <ClCompile Include="src\Level\Level.cpp" />
     <ClCompile Include="src\Main.cpp" />
     <ClCompile Include="src\Entities\TileEntity\TileEntity.cpp" />
+    <ClCompile Include="src\Sprites\SpriteType.cpp" />
     <ClCompile Include="src\Entities\Spawner\TemporarySpawner\TemporarySpawner.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Cutscene\Cutscene.h" />
+    <ClInclude Include="src\Cutscene\VideoCutscene.h" />
     <ClInclude Include="src\Entities\Projectile\Missile\Missile.h" />
     <ClInclude Include="src\Utility\EntityData\EntityPrototype.h" />
     <ClInclude Include="src\Utility\Array\ReturnData.h" />
@@ -202,7 +207,6 @@
     <ClInclude Include="src\Utility\Array\StaticArray.h" />
     <ClInclude Include="src\Utility\WindowSize.h" />
     <ClInclude Include="src\Utility\Array\VariableArray.h" />
-    <ClInclude Include="src\Entities\Spawner\TemporarySpawner\TemporarySpawner.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lib\SFML64\lib\sfml-audio-s-d.pdb" />
@@ -222,6 +226,12 @@
     <None Include="lib\SFML64\lib\sfml-window-s-d.pdb" />
     <None Include="lib\SFML64\lib\sfml-window-s.pdb" />
     <None Include="lib\SFML64\lib\sfml-window.pdb" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="src\Cutscene\englandDialog.txt" />
+    <Text Include="src\Cutscene\japanDialog.txt" />
+    <Text Include="src\Cutscene\statesDialog.txt" />
+    <Text Include="src\Cutscene\swedenDialog.txt" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="res\attacks example.txt" />
