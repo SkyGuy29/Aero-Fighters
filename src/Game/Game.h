@@ -90,10 +90,12 @@ public:
 	Game();
 
 	void run();
-
-	void drawSelectMenu();
-	void updateSelectMenu();
 private:
+	//returns true if changes were made
+	bool changeMenu(Menu newMenu);
+
+	void updateSelectMenu();
+	void drawSelectMenu();
 	void resize();
 
 	// The game window
@@ -163,10 +165,13 @@ private:
 
 	Countdown countryChoose, gameOver;
 
-	Menu currentMenu = Menu::INTRO;
+	Menu currentMenu = Menu::SELECT;
 	Map currentLevel = Map::England;
+	std::vector<Map> completedLevels;
 
-	bool inLevel = false, playersDead = false;
+	bool videoDraw = true;
+
+	bool playersDead = false;
 
 	bool debugSkipToBoss = !!!!!true; //!!!false;
 };

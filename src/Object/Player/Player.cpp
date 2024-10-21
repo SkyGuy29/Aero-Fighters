@@ -463,7 +463,7 @@ void Player::draw(sf::RenderTarget& target, const sf::RenderStates states) const
 		target.draw(sprite, states);
 }
 
-
+//what just happened
 void Player::setHealth(const short newHealth)
 {
 	health = newHealth;

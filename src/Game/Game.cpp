@@ -26,8 +26,7 @@ Game::Game()
 	resize();
 
 
-	// Initializes Menu Data //
-
+	// Initializes Menu Data
 	menuCountdown.setFont(font);
 	menuCountdown.setString("0");
 	menuCountdown.setPosition(213.25f - menuCountdown.getLocalBounds().width, 0);
@@ -100,6 +99,22 @@ void Game::run()
 			);
 		}
 
+		//switching menus with equals hotkey
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Equal))
+		{
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num0))
+				changeMenu(Menu::INTRO);
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1))
+				changeMenu(Menu::SELECT);
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num2))
+				changeMenu(Menu::LEVEL);
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num3))
+				changeMenu(Menu::MISSION);
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num4))
+				changeMenu(Menu::LEADERBOARD);
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num5))
+				changeMenu(Menu::END);
+		}
 #endif
 
 		// Keeps constant update rate.
@@ -137,28 +152,65 @@ void Game::run()
 			// Game over countdown ends -> playersDead = true
 			// -Ben
 
-			if (inLevel)
+
+			if (currentMenu == Menu::LEVEL)
 			{
-				// level::update() runs most of the gameplay.
-				//view.setCenter(winSize.x / 2.f, viewportScroll);
+				//moving the viewport by viewportScroll pixels
 				view.setCenter(winSize.x / 2.f, viewportScroll);
 				window.setView(view);
 				Object::setView(view);
 				Level::setView(view);
+
+				//level::update() runs most of the gameplay.
 				if (!level.update(winSize))
 				{
-					gameOver.set(10, ticksPerSec);
-					playersDead = true;
-					inLevel = false;
+					if (false) //game over, both players dead + animations finished - Christian
+					{
+						gameOver.set(10, ticksPerSec);
+						playersDead = true;
+					}
+					else if (false) //next level
+					{
+						currentMenu = Menu::MISSION;
+						completedLevels.push_back(currentLevel);
+						//pick next level
+					}
 				}
 				viewportScroll -= level.getBackgroundSpeed();
 			}
-			else
+			else if (currentMenu == Menu::SELECT)
 			{
 				countryChoose.tick();
 				gameOver.tick();
 				updateSelectMenu();
 			}
+		}
+
+
+		//code per menu? not sure how to use this yet - Christian
+		switch (currentMenu)
+		{
+		case Menu::INTRO:
+			//draw cutscene on each frame
+			//wait for player input
+			break;
+		case Menu::SELECT:
+			//run select menu
+			break;
+		case Menu::LEVEL:
+			//run level
+			break;
+		case Menu::MISSION:
+			//run mission cutsccenes
+			break;
+		case Menu::LEADERBOARD:
+			//run whatever the heck we are doing for the leaderboard
+			break;
+		case Menu::END:
+			//draw end cutscene
+			break;
+		default:
+			break;
 		}
 
 
@@ -170,7 +222,7 @@ void Game::run()
 		// Draw the level gameplay if players are playing or dead
 		//view.setCenter(winSize.x / 2.f, viewportScroll);
 
-		if (inLevel || playersDead)
+		if (currentMenu == Menu::LEVEL || playersDead) //this wont need the || playersDead at the end, well just swap the menu later - Christian
 		{
 			view.setCenter(winSize.x / 2.f, viewportScroll);
 			window.setView(view);
@@ -179,17 +231,70 @@ void Game::run()
 			window.draw(level);
 		}
 		// This does have to be it's own 'if' so the game over screen can overlay the gameplay
-		if (!inLevel)
+		if (currentMenu != Menu::LEVEL) //placeholder, will be rearranged later - Christian
 		{
 			view.setCenter(winSize.x / 2.f, winSize.y / 2.f);
 			window.setView(view);
 			//Object::setView(view);
 			//Level::setView(view);
-			drawSelectMenu();
+			drawSelectMenu(); //i hate how this is dual purpose that will be fixed lol - Christian
+		}
+
+		//draws the intro cutscene I CANT BELIEVE THIS WORKED LASDKLHASDLJSDAJKLASDFKLH
+		if (currentMenu == Menu::INTRO)
+		{
+			if (videoDraw)
+			{
+				videoDraw = video.drawTo(window);
+			}
+			else
+			{
+				video.resetVideo();
+				videoDraw = true;
+			}
 		}
 
 		window.display();
 	}
+}
+
+
+//handles resets needed for sucessful menu changes
+bool Game::changeMenu(Menu newMenu)
+{
+	if (currentMenu != newMenu)
+	{
+		currentMenu = newMenu;
+		switch (newMenu)
+		{
+		case Menu::INTRO:
+			video.setID(cutsceneID::START);
+			video.resetVideo();
+			break;
+		case Menu::SELECT:
+			//reset select
+			break;
+		case Menu::LEVEL:
+			//load new level, make sure things that need to be reset are reset
+			level.load(winSize, country, currentLevel, false);
+			break;
+		case Menu::MISSION:
+			//reset and load the mission cutscene
+			//imma leave this one to Ray lol
+			break;
+		case Menu::LEADERBOARD:
+			//reset leaderboard stuff
+			//leave this like this until we actually do something with leaderboard
+			break;
+		case Menu::END:
+			video.setID(video.getID(true, true, 1, Countries::JAPAN)); //i think this would be Mao, placeholder ofc
+			video.resetVideo();
+			break;
+		}
+
+		return true;
+	}
+	return false;
 }
 
 
@@ -204,7 +309,8 @@ void Game::drawSelectMenu()
 
 		window.draw(menuCountdown);
 	}
-	else // Start menu
+	
+	if (currentMenu == Menu::SELECT) //Select menu
 	{
 		window.draw(menuMapRect);
 
@@ -241,7 +347,7 @@ void Game::updateSelectMenu()
 		if (key(0, Controls::Select) || button(0, Controller::Select_BTN))
 		{
 			playersDead = false;
-			inLevel = true;
+			currentMenu = Menu::LEVEL;
 			level.respawnPlayers();
 		}
 
@@ -297,7 +403,7 @@ void Game::updateSelectMenu()
 		{
 			// Reset player choose, load the respective level, and early escape
 			countryChoose.reset();
-			inLevel = true;
+			currentMenu = Menu::LEVEL;
 			level.load(winSize, country, Map::England, levelEditor); // Set the last param for loading the correct map
 
 			if (debugSkipToBoss)

@@ -319,7 +319,8 @@ bool Level::update(const sf::Vector2f winSize)
 	{
 		objects[objects.size() - 1 - i]->update(winSize, &objects,
 			p[1]->getTime() && !levelEditor, player1Score, player2Score);
-		if (objects[objects.size() - 1 - i]->getType() == Object::EXPLOSION)
+		//commenting this if statement out didnt do anyhting what - Christian
+		if (objects[objects.size() - 1 - i]->getType() == Object::EXPLOSION) 
 		{
 			// I'm sorry.
 			// Explosions didn't move before. They move now
