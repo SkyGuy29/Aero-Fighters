@@ -76,7 +76,9 @@ void VideoCutscene::loadImage()
 	switch (id)
 	{
 	case cutsceneID::START:
-		while (!image.loadFromFile("res/Cutscenes/intro/intro" + std::to_string(index++) + ".png")) {}
+		if (index < 94)
+			index = 94;
+		image.loadFromFile("res/Cutscenes/intro/intro" + std::to_string(index++) + ".png");
 		break;						   	
 	case cutsceneID::OSARU:			   	
 		while (!image.loadFromFile("res/Cutscenes/osaru/osaru" + std::to_string(index++) + ".png")) {}
