@@ -25,7 +25,7 @@ void Level::setView(sf::View new_view)
 }
 
 
-float Level::getBackgroundSpeed()
+float Level::getBackgroundSpeed() const
 {
 	return backgroundSpeed;
 }
@@ -281,95 +281,7 @@ void Level::updateLevelEditor()
 			}
 		}
 	}
-
-	for (int i = (int)objects.size() - 1; i >= 0; i--)
-	{
-		if (objects[i]->isTexInit())
-			switch (objects.at(i)->getType())
-			{
-			case Object::AIR:
-			case Object::BOSS_PIECE:
-			case Object::COLLECTABLE:
-			case Object::PLAYER:
-			case Object::BOSS:
-				target.draw(*objects[i]);
-			}
-	}
-	
-	// Projectiles with a delay think they have a texture to prevent them from 
-	// loading their texture early.
-	// The draw loop only checked if an object had a texture. 
-	// It now also checks if an object has a non-zero width.
-
-	for (int i = (int)objects.size() - 1; i >= 0; i--)
-	{
-		if (objects[i]->isTexInit() && objects[i]->getSize().x > 0)
-			switch (objects[i]->getType())
-			{
-			case Object::ENEMY_PROJECTILE:
-			case Object::EXPLOSION:
-			case Object::PLAYER_PROJECTILE:
-				target.draw(*objects[i]);
-			}
-	}
-
-	target.draw(p1Score, states);
-	target.draw(p2Score, states);
-
-	target.draw(p1LivesRect, states);
-	target.draw(p2LivesRect, states);
 }
-
-
-/// <summary>
-/// Controls the players.
-/// </summary>
-void Level::updatePlayers()
-{
-	// controller controls
-	// works with 2 controllers
-
-	// Move Offset
-	sf::Vector2f move;
-
-	// If the player should shoot
-	bool shoot, special;
-	bool spawn;
-
-	for (int i = 0; i < 2; i++)
-	{
-		if (sf::Joystick::isConnected(i))
-		{
-			move = joystick(i);
-
-			shoot = button(i, Controller::Y);
-			special = button(i, Controller::B);
-
-			spawn = button(i, Controller::A);
-		}
-		else
-		{
-			move.x = (float)key(i, Controls::Right) - key(i, Controls::Left);
-			move.y = (float)key(i, Controls::Back) - key(i, Controls::Forward);
-
-			shoot = key(i, Controls::Shoot);
-			special = key(i, Controls::Special);
-
-			spawn = key(i, Controls::Spawn);
-		}
-
-		objects.at(i)->setVel(move * 5.f);
-		if (shoot)
-		{
-			if (!playerShootLast[i])
-				p[i]->shoot(objects);
-			playerShootLast[i] = true;
-		}
-		else
-			playerShootLast[i] = false;
-
-		if (special)
-			p[i]->special(objects, winSize);
 
 
 void Level::statesUpdate()

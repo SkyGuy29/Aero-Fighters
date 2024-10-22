@@ -27,7 +27,7 @@ public:
 
 	static void setView(sf::View new_view);
 
-	float getBackgroundSpeed();
+	float getBackgroundSpeed() const;
 
 	void load(sf::Vector2f winSize, short country, Map map, bool levelEditor);
 	bool update(sf::Vector2f winSize);
