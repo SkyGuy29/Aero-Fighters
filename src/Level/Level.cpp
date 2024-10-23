@@ -66,16 +66,6 @@ void Level::load(sf::Vector2f winSize, const short country,
 	bossBackgroundImg.setRepeated(true);
 	bossBackground.setPosition(0, 0);
 
-	// loading resources
-	/*playerImg.loadFromFile("res/Misc/players.png");
-	projectileImg.loadFromFile("res/Misc/Projectiles.png");
-	powerUpImg.loadFromFile("res/Misc/Powerups.png");
-	moneyImg.loadFromFile("res/Misc/money.png");
-	explosionImg.loadFromFile("res/Misc/Explosion.png");
-	enemyImg.loadFromFile("res/Misc/enemies.png");
-	enemyProjectileImg.loadFromFile("res/Misc/Enemy projectiles.png");
-	missileImg.loadFromFile("res/Misc/missles.png");*/
-
 	// Seperate player texture for drawing lives
 	playerImgRepeat = playerImg;
 	playerImgRepeat.setRepeated(true);
@@ -88,20 +78,6 @@ void Level::load(sf::Vector2f winSize, const short country,
 	p2LivesRect.setTextureRect(sf::IntRect(0, 16, 32, 32));
 	p1Score.setCharacterSize(16);
 	p2Score.setCharacterSize(16);
-
-	switch (map)
-	{
-	case Map::England:
-			houseImg.loadFromFile("res/England/House.png");
-			domeImg.loadFromFile("res/England/Dome.png");
-			gateImg.loadFromFile("res/England/Gate.png");
-			hoodImg.loadFromFile("res/England/Hood.png");
-			coneImg.loadFromFile("res/England/Cone.png");
-			roofusImg.loadFromFile("res/England/Roofus.png");
-			domeAnimationImg.loadFromFile("res/England/Dome animation.png");
-			avroBomberImg.loadFromFile("res/England/Avro Bomber.png");
-			break;
-	}
 
 	EntityManagementInterface::load(map);
 

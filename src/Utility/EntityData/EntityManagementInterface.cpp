@@ -14,12 +14,13 @@ inline void EntityManagementInterface::load(Map map)
 	players.push_back(new Player_new(sf::Vector2(0, 0), sf::Vector2f(0, 0), EntityID::PLAYER, ));
 	loadAttacks();
 	loadEnemies(map);
+	EntityDataStorage::loadTextures();
 }
 
 void EntityManagementInterface::tick(sf::RenderWindow& win, unsigned int currentTick)
 {
 	// spawn the entities on the map with the current tick. Also make sure that we are not spawning enemies over and over if the tick is the same.
-	if (spawnMap.count(currentTick) && currentTick != lastTick)
+	if (spawnMap.contains(currentTick) && currentTick != lastTick)
 	{
 		std::vector<EntityPrototype*>& spawnableEntities = spawnMap[currentTick];
 		for (EntityPrototype* entityPrototype : spawnableEntities)
@@ -70,6 +71,7 @@ inline void EntityManagementInterface::unload()
 	deleteVector((std::vector<void*>&)temporarySpawners);
 	deleteVector((std::vector<void*>&)tileEntities);
 	deleteVector((std::vector<void*>&)powerUps);
+	EntityDataStorage::unloadTextures();
 }
 
 
