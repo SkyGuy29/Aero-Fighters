@@ -135,26 +135,6 @@ void Game::run()
 			deltaTime -= 1000 / ticksPerSec;
 
 			// update objects here
-
-			//comment below is outdated - Christian
-
-			// If in game and players alive:
-			//	update level
-			//	render level
-			// If not in game and players alive:
-			//	update menu (start)
-			//	render menu(start)
-			// If not in game and players dead:
-			//	update menu (game over)
-			//	render level, then render menu(game over)
-
-			// Start -> playersDead = false, inGame = false
-			// Main menu choice -> inGame = true
-			// Both players out of lives -> playersDead = false, inGame = false
-			// Game over countdown ends -> playersDead = true
-			// -Ben
-
-
 			if (currentMenu == Menu::LEVEL)
 			{
 				//moving the viewport by viewportScroll pixels
@@ -178,9 +158,8 @@ void Game::run()
 					}
 					else if (false) //next level
 					{
-						currentMenu = Menu::MISSION;
 						completedLevels.push_back(currentLevel);
-						//pick next level
+						changeMenu(Menu::MISSION);
 					}
 					*/
 				}
@@ -197,7 +176,7 @@ void Game::run()
 						level.respawnPlayers();
 					}
 					
-					gameOver.tick(); //
+					gameOver.tick();
 
 					// Return to main menu for now, leaderboard later if we get there
 					if (gameOver.isDone())
@@ -210,35 +189,23 @@ void Game::run()
 					}
 				}
 			}
-			else if (currentMenu == Menu::SELECT)
-			{
-				countryChoose.tick();
-				updateSelectMenu();
-			}
 		}
 
-
-		//code per menu? not sure how to use this yet - Christian
+		//additional updates for menus that arent level since they dont need deltaTime
 		switch (currentMenu)
 		{
 		case Menu::INTRO:
-			//draw cutscene on each frame
 			//wait for player input
 			break;
 		case Menu::SELECT:
-			//run select menu
-			break;
-		case Menu::LEVEL:
-			//run level
+			countryChoose.tick();
+			updateSelectMenu();
 			break;
 		case Menu::MISSION:
-			//run mission cutsccenes
+			//update mission cutscenes for timing animations
 			break;
 		case Menu::LEADERBOARD:
-			//run whatever the heck we are doing for the leaderboard
-			break;
-		case Menu::END:
-			//draw end cutscene
+			//check player input
 			break;
 		default:
 			break;
@@ -252,29 +219,18 @@ void Game::run()
 
 		// Draw the level gameplay if players are playing or dead
 		//view.setCenter(winSize.x / 2.f, viewportScroll);
-
-		if (currentMenu == Menu::LEVEL)
+		switch (currentMenu)
 		{
-			view.setCenter(winSize.x / 2.f, viewportScroll);
-			window.setView(view);
-			//Object::setView(view);
-			//Level::setView(view);
-			window.draw(level);
-			
-			if (playersDead) // Game over menu
+		case Menu::INTRO:
+			if (videoDraw)
+				videoDraw = video.drawTo(window); //stop drawing when cutscene is done
+			else
 			{
-				view.setCenter(winSize.x / 2.f, winSize.y / 2.f);
-				window.setView(view);
-				menuCountdown.setPosition((winSize - menuCountdown.getLocalBounds().getSize()) / 2.f);
-
-				window.draw(menuCountdown);
+				video.resetVideo(); //start cutscene loops, none of the others do tho
+				videoDraw = true;
 			}
-		}
-
-
-		//Select menu
-		if (currentMenu == Menu::SELECT) 
-		{
+			break;
+		case Menu::SELECT:
 			view.setCenter(winSize.x / 2.f, winSize.y / 2.f);
 			window.setView(view);
 			window.draw(menuMapRect);
@@ -296,19 +252,31 @@ void Game::run()
 			// Draw the manu and the selection outline
 			window.draw(menuSelectRect);
 			window.draw(menuCountdown);
-		}
+			break;
+		case Menu::LEVEL:
+			view.setCenter(winSize.x / 2.f, viewportScroll);
+			window.setView(view);
+			//Object::setView(view);
+			//Level::setView(view);
+			window.draw(level);
 
-
-		//draws the intro cutscene I CANT BELIEVE THIS WORKED LASDKLHASDLJSDAJKLASDFKLH
-		if (currentMenu == Menu::INTRO)
-		{
-			if (videoDraw)
-				videoDraw = video.drawTo(window); //stop drawing when cutscene is done
-			else
+			if (playersDead) // Game over menu
 			{
-				video.resetVideo(); //start cutscene loops, none of the others do tho
-				videoDraw = true;
+				view.setCenter(winSize.x / 2.f, winSize.y / 2.f);
+				window.setView(view);
+				menuCountdown.setPosition((winSize - menuCountdown.getLocalBounds().getSize()) / 2.f);
+
+				window.draw(menuCountdown);
 			}
+			break;
+		case Menu::MISSION:
+			break;
+		case Menu::LEADERBOARD:
+			break;
+		case Menu::END:
+			break;
+		default:
+			break;
 		}
 
 		window.display();
@@ -333,6 +301,32 @@ bool Game::changeMenu(Menu newMenu)
 			break;
 		case Menu::LEVEL:
 			//load new level, make sure things that need to be reset are reset
+			//pick next level
+			if (completedLevels.size() < 3)
+			{
+				std::vector<Map> countryMaps;
+				countryMaps.push_back(Map::States);
+				countryMaps.push_back(Map::Japan);
+				countryMaps.push_back(Map::Sweden);
+				countryMaps.push_back(Map::England);
+
+				//remove the level for the country you are
+				countryMaps.erase(countryMaps.begin() + country);
+				//remove any completed levels
+				for (int i = 0; i < completedLevels.size(); i++)
+				{
+					for (int j = 0; j < countryMaps.size(); j++)
+					{
+						if (countryMaps.at(j) == completedLevels.at(i))
+						{
+							countryMaps.erase(countryMaps.begin() + j);
+						}
+					}
+				}
+
+				//randomize between remaining
+				currentLevel = countryMaps.at(rand() % (countryMaps.size()));
+			}
 			level.load(winSize, country, currentLevel, false);
 			break;
 		case Menu::MISSION:
