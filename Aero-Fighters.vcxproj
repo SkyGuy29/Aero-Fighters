@@ -173,7 +173,6 @@
     <ClCompile Include="src\Main.cpp" />
     <ClCompile Include="src\Entities\TileEntity\TileEntity.cpp" />
     <ClCompile Include="src\Sprites\SpriteType.cpp" />
-    <ClCompile Include="src\Entities\Spawner\TemporarySpawner\TemporarySpawner.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Cutscene\Cutscene.h" />
@@ -186,7 +185,6 @@
     <ClInclude Include="src\Utility\EntityData\EntityManagementInterface.h" />
     <ClInclude Include="src\Entities\Enemy\Boss\Boss_new.h" />
     <ClInclude Include="src\Entities\Spawner\EnemySpawner.h" />
-    <ClInclude Include="src\Entities\Spawner\PermanentSpawner\PermanentSpawner.h" />
     <ClInclude Include="src\Entities\Enemy\Enemy_new.h" />
     <ClInclude Include="src\Entities\Entity.h" />
     <ClInclude Include="src\Utility\EntityData\EntityDataStorage.h" />

@@ -1,214 +1,82 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
+    <ClCompile Include="src\Cutscene\Cutscene.cpp" />
+    <ClCompile Include="src\Cutscene\VideoCutscene.cpp" />
+    <ClCompile Include="src\Entities\Projectile\Missile\Missile.cpp" />
+    <ClCompile Include="src\Utility\EntityData\EntityManagementInterface.cpp" />
+    <ClCompile Include="src\Entities\Enemy\Boss\Boss_new.cpp" />
+    <ClCompile Include="src\Entities\Spawner\EnemySpawner.cpp" />
+    <ClCompile Include="src\Entities\Spawner\PermanentSpawner\PermanentSpawner.cpp" />
+    <ClCompile Include="src\Entities\Enemy\Enemy_new.cpp" />
+    <ClCompile Include="src\Entities\Entity.cpp" />
+    <ClCompile Include="src\Utility\EntityData\EntityDataStorage.cpp" />
+    <ClCompile Include="src\Entities\Player\Player_new.cpp" />
+    <ClCompile Include="src\Entities\PowerUp\PowerUp.cpp" />
+    <ClCompile Include="src\Entities\Projectile\Projectile_new.cpp" />
+    <ClCompile Include="src\Game\Game.cpp" />
+    <ClCompile Include="src\Level\Level.cpp" />
+    <ClCompile Include="src\Main.cpp" />
+    <ClCompile Include="src\Entities\TileEntity\TileEntity.cpp" />
+    <ClCompile Include="src\Sprites\SpriteType.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Game\Game.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Level\Level.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Entities\PowerUp\PowerUp.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Entities\TileEntity\TileEntity.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Entities\Enemy\Enemy_new.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Entities\Projectile\Projectile_new.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Entities\Entity.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Entities\Spawner\EnemySpawner.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Entities\Spawner\PermanentSpawner\PermanentSpawner.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Utility\EntityData\EntityDataStorage.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Entities\Player\Player_new.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Entities\Projectile\Projectile_new.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Entities\Entity.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Entities\EntityData.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Entities\Player\Player_new.cpp">
-    <ClCompile Include="src\Sprites\SpriteType.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Sprites\SpriteType.cpp">
-    <ClCompile Include="src\Entities\Spawner\TemporarySpawner\TemporarySpawner.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Cutscene\Cutscene.cpp">
-    <ClCompile Include="src\Entities\Enemy\Boss\Boss_new.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Cutscene\VideoCutscene.cpp">
-    <ClCompile Include="src\Utility\EntityData\EntityManagementInterface.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Entities\Projectile\Missile\Missile.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
+    <ClInclude Include="src\Cutscene\Cutscene.h" />
+    <ClInclude Include="src\Cutscene\VideoCutscene.h" />
+    <ClInclude Include="src\Entities\Projectile\Missile\Missile.h" />
+    <ClInclude Include="src\Utility\EntityData\EntityPrototype.h" />
+    <ClInclude Include="src\Utility\Array\ReturnData.h" />
+    <ClInclude Include="src\Utility\Array\SpacingElement.h" />
+    <ClInclude Include="src\Utility\EntityData\EntityData.h" />
+    <ClInclude Include="src\Utility\EntityData\EntityManagementInterface.h" />
+    <ClInclude Include="src\Entities\Enemy\Boss\Boss_new.h" />
+    <ClInclude Include="src\Entities\Spawner\EnemySpawner.h" />
+    <ClInclude Include="src\Entities\Enemy\Enemy_new.h" />
+    <ClInclude Include="src\Entities\Entity.h" />
+    <ClInclude Include="src\Utility\EntityData\EntityDataStorage.h" />
+    <ClInclude Include="src\Entities\Interfaces\IHasHealth.h" />
+    <ClInclude Include="src\Entities\Interfaces\IHasChildren.h" />
+    <ClInclude Include="src\Entities\Player\Player_new.h" />
+    <ClInclude Include="src\Entities\PowerUp\PowerUp.h" />
+    <ClInclude Include="src\Entities\Interfaces\ICollidable.h" />
+    <ClInclude Include="src\ControllerStuff.hpp" />
+    <ClInclude Include="src\Entities\Projectile\Projectile_new.h" />
+    <ClInclude Include="src\Level\Intermediary.h" />
+    <ClInclude Include="src\Game\Game.h" />
+    <ClInclude Include="src\Level\Level.h" />
+    <ClInclude Include="src\Entities\TileEntity\TileEntity.h" />
+    <ClInclude Include="src\Utility\EntityData\EntityData.hpp" />
+    <ClInclude Include="src\Utility\EntityData\ProjectilePrototype.h" />
+    <ClInclude Include="src\Utility\EntityID.h" />
+    <ClInclude Include="src\Utility\Array\StaticArray.h" />
+    <ClInclude Include="src\Utility\WindowSize.h" />
+    <ClInclude Include="src\Utility\Array\VariableArray.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Game\Game.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Level\Level.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\ControllerStuff.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Entities\Interfaces\ICollidable.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Entities\PowerUp\PowerUp.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Entities\TileEntity\TileEntity.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Sprites\SpriteType.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Entities\Interfaces\IHasChildren.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Utility\WindowSize.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Utility\EntityID.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Utility\EntityData\EntityDataStorage.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Entities\Interfaces\IHasHealth.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Utility\Array\VariableArray.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Utility\Array\StaticArray.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Entities\Enemy\Enemy_new.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Entities\Projectile\Projectile_new.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Entities\Entity.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Entities\Spawner\EnemySpawner.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Entities\Spawner\PermanentSpawner\PermanentSpawner.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Entities\Player\Player_new.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Level\Intermediary.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Entities\Spawner\TemporarySpawner\TemporarySpawner.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Entities\Enemy\Boss\Boss_new.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Utility\EntityData\EntityManagementInterface.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Utility\EntityData\EntityData.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Utility\EntityData\ProjectilePrototype.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Entities\Projectile\Projectile_new.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Entities\Entity.h">
-    <ClInclude Include="src\Utility\EntityData\EntityPrototype.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Entities\Player\Player_new.h">
-    <ClInclude Include="src\Entities\Projectile\Missile\Missile.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Level\Intermediary.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Cutscene\Cutscene.h">
-    <ClInclude Include="src\Utility\Array\SpacingElement.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Cutscene\VideoCutscene.h">
-    <ClInclude Include="src\Utility\Array\ReturnData.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="lib\SFML64\lib\sfml-graphics-s.pdb" />
-    <None Include="lib\SFML64\lib\sfml-graphics-s-d.pdb" />
-    <None Include="lib\SFML64\lib\sfml-window-s.pdb" />
-    <None Include="lib\SFML64\lib\sfml-window-s-d.pdb" />
-    <None Include="lib\SFML64\lib\sfml-audio-s.pdb" />
     <None Include="lib\SFML64\lib\sfml-audio-s-d.pdb" />
-    <None Include="lib\SFML64\lib\sfml-network-s.pdb" />
-    <None Include="lib\SFML64\lib\sfml-network-s-d.pdb" />
-    <None Include="lib\SFML64\lib\sfml-system-s.pdb" />
-    <None Include="lib\SFML64\lib\sfml-system-s-d.pdb" />
+    <None Include="lib\SFML64\lib\sfml-audio-s.pdb" />
+    <None Include="lib\SFML64\lib\sfml-audio.pdb" />
+    <None Include="lib\SFML64\lib\sfml-graphics-s-d.pdb" />
+    <None Include="lib\SFML64\lib\sfml-graphics-s.pdb" />
+    <None Include="lib\SFML64\lib\sfml-graphics.pdb" />
     <None Include="lib\SFML64\lib\sfml-main-d.pdb" />
     <None Include="lib\SFML64\lib\sfml-main-s.pdb" />
-    <None Include="lib\SFML64\lib\sfml-graphics.pdb" />
-    <None Include="lib\SFML64\lib\sfml-window.pdb" />
-    <None Include="lib\SFML64\lib\sfml-audio.pdb" />
+    <None Include="lib\SFML64\lib\sfml-network-s-d.pdb" />
+    <None Include="lib\SFML64\lib\sfml-network-s.pdb" />
     <None Include="lib\SFML64\lib\sfml-network.pdb" />
+    <None Include="lib\SFML64\lib\sfml-system-s-d.pdb" />
+    <None Include="lib\SFML64\lib\sfml-system-s.pdb" />
     <None Include="lib\SFML64\lib\sfml-system.pdb" />
+    <None Include="lib\SFML64\lib\sfml-window-s-d.pdb" />
+    <None Include="lib\SFML64\lib\sfml-window-s.pdb" />
+    <None Include="lib\SFML64\lib\sfml-window.pdb" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="src\Cutscene\englandDialog.txt" />
     <Text Include="src\Cutscene\japanDialog.txt" />
     <Text Include="src\Cutscene\statesDialog.txt" />
     <Text Include="src\Cutscene\swedenDialog.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="res\attacks.txt" />
     <Text Include="res\attacks example.txt" />
+    <Text Include="res\attacks.txt" />
   </ItemGroup>
 </Project>

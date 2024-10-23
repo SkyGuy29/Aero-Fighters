@@ -16,19 +16,38 @@ public:
 	Enemy_new(EntityPrototype* prototype) : Enemy_new(prototype->SPAWN_POS, prototype->SPAWN_VELOCITY, prototype->ID, prototype->LINE) {};
 	~Enemy_new() override;
 
-	void tick() override;
+	TickData tick() override;
 	const sf::IntRect& getBounds() const noexcept override
 	{
 		return EntityDataStorage::getEntity(Entity::getUUID()).getTextureRect();
 	}
 
-	const bool CollidesWith(ICollidable* other) const noexcept override
+	// The overridden collision method for enemies to handle children
+	const CollisionType CollidesWith(ICollidable* other) const noexcept override
 	{
-		return other->getBounds().intersects(getBounds());
+		// Default to miss, only change if has collided in a different way
+		CollisionType ret = CollisionType::MISS;
+
+		if (other->getBounds().intersects(getBounds()))
+			ret = CollisionType::HIT;
+
+		if (child->CollidesWith(other) == CollisionType::HIT)
+		{
+			child->damage();
+
+			// Self collision takes precedence; manager damage the entity, parents damage children.
+			if (ret != CollisionType::HIT)
+				ret = CollisionType::CHILD;
+		}
+
+		return ret;
 	}
 
 	unsigned int getLine() { return line; }
 protected:
+
+	virtual TickData attack();
+	Enemy_new* child = nullptr;
 	float* backgroundSpeed = nullptr;
 	bool entered = false;
 };

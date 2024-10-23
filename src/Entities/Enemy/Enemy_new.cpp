@@ -9,16 +9,20 @@ Enemy_new::Enemy_new(sf::Vector2f pos, sf::Vector2f vel,
 }
 
 
-void Enemy_new::tick()
+Entity::TickData Enemy_new::tick()
 {
 	if (hasSpawned())
-		move();
-	if (hasSpawned() || getLevelEditor())
 	{
+		move();
 		// Process next animation frame - subject to change
 		nextFrame(3);
 
-		// Default sprite size for an enemy is 32x32
-
+		if (curCooldown > 0)
+			--curCooldown;
 	}
+}
+
+Entity::TickData Enemy_new::attack()
+{
+	// Map IDs to attacks here, return information.
 }

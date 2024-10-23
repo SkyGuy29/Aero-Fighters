@@ -3,7 +3,14 @@
 class ICollidable
 {
 public:
-	virtual const bool CollidesWith(ICollidable* other) const noexcept = 0;
+	enum class CollisionType : unsigned char
+	{
+		HIT,
+		MISS,
+		CHILD
+	};
+
+	virtual const CollisionType CollidesWith(ICollidable* other) const noexcept = 0;
 	virtual const sf::IntRect& getBounds() const noexcept = 0;
 };
 

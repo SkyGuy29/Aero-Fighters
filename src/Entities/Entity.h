@@ -34,7 +34,7 @@ public:
 
 	// Generic definition for any entities tick function
 	// Entity holder used for when entities need to check for collision themselves
-	virtual void tick() = 0;
+	virtual TickData tick() = 0;
 
 	// Sets the variable used by entity for the size of the window.
 	// Should only ever be called once, giving a variable held
