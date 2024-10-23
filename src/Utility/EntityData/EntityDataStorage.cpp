@@ -1,10 +1,50 @@
 #include "EntityDataStorage.h"
 
-#include <stdexcept>
 #include <SFML/Graphics/Rect.hpp>
 
 #include "EntityData.hpp"
 #include "../EntityID.h"
+
+
+void EntityDataStorage::loadTextures()
+{
+	std::unordered_map<EntityData::SpriteData::TextureType, sf::Texture*>& textureMap = EntityData::getTextureMap();
+	// ^ \/ parellel w/ textureType
+	const std::vector<std::string> textureStrings = {
+		"res/Misc/players.png", // PLAYER
+		"res/Misc/Projectiles.png", // PROJECTILE,
+		"res/Misc/Powerups.png", // POWER_UP,
+		"res/Misc/money.png", // MONEY,
+		"res/Misc/Explosion.png", // EXPLOSION,
+		"res/Misc/enemies.png", // ENEMY,
+		"res/Misc/Enemy projectiles.png", // ENEMY_PROJECTILE,
+		"res/Misc/missles.png", // MISSILE,
+		"res/England/House.png", // HOUSE,
+		"res/England/Dome.png", // DOME,
+		"res/England/Gate.png", // GATE,
+		"res/England/Hood.png", // HOOD,
+		"res/England/Cone.png", // CONE,
+		"res/England/Roofus.png", // ROOFUS
+		"res/England/Dome animation.png", // DOME_ANIMATION,
+		"res/England/Avro Bomber.png", // AVRO_BOMBER,
+	};
+	sf::Texture* temp;
+	for (unsigned int i = 0; i < textureStrings.size(); i++)
+	{
+		temp = new sf::Texture(); // expected to unload from the textureMap
+		textureMap[(EntityData::SpriteData::TextureType)i] = temp;
+		temp->loadFromFile(textureStrings[i]);
+	}
+}
+
+
+void EntityDataStorage::unloadTextures()
+{
+	std::unordered_map<EntityData::SpriteData::TextureType, sf::Texture*>& textureMap = EntityData::getTextureMap();
+	for (auto& texture : textureMap)
+		delete texture.second;
+}
+
 
 VariableArray<
 	EntityDataStorage::ProjectilePrototype,
