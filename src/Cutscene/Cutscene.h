@@ -1,8 +1,8 @@
 #pragma once
 #include <queue>
 #include <SFML/Graphics.hpp>
-//#include "VisualElement.h"
-#include "fstream"
+#include "VisualElement.h"
+#include <fstream>
 
 class Cutscene
 {
@@ -23,10 +23,9 @@ public:
 	void load(int, int, int, sf::RenderWindow&);
 	
 private:
-	//std::queue<VisualElement<sf::Sprite>> spriteElements;
-	//std::queue<VisualElement<sf::String>> stringElements;
+	std::queue<VisualElement<sf::Sprite>> spriteElements;
+	std::queue<VisualElement<sf::String>> stringElements;
 
-	//static VisualElement<sf::String> stringElements[4][8][3];
 	std::string dialog[8][8][3][6];
 };
 

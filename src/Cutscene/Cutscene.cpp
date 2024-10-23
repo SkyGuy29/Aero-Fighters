@@ -1,5 +1,6 @@
 #include "Cutscene.h"
 
+
 Cutscene::Cutscene()
 {
 	std::fstream englandFile, japanFile, statesFile, swedenFile;
