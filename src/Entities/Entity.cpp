@@ -1,4 +1,6 @@
 #include "Entity.h"
+
+#include "../ControllerStuff.hpp"
 #include "../Sprites/SpriteType.h"
 
 // Static member must be defined outside the class definition.
@@ -14,10 +16,7 @@ void Entity::setWinSize(WindowSize& winSize_)
 Entity::Entity(sf::Vector2f pos, EntityID ID) :
 	pos(pos), ID(ID), UUID(next_uuid++), spawnTick(currentTick)
 {
-	// construct using EntityDataStorage::ID
-	const auto& entityData = EntityDataStorage::getData(ID);
-
-	entityData.
+	// entities do not start with a sprite
 }
 
 
@@ -31,14 +30,15 @@ void Entity::setPosition(sf::Vector2f pos)
 
 Entity::EntityObjectAction Entity::getEntityAction() noexcept
 {
-	sf::Vector2f pos = sprite->getPosition();
+	sf::Vector2f pos = getPosition();
 	EntityObjectAction ret = EntityObjectAction::NOTHING;
+	const auto& entityData = EntityDataStorage::getData(ID);
 
 	// If on screen
-	if (!(pos.x + SpriteDataStorage::getSpriteData(ID).size.x / 2.f < 0 ||              // Off the left
-		  pos.y + SpriteDataStorage::getSpriteData(ID).size.y / 2.f < 0 ||              // Off the top
-		  pos.x - SpriteDataStorage::getSpriteData(ID).size.x / 2.f >= winSize.width || // Off the right
-		  pos.y - SpriteDataStorage::getSpriteData(ID).size.y / 2.f >= winSize.height)) // Off the bottom
+	if (!(pos.x + entityData.spriteData.getBounds().width / 2.f < 0 ||              // Off the left
+		  pos.y + entityData.spriteData.getBounds().height / 2.f < 0 ||              // Off the top
+		  pos.x - entityData.spriteData.getBounds().width / 2.f >= winSize.width || // Off the right
+		  pos.y - entityData.spriteData.getBounds().height / 2.f >= winSize.height)) // Off the bottom
 	{
 		if ((entityFlags & 0b00000001) != 0b00000001) // If not spawned
 		{
@@ -46,10 +46,13 @@ Entity::EntityObjectAction Entity::getEntityAction() noexcept
 			entityFlags |= 0b00000001;
 
 			// Generate a new sprite
-			spriteMap.emplace(UUID, sf::Sprite(SpriteDataStorage::getTexture(ID)));
+			spriteMap.emplace(UUID, sf::Sprite(*entityData.spriteData.getTexture()));
 
 			// Set this entities sprite address
 			sprite = &spriteMap.at(UUID);
+
+			sprite->setTextureRect(entityData.spriteData.getBounds());
+			vel = entityData.velocity;
 
 			// Is on screen, do not delete.
 			ret = EntityObjectAction::DRAW;
@@ -58,7 +61,7 @@ Entity::EntityObjectAction Entity::getEntityAction() noexcept
 		// Maintains action of "NOTHING" if it has been 'spawned' and is still on screen.
 	}
 	// If not on screen and has spawned
-	else if ((entityFlags & 0b00000001) == 0b00000001 && !getLevelEditor())
+	else if ((entityFlags & 0b00000001) == 0b00000001 && !levelEditorActive)
 		// Not on screen, please delete.
 		ret = EntityObjectAction::DELETE;
 

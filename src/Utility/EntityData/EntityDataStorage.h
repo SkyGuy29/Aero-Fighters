@@ -104,9 +104,14 @@ public:
 				return ret;
 			}
 			unsigned char getCount() const noexcept { return count; }
+			sf::Texture* getTexture() const noexcept { return textureMap.at(texture); }
+			unsigned char getRotations() const noexcept { return rotations; }
 
 			TextureType getTextureType() const noexcept { return texture; }
-			bool isEntityAnimated() const noexcept { return flags & 0b00000001; }
+
+			bool isEntityAnimated() const noexcept { return count > 1; }
+			bool isEntityRotatable() const noexcept { return rotations > 1; }
+			bool isEntityAnimatedHorizontally() const noexcept { return flags & 1; }
 		private:
 			const sf::IntRect imageBounds;
 			const unsigned char count, rotations;
