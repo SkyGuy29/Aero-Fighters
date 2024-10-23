@@ -95,7 +95,6 @@ private:
 	bool changeMenu(Menu newMenu);
 
 	void updateSelectMenu();
-	void drawSelectMenu();
 	void resize();
 
 	// The game window
