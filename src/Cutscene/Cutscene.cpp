@@ -1,5 +1,6 @@
 #include "Cutscene.h"
 
+
 Cutscene::Cutscene()
 {
 	std::fstream englandFile, japanFile, statesFile, swedenFile;
@@ -21,6 +22,20 @@ Cutscene::Cutscene()
 	japanFile.close();
 	statesFile.close();
 	swedenFile.close();
+
+	font.loadFromFile("aero-fighters.ttf");
+	for (int i = 0; i < 6; i++)
+	{
+		textDia[i].setFont(font);
+	}
+	textDia[0].setPosition(23, 237);
+	textDia[3].setPosition(23, 237);
+	textDia[1].setPosition(23, 259);
+	textDia[4].setPosition(23, 259);
+	textDia[2].setPosition(23, 281);
+	textDia[5].setPosition(23, 281);
+
+
 }
 
 Cutscene::~Cutscene()
@@ -28,8 +43,48 @@ Cutscene::~Cutscene()
 
 }
 
-void Cutscene::load(int country, int level, int player, sf::RenderWindow&)
+void Cutscene::load(int country, int level, int player, sf::RenderWindow& window)
 {
-	//identify which country,players, and level
+	window.clear();
+	sf::Clock timer;
+	playersSprite[0].setTexture(playersText[country][0]);
+	playersSprite[1].setTexture(playersText[country][1]);
+	for (int i = 0; i < 6; i++)
+		textDia[i].setString(dialog[country][level][player][i]);
+	while (timer.getElapsedTime().asSeconds() < 5)
+	{
+		switch (player)
+		{
+		case 0:
+			window.draw(playersSprite[0]);
+			break;
+		case 1:
+			window.draw(playersSprite[1]);
+			break;
+		case 2:
+			window.draw(playersSprite[0]);
+			window.draw(playersSprite[1]);
+			break;
+		}
+		if (timer.getElapsedTime().asSeconds() < 2.5)
+		{
+			for (int i = 0; i < 3; i++)
+				window.draw(textDia[i]);
+			window.display();
+		}
+		else if (timer.getElapsedTime().asSeconds() > 2.5)
+		{
+			for (int i = 0; i < 3; i++)
+				window.draw(textDia[i+3]);
+			window.display();
+		}
+		else
+		{
+			window.clear();
+		}
+		
+	}
+	window.clear();
+
 	
 }
