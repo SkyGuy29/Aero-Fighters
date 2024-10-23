@@ -30,6 +30,10 @@ public:
 	// The stored default information for a given entity; very generic.
 	struct EntityData;
 
+	// loads the textures for TextureType
+	static void loadTextures();
+	static void unloadTextures();
+
 	/**
 	 * Returns the baseline data for a given entity.
 	 *
@@ -52,15 +56,18 @@ public:
 	{
 		spriteTable.emplace(UUID, sprite);
 	}
+
+
 	static inline void deleteEntity(unsigned int UUID)
 	{
 		spriteTable.erase(UUID);
 	}
+
+
 	static inline sf::Sprite& getEntity(unsigned int UUID)
 	{
 		return spriteTable.at(UUID);
 	}
-
 private:
 	static std::unordered_map<unsigned int, sf::Sprite> spriteTable;
 	// Entity Data Table

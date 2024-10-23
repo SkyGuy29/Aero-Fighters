@@ -14,7 +14,10 @@ void Entity::setWinSize(WindowSize& winSize_)
 Entity::Entity(sf::Vector2f pos, EntityID ID) :
 	pos(pos), ID(ID), UUID(next_uuid++), spawnTick(currentTick)
 {
-	
+	// construct using EntityDataStorage::ID
+	const auto& entityData = EntityDataStorage::getData(ID);
+
+	entityData.
 }
 
 
