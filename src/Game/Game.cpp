@@ -166,6 +166,11 @@ void Game::run()
 				//level::update() runs most of the gameplay.
 				if (!level.update(winSize))
 				{
+					//placeholder code, commented out will be the real deal
+					if (!playersDead)
+						gameOver.set(10, ticksPerSec);
+					playersDead = true;
+					/*
 					if (false) //game over, both players dead + animations finished - Christian
 					{
 						gameOver.set(10, ticksPerSec);
@@ -177,8 +182,10 @@ void Game::run()
 						completedLevels.push_back(currentLevel);
 						//pick next level
 					}
+					*/
 				}
-				viewportScroll -= level.getBackgroundSpeed();
+				else
+					viewportScroll -= level.getBackgroundSpeed();
 
 				if (playersDead) // Game over menu
 				{
@@ -187,14 +194,16 @@ void Game::run()
 					if (key(0, Controls::Select) || button(0, Controller::Select_BTN))
 					{
 						playersDead = false;
-						changeMenu(Menu::LEVEL);
 						level.respawnPlayers();
 					}
+					
+					gameOver.tick(); //
 
-					// Return to main menu for now, probably cutscene later
+					// Return to main menu for now, leaderboard later if we get there
 					if (gameOver.isDone())
 					{
 						playersDead = false;
+						changeMenu(Menu::SELECT);
 						countryChoose.set(10, ticksPerSec);
 						level = Level();
 						viewportScroll = winSize.y / 2.f;
@@ -204,7 +213,6 @@ void Game::run()
 			else if (currentMenu == Menu::SELECT)
 			{
 				countryChoose.tick();
-				gameOver.tick();
 				updateSelectMenu();
 			}
 		}
@@ -321,7 +329,7 @@ bool Game::changeMenu(Menu newMenu)
 			video.resetVideo();
 			break;
 		case Menu::SELECT:
-			//reset select
+			countryChoose.set(10, ticksPerSec);
 			break;
 		case Menu::LEVEL:
 			//load new level, make sure things that need to be reset are reset
