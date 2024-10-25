@@ -44,8 +44,9 @@ public:
 	}
 
 	unsigned int getLine() { return line; }
-protected:
 
+
+protected:
 	virtual TickData attack();
 	Enemy_new* child = nullptr;
 	float* backgroundSpeed = nullptr;

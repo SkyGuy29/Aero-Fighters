@@ -11,8 +11,27 @@ class Projectile_new :
 public:
 	Projectile_new(const ProjectilePrototype prototype, Entity* owner);
 
-	void tick() override;
+	TickData tick() override;
 	virtual void move();
+
+
+	const sf::IntRect& getBounds() const noexcept override
+	{
+		return EntityDataStorage::getEntity(Entity::getUUID()).getTextureRect();
+	}
+
+	// The overridden collision method for enemies to handle children
+	const CollisionType CollidesWith(ICollidable* other) const noexcept override
+	{
+		// Default to miss, only change if has collided in a different way
+		CollisionType ret = CollisionType::MISS;
+
+		if (other->getBounds().intersects(getBounds()))
+			ret = CollisionType::HIT;
+
+		return ret;
+	}
+
 private:
 	ProjectilePrototype::Owner ownerType;
 	Entity* owner;

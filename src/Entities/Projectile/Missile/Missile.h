@@ -19,6 +19,6 @@ private:
 	int magnitude; // Do something with this andrew
 
 
-	void normalize();
+	void normalize(sf::Vector2f newVel);
 };
 

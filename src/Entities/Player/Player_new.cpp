@@ -65,3 +65,19 @@ void Player_new::tick()
 		}
 	}
 }
+
+
+void Player_new::increasePower()
+{
+	if (powerLevel < 3)
+		powerLevel++;
+	return;
+}
+
+
+void Player_new::increaseSpecial()
+{
+	if (special < 3)
+		special++;
+	return;
+}
