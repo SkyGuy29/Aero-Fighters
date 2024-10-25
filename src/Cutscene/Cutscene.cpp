@@ -9,7 +9,7 @@ Cutscene::Cutscene()
 	statesFile.open("statesDialog.txt");
 	swedenFile.open("swedenDialog.txt");
 	if (englandFile.is_open() && japanFile.is_open() && statesFile.is_open() && swedenFile.is_open())
-		for (int l = 0; l < 8; l++)
+		for (int l = 0; l < 9; l++)
 			for (int p = 0; p < 3; p++)
 				for(int d = 0; d < 6; d++)
 				{
@@ -35,7 +35,10 @@ Cutscene::Cutscene()
 	textDia[2].setPosition(23, 281);
 	textDia[5].setPosition(23, 281);
 
-
+	txtMap.loadFromFile("res/Misc/menuMap.png");
+	sprMap.setTexture(txtMap);
+	lvlBeatTxt.loadFromFile("res/Misc/lvlBeat.png");
+	lvlBeatSprite.setTexture(lvlBeatTxt);
 }
 
 Cutscene::~Cutscene()
@@ -47,12 +50,53 @@ void Cutscene::load(int country, int level, int player, sf::RenderWindow& window
 {
 	window.clear();
 	sf::Clock timer;
-	playersSprite[0].setTexture(playersText[country][0]);
-	playersSprite[1].setTexture(playersText[country][1]);
-	for (int i = 0; i < 6; i++)
+	//playersSprite[0].setTexture(playersText[country][0]);
+	//playersSprite[1].setTexture(playersText[country][1]);
+	if(!lvlBeat[0] && !lvlBeat[1] && !lvlBeat[2] && !lvlBeat[3] && !lvlBeat[4] && !lvlBeat[5] && !lvlBeat[6])
+		for (int i = 0; i < 6; i++)
+			textDia[i].setString(dialog[country][8][player][i]);
+	else
+		for (int i = 0; i < 6; i++)
 		textDia[i].setString(dialog[country][level][player][i]);
 	while (timer.getElapsedTime().asSeconds() < 5)
 	{
+		window.draw(sprMap);
+		if (lvlBeat[England])
+		{
+			lvlBeatSprite.setPosition(98, 32);
+			window.draw(lvlBeatSprite);
+		}
+		if (lvlBeat[Israel])
+		{
+			lvlBeatSprite.setPosition(124, 48);
+			window.draw(lvlBeatSprite);
+		}
+		if (lvlBeat[Japan])
+		{
+			lvlBeatSprite.setPosition(184, 40);
+			window.draw(lvlBeatSprite);
+		}
+		if (lvlBeat[Meddit])
+		{
+			lvlBeatSprite.setPosition(106, 50);
+			window.draw(lvlBeatSprite);
+		}
+		if (lvlBeat[Russia])
+		{
+			lvlBeatSprite.setPosition(128, 24);
+			window.draw(lvlBeatSprite);
+		}
+		if (lvlBeat[States])
+		{
+			lvlBeatSprite.setPosition(56, 40);
+			window.draw(lvlBeatSprite);
+		}
+		if (lvlBeat[Sweden])
+		{
+			lvlBeatSprite.setPosition(108, 12);
+			window.draw(lvlBeatSprite);
+		}
+		/*
 		switch (player)
 		{
 		case 0:
@@ -66,6 +110,7 @@ void Cutscene::load(int country, int level, int player, sf::RenderWindow& window
 			window.draw(playersSprite[1]);
 			break;
 		}
+		*/
 		if (timer.getElapsedTime().asSeconds() < 2.5)
 		{
 			for (int i = 0; i < 3; i++)
@@ -85,6 +130,5 @@ void Cutscene::load(int country, int level, int player, sf::RenderWindow& window
 		
 	}
 	window.clear();
-
-	
+	lvlBeat[level] = true;
 }
