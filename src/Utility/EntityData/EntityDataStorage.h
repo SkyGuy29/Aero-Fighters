@@ -52,12 +52,12 @@ public:
 				CONE,
 				ROOFUS, // Why?
 				DOME_ANIMATION,
-				AVRO_BOMBER
+				AVRO_BOMBER,
 			};
 
 			SpriteData(sf::IntRect texBounds, unsigned char count, unsigned char rotations,
-				bool isVertical, const TextureType texture) :
-				imageBounds(texBounds), count(count), rotations(rotations), flags(isVertical), texture(texture) {}
+				bool isHorizontal, const TextureType texture) :
+				imageBounds(texBounds), count(count), rotations(rotations), flags(isHorizontal), texture(texture) {}
 
 			/**
 			 * This overload is used by entities that do not have an animation loop,
@@ -103,21 +103,24 @@ public:
 
 				return ret;
 			}
-
 			unsigned char getCount() const noexcept { return count; }
+			sf::Texture* getTexture() const noexcept { return textureMap.at(texture); }
+			unsigned char getRotations() const noexcept { return rotations; }
 
 			TextureType getTextureType() const noexcept { return texture; }
-			bool isEntityAnimated() const noexcept { return flags & 0b00000001; }
 
+			bool isEntityAnimated() const noexcept { return count > 1; }
+			bool isEntityRotatable() const noexcept { return rotations > 1; }
+			bool isEntityAnimatedHorizontally() const noexcept { return flags & 1; }
 		private:
 			const sf::IntRect imageBounds;
 			const unsigned char count, rotations;
-			// null | null | null | null | null | flipsVertically | flipsHorizontally | isAnimated
+			// null | null | null | null | null | null | null | isAnimatedHorizontally?
 			const unsigned char flags;
 			const TextureType texture;
 		};
 
-		const SpriteData sprite;
+		const SpriteData spriteData;
 		// This entities base velocity
 		const Vec2f velocity;
 		// This entities base health
@@ -129,13 +132,16 @@ public:
 		// And if it does then the array element holding its children (right-most 7 LSBs)
 		const uint8_t CHILD_DATA;
 
+		// could be a vector instead of a map (unsure now)
+		static std::unordered_map<SpriteData::TextureType, sf::Texture*>& getTextureMap() { return textureMap; }
 
 		EntityData(const SpriteData sprite, const Vec2f velocity, const unsigned short health, const short baseCooldown, const uint8_t CHILD_DATA) :
-			sprite(sprite), velocity(velocity), health(health), baseCooldown(baseCooldown), CHILD_DATA(CHILD_DATA) {}
+			spriteData(sprite), velocity(velocity), health(health), baseCooldown(baseCooldown), CHILD_DATA(CHILD_DATA) {}
 
 	private:
 		friend SpriteData;
 		// Insert texture ptr references here
+		static std::unordered_map<SpriteData::TextureType, sf::Texture*> textureMap;
 	};
 
 	// loads the textures for TextureType
