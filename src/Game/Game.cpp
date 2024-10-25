@@ -148,12 +148,12 @@ void Game::run()
 				{
 					//placeholder code, commented out will be the real deal
 					if (!playersDead)
-						gameOver.set(10, ticksPerSec);
+						continueCount.set(10, ticksPerSec);
 					playersDead = true;
 					/*
 					if (false) //game over, both players dead + animations finished - Christian
 					{
-						gameOver.set(10, ticksPerSec);
+						continueCount.set(10, ticksPerSec);
 						playersDead = true;
 					}
 					else if (false) //next level
@@ -166,9 +166,9 @@ void Game::run()
 				else
 					viewportScroll -= level.getBackgroundSpeed();
 
-				if (playersDead) // Game over menu
+				if (playersDead) // Continue menu
 				{
-					menuCountdown.setString(std::to_string(gameOver.getTime()));
+					menuCountdown.setString(std::to_string(continueCount.getTime()));
 
 					if (key(0, Controls::Select) || button(0, Controller::Select_BTN))
 					{
@@ -176,15 +176,13 @@ void Game::run()
 						level.respawnPlayers();
 					}
 					
-					gameOver.tick();
+					continueCount.tick();
 
 					// Return to main menu for now, leaderboard later if we get there
-					if (gameOver.isDone())
+					if (continueCount.isDone())
 					{
-						playersDead = false;
 						changeMenu(Menu::SELECT);
 						countryChoose.set(10, ticksPerSec);
-						level = Level();
 						viewportScroll = winSize.y / 2.f;
 					}
 				}
@@ -195,7 +193,8 @@ void Game::run()
 		switch (currentMenu)
 		{
 		case Menu::INTRO:
-			//wait for player input
+			if (countryChoose.isDone() || key(0, Controls::Select) || button(0, Controller::Y))
+				changeMenu(Menu::SELECT);
 			break;
 		case Menu::SELECT:
 			countryChoose.tick();
@@ -300,7 +299,8 @@ bool Game::changeMenu(Menu newMenu)
 			countryChoose.set(10, ticksPerSec);
 			break;
 		case Menu::LEVEL:
-			//load new level, make sure things that need to be reset are reset
+			//load new level, make sure things that need to be reset are reset (not done)
+			
 			//pick next level
 			if (completedLevels.size() < 3)
 			{
@@ -327,6 +327,25 @@ bool Game::changeMenu(Menu newMenu)
 				//randomize between remaining
 				currentLevel = countryMaps.at(rand() % (countryMaps.size()));
 			}
+			else
+			{
+				switch (completedLevels.size())
+				{
+				case 3:
+					currentLevel = Map::Israel;
+					break;
+				case 4:
+					currentLevel = Map::Meddit;
+					break;
+				case 5:
+					currentLevel = Map::Russia;
+					break;
+				case 6:
+					currentLevel = Map::Space;
+					break;
+				}
+			}
+
 			level.load(winSize, country, currentLevel, false);
 			break;
 		case Menu::MISSION:
@@ -341,6 +360,12 @@ bool Game::changeMenu(Menu newMenu)
 			video.setID(video.getID(true, true, 1, Countries::JAPAN)); //i think this would be Mao, placeholder ofc
 			video.resetVideo();
 			break;
+		}
+
+		if (currentMenu != Menu::LEVEL)
+		{
+			playersDead = false;
+			level = Level();
 		}
 
 		return true;
