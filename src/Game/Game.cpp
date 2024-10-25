@@ -440,3 +440,57 @@ void Game::resize()
 * if the 7th level ends in a win (no game over screen), change to end instead of mission
 * end of cutscene, switch to mission and game cycle repeats
 */
+
+/*
+start:
+	start cutscene
+	while (cutscene is not done)
+		if (user input)
+			goto: countrySelect
+	goto: start
+
+countrySelect:
+	start countdown at 10s
+	while (countdown is not done)
+		if (user select)
+			goto: level
+	goto: level
+
+level:
+	start level
+levelUpdate:
+	while (players alive and boss alive)
+		update game
+
+	if (players dead)
+		start countdown at 10s
+		while (countdown is not done)
+			if (user input)
+				goto: levelUpdate
+		goto: leaderboard
+
+	else if (boss dead)
+		fade out
+		goto: missions
+
+missions:
+	start cutscene
+	while (cutscene is not done)
+
+	if (levelsDone is less than 7)
+		goto: level
+	else
+		goto: end
+
+
+leaderboard:
+	while (no user input)
+		display scores
+	goto: start
+
+end:
+	start cutscene
+	while (cutscene not done)
+
+	goto: start
+*/
