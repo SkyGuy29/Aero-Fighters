@@ -73,6 +73,23 @@ private:
 
 	static void deleteVector(std::vector<void*>& a);
 
+	// helper function for splitting a string of doubles delimited by spaces
+	static std::vector<float> split_(std::string s)
+	{
+		std::vector<float> ret;
+		std::string temp;
+
+		for (int i = 0; i < s.size(); i++)
+		{
+			if (s[i] == ' ')
+				ret.push_back(strtof(temp.c_str(), nullptr));
+			else
+				temp += s[i];
+		}
+
+		return ret;
+	}
+
 	// tick->list of enemies to spawn. dont delete after spawned cause level editor
 	static std::unordered_map<unsigned int, std::vector<EntityPrototype*>> spawnMap;
 	static std::vector<Player_new*> players; // spawned at start
