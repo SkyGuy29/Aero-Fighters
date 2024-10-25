@@ -27,17 +27,16 @@ private:
 	std::queue<VisualElement<sf::Sprite>> spriteElements;
 	std::queue<VisualElement<sf::String>> stringElements;
 
-	bool lvlBeat[8];
-	std::string dialog[8][8][3][6];
+	bool lvlBeat[7] = { false,false,false,false,false,false,false};
+	std::string dialog[8][9][3][6];
 	sf::Font font;
 	sf::Text textDia[6];
 	sf::Texture playersText[8][2];
 	sf::Sprite playersSprite[2];
 	sf::Texture lvlBeatTxt;
 	sf::Sprite lvlBeatSprite;
-	sf::Texture lvlBoomTxt[3];
-	sf::Sprite lvlBoomSprite;
-
+	sf::Sprite sprMap;
+	sf::Texture txtMap;
 
 };
 
