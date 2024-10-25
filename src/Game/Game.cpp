@@ -194,7 +194,10 @@ void Game::run()
 		{
 		case Menu::INTRO:
 			if (countryChoose.isDone() || key(0, Controls::Select) || button(0, Controller::Y))
+			{
+				selKeyReleased = false;
 				changeMenu(Menu::SELECT);
+			}
 			break;
 		case Menu::SELECT:
 			countryChoose.tick();
@@ -210,6 +213,8 @@ void Game::run()
 			break;
 		}
 
+		if (!(countryChoose.isDone() || key(0, Controls::Select) || button(0, Controller::Y)))
+			selKeyReleased = true;
 
 		// Clear window display
 		window.clear();
@@ -416,7 +421,7 @@ void Game::updateSelectMenu()
 
 	// We can move this to the end and have it only reset playerChosoe so that we dont need the early escape; flow is easier to follow and the code is shorter
 	// If time is out or any menu selection button has been pressed
-	if (countryChoose.isDone() || key(0, Controls::Select) || button(0, Controller::Y))
+	if (selKeyReleased && (countryChoose.isDone() || key(0, Controls::Select) || button(0, Controller::Y)))
 	{
 		// Reset player choose, load the respective level, and early escape
 		countryChoose.reset();
