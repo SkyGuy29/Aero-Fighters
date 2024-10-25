@@ -162,9 +162,9 @@ private:
 		// Current progress int he blink rate
 		menuBlinkTimer = 0;
 
-	Countdown countryChoose, gameOver;
+	Countdown countryChoose, continueCount;
 
-	Menu currentMenu = Menu::SELECT;
+	Menu currentMenu = Menu::SELECT; //only change this with changeMenu() PLEASE
 	Map currentLevel = Map::England;
 	std::vector<Map> completedLevels;
 
