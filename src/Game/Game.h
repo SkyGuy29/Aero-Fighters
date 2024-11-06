@@ -153,7 +153,8 @@ private:
 		// Selection menu outline blinking
 		blinkState = false,
 		// Level editor debug mode
-		levelEditor = false;
+		levelEditor = false,
+		selKeyReleased = true;
 
 	// Selected Country
 	unsigned char country = 0,
@@ -164,7 +165,7 @@ private:
 
 	Countdown countryChoose, continueCount;
 
-	Menu currentMenu = Menu::SELECT; //only change this with changeMenu() PLEASE
+	Menu currentMenu = Menu::INTRO;
 	Map currentLevel = Map::England;
 	std::vector<Map> completedLevels;
 
