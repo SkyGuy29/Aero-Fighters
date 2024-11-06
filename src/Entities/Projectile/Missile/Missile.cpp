@@ -1,7 +1,8 @@
 #include "Missile.h"
 #include <cmath>
+#include <numbers>
 
-using PI = std::numbers::pi_v;
+#define DEG 180.f / std::numbers::pi_v<long double>
 
 void Missile::move()
 {
@@ -16,11 +17,12 @@ void Missile::move()
 void Missile::normalize(sf::Vector2f newVel)
 {
 	double normalizationFactor = magnitude / hypot<double>(vel.x, vel.y);
-
+	float degreesNew = atan(newVel.y / newVel.x) * DEG;
+	float degreesOld = atan(vel.y / vel.x)       * DEG;
 	
 	if (newVel.x != 0)
 	{
-		if ( atan(newVel.y / newVel.x) * 180.f/3.14159f)
+		if (degreesOld - degreesNew > 180 && degreesOld - degreesNew < 360)
 		{
 			vel = {
 				static_cast<float>(vel.x * normalizationFactor),
