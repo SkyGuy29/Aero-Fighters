@@ -102,7 +102,7 @@ private:
 	static std::vector<TemporarySpawner*> temporarySpawners; // spawned at start ??
 	static std::vector<TileEntity*> tileEntities; // spawned at start (spawnMap:0)
 	static std::vector<PowerUp*> powerUps; // spawned dynamically by enemies
-	static std::vector<std::vector<ProjectilePrototype>> attackData;
+	static std::unordered_map<std::string, std::vector<ProjectilePrototype>> attackData;
 
 	static unsigned int lastTick;
 };
