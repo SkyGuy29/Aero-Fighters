@@ -4,7 +4,7 @@ PROJ 0
 1.84776 0.76537
 0
 0
-false
+0
 PROJ 1
 .
 -1.84776 -0.76537
@@ -44,6 +44,19 @@ PROJ 6
 PROJ 7
 .
 0.76537 -1.84776
+.
+.
+.
+NEW GENERIC_PLAYER_SHOOT
+PROJ 0 // the above is for p1 america and p2 all other country power 0
+0 -16
+0 -10
+0
+0
+0
+NEW O0_P1AMERICA_P2SWEDEN
+.
+.
 .
 .
 .
