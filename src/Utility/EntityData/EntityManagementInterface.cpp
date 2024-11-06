@@ -1,4 +1,7 @@
 #include "EntityManagementInterface.h"
+
+#include <assert.h>
+
 #include "../../Entities/Enemy/Enemy_new.h"
 #include "../../Entities/Player/Player_new.h"
 #include "../../Entities/PowerUp/PowerUp.h"
@@ -85,13 +88,14 @@ inline void EntityManagementInterface::loadAttacks()
 	struct TempData
 	{
 		sf::Vector2f spawnPos, spawnVelocity;
-		unsigned char tempId;
+		unsigned char tempId = 0;
 		EntityID id;
-		unsigned int tickOffset;
-		unsigned char flags;
+		unsigned int tickOffset = 0;
+		unsigned char flags = 0;
 	};
 	TempData tempData;
-	
+	unsigned int line = 0;
+	std::vector<float> splitVec;
 	
 	while (!f.eof())
 	{
@@ -103,17 +107,69 @@ inline void EntityManagementInterface::loadAttacks()
 			attackData.push_back(std::vector<ProjectilePrototype>());
 		else if (input == "PROJ")
 		{
-			f >> tempData.spawnPos.x >> tempData.spawnPos.y
-				>> tempData.spawnVelocity.x >> tempData.spawnVelocity.y
-				>> tempData.tempId >> tempData.tickOffset >> tempData.flags;
-			tempData.id = (EntityID)tempData.tempId;
+			input = "";
+			while(input != "PROJ")
+			{
+				std::getline(f, input);
+				line++;
+				if (input == ".")
+					continue; // dont update the respective value
 
+				switch(line)
+				{
+				case 1:
+					splitVec = split_(input);
+					assert(splitVec.size() == 2, "Attack loading failed."); // we want program execution to be stopped if we cant load the attack correctly
+					tempData.spawnPos = sf::Vector2f(splitVec[0], splitVec[1]);
+					break;
+				case 2:
+					splitVec = split_(input);
+					assert(splitVec.size() == 2, "Attack loading failed.");
+					tempData.spawnVelocity = sf::Vector2f(splitVec[0], splitVec[1]);
+					break;
+				case 3:
+					tempData.id = EntityID((int)EntityID::PROJECTILE_START + atoi(input.c_str()));
+					break;
+				case 4:
+					tempData.tickOffset = atoi(input.c_str());
+					break;
+				case 5:
+					tempData.flags = atoi(input.c_str());
+					break;
+				}
+			}
+			line = 0;
+			f.seekg(-5, std::ios_base::cur); // setup for next read
+
+			// id is an offset from the projectile start entity id
 			attackData[attackData.size()].push_back(ProjectilePrototype(tempData.spawnPos,
 				tempData.spawnVelocity, tempData.id, tempData.tickOffset, tempData.flags)
 			);
 		}
 	}
 }
+/*
+Work for importing attack data:
+enum ProjectileType : unsigned char {
+		Basic,
+		TimerPierce,
+		PierceOffscreen,
+		JapanPlayer2Super,
+		Tracking,
+		SwedenPlayer2Mine,
+		Breakable
+	};
+
+Projectile(float posX, float posY, sf::Vector2f vel,
+		sf::Vector2f size, ProjectileType ID, bool player, short cool, short delay,
+		short sprite, bool fromP1); //Adds delay
+Projectile(float posX, float posY, sf::Vector2f vel,
+		sf::Vector2f size, ProjectileType ID, bool player, short cool, short spriteNum, bool fromP1);
+
+search for objects->push_back(new Projectile())
+
+(attack example.txt)
+*/
 
 
 inline void EntityManagementInterface::loadEnemies(Map map)
