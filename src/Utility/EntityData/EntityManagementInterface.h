@@ -6,8 +6,6 @@
 #include "../../Entities/Enemy/Enemy_new.h"
 #include "../../Entities/Player/Player_new.h"
 #include "../../Entities/PowerUp/PowerUp.h"
-#include "../../Entities/Spawner/PermanentSpawner/PermanentSpawner.h"
-#include "../../Entities/Spawner/TemporarySpawner/TemporarySpawner.h"
 #include "../../Entities/TileEntity/TileEntity.h"
 #include "../../Entities/Enemy/Boss/Boss_new.h"
 #include "../../Entities/Projectile/Projectile_new.h"
@@ -98,8 +96,6 @@ private:
 	static std::vector<Enemy_new*> airEnemies; // spawnMap
 	static std::vector<Enemy_new*> waterEnemies; // spawnMap
 	static std::vector<Boss_new*> bossEnemies; // ?
-	static std::vector<PermanentSpawner*> permanentSpawners; // spawned at start ??
-	static std::vector<TemporarySpawner*> temporarySpawners; // spawned at start ??
 	static std::vector<TileEntity*> tileEntities; // spawned at start (spawnMap:0)
 	static std::vector<PowerUp*> powerUps; // spawned dynamically by enemies
 	static std::vector<std::vector<ProjectilePrototype>> attackData;

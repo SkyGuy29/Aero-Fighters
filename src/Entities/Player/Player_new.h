@@ -13,7 +13,7 @@ public:
         int* backgroundSpeed, unsigned char orientation = 0
     );
 
-    void tick();
+    TickData tick();
     void setHealth(short h) { health = h; };
     void increasePower();
     void increaseSpecial();

@@ -160,8 +160,6 @@
     <ClCompile Include="src\Entities\Projectile\Missile\Missile.cpp" />
     <ClCompile Include="src\Utility\EntityData\EntityManagementInterface.cpp" />
     <ClCompile Include="src\Entities\Enemy\Boss\Boss_new.cpp" />
-    <ClCompile Include="src\Entities\Spawner\EnemySpawner.cpp" />
-    <ClCompile Include="src\Entities\Spawner\PermanentSpawner\PermanentSpawner.cpp" />
     <ClCompile Include="src\Entities\Enemy\Enemy_new.cpp" />
     <ClCompile Include="src\Entities\Entity.cpp" />
     <ClCompile Include="src\Utility\EntityData\EntityDataStorage.cpp" />
@@ -184,7 +182,6 @@
     <ClInclude Include="src\Utility\EntityData\EntityData.h" />
     <ClInclude Include="src\Utility\EntityData\EntityManagementInterface.h" />
     <ClInclude Include="src\Entities\Enemy\Boss\Boss_new.h" />
-    <ClInclude Include="src\Entities\Spawner\EnemySpawner.h" />
     <ClInclude Include="src\Entities\Enemy\Enemy_new.h" />
     <ClInclude Include="src\Entities\Entity.h" />
     <ClInclude Include="src\Utility\EntityData\EntityDataStorage.h" />

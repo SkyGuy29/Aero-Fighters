@@ -45,10 +45,10 @@ void EntityDataStorage::unloadTextures()
 		delete texture.second;
 }
 
-
+/*
 VariableArray<
 	EntityDataStorage::ProjectilePrototype,
-	/*get Total*/0,
+	/*get Total/0,
 	static_cast<unsigned char>(EntityDataStorage::AttackID::COUNT)
 > const EntityDataStorage::attackData =
 {
@@ -64,7 +64,7 @@ VariableArray<
 		}
 	}
 };
-
+	*/
 // Initialize the EntityDataTable here
 EntityDataStorage::EntityData const EntityDataStorage::EntityDataTable[static_cast<unsigned char>(EntityID::COUNT)] = {
 	// ENEMY_AIR_THICK_HELI_GREEN,
