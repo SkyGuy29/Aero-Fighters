@@ -6,8 +6,6 @@
 #include "../../Entities/Enemy/Enemy_new.h"
 #include "../../Entities/Player/Player_new.h"
 #include "../../Entities/PowerUp/PowerUp.h"
-#include "../../Entities/Spawner/PermanentSpawner/PermanentSpawner.h"
-#include "../../Entities/Spawner/TemporarySpawner/TemporarySpawner.h"
 #include "../../Entities/TileEntity/TileEntity.h"
 #include "../../Entities/Enemy/Boss/Boss_new.h"
 #include "../../Entities/Projectile/Projectile_new.h"
@@ -55,6 +53,16 @@ public:
 	
 	// frees memory
 	static inline void unload();
+
+
+	static inline void resetPlayers()
+	{
+		for (auto player : players)
+		{
+			player->setHealth(3);
+		}
+	}
+
 private:
 	static inline void loadAttacks();
 	static inline void loadEnemies(Map map);
@@ -98,8 +106,6 @@ private:
 	static std::vector<Enemy_new*> airEnemies; // spawnMap
 	static std::vector<Enemy_new*> waterEnemies; // spawnMap
 	static std::vector<Boss_new*> bossEnemies; // ?
-	static std::vector<PermanentSpawner*> permanentSpawners; // spawned at start ??
-	static std::vector<TemporarySpawner*> temporarySpawners; // spawned at start ??
 	static std::vector<TileEntity*> tileEntities; // spawned at start (spawnMap:0)
 	static std::vector<PowerUp*> powerUps; // spawned dynamically by enemies
 	static std::unordered_map<std::string, std::vector<ProjectilePrototype>> attackData;
@@ -172,9 +178,12 @@ template <typename T> requires std::derived_from<T, Entity>
 void EntityManagementInterface::processAttack(EntityDataStorage::AttackID ID, T& entity)
 {
 	ReturnData<EntityDataStorage::ProjectilePrototype> attack = EntityDataStorage::getAttack(ID);
-	sf::Vector2f position = entity.getPos();
+	unsigned int = entity.getUUID();
 
-	projectiles.emplace(new Projectile_new())
+	for (unsigned char i = 0; i < attack.COUNT; i++)
+	{
+		projectiles.emplace(new Projectile_new(ProjectilePrototype(attack.DATA[i]), &position));
+	}
 }
 
 template <typename T> requires std::derived_from<T, ICollidable>

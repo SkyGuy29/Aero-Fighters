@@ -158,7 +158,6 @@ void Game::run()
 				//moving the viewport by viewportScroll pixels
 				view.setCenter(winSize.x / 2.f, viewportScroll);
 				window.setView(view);
-				Object::setView(view);
 				Level::setView(view);
 
 				//level::update() runs most of the gameplay.

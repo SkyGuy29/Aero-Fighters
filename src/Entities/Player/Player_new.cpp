@@ -9,7 +9,7 @@ Player_new::Player_new(sf::Vector2f pos, EntityID ID,
 }
 
 
-void Player_new::tick()
+Entity::TickData Player_new::tick()
 {
 	// controller controls
 	// works with 2 controllers
@@ -60,6 +60,7 @@ void Player_new::tick()
 
 		if (spawn) //Temporary and should be changed to continue.
 		{
+			EntityDataStorage::
 			entities.players[0]->setHealth(3);
 			entities.players[1]->setHealth(3);
 		}

@@ -5,8 +5,6 @@
 #include "../../Entities/Enemy/Enemy_new.h"
 #include "../../Entities/Player/Player_new.h"
 #include "../../Entities/PowerUp/PowerUp.h"
-#include "../../Entities/Spawner/PermanentSpawner/PermanentSpawner.h"
-#include "../../Entities/Spawner/TemporarySpawner/TemporarySpawner.h"
 #include "../../Entities/TileEntity/TileEntity.h"
 #include "../../Entities/Enemy/Boss/Boss_new.h"
 
