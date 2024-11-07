@@ -47,7 +47,7 @@ public:
 			throw std::out_of_range("Invalid Element Specified!");
 
 		// Return reference to array index & the number of elements it holds.
-		return ReturnData(
+		return ReturnData<RAW_TYPE>(
 			DATA[SPACING[index].STARTING_INDEX],
 			SPACING[index].ENDING_INDEX - SPACING[index].STARTING_INDEX + 1
 		);

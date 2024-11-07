@@ -182,6 +182,7 @@ public:
 	{
 		return spriteTable.at(UUID);
 	}
+
 private:
 	static std::unordered_map<unsigned int, sf::Sprite> spriteTable;
 	// Entity Data Table

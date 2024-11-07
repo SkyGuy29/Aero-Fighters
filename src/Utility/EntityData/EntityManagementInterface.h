@@ -53,6 +53,16 @@ public:
 	
 	// frees memory
 	static inline void unload();
+
+
+	static inline void resetPlayers()
+	{
+		for (auto player : players)
+		{
+			player->setHealth(3);
+		}
+	}
+
 private:
 	static inline void loadAttacks();
 	static inline void loadEnemies(Map map);
@@ -168,9 +178,12 @@ template <typename T> requires std::derived_from<T, Entity>
 void EntityManagementInterface::processAttack(EntityDataStorage::AttackID ID, T& entity)
 {
 	ReturnData<EntityDataStorage::ProjectilePrototype> attack = EntityDataStorage::getAttack(ID);
-	sf::Vector2f position = entity.getPos();
+	unsigned int = entity.getUUID();
 
-	projectiles.emplace(new Projectile_new())
+	for (unsigned char i = 0; i < attack.COUNT; i++)
+	{
+		projectiles.emplace(new Projectile_new(ProjectilePrototype(attack.DATA[i]), &position));
+	}
 }
 
 template <typename T> requires std::derived_from<T, ICollidable>

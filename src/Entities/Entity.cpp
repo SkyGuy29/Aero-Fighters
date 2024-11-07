@@ -1,7 +1,6 @@
 #include "Entity.h"
 
 #include "../ControllerStuff.hpp"
-#include "../Sprites/SpriteType.h"
 
 // Static member must be defined outside the class definition.
 unsigned int Entity::next_uuid = 0;
