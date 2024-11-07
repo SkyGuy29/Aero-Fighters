@@ -4,7 +4,7 @@
 Cutscene::Cutscene()
 {
 	std::ifstream englandFile;
-	englandFile.open("res/Cutscenes/Dialog/englandDialog.txt");
+	englandFile.open("res/Dialog/englandDialog.txt");
 	if (englandFile.is_open())
 		for (int l = 0; l < 9; l++)
 			for (int p = 0; p < 3; p++)
@@ -13,7 +13,7 @@ Cutscene::Cutscene()
 	englandFile.close();
 
 	std::ifstream japanFile;
-	japanFile.open("res/Cutscenes/Dialog/japanDialog.txt");
+	japanFile.open("res/Dialog/japanDialog.txt");
 	if (japanFile.is_open())
 		for (int l = 0; l < 9; l++)
 			for (int p = 0; p < 3; p++)
@@ -22,7 +22,7 @@ Cutscene::Cutscene()
 	japanFile.close();
 
 	std::ifstream statesFile;
-	statesFile.open("res/Cutscenes/Dialog/statesDialog.txt");
+	statesFile.open("res/Dialog/statesDialog.txt");
 	if (statesFile.is_open())
 		for (int l = 0; l < 9; l++)
 			for (int p = 0; p < 3; p++)
@@ -31,7 +31,7 @@ Cutscene::Cutscene()
 	statesFile.close();
 
 	std::ifstream swedenFile;
-	swedenFile.open("res/Cutscenes/Dialog/swedenDialog.txt");
+	swedenFile.open("res/Dialog/swedenDialog.txt");
 	if (swedenFile.is_open())
 		for (int l = 0; l < 9; l++)
 			for (int p = 0; p < 3; p++)
@@ -59,20 +59,20 @@ Cutscene::Cutscene()
 	lvlBeatTxt.loadFromFile("res/Misc/lvlBeat.png");
 	lvlBeatSprite.setTexture(lvlBeatTxt);
 
-	playersText[England][0].loadFromFile("res/Cutscenes/Dialog/villiam.png");
-	playersText[England][1].loadFromFile("res/Cutscenes/Dialog/lord white.png");
-	playersText[Japan][0].loadFromFile("res/Cutscenes/Dialog/hein.png");
-	playersText[Japan][1].loadFromFile("res/Cutscenes/Dialog/mao.png");
-	playersText[States][0].loadFromFile("res/Cutscenes/Dialog/keaton.png");
-	playersText[States][1].loadFromFile("res/Cutscenes/Dialog/keath.png");
-	playersText[Sweden][0].loadFromFile("res/Cutscenes/Dialog/kohful.png");
-	playersText[Sweden][1].loadFromFile("res/Cutscenes/Dialog/tee-bee.png");
+	playersText[England][0].loadFromFile("res/Dialog/villiam.png");
+	playersText[England][1].loadFromFile("res/Dialog/lord white.png");
+	playersText[Japan][0].loadFromFile("res/Dialog/hein.png");
+	playersText[Japan][1].loadFromFile("res/Dialog/mao.png");
+	playersText[States][0].loadFromFile("res/Dialog/keaton.png");
+	playersText[States][1].loadFromFile("res/Dialog/keath.png");
+	playersText[Sweden][0].loadFromFile("res/Dialog/kohful.png");
+	playersText[Sweden][1].loadFromFile("res/Dialog/tee-bee.png");
 
 	playersSprite[0].setPosition(24, 112);
 	playersSprite[1].setPosition(120, 112);
 
-	targetText[0].loadFromFile("res/Cutscenes/Dialog/target1.png");
-	targetText[1].loadFromFile("res/Cutscenes/Dialog/target2.png");
+	targetText[0].loadFromFile("res/Dialog/target1.png");
+	targetText[1].loadFromFile("res/Dialog/target2.png");
 }
 
 Cutscene::~Cutscene()
