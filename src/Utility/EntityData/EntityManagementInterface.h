@@ -98,7 +98,7 @@ private:
 	static std::vector<Boss_new*> bossEnemies; // ?
 	static std::vector<TileEntity*> tileEntities; // spawned at start (spawnMap:0)
 	static std::vector<PowerUp*> powerUps; // spawned dynamically by enemies
-	static std::vector<std::vector<ProjectilePrototype>> attackData;
+	static std::unordered_map<std::string, std::vector<ProjectilePrototype>> attackData;
 
 	static unsigned int lastTick;
 };

@@ -2,10 +2,10 @@ NEW TANK_TOP_BASIC // declares new attack
 PROJ // declares new projectile
 0 0 // positional offset from enemy shooting attack
 1.5 1.5 // vX, vY or magnitude (vX if target player) (velocity)
-13 // EntityID of projectile
+0 // EntityID offset from PROJECTILE_BASIC
 0 // Tick count from last projectile
 0 // targets any player? (missile)
-PROJ
+PROJ you may add any comments you want after PROJ
 1 1
 0.5 0.5
 13
@@ -17,7 +17,7 @@ PROJ
 1.84776 0.76537
 0
 0
-false
+0
 PROJ
 .
 -1.84776 -0.76537

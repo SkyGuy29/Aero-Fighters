@@ -94,6 +94,7 @@ inline void EntityManagementInterface::loadAttacks()
 		unsigned char flags = 0;
 	};
 	TempData tempData;
+	std::string attackName;
 	unsigned int line = 0;
 	std::vector<float> splitVec;
 	
@@ -103,12 +104,15 @@ inline void EntityManagementInterface::loadAttacks()
 		std::getline(f, input);
 
 		// attacks are arrays of projectiles
-		if (input == "NEW")
-			attackData.push_back(std::vector<ProjectilePrototype>());
-		else if (input == "PROJ")
+		if (input.starts_with("NEW"))
+		{
+			attackName = input.substr(4, std::string::npos);
+			attackData[attackName] = std::vector<ProjectilePrototype>();
+		}
+		else if (input.starts_with("PROJ"))
 		{
 			input = "";
-			while(input != "PROJ")
+			while(!input.starts_with("PROJ"))
 			{
 				std::getline(f, input);
 				line++;
@@ -119,12 +123,12 @@ inline void EntityManagementInterface::loadAttacks()
 				{
 				case 1:
 					splitVec = split_(input);
-					assert(splitVec.size() == 2, "Attack loading failed."); // we want program execution to be stopped if we cant load the attack correctly
+					assert(splitVec.size() == 2, "Attack loading failed. 1"); // we want program execution to be stopped if we cant load the attack correctly
 					tempData.spawnPos = sf::Vector2f(splitVec[0], splitVec[1]);
 					break;
 				case 2:
 					splitVec = split_(input);
-					assert(splitVec.size() == 2, "Attack loading failed.");
+					assert(splitVec.size() == 2, "Attack loading failed. 2");
 					tempData.spawnVelocity = sf::Vector2f(splitVec[0], splitVec[1]);
 					break;
 				case 3:
@@ -136,13 +140,15 @@ inline void EntityManagementInterface::loadAttacks()
 				case 5:
 					tempData.flags = atoi(input.c_str());
 					break;
+				default:
+					throw std::exception("Attack loading failed. 3");
 				}
 			}
 			line = 0;
 			f.seekg(-5, std::ios_base::cur); // setup for next read
 
 			// id is an offset from the projectile start entity id
-			attackData[attackData.size()].push_back(ProjectilePrototype(tempData.spawnPos,
+			attackData[attackName].push_back(ProjectilePrototype(tempData.spawnPos,
 				tempData.spawnVelocity, tempData.id, tempData.tickOffset, tempData.flags)
 			);
 		}
