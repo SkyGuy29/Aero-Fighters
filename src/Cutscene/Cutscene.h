@@ -1,8 +1,9 @@
 #pragma once
-#include <queue>
 #include <SFML/Graphics.hpp>
-//#include "VisualElement.h"
-#include "fstream"
+#include <fstream>
+#include <string.h>
+#include <Windows.h>
+#include <iostream>
 
 class Cutscene
 {
@@ -11,7 +12,7 @@ public:
 	~Cutscene();
 	enum Map
 	{
-		England,
+		England = 0,
 		Israel,
 		Japan,
 		Meddit,
@@ -20,13 +21,27 @@ public:
 		Sweden,
 		Space
 	};
-	void load(int, int, int, sf::RenderWindow&);
-	
-private:
-	//std::queue<VisualElement<sf::Sprite>> spriteElements;
-	//std::queue<VisualElement<sf::String>> stringElements;
 
-	//static VisualElement<sf::String> stringElements[4][8][3];
+	void draw(int, int, int, sf::RenderWindow&);
+	void startTimer();
+	void levelBeat(int);
+
+private:
+
+	bool lvlBeat[7] = { false,false,false,false,false,false,false };
+
 	std::string dialog[8][8][3][6];
+	sf::Font font;
+	sf::Text textDia[6];
+	sf::Texture playersText[8][2];
+	sf::Sprite playersSprite[2];
+	sf::Texture lvlBeatTxt;
+	sf::Sprite lvlBeatSprite;
+	sf::Sprite sprMap;
+	sf::Texture txtMap;
+	sf::Texture targetText[2];
+	sf::Sprite targetSprite;
+	sf::Clock timer;
+
 };
 
