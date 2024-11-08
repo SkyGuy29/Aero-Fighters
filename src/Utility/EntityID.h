@@ -57,7 +57,6 @@ enum class EntityID : unsigned char
 
 	// -----
 	PROJECTILE_START,
-	BUILDING_SHOOT,
 	O0_P1AMERICA_P2OTHER,
 	O0_P1SWEDEN_P2AMERICA,
 	O1_P1AMERICA,

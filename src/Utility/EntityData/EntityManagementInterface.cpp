@@ -129,7 +129,7 @@ inline void EntityManagementInterface::loadAttacks()
 					tempData.spawnVelocity = sf::Vector2f(splitVec[0], splitVec[1]);
 					break;
 				case 3:
-					tempData.id = EntityID((int)EntityID::PROJECTILE_START + atoi(input.c_str()));
+					tempData.id = EntityID((int)EntityID::PROJECTILE_START + atoi(input.c_str()) + 1);
 					break;
 				case 4:
 					tempData.tickOffset = atoi(input.c_str());
@@ -142,7 +142,7 @@ inline void EntityManagementInterface::loadAttacks()
 					assert(splitVec.size() == 2, "Attack loading failed. 4");
 					tempData.hitboxSize = sf::Vector2f(splitVec[0], splitVec[1]);
 				default:
-					throw std::exception("Attack loading failed. 3");
+					// ignore the line
 				}
 			}
 			line = 0;

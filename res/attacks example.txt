@@ -6,33 +6,4 @@ PROJ // declares new projectile
 0 // Tick count from last projectile
 0 // targets any player? (missile)
 10 10 // hitbox size
-PROJ you may add any comments you want after PROJ
-1 1
-0.5 0.5
-13
-0
-0
-1 10
-NEW BUILDING_SHOOT
-PROJ
-0 0
-1.84776 0.76537
-0
-0
-0
-.
-PROJ
-.
--1.84776 -0.76537
-.
-.
-.
-.
-PROJ
-.
--1.84776 0.76537
-.
-.
-.
-.
-PROJ
+PROJ you may add any comments you want after PROJ OTHER PROPERTIES CANNOT HAVE COMMENTS
