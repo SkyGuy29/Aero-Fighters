@@ -85,7 +85,7 @@ inline void EntityManagementInterface::loadAttacks()
 	std::string input;
 	struct TempData
 	{
-		sf::Vector2f spawnPos, spawnVelocity;
+		sf::Vector2f spawnPos, spawnVelocity, hitboxSize;
 		unsigned char tempId = 0;
 		EntityID id;
 		unsigned int tickOffset = 0;
@@ -116,7 +116,6 @@ inline void EntityManagementInterface::loadAttacks()
 				line++;
 				if (input == ".")
 					continue; // dont update the respective value
-
 				switch(line)
 				{
 				case 1:
@@ -138,6 +137,10 @@ inline void EntityManagementInterface::loadAttacks()
 				case 5:
 					tempData.flags = atoi(input.c_str());
 					break;
+				case 6:
+					splitVec = split_(input);
+					assert(splitVec.size() == 2, "Attack loading failed. 4");
+					tempData.hitboxSize = sf::Vector2f(splitVec[0], splitVec[1]);
 				default:
 					throw std::exception("Attack loading failed. 3");
 				}

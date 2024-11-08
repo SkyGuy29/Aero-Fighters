@@ -85,15 +85,19 @@ void Entity::nextFrame(const int frameRate)
 	// Increases the image rectangle by its height and loops back when 
 	//it reaches the end
 	currentFrame++;
-	const short frameCount = EntityDataStorage::getData(ID).sprite.getCount();
+	const short frameCount = EntityDataStorage::getData(ID).spriteData.getCount();
 
 	if (currentFrame >= frameCount * frameRate)
 	{
 		currentFrame -= frameCount * frameRate;
 		animationFinished = true;
 	}
-	sf::Vector2f texSize = EntityDataStorage::getEntity(UUID).getTextureRect().getSize();
-	sf::Vector2f texOffset = SpriteDataStorage::getSpriteData(ID).textureOffset;
+
+	sf::Vector2i intermediary = EntityDataStorage::getEntity(UUID).getTextureRect().getSize();
+	sf::Vector2<double> texSize = { intermediary.x, intermediary.y };
+
+	intermediary = EntityDataStorage::getEntity(UUID).getTextureRect().getPosition();
+	sf::Vector2<double> texOffset = { intermediary.x, intermediary.y };
 
 	// the dividing to an int is needed for the updates per frame delay.
 	sprite->setTextureRect(sf::IntRect(
