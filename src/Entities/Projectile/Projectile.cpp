@@ -3,7 +3,7 @@
 
 Projectile::Projectile(ProjectilePrototype prototype, Entity* owner)
 	: Entity(owner->getPosition() + prototype.SPAWN_POS, prototype.ID)
-{
+{ 
 	// The projectile's velocity is set as it's spawned to move towards the nearest player
 	if (prototype.FLAGS & 1)
 	{

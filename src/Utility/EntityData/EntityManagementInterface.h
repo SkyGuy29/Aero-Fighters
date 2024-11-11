@@ -178,7 +178,6 @@ template <typename T> requires std::derived_from<T, Entity>
 void EntityManagementInterface::processAttack(EntityDataStorage::AttackID ID, T& entity)
 {
 	ReturnData<EntityDataStorage::ProjectilePrototype> attack = EntityDataStorage::getAttack(ID);
-	unsigned int = entity.getUUID();
 
 	for (unsigned char i = 0; i < attack.COUNT; i++)
 	{
