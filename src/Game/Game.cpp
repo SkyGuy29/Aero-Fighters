@@ -151,12 +151,12 @@ void Game::run()
 						continueCount.set(10, ticksPerSec);
 					playersDead = true;
 					/*
-					if (false) //game over, both players dead + animations finished - Christian
+					if () //game over, both players dead + animations finished, the false is entirely a placeholder as well - Christian
 					{
 						continueCount.set(10, ticksPerSec);
 						playersDead = true;
 					}
-					else if (false) //next level
+					else if () //next level, once again false is a placeholder
 					{
 						completedLevels.push_back(currentLevel);
 						changeMenu(Menu::MISSION);
