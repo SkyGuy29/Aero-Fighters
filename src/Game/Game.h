@@ -89,6 +89,7 @@ class Game
 {
 public:
 	Game();
+	~Game();
 
 	void run();
 private:
@@ -138,7 +139,7 @@ private:
 	VideoCutscene video;
 
 	// The game level
-	Level level;
+	Level* level;
 
 	// Last Tick Processing Time
 	int deltaTime = 0,

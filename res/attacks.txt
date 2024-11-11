@@ -2,7 +2,7 @@ NEW BUILDING_SHOOT
 PROJ 0
 0 0
 1.84776 0.76537
-0
+13
 0
 0
 10 10
@@ -55,6 +55,7 @@ PROJ 7
 .
 .
 .
+
 NEW O0_P1AMERICA_P2OTHER 
 PROJ // Base power level USA P1 and other P2s (cases 0,9,17,25)
 0 -16
@@ -226,3 +227,13 @@ PROJ // Right diagonal
 0
 0
 16 31
+
+NEW TANK_SHOOT
+PROJ // Targets player
+0 0
+0 0
+13
+0
+1
+10 10
+

@@ -3,12 +3,12 @@
 #include <iostream>
 #include <fstream>
 #include "EntityDataStorage.h"
-#include "../../Entities/Enemy/Enemy_new.h"
-#include "../../Entities/Player/Player_new.h"
+#include "../../Entities/Enemy/Enemy.h"
+#include "../../Entities/Player/Player.h"
 #include "../../Entities/PowerUp/PowerUp.h"
 #include "../../Entities/TileEntity/TileEntity.h"
-#include "../../Entities/Enemy/Boss/Boss_new.h"
-#include "../../Entities/Projectile/Projectile_new.h"
+#include "../../Entities/Enemy/Boss/Boss.h"
+#include "../../Entities/Projectile/Projectile.h"
 #include "./EntityPrototype.h"
 #include "../Array/VariableArray.h"
 #include "./ProjectilePrototype.h"
@@ -49,7 +49,7 @@ public:
 	static inline void load(Map map);
 	static inline void tick(sf::RenderWindow& win, unsigned int currentTick);
 	static void updateLevelEditor();
-	static inline std::vector<Player_new*>& getPlayers() { return players; };
+	static inline std::vector<Player*>& getPlayers() { return players; };
 	
 	// frees memory
 	static inline void unload();
@@ -100,12 +100,12 @@ private:
 
 	// tick->list of enemies to spawn. dont delete after spawned cause level editor
 	static std::unordered_map<unsigned int, std::vector<EntityPrototype*>> spawnMap;
-	static std::vector<Player_new*> players; // spawned at start
-	static std::vector<Enemy_new*> landEnemies; // spawned at start (spawnMap:0)
-	static std::vector<Projectile_new*> projectiles; // spawned dynamically by enemies
-	static std::vector<Enemy_new*> airEnemies; // spawnMap
-	static std::vector<Enemy_new*> waterEnemies; // spawnMap
-	static std::vector<Boss_new*> bossEnemies; // ?
+	static std::vector<Player*> players; // spawned at start
+	static std::vector<Enemy*> landEnemies; // spawned at start (spawnMap:0)
+	static std::vector<Projectile*> projectiles; // spawned dynamically by enemies
+	static std::vector<Enemy*> airEnemies; // spawnMap
+	static std::vector<Enemy*> waterEnemies; // spawnMap
+	static std::vector<Boss*> bossEnemies; // ?
 	static std::vector<TileEntity*> tileEntities; // spawned at start (spawnMap:0)
 	static std::vector<PowerUp*> powerUps; // spawned dynamically by enemies
 	static std::unordered_map<std::string, std::vector<ProjectilePrototype>> attackData;
@@ -177,12 +177,13 @@ void EntityManagementInterface::generalTick(std::vector<T*>& entities, sf::Rende
 template <typename T> requires std::derived_from<T, Entity>
 void EntityManagementInterface::processAttack(EntityDataStorage::AttackID ID, T& entity)
 {
-	ReturnData<EntityDataStorage::ProjectilePrototype> attack = EntityDataStorage::getAttack(ID);
+	// TODO find out what this is supposed to do & what attackid is for
+	/*ReturnData<EntityDataStorage::ProjectilePrototype> attack = EntityDataStorage::getAttack(ID);
 
 	for (unsigned char i = 0; i < attack.COUNT; i++)
 	{
-		projectiles.emplace(new Projectile_new(ProjectilePrototype(attack.DATA[i]), entity));
-	}
+		projectiles.emplace(new Projectile(ProjectilePrototype(attack.DATA[i]), &position));
+	}*/
 }
 
 template <typename T> requires std::derived_from<T, ICollidable>
@@ -207,6 +208,8 @@ bool EntityManagementInterface::collide(std::vector<T*>& entities, T& entity)
 template<typename T> requires std::derived_from<T, Entity>
 inline void EntityManagementInterface::generalLevelEditorUpdate(std::vector<T*> entities)
 {
+	// TODO fix
+	/*
 	for (Entity* entity : entities)
 	{
 		// if player clicking an entity
@@ -215,6 +218,6 @@ inline void EntityManagementInterface::generalLevelEditorUpdate(std::vector<T*> 
 			entity->getSprite()->getGlobalBounds().intersects(sf::Mouse::getPosition())
 		)
 			std::cout << entity->getLine() << "\n";
-	}
+	}*/
 
 }

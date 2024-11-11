@@ -1,7 +1,7 @@
-#include "Projectile_new.h"
+#include "Projectile.h"
 
 
-Projectile_new::Projectile_new(ProjectilePrototype prototype, Entity* owner)
+Projectile::Projectile(ProjectilePrototype prototype, Entity* owner)
 	: Entity(owner->getPosition() + prototype.SPAWN_POS, prototype.ID)
 { 
 	// The projectile's velocity is set as it's spawned to move towards the nearest player
@@ -23,7 +23,7 @@ Projectile_new::Projectile_new(ProjectilePrototype prototype, Entity* owner)
 }
 
 
-void Projectile_new::move()
+void Projectile::move()
 {
 	setPosition(getPosition() + vel);
 }

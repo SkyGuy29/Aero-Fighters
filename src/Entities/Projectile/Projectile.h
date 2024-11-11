@@ -5,11 +5,11 @@
 #include "../../Utility/EntityData/ProjectilePrototype.h"
 
 
-class Projectile_new :
+class Projectile :
 	public Entity, public ICollidable
 {
 public:
-	Projectile_new(const ProjectilePrototype prototype, unsigned int ownerUUID);
+	Projectile(const ProjectilePrototype prototype, Entity* owner);
 
 	TickData tick() override;
 	virtual void move();

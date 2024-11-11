@@ -6,6 +6,7 @@
 #include <SFML/Graphics/Sprite.hpp>
 #include "../../Utility/EntityData/ProjectilePrototype.h"
 
+#include "EntityData.hpp"
 #include "../Array/VariableArray.h"
 
 using cstr = const char* const;
@@ -135,6 +136,12 @@ public:
 		EntityData(const SpriteData sprite, const Vec2f velocity, const unsigned short health, const short baseCooldown, const uint8_t CHILD_DATA) :
 			spriteData(sprite), velocity(velocity), health(health), baseCooldown(baseCooldown), CHILD_DATA(CHILD_DATA) {}
 
+		EntityData() : spriteData(SpriteData(sf::IntRect(NULL, NULL, NULL, NULL), NULL, NULL, NULL, (SpriteData::TextureType)NULL)),
+			velocity(sf::Vector2f(NULL, NULL)), health(NULL), baseCooldown(NULL), CHILD_DATA(NULL)
+		{
+
+			throw std::exception("Failure loading entity data.");
+		}
 	private:
 		friend SpriteData;
 		// Insert texture ptr references here
@@ -159,7 +166,7 @@ public:
 
 	static const ReturnData<ProjectilePrototype> getAttack(AttackID ID)
 	{
-		return attackData.at(static_cast<unsigned char>(ID));
+		//return attackData.at(static_cast<unsigned char>(ID));
 	}
 
 
@@ -186,7 +193,7 @@ private:
 	static EntityData const EntityDataTable[static_cast<unsigned char>(EntityID::COUNT)];
 
 	// Attack Spawning Table
-	static const VariableArray<ProjectilePrototype, /*get Total*/0, static_cast<unsigned char>(AttackID::COUNT)> attackData;
+	//static const VariableArray<ProjectilePrototype, /*get Total*/0, static_cast<unsigned char>(AttackID::COUNT)> attackData;
 
 
 	/**

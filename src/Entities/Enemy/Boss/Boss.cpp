@@ -1,9 +1,9 @@
-#include "Boss_new.h"
+#include "Boss.h"
 
-Entity::TickData Boss_new::tick()
+Entity::TickData Boss::tick()
 {
 	// Perform basic movement & animation
-	Enemy_new::tick();
+	Enemy::tick();
 
 	for (auto& child : children)
 	{

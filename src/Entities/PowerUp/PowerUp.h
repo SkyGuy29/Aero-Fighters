@@ -3,7 +3,7 @@
 #include "../Interfaces/ICollidable.h"
 
 class PowerUp :
-	private Entity, public ICollidable
+	public Entity, public ICollidable
 {
 public:
 

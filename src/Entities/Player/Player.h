@@ -5,15 +5,16 @@
 #include "../../ControllerStuff.hpp"
 
 
-class Player_new :
+class Player :
     public Entity, public IHasHealth
 {
 public:
-    Player_new(sf::Vector2f pos, EntityID ID,
+    Player(sf::Vector2f pos, EntityID ID,
         int* backgroundSpeed, unsigned char orientation = 0
     );
 
     TickData tick();
+    bool getTime() { return 0; }
     void setHealth(short h) { health = h; };
     void increasePower();
     void increaseSpecial();

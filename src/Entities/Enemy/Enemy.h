@@ -5,16 +5,16 @@
 #include "../Interfaces/ICollidable.h"
 
 // Primarily used by 
-class Enemy_new :
+class Enemy :
 	public Entity, protected IHasHealth, public ICollidable
 {
 public:
-	Enemy_new(sf::Vector2f pos, sf::Vector2f vel,
+	Enemy(sf::Vector2f pos, sf::Vector2f vel,
 		EntityID ID, unsigned int line = 0);
 	// dont be null :pray:
 	// ANDREW HERE make line work
-	Enemy_new(EntityPrototype* prototype) : Enemy_new(prototype->SPAWN_POS, prototype->SPAWN_VELOCITY, prototype->ID, prototype->LINE) {};
-	~Enemy_new() override;
+	Enemy(EntityPrototype* prototype) : Enemy(prototype->SPAWN_POS, prototype->SPAWN_VELOCITY, prototype->ID, prototype->LINE) {};
+	~Enemy() override;
 
 	TickData tick() override;
 	const sf::IntRect& getBounds() const noexcept override
@@ -48,7 +48,7 @@ public:
 
 protected:
 	virtual TickData attack();
-	Enemy_new* child = nullptr;
+	Enemy* child = nullptr;
 	float* backgroundSpeed = nullptr;
 	bool entered = false;
 };
