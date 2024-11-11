@@ -173,7 +173,7 @@ void EntityManagementInterface::generalTick(std::vector<T*>& entities, sf::Rende
 	}
 }
 
-/*
+
 template <typename T> requires std::derived_from<T, Entity>
 void EntityManagementInterface::processAttack(EntityDataStorage::AttackID ID, T& entity)
 {
@@ -183,8 +183,8 @@ void EntityManagementInterface::processAttack(EntityDataStorage::AttackID ID, T&
 	for (unsigned char i = 0; i < attack.COUNT; i++)
 	{
 		projectiles.emplace(new Projectile(ProjectilePrototype(attack.DATA[i]), &position));
-	}*-/
-}*/
+	}*/
+}
 
 template <typename T> requires std::derived_from<T, ICollidable>
 bool EntityManagementInterface::collide(std::vector<T*>& entities, T& entity)

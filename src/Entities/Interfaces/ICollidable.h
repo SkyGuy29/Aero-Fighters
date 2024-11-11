@@ -10,7 +10,13 @@ public:
 		CHILD
 	};
 
-	virtual const CollisionType CollidesWith(ICollidable* other) const noexcept = 0;
-	virtual const sf::IntRect& getBounds() const noexcept = 0;
+	virtual const CollisionType CollidesWith(ICollidable* other) const noexcept
+	{
+		throw std::runtime_error("Default method called - ICollidable::CollidesWith");
+	}
+	virtual const sf::IntRect& getBounds() const noexcept
+	{
+		throw std::runtime_error("Default method called - ICollidable::getBounds");
+	}
 };
 
