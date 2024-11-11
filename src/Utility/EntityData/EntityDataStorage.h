@@ -5,7 +5,6 @@
 #include <unordered_map>
 #include <SFML/Graphics/Sprite.hpp>
 #include "../../Utility/EntityData/ProjectilePrototype.h"
-
 #include "EntityData.hpp"
 #include "../Array/VariableArray.h"
 
