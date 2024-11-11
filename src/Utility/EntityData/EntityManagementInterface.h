@@ -132,7 +132,7 @@ void EntityManagementInterface::generalTick(std::vector<T*>& entities, sf::Rende
 			break;
 
 		case Entity::EntityObjectAction::DRAW: // draw the entity's sprite
-			win.draw(EntityDataStorage::getEntity(entities.at(i).getUUID()));
+			win.draw(EntityDataStorage::getEntity(entities.at(i)->getUUID()));
 			action = Entity::EntityObjectAction::DRAW;
 			break;
 
