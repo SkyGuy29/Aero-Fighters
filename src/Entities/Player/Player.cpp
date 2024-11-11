@@ -1,15 +1,15 @@
-#include "Player_new.h"
+#include "Player.h"
 
 
-Player_new::Player_new(sf::Vector2f pos, EntityID ID,
-	int* backgroundSpeed, unsigned char orientation = 0) :
+Player::Player(sf::Vector2f pos, EntityID ID,
+               int* backgroundSpeed, unsigned char orientation = 0) :
 	Entity(pos, ID), IHasHealth(ID)
 {
 
 }
 
 
-Entity::TickData Player_new::tick()
+Entity::TickData Player::tick()
 {
 	// controller controls
 	// works with 2 controllers
@@ -68,7 +68,7 @@ Entity::TickData Player_new::tick()
 }
 
 
-void Player_new::increasePower()
+void Player::increasePower()
 {
 	if (powerLevel < 3)
 		powerLevel++;
@@ -76,7 +76,7 @@ void Player_new::increasePower()
 }
 
 
-void Player_new::increaseSpecial()
+void Player::increaseSpecial()
 {
 	if (special < 3)
 		special++;

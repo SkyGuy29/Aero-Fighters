@@ -1,10 +1,10 @@
 #pragma once
-#include "../Enemy_new.h"
+#include "../Enemy.h"
 
-class Boss_new : public Enemy_new
+class Boss : public Enemy
 {
 public:
-	Boss_new();
+	Boss();
 
 
 	TickData tick() override;
@@ -35,6 +35,6 @@ public:
 	}
 
 private:
-	std::vector<Enemy_new> children;
+	std::vector<Enemy> children;
 
 };

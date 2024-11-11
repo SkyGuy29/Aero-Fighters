@@ -2,17 +2,17 @@
 
 #include <assert.h>
 
-#include "../../Entities/Enemy/Enemy_new.h"
-#include "../../Entities/Player/Player_new.h"
+#include "../../Entities/Enemy/Enemy.h"
+#include "../../Entities/Player/Player.h"
 #include "../../Entities/PowerUp/PowerUp.h"
 #include "../../Entities/TileEntity/TileEntity.h"
-#include "../../Entities/Enemy/Boss/Boss_new.h"
+#include "../../Entities/Enemy/Boss/Boss.h"
 
 
 inline void EntityManagementInterface::load(Map map)
 {
-	players.push_back(new Player_new(sf::Vector2(0, 0), sf::Vector2f(0, 0), EntityID::PLAYER, country, true));
-	players.push_back(new Player_new(sf::Vector2(0, 0), sf::Vector2f(0, 0), EntityID::PLAYER, ));
+	players.push_back(new Player(sf::Vector2(0, 0), sf::Vector2f(0, 0), EntityID::PLAYER, country, true));
+	players.push_back(new Player(sf::Vector2(0, 0), sf::Vector2f(0, 0), EntityID::PLAYER, ));
 	loadAttacks();
 	loadEnemies(map);
 	EntityDataStorage::loadTextures();
@@ -29,22 +29,22 @@ void EntityManagementInterface::tick(sf::RenderWindow& win, unsigned int current
 			if (entityPrototype->ID < EntityID::ENEMY_COUNT)
 			{
 				if (entityPrototype->ID < EntityID::ENEMY_AIR_COUNT)
-					airEnemies.push_back(new Enemy_new(entityPrototype));
+					airEnemies.push_back(new Enemy(entityPrototype));
 				else if (entityPrototype->ID < EntityID::ENEMY_LAND_COUNT)
-					landEnemies.push_back(new Enemy_new(entityPrototype));
+					landEnemies.push_back(new Enemy(entityPrototype));
 				else if (entityPrototype->ID < EntityID::ENEMY_WATER_COUNT)
-					waterEnemies.push_back(new Enemy_new(entityPrototype));
+					waterEnemies.push_back(new Enemy(entityPrototype));
 			}
 			else if (entityPrototype->ID < EntityID::TILE_ENTITY_COUNT)
 				tileEntities.push_back(new TileEntity(entityPrototype));
 		}
 	}
 
-	generalTick<Enemy_new>(landEnemies, win);
-	generalTick<Projectile_new>(projectiles, win);
-	generalTick<Enemy_new>(airEnemies, win);
-	generalTick<Enemy_new>(waterEnemies, win);
-	generalTick<Boss_new>(bossEnemies, win);
+	generalTick<Enemy>(landEnemies, win);
+	generalTick<Projectile>(projectiles, win);
+	generalTick<Enemy>(airEnemies, win);
+	generalTick<Enemy>(waterEnemies, win);
+	generalTick<Boss>(bossEnemies, win);
 	generalTick<PermanentSpawner>(permanentSpawners, win);
 	generalTick<TemporarySpawner>(temporarySpawners, win);
 	generalTick<TileEntity>(tileEntities, win);

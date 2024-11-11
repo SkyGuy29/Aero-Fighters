@@ -1,14 +1,14 @@
 #pragma once
-#include "../Projectile_new.h"
+#include "../Projectile.h"
 
 
 // target closest enemy; 3 hits til death?
 // possibly pass a stack of enemies to target?
-class Missile : public Projectile_new
+class Missile : public Projectile
 {
 public:
 	Missile(ProjectilePrototype prototype, Entity* owner, Entity* target)
-		: Projectile_new(prototype, owner)
+		: Projectile(prototype, owner)
 	{
 		this->target = target;
 	}

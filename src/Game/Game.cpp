@@ -24,7 +24,7 @@ Game::Game()
 	//Level::setView(view);
 
 	resize();
-
+	level = new Level(window);
 
 	// Initializes Menu Data
 	menuCountdown.setFont(font);
@@ -52,6 +52,11 @@ Game::Game()
 	// debugging always on top window
 	// can't see window while exec paused
 	//setWindowTopmost(window);
+}
+
+~Game()
+{
+	
 }
 
 
@@ -82,7 +87,7 @@ void Game::run()
 		// Debug code to allow for speeding up the game
 		if (key(0, Controls::FastForward) || button(0, Controller::X))
 		{
-			level.debugMode();
+			level->debugMode();
 			ticksPerSec = 600;
 		}
 		else
@@ -91,7 +96,7 @@ void Game::run()
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::B) && !levelEditor &&
 			sf::Keyboard::isKeyPressed(sf::Keyboard::LControl) && !countryChoose.isDone())
 		{
-			inLevelEditor = true;
+			levelEditorActive = true;
 			// static casts are annyoing to look at
 			window.setSize(sf::Vector2u(
 				static_cast<unsigned int>(winSize.x) * 4,
@@ -161,7 +166,7 @@ void Game::run()
 				Level::setView(view);
 
 				//level::update() runs most of the gameplay.
-				if (!level.update(winSize))
+				if (!level->update(winSize))
 				{
 					if (false) //game over, both players dead + animations finished - Christian
 					{
@@ -175,7 +180,7 @@ void Game::run()
 						//pick next level
 					}
 				}
-				viewportScroll -= level.getBackgroundSpeed();
+				viewportScroll -= level->getBackgroundSpeed();
 			}
 			else if (currentMenu == Menu::SELECT)
 			{
@@ -227,7 +232,7 @@ void Game::run()
 			window.setView(view);
 			//Object::setView(view);
 			//Level::setView(view);
-			window.draw(level);
+			//window.draw(level);
 		}
 		// This does have to be it's own 'if' so the game over screen can overlay the gameplay
 		if (currentMenu != Menu::LEVEL) //placeholder, will be rearranged later - Christian
@@ -275,7 +280,7 @@ bool Game::changeMenu(Menu newMenu)
 			break;
 		case Menu::LEVEL:
 			//load new level, make sure things that need to be reset are reset
-			level.load(winSize, country, currentLevel, false);
+			level->load(winSize, country, currentLevel, false);
 			break;
 		case Menu::MISSION:
 			//reset and load the mission cutscene
@@ -347,7 +352,7 @@ void Game::updateSelectMenu()
 		{
 			playersDead = false;
 			currentMenu = Menu::LEVEL;
-			level.respawnPlayers();
+			level->respawnPlayers();
 		}
 
 		// Return to main menu for now, probably cutscene later
@@ -355,7 +360,8 @@ void Game::updateSelectMenu()
 		{
 			playersDead = false;
 			countryChoose.set(10, ticksPerSec);
-			level = Level();
+			delete level;
+			level = new Level(window);
 			viewportScroll = winSize.y / 2.f;
 		}
 	}
@@ -403,10 +409,10 @@ void Game::updateSelectMenu()
 			// Reset player choose, load the respective level, and early escape
 			countryChoose.reset();
 			currentMenu = Menu::LEVEL;
-			level.load(winSize, country, Map::England, levelEditor); // Set the last param for loading the correct map
+			level->load(winSize, country, Map::England, levelEditor); // Set the last param for loading the correct map
 
 			if (debugSkipToBoss)
-				viewportScroll = level.skipToBoss();
+				viewportScroll = level->skipToBoss();
 		}
 	}
 }

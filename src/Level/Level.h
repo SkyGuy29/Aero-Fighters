@@ -20,8 +20,6 @@
 class Level final
 {
 public:
-	
-
 	Level(sf::RenderWindow& window);
 	~Level();
 
