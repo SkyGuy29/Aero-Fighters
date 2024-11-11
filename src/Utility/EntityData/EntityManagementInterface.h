@@ -143,30 +143,30 @@ void EntityManagementInterface::generalTick(std::vector<T*>& entities, sf::Rende
 
 		if (action != Entity::EntityObjectAction::DELETE)
 		{
-			if (action != Entity::EntityObjectAction::NOTHING && dynamic_cast<ICollidable>(entities.at(i)))
+			if (action != Entity::EntityObjectAction::NOTHING && dynamic_cast<ICollidable>(*entities.at(i)))
 			{
 				if (collide(projectiles, entities.at(i)))
 				{
-					if (!dynamic_cast<IHasHealth>(entities.at(i)) ||
-							(dynamic_cast<IHasHealth>(entities.at(i)) &&
+					if (!dynamic_cast<IHasHealth>(*entities.at(i)) ||
+							(dynamic_cast<IHasHealth>(*entities.at(i)) &&
 							entities.at(i)->getHealth() == 0))
 					{
 						delete entities.at(i);
-						entities.erase(i);
+						entities.erase(entities.begin() + i);
 						i--;
 					}
 					else
 					{
-						entities.at(i).damage();
+						entities.at(i)->damage();
 					}
 				}
 			}
 
-			data = entities.at(i).tick();
+			data = entities.at(i)->tick();
 
 			if (data.hasAttacked)
 			{
-				processAttack<T>(data.attack, entities.at(i));
+				processAttack<T>(data.attack, *entities.at(i));
 			}
 		}
 			
