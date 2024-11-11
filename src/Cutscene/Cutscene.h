@@ -44,7 +44,7 @@ private:
 	sf::Texture targetText[2];
 	sf::Sprite targetSprite;
 	sf::Clock timer;
-	sf::Texture explosionTxt[17];
+	sf::Texture explosionTxt[16];
 	sf::Sprite explosion;
 
 };

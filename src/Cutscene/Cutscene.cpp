@@ -74,7 +74,7 @@ Cutscene::Cutscene()
 	targetText[0].loadFromFile("res/Dialog/target1.png");
 	targetText[1].loadFromFile("res/Dialog/target2.png");
 
-	for (int i = 0; i < 17; i++)
+	for (int i = 0; i < 16; i++)
 		explosionTxt[i].loadFromFile("res/Dialog/Explosion" + std::to_string(i) + ".png");
 }
 
@@ -206,8 +206,8 @@ void Cutscene::draw(int country, int level, int player, sf::RenderWindow& window
 		if (otherTemp < 1.)
 		{
 			window.draw(explosion);
-			for (int i = 0; i <= 17; i++)
-				if ((i - 1)/17. < otherTemp && i/17. < otherTemp)
+			for (int i = 1; i <= 16; i++)
+				if ((i - 1)/16. < otherTemp && i/16. < otherTemp)
 					explosion.setTexture(explosionTxt[i-1]);
 		}
 
