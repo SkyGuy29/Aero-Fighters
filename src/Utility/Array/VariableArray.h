@@ -2,6 +2,7 @@
 #include <stdexcept>
 #include "ReturnData.h"
 #include "SpacingElement.h"
+#include "../EntityData/ProjectilePrototype.h"
 
 /**
  * Holds static data tables where individual elements can
@@ -48,7 +49,7 @@ public:
 
 		// Return reference to array index & the number of elements it holds.
 		return ReturnData<RAW_TYPE>(
-			DATA[SPACING[index].STARTING_INDEX],
+			(ReturnData<ProjectilePrototype>*)DATA[SPACING[index].STARTING_INDEX],
 			SPACING[index].ENDING_INDEX - SPACING[index].STARTING_INDEX + 1
 		);
 	}

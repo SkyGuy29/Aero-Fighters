@@ -4,6 +4,7 @@
 #include <stdint.h>
 #include <unordered_map>
 #include <SFML/Graphics/Sprite.hpp>
+#include "../../Utility/EntityData/ProjectilePrototype.h"
 
 #include "../Array/VariableArray.h"
 
@@ -22,10 +23,6 @@ public:
 
 	// Must never be constructed
 	EntityDataStorage() = delete;
-
-	struct ProjectilePrototype;
-
-	struct AttackPrototype;
 
 	// The stored default information for a given entity; very generic.
 	struct EntityData
