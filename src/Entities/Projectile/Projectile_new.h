@@ -9,7 +9,7 @@ class Projectile_new :
 	public Entity, public ICollidable
 {
 public:
-	Projectile_new(const ProjectilePrototype prototype, Entity* owner);
+	Projectile_new(const ProjectilePrototype prototype, unsigned int ownerUUID);
 
 	TickData tick() override;
 	virtual void move();

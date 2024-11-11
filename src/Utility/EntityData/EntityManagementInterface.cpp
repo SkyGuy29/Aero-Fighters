@@ -45,8 +45,6 @@ void EntityManagementInterface::tick(sf::RenderWindow& win, unsigned int current
 	generalTick<Enemy_new>(airEnemies, win);
 	generalTick<Enemy_new>(waterEnemies, win);
 	generalTick<Boss_new>(bossEnemies, win);
-	generalTick<PermanentSpawner>(permanentSpawners, win);
-	generalTick<TemporarySpawner>(temporarySpawners, win);
 	generalTick<TileEntity>(tileEntities, win);
 	generalTick<PowerUp>(powerUps, win);
 }
