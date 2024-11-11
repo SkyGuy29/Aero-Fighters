@@ -13,7 +13,7 @@ public:
 		EntityID ID, unsigned int line = 0);
 	// dont be null :pray:
 	// ANDREW HERE make line work
-	Enemy(EntityPrototype* prototype) : Enemy(prototype->SPAWN_POS, prototype->SPAWN_VELOCITY, prototype->ID, prototype->LINE) {};
+	Enemy(EntityPrototype* prototype) : Enemy(prototype->SPAWN_POS, prototype->SPAWN_VELOCITY, prototype->ID, prototype->LINE) {}
 	~Enemy() override;
 
 	TickData tick() override;
@@ -44,8 +44,6 @@ public:
 	}
 
 	unsigned int getLine() { return line; }
-
-
 protected:
 	virtual TickData attack();
 	Enemy* child = nullptr;

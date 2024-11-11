@@ -742,7 +742,6 @@ EntityDataStorage::EntityData const EntityDataStorage::EntityDataTable[static_ca
 	// TILE_ENTITY_COUNT, (null)
 
 };
-
 // Generic entity
 /*
 	EntityData {
