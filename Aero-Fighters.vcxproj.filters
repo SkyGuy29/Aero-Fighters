@@ -6,8 +6,6 @@
     <ClCompile Include="src\Entities\Projectile\Missile\Missile.cpp" />
     <ClCompile Include="src\Utility\EntityData\EntityManagementInterface.cpp" />
     <ClCompile Include="src\Entities\Enemy\Boss\Boss_new.cpp" />
-    <ClCompile Include="src\Entities\Spawner\EnemySpawner.cpp" />
-    <ClCompile Include="src\Entities\Spawner\PermanentSpawner\PermanentSpawner.cpp" />
     <ClCompile Include="src\Entities\Enemy\Enemy_new.cpp" />
     <ClCompile Include="src\Entities\Entity.cpp" />
     <ClCompile Include="src\Utility\EntityData\EntityDataStorage.cpp" />
@@ -30,7 +28,6 @@
     <ClInclude Include="src\Utility\EntityData\EntityData.h" />
     <ClInclude Include="src\Utility\EntityData\EntityManagementInterface.h" />
     <ClInclude Include="src\Entities\Enemy\Boss\Boss_new.h" />
-    <ClInclude Include="src\Entities\Spawner\EnemySpawner.h" />
     <ClInclude Include="src\Entities\Enemy\Enemy_new.h" />
     <ClInclude Include="src\Entities\Entity.h" />
     <ClInclude Include="src\Utility\EntityData\EntityDataStorage.h" />
@@ -78,5 +75,24 @@
     <Text Include="src\Cutscene\swedenDialog.txt" />
     <Text Include="res\attacks example.txt" />
     <Text Include="res\attacks.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\Dialog\Explosion0.png" />
+    <Image Include="res\Dialog\Explosion1.png" />
+    <Image Include="res\Dialog\Explosion2.png" />
+    <Image Include="res\Dialog\Explosion3.png" />
+    <Image Include="res\Dialog\Explosion4.png" />
+    <Image Include="res\Dialog\Explosion5.png" />
+    <Image Include="res\Dialog\Explosion6.png" />
+    <Image Include="res\Dialog\Explosion7.png" />
+    <Image Include="res\Dialog\Explosion8.png" />
+    <Image Include="res\Dialog\Explosion9.png" />
+    <Image Include="res\Dialog\Explosion10.png" />
+    <Image Include="res\Dialog\Explosion11.png" />
+    <Image Include="res\Dialog\Explosion12.png" />
+    <Image Include="res\Dialog\Explosion13.png" />
+    <Image Include="res\Dialog\Explosion14.png" />
+    <Image Include="res\Dialog\Explosion15.png" />
+    <Image Include="res\Dialog\Explosion16.png" />
   </ItemGroup>
 </Project>
