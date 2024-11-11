@@ -94,10 +94,10 @@ void Entity::nextFrame(const int frameRate)
 	}
 
 	sf::Vector2i intermediary = EntityDataStorage::getEntity(UUID).getTextureRect().getSize();
-	sf::Vector2<double> texSize = { intermediary.x, intermediary.y };
+	sf::Vector2<double> texSize = { (double)intermediary.x, (double)intermediary.y };
 
 	intermediary = EntityDataStorage::getEntity(UUID).getTextureRect().getPosition();
-	sf::Vector2<double> texOffset = { intermediary.x, intermediary.y };
+	sf::Vector2<double> texOffset = { (double)intermediary.x, (double)intermediary.y };
 
 	// the dividing to an int is needed for the updates per frame delay.
 	sprite->setTextureRect(sf::IntRect(

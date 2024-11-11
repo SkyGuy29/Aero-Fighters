@@ -54,9 +54,9 @@ Game::Game()
 	//setWindowTopmost(window);
 }
 
-~Game()
+Game::~Game()
 {
-	
+	delete level;
 }
 
 

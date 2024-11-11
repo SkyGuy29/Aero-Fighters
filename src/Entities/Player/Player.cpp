@@ -2,7 +2,7 @@
 
 
 Player::Player(sf::Vector2f pos, EntityID ID,
-               int* backgroundSpeed, unsigned char orientation = 0) :
+               int* backgroundSpeed, unsigned char orientation) :
 	Entity(pos, ID), IHasHealth(ID)
 {
 
@@ -55,14 +55,13 @@ Entity::TickData Player::tick()
 			playerShootLast[i] = false;*/
 		// projectiles have owners now
 
-		if (special)
-			special();
+		//if (special)
+		//	special();
 
 		if (spawn) //Temporary and should be changed to continue.
 		{
-			EntityDataStorage::
-			entities.players[0]->setHealth(3);
-			entities.players[1]->setHealth(3);
+			//entities.players[0]->setHealth(3);
+			//entities.players[1]->setHealth(3);
 		}
 	}
 }

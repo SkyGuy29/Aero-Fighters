@@ -11,8 +11,8 @@
 
 inline void EntityManagementInterface::load(Map map)
 {
-	players.push_back(new Player(sf::Vector2(0, 0), sf::Vector2f(0, 0), EntityID::PLAYER, country, true));
-	players.push_back(new Player(sf::Vector2(0, 0), sf::Vector2f(0, 0), EntityID::PLAYER, ));
+	//players.push_back(new Player(sf::Vector2(0, 0), sf::Vector2f(0, 0), EntityID::PLAYER, country, true));
+	//players.push_back(new Player(sf::Vector2(0, 0), sf::Vector2f(0, 0), EntityID::PLAYER ));
 	loadAttacks();
 	loadEnemies(map);
 	EntityDataStorage::loadTextures();
@@ -45,8 +45,6 @@ void EntityManagementInterface::tick(sf::RenderWindow& win, unsigned int current
 	generalTick<Enemy>(airEnemies, win);
 	generalTick<Enemy>(waterEnemies, win);
 	generalTick<Boss>(bossEnemies, win);
-	generalTick<PermanentSpawner>(permanentSpawners, win);
-	generalTick<TemporarySpawner>(temporarySpawners, win);
 	generalTick<TileEntity>(tileEntities, win);
 	generalTick<PowerUp>(powerUps, win);
 }
@@ -68,8 +66,6 @@ inline void EntityManagementInterface::unload()
 	deleteVector((std::vector<void*>&)bossEnemies);
 	deleteVector((std::vector<void*>&)players);
 	deleteVector((std::vector<void*>&)projectiles);
-	deleteVector((std::vector<void*>&)permanentSpawners);
-	deleteVector((std::vector<void*>&)temporarySpawners);
 	deleteVector((std::vector<void*>&)tileEntities);
 	deleteVector((std::vector<void*>&)powerUps);
 	EntityDataStorage::unloadTextures();
@@ -141,8 +137,6 @@ inline void EntityManagementInterface::loadAttacks()
 					splitVec = split_(input);
 					assert(splitVec.size() == 2, "Attack loading failed. 4");
 					tempData.hitboxSize = sf::Vector2f(splitVec[0], splitVec[1]);
-				default:
-					// ignore the line
 				}
 			}
 			line = 0;
