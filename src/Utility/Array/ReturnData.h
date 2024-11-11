@@ -11,7 +11,7 @@ template<typename RAW_TYPE>
 struct ReturnData
 {
 	// The beginning of the sub-array
-	const RAW_TYPE* DATA;
+	const RAW_TYPE& DATA;
 	// The length of the sub-array
 	const unsigned char COUNT;
 

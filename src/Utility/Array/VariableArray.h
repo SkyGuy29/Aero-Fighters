@@ -49,7 +49,7 @@ public:
 
 		// Return reference to array index & the number of elements it holds.
 		return ReturnData<RAW_TYPE>(
-			(ReturnData<ProjectilePrototype>*)DATA[SPACING[index].STARTING_INDEX],
+			(RAW_TYPE&)DATA[SPACING[index].STARTING_INDEX],
 			SPACING[index].ENDING_INDEX - SPACING[index].STARTING_INDEX + 1
 		);
 	}
