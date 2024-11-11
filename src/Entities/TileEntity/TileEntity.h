@@ -12,7 +12,7 @@ public:
 
     TickData tick() override;
 
-    const CollisionType CollidesWith(ICollidable* other) const noexcept override;
-    const sf::IntRect& getBounds() const noexcept override;
+    const CollisionType CollidesWith(ICollidable* other) const override;
+    const sf::IntRect& getBounds() const override;
 };
 

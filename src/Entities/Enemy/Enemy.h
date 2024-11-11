@@ -6,7 +6,7 @@
 
 // Primarily used by 
 class Enemy :
-	public Entity, protected IHasHealth, public ICollidable
+	public Entity, public IHasHealth, public ICollidable
 {
 public:
 	Enemy(sf::Vector2f pos, sf::Vector2f vel,

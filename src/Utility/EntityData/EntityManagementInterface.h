@@ -145,7 +145,7 @@ void EntityManagementInterface::generalTick(std::vector<T*>& entities, sf::Rende
 		{
 			if (action != Entity::EntityObjectAction::NOTHING && dynamic_cast<ICollidable>(*entities.at(i)))
 			{
-				if (collide(projectiles, entities.at(i)))
+				if (collide(projectiles, *entities.at(i)))
 				{
 					if (!dynamic_cast<IHasHealth>(*entities.at(i)) ||
 							(dynamic_cast<IHasHealth>(*entities.at(i)) &&
