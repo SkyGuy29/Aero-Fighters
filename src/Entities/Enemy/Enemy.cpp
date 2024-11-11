@@ -20,9 +20,11 @@ Entity::TickData Enemy::tick()
 		if (curCooldown > 0)
 			--curCooldown;
 	}
+	return TickData();
 }
 
 Entity::TickData Enemy::attack()
 {
 	// Map IDs to attacks here, return information.
+	return TickData();
 }

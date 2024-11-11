@@ -126,7 +126,7 @@ void EntityManagementInterface::generalTick(std::vector<T*>& entities, sf::Rende
 		{
 		case Entity::EntityObjectAction::DELETE:
 			delete entities.at(i);
-			entities.erase(i);
+			entities.erase(entities.begin()+i);
 			i--;
 			action = Entity::EntityObjectAction::DELETE;
 			break;

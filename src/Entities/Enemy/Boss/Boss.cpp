@@ -9,4 +9,6 @@ Entity::TickData Boss::tick()
 	{
 		child.tick();
 	}
+
+	return TickData();
 }
