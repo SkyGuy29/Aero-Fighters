@@ -17,7 +17,7 @@ public:
 	}
 
 	// The overridden collision method for enemies to handle children
-	const CollisionType CollidesWith(ICollidable* other) const noexcept override
+	const CollisionType collidesWith(ICollidable* other) const noexcept override
 	{
 		// Default to miss, only change if has collided in a different way
 		CollisionType ret = CollisionType::MISS;

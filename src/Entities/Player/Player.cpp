@@ -64,6 +64,8 @@ Entity::TickData Player::tick()
 			//entities.players[1]->setHealth(3);
 		}
 	}
+
+	return TickData(NULL, (EntityDataStorage::AttackID)NULL);
 }
 
 

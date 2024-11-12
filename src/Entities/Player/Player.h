@@ -18,7 +18,6 @@ public:
     void setHealth(short h) { health = h; };
     void increasePower();
     void increaseSpecial();
-
 private:
     //power level goes up to 3, 4 total levels -Phoenix
     unsigned int powerLevel = 0, 

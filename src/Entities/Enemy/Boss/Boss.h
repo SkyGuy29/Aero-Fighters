@@ -11,7 +11,7 @@ public:
 	TickData attack() override;
 
 	// The overridden collision method for enemies to handle children
-	const CollisionType CollidesWith(ICollidable* other) const noexcept override
+	const CollisionType collidesWith(ICollidable* other) const noexcept override
 	{
 		unsigned char c_index = 0;
 		// Default to miss, only change if has collided in a different way
@@ -22,7 +22,7 @@ public:
 
 		while (ret != CollisionType::CHILD && c_index < children.size() && ret != CollisionType::HIT)
 		{
-			if (children.at(c_index).CollidesWith(other) == CollisionType::HIT)
+			if (children.at(c_index).collidesWith(other) == CollisionType::HIT)
 			{
 				child->damage();
 

@@ -76,8 +76,8 @@ private:
 	template<typename T> requires std::derived_from<T, Entity>
 	static void generalLevelEditorUpdate(std::vector<T*> entities);
 
-	template<typename T> requires std::derived_from<T, ICollidable>
-	static inline bool collide(std::vector<T*>& entities, T& entity);
+	template <typename T, typename V> requires std::derived_from<T, ICollidable>&& std::derived_from<V, ICollidable>
+	static bool collide(std::vector<V*>& entities, T* entity);
 
 	static void deleteVector(std::vector<void*>& a);
 
@@ -141,25 +141,27 @@ void EntityManagementInterface::generalTick(std::vector<T*>& entities, sf::Rende
 			break;
 		}
 
-		if (action != Entity::EntityObjectAction::DELETE)
+		if (action != Entity::EntityObjectAction::DELETE && action != Entity::EntityObjectAction::NOTHING)
 		{
-			if (action != Entity::EntityObjectAction::NOTHING && dynamic_cast<ICollidable>(*entities.at(i)))
+			ICollidable* icCast = dynamic_cast<ICollidable*>(entities.at(i));
+
+			if (icCast != nullptr && 
+				collide(projectiles, icCast)
+				)
 			{
-				if (collide(projectiles, *entities.at(i)))
+				auto hCast = dynamic_cast<IHasHealth*>(entities.at(i));
+
+				if (hCast == nullptr ||
+						(hCast &&
+						hCast->getHealth() == 0)
+					)
 				{
-					if (!dynamic_cast<IHasHealth>(*entities.at(i)) ||
-							(dynamic_cast<IHasHealth>(*entities.at(i)) &&
-							entities.at(i)->getHealth() == 0))
-					{
-						delete entities.at(i);
-						entities.erase(entities.begin() + i);
-						i--;
-					}
-					else
-					{
-						entities.at(i)->damage();
-					}
+					delete entities.at(i);
+					entities.erase(entities.begin() + i);
+					i--;
 				}
+				else if (hCast != nullptr)
+					hCast->damage();
 			}
 
 			data = entities.at(i)->tick();
@@ -186,18 +188,18 @@ void EntityManagementInterface::processAttack(EntityDataStorage::AttackID ID, T&
 	}*/
 }
 
-template <typename T> requires std::derived_from<T, ICollidable>
-bool EntityManagementInterface::collide(std::vector<T*>& entities, T& entity)
+template <typename T, typename V> requires std::derived_from<T, ICollidable> && std::derived_from<V, ICollidable>
+bool EntityManagementInterface::collide(std::vector<V*>& entities, T* entity)
 {
 	bool done = false;
 	size_t index = 0;
 
 	while (!done && index < entities.size())
 	{
-		if (entities.at(index).collidesWith(entity.getBounds()))
+		if (dynamic_cast<ICollidable*>(entities[index])->collidesWith(entity) != ICollidable::CollisionType::MISS)
 		{
-			delete entities.at(index);
-			entities.erase(index);
+			delete entities[index];
+			entities.erase(entities.begin() + index);
 			done = true;
 		}
 	}
