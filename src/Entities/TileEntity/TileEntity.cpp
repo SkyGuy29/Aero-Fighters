@@ -1,5 +1,16 @@
 #include "TileEntity.h"
 
+TileEntity::TileEntity(EntityPrototype* prototype)
+	: Entity(prototype->SPAWN_POS, prototype->ID)
+{
+
+}
+
+Entity::TickData TileEntity::tick()
+{
+	return TickData();
+}
+
 const ICollidable::CollisionType TileEntity::collidesWith(ICollidable* other) const
 {
 	return ICollidable::collidesWith(other);

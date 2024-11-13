@@ -7,9 +7,21 @@
 #include "../../Entities/PowerUp/PowerUp.h"
 #include "../../Entities/TileEntity/TileEntity.h"
 #include "../../Entities/Enemy/Boss/Boss.h"
+// must declare these in cpp
+std::unordered_map<unsigned int, std::vector<EntityPrototype*>> EntityManagementInterface::spawnMap;
+std::vector<Player*> EntityManagementInterface::players; // spawned at start
+std::vector<Enemy*> EntityManagementInterface::landEnemies; // spawned at start (spawnMap:0)
+std::vector<Projectile*> EntityManagementInterface::projectiles; // spawned dynamically by enemies
+std::vector<Enemy*> EntityManagementInterface::airEnemies; // spawnMap
+std::vector<Enemy*> EntityManagementInterface::waterEnemies; // spawnMap
+std::vector<Boss*> EntityManagementInterface::bossEnemies; // ?
+std::vector<TileEntity*> EntityManagementInterface::tileEntities; // spawned at start (spawnMap:0)
+std::vector<PowerUp*> EntityManagementInterface::powerUps; // spawned dynamically by enemies
+std::unordered_map<std::string, std::vector<ProjectilePrototype>> EntityManagementInterface::attackData;
+unsigned int EntityManagementInterface::lastTick;
 
 
-inline void EntityManagementInterface::load(Map map)
+void EntityManagementInterface::load(Map map)
 {
 	//players.push_back(new Player(sf::Vector2(0, 0), sf::Vector2f(0, 0), EntityID::PLAYER, country, true));
 	//players.push_back(new Player(sf::Vector2(0, 0), sf::Vector2f(0, 0), EntityID::PLAYER ));
@@ -58,7 +70,7 @@ void EntityManagementInterface::updateLevelEditor()
 }
 
 
-inline void EntityManagementInterface::unload()
+void EntityManagementInterface::unload()
 {
 	deleteVector((std::vector<void*>&)landEnemies);
 	deleteVector((std::vector<void*>&)airEnemies);
@@ -106,7 +118,7 @@ inline void EntityManagementInterface::loadAttacks()
 		else if (input.starts_with("PROJ"))
 		{
 			input = "";
-			while(!input.starts_with("PROJ"))
+			while(!input.starts_with("PROJ") && !f.eof())
 			{
 				std::getline(f, input);
 				line++;
@@ -140,7 +152,8 @@ inline void EntityManagementInterface::loadAttacks()
 				}
 			}
 			line = 0;
-			f.seekg(-5, std::ios_base::cur); // setup for next read
+			if(!f.eof())
+				f.seekg(-5, std::ios_base::cur); // setup for next read
 
 			// id is an offset from the projectile start entity id
 			attackData[attackName].push_back(ProjectilePrototype(tempData.spawnPos,

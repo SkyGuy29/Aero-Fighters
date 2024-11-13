@@ -4,6 +4,8 @@
 
 #include "EntityData.hpp"
 #include "../EntityID.h"
+std::unordered_map<unsigned int, sf::Sprite*> EntityDataStorage::spriteTable;
+std::unordered_map<EntityDataStorage::EntityData::SpriteData::TextureType, sf::Texture*> EntityDataStorage::EntityData::textureMap;
 
 
 void EntityDataStorage::loadTextures()

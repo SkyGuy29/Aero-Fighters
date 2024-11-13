@@ -131,7 +131,7 @@ PROJ  // Power level 3 Sweden P1 (cases 7,22)
 NEW O0_P1JAPAN 
 PROJ // Base power Japan P1 (case 8)
 0 -16
-0 -15 // Note higher velocity
+0 -15
 8
 0
 0
@@ -192,14 +192,14 @@ PROJ // Center shot // Power level 2 England P1 with spread (case 28)
 9 31
 PROJ // Left diagonal
 0 -16
--3.4 -9.4 // Calculated from cos(70°)*10 and -sin(70°)*10
+-3.4 -9.4
 11
 0
 0
 9 31
 PROJ // Right diagonal
 0 -16
-3.4 -9.4 // Calculated from cos(110°)*10 and -sin(110°)*10
+3.4 -9.4
 11
 0
 0

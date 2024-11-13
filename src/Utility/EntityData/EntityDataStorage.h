@@ -47,7 +47,7 @@ public:
 				GATE,
 				HOOD,
 				CONE,
-				ROOFUS, // Why?
+				ROOFUS,
 				DOME_ANIMATION,
 				AVRO_BOMBER,
 			};
@@ -138,7 +138,7 @@ public:
 		EntityData() : spriteData(SpriteData(sf::IntRect(NULL, NULL, NULL, NULL), NULL, NULL, NULL, (SpriteData::TextureType)NULL)),
 			velocity(sf::Vector2f(NULL, NULL)), health(NULL), baseCooldown(NULL), CHILD_DATA(NULL)
 		{
-			throw std::exception("Failure loading entity data.");
+			//throw std::exception("Failure loading entity data.");
 		}
 	private:
 		friend SpriteData;
@@ -170,7 +170,7 @@ public:
 
 	static inline void addEntity(unsigned int UUID, sf::Sprite sprite)
 	{
-		spriteTable.emplace(UUID, sprite);
+		spriteTable.emplace(UUID, &sprite);
 	}
 
 
@@ -180,13 +180,13 @@ public:
 	}
 
 
-	static inline sf::Sprite& getEntity(unsigned int UUID)
+	static inline sf::Sprite* getEntity(unsigned int UUID)
 	{
 		return spriteTable.at(UUID);
 	}
 
 private:
-	static std::unordered_map<unsigned int, sf::Sprite> spriteTable;
+	static std::unordered_map<unsigned int, sf::Sprite*> spriteTable;
 	// Entity Data Table
 	static EntityData const EntityDataTable[static_cast<unsigned char>(EntityID::COUNT)];
 

@@ -1,7 +1,7 @@
 #pragma once
 #include "../Entity.h"
 #include "../Interfaces/ICollidable.h"
-#include "../../Utility/EntityData/EntityData.hpp"
+//#include "../../Utility/EntityData/EntityData.hpp"
 
 // TODO add to this class
 class TileEntity :
@@ -15,4 +15,3 @@ public:
     const CollisionType collidesWith(ICollidable* other) const override;
     const sf::IntRect& getBounds() const override;
 };
-

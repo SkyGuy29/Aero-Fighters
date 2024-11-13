@@ -14,7 +14,7 @@
 #include "./ProjectilePrototype.h"
 
 
-enum Map
+enum Map : uint8_t
 {
 	England,
 	Israel,
@@ -46,16 +46,16 @@ public:
 	~EntityManagementInterface() = delete;
 
 
-	static inline void load(Map map);
-	static inline void tick(sf::RenderWindow& win, unsigned int currentTick);
+	static void load(Map map);
+	static void tick(sf::RenderWindow& win, unsigned int currentTick);
 	static void updateLevelEditor();
-	static inline std::vector<Player*>& getPlayers() { return players; };
+	static std::vector<Player*>& getPlayers() { return players; };
 	
 	// frees memory
-	static inline void unload();
+	static void unload();
 
 
-	static inline void resetPlayers()
+	static void resetPlayers()
 	{
 		for (auto player : players)
 		{
@@ -94,6 +94,7 @@ private:
 			else
 				temp += s[i];
 		}
+		ret.push_back(strtof(temp.c_str(), nullptr));
 
 		return ret;
 	}
@@ -132,7 +133,7 @@ void EntityManagementInterface::generalTick(std::vector<T*>& entities, sf::Rende
 			break;
 
 		case Entity::EntityObjectAction::DRAW: // draw the entity's sprite
-			win.draw(EntityDataStorage::getEntity(entities.at(i)->getUUID()));
+			win.draw(*EntityDataStorage::getEntity(entities.at(i)->getUUID()));
 			action = Entity::EntityObjectAction::DRAW;
 			break;
 

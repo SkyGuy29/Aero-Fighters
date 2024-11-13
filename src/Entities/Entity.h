@@ -43,7 +43,7 @@ public:
 
 	static void setBackgroundSpeed(float& speed) { backgroundSpeed = speed; }
 
-	static void setCurrentTick(unsigned int& ct) { currentTick = ct; }
+	static void setCurrentTick(unsigned int& ct) { currentTick = &ct; }
 	
 	void setPosition(sf::Vector2f pos);
 
@@ -108,12 +108,12 @@ protected:
 private:
 
 	// The size of the window
-	static WindowSize& winSize;
+	static WindowSize* winSize;
+
+	static unsigned int* currentTick;
 
 	// The next UUID that will be assigned.
 	static unsigned int next_uuid;
-
-	static unsigned int& currentTick;
 
 	// A map of all UUIDs to sprites
 	static std::unordered_map<unsigned int, sf::Sprite> spriteMap;

@@ -9,6 +9,11 @@ Enemy::Enemy(sf::Vector2f pos, sf::Vector2f vel,
 }
 
 
+Enemy::~Enemy()
+{
+
+}
+
 Entity::TickData Enemy::tick()
 {
 	if (hasSpawned())

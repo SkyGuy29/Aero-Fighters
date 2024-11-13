@@ -19,7 +19,7 @@ public:
 	TickData tick() override;
 	const sf::IntRect& getBounds() const noexcept override
 	{
-		return EntityDataStorage::getEntity(Entity::getUUID()).getTextureRect();
+		return EntityDataStorage::getEntity(Entity::getUUID())->getTextureRect();
 	}
 
 	// The overridden collision method for enemies to handle children
