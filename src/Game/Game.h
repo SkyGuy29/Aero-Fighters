@@ -2,6 +2,7 @@
 
 #include "../Level/Level.h"
 #include "../Cutscene/VideoCutscene.h"
+#include "../Cutscene/Cutscene.h"
 #include <cmath>
 
 /*
@@ -135,8 +136,14 @@ private:
 	//The video cutscene, works for any of them. will be reloaded for each new one.
 	VideoCutscene video;
 
+	//the cutscene cutscene, works for any of them. will be reloaded for each new one.
+	Cutscene cutscene;
+
 	// The game level
 	Level level;
+
+	//player 1 = 0, player2 = 1, player 1 and 2 = 2
+	int players = 0;
 
 	// Last Tick Processing Time
 	int deltaTime = 0,
