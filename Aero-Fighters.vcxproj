@@ -233,10 +233,42 @@
     <None Include="lib\SFML64\lib\sfml-window.pdb" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="res\Dialog\englandDialog.txt" />
+    <Text Include="res\Dialog\japanDialog.txt" />
+    <Text Include="res\Dialog\statesDialog.txt" />
+    <Text Include="res\Dialog\swedenDialog.txt" />
     <Text Include="src\Cutscene\englandDialog.txt" />
     <Text Include="src\Cutscene\japanDialog.txt" />
     <Text Include="src\Cutscene\statesDialog.txt" />
     <Text Include="src\Cutscene\swedenDialog.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\Dialog\Explosion0.png" />
+    <Image Include="res\Dialog\Explosion1.png" />
+    <Image Include="res\Dialog\Explosion10.png" />
+    <Image Include="res\Dialog\Explosion11.png" />
+    <Image Include="res\Dialog\Explosion12.png" />
+    <Image Include="res\Dialog\Explosion13.png" />
+    <Image Include="res\Dialog\Explosion14.png" />
+    <Image Include="res\Dialog\Explosion15.png" />
+    <Image Include="res\Dialog\Explosion2.png" />
+    <Image Include="res\Dialog\Explosion3.png" />
+    <Image Include="res\Dialog\Explosion4.png" />
+    <Image Include="res\Dialog\Explosion5.png" />
+    <Image Include="res\Dialog\Explosion6.png" />
+    <Image Include="res\Dialog\Explosion7.png" />
+    <Image Include="res\Dialog\Explosion8.png" />
+    <Image Include="res\Dialog\Explosion9.png" />
+    <Image Include="res\Dialog\hein.png" />
+    <Image Include="res\Dialog\keath.png" />
+    <Image Include="res\Dialog\keaton.png" />
+    <Image Include="res\Dialog\kohful.png" />
+    <Image Include="res\Dialog\lord white.png" />
+    <Image Include="res\Dialog\mao.png" />
+    <Image Include="res\Dialog\target1.png" />
+    <Image Include="res\Dialog\target2.png" />
+    <Image Include="res\Dialog\tee-bee.png" />
+    <Image Include="res\Dialog\villiam.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

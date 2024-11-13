@@ -194,6 +194,8 @@ void Cutscene::draw(int country, int level, int player, sf::RenderWindow& window
 		case Sweden:
 			targetSprite.setPosition(108, 12);
 			break;
+		case Space:
+			targetSprite.setPosition(-100, -100);
 		}
 
 
@@ -221,7 +223,6 @@ void Cutscene::draw(int country, int level, int player, sf::RenderWindow& window
 			for (int i = 0; i < 3; i++)
 				window.draw(textDia[i + 3]);
 		}
-
 	}
 }
 
