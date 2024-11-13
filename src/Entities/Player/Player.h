@@ -9,9 +9,14 @@ class Player :
     public Entity, public IHasHealth
 {
 public:
-    Player(sf::Vector2f pos, EntityID ID,
-        int* backgroundSpeed, unsigned char orientation = 0
-    );
+    enum PlayerCountry
+    {
+	    AMERICA,
+        JAPAN,
+        SWEDEN,
+        ENGLAND
+    };
+	Player(sf::Vector2f pos, PlayerCountry country, bool isPlayerTwo);
 
     TickData tick();
     bool getTime() { return 0; }

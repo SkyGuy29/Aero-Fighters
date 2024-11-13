@@ -168,7 +168,7 @@ void Game::run()
 					*/
 				}
 				else
-					viewportScroll -= level.getBackgroundSpeed();
+					viewportScroll -= level->getBackgroundSpeed();
 
 				if (playersDead) // Continue menu
 				{
@@ -177,7 +177,7 @@ void Game::run()
 					if (key(0, Controls::Select) || button(0, Controller::Select_BTN))
 					{
 						playersDead = false;
-						level.respawnPlayers();
+						level->respawnPlayers();
 					}
 					
 					continueCount.tick();
@@ -266,7 +266,7 @@ void Game::run()
 			window.setView(view);
 			//Object::setView(view);
 			//Level::setView(view);
-			window.draw(level);
+			level->update(winSize);
 
 			if (playersDead) // Game over menu
 			{
@@ -372,7 +372,8 @@ bool Game::changeMenu(Menu newMenu)
 		if (currentMenu != Menu::LEVEL)
 		{
 			playersDead = false;
-			level = Level();
+			delete level;
+			level = new Level(window);
 		}
 
 		return true;

@@ -25,7 +25,6 @@ public:
 	void draw(int, int, int, sf::RenderWindow&);
 	void startTimer();
 	void levelBeat(int);
-
 private:
 
 	bool lvlBeat[7] = { false,false,false,false,false,false,false };

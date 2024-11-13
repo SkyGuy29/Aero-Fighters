@@ -1,9 +1,8 @@
 #include "Player.h"
 
 
-Player::Player(sf::Vector2f pos, EntityID ID,
-               int* backgroundSpeed, unsigned char orientation) :
-	Entity(pos, ID), IHasHealth(ID)
+Player::Player(sf::Vector2f pos, PlayerCountry country, bool isPlayerTwo) :
+	Entity(pos, EntityID::PLAYER), IHasHealth(ID)
 {
 
 }
@@ -60,8 +59,8 @@ Entity::TickData Player::tick()
 
 		if (spawn) //Temporary and should be changed to continue.
 		{
-			//entities.players[0]->setHealth(3);
-			//entities.players[1]->setHealth(3);
+			setHealth(3);
+			setHealth(3);
 		}
 	}
 

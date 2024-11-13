@@ -49,7 +49,7 @@ public:
 	static void load(Map map);
 	static void tick(sf::RenderWindow& win, unsigned int currentTick);
 	static void updateLevelEditor();
-	static std::vector<Player*>& getPlayers() { return players; };
+	static std::vector<Player*>& getPlayers() { return players; }
 	
 	// frees memory
 	static void unload();

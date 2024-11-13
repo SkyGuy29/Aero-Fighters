@@ -23,8 +23,8 @@ unsigned int EntityManagementInterface::lastTick;
 
 void EntityManagementInterface::load(Map map)
 {
-	//players.push_back(new Player(sf::Vector2(0, 0), sf::Vector2f(0, 0), EntityID::PLAYER, country, true));
-	//players.push_back(new Player(sf::Vector2(0, 0), sf::Vector2f(0, 0), EntityID::PLAYER ));
+	players.push_back(new Player(sf::Vector2f(0, 0), Player::AMERICA, false));
+	players.push_back(new Player(sf::Vector2f(0, 0), Player::AMERICA, true));
 	loadAttacks();
 	loadEnemies(map);
 	EntityDataStorage::loadTextures();
