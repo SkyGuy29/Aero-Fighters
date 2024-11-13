@@ -305,7 +305,11 @@ bool Game::changeMenu(Menu newMenu)
 			break;
 		case Menu::LEVEL:
 			//load new level, make sure things that need to be reset are reset (not done)
-			
+			level.load(winSize, country, currentLevel, false);
+			break;
+		case Menu::MISSION:
+			//reset and load the mission cutscene
+			//imma leave this one to Ray lol
 			//pick next level
 			if (completedLevels.size() < 3)
 			{
@@ -350,12 +354,6 @@ bool Game::changeMenu(Menu newMenu)
 					break;
 				}
 			}
-
-			level.load(winSize, country, currentLevel, false);
-			break;
-		case Menu::MISSION:
-			//reset and load the mission cutscene
-			//imma leave this one to Ray lol
 			break;
 		case Menu::LEADERBOARD:
 			//reset leaderboard stuff
