@@ -1,6 +1,7 @@
 #include "EntityManagementInterface.h"
 
 #include <assert.h>
+#include <ranges>
 
 #include "../../Entities/Enemy/Enemy.h"
 #include "../../Entities/Player/Player.h"
@@ -81,6 +82,11 @@ void EntityManagementInterface::unload()
 	deleteVector((std::vector<void*>&)tileEntities);
 	deleteVector((std::vector<void*>&)powerUps);
 	EntityDataStorage::unloadTextures();
+
+	// deletes the prototypes in the spawn map
+	for (auto& val : spawnMap | std::views::values)
+		for (auto pPrototype : val)
+			delete pPrototype;
 }
 
 
@@ -156,8 +162,8 @@ inline void EntityManagementInterface::loadAttacks()
 				f.seekg(-5, std::ios_base::cur); // setup for next read
 
 			// id is an offset from the projectile start entity id
-			attackData[attackName].push_back(ProjectilePrototype(tempData.spawnPos,
-				tempData.spawnVelocity, tempData.id, tempData.tickOffset, tempData.flags)
+			attackData[attackName].emplace_back(tempData.spawnPos,
+				tempData.spawnVelocity, tempData.id, tempData.tickOffset, tempData.flags
 			);
 		}
 	}
@@ -253,7 +259,6 @@ inline void EntityManagementInterface::loadEnemies(Map map)
 				spawnMap[tempData.spawnTick] = std::vector<EntityPrototype*>();
 			f >> tempData.pos.x >> tempData.pos.y >> tempData.vel.x >> tempData.vel.y >> tempData.spawnTick;
 			tempData.line += 5;
-			// TODO: CLEAN THIS UP ON PROGRAM CLOSE (memory leaks rn)
 			spawnMap[tempData.spawnTick].push_back(new EntityPrototype(tempData.pos, tempData.vel, (EntityID)tempData.id, 0, tempData.line));
 		}
 	}

@@ -14,13 +14,6 @@ using Vec2f = sf::Vector2f;
 class EntityDataStorage
 {
 public:
-
-	enum class AttackID : unsigned char
-	{
-		// MUST REMAIN AT THE END OF THE CLASS
-		COUNT
-	};
-
 	// Must never be constructed
 	EntityDataStorage() = delete;
 
@@ -162,12 +155,6 @@ public:
 	}
 
 
-	static const ReturnData<ProjectilePrototype> getAttack(AttackID ID)
-	{
-		return attackData.at(static_cast<unsigned char>(ID));
-	}
-
-
 	static inline void addEntity(unsigned int UUID, sf::Sprite sprite)
 	{
 		spriteTable.emplace(UUID, &sprite);
@@ -189,10 +176,6 @@ private:
 	static std::unordered_map<unsigned int, sf::Sprite*> spriteTable;
 	// Entity Data Table
 	static EntityData const EntityDataTable[static_cast<unsigned char>(EntityID::COUNT)];
-
-	// Attack Spawning Table
-	static const VariableArray<ProjectilePrototype, /*get Total*/0, static_cast<unsigned char>(AttackID::COUNT)> attackData;
-
 
 	/**
 	 * Brain Food

@@ -23,7 +23,7 @@ public:
 	struct TickData
 	{
 		bool hasAttacked;
-		EntityDataStorage::AttackID attack;
+		std::string attack;
 	};
 
 	virtual ~Entity() = default;

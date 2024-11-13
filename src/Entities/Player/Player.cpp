@@ -64,7 +64,7 @@ Entity::TickData Player::tick()
 		}
 	}
 
-	return TickData(NULL, (EntityDataStorage::AttackID)NULL);
+	return TickData(NULL, "");
 }
 
 

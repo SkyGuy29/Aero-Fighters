@@ -70,8 +70,9 @@ private:
 	template<typename T> requires std::derived_from<T, Entity> 
 	static void generalTick(std::vector<T*>& entities, sf::RenderWindow& win);
 
+	// note: attack strings can be found in attacks.txt after the NEW decleration for each attack
 	template<typename T> requires std::derived_from<T, Entity>
-	static void processAttack(EntityDataStorage::AttackID ID, T& entity);
+	static void processAttack(std::string ID, T& entity);
 
 	template<typename T> requires std::derived_from<T, Entity>
 	static void generalLevelEditorUpdate(std::vector<T*> entities);
@@ -178,16 +179,14 @@ void EntityManagementInterface::generalTick(std::vector<T*>& entities, sf::Rende
 
 
 template <typename T> requires std::derived_from<T, Entity>
-void EntityManagementInterface::processAttack(EntityDataStorage::AttackID ID, T& entity)
+void EntityManagementInterface::processAttack(std::string ID, T& entity)
 {
-	// TODO find out what this is supposed to do & what attackid is for
-	/*ReturnData<EntityDataStorage::ProjectilePrototype> attack = EntityDataStorage::getAttack(ID);
+	std::vector<ProjectilePrototype> prototypes = attackData[ID];
 
-	for (unsigned char i = 0; i < attack.COUNT; i++)
-	{
-		projectiles.emplace(new Projectile(ProjectilePrototype(attack.DATA[i]), &position));
-	}*/
+	for (unsigned int i = 0; i < prototypes.size(); i++)
+		projectiles.push_back(new Projectile(prototypes[i], &entity));
 }
+
 
 template <typename T, typename V> requires std::derived_from<T, ICollidable> && std::derived_from<V, ICollidable>
 bool EntityManagementInterface::collide(std::vector<V*>& entities, T* entity)

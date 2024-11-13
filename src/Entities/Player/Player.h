@@ -18,8 +18,8 @@ public:
     };
 	Player(sf::Vector2f pos, PlayerCountry country, bool isPlayerTwo);
 
-    TickData tick();
-    bool getTime() { return 0; }
+    TickData tick() override;
+    bool getTime() { return false; }
     void setHealth(short h) { health = h; };
     void increasePower();
     void increaseSpecial();
