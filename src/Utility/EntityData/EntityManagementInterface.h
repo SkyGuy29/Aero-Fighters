@@ -117,7 +117,7 @@ private:
 template <typename T> requires std::derived_from<T, Entity>
 void EntityManagementInterface::generalTick(std::vector<T*>& entities, sf::RenderWindow& win)
 {
-	Entity::EntityObjectAction action;
+	Entity::EntityObjectAction action = Entity::EntityObjectAction::NOTHING;
 	Entity::TickData data;
 
 	// For every entity in the vector

@@ -4,7 +4,7 @@
 Player::Player(sf::Vector2f pos, PlayerCountry country, bool isPlayerTwo) :
 	Entity(pos, EntityID::PLAYER), IHasHealth(ID)
 {
-
+	setHealth(3);
 }
 
 
