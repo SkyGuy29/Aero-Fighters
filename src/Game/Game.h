@@ -97,7 +97,6 @@ private:
 	bool changeMenu(Menu newMenu);
 
 	void updateSelectMenu();
-	void drawSelectMenu();
 	void resize();
 
 	// The game window
@@ -156,7 +155,8 @@ private:
 		// Selection menu outline blinking
 		blinkState = false,
 		// Level editor debug mode
-		levelEditor = false;
+		levelEditor = false,
+		selKeyReleased = true;
 
 	// Selected Country
 	unsigned char country = 0,
@@ -165,9 +165,9 @@ private:
 		// Current progress int he blink rate
 		menuBlinkTimer = 0;
 
-	Countdown countryChoose, gameOver;
+	Countdown countryChoose, continueCount;
 
-	Menu currentMenu = Menu::SELECT;
+	Menu currentMenu = Menu::INTRO;
 	Map currentLevel = Map::England;
 	std::vector<Map> completedLevels;
 
