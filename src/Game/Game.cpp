@@ -60,7 +60,7 @@ Game::Game()
 /// </summary>
 void Game::run()
 {
-	countryChoose.set(10, ticksPerSec);
+	countryCountdown.set(10, ticksPerSec);
 
 	// Primary gameplay loop
 	while (window.isOpen())
@@ -89,7 +89,7 @@ void Game::run()
 			ticksPerSec = 30;
 
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::B) && !levelEditor &&
-			sf::Keyboard::isKeyPressed(sf::Keyboard::LControl) && !countryChoose.isDone())
+			sf::Keyboard::isKeyPressed(sf::Keyboard::LControl) && !countryCountdown.isDone())
 		{
 			levelEditor = true;
 			// static casts are annyoing to look at
@@ -182,7 +182,7 @@ void Game::run()
 					if (continueCount.isDone())
 					{
 						changeMenu(Menu::SELECT);
-						countryChoose.set(10, ticksPerSec);
+						countryCountdown.set(10, ticksPerSec);
 						viewportScroll = winSize.y / 2.f;
 					}
 				}
@@ -193,14 +193,14 @@ void Game::run()
 		switch (currentMenu)
 		{
 		case Menu::INTRO:
-			if (countryChoose.isDone() || key(0, Controls::Select) || button(0, Controller::Y))
+			if (countryCountdown.isDone() || key(0, Controls::Select) || button(0, Controller::Y))
 			{
 				selKeyReleased = false;
 				changeMenu(Menu::SELECT);
 			}
 			break;
 		case Menu::SELECT:
-			countryChoose.tick();
+			countryCountdown.tick();
 			updateSelectMenu();
 			break;
 		case Menu::MISSION:
@@ -215,7 +215,7 @@ void Game::run()
 			break;
 		}
 
-		if (!(countryChoose.isDone() || key(0, Controls::Select) || button(0, Controller::Y)))
+		if (!(countryCountdown.isDone() || key(0, Controls::Select) || button(0, Controller::Y)))
 			selKeyReleased = true;
 
 		// Clear window display
@@ -304,7 +304,7 @@ bool Game::changeMenu(Menu newMenu)
 			video.resetVideo();
 			break;
 		case Menu::SELECT:
-			countryChoose.set(10, ticksPerSec);
+			countryCountdown.set(10, ticksPerSec);
 			break;
 		case Menu::LEVEL:
 			//load new level, make sure things that need to be reset are reset (not done)
@@ -419,15 +419,15 @@ void Game::updateSelectMenu()
 		|| joystick(0).x > 0.5f;
 
 	// Display new menu countdown
-	menuCountdown.setString(std::to_string(countryChoose.getTime()));
+	menuCountdown.setString(std::to_string(countryCountdown.getTime()));
 
 
 	// We can move this to the end and have it only reset playerChosoe so that we dont need the early escape; flow is easier to follow and the code is shorter
 	// If time is out or any menu selection button has been pressed
-	if (selKeyReleased && (countryChoose.isDone() || key(0, Controls::Select) || button(0, Controller::Y)))
+	if (selKeyReleased && (countryCountdown.isDone() || key(0, Controls::Select) || button(0, Controller::Y)))
 	{
 		// Reset player choose, load the respective level, and early escape
-		countryChoose.reset();
+		countryCountdown.reset();
 		changeMenu(Menu::MISSION);
 		level.load(winSize, country, Map::England, levelEditor); // Set the last param for loading the correct map
 

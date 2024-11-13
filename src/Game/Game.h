@@ -124,13 +124,11 @@ private:
 
 	// These should all be wrapped in a struct to structure the data; make it easier to understand its all related
 	sf::RectangleShape
-		// The naming scheme is misleading, this appears to be the background of the menu? - ricky
+		// The world map seen in the select menu
 		menuMapRect,
-		// Used for chosing the country? - ricky
+		// Flags seen in the select menu
 		menuFlagsRect,
-		// Only ever declared, never used... Delete it - Ricky
-		menuCountDownRect,
-		// Selection outline
+		// Selection outline (the green guy that flickers)
 		menuSelectRect;
 
 	//The video cutscene, works for any of them. will be reloaded for each new one.
@@ -170,7 +168,7 @@ private:
 		// Current progress int he blink rate
 		menuBlinkTimer = 0;
 
-	Countdown countryChoose, continueCount;
+	Countdown countryCountdown, continueCount;
 
 	Menu currentMenu = Menu::INTRO;
 	Map currentLevel = Map::England;
