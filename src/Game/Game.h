@@ -140,15 +140,14 @@ private:
 	// The game level
 	Level level;
 
-	//player 1 = 0, player2 = 1, player 1 and 2 = 2
-	int players = 0;
-
 	// Last Tick Processing Time
 	int deltaTime = 0,
 		// Ticks per second
 		ticksPerSec = 30,
 		// Frames per second
-		framesPerSec = 30;
+		framesPerSec = 30,
+		//player 1 = 0, player2 = 1, player 1 and 2 = 2
+		players = 0;
 
 	//int score, highScore;
 		 // Is Left Key pressed
