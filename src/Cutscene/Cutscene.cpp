@@ -53,6 +53,8 @@ Cutscene::Cutscene()
 	textDia[4].setPosition(23, 259);
 	textDia[2].setPosition(23, 281);
 	textDia[5].setPosition(23, 281);
+	
+	explosion.setPosition(-100, -100);
 
 	txtMap.loadFromFile("res/Misc/menuMap.png");
 	sprMap.setTexture(txtMap);
@@ -235,4 +237,9 @@ void Cutscene::levelBeat(int level)
 {
 	lvlBeat[level] = true;
 	lastLvl = level;
+}
+
+bool Cutscene::isDone()
+{
+	return timer.getElapsedTime().asSeconds() > 5.;
 }

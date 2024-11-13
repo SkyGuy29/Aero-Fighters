@@ -25,6 +25,7 @@ public:
 	void draw(int, int, int, sf::RenderWindow&);
 	void startTimer();
 	void levelBeat(int);
+	bool isDone();
 
 private:
 
