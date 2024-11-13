@@ -18,6 +18,7 @@ public:
     };
 	Player(sf::Vector2f pos, PlayerCountry country, bool isPlayerTwo);
 
+    void reset();
     TickData tick();
     bool getTime() { return 0; }
     void setHealth(short h) { health = h; };
