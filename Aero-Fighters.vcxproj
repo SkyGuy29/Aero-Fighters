@@ -260,6 +260,7 @@
     <Image Include="res\Dialog\target2.png" />
     <Image Include="res\Dialog\tee-bee.png" />
     <Image Include="res\Dialog\villiam.png" />
+    <Image Include="res\Misc\enemies.png" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="res\attacks example.txt" />
