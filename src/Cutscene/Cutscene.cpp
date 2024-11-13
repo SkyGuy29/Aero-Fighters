@@ -9,7 +9,7 @@ Cutscene::Cutscene()
 		for (int l = 0; l < 9; l++)
 			for (int p = 0; p < 3; p++)
 				for (int d = 0; d < 6; d++)
-					std::getline(englandFile, dialog[England][l][p][d]);
+					std::getline(englandFile, dialog[ENGLAND][l][p][d]);
 	englandFile.close();
 
 	std::ifstream japanFile;
@@ -18,7 +18,7 @@ Cutscene::Cutscene()
 		for (int l = 0; l < 9; l++)
 			for (int p = 0; p < 3; p++)
 				for (int d = 0; d < 6; d++)
-					std::getline(japanFile, dialog[Japan][l][p][d]);
+					std::getline(japanFile, dialog[JAPAN][l][p][d]);
 	japanFile.close();
 
 	std::ifstream statesFile;
@@ -27,7 +27,7 @@ Cutscene::Cutscene()
 		for (int l = 0; l < 9; l++)
 			for (int p = 0; p < 3; p++)
 				for (int d = 0; d < 6; d++)
-					std::getline(statesFile, dialog[States][l][p][d]);
+					std::getline(statesFile, dialog[STATES][l][p][d]);
 	statesFile.close();
 
 	std::ifstream swedenFile;
@@ -36,7 +36,7 @@ Cutscene::Cutscene()
 		for (int l = 0; l < 9; l++)
 			for (int p = 0; p < 3; p++)
 				for (int d = 0; d < 6; d++)
-					std::getline(swedenFile, dialog[Sweden][l][p][d]);
+					std::getline(swedenFile, dialog[SWEDEN][l][p][d]);
 	swedenFile.close();
 
 	font.loadFromFile("res/aero-fighters.ttf");
@@ -61,14 +61,14 @@ Cutscene::Cutscene()
 	lvlBeatTxt.loadFromFile("res/Misc/lvlBeat.png");
 	lvlBeatSprite.setTexture(lvlBeatTxt);
 
-	playersText[England][0].loadFromFile("res/Dialog/villiam.png");
-	playersText[England][1].loadFromFile("res/Dialog/lord white.png");
-	playersText[Japan][0].loadFromFile("res/Dialog/hein.png");
-	playersText[Japan][1].loadFromFile("res/Dialog/mao.png");
-	playersText[States][0].loadFromFile("res/Dialog/keaton.png");
-	playersText[States][1].loadFromFile("res/Dialog/keath.png");
-	playersText[Sweden][0].loadFromFile("res/Dialog/kohful.png");
-	playersText[Sweden][1].loadFromFile("res/Dialog/tee-bee.png");
+	playersText[ENGLAND][0].loadFromFile("res/Dialog/villiam.png");
+	playersText[ENGLAND][1].loadFromFile("res/Dialog/lord white.png");
+	playersText[JAPAN][0].loadFromFile("res/Dialog/hein.png");
+	playersText[JAPAN][1].loadFromFile("res/Dialog/mao.png");
+	playersText[STATES][0].loadFromFile("res/Dialog/keaton.png");
+	playersText[STATES][1].loadFromFile("res/Dialog/keath.png");
+	playersText[SWEDEN][0].loadFromFile("res/Dialog/kohful.png");
+	playersText[SWEDEN][1].loadFromFile("res/Dialog/tee-bee.png");
 
 	playersSprite[0].setPosition(24, 112);
 	playersSprite[1].setPosition(120, 112);
