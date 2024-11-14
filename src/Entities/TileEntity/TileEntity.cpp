@@ -11,11 +11,6 @@ Entity::TickData TileEntity::tick()
 	return TickData();
 }
 
-const ICollidable::CollisionType TileEntity::collidesWith(ICollidable* other) const
-{
-	return ICollidable::collidesWith(other);
-}
-
 
 const sf::IntRect& TileEntity::getBounds() const
 {

@@ -1,17 +1,15 @@
 #pragma once
 #include "../Entity.h"
-#include "../Interfaces/ICollidable.h"
+#include "../Interfaces/IHasHealth.h"
 //#include "../../Utility/EntityData/EntityData.hpp"
 
 // TODO add to this class
+// tile entities are like enemies but a. dont move b. are non-collidable (they shoot though)
 class TileEntity :
-    public Entity, public ICollidable
+    public Entity, public IHasHealth
 {
 public:
     TileEntity(EntityPrototype* prototype);
 
     TickData tick() override;
-
-    const CollisionType collidesWith(ICollidable* other) const override;
-    const sf::IntRect& getBounds() const override;
 };

@@ -246,7 +246,7 @@ inline void EntityManagementInterface::loadEnemies(Map map)
 	{
 		input.clear();
 		std::getline(f, input);
-
+		// TODO: if input == TILE & verify that enemies.txt is valid
 		if (input == "NEW LAND")
 		{
 			f >> tempData.pos.x >> tempData.pos.y >> tempData.vel.x >> tempData.vel.y;
