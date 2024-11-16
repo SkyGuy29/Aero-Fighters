@@ -1,8 +1,12 @@
 #pragma once
+#include <stdexcept>
+#include <SFML/Graphics/Rect.hpp>
 
 class ICollidable
 {
 public:
+	virtual ~ICollidable() = default;
+
 	enum class CollisionType : unsigned char
 	{
 		HIT,
@@ -14,7 +18,8 @@ public:
 	{
 		throw std::runtime_error("Default method called - ICollidable::collidesWith");
 	}
-	virtual const sf::IntRect& getBounds() const
+
+	[[nodiscard]] virtual const sf::IntRect& getBounds() const
 	{
 		throw std::runtime_error("Default method called - ICollidable::getBounds");
 	}

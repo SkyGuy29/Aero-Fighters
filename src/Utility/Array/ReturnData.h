@@ -17,17 +17,17 @@ struct ReturnData
 
 	// Can only be constructed by the VariableArray
 	ReturnData() = delete;
-
 private:
 	/**
 	 * Private constructor for VariableArray to use.
 	 *
-	 * @param DATA* A pointer to the first object in the element.
+	 * @param DATA A pointer to the first object in the element.
 	 * @param COUNT The number of objects in the element;
 	 *				the size of the sub-array.
 	 */
 	ReturnData(RAW_TYPE& DATA, unsigned char COUNT) : DATA(DATA), COUNT(COUNT) {}
 
 	// Declare VariableArray as a friend so it can access the private constructor.
-	friend VariableArray;
+	template<typename RAW_TYPE_, unsigned char TOTAL_ELEMENTS, unsigned char TOTAL_UNIQUE_OBJECTS>
+	friend class VariableArray;
 };

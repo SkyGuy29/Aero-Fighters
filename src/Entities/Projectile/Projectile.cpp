@@ -9,7 +9,7 @@ Projectile::Projectile(ProjectilePrototype prototype, Entity* owner)
 	{
 		float dx = prototype.SPAWN_POS.x - owner->getPosition().x;
 		float dy = prototype.SPAWN_POS.y - owner->getPosition().y;
-		vel.x = dx*prototype.SPAWN_VELOCITY.x/hypotf(dx,dy);
+		vel.x = dx*prototype.SPAWN_VELOCITY.x/hypot(dx,dy);
 		vel.y = dy*prototype.SPAWN_VELOCITY.y/hypotf(dx,dy);
 	}
 	else

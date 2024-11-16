@@ -108,8 +108,8 @@ protected:
 private:
 
 	// The size of the window
+	// THESE ARE ASSUMED TO BE SET, PROGRAM WILL SEGFAULT IF NOT SET
 	static WindowSize* winSize;
-
 	static unsigned int* currentTick;
 
 	// The next UUID that will be assigned.

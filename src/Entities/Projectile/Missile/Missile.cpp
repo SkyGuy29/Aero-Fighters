@@ -16,7 +16,7 @@ void Missile::move()
 
 void Missile::normalize(sf::Vector2f newVel)
 {
-	double normalizationFactor = magnitude / hypot<double>(vel.x, vel.y);
+	double normalizationFactor = magnitude / std::hypot<double>(vel.x, vel.y);
 	float degreesNew = atan(newVel.y / newVel.x) * DEG;
 	float degreesOld = atan(vel.y / vel.x)       * DEG;
 	

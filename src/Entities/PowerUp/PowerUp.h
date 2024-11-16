@@ -2,12 +2,12 @@
 #include "../Entity.h"
 #include "../Interfaces/ICollidable.h"
 
-class PowerUp :
+class PowerUp final :
 	public Entity, public ICollidable
 {
 public:
-
-
+	PowerUp(sf::Vector2f spawnPos, EntityID id) :	Entity(spawnPos, id) {};
+	~PowerUp() override = default;
     TickData tick() override;
 
 

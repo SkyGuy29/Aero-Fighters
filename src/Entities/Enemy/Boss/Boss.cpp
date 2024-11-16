@@ -12,3 +12,8 @@ Entity::TickData Boss::tick()
 
 	return TickData();
 }
+
+Entity::TickData Boss::attack()
+{
+	return Enemy::attack();
+}

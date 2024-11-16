@@ -38,12 +38,13 @@ float Level::getBackgroundSpeed() const
 /// <param name="country"></param>
 /// <param name="map"></param>
 /// <param name="levelEditor">Whether or not the levelEditor is active.</param>
-void Level::load(sf::Vector2f winSize, const short country,
+void Level::load(sf::Vector2f& winSize, const short country,
 	const Map map, const bool levelEditor)
 {
 	this->country = country;
 	this->winSize = winSize;
 	levelEditorActive = levelEditor;
+	Entity::setWinSize(*new WindowSize(winSize.x, winSize.y)); // TODO: FIX MEM LEAK LMAOO
 	Entity::setCurrentTick(currentTick);
 
 	// setting up the background

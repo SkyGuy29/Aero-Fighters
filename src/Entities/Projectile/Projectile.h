@@ -3,6 +3,7 @@
 #include "../Entity.h"
 #include "../Interfaces/ICollidable.h"
 #include "../../Utility/EntityData/ProjectilePrototype.h"
+#include <cmath>
 
 
 class Projectile :

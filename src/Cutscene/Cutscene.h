@@ -2,7 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include <fstream>
 #include <string.h>
-#include <Windows.h>
+//#include <Windows.h>
 #include <iostream>
 
 class Cutscene

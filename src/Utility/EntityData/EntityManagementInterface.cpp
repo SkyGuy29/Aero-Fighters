@@ -95,7 +95,7 @@ inline void EntityManagementInterface::loadAttacks()
 	std::ifstream f;
 	f.open("res/attacks.txt");
 	if (!f.is_open())
-		throw std::exception("Unable to load attacks file!");
+		throw std::runtime_error("Unable to load attacks file!");
 	std::string input;
 	struct TempData
 	{
@@ -134,12 +134,12 @@ inline void EntityManagementInterface::loadAttacks()
 				{
 				case 1:
 					splitVec = split_(input);
-					assert(splitVec.size() == 2, "Attack loading failed. 1"); // we want program execution to be stopped if we cant load the attack correctly
+					assert(splitVec.size() == 2); // we want program execution to be stopped if we cant load the attack correctly
 					tempData.spawnPos = sf::Vector2f(splitVec[0], splitVec[1]);
 					break;
 				case 2:
 					splitVec = split_(input);
-					assert(splitVec.size() == 2, "Attack loading failed. 2");
+					assert(splitVec.size() == 2);
 					tempData.spawnVelocity = sf::Vector2f(splitVec[0], splitVec[1]);
 					break;
 				case 3:
@@ -153,7 +153,7 @@ inline void EntityManagementInterface::loadAttacks()
 					break;
 				case 6:
 					splitVec = split_(input);
-					assert(splitVec.size() == 2, "Attack loading failed. 4");
+					assert(splitVec.size() == 2);
 					tempData.hitboxSize = sf::Vector2f(splitVec[0], splitVec[1]);
 				}
 			}
