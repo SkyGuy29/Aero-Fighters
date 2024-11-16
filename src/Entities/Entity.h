@@ -66,7 +66,7 @@ public:
 
 	unsigned int getUUID() const { return UUID; }
 
-	sf::Sprite* getSprite() { return sprite; }
+	sf::Sprite* getSprite() const { return sprite; }
 
 	sf::Vector2f getPosition() const { return pos; }
 

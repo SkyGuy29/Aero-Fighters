@@ -287,6 +287,7 @@ void Game::run()
 			break;
 		}
 
+
 		window.display();
 	}
 }

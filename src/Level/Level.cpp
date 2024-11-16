@@ -187,6 +187,7 @@ bool Level::update(const sf::Vector2f winSize)
 	//background.setPosition(0, 0-backgroundImg.getSize().y - backgroundDist);
 
 	// Drawing order
+	window.draw(background);
 	EntityManagementInterface::tick(window, currentTick);
 	
 	/*updatePlayers();

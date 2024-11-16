@@ -18,7 +18,7 @@ public:
 
 	const sf::IntRect& getBounds() const noexcept override
 	{
-		return EntityDataStorage::getEntity(Entity::getUUID())->getTextureRect();
+		return sprite->getTextureRect();
 	}
 
 	// The overridden collision method for enemies to handle children

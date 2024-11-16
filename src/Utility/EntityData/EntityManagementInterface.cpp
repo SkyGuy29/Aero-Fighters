@@ -19,13 +19,13 @@ std::vector<Boss*> EntityManagementInterface::bossEnemies; // ?
 std::vector<TileEntity*> EntityManagementInterface::tileEntities; // spawned at start (spawnMap:0)
 std::vector<PowerUp*> EntityManagementInterface::powerUps; // spawned dynamically by enemies
 std::unordered_map<std::string, std::vector<ProjectilePrototype>> EntityManagementInterface::attackData;
-unsigned int EntityManagementInterface::lastTick;
+unsigned int EntityManagementInterface::lastTick = -1; // max int (unsigned)
 
 
 void EntityManagementInterface::load(Map map)
 {
-	players.push_back(new Player(sf::Vector2f(0, 0), Player::AMERICA, false));
-	players.push_back(new Player(sf::Vector2f(0, 0), Player::AMERICA, true));
+	players.push_back(new Player(sf::Vector2f(100, 100), Player::AMERICA, false));
+	players.push_back(new Player(sf::Vector2f(150, 100), Player::AMERICA, true));
 	loadAttacks();
 	loadEnemies(map);
 	EntityDataStorage::loadTextures();
@@ -55,6 +55,7 @@ void EntityManagementInterface::tick(sf::RenderWindow& win, unsigned int current
 
 	generalTick<Enemy>(landEnemies, win);
 	generalTick<Projectile>(projectiles, win);
+	generalTick<Player>(players, win);
 	generalTick<Enemy>(airEnemies, win);
 	generalTick<Enemy>(waterEnemies, win);
 	generalTick<Boss>(bossEnemies, win);
@@ -196,8 +197,8 @@ inline void EntityManagementInterface::loadEnemies(Map map)
 {
 	struct TempData
 	{
-		short id;
-		unsigned int spawnTick;
+		short id = 0;
+		unsigned int spawnTick = 0;
 		sf::Vector2f pos, vel;
 		unsigned int line = 0;
 	};
@@ -246,21 +247,25 @@ inline void EntityManagementInterface::loadEnemies(Map map)
 	{
 		input.clear();
 		std::getline(f, input);
-		// TODO: if input == TILE & verify that enemies.txt is valid
-		if (input == "NEW LAND")
+		// TODO: verify that enemies.txt is valid (I dont think 0 or 1 id is right cause it is child!) (check coords of spawns)
+		if(input.starts_with("NEW"))
 		{
-			f >> tempData.pos.x >> tempData.pos.y >> tempData.vel.x >> tempData.vel.y;
-			tempData.line += 4;
-			spawnMap[0].push_back(new EntityPrototype(tempData.pos, tempData.vel, (EntityID)tempData.id, 0, tempData.line));
+			f >> tempData.id >> tempData.pos.x >> tempData.pos.y >> tempData.vel.x >> tempData.vel.y;
+			tempData.line += 6; // 5 + space
 		}
-		else if (input == "NEW WATER" || input == "NEW AIR")
+
+		if (input == "NEW LAND")
+			spawnMap[0].push_back(new EntityPrototype(tempData.pos, tempData.vel, (EntityID)((int)EntityID::ENEMY_AIR_COUNT + tempData.id + 1), 0, tempData.line));
+		else if (input == "NEW AIR") // TODO: Add water
 		{
-			if(!spawnMap.count(tempData.spawnTick))
+			f >> tempData.spawnTick;
+			if(!spawnMap.contains(tempData.spawnTick))
 				spawnMap[tempData.spawnTick] = std::vector<EntityPrototype*>();
-			f >> tempData.pos.x >> tempData.pos.y >> tempData.vel.x >> tempData.vel.y >> tempData.spawnTick;
-			tempData.line += 5;
+			tempData.line += 1;
 			spawnMap[tempData.spawnTick].push_back(new EntityPrototype(tempData.pos, tempData.vel, (EntityID)tempData.id, 0, tempData.line));
 		}
+		else if (input == "NEW TILE")
+			spawnMap[0].push_back(new EntityPrototype(tempData.pos, tempData.vel, (EntityID)((int)EntityID::ENEMY_COUNT + tempData.id + 1), 0, tempData.line));
 	}
 }
 

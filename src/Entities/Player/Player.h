@@ -5,6 +5,7 @@
 #include "../../ControllerStuff.hpp"
 
 
+// TODO add controls, update player, etc.
 class Player :
     public Entity, public IHasHealth
 {
