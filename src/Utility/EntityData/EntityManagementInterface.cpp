@@ -271,17 +271,23 @@ inline void EntityManagementInterface::loadEnemies(Map map)
 
 inline void EntityManagementInterface::loadChildren()
 {
-	struct TempData
+	struct ChildBuildData
 	{
+		struct ParentBlock
+		{
+			EntityID parent;
+			std::vector<EntityDataStorage::ChildTemplete> children;
+		};
+
 		unsigned char totalChildren;
-		std::vector<EntityDataStorage::ChildTemplete>
+		std::vector<EntityDataStorage::ChildTemplete> families;
 	};
 	std::string input;
 
 	std::ifstream f;
 	f.open("res/children.txt");
 
-	spawnMap[0] = std::vector<EntityPrototype*>();
+	/*
 	// loading the enemies
 	while (f.is_open() && !f.eof())
 	{
@@ -306,7 +312,7 @@ inline void EntityManagementInterface::loadChildren()
 		}
 		else if (input == "NEW TILE")
 			spawnMap[0].push_back(new EntityPrototype(tempData.pos, tempData.vel, (EntityID)((int)EntityID::ENEMY_COUNT + tempData.id + 1), 0, tempData.line));
-	}
+	}*/
 }
 
 
