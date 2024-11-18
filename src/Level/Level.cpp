@@ -46,6 +46,7 @@ void Level::load(sf::Vector2f& winSize, const short country,
 	levelEditorActive = levelEditor;
 	Entity::setWinSize(*new WindowSize(winSize.x, winSize.y)); // TODO: FIX MEM LEAK LMAOO
 	Entity::setCurrentTick(currentTick);
+	Entity::setViewport(view);
 
 	// setting up the background
 	backgroundImg.loadFromFile("res/"  + mapStrings[map] + "/" + mapStrings[map] + ".png");
