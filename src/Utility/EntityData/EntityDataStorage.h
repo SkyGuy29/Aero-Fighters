@@ -109,6 +109,10 @@ public:
 			const unsigned char flags;
 			const TextureType texture;
 		};
+		bool hasChildren() const noexcept
+		{
+			return CHILD_DATA << 31 != 0;
+		}
 
 		const SpriteData spriteData;
 		// This entities base velocity
@@ -153,7 +157,6 @@ public:
 	{
 		return EntityDataTable[static_cast<uint8_t>(ID)];
 	}
-
 
 	/*static inline void addEntity(unsigned int UUID, sf::Sprite sprite)
 	{

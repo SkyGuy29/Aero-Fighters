@@ -7,7 +7,7 @@
 
 // TODO add controls, update player, etc.
 class Player :
-    public Entity, public IHasHealth
+    public Entity, public IHasHealth, public ICollidable
 {
 public:
     enum PlayerCountry
@@ -25,6 +25,12 @@ public:
     void setHealth(short h) { health = h; };
     void increasePower();
     void increaseSpecial();
+
+    sf::IntRect getBounds() const noexcept override
+    {
+        return sf::IntRect(getPosition().x + 10, getPosition().y + 16, 20, 32);
+    }
+
 private:
     //power level goes up to 3, 4 total levels -Phoenix
     unsigned int powerLevel = 0, 
