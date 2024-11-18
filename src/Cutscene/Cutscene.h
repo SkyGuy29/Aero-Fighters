@@ -30,8 +30,6 @@ private:
 
 	bool lvlBeat[7] = { false,false,false,false,false,false,false };
 
-	int lastLvl = 365;
-
 	std::string dialog[8][8][3][6];
 	sf::Font font;
 	sf::Text textDia[6];
@@ -44,8 +42,6 @@ private:
 	sf::Texture targetText[2];
 	sf::Sprite targetSprite;
 	sf::Clock timer;
-	sf::Texture explosionTxt[17];
-	sf::Sprite explosion;
 
 };
 
