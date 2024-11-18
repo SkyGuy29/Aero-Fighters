@@ -4,16 +4,8 @@
 
 // Static member must be defined outside the class definition.
 unsigned int Entity::next_uuid = 0;
-WindowSize* Entity::winSize;
 unsigned int* Entity::currentTick;
 std::unordered_map<unsigned int, sf::Sprite> Entity::spriteMap;
-
-
-void Entity::setWinSize(WindowSize& winSize_)
-{
-	winSize = &winSize_;
-}
-
 
 // spawns on the current tick.
 Entity::Entity(sf::Vector2f pos, EntityID ID) :
@@ -40,8 +32,8 @@ Entity::EntityObjectAction Entity::getEntityAction() noexcept
 	// If on screen
 	if (!(pos.x + entityData.spriteData.getBounds().width / 2.f < 0 ||              // Off the left
 		  pos.y + entityData.spriteData.getBounds().height / 2.f < 0 ||              // Off the top
-		  pos.x - entityData.spriteData.getBounds().width / 2.f >= (*winSize).width || // Off the right
-		  pos.y - entityData.spriteData.getBounds().height / 2.f >= (*winSize).height)) // Off the bottom
+		  pos.x - entityData.spriteData.getBounds().width / 2.f >= windowSize.width || // Off the right
+		  pos.y - entityData.spriteData.getBounds().height / 2.f >= windowSize.height)) // Off the bottom
 	{
 		if ((entityFlags & 0b00000001) != 0b00000001) // If not spawned
 		{

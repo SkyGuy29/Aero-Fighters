@@ -36,11 +36,6 @@ public:
 	// Entity holder used for when entities need to check for collision themselves
 	virtual TickData tick() = 0;
 
-	// Sets the variable used by entity for the size of the window.
-	// Should only ever be called once, giving a variable held
-	// before level is instantiated.
-	static void setWinSize(WindowSize& winSize);
-
 	static void setBackgroundSpeed(float& speed) { backgroundSpeed = speed; }
 
 	static void setCurrentTick(unsigned int& ct) { currentTick = &ct; }
@@ -109,7 +104,6 @@ private:
 
 	// The size of the window
 	// THESE ARE ASSUMED TO BE SET, PROGRAM WILL SEGFAULT IF NOT SET
-	static WindowSize* winSize;
 	static unsigned int* currentTick;
 
 	// The next UUID that will be assigned.
