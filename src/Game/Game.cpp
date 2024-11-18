@@ -10,15 +10,15 @@ Game::Game()
 		: seed %= std::numeric_limits<unsigned int>::max());
 
 	// Initialize window
-	window.create(sf::VideoMode((int)winSize.x * 2, (int)winSize.y * 2),
+	window.create(sf::VideoMode(windowSize.width * 2, windowSize.height * 2),
 		"Aero Fighters");
 	window.setFramerateLimit(framesPerSec);
 
 	// This view scales the 224x320 up to whatever the window size is.
 	// Just use winSize for calculations, no need to multiply by winScale
 	view = window.getDefaultView();
-	view.setSize(winSize.x, winSize.y);
-	view.setCenter(winSize.x / 2.f, winSize.y / 2.f);
+	view.setSize(windowSize.width, windowSize.height);
+	view.setCenter(windowSize.width / 2.f, windowSize.height / 2.f);
 
 	//Object::setView(view);
 	//Level::setView(view);
@@ -99,8 +99,8 @@ void Game::run()
 			levelEditorActive = true;
 			// static casts are annyoing to look at
 			window.setSize(sf::Vector2u(
-				static_cast<unsigned int>(winSize.x) * 4,
-				static_cast<unsigned int>(winSize.y) * 2)
+				static_cast<unsigned int>(windowSize.width) * 4,
+				static_cast<unsigned int>(windowSize.height) * 2)
 			);
 		}
 
@@ -143,12 +143,12 @@ void Game::run()
 			if (currentMenu == Menu::LEVEL)
 			{
 				//moving the viewport by viewportScroll pixels
-				view.setCenter(winSize.x / 2.f, viewportScroll);
+				view.setCenter(windowSize.width / 2.f, viewportScroll);
 				window.setView(view);
 				Level::setView(view);
 
 				//level::update() runs most of the gameplay.
-				if (!level->update(winSize))
+				if (!level->update())
 				{
 					//placeholder code, commented out will be the real deal
 					if (!playersDead)
@@ -187,7 +187,7 @@ void Game::run()
 					{
 						changeMenu(Menu::SELECT);
 						countryChoose.set(10, ticksPerSec);
-						viewportScroll = winSize.y / 2.f;
+						viewportScroll = windowSize.height / 2.f;
 					}
 				}
 			}
@@ -239,7 +239,7 @@ void Game::run()
 			}
 			break;
 		case Menu::SELECT:
-			view.setCenter(winSize.x / 2.f, winSize.y / 2.f);
+			view.setCenter(windowSize.width / 2.f, windowSize.height / 2.f);
 			window.setView(view);
 			window.draw(menuMapRect);
 
@@ -262,18 +262,19 @@ void Game::run()
 			window.draw(menuCountdown);
 			break;
 		case Menu::LEVEL:
-			view.setCenter(winSize.x / 2.f, viewportScroll);
+			view.setCenter(windowSize.width / 2.f, viewportScroll);
 			window.setView(view);
 			//Object::setView(view);
 			//Level::setView(view);
-			level->update(winSize);
+			level->update();
 
 			if (playersDead) // Game over menu
 			{
-				view.setCenter(winSize.x / 2.f, winSize.y / 2.f);
+				view.setCenter(windowSize.width / 2.f, windowSize.height / 2.f);
 				window.setView(view);
-				menuCountdown.setPosition((winSize - menuCountdown.getLocalBounds().getSize()) / 2.f);
-
+				menuCountdown.setPosition(
+					(windowSize.width - menuCountdown.getLocalBounds().width) / 2.f,
+					(windowSize.height - menuCountdown.getLocalBounds().height) / 2.f);
 				window.draw(menuCountdown);
 			}
 			break;
@@ -310,7 +311,7 @@ bool Game::changeMenu(Menu newMenu)
 			break;
 		case Menu::LEVEL:
 			//load new level, make sure things that need to be reset are reset
-			level->load(winSize, country, currentLevel, false);
+			level->load(country, currentLevel, false);
 			break;
 		case Menu::MISSION:
 			//reset and load the mission cutscene
@@ -430,7 +431,7 @@ void Game::updateSelectMenu()
 		// Reset player choose, load the respective level, and early escape
 		countryChoose.reset();
 		currentMenu = Menu::LEVEL;
-		level->load(winSize, country, Map::England, levelEditor); // Set the last param for loading the correct map
+		level->load(country, Map::England, levelEditor); // Set the last param for loading the correct map
 
 		if (debugSkipToBoss)
 			viewportScroll = level->skipToBoss();
@@ -446,15 +447,15 @@ void Game::resize()
 	// Get the minimum scale from either x or y
 	// This fills the max space possible, then the view is centered on the window.
 	// Generate scaling factor based the dimension closest to its respective value in the size pair.
-	const float winScale = std::fmin(float(window.getSize().x) / (float)winSize.x,
-		float(window.getSize().y) / (float)winSize.y);
+	const float winScale = std::fmin(float(window.getSize().x) / (float)windowSize.width,
+		float(window.getSize().y) / (float)windowSize.height);
 
 	// Center the viewport
 	view.setViewport(sf::FloatRect(
-		0.5f - winScale * float(winSize.x) / float(window.getSize().x) / 2.f,
-		0.5f - winScale * float(winSize.y) / float(window.getSize().y) / 2.f,
-		winScale * float(winSize.x) / float(window.getSize().x),
-		winScale * float(winSize.y) / float(window.getSize().y)
+		0.5f - winScale * float(windowSize.width) / float(window.getSize().x) / 2.f,
+		0.5f - winScale * float(windowSize.height) / float(window.getSize().y) / 2.f,
+		winScale * float(windowSize.width) / float(window.getSize().x),
+		winScale * float(windowSize.height) / float(window.getSize().y)
 	));
 	// Update the window
 	window.setView(view);

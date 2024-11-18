@@ -9,3 +9,4 @@ struct WindowSize
 	// Height of the window
 	unsigned short height;
 };
+const static WindowSize windowSize = { 224, 320 };

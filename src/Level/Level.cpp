@@ -38,13 +38,11 @@ float Level::getBackgroundSpeed() const
 /// <param name="country"></param>
 /// <param name="map"></param>
 /// <param name="levelEditor">Whether or not the levelEditor is active.</param>
-void Level::load(sf::Vector2f& winSize, const short country,
+void Level::load(const short country,
 	const Map map, const bool levelEditor)
 {
 	this->country = country;
-	this->winSize = winSize;
 	levelEditorActive = levelEditor;
-	Entity::setWinSize(*new WindowSize(winSize.x, winSize.y)); // TODO: FIX MEM LEAK LMAOO
 	Entity::setCurrentTick(currentTick);
 	Entity::setViewport(view);
 
@@ -52,11 +50,11 @@ void Level::load(sf::Vector2f& winSize, const short country,
 	backgroundImg.loadFromFile("res/"  + mapStrings[map] + "/" + mapStrings[map] + ".png");
 
 	background.setSize(sf::Vector2f(backgroundImg.getSize()));
-	background.setPosition(0, 0 - 2240 + winSize.y);
+	background.setPosition(0, 0 - 2240 + windowSize.height);
 	
-	bossBackground.setSize(sf::Vector2f(winSize));
+	bossBackground.setSize(sf::Vector2f(windowSize.width, windowSize.height));
 	bossBackground.setPosition(0, 0 - 2240 + 320);
-	backgroundDist = (float)backgroundImg.getSize().y - winSize.y;
+	backgroundDist = (float)backgroundImg.getSize().y - windowSize.height;
 	//rect = sf::IntRect(0, (int)backgroundDist, (int)winSize.x, (int)winSize.y);
 	//frontRect = rect;
 	background.setTexture(&backgroundImg);
@@ -155,7 +153,7 @@ void Level::respawnPlayers() const
 /// </summary>
 /// <param name="winSize"></param>
 /// <returns></returns>
-bool Level::update(const sf::Vector2f winSize)
+bool Level::update()
 {
 	// Just for debugging
 	// The bug where holding enter freezes the background, 
@@ -172,7 +170,7 @@ bool Level::update(const sf::Vector2f winSize)
 		backgroundDist -= backgroundSpeed;
 	else
 		bossBackground.setTextureRect(sf::IntRect(
-			0, view.getCenter().y - winSize.y / 2.f, winSize.x, winSize.y));
+			0, view.getCenter().y - windowSize.height / 2.f, windowSize.width, windowSize.height));
 
 	// There was a gap, 7 worked perfect on the 5th try
 	// There is still some weird jumpyness when: 
@@ -180,7 +178,7 @@ bool Level::update(const sf::Vector2f winSize)
 	//		fastforwarding moves the boss background down to a third of the screen.
 	// Doesn't speed up yet, only uses view instead of backgroundSpeed,
 	// I just wanted to get this sort of working. - Ben
-	bossBackground.setPosition(0, view.getCenter().y - winSize.y / 2.f);
+	bossBackground.setPosition(0, view.getCenter().y - windowSize.height / 2.f);
 
 	// for smoothing out background. 
 	// Take the decimal, leave the whole number
@@ -216,9 +214,9 @@ bool Level::update(const sf::Vector2f winSize)
 
 	// Place scores in middle top
 	// Scores were not implemented, so these values never change for now
-	p1Score.setPosition(sf::Vector2f(winSize.x / 2 - 20 - p1Score.getLocalBounds().width,
+	p1Score.setPosition(sf::Vector2f(windowSize.width / 2 - 20 - p1Score.getLocalBounds().width,
 		view.getCenter().y - view.getSize().y / 2.f -p1Score.getLocalBounds().height ));
-	p2Score.setPosition(sf::Vector2f(winSize.x / 2 + 20,
+	p2Score.setPosition(sf::Vector2f(windowSize.width / 2 + 20,
 		view.getCenter().y - view.getSize().y / 2.f -p2Score.getLocalBounds().height));
 
 	window.draw(p1Score);
