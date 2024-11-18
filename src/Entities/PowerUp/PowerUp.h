@@ -8,8 +8,12 @@ class PowerUp final :
 	public Entity, public ICollidable
 {
 public:
-	PowerUp(sf::Vector2f spawnPos, EntityID id) :	Entity(spawnPos, id) {};
+	//:	Entity(spawnPos, id) {}
+	PowerUp(sf::Vector2f spawnPos, EntityID id);
 	~PowerUp() override = default;
+
+	void interceptBarrier();
+
     TickData tick() override;
 
 
@@ -17,5 +21,8 @@ public:
 	{
 		return sprite->getTextureRect();
 	}
+private:
+	sf::Vector2f vel;
+	short bounces = 0;
 };
 
