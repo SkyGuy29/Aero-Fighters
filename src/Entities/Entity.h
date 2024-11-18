@@ -23,7 +23,7 @@ public:
 	struct TickData
 	{
 		bool hasAttacked;
-		EntityDataStorage::AttackID attack;
+		std::string attack;
 	};
 
 	virtual ~Entity() = default;
@@ -43,7 +43,7 @@ public:
 
 	static void setBackgroundSpeed(float& speed) { backgroundSpeed = speed; }
 
-	static void setCurrentTick(unsigned int& ct) { currentTick = ct; }
+	static void setCurrentTick(unsigned int& ct) { currentTick = &ct; }
 	
 	void setPosition(sf::Vector2f pos);
 
@@ -66,7 +66,7 @@ public:
 
 	unsigned int getUUID() const { return UUID; }
 
-	sf::Sprite* getSprite() { return sprite; }
+	sf::Sprite* getSprite() const { return sprite; }
 
 	sf::Vector2f getPosition() const { return pos; }
 
@@ -108,12 +108,12 @@ protected:
 private:
 
 	// The size of the window
-	static WindowSize& winSize;
+	// THESE ARE ASSUMED TO BE SET, PROGRAM WILL SEGFAULT IF NOT SET
+	static WindowSize* winSize;
+	static unsigned int* currentTick;
 
 	// The next UUID that will be assigned.
 	static unsigned int next_uuid;
-
-	static unsigned int& currentTick;
 
 	// A map of all UUIDs to sprites
 	static std::unordered_map<unsigned int, sf::Sprite> spriteMap;

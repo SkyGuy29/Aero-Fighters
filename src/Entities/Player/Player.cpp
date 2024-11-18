@@ -1,15 +1,14 @@
-#include "Player_new.h"
+#include "Player.h"
 
 
-Player_new::Player_new(sf::Vector2f pos, EntityID ID,
-	int* backgroundSpeed, unsigned char orientation = 0) :
-	Entity(pos, ID), IHasHealth(ID)
+Player::Player(sf::Vector2f pos, PlayerCountry country, bool isPlayerTwo) :
+	Entity(pos, EntityID::PLAYER), IHasHealth(ID)
 {
-
+	setHealth(3);
 }
 
 
-Entity::TickData Player_new::tick()
+Entity::TickData Player::tick()
 {
 	// controller controls
 	// works with 2 controllers
@@ -55,20 +54,21 @@ Entity::TickData Player_new::tick()
 			playerShootLast[i] = false;*/
 		// projectiles have owners now
 
-		if (special)
-			special();
+		//if (special)
+		//	special();
 
 		if (spawn) //Temporary and should be changed to continue.
 		{
-			EntityDataStorage::
-			entities.players[0]->setHealth(3);
-			entities.players[1]->setHealth(3);
+			setHealth(3);
+			setHealth(3);
 		}
 	}
+
+	return TickData(NULL, "");
 }
 
 
-void Player_new::increasePower()
+void Player::increasePower()
 {
 	if (powerLevel < 3)
 		powerLevel++;
@@ -76,7 +76,7 @@ void Player_new::increasePower()
 }
 
 
-void Player_new::increaseSpecial()
+void Player::increaseSpecial()
 {
 	if (special < 3)
 		special++;

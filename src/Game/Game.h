@@ -89,6 +89,7 @@ class Game
 {
 public:
 	Game();
+	~Game();
 
 	void run();
 private:
@@ -96,7 +97,6 @@ private:
 	bool changeMenu(Menu newMenu);
 
 	void updateSelectMenu();
-	void drawSelectMenu();
 	void resize();
 
 	// The game window
@@ -138,7 +138,7 @@ private:
 	VideoCutscene video;
 
 	// The game level
-	Level level;
+	Level* level;
 
 	// Last Tick Processing Time
 	int deltaTime = 0,
@@ -155,7 +155,8 @@ private:
 		// Selection menu outline blinking
 		blinkState = false,
 		// Level editor debug mode
-		levelEditor = false;
+		levelEditor = false,
+		selKeyReleased = true;
 
 	// Selected Country
 	unsigned char country = 0,
@@ -164,9 +165,9 @@ private:
 		// Current progress int he blink rate
 		menuBlinkTimer = 0;
 
-	Countdown countryChoose, gameOver;
+	Countdown countryChoose, continueCount;
 
-	Menu currentMenu = Menu::SELECT;
+	Menu currentMenu = Menu::INTRO;
 	Map currentLevel = Map::England;
 	std::vector<Map> completedLevels;
 

@@ -1,5 +1,6 @@
 #pragma once
-#include <Math.h>
+#include <cmath>
+#include <SFML/Graphics.hpp>
 
 template<typename ElementType>
 class VisualElement

@@ -2,7 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include <fstream>
 #include <string.h>
-#include <Windows.h>
+//#include <Windows.h>
 #include <iostream>
 
 class Cutscene
@@ -25,10 +25,11 @@ public:
 	void draw(int, int, int, sf::RenderWindow&);
 	void startTimer();
 	void levelBeat(int);
-
 private:
 
 	bool lvlBeat[7] = { false,false,false,false,false,false,false };
+
+	int lastLvl = 365;
 
 	std::string dialog[8][8][3][6];
 	sf::Font font;
@@ -42,6 +43,8 @@ private:
 	sf::Texture targetText[2];
 	sf::Sprite targetSprite;
 	sf::Clock timer;
+	sf::Texture explosionTxt[16];
+	sf::Sprite explosion;
 
 };
 

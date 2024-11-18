@@ -5,25 +5,25 @@
 #include "../Interfaces/ICollidable.h"
 
 // Primarily used by 
-class Enemy_new :
-	public Entity, protected IHasHealth, public ICollidable
+class Enemy :
+	public Entity, public IHasHealth, public ICollidable
 {
 public:
-	Enemy_new(sf::Vector2f pos, sf::Vector2f vel,
+	Enemy(sf::Vector2f pos, sf::Vector2f vel,
 		EntityID ID, unsigned int line = 0);
 	// dont be null :pray:
 	// ANDREW HERE make line work
-	Enemy_new(EntityPrototype* prototype) : Enemy_new(prototype->SPAWN_POS, prototype->SPAWN_VELOCITY, prototype->ID, prototype->LINE) {};
-	~Enemy_new() override;
+	Enemy(EntityPrototype* prototype) : Enemy(prototype->SPAWN_POS, prototype->SPAWN_VELOCITY, prototype->ID, prototype->LINE) {}
+	~Enemy() override;
 
 	TickData tick() override;
 	const sf::IntRect& getBounds() const noexcept override
 	{
-		return EntityDataStorage::getEntity(Entity::getUUID()).getTextureRect();
+		return sprite->getTextureRect();
 	}
 
 	// The overridden collision method for enemies to handle children
-	const CollisionType CollidesWith(ICollidable* other) const noexcept override
+	const CollisionType collidesWith(ICollidable* other) const noexcept override
 	{
 		// Default to miss, only change if has collided in a different way
 		CollisionType ret = CollisionType::MISS;
@@ -31,7 +31,7 @@ public:
 		if (other->getBounds().intersects(getBounds()))
 			ret = CollisionType::HIT;
 
-		if (child->CollidesWith(other) == CollisionType::HIT)
+		if (child->collidesWith(other) == CollisionType::HIT)
 		{
 			child->damage();
 
@@ -44,11 +44,9 @@ public:
 	}
 
 	unsigned int getLine() { return line; }
-
-
 protected:
 	virtual TickData attack();
-	Enemy_new* child = nullptr;
+	Enemy* child = nullptr;
 	float* backgroundSpeed = nullptr;
 	bool entered = false;
 };

@@ -24,7 +24,7 @@ Game::Game()
 	//Level::setView(view);
 
 	resize();
-
+	level = new Level(window);
 
 	// Initializes Menu Data
 	menuCountdown.setFont(font);
@@ -52,6 +52,11 @@ Game::Game()
 	// debugging always on top window
 	// can't see window while exec paused
 	//setWindowTopmost(window);
+}
+
+Game::~Game()
+{
+	delete level;
 }
 
 
@@ -82,7 +87,7 @@ void Game::run()
 		// Debug code to allow for speeding up the game
 		if (key(0, Controls::FastForward) || button(0, Controller::X))
 		{
-			level.debugMode();
+			level->debugMode();
 			ticksPerSec = 600;
 		}
 		else
@@ -91,7 +96,7 @@ void Game::run()
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::B) && !levelEditor &&
 			sf::Keyboard::isKeyPressed(sf::Keyboard::LControl) && !countryChoose.isDone())
 		{
-			inLevelEditor = true;
+			levelEditorActive = true;
 			// static casts are annyoing to look at
 			window.setSize(sf::Vector2u(
 				static_cast<unsigned int>(winSize.x) * 4,
@@ -135,24 +140,6 @@ void Game::run()
 			deltaTime -= 1000 / ticksPerSec;
 
 			// update objects here
-
-			// If in game and players alive:
-			//	update level
-			//	render level
-			// If not in game and players alive:
-			//	update menu (start)
-			//	render menu(start)
-			// If not in game and players dead:
-			//	update menu (game over)
-			//	render level, then render menu(game over)
-
-			// Start -> playersDead = false, inGame = false
-			// Main menu choice -> inGame = true
-			// Both players out of lives -> playersDead = false, inGame = false
-			// Game over countdown ends -> playersDead = true
-			// -Ben
-
-
 			if (currentMenu == Menu::LEVEL)
 			{
 				//moving the viewport by viewportScroll pixels
@@ -161,57 +148,77 @@ void Game::run()
 				Level::setView(view);
 
 				//level::update() runs most of the gameplay.
-				if (!level.update(winSize))
+				if (!level->update(winSize))
 				{
-					if (false) //game over, both players dead + animations finished - Christian
+					//placeholder code, commented out will be the real deal
+					if (!playersDead)
+						continueCount.set(10, ticksPerSec);
+					playersDead = true;
+					/*
+					if () //game over, both players dead + animations finished, the false is entirely a placeholder as well - Christian
 					{
-						gameOver.set(10, ticksPerSec);
+						continueCount.set(10, ticksPerSec);
 						playersDead = true;
 					}
-					else if (false) //next level
+					else if () //next level, once again false is a placeholder
 					{
-						currentMenu = Menu::MISSION;
 						completedLevels.push_back(currentLevel);
-						//pick next level
+						changeMenu(Menu::MISSION);
+					}
+					*/
+				}
+				else
+					viewportScroll -= level->getBackgroundSpeed();
+
+				if (playersDead) // Continue menu
+				{
+					menuCountdown.setString(std::to_string(continueCount.getTime()));
+
+					if (key(0, Controls::Select) || button(0, Controller::Select_BTN))
+					{
+						playersDead = false;
+						level->respawnPlayers();
+					}
+					
+					continueCount.tick();
+
+					// Return to main menu for now, leaderboard later if we get there
+					if (continueCount.isDone())
+					{
+						changeMenu(Menu::SELECT);
+						countryChoose.set(10, ticksPerSec);
+						viewportScroll = winSize.y / 2.f;
 					}
 				}
-				viewportScroll -= level.getBackgroundSpeed();
-			}
-			else if (currentMenu == Menu::SELECT)
-			{
-				countryChoose.tick();
-				gameOver.tick();
-				updateSelectMenu();
 			}
 		}
 
-
-		//code per menu? not sure how to use this yet - Christian
+		//additional updates for menus that arent level since they dont need deltaTime
 		switch (currentMenu)
 		{
 		case Menu::INTRO:
-			//draw cutscene on each frame
-			//wait for player input
+			if (countryChoose.isDone() || key(0, Controls::Select) || button(0, Controller::Y))
+			{
+				selKeyReleased = false;
+				changeMenu(Menu::SELECT);
+			}
 			break;
 		case Menu::SELECT:
-			//run select menu
-			break;
-		case Menu::LEVEL:
-			//run level
+			countryChoose.tick();
+			updateSelectMenu();
 			break;
 		case Menu::MISSION:
-			//run mission cutsccenes
+			//update mission cutscenes for timing animations
 			break;
 		case Menu::LEADERBOARD:
-			//run whatever the heck we are doing for the leaderboard
-			break;
-		case Menu::END:
-			//draw end cutscene
+			//check player input
 			break;
 		default:
 			break;
 		}
 
+		if (!(countryChoose.isDone() || key(0, Controls::Select) || button(0, Controller::Y)))
+			selKeyReleased = true;
 
 		// Clear window display
 		window.clear();
@@ -220,38 +227,66 @@ void Game::run()
 
 		// Draw the level gameplay if players are playing or dead
 		//view.setCenter(winSize.x / 2.f, viewportScroll);
-
-		if (currentMenu == Menu::LEVEL || playersDead) //this wont need the || playersDead at the end, well just swap the menu later - Christian
+		switch (currentMenu)
 		{
+		case Menu::INTRO:
+			if (videoDraw)
+				videoDraw = video.drawTo(window); //stop drawing when cutscene is done
+			else
+			{
+				video.resetVideo(); //start cutscene loops, none of the others do tho
+				videoDraw = true;
+			}
+			break;
+		case Menu::SELECT:
+			view.setCenter(winSize.x / 2.f, winSize.y / 2.f);
+			window.setView(view);
+			window.draw(menuMapRect);
+
+			for (int i = 0; i < 4; i++)
+			{
+				// Draw every flag equally apart
+				menuFlagsRect.setTextureRect(sf::IntRect(i * 40, 0, 40, 24));
+				menuFlagsRect.setPosition(22.5f + (float)i * 45, 180);
+				window.draw(menuFlagsRect);
+			}
+
+			// Handle blinkstate for country selection
+			menuSelectRect.setOutlineThickness((float)(3 * blinkState));
+			menuSelectRect.setPosition(22.5f + (float)country * 45, 180);
+
+			menuCountdown.setPosition(213.25f - menuCountdown.getLocalBounds().width, 0);
+
+			// Draw the manu and the selection outline
+			window.draw(menuSelectRect);
+			window.draw(menuCountdown);
+			break;
+		case Menu::LEVEL:
 			view.setCenter(winSize.x / 2.f, viewportScroll);
 			window.setView(view);
 			//Object::setView(view);
 			//Level::setView(view);
-			window.draw(level);
-		}
-		// This does have to be it's own 'if' so the game over screen can overlay the gameplay
-		if (currentMenu != Menu::LEVEL) //placeholder, will be rearranged later - Christian
-		{
-			view.setCenter(winSize.x / 2.f, winSize.y / 2.f);
-			window.setView(view);
-			//Object::setView(view);
-			//Level::setView(view);
-			drawSelectMenu(); //i hate how this is dual purpose that will be fixed lol - Christian
+			level->update(winSize);
+
+			if (playersDead) // Game over menu
+			{
+				view.setCenter(winSize.x / 2.f, winSize.y / 2.f);
+				window.setView(view);
+				menuCountdown.setPosition((winSize - menuCountdown.getLocalBounds().getSize()) / 2.f);
+
+				window.draw(menuCountdown);
+			}
+			break;
+		case Menu::MISSION:
+			break;
+		case Menu::LEADERBOARD:
+			break;
+		case Menu::END:
+			break;
+		default:
+			break;
 		}
 
-		//draws the intro cutscene I CANT BELIEVE THIS WORKED LASDKLHASDLJSDAJKLASDFKLH
-		if (currentMenu == Menu::INTRO)
-		{
-			if (videoDraw)
-			{
-				videoDraw = video.drawTo(window);
-			}
-			else
-			{
-				video.resetVideo();
-				videoDraw = true;
-			}
-		}
 
 		window.display();
 	}
@@ -271,15 +306,59 @@ bool Game::changeMenu(Menu newMenu)
 			video.resetVideo();
 			break;
 		case Menu::SELECT:
-			//reset select
+			countryChoose.set(10, ticksPerSec);
 			break;
 		case Menu::LEVEL:
 			//load new level, make sure things that need to be reset are reset
-			level.load(winSize, country, currentLevel, false);
+			level->load(winSize, country, currentLevel, false);
 			break;
 		case Menu::MISSION:
 			//reset and load the mission cutscene
 			//imma leave this one to Ray lol
+			//pick next level
+			if (completedLevels.size() < 3)
+			{
+				std::vector<Map> countryMaps;
+				countryMaps.push_back(Map::States);
+				countryMaps.push_back(Map::Japan);
+				countryMaps.push_back(Map::Sweden);
+				countryMaps.push_back(Map::England);
+
+				//remove the level for the country you are
+				countryMaps.erase(countryMaps.begin() + country);
+				//remove any completed levels
+				for (int i = 0; i < completedLevels.size(); i++)
+				{
+					for (int j = 0; j < countryMaps.size(); j++)
+					{
+						if (countryMaps.at(j) == completedLevels.at(i))
+						{
+							countryMaps.erase(countryMaps.begin() + j);
+						}
+					}
+				}
+
+				//randomize between remaining
+				currentLevel = countryMaps.at(rand() % (countryMaps.size()));
+			}
+			else
+			{
+				switch (completedLevels.size())
+				{
+				case 3:
+					currentLevel = Map::Israel;
+					break;
+				case 4:
+					currentLevel = Map::Meddit;
+					break;
+				case 5:
+					currentLevel = Map::Russia;
+					break;
+				case 6:
+					currentLevel = Map::Space;
+					break;
+				}
+			}
 			break;
 		case Menu::LEADERBOARD:
 			//reset leaderboard stuff
@@ -291,46 +370,16 @@ bool Game::changeMenu(Menu newMenu)
 			break;
 		}
 
+		if (currentMenu != Menu::LEVEL)
+		{
+			playersDead = false;
+			delete level;
+			level = new Level(window);
+		}
+
 		return true;
 	}
 	return false;
-}
-
-
-/// <summary>
-/// Draws the country select menu.
-/// </summary>
-void Game::drawSelectMenu()
-{
-	if (playersDead) // Game over menu
-	{
-		menuCountdown.setPosition((winSize - menuCountdown.getLocalBounds().getSize()) / 2.f);
-
-		window.draw(menuCountdown);
-	}
-	
-	if (currentMenu == Menu::SELECT) //Select menu
-	{
-		window.draw(menuMapRect);
-
-		for (int i = 0; i < 4; i++)
-		{
-			// Draw every flag equally apart
-			menuFlagsRect.setTextureRect(sf::IntRect(i * 40, 0, 40, 24));
-			menuFlagsRect.setPosition(22.5f + (float)i * 45, 180);
-			window.draw(menuFlagsRect);
-		}
-
-		// Handle blinkstate for country selection
-		menuSelectRect.setOutlineThickness((float)(3 * blinkState));
-		menuSelectRect.setPosition(22.5f + (float)country * 45, 180);
-
-		menuCountdown.setPosition(213.25f - menuCountdown.getLocalBounds().width, 0);
-
-		// Draw the manu and the selection outline
-		window.draw(menuSelectRect);
-		window.draw(menuCountdown);
-	}
 }
 
 
@@ -339,75 +388,52 @@ void Game::drawSelectMenu()
 /// </summary>
 void Game::updateSelectMenu()
 {
-	if (playersDead) // Game over menu
+	// For the number in top right.
+	menuBlinkTimer++;
+
+	// If the blink state timer has reached its end
+	if (menuBlinkTimer == menuBlinkRate)
 	{
-		menuCountdown.setString(std::to_string(gameOver.getTime()));
-
-		if (key(0, Controls::Select) || button(0, Controller::Select_BTN))
-		{
-			playersDead = false;
-			currentMenu = Menu::LEVEL;
-			level.respawnPlayers();
-		}
-
-		// Return to main menu for now, probably cutscene later
-		if (gameOver.isDone())
-		{
-			playersDead = false;
-			countryChoose.set(10, ticksPerSec);
-			level = Level();
-			viewportScroll = winSize.y / 2.f;
-		}
+		// Reset it and toggle the blink state
+		menuBlinkTimer = 0;
+		blinkState = !blinkState;
 	}
-	else // Start menu
+
+	// Switches between countries
+	// If wrapping is unwanted this can all be easily reverted. - ricky
+	// If menu selection should move to the left
+	if ((sf::Keyboard::isKeyPressed(sf::Keyboard::Left)
+		|| joystick(0).x < -0.5f) && !keyLeft)
+		// Move country selection to the left with wrapping
+		(country == 0 ? country = 3 : country--);
+
+	// Else if menu selection should move to the right
+	else if ((sf::Keyboard::isKeyPressed(sf::Keyboard::Right)
+		|| joystick(0).x > 0.5f) && !keyRight)
+		// Move country selection to the right with wrapping
+		++country %= 4;
+
+	// Doesn't switch if the key is held.
+	keyLeft = sf::Keyboard::isKeyPressed(sf::Keyboard::Left)
+		|| joystick(0).x < -0.5f;
+	keyRight = sf::Keyboard::isKeyPressed(sf::Keyboard::Right)
+		|| joystick(0).x > 0.5f;
+
+	// Display new menu countdown
+	menuCountdown.setString(std::to_string(countryChoose.getTime()));
+
+
+	// We can move this to the end and have it only reset playerChosoe so that we dont need the early escape; flow is easier to follow and the code is shorter
+	// If time is out or any menu selection button has been pressed
+	if (selKeyReleased && (countryChoose.isDone() || key(0, Controls::Select) || button(0, Controller::Y)))
 	{
-		// For the number in top right.
-		menuBlinkTimer++;
+		// Reset player choose, load the respective level, and early escape
+		countryChoose.reset();
+		currentMenu = Menu::LEVEL;
+		level->load(winSize, country, Map::England, levelEditor); // Set the last param for loading the correct map
 
-		// If the blink state timer has reached its end
-		if (menuBlinkTimer == menuBlinkRate)
-		{
-			// Reset it and toggle the blink state
-			menuBlinkTimer = 0;
-			blinkState = !blinkState;
-		}
-
-		// Switches between countries
-		// If wrapping is unwanted this can all be easily reverted. - ricky
-		// If menu selection should move to the left
-		if ((sf::Keyboard::isKeyPressed(sf::Keyboard::Left)
-			|| joystick(0).x < -0.5f) && !keyLeft)
-			// Move country selection to the left with wrapping
-			(country == 0 ? country = 3 : country--);
-
-		// Else if menu selection should move to the right
-		else if ((sf::Keyboard::isKeyPressed(sf::Keyboard::Right)
-			|| joystick(0).x > 0.5f) && !keyRight)
-			// Move country selection to the right with wrapping
-			++country %= 4;
-
-		// Doesn't switch if the key is held.
-		keyLeft = sf::Keyboard::isKeyPressed(sf::Keyboard::Left)
-			|| joystick(0).x < -0.5f;
-		keyRight = sf::Keyboard::isKeyPressed(sf::Keyboard::Right)
-			|| joystick(0).x > 0.5f;
-
-		// Display new menu countdown
-		menuCountdown.setString(std::to_string(countryChoose.getTime()));
-
-
-		// We can move this to the end and have it only reset playerChosoe so that we dont need the early escape; flow is easier to follow and the code is shorter
-		// If time is out or any menu selection button has been pressed
-		if (countryChoose.isDone() || key(0, Controls::Select) || button(0, Controller::Y))
-		{
-			// Reset player choose, load the respective level, and early escape
-			countryChoose.reset();
-			currentMenu = Menu::LEVEL;
-			level.load(winSize, country, Map::England, levelEditor); // Set the last param for loading the correct map
-
-			if (debugSkipToBoss)
-				viewportScroll = level.skipToBoss();
-		}
+		if (debugSkipToBoss)
+			viewportScroll = level->skipToBoss();
 	}
 }
 
@@ -433,3 +459,72 @@ void Game::resize()
 	// Update the window
 	window.setView(view);
 }
+
+/*
+* currentMenu starts on INTRO
+* cutscene will loop until enter is pressed
+* change currentMenu to select
+* change to level when enter is pressed and animations are done (countdown?)
+* plays level
+* game over overlay is NOT a seperate currentMenu, that would make level reload data
+* if the game over currentMenu finishes, change to leaderboard
+* if the level ends in a win condition, change to mission
+* mission switches to level at the end of countdown
+* this reapeats until 7 levels have been played
+* if the 7th level ends in a win (no game over screen), change to end instead of mission
+* end of cutscene, switch to mission and game cycle repeats
+*/
+
+/*
+start:
+	start cutscene
+	while (cutscene is not done)
+		if (user input)
+			goto: countrySelect
+	goto: start
+
+countrySelect:
+	start countdown at 10s
+	while (countdown is not done)
+		if (user select)
+			goto: level
+	goto: level
+
+level:
+	start level
+levelUpdate:
+	while (players alive and boss alive)
+		update game
+
+	if (players dead)
+		start countdown at 10s
+		while (countdown is not done)
+			if (user input)
+				goto: levelUpdate
+		goto: leaderboard
+
+	else if (boss dead)
+		fade out
+		goto: missions
+
+missions:
+	start cutscene
+	while (cutscene is not done)
+
+	if (levelsDone is less than 7)
+		goto: level
+	else
+		goto: end
+
+
+leaderboard:
+	while (no user input)
+		display scores
+	goto: start
+
+end:
+	start cutscene
+	while (cutscene not done)
+
+	goto: start
+*/

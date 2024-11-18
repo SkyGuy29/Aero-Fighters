@@ -4,8 +4,9 @@
 #include <stdint.h>
 #include <unordered_map>
 #include <SFML/Graphics/Sprite.hpp>
-
+#include "../../Utility/EntityData/ProjectilePrototype.h"
 #include "../Array/VariableArray.h"
+
 
 using cstr = const char* const;
 using Vec2f = sf::Vector2f;
@@ -13,19 +14,8 @@ using Vec2f = sf::Vector2f;
 class EntityDataStorage
 {
 public:
-
-	enum class AttackID : unsigned char
-	{
-		// MUST REMAIN AT THE END OF THE CLASS
-		COUNT
-	};
-
 	// Must never be constructed
 	EntityDataStorage() = delete;
-
-	struct ProjectilePrototype;
-
-	struct AttackPrototype;
 
 	// The stored default information for a given entity; very generic.
 	struct EntityData
@@ -50,7 +40,7 @@ public:
 				GATE,
 				HOOD,
 				CONE,
-				ROOFUS, // Why?
+				ROOFUS,
 				DOME_ANIMATION,
 				AVRO_BOMBER,
 			};
@@ -138,6 +128,11 @@ public:
 		EntityData(const SpriteData sprite, const Vec2f velocity, const unsigned short health, const short baseCooldown, const uint8_t CHILD_DATA) :
 			spriteData(sprite), velocity(velocity), health(health), baseCooldown(baseCooldown), CHILD_DATA(CHILD_DATA) {}
 
+		EntityData() : spriteData(SpriteData(sf::IntRect(NULL, NULL, NULL, NULL), NULL, NULL, NULL, (SpriteData::TextureType)NULL)),
+			velocity(sf::Vector2f(NULL, NULL)), health(NULL), baseCooldown(NULL), CHILD_DATA(NULL)
+		{
+			//throw std::exception("Failure loading entity data.");
+		}
 	private:
 		friend SpriteData;
 		// Insert texture ptr references here
@@ -160,15 +155,9 @@ public:
 	}
 
 
-	static const ReturnData<ProjectilePrototype> getAttack(AttackID ID)
+	/*static inline void addEntity(unsigned int UUID, sf::Sprite sprite)
 	{
-		return attackData.at(static_cast<unsigned char>(ID));
-	}
-
-
-	static inline void addEntity(unsigned int UUID, sf::Sprite sprite)
-	{
-		spriteTable.emplace(UUID, sprite);
+		spriteTable.emplace(UUID, &sprite);
 	}
 
 
@@ -178,19 +167,17 @@ public:
 	}
 
 
-	static inline sf::Sprite& getEntity(unsigned int UUID)
+	static inline sf::Sprite* getEntity(unsigned int UUID)
 	{
+		if(!spriteTable.contains(UUID))
+			return nullptr; // TODO
 		return spriteTable.at(UUID);
-	}
+	}*/
 
 private:
-	static std::unordered_map<unsigned int, sf::Sprite> spriteTable;
+	//static std::unordered_map<unsigned int, sf::Sprite*> spriteTable; // bro why is there 2
 	// Entity Data Table
 	static EntityData const EntityDataTable[static_cast<unsigned char>(EntityID::COUNT)];
-
-	// Attack Spawning Table
-	static const VariableArray<ProjectilePrototype, /*get Total*/0, static_cast<unsigned char>(AttackID::COUNT)> attackData;
-
 
 	/**
 	 * Brain Food

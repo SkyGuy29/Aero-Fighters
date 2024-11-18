@@ -71,6 +71,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -159,18 +160,17 @@
     <ClCompile Include="src\Cutscene\VideoCutscene.cpp" />
     <ClCompile Include="src\Entities\Projectile\Missile\Missile.cpp" />
     <ClCompile Include="src\Utility\EntityData\EntityManagementInterface.cpp" />
-    <ClCompile Include="src\Entities\Enemy\Boss\Boss_new.cpp" />
-    <ClCompile Include="src\Entities\Enemy\Enemy_new.cpp" />
+    <ClCompile Include="src\Entities\Enemy\Boss\Boss.cpp" />
+    <ClCompile Include="src\Entities\Enemy\Enemy.cpp" />
     <ClCompile Include="src\Entities\Entity.cpp" />
     <ClCompile Include="src\Utility\EntityData\EntityDataStorage.cpp" />
-    <ClCompile Include="src\Entities\Player\Player_new.cpp" />
+    <ClCompile Include="src\Entities\Player\Player.cpp" />
     <ClCompile Include="src\Entities\PowerUp\PowerUp.cpp" />
-    <ClCompile Include="src\Entities\Projectile\Projectile_new.cpp" />
+    <ClCompile Include="src\Entities\Projectile\Projectile.cpp" />
     <ClCompile Include="src\Game\Game.cpp" />
     <ClCompile Include="src\Level\Level.cpp" />
     <ClCompile Include="src\Main.cpp" />
     <ClCompile Include="src\Entities\TileEntity\TileEntity.cpp" />
-    <ClCompile Include="src\Sprites\SpriteType.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Cutscene\Cutscene.h" />
@@ -181,17 +181,17 @@
     <ClInclude Include="src\Utility\Array\SpacingElement.h" />
     <ClInclude Include="src\Utility\EntityData\EntityData.h" />
     <ClInclude Include="src\Utility\EntityData\EntityManagementInterface.h" />
-    <ClInclude Include="src\Entities\Enemy\Boss\Boss_new.h" />
-    <ClInclude Include="src\Entities\Enemy\Enemy_new.h" />
+    <ClInclude Include="src\Entities\Enemy\Boss\Boss.h" />
+    <ClInclude Include="src\Entities\Enemy\Enemy.h" />
     <ClInclude Include="src\Entities\Entity.h" />
     <ClInclude Include="src\Utility\EntityData\EntityDataStorage.h" />
     <ClInclude Include="src\Entities\Interfaces\IHasHealth.h" />
     <ClInclude Include="src\Entities\Interfaces\IHasChildren.h" />
-    <ClInclude Include="src\Entities\Player\Player_new.h" />
+    <ClInclude Include="src\Entities\Player\Player.h" />
     <ClInclude Include="src\Entities\PowerUp\PowerUp.h" />
     <ClInclude Include="src\Entities\Interfaces\ICollidable.h" />
     <ClInclude Include="src\ControllerStuff.hpp" />
-    <ClInclude Include="src\Entities\Projectile\Projectile_new.h" />
+    <ClInclude Include="src\Entities\Projectile\Projectile.h" />
     <ClInclude Include="src\Level\Intermediary.h" />
     <ClInclude Include="src\Game\Game.h" />
     <ClInclude Include="src\Level\Level.h" />
@@ -202,6 +202,7 @@
     <ClInclude Include="src\Utility\Array\StaticArray.h" />
     <ClInclude Include="src\Utility\WindowSize.h" />
     <ClInclude Include="src\Utility\Array\VariableArray.h" />
+    <ClInclude Include="src\Cutscene\VisualElement.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lib\SFML64\lib\sfml-audio-s-d.pdb" />
@@ -223,10 +224,43 @@
     <None Include="lib\SFML64\lib\sfml-window.pdb" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="res\Dialog\englandDialog.txt" />
+    <Text Include="res\Dialog\japanDialog.txt" />
+    <Text Include="res\Dialog\statesDialog.txt" />
+    <Text Include="res\Dialog\swedenDialog.txt" />
     <Text Include="src\Cutscene\englandDialog.txt" />
     <Text Include="src\Cutscene\japanDialog.txt" />
     <Text Include="src\Cutscene\statesDialog.txt" />
     <Text Include="src\Cutscene\swedenDialog.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\Dialog\Explosion0.png" />
+    <Image Include="res\Dialog\Explosion1.png" />
+    <Image Include="res\Dialog\Explosion10.png" />
+    <Image Include="res\Dialog\Explosion11.png" />
+    <Image Include="res\Dialog\Explosion12.png" />
+    <Image Include="res\Dialog\Explosion13.png" />
+    <Image Include="res\Dialog\Explosion14.png" />
+    <Image Include="res\Dialog\Explosion15.png" />
+    <Image Include="res\Dialog\Explosion2.png" />
+    <Image Include="res\Dialog\Explosion3.png" />
+    <Image Include="res\Dialog\Explosion4.png" />
+    <Image Include="res\Dialog\Explosion5.png" />
+    <Image Include="res\Dialog\Explosion6.png" />
+    <Image Include="res\Dialog\Explosion7.png" />
+    <Image Include="res\Dialog\Explosion8.png" />
+    <Image Include="res\Dialog\Explosion9.png" />
+    <Image Include="res\Dialog\hein.png" />
+    <Image Include="res\Dialog\keath.png" />
+    <Image Include="res\Dialog\keaton.png" />
+    <Image Include="res\Dialog\kohful.png" />
+    <Image Include="res\Dialog\lord white.png" />
+    <Image Include="res\Dialog\mao.png" />
+    <Image Include="res\Dialog\target1.png" />
+    <Image Include="res\Dialog\target2.png" />
+    <Image Include="res\Dialog\tee-bee.png" />
+    <Image Include="res\Dialog\villiam.png" />
+    <Image Include="res\Misc\enemies.png" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="res\attacks example.txt" />

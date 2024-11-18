@@ -4,6 +4,8 @@
 
 #include "EntityData.hpp"
 #include "../EntityID.h"
+//std::unordered_map<unsigned int, sf::Sprite*> EntityDataStorage::spriteTable;
+std::unordered_map<EntityDataStorage::EntityData::SpriteData::TextureType, sf::Texture*> EntityDataStorage::EntityData::textureMap;
 
 
 void EntityDataStorage::loadTextures()
@@ -740,9 +742,54 @@ EntityDataStorage::EntityData const EntityDataStorage::EntityDataTable[static_ca
 		0b00000000
 	},
 	// TILE_ENTITY_COUNT, (null)
-
+	EntityData{
+		EntityData::SpriteData {
+			sf::IntRect {
+				0,0,80,96
+			},
+			1,
+			1,
+			true,
+			EntityData::SpriteData::TextureType::HOOD
+		},
+		Vec2f { 0, 0 },
+		0,
+		0,
+		0b00000000
+	},
+	// SPAWNER (null for now)
+	EntityData{
+		EntityData::SpriteData {
+			sf::IntRect {
+				0,0,80,96
+			},
+			1,
+			1,
+			true,
+			EntityData::SpriteData::TextureType::HOOD
+		},
+		Vec2f { 0, 0 },
+		0,
+		0,
+		0b00000000
+	},
+	// PLAYER TODO: figure out other player animation stuff
+	EntityData{
+		EntityData::SpriteData {
+			sf::IntRect {
+				0,16,32,32
+			},
+			16,
+			5,
+			true,
+			EntityData::SpriteData::TextureType::PLAYER
+		},
+		Vec2f { 0, 0 },
+		3,
+		0,
+		0b00000000
+	},
 };
-
 // Generic entity
 /*
 	EntityData {

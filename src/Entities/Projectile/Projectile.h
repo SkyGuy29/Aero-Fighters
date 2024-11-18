@@ -3,13 +3,14 @@
 #include "../Entity.h"
 #include "../Interfaces/ICollidable.h"
 #include "../../Utility/EntityData/ProjectilePrototype.h"
+#include <cmath>
 
 
-class Projectile_new :
+class Projectile :
 	public Entity, public ICollidable
 {
 public:
-	Projectile_new(const ProjectilePrototype prototype, Entity* owner);
+	Projectile(const ProjectilePrototype prototype, Entity* owner);
 
 	TickData tick() override;
 	virtual void move();
@@ -17,11 +18,11 @@ public:
 
 	const sf::IntRect& getBounds() const noexcept override
 	{
-		return EntityDataStorage::getEntity(Entity::getUUID()).getTextureRect();
+		return sprite->getTextureRect();
 	}
 
 	// The overridden collision method for enemies to handle children
-	const CollisionType CollidesWith(ICollidable* other) const noexcept override
+	const CollisionType collidesWith(ICollidable* other) const noexcept override
 	{
 		// Default to miss, only change if has collided in a different way
 		CollisionType ret = CollisionType::MISS;

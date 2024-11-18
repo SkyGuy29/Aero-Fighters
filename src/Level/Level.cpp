@@ -38,18 +38,17 @@ float Level::getBackgroundSpeed() const
 /// <param name="country"></param>
 /// <param name="map"></param>
 /// <param name="levelEditor">Whether or not the levelEditor is active.</param>
-void Level::load(sf::Vector2f winSize, const short country,
+void Level::load(sf::Vector2f& winSize, const short country,
 	const Map map, const bool levelEditor)
 {
 	this->country = country;
 	this->winSize = winSize;
 	levelEditorActive = levelEditor;
+	Entity::setWinSize(*new WindowSize(winSize.x, winSize.y)); // TODO: FIX MEM LEAK LMAOO
 	Entity::setCurrentTick(currentTick);
 
 	// setting up the background
 	backgroundImg.loadFromFile("res/"  + mapStrings[map] + "/" + mapStrings[map] + ".png");
-	if(map == England)
-		frontbackgroundImg.loadFromFile("res/"  + mapStrings[map] + "/Front"  + mapStrings[map] + ".png");
 
 	background.setSize(sf::Vector2f(backgroundImg.getSize()));
 	background.setPosition(0, 0 - 2240 + winSize.y);
@@ -188,6 +187,7 @@ bool Level::update(const sf::Vector2f winSize)
 	//background.setPosition(0, 0-backgroundImg.getSize().y - backgroundDist);
 
 	// Drawing order
+	window.draw(background);
 	EntityManagementInterface::tick(window, currentTick);
 	
 	/*updatePlayers();
@@ -206,10 +206,10 @@ bool Level::update(const sf::Vector2f winSize)
 	p1Score.setString(std::to_string(player1Score));
 	p2Score.setString(std::to_string(player2Score));
 
-	p1LivesRect.setSize(sf::Vector2f(16.f * p[0]->getHealth(), 16));
-	p2LivesRect.setSize(sf::Vector2f(16.f * p[1]->getHealth(), 16));
-	p1LivesRect.setTextureRect(sf::IntRect(0, 16, 32 * p[0]->getHealth(), 32));
-	p2LivesRect.setTextureRect(sf::IntRect(0, 16, 32 * p[1]->getHealth(), 32));
+	p1LivesRect.setSize(sf::Vector2f(16.f * EntityManagementInterface::getPlayers()[0]->getHealth(), 16));
+	p2LivesRect.setSize(sf::Vector2f(16.f * EntityManagementInterface::getPlayers()[1]->getHealth(), 16));
+	p1LivesRect.setTextureRect(sf::IntRect(0, 16, 32 * EntityManagementInterface::getPlayers()[0]->getHealth(), 32));
+	p2LivesRect.setTextureRect(sf::IntRect(0, 16, 32 * EntityManagementInterface::getPlayers()[1]->getHealth(), 32));
 	p1LivesRect.setPosition(sf::Vector2f(0, view.getCenter().y - view.getSize().y / 2.f));
 	p2LivesRect.setPosition(sf::Vector2f(view.getCenter().x + view.getSize().x / 2.f - p2LivesRect.getLocalBounds().width, view.getCenter().y - view.getSize().y / 2.f));
 
@@ -229,7 +229,7 @@ bool Level::update(const sf::Vector2f winSize)
 	if (!levelEditorActive)
 		currentTick++;
 
-	return p[0]->getHealth() > 0 || p[1]->getHealth() > 0;
+	return EntityManagementInterface::getPlayers()[0]->getHealth() > 0 || EntityManagementInterface::getPlayers()[1]->getHealth() > 0;
 }
 
 void Level::updateLevelEditor()
@@ -269,7 +269,7 @@ void Level::statesUpdate()
 
 void Level::japanUpdate()
 {
-	if (!(p[1]->getTime()))
+	if (!EntityManagementInterface::getPlayers()[1]->getTime())
 		backgroundSpeed = 0;
 	if (backgroundDist == 0 && !bossBackgroundSet)
 		bossBackgroundSet = true;
@@ -282,7 +282,6 @@ void Level::swedenUpdate()
 {
 	if (backgroundDist <= 0)
 		backgroundSpeed = 0;
-	return;
 }
 
 
@@ -293,8 +292,8 @@ void Level::englandUpdate()
 		bossBackgroundSet = true;
 		if (bossSpawned == false)
 		{
-			entities.bossEnemies.push_back(Enemy_new(sf::Vector2f(winSize.x / 2,
-				-150), sf::Vector2f(0, 5), EntityID::BOSS_ENGLAND));
+			//entities.bossEnemies.push_back(Enemy(sf::Vector2f(winSize.x / 2,
+			//	-150), sf::Vector2f(0, 5), EntityID::BOSS_ENGLAND));
 			bossSpawned = true;
 		}
 	}

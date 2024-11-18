@@ -1,15 +1,20 @@
-#include "Enemy_new.h"  
+#include "Enemy.h"  
 
 
-Enemy_new::Enemy_new(sf::Vector2f pos, sf::Vector2f vel,
-	EntityID ID, unsigned int line) :
+Enemy::Enemy(sf::Vector2f pos, sf::Vector2f vel,
+             EntityID ID, unsigned int line) :
 	Entity(pos, ID), IHasHealth(ID)
 {
 	this->line = line;
 }
 
 
-Entity::TickData Enemy_new::tick()
+Enemy::~Enemy()
+{
+
+}
+
+Entity::TickData Enemy::tick()
 {
 	if (hasSpawned())
 	{
@@ -20,9 +25,11 @@ Entity::TickData Enemy_new::tick()
 		if (curCooldown > 0)
 			--curCooldown;
 	}
+	return TickData();
 }
 
-Entity::TickData Enemy_new::attack()
+Entity::TickData Enemy::attack()
 {
 	// Map IDs to attacks here, return information.
+	return TickData();
 }

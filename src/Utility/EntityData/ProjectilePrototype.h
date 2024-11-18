@@ -2,6 +2,7 @@
 #include <SFML/System/Vector2.hpp>
 #include "./EntityPrototype.h"
 
+
 struct ProjectilePrototype : EntityPrototype
 {
 	enum class Owner

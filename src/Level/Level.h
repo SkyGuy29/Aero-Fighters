@@ -20,8 +20,6 @@
 class Level final
 {
 public:
-	
-
 	Level(sf::RenderWindow& window);
 	~Level();
 
@@ -29,7 +27,7 @@ public:
 
 	float getBackgroundSpeed() const;
 
-	void load(sf::Vector2f winSize, short country, Map map, bool levelEditor);
+	void load(sf::Vector2f& winSize, short country, Map map, bool levelEditor);
 	bool update(sf::Vector2f winSize);
 
 	void debugMode() const;

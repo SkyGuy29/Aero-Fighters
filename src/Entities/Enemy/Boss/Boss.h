@@ -1,17 +1,17 @@
 #pragma once
-#include "../Enemy_new.h"
+#include "../Enemy.h"
 
-class Boss_new : public Enemy_new
+class Boss : public Enemy
 {
 public:
-	Boss_new();
+	Boss();
 
 
 	TickData tick() override;
 	TickData attack() override;
 
 	// The overridden collision method for enemies to handle children
-	const CollisionType CollidesWith(ICollidable* other) const noexcept override
+	const CollisionType collidesWith(ICollidable* other) const noexcept override
 	{
 		unsigned char c_index = 0;
 		// Default to miss, only change if has collided in a different way
@@ -22,7 +22,7 @@ public:
 
 		while (ret != CollisionType::CHILD && c_index < children.size() && ret != CollisionType::HIT)
 		{
-			if (children.at(c_index).CollidesWith(other) == CollisionType::HIT)
+			if (children.at(c_index).collidesWith(other) == CollisionType::HIT)
 			{
 				child->damage();
 
@@ -35,6 +35,6 @@ public:
 	}
 
 private:
-	std::vector<Enemy_new> children;
+	std::vector<Enemy> children;
 
 };

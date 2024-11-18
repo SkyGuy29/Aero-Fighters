@@ -4,16 +4,20 @@
 
 // Static member must be defined outside the class definition.
 unsigned int Entity::next_uuid = 0;
+WindowSize* Entity::winSize;
+unsigned int* Entity::currentTick;
+std::unordered_map<unsigned int, sf::Sprite> Entity::spriteMap;
+
 
 void Entity::setWinSize(WindowSize& winSize_)
 {
-	winSize = winSize_;
+	winSize = &winSize_;
 }
 
 
 // spawns on the current tick.
 Entity::Entity(sf::Vector2f pos, EntityID ID) :
-	pos(pos), ID(ID), UUID(next_uuid++), spawnTick(currentTick)
+	pos(pos), ID(ID), UUID(next_uuid++), spawnTick(*currentTick)
 {
 	// entities do not start with a sprite
 }
@@ -29,15 +33,15 @@ void Entity::setPosition(sf::Vector2f pos)
 
 Entity::EntityObjectAction Entity::getEntityAction() noexcept
 {
-	sf::Vector2f pos = getPosition();
-	EntityObjectAction ret = EntityObjectAction::NOTHING;
+	const sf::Vector2f pos = getPosition();
+	auto ret = EntityObjectAction::NOTHING;
 	const auto& entityData = EntityDataStorage::getData(ID);
 
 	// If on screen
 	if (!(pos.x + entityData.spriteData.getBounds().width / 2.f < 0 ||              // Off the left
 		  pos.y + entityData.spriteData.getBounds().height / 2.f < 0 ||              // Off the top
-		  pos.x - entityData.spriteData.getBounds().width / 2.f >= winSize.width || // Off the right
-		  pos.y - entityData.spriteData.getBounds().height / 2.f >= winSize.height)) // Off the bottom
+		  pos.x - entityData.spriteData.getBounds().width / 2.f >= (*winSize).width || // Off the right
+		  pos.y - entityData.spriteData.getBounds().height / 2.f >= (*winSize).height)) // Off the bottom
 	{
 		if ((entityFlags & 0b00000001) != 0b00000001) // If not spawned
 		{
@@ -52,12 +56,12 @@ Entity::EntityObjectAction Entity::getEntityAction() noexcept
 
 			sprite->setTextureRect(entityData.spriteData.getBounds());
 			vel = entityData.velocity;
-
-			// Is on screen, do not delete.
-			ret = EntityObjectAction::DRAW;
 		}
+		// Is on screen, do not delete.
+		ret = EntityObjectAction::DRAW;
 
 		// Maintains action of "NOTHING" if it has been 'spawned' and is still on screen.
+		// ^ WHY??? they are insta deleted first tick of game LOL. Moved down to outer if - ninjune
 	}
 	// If not on screen and has spawned
 	else if ((entityFlags & 0b00000001) == 0b00000001 && !levelEditorActive)
@@ -70,7 +74,7 @@ Entity::EntityObjectAction Entity::getEntityAction() noexcept
 
 void Entity::move() noexcept
 {
-	pos += sf::Vector2f(vel.x*(currentTick-spawnTick), vel.y*(currentTick-spawnTick));
+	pos += sf::Vector2f(vel.x*(*currentTick-spawnTick), vel.y*(*currentTick-spawnTick));
 	if (sprite != nullptr)
 		sprite->setPosition(pos);
 }
@@ -93,11 +97,11 @@ void Entity::nextFrame(const int frameRate)
 		animationFinished = true;
 	}
 
-	sf::Vector2i intermediary = EntityDataStorage::getEntity(UUID).getTextureRect().getSize();
-	sf::Vector2<double> texSize = { intermediary.x, intermediary.y };
+	sf::Vector2i intermediary = sprite->getTextureRect().getSize();
+	sf::Vector2<double> texSize   = { (double)intermediary.x, (double)intermediary.y };
 
-	intermediary = EntityDataStorage::getEntity(UUID).getTextureRect().getPosition();
-	sf::Vector2<double> texOffset = { intermediary.x, intermediary.y };
+	intermediary = sprite->getTextureRect().getPosition();
+	sf::Vector2<double> texOffset = { (double)intermediary.x, (double)intermediary.y };
 
 	// the dividing to an int is needed for the updates per frame delay.
 	sprite->setTextureRect(sf::IntRect(

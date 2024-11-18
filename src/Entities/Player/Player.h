@@ -5,19 +5,26 @@
 #include "../../ControllerStuff.hpp"
 
 
-class Player_new :
+// TODO add controls, update player, etc.
+class Player :
     public Entity, public IHasHealth
 {
 public:
-    Player_new(sf::Vector2f pos, EntityID ID,
-        int* backgroundSpeed, unsigned char orientation = 0
-    );
+    enum PlayerCountry
+    {
+	    AMERICA,
+        JAPAN,
+        SWEDEN,
+        ENGLAND
+    };
+	Player(sf::Vector2f pos, PlayerCountry country, bool isPlayerTwo);
 
-    TickData tick();
+    void reset();
+    TickData tick() override;
+    bool getTime() { return false; }
     void setHealth(short h) { health = h; };
     void increasePower();
     void increaseSpecial();
-
 private:
     //power level goes up to 3, 4 total levels -Phoenix
     unsigned int powerLevel = 0, 

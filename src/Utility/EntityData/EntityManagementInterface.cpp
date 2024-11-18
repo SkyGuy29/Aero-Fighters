@@ -1,18 +1,31 @@
 #include "EntityManagementInterface.h"
 
 #include <assert.h>
+#include <ranges>
 
-#include "../../Entities/Enemy/Enemy_new.h"
-#include "../../Entities/Player/Player_new.h"
+#include "../../Entities/Enemy/Enemy.h"
+#include "../../Entities/Player/Player.h"
 #include "../../Entities/PowerUp/PowerUp.h"
 #include "../../Entities/TileEntity/TileEntity.h"
-#include "../../Entities/Enemy/Boss/Boss_new.h"
+#include "../../Entities/Enemy/Boss/Boss.h"
+// must declare these in cpp
+std::unordered_map<unsigned int, std::vector<EntityPrototype*>> EntityManagementInterface::spawnMap;
+std::vector<Player*> EntityManagementInterface::players; // spawned at start
+std::vector<Enemy*> EntityManagementInterface::landEnemies; // spawned at start (spawnMap:0)
+std::vector<Projectile*> EntityManagementInterface::projectiles; // spawned dynamically by enemies
+std::vector<Enemy*> EntityManagementInterface::airEnemies; // spawnMap
+std::vector<Enemy*> EntityManagementInterface::waterEnemies; // spawnMap
+std::vector<Boss*> EntityManagementInterface::bossEnemies; // ?
+std::vector<TileEntity*> EntityManagementInterface::tileEntities; // spawned at start (spawnMap:0)
+std::vector<PowerUp*> EntityManagementInterface::powerUps; // spawned dynamically by enemies
+std::unordered_map<std::string, std::vector<ProjectilePrototype>> EntityManagementInterface::attackData;
+unsigned int EntityManagementInterface::lastTick = -1; // max int (unsigned)
 
 
-inline void EntityManagementInterface::load(Map map)
+void EntityManagementInterface::load(Map map)
 {
-	players.push_back(new Player_new(sf::Vector2(0, 0), sf::Vector2f(0, 0), EntityID::PLAYER, country, true));
-	players.push_back(new Player_new(sf::Vector2(0, 0), sf::Vector2f(0, 0), EntityID::PLAYER, ));
+	players.push_back(new Player(sf::Vector2f(100, 100), Player::AMERICA, false));
+	players.push_back(new Player(sf::Vector2f(150, 100), Player::AMERICA, true));
 	loadAttacks();
 	loadEnemies(map);
 	EntityDataStorage::loadTextures();
@@ -29,24 +42,23 @@ void EntityManagementInterface::tick(sf::RenderWindow& win, unsigned int current
 			if (entityPrototype->ID < EntityID::ENEMY_COUNT)
 			{
 				if (entityPrototype->ID < EntityID::ENEMY_AIR_COUNT)
-					airEnemies.push_back(new Enemy_new(entityPrototype));
+					airEnemies.push_back(new Enemy(entityPrototype));
 				else if (entityPrototype->ID < EntityID::ENEMY_LAND_COUNT)
-					landEnemies.push_back(new Enemy_new(entityPrototype));
+					landEnemies.push_back(new Enemy(entityPrototype));
 				else if (entityPrototype->ID < EntityID::ENEMY_WATER_COUNT)
-					waterEnemies.push_back(new Enemy_new(entityPrototype));
+					waterEnemies.push_back(new Enemy(entityPrototype));
 			}
 			else if (entityPrototype->ID < EntityID::TILE_ENTITY_COUNT)
 				tileEntities.push_back(new TileEntity(entityPrototype));
 		}
 	}
 
-	generalTick<Enemy_new>(landEnemies, win);
-	generalTick<Projectile_new>(projectiles, win);
-	generalTick<Enemy_new>(airEnemies, win);
-	generalTick<Enemy_new>(waterEnemies, win);
-	generalTick<Boss_new>(bossEnemies, win);
-	generalTick<PermanentSpawner>(permanentSpawners, win);
-	generalTick<TemporarySpawner>(temporarySpawners, win);
+	generalTick<Enemy>(landEnemies, win);
+	generalTick<Projectile>(projectiles, win);
+	generalTick<Player>(players, win);
+	generalTick<Enemy>(airEnemies, win);
+	generalTick<Enemy>(waterEnemies, win);
+	generalTick<Boss>(bossEnemies, win);
 	generalTick<TileEntity>(tileEntities, win);
 	generalTick<PowerUp>(powerUps, win);
 }
@@ -60,7 +72,7 @@ void EntityManagementInterface::updateLevelEditor()
 }
 
 
-inline void EntityManagementInterface::unload()
+void EntityManagementInterface::unload()
 {
 	deleteVector((std::vector<void*>&)landEnemies);
 	deleteVector((std::vector<void*>&)airEnemies);
@@ -68,11 +80,14 @@ inline void EntityManagementInterface::unload()
 	deleteVector((std::vector<void*>&)bossEnemies);
 	deleteVector((std::vector<void*>&)players);
 	deleteVector((std::vector<void*>&)projectiles);
-	deleteVector((std::vector<void*>&)permanentSpawners);
-	deleteVector((std::vector<void*>&)temporarySpawners);
 	deleteVector((std::vector<void*>&)tileEntities);
 	deleteVector((std::vector<void*>&)powerUps);
 	EntityDataStorage::unloadTextures();
+
+	// deletes the prototypes in the spawn map
+	for (auto& val : spawnMap | std::views::values)
+		for (auto pPrototype : val)
+			delete pPrototype;
 }
 
 
@@ -81,7 +96,7 @@ inline void EntityManagementInterface::loadAttacks()
 	std::ifstream f;
 	f.open("res/attacks.txt");
 	if (!f.is_open())
-		throw std::exception("Unable to load attacks file!");
+		throw std::runtime_error("Unable to load attacks file!");
 	std::string input;
 	struct TempData
 	{
@@ -110,7 +125,7 @@ inline void EntityManagementInterface::loadAttacks()
 		else if (input.starts_with("PROJ"))
 		{
 			input = "";
-			while(!input.starts_with("PROJ"))
+			while(!input.starts_with("PROJ") && !f.eof())
 			{
 				std::getline(f, input);
 				line++;
@@ -120,16 +135,16 @@ inline void EntityManagementInterface::loadAttacks()
 				{
 				case 1:
 					splitVec = split_(input);
-					assert(splitVec.size() == 2, "Attack loading failed. 1"); // we want program execution to be stopped if we cant load the attack correctly
+					assert(splitVec.size() == 2); // we want program execution to be stopped if we cant load the attack correctly
 					tempData.spawnPos = sf::Vector2f(splitVec[0], splitVec[1]);
 					break;
 				case 2:
 					splitVec = split_(input);
-					assert(splitVec.size() == 2, "Attack loading failed. 2");
+					assert(splitVec.size() == 2);
 					tempData.spawnVelocity = sf::Vector2f(splitVec[0], splitVec[1]);
 					break;
 				case 3:
-					tempData.id = EntityID((int)EntityID::PROJECTILE_START + atoi(input.c_str()));
+					tempData.id = EntityID((int)EntityID::PROJECTILE_START + atoi(input.c_str()) + 1);
 					break;
 				case 4:
 					tempData.tickOffset = atoi(input.c_str());
@@ -139,18 +154,17 @@ inline void EntityManagementInterface::loadAttacks()
 					break;
 				case 6:
 					splitVec = split_(input);
-					assert(splitVec.size() == 2, "Attack loading failed. 4");
+					assert(splitVec.size() == 2);
 					tempData.hitboxSize = sf::Vector2f(splitVec[0], splitVec[1]);
-				default:
-					throw std::exception("Attack loading failed. 3");
 				}
 			}
 			line = 0;
-			f.seekg(-5, std::ios_base::cur); // setup for next read
+			if(!f.eof())
+				f.seekg(-5, std::ios_base::cur); // setup for next read
 
 			// id is an offset from the projectile start entity id
-			attackData[attackName].push_back(ProjectilePrototype(tempData.spawnPos,
-				tempData.spawnVelocity, tempData.id, tempData.tickOffset, tempData.flags)
+			attackData[attackName].emplace_back(tempData.spawnPos,
+				tempData.spawnVelocity, tempData.id, tempData.tickOffset, tempData.flags
 			);
 		}
 	}
@@ -183,8 +197,8 @@ inline void EntityManagementInterface::loadEnemies(Map map)
 {
 	struct TempData
 	{
-		short id;
-		unsigned int spawnTick;
+		short id = 0;
+		unsigned int spawnTick = 0;
 		sf::Vector2f pos, vel;
 		unsigned int line = 0;
 	};
@@ -233,22 +247,25 @@ inline void EntityManagementInterface::loadEnemies(Map map)
 	{
 		input.clear();
 		std::getline(f, input);
+		// TODO: verify that enemies.txt is valid (I dont think 0 or 1 id is right cause it is child!) (check coords of spawns)
+		if(input.starts_with("NEW"))
+		{
+			f >> tempData.id >> tempData.pos.x >> tempData.pos.y >> tempData.vel.x >> tempData.vel.y;
+			tempData.line += 6; // 5 + space
+		}
 
 		if (input == "NEW LAND")
+			spawnMap[0].push_back(new EntityPrototype(tempData.pos, tempData.vel, (EntityID)((int)EntityID::ENEMY_AIR_COUNT + tempData.id + 1), 0, tempData.line));
+		else if (input == "NEW AIR") // TODO: Add water
 		{
-			f >> tempData.pos.x >> tempData.pos.y >> tempData.vel.x >> tempData.vel.y;
-			tempData.line += 4;
-			spawnMap[0].push_back(new EntityPrototype(tempData.pos, tempData.vel, (EntityID)tempData.id, 0, tempData.line));
-		}
-		else if (input == "NEW WATER" || input == "NEW AIR")
-		{
-			if(!spawnMap.count(tempData.spawnTick))
+			f >> tempData.spawnTick;
+			if(!spawnMap.contains(tempData.spawnTick))
 				spawnMap[tempData.spawnTick] = std::vector<EntityPrototype*>();
-			f >> tempData.pos.x >> tempData.pos.y >> tempData.vel.x >> tempData.vel.y >> tempData.spawnTick;
-			tempData.line += 5;
-			// TODO: CLEAN THIS UP ON PROGRAM CLOSE (memory leaks rn)
+			tempData.line += 1;
 			spawnMap[tempData.spawnTick].push_back(new EntityPrototype(tempData.pos, tempData.vel, (EntityID)tempData.id, 0, tempData.line));
 		}
+		else if (input == "NEW TILE")
+			spawnMap[0].push_back(new EntityPrototype(tempData.pos, tempData.vel, (EntityID)((int)EntityID::ENEMY_COUNT + tempData.id + 1), 0, tempData.line));
 	}
 }
 
