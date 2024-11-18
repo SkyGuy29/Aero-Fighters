@@ -17,6 +17,12 @@ public:
 	// Must never be constructed
 	EntityDataStorage() = delete;
 
+	struct ChildTemplete
+	{
+		EntityID ID;
+		sf::Vector2i parentOffset
+	};
+
 	// The stored default information for a given entity; very generic.
 	struct EntityData
 	{
