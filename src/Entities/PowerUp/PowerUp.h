@@ -8,27 +8,21 @@ class PowerUp final :
 	public Entity, public ICollidable
 {
 public:
-	PowerUp(sf::Vector2f spawnPos, EntityID id) :	Entity(spawnPos, id) {};
+	//:	Entity(spawnPos, id) {}
+	PowerUp(sf::Vector2f spawnPos, EntityID id);
 	~PowerUp() override = default;
+
+	void interceptBarrier();
+
     TickData tick() override;
 
 
-	const sf::IntRect& getBounds() const noexcept override
+	sf::IntRect getBounds() const noexcept override
 	{
 		return sprite->getTextureRect();
 	}
-
-	// The overridden collision method for enemies to handle children
-	const CollisionType collidesWith(ICollidable* other) const noexcept override
-	{
-		// Default to miss, only change if has collided in a different way
-		CollisionType ret = CollisionType::MISS;
-
-		if (other->getBounds().intersects(getBounds()))
-			ret = CollisionType::HIT;
-
-		return ret;
-	}
 private:
+	sf::Vector2f vel;
+	short bounces = 0;
 };
 

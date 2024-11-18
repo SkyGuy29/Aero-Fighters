@@ -19,7 +19,7 @@ public:
 		throw std::runtime_error("Default method called - ICollidable::collidesWith");
 	}
 
-	[[nodiscard]] virtual const sf::IntRect& getBounds() const
+	[[nodiscard]] virtual sf::IntRect getBounds() const
 	{
 		throw std::runtime_error("Default method called - ICollidable::getBounds");
 	}

@@ -66,6 +66,7 @@ public:
 private:
 	static inline void loadAttacks();
 	static inline void loadEnemies(Map map);
+	static inline void loadChildren();
 
 	template<typename T> requires std::derived_from<T, Entity> 
 	static void generalTick(std::vector<T*>& entities, sf::RenderWindow& win);
@@ -77,8 +78,8 @@ private:
 	template<typename T> requires std::derived_from<T, Entity>
 	static void generalLevelEditorUpdate(std::vector<T*> entities);
 
-	template <typename T, typename V> requires std::derived_from<T, ICollidable>&& std::derived_from<V, ICollidable>
-	static bool collide(std::vector<V*>& entities, T* entity);
+	template <typename T> requires std::derived_from<T, ICollidable>
+	static bool collide(std::vector<Projectile*>& entities, T* entity);
 
 	static void deleteVector(std::vector<void*>& a);
 
@@ -188,16 +189,31 @@ void EntityManagementInterface::processAttack(std::string ID, T& entity)
 }
 
 
-template <typename T, typename V> requires std::derived_from<T, ICollidable> && std::derived_from<V, ICollidable>
-bool EntityManagementInterface::collide(std::vector<V*>& entities, T* entity)
+template <typename T> requires std::derived_from<T, ICollidable>
+bool EntityManagementInterface::collide(std::vector<Projectile*>& entities, T* entity)
 {
 	bool done = false;
 	size_t index = 0;
+	ICollidable::CollisionType collision;
 
 	while (!done && index < entities.size())
 	{
-		if (dynamic_cast<ICollidable*>(entities[index])->collidesWith(entity) != ICollidable::CollisionType::MISS)
+		collision = dynamic_cast<ICollidable*>(entity)->collidesWith(entities[index]);
+
+		if (collision != ICollidable::CollisionType::MISS)
 		{
+			if (collision == ICollidable::CollisionType::HIT)
+			{
+				if (dynamic_cast<IHasHealth*>(entity) == nullptr)
+					done = true;
+				else
+				{
+					entity.damage();
+					if (entity.getHealth() == 0)
+						done = true;
+				}
+			}
+
 			delete entities[index];
 			entities.erase(entities.begin() + index);
 			done = true;
