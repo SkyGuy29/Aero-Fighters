@@ -19,7 +19,10 @@ public:
     };
 	Player(sf::Vector2f pos, PlayerCountry country, bool isPlayerTwo);
 
+    void move();
     void reset();
+    TickData shoot();
+    TickData fireSpecial();
     TickData tick() override;
     bool getTime() { return false; }
     void setHealth(short h) { health = h; };
@@ -36,4 +39,6 @@ private:
     unsigned int powerLevel = 0, 
         //special uses are probably 2, Ray said don't quote me on that though -Phoenix
         special = 2;
+    unsigned int cooldownSecondary = 0, invincibility = 0;
+    bool isPlayerTwo = false;
 };

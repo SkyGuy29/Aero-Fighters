@@ -7,7 +7,7 @@
 
 
 class Entity
-{ 
+{
 public:
 	// Base may not be constructed unless by its derivatives
 	Entity() = delete;
@@ -41,10 +41,12 @@ public:
 	// before level is instantiated.
 	static void setWinSize(WindowSize& winSize);
 
+	static void setViewport(sf::View& vie) { view = vie; }
+
 	static void setBackgroundSpeed(float& speed) { backgroundSpeed = speed; }
 
 	static void setCurrentTick(unsigned int& ct) { currentTick = &ct; }
-	
+
 	void setPosition(sf::Vector2f pos);
 
 	/**
@@ -64,12 +66,17 @@ public:
 	 */
 	EntityObjectAction getEntityAction() noexcept;
 
+	sf::View& getView() { return view; }
+
+	float getBackgroundSpeed() { return backgroundSpeed; }
+
 	unsigned int getUUID() const { return UUID; }
 
 	sf::Sprite* getSprite() const { return sprite; }
 
 	sf::Vector2f getPosition() const { return pos; }
 
+	WindowSize getWinSize() { return *winSize; }
 protected:
 	Entity(sf::Vector2f pos, EntityID ID);
 
@@ -77,10 +84,11 @@ protected:
 
 	void nextFrame(const int frameRate = 15);
 
+	void rotationAnimationNextFrame();
+
 	// moves the entity by it's velocity multiplied by (currentTick-spawnTick).
 	void move() noexcept;
 
-	static float& backgroundSpeed;
 
 	// The velocity of this entity
 	// Derived during object construction
@@ -105,12 +113,15 @@ protected:
 	unsigned int line;
 
 	unsigned int spawnTick;
+	sf::Vector2f pos;
 private:
 
 	// The size of the window
 	// THESE ARE ASSUMED TO BE SET, PROGRAM WILL SEGFAULT IF NOT SET
-	static WindowSize* winSize;
 	static unsigned int* currentTick;
+	static sf::View& view;
+	static float& backgroundSpeed;
+
 
 	// The next UUID that will be assigned.
 	static unsigned int next_uuid;
@@ -119,7 +130,6 @@ private:
 	static std::unordered_map<unsigned int, sf::Sprite> spriteMap;
 
 	const unsigned int UUID;
-	sf::Vector2f pos;
 
 	// Texture specific data members //
 	short currentFrame = 0;
