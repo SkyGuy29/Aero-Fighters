@@ -66,6 +66,7 @@ public:
 private:
 	static inline void loadAttacks();
 	static inline void loadEnemies(Map map);
+	static inline void loadChildren();
 
 	template<typename T> requires std::derived_from<T, Entity> 
 	static void generalTick(std::vector<T*>& entities, sf::RenderWindow& win);
@@ -193,11 +194,26 @@ bool EntityManagementInterface::collide(std::vector<Projectile*>& entities, T* e
 {
 	bool done = false;
 	size_t index = 0;
+	ICollidable::CollisionType collision;
 
 	while (!done && index < entities.size())
 	{
-		if (dynamic_cast<ICollidable*>(entities[index])->collidesWith(entity) != ICollidable::CollisionType::MISS)
+		collision = dynamic_cast<ICollidable*>(entity)->collidesWith(entities[index]);
+
+		if (collision != ICollidable::CollisionType::MISS)
 		{
+			if (collision == ICollidable::CollisionType::HIT)
+			{
+				if (dynamic_cast<IHasHealth*>(entity) == nullptr)
+					done = true;
+				else
+				{
+					entity.damage();
+					if (entity.getHealth() == 0)
+						done = true;
+				}
+			}
+
 			delete entities[index];
 			entities.erase(entities.begin() + index);
 			done = true;

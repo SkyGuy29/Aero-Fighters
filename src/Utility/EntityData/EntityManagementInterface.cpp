@@ -269,6 +269,46 @@ inline void EntityManagementInterface::loadEnemies(Map map)
 	}
 }
 
+inline void EntityManagementInterface::loadChildren()
+{
+	struct TempData
+	{
+		unsigned char totalChildren;
+		std::vector<EntityDataStorage::ChildTemplete>
+	};
+	std::string input;
+
+	std::ifstream f;
+	f.open("res/children.txt");
+
+	spawnMap[0] = std::vector<EntityPrototype*>();
+	// loading the enemies
+	while (f.is_open() && !f.eof())
+	{
+		input.clear();
+		std::getline(f, input);
+		// TODO: verify that enemies.txt is valid (I dont think 0 or 1 id is right cause it is child!) (check coords of spawns)
+		if (input.starts_with("NEW"))
+		{
+			f >> tempData.id >> tempData.pos.x >> tempData.pos.y >> tempData.vel.x >> tempData.vel.y;
+			tempData.line += 6; // 5 + space
+		}
+
+		if (input == "NEW LAND")
+			spawnMap[0].push_back(new EntityPrototype(tempData.pos, tempData.vel, (EntityID)((int)EntityID::ENEMY_AIR_COUNT + tempData.id + 1), 0, tempData.line));
+		else if (input == "NEW AIR") // TODO: Add water
+		{
+			f >> tempData.spawnTick;
+			if (!spawnMap.contains(tempData.spawnTick))
+				spawnMap[tempData.spawnTick] = std::vector<EntityPrototype*>();
+			tempData.line += 1;
+			spawnMap[tempData.spawnTick].push_back(new EntityPrototype(tempData.pos, tempData.vel, (EntityID)tempData.id, 0, tempData.line));
+		}
+		else if (input == "NEW TILE")
+			spawnMap[0].push_back(new EntityPrototype(tempData.pos, tempData.vel, (EntityID)((int)EntityID::ENEMY_COUNT + tempData.id + 1), 0, tempData.line));
+	}
+}
+
 
 void EntityManagementInterface::deleteVector(std::vector<void*>& a)
 {
