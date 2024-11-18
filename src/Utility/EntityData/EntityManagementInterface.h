@@ -77,8 +77,8 @@ private:
 	template<typename T> requires std::derived_from<T, Entity>
 	static void generalLevelEditorUpdate(std::vector<T*> entities);
 
-	template <typename T, typename V> requires std::derived_from<T, ICollidable>&& std::derived_from<V, ICollidable>
-	static bool collide(std::vector<V*>& entities, T* entity);
+	template <typename T> requires std::derived_from<T, ICollidable>
+	static bool collide(std::vector<Projectile*>& entities, T* entity);
 
 	static void deleteVector(std::vector<void*>& a);
 
@@ -188,8 +188,8 @@ void EntityManagementInterface::processAttack(std::string ID, T& entity)
 }
 
 
-template <typename T, typename V> requires std::derived_from<T, ICollidable> && std::derived_from<V, ICollidable>
-bool EntityManagementInterface::collide(std::vector<V*>& entities, T* entity)
+template <typename T> requires std::derived_from<T, ICollidable>
+bool EntityManagementInterface::collide(std::vector<Projectile*>& entities, T* entity)
 {
 	bool done = false;
 	size_t index = 0;
