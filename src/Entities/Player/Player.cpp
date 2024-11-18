@@ -56,7 +56,7 @@ Entity::TickData Player::shoot()
 
 	if(!isPlayerTwo)
 	{
-		
+		// todo: scan strings in attack map, filter for country (stringed), power level, and player. this way we dont have to use a switch and instead the attack used is defined in the name
 	}
 	else
 	{

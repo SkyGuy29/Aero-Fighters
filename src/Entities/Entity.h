@@ -39,7 +39,7 @@ public:
 	// Sets the variable used by entity for the size of the window.
 	// Should only ever be called once, giving a variable held
 	// before level is instantiated.
-	static void setWinSize(WindowSize& winSize);
+	static void setWinSize(WindowSize* winSiz) { winSize = winSiz; };
 
 	static void setViewport(sf::View& vie) { view = vie; }
 
@@ -84,8 +84,6 @@ protected:
 
 	void nextFrame(const int frameRate = 15);
 
-	void rotationAnimationNextFrame();
-
 	// moves the entity by it's velocity multiplied by (currentTick-spawnTick).
 	void move() noexcept;
 
@@ -121,6 +119,7 @@ private:
 	static unsigned int* currentTick;
 	static sf::View& view;
 	static float& backgroundSpeed;
+	static WindowSize* winSize;
 
 
 	// The next UUID that will be assigned.
