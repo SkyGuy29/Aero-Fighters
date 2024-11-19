@@ -20,7 +20,7 @@ public:
 	struct ChildTemplete
 	{
 		EntityID ID;
-		sf::Vector2i parentOffset
+		sf::Vector2i parentOffset;
 	};
 
 	// The stored default information for a given entity; very generic.

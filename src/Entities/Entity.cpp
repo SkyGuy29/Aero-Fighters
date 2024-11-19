@@ -7,11 +7,14 @@ unsigned int Entity::next_uuid = 0;
 unsigned int* Entity::currentTick;
 std::unordered_map<unsigned int, sf::Sprite> Entity::spriteMap;
 
+
 // spawns on the current tick.
 Entity::Entity(sf::Vector2f pos, EntityID ID) :
 	pos(pos), ID(ID), UUID(next_uuid++), spawnTick(*currentTick)
 {
 	// entities do not start with a sprite
+	vel = EntityDataStorage::getData(ID).velocity;
+	baseCooldown = EntityDataStorage::getData(ID).baseCooldown;
 }
 
 

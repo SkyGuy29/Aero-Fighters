@@ -87,14 +87,13 @@ protected:
 	// moves the entity by it's velocity multiplied by (currentTick-spawnTick).
 	void move() noexcept;
 
-
 	// The velocity of this entity
 	// Derived during object construction
-	sf::Vector2f vel = EntityDataStorage::getData(ID).velocity;
+	sf::Vector2f vel;
 
 	// The attack cooldown of this entity
 	// Derived during object construction from the entity data table.
-	unsigned short baseCooldown = EntityDataStorage::getData(ID).baseCooldown;
+	unsigned short baseCooldown;
 	// Used at timer when ticking for the cooldown.
 	unsigned short curCooldown = 0;
 
@@ -120,6 +119,7 @@ private:
 	static sf::View& view;
 	static float& backgroundSpeed;
 	static WindowSize* winSize;
+	static std::unordered_map<std::string, std::vector<ProjectilePrototype>>& attackMap; // todo set this
 
 
 	// The next UUID that will be assigned.

@@ -31,6 +31,7 @@ void EntityManagementInterface::load(Map map)
 	EntityDataStorage::loadTextures();
 }
 
+
 void EntityManagementInterface::tick(sf::RenderWindow& win, unsigned int currentTick)
 {
 	// spawn the entities on the map with the current tick. Also make sure that we are not spawning enemies over and over if the tick is the same.
@@ -62,6 +63,7 @@ void EntityManagementInterface::tick(sf::RenderWindow& win, unsigned int current
 	generalTick<TileEntity>(tileEntities, win);
 	generalTick<PowerUp>(powerUps, win);
 }
+
 
 void EntityManagementInterface::updateLevelEditor()
 {
