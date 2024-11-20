@@ -3,6 +3,7 @@
 #include "../Interfaces/IHasHealth.h"
 #include "../../Utility/EntityData/EntityPrototype.h"
 #include "../Interfaces/ICollidable.h"
+#include <cmath>
 
 // Primarily used by 
 class Enemy :
@@ -21,7 +22,6 @@ public:
 	{
 		return sprite->getTextureRect();
 	}
-
 
 	unsigned int getLine() { return line; }
 protected:
