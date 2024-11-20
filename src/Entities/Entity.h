@@ -4,6 +4,13 @@
 #include "../Utility/EntityData/EntityDataStorage.h"
 #include "../Utility/WindowSize.h"
 #include "../Utility/EntityID.h"
+enum class PlayerCountry : uint8_t
+{
+	AMERICA,
+	JAPAN,
+	SWEDEN,
+	ENGLAND
+};
 
 
 class Entity
@@ -47,6 +54,8 @@ public:
 
 	static void setCurrentTick(unsigned int& ct) { currentTick = &ct; }
 
+	static void setAttackMap(std::unordered_map<std::string, std::vector<ProjectilePrototype>>& map) { attackMap = map; }
+
 	void setPosition(sf::Vector2f pos);
 
 	/**
@@ -77,6 +86,9 @@ public:
 	sf::Vector2f getPosition() const { return pos; }
 
 	WindowSize getWinSize() { return *winSize; }
+
+	// public because I am lazy TODO: make getters/setters for this
+	static std::unordered_map<unsigned short, std::unordered_map<bool, std::unordered_map<PlayerCountry, std::string>>> playerAttackTree;
 protected:
 	Entity(sf::Vector2f pos, EntityID ID);
 
@@ -111,6 +123,7 @@ protected:
 
 	unsigned int spawnTick;
 	sf::Vector2f pos;
+	static std::unordered_map<std::string, std::vector<ProjectilePrototype>>& attackMap;
 private:
 
 	// The size of the window
@@ -119,7 +132,6 @@ private:
 	static sf::View& view;
 	static float& backgroundSpeed;
 	static WindowSize* winSize;
-	static std::unordered_map<std::string, std::vector<ProjectilePrototype>>& attackMap; // todo set this
 
 
 	// The next UUID that will be assigned.
