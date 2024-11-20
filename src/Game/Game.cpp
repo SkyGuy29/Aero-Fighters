@@ -213,6 +213,8 @@ void Game::run()
 			break;
 		}
 
+		//prevents the enter key from being held through the intro into the select.
+		//used at the end of updateSelect()
 		if (!(countryChoose.isDone() || key(0, Controls::Select) || button(0, Controller::Y)))
 			selKeyReleased = true;
 
@@ -457,21 +459,19 @@ void Game::resize()
 }
 
 /*
-* currentMenu starts on INTRO
-* cutscene will loop until enter is pressed
-* change currentMenu to select
-* change to level when enter is pressed and animations are done (countdown?)
-* plays level
-* game over overlay is NOT a seperate currentMenu, that would make level reload data
-* if the game over currentMenu finishes, change to leaderboard
-* if the level ends in a win condition, change to mission
-* mission switches to level at the end of countdown
-* this reapeats until 7 levels have been played
-* if the 7th level ends in a win (no game over screen), change to end instead of mission
-* end of cutscene, switch to mission and game cycle repeats
-*/
+currentMenu starts on INTRO
+cutscene will loop until enter is pressed
+change currentMenu to select
+change to level when enter is pressed and animations are done (countdown?)
+plays level
+game over overlay is NOT a seperate currentMenu, that would make level reload data
+if the game over currentMenu finishes, change to leaderboard
+if the level ends in a win condition, change to mission
+mission switches to level at the end of countdown
+this reapeats until 7 levels have been played
+if the 7th level ends in a win (no game over screen), change to end instead of mission
+end of cutscene, switch to mission and game cycle repeats
 
-/*
 start:
 	start cutscene
 	while (cutscene is not done)

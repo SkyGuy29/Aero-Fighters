@@ -2,6 +2,7 @@
 
 #include "../Level/Level.h"
 #include "../Cutscene/VideoCutscene.h"
+#include "../Cutscene/Cutscene.h"
 #include <cmath>
 
 /*
@@ -134,6 +135,8 @@ private:
 
 	//The video cutscene, works for any of them. will be reloaded for each new one.
 	VideoCutscene video;
+
+	//used for m
 
 	// The game level
 	Level level;
