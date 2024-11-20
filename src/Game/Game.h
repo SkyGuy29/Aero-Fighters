@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../Cutscene/VideoCutscene.h"
+#include "../Cutscene/Cutscene.h"
 #include <cmath>
 #include "../Level/Level.h"
 #include "../Utility/WindowSize.h"
@@ -135,6 +136,9 @@ private:
 	//The video cutscene, works for any of them. will be reloaded for each new one.
 	VideoCutscene video;
 
+	//the mission cutscene, works for any of them. will be reloaded for each new one.
+	Cutscene cutscene;
+
 	// The game level
 	Level* level;
 
@@ -143,7 +147,10 @@ private:
 		// Ticks per second
 		ticksPerSec = 30,
 		// Frames per second
-		framesPerSec = 30;
+		framesPerSec = 30,
+		//player 1 = 0, player2 = 1, player 1 and 2 = 2
+		players = 2;
+
 
 	//int score, highScore;
 		 // Is Left Key pressed

@@ -209,6 +209,8 @@ void Game::run()
 			break;
 		case Menu::MISSION:
 			//update mission cutscenes for timing animations
+			if (cutscene.isDone())
+				changeMenu(Menu::LEVEL);
 			break;
 		case Menu::LEADERBOARD:
 			//check player input
@@ -279,6 +281,7 @@ void Game::run()
 			}
 			break;
 		case Menu::MISSION:
+			cutscene.draw(country, currentLevel, players, window);
 			break;
 		case Menu::LEADERBOARD:
 			break;
@@ -312,11 +315,13 @@ bool Game::changeMenu(Menu newMenu)
 		case Menu::LEVEL:
 			//load new level, make sure things that need to be reset are reset
 			level->load(country, currentLevel, false);
+			cutscene.levelBeat(currentLevel);
 			break;
 		case Menu::MISSION:
 			//reset and load the mission cutscene
 			//imma leave this one to Ray lol
 			//pick next level
+			cutscene.startTimer();
 			if (completedLevels.size() < 3)
 			{
 				std::vector<Map> countryMaps;
@@ -430,7 +435,7 @@ void Game::updateSelectMenu()
 	{
 		// Reset player choose, load the respective level, and early escape
 		countryChoose.reset();
-		currentMenu = Menu::LEVEL;
+		changeMenu(Menu::MISSION);
 		level->load(country, Map::England, levelEditor); // Set the last param for loading the correct map
 
 		if (debugSkipToBoss)
