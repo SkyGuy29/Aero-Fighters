@@ -66,7 +66,7 @@ public:
 private:
 	static inline void loadAttacks();
 	static inline void loadEnemies(Map map);
-	static inline void loadChildren(VariableArray<EntityDataStorage::ChildTemplete> & arr);
+	static inline void loadChildren(VariableArray<EntityDataStorage::ChildTemplete> * arr);
 
 	template<typename T> requires std::derived_from<T, Entity> 
 	static void generalTick(std::vector<T*>& entities, sf::RenderWindow& win);
