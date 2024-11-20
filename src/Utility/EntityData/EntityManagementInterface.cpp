@@ -18,7 +18,6 @@ std::vector<Enemy*> EntityManagementInterface::waterEnemies; // spawnMap
 std::vector<Boss*> EntityManagementInterface::bossEnemies; // ?
 std::vector<TileEntity*> EntityManagementInterface::tileEntities; // spawned at start (spawnMap:0)
 std::vector<PowerUp*> EntityManagementInterface::powerUps; // spawned dynamically by enemies
-std::unordered_map<std::string, std::vector<ProjectilePrototype>> EntityManagementInterface::attackData;
 unsigned int EntityManagementInterface::lastTick = -1; // max int (unsigned)
 
 
@@ -29,7 +28,7 @@ void EntityManagementInterface::load(Map map)
 	players.push_back(new Player(sf::Vector2f(150, 100), PlayerCountry::AMERICA, true));
 	loadAttacks();
 	loadEnemies(map);
-	Entity::setAttackMap(attackData);
+	//Entity::setAttackMap(attackData);
 	EntityDataStorage::loadTextures();
 }
 
@@ -124,7 +123,7 @@ inline void EntityManagementInterface::loadAttacks()
 		if (input.starts_with("NEW"))
 		{
 			attackName = input.substr(4, std::string::npos);
-			attackData[attackName] = std::vector<ProjectilePrototype>();
+			Entity::attackMap[attackName] = std::vector<ProjectilePrototype>();
 		}
 		else if (input.starts_with("PROJ"))
 		{
@@ -167,7 +166,7 @@ inline void EntityManagementInterface::loadAttacks()
 				f.seekg(-5, std::ios_base::cur); // setup for next read
 
 			// id is an offset from the projectile start entity id
-			attackData[attackName].emplace_back(tempData.spawnPos,
+			Entity::attackMap[attackName].emplace_back(tempData.spawnPos,
 				tempData.spawnVelocity, tempData.id, tempData.tickOffset, tempData.flags
 			);
 		}
@@ -183,7 +182,7 @@ inline void EntityManagementInterface::loadAttacks()
 		 * attack tree: map[powerLevel][player1/2][country]->string(full string)
 		 */
 	// ex: O0_P1AMERICA_P2ENGLAND_P2JAPAN_P2SWEDEN
-	for(auto& it : attackData)
+	for(auto& it : Entity::attackMap)
 	{
 		if (!(it.first.starts_with("O0") || it.first.starts_with("O1") ||
 			it.first.starts_with("O2") || it.first.starts_with("O3"))

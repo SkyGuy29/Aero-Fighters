@@ -1,5 +1,4 @@
 #include "Player.h"
-std::vector<std::string> attacks;
 
 
 Player::Player(sf::Vector2f pos, PlayerCountry country, bool isPlayerTwo) :
@@ -7,9 +6,6 @@ Player::Player(sf::Vector2f pos, PlayerCountry country, bool isPlayerTwo) :
 {
 	setHealth(3);
 	this->isPlayerTwo = isPlayerTwo;
-	if(attacks.empty())
-		for (auto& it : attackMap)
-			attacks.push_back(it.first);
 	this->country = country;
 }
 

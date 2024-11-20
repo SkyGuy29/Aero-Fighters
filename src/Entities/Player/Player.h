@@ -34,6 +34,5 @@ private:
         special = 2;
     unsigned int cooldownSecondary = 0, invincibility = 0;
     bool isPlayerTwo = false;
-    static std::vector<std::string> attacks; // filled upon loading a player
     PlayerCountry country;
 };
