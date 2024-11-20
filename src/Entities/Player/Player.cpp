@@ -54,7 +54,7 @@ Entity::TickData Player::shoot()
 {
 	if (curCooldown != 0)
 		return TickData(false, "");
-	return TickData(true, playerAttackTree[powerLevel][isPlayerTwo][country]);
+	return TickData(true, playerAttackTree[powerLevel][isPlayerTwo][country]); // todo player attack tree is loaded
 }
 
 
