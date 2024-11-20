@@ -314,50 +314,109 @@ inline void EntityManagementInterface::loadEnemies(Map map)
 	}
 }
 
-inline void EntityManagementInterface::loadChildren()
+/**
+ * Loads children from children.txt with the following line based structure
+ * 
+ * ln# | Data
+ * ----+-------------------------
+ *  #1 | NEW comment
+ *  #2 | Parent EntityID
+ *  #3 | Total Children (uint8_t)
+ *     +------ CHILD ARRAY ------
+ *  #4 | Child EntityID
+ *  #5 | Child:Parent X offset
+ *  #6 | Child:Parent Y offset
+ * ... | ...
+ */
+inline void EntityManagementInterface::loadChildren(VariableArray<EntityDataStorage::ChildTemplete>* arr)
 {
+	// Stores the data needed to build the variable array of child data at runtime
 	struct ChildBuildData
 	{
+		// ID of the parent and the children it owns
 		struct ParentBlock
 		{
-			EntityID parent;
-			std::vector<EntityDataStorage::ChildTemplete> children;
+			IDRead parent;
+			unsigned char childCount = 0;
+			unsigned short childStartingIndex = 0;
+			EntityDataStorage::ChildTemplete* children = nullptr;
 		};
 
-		unsigned char totalChildren;
-		std::vector<EntityDataStorage::ChildTemplete> families;
+		// The total children found
+		unsigned short totalChildren = 0;
+
+		// Each mapping from a parent to its respective children
+		std::vector<ParentBlock> families;
 	};
-	std::string input;
+	ChildBuildData childData;
 
-	std::ifstream f;
-	f.open("res/children.txt");
+	// Input for comment checking; ignore the comment line
+	std::string input, comment;
 
-	/*
-	// loading the enemies
-	while (f.is_open() && !f.eof())
+	// The file being read
+	std::ifstream file;
+	file.open("res/children.txt");
+
+	// While the file is open and we have not reached the end
+	while (file.is_open() && !file.eof())
 	{
 		input.clear();
-		std::getline(f, input);
-		// TODO: verify that enemies.txt is valid (I dont think 0 or 1 id is right cause it is child!) (check coords of spawns)
+		std::getline(file, input);
+
+		// To appease andrews comment request *sigh*.
 		if (input.starts_with("NEW"))
 		{
-			f >> tempData.id >> tempData.pos.x >> tempData.pos.y >> tempData.vel.x >> tempData.vel.y;
-			tempData.line += 6; // 5 + space
-		}
+			// Create a new parent
+			childData.families.push_back(ChildBuildData::ParentBlock());
 
-		if (input == "NEW LAND")
-			spawnMap[0].push_back(new EntityPrototype(tempData.pos, tempData.vel, (EntityID)((int)EntityID::ENEMY_AIR_COUNT + tempData.id + 1), 0, tempData.line));
-		else if (input == "NEW AIR") // TODO: Add water
-		{
-			f >> tempData.spawnTick;
-			if (!spawnMap.contains(tempData.spawnTick))
-				spawnMap[tempData.spawnTick] = std::vector<EntityPrototype*>();
-			tempData.line += 1;
-			spawnMap[tempData.spawnTick].push_back(new EntityPrototype(tempData.pos, tempData.vel, (EntityID)tempData.id, 0, tempData.line));
+			// Reference for brevity
+			ChildBuildData::ParentBlock* back = &(childData.families.back());
+
+			// Update starting index for VariableArray building
+			back->childStartingIndex = childData.totalChildren;
+
+			// Load parent metadata
+			file >> comment >> back->parent.in >> back->childCount;
+
+			// Load all the parents child data
+			for (unsigned char i = 0; i < back->childCount; i++)
+			{
+				// Increment the total found children
+				++childData.totalChildren;
+				// Allocate space for the children
+				back->children = new EntityDataStorage::ChildTemplete[back->childCount];
+
+				// Load current child metadata
+				file >> back->children[i].ID.in >> back->children[i].parentOffset.x >> back->children[i].parentOffset.y;
+			}
 		}
-		else if (input == "NEW TILE")
-			spawnMap[0].push_back(new EntityPrototype(tempData.pos, tempData.vel, (EntityID)((int)EntityID::ENEMY_COUNT + tempData.id + 1), 0, tempData.line));
-	}*/
+	}
+
+	// Convert to variable array //
+	
+	// Allocate data for raw children
+	auto* rawData = new EntityDataStorage::ChildTemplete[childData.totalChildren];
+	auto* spacing = new SpacingElement[childData.families.size()];
+	unsigned short currentChild = 0;
+
+	// Place every single child here
+	for (unsigned char i = 0; i < childData.families.size(); i++)
+	{
+		spacing[i] = { childData.families.at(i).childStartingIndex, childData.families.at(i).childStartingIndex + childData.families.at(i).childCount };
+
+		for (unsigned char i = 0; i < childData.families.at(i).childCount; i++)
+		{
+			rawData[currentChild] = childData.families.at(i).children[i];
+			++currentChild;
+		}
+	}
+
+	arr = new VariableArray<EntityDataStorage::ChildTemplete>(rawData, spacing, childData.families.size());
+
+	for (auto& parent : childData.families)
+	{
+		delete parent.children;
+	}
 }
 
 

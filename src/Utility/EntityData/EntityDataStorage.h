@@ -19,7 +19,7 @@ public:
 
 	struct ChildTemplete
 	{
-		EntityID ID;
+		IDRead ID;
 		sf::Vector2i parentOffset;
 	};
 
