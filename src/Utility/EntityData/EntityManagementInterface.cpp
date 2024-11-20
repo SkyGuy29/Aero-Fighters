@@ -18,16 +18,17 @@ std::vector<Enemy*> EntityManagementInterface::waterEnemies; // spawnMap
 std::vector<Boss*> EntityManagementInterface::bossEnemies; // ?
 std::vector<TileEntity*> EntityManagementInterface::tileEntities; // spawned at start (spawnMap:0)
 std::vector<PowerUp*> EntityManagementInterface::powerUps; // spawned dynamically by enemies
-std::unordered_map<std::string, std::vector<ProjectilePrototype>> EntityManagementInterface::attackData;
 unsigned int EntityManagementInterface::lastTick = -1; // max int (unsigned)
+
 
 
 void EntityManagementInterface::load(Map map)
 {
-	players.push_back(new Player(sf::Vector2f(100, 100), Player::AMERICA, false));
-	players.push_back(new Player(sf::Vector2f(150, 100), Player::AMERICA, true));
+	players.push_back(new Player(sf::Vector2f(100, 100), PlayerCountry::AMERICA, false));
+	players.push_back(new Player(sf::Vector2f(150, 100), PlayerCountry::AMERICA, true));
 	loadAttacks();
 	loadEnemies(map);
+	//Entity::setAttackMap(attackData);
 	EntityDataStorage::loadTextures();
 }
 
@@ -122,7 +123,7 @@ inline void EntityManagementInterface::loadAttacks()
 		if (input.starts_with("NEW"))
 		{
 			attackName = input.substr(4, std::string::npos);
-			attackData[attackName] = std::vector<ProjectilePrototype>();
+			Entity::attackMap[attackName] = std::vector<ProjectilePrototype>();
 		}
 		else if (input.starts_with("PROJ"))
 		{
@@ -165,10 +166,52 @@ inline void EntityManagementInterface::loadAttacks()
 				f.seekg(-5, std::ios_base::cur); // setup for next read
 
 			// id is an offset from the projectile start entity id
-			attackData[attackName].emplace_back(tempData.spawnPos,
+			Entity::attackMap[attackName].emplace_back(tempData.spawnPos,
 				tempData.spawnVelocity, tempData.id, tempData.tickOffset, tempData.flags
 			);
 		}
+	}
+
+	// now that attacks are loaded into a workable format, we load it into the Player attack tree.
+	/* algo:
+		 * filter "O" + std::to_string(powerLevel) -> array L
+		 * search L for "P" + (isPlayerTwo ? "2" : "1")
+		 * if found->grab the attack from attack map and return the tick data.
+		 * else, throw an error noting that attack was unable to be found.
+		 *
+		 * attack tree: map[powerLevel][player1/2][country]->string(full string)
+		 */
+	// ex: O0_P1AMERICA_P2ENGLAND_P2JAPAN_P2SWEDEN
+	for(auto& it : Entity::attackMap)
+	{
+		if (!(it.first.starts_with("O0") || it.first.starts_with("O1") ||
+			it.first.starts_with("O2") || it.first.starts_with("O3"))
+			) // we must do all cause what if an attack just starts with O w/o being a player attack
+			return;
+		const std::string& attack = it.first;
+		short powerLevel = (short)strtol(attack.substr(1, 1).c_str(), nullptr, 0);
+		assert(powerLevel <= 3 && powerLevel >= 0);
+		PlayerCountry country;
+		bool isPlayerTwo;
+		std::string split;
+
+		for(int i = 3; i < attack.size(); i++)
+		{
+			if (attack[i] == '_')
+			{
+				assert(split.substr(1, 1) == "1" || split.substr(1, 1) == "2");
+				if (split.substr(1, 1) == "1")
+					isPlayerTwo = false;
+				else
+					isPlayerTwo = true;
+				country = strtoPC(split.substr(2, std::string::npos));
+				Entity::playerAttackTree.at(powerLevel).at(isPlayerTwo).at(country) = attack; // todo: ensure this works without using heap data
+				split.clear();
+			}
+			else
+				split.push_back(attack[i]);
+		}
+
 	}
 }
 /*
@@ -382,4 +425,22 @@ void EntityManagementInterface::deleteVector(std::vector<void*>& a)
 	for (int i = 0; i < a.size(); i++)
 		delete a[i];
 	a.clear();
+}
+
+PlayerCountry EntityManagementInterface::strtoPC(std::string s)
+{
+	PlayerCountry ret;
+
+	if (s == "AMERICA")
+		ret = PlayerCountry::AMERICA;
+	else if (s == "SWEDEN")
+		ret = PlayerCountry::SWEDEN;
+	else if (s == "JAPAN")
+		ret = PlayerCountry::JAPAN;
+	else if (s == "ENGLAND")
+		ret = PlayerCountry::ENGLAND;
+	else
+		throw std::runtime_error("Invalid string passed to strtoPC.");
+
+	return ret;
 }

@@ -6,6 +6,7 @@ Player::Player(sf::Vector2f pos, PlayerCountry country, bool isPlayerTwo) :
 {
 	setHealth(3);
 	this->isPlayerTwo = isPlayerTwo;
+	this->country = country;
 }
 
 void Player::move()
@@ -35,14 +36,14 @@ void Player::move()
 	// bounds checking
 	if (pos.x - getBounds().width / 2.f < 0)
 		pos.x = getBounds().width / 2.f;
-	if (pos.y - getBounds().height / 2.f < getView().getCenter().y - getView().getSize().y / 2.f)
-		pos.y = getView().getCenter().y - getView().getSize().y / 2.f + getBounds().height / 2.f;
-	if (pos.x + getBounds().width / 2.f >= getView().getCenter().x + getView().getSize().x / 2.f)
-		pos.x = getView().getCenter().x + getView().getSize().x / 2.f - getBounds().width / 2.f;
-	if (pos.y + getBounds().height / 2.f >= getView().getCenter().y + getView().getSize().y / 2.f)
-		pos.y = getView().getCenter().y + getView().getSize().y / 2.f - getBounds().height / 2.f;
+	if (pos.y - getBounds().height / 2.f < getView()->getCenter().y - getView()->getSize().y / 2.f)
+		pos.y = getView()->getCenter().y - getView()->getSize().y / 2.f + getBounds().height / 2.f;
+	if (pos.x + getBounds().width / 2.f >= getView()->getCenter().x + getView()->getSize().x / 2.f)
+		pos.x = getView()->getCenter().x + getView()->getSize().x / 2.f - getBounds().width / 2.f;
+	if (pos.y + getBounds().height / 2.f >= getView()->getCenter().y + getView()->getSize().y / 2.f)
+		pos.y = getView()->getCenter().y + getView()->getSize().y / 2.f - getBounds().height / 2.f;
 
-	getBounds().intersects(sf::IntRect(0,0, getWinSize().width, getWinSize().height));
+	getBounds().intersects(sf::IntRect(0,0, windowSize.width, windowSize.height));
 	vel.y -= getBackgroundSpeed();
 
 	Entity::move();
@@ -53,21 +54,13 @@ Entity::TickData Player::shoot()
 {
 	if (curCooldown != 0)
 		return TickData(false, "");
-
-	if(!isPlayerTwo)
-	{
-		// todo: scan strings in attack map, filter for country (stringed), power level, and player. this way we dont have to use a switch and instead the attack used is defined in the name
-	}
-	else
-	{
-		
-	}
+	return TickData(true, playerAttackTree[powerLevel][isPlayerTwo][country]);
 }
 
 
 Entity::TickData Player::fireSpecial()
 {
-
+	return Entity::TickData();
 }
 
 
@@ -111,16 +104,15 @@ Entity::TickData Player::tick()
 		spawn = key(isPlayerTwo, Controls::Spawn);
 	}
 	vel = moveOffset * 5.f;
-
-	/*
+	TickData tickData;
+	
 	if (shoot)
 	{
-		if (!playerShootLast[i])
-			entities.players[i]->shoot(objects);
-		playerShootLast[i] = true;
+		tickData = this->shoot();
+		//playerShootLast[i] = true;
 	}
-	else
-		playerShootLast[i] = false;*/
+	//else
+		//playerShootLast[i] = false;
 	// projectiles have owners now
 
 	//if (special)
@@ -133,7 +125,7 @@ Entity::TickData Player::tick()
 	}
 	move();
 
-	return TickData(NULL, "");
+	return tickData;
 }
 
 

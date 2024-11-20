@@ -83,6 +83,8 @@ private:
 
 	static void deleteVector(std::vector<void*>& a);
 
+	static PlayerCountry strtoPC(std::string s);
+
 	// helper function for splitting a string of doubles delimited by spaces
 	static std::vector<float> split_(std::string s)
 	{
@@ -111,7 +113,9 @@ private:
 	static std::vector<Boss*> bossEnemies; // ?
 	static std::vector<TileEntity*> tileEntities; // spawned at start (spawnMap:0)
 	static std::vector<PowerUp*> powerUps; // spawned dynamically by enemies
-	static std::unordered_map<std::string, std::vector<ProjectilePrototype>> attackData;
+	//  map[powerLevel][player1/2][country]->string(full string)
+	// subsequent maps must be pointers or else they die with the function call (maybe)
+	// ^ for attacktree
 
 	static unsigned int lastTick;
 };
@@ -182,7 +186,7 @@ void EntityManagementInterface::generalTick(std::vector<T*>& entities, sf::Rende
 template <typename T> requires std::derived_from<T, Entity>
 void EntityManagementInterface::processAttack(std::string ID, T& entity)
 {
-	std::vector<ProjectilePrototype> prototypes = attackData[ID];
+	std::vector<ProjectilePrototype> prototypes = Entity::attackMap[ID];
 
 	for (unsigned int i = 0; i < prototypes.size(); i++)
 		projectiles.push_back(new Projectile(prototypes[i], &entity));
@@ -208,8 +212,9 @@ bool EntityManagementInterface::collide(std::vector<Projectile*>& entities, T* e
 					done = true;
 				else
 				{
-					entity.damage();
-					if (entity.getHealth() == 0)
+					IHasHealth* healthEntity = (IHasHealth*)entity;
+					healthEntity->damage();
+					if (healthEntity->getHealth() == 0)
 						done = true;
 				}
 			}
