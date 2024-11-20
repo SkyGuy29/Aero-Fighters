@@ -91,3 +91,9 @@ struct EntityTypeCounts
 
 	static constexpr unsigned char TOTAL_CHILD_HOLDERS = 1;
 };
+
+union IDRead
+{
+	EntityID parent;
+	unsigned char in;
+};

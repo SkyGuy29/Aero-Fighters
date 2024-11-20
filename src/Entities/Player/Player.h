@@ -10,13 +10,6 @@ class Player :
     public Entity, public IHasHealth, public ICollidable
 {
 public:
-    enum PlayerCountry
-    {
-	    AMERICA,
-        JAPAN,
-        SWEDEN,
-        ENGLAND
-    };
 	Player(sf::Vector2f pos, PlayerCountry country, bool isPlayerTwo);
 
     void move();
@@ -41,4 +34,5 @@ private:
         special = 2;
     unsigned int cooldownSecondary = 0, invincibility = 0;
     bool isPlayerTwo = false;
+    PlayerCountry country;
 };

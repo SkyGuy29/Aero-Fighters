@@ -6,6 +6,8 @@
 unsigned int Entity::next_uuid = 0;
 unsigned int* Entity::currentTick;
 std::unordered_map<unsigned int, sf::Sprite> Entity::spriteMap;
+std::unordered_map<std::string, std::vector<ProjectilePrototype>> Entity::attackMap;
+std::unordered_map<unsigned short, std::unordered_map<bool, std::unordered_map<PlayerCountry, std::string>>> Entity::playerAttackTree;
 sf::View* Entity::view = nullptr;
 float* Entity::backgroundSpeed = nullptr;
 
