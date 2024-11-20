@@ -48,6 +48,7 @@ public:
 
 	static void load(Map map);
 	static void tick(sf::RenderWindow& win, unsigned int currentTick);
+	static void draw(sf::RenderWindow& win);
 	static void updateLevelEditor();
 	static std::vector<Player*>& getPlayers() { return players; }
 	
@@ -70,6 +71,9 @@ private:
 
 	template<typename T> requires std::derived_from<T, Entity> 
 	static void generalTick(std::vector<T*>& entities, sf::RenderWindow& win);
+
+	template<typename T> requires std::derived_from<T, Entity>
+	static void generalDraw(std::vector<T*>& entities, sf::RenderWindow& win);
 
 	// note: attack strings can be found in attacks.txt after the NEW decleration for each attack
 	template<typename T> requires std::derived_from<T, Entity>
@@ -116,6 +120,17 @@ private:
 	static unsigned int lastTick;
 };
 
+
+template <typename T> requires std::derived_from<T, Entity>
+void EntityManagementInterface::generalDraw(std::vector<T*>& entities, sf::RenderWindow& win)
+{
+	for (unsigned short i = 0; i < entities.size(); i++)
+	{
+		if ((*(Entity*)entities.at(i)).getSprite())
+			win.draw(*(*(Entity*)entities.at(i)).getSprite()); // TODO: ENSURE NO OUT OF BOUNDS
+	}
+}
+
 template <typename T> requires std::derived_from<T, Entity>
 void EntityManagementInterface::generalTick(std::vector<T*>& entities, sf::RenderWindow& win)
 {
@@ -132,11 +147,6 @@ void EntityManagementInterface::generalTick(std::vector<T*>& entities, sf::Rende
 			entities.erase(entities.begin()+i);
 			i--;
 			action = Entity::EntityObjectAction::DELETE;
-			break;
-
-		case Entity::EntityObjectAction::DRAW: // draw the entity's sprite
-			win.draw(*entities.at(i)->getSprite()); // TODO: ENSURE NO OUT OF BOUNDS
-			action = Entity::EntityObjectAction::DRAW;
 			break;
 
 		case Entity::EntityObjectAction::NOTHING:

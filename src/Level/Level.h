@@ -29,6 +29,7 @@ public:
 
 	void load(short country, Map map, bool levelEditor);
 	bool update();
+	void draw();
 
 	void debugMode() const;
 	int skipToBoss();

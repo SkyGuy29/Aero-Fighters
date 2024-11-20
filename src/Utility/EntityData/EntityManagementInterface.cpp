@@ -64,6 +64,18 @@ void EntityManagementInterface::tick(sf::RenderWindow& win, unsigned int current
 	generalTick<PowerUp>(powerUps, win);
 }
 
+void EntityManagementInterface::draw(sf::RenderWindow& win)
+{
+	generalDraw<Enemy>(landEnemies, win);
+	generalDraw<Projectile>(projectiles, win);
+	generalDraw<Player>(players, win);
+	generalDraw<Enemy>(airEnemies, win);
+	generalDraw<Enemy>(waterEnemies, win);
+	generalDraw<Boss>(bossEnemies, win);
+	generalDraw<TileEntity>(tileEntities, win);
+	generalDraw<PowerUp>(powerUps, win);
+}
+
 
 void EntityManagementInterface::updateLevelEditor()
 {

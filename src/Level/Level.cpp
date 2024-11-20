@@ -186,8 +186,6 @@ bool Level::update()
 	// SFML will smooth out not pixel aligned things.
 	//background.setPosition(0, 0-backgroundImg.getSize().y - backgroundDist);
 
-	// Drawing order
-	window.draw(background);
 	EntityManagementInterface::tick(window, currentTick);
 	
 	/*updatePlayers();
@@ -220,16 +218,23 @@ bool Level::update()
 	p2Score.setPosition(sf::Vector2f(windowSize.width / 2 + 20,
 		view.getCenter().y - view.getSize().y / 2.f -p2Score.getLocalBounds().height));
 
+	if (!levelEditorActive)
+		currentTick++;
+
+	return EntityManagementInterface::getPlayers()[0]->getHealth() > 0 || EntityManagementInterface::getPlayers()[1]->getHealth() > 0;
+}
+
+void Level::draw()
+{
+	window.draw(background);
+
+	EntityManagementInterface::draw(window);
+
 	window.draw(p1Score);
 	window.draw(p2Score);
 
 	window.draw(p1LivesRect);
 	window.draw(p2LivesRect);
-
-	if (!levelEditorActive)
-		currentTick++;
-
-	return EntityManagementInterface::getPlayers()[0]->getHealth() > 0 || EntityManagementInterface::getPlayers()[1]->getHealth() > 0;
 }
 
 void Level::updateLevelEditor()

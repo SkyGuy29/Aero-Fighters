@@ -268,7 +268,7 @@ void Game::run()
 			window.setView(view);
 			//Object::setView(view);
 			//Level::setView(view);
-			level->update();
+			level->draw();
 
 			if (playersDead) // Game over menu
 			{
