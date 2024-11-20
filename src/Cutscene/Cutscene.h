@@ -22,19 +22,28 @@ public:
 		Space
 	};
 
+	enum Country
+	{
+		STATES,
+		JAPAN,
+		SWEDEN,
+		ENGLAND
+	};
+
 	void draw(int, int, int, sf::RenderWindow&);
 	void startTimer();
 	void levelBeat(int);
+	bool isDone();
 private:
 
 	bool lvlBeat[7] = { false,false,false,false,false,false,false };
 
 	int lastLvl = 365;
 
-	std::string dialog[8][8][3][6];
+	std::string dialog[4][9][3][6];
 	sf::Font font;
 	sf::Text textDia[6];
-	sf::Texture playersText[8][2];
+	sf::Texture playersText[4][2];
 	sf::Sprite playersSprite[2];
 	sf::Texture lvlBeatTxt;
 	sf::Sprite lvlBeatSprite;
