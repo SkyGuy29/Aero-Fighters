@@ -285,7 +285,7 @@ inline void EntityManagementInterface::loadEnemies(Map map)
  *  #6 | Child:Parent Y offset
  * ... | ...
  */
-inline void EntityManagementInterface::loadChildren()
+inline void EntityManagementInterface::loadChildren(VariableArray<EntityDataStorage::ChildTemplete>* arr)
 {
 	// Stores the data needed to build the variable array of child data at runtime
 	struct ChildBuildData
@@ -295,11 +295,12 @@ inline void EntityManagementInterface::loadChildren()
 		{
 			IDRead parent;
 			unsigned char childCount = 0;
+			unsigned short childStartingIndex = 0;
 			EntityDataStorage::ChildTemplete* children = nullptr;
 		};
 
 		// The total children found
-		unsigned char totalChildren = 0;
+		unsigned short totalChildren = 0;
 
 		// Each mapping from a parent to its respective children
 		std::vector<ParentBlock> families;
@@ -328,12 +329,17 @@ inline void EntityManagementInterface::loadChildren()
 			// Reference for brevity
 			ChildBuildData::ParentBlock* back = &(childData.families.back());
 
+			// Update starting index for VariableArray building
+			back->childStartingIndex = childData.totalChildren;
+
 			// Load parent metadata
 			file >> comment >> back->parent.in >> back->childCount;
 
 			// Load all the parents child data
 			for (unsigned char i = 0; i < back->childCount; i++)
 			{
+				// Increment the total found children
+				++childData.totalChildren;
 				// Allocate space for the children
 				back->children = new EntityDataStorage::ChildTemplete[back->childCount];
 
@@ -341,6 +347,32 @@ inline void EntityManagementInterface::loadChildren()
 				file >> back->children[i].ID.in >> back->children[i].parentOffset.x >> back->children[i].parentOffset.y;
 			}
 		}
+	}
+
+	// Convert to variable array //
+	
+	// Allocate data for raw children
+	auto* rawData = new EntityDataStorage::ChildTemplete[childData.totalChildren];
+	auto* spacing = new SpacingElement[childData.families.size()];
+	unsigned short currentChild = 0;
+
+	// Place every single child here
+	for (unsigned char i = 0; i < childData.families.size(); i++)
+	{
+		spacing[i] = { childData.families.at(i).childStartingIndex, childData.families.at(i).childStartingIndex + childData.families.at(i).childCount };
+
+		for (unsigned char i = 0; i < childData.families.at(i).childCount; i++)
+		{
+			rawData[currentChild] = childData.families.at(i).children[i];
+			++currentChild;
+		}
+	}
+
+	arr = new VariableArray<EntityDataStorage::ChildTemplete>(rawData, spacing, childData.families.size());
+
+	for (auto& parent : childData.families)
+	{
+		delete parent.children;
 	}
 }
 

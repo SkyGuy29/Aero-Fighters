@@ -7,14 +7,8 @@
 template<typename RAW_TYPE>
 struct ReturnData
 {
-	// The beginning of the sub-array
-	const RAW_TYPE& DATA;
-	// The length of the sub-array
-	const unsigned char COUNT;
+	ReturnData() = default;
 
-	// Can only be constructed by the VariableArray
-	ReturnData() = delete;
-private:
 	/**
 	 * Private constructor for VariableArray to use.
 	 *
@@ -24,7 +18,8 @@ private:
 	 */
 	ReturnData(RAW_TYPE& DATA, unsigned char COUNT) : DATA(DATA), COUNT(COUNT) {}
 
-	// Declare VariableArray as a friend so it can access the private constructor.
-	template<typename RAW_TYPE_>
-	friend class VariableArray;
+	// The beginning of the sub-array
+	const RAW_TYPE& DATA = RAW_TYPE();
+	// The length of the sub-array
+	const unsigned char COUNT = 0;
 };
