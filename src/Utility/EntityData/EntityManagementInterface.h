@@ -83,6 +83,8 @@ private:
 
 	static void deleteVector(std::vector<void*>& a);
 
+	static PlayerCountry strtoPC(std::string s);
+
 	// helper function for splitting a string of doubles delimited by spaces
 	static std::vector<float> split_(std::string s)
 	{
@@ -112,6 +114,9 @@ private:
 	static std::vector<TileEntity*> tileEntities; // spawned at start (spawnMap:0)
 	static std::vector<PowerUp*> powerUps; // spawned dynamically by enemies
 	static std::unordered_map<std::string, std::vector<ProjectilePrototype>> attackData;
+	//  map[powerLevel][player1/2][country]->string(full string)
+	// subsequent maps must be pointers or else they die with the function call (maybe)
+	
 
 	static unsigned int lastTick;
 };
