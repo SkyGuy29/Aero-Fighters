@@ -414,7 +414,7 @@ inline void EntityManagementInterface::loadChildren(VariableArray<EntityDataStor
 	// Place every single child here
 	for (unsigned char i = 0; i < childData.families.size(); i++)
 	{
-		spacing[i] = { childData.families.at(i).childStartingIndex, childData.families.at(i).childStartingIndex + childData.families.at(i).childCount };
+		spacing[i] = SpacingElement(childData.families.at(i).childStartingIndex, childData.families.at(i).childStartingIndex + childData.families.at(i).childCount);
 
 		for (unsigned char i = 0; i < childData.families.at(i).childCount; i++)
 		{
