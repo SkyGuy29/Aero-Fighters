@@ -124,19 +124,18 @@ private:
 
 	// These should all be wrapped in a struct to structure the data; make it easier to understand its all related
 	sf::RectangleShape
-		// The naming scheme is misleading, this appears to be the background of the menu? - ricky
+		// The world map seen in the select menu
 		menuMapRect,
-		// Used for chosing the country? - ricky
+		// Flags seen in the select menu
 		menuFlagsRect,
-		// Only ever declared, never used... Delete it - Ricky
-		menuCountDownRect,
-		// Selection outline
+		// Selection outline (the green guy that flickers)
 		menuSelectRect;
 
 	//The video cutscene, works for any of them. will be reloaded for each new one.
 	VideoCutscene video;
 
-	//used for m
+	//the mission cutscene, works for any of them. will be reloaded for each new one.
+	Cutscene cutscene;
 
 	// The game level
 	Level level;
@@ -146,7 +145,9 @@ private:
 		// Ticks per second
 		ticksPerSec = 30,
 		// Frames per second
-		framesPerSec = 30;
+		framesPerSec = 30,
+		//player 1 = 0, player2 = 1, player 1 and 2 = 2
+		players = 0;
 
 	//int score, highScore;
 		 // Is Left Key pressed
@@ -166,7 +167,7 @@ private:
 		// Current progress int he blink rate
 		menuBlinkTimer = 0;
 
-	Countdown countryChoose, continueCount;
+	Countdown countryCountdown, continueCount;
 
 	Menu currentMenu = Menu::INTRO;
 	Map currentLevel = Map::England;
