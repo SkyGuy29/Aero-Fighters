@@ -35,14 +35,14 @@ void Player::move()
 	// bounds checking
 	if (pos.x - getBounds().width / 2.f < 0)
 		pos.x = getBounds().width / 2.f;
-	if (pos.y - getBounds().height / 2.f < getView().getCenter().y - getView().getSize().y / 2.f)
-		pos.y = getView().getCenter().y - getView().getSize().y / 2.f + getBounds().height / 2.f;
-	if (pos.x + getBounds().width / 2.f >= getView().getCenter().x + getView().getSize().x / 2.f)
-		pos.x = getView().getCenter().x + getView().getSize().x / 2.f - getBounds().width / 2.f;
-	if (pos.y + getBounds().height / 2.f >= getView().getCenter().y + getView().getSize().y / 2.f)
-		pos.y = getView().getCenter().y + getView().getSize().y / 2.f - getBounds().height / 2.f;
+	if (pos.y - getBounds().height / 2.f < getView()->getCenter().y - getView()->getSize().y / 2.f)
+		pos.y = getView()->getCenter().y - getView()->getSize().y / 2.f + getBounds().height / 2.f;
+	if (pos.x + getBounds().width / 2.f >= getView()->getCenter().x + getView()->getSize().x / 2.f)
+		pos.x = getView()->getCenter().x + getView()->getSize().x / 2.f - getBounds().width / 2.f;
+	if (pos.y + getBounds().height / 2.f >= getView()->getCenter().y + getView()->getSize().y / 2.f)
+		pos.y = getView()->getCenter().y + getView()->getSize().y / 2.f - getBounds().height / 2.f;
 
-	getBounds().intersects(sf::IntRect(0,0, getWinSize().width, getWinSize().height));
+	getBounds().intersects(sf::IntRect(0,0, windowSize.width, windowSize.height));
 	vel.y -= getBackgroundSpeed();
 
 	Entity::move();
@@ -67,7 +67,7 @@ Entity::TickData Player::shoot()
 
 Entity::TickData Player::fireSpecial()
 {
-
+	return Entity::TickData();
 }
 
 

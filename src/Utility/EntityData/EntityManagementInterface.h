@@ -208,8 +208,9 @@ bool EntityManagementInterface::collide(std::vector<Projectile*>& entities, T* e
 					done = true;
 				else
 				{
-					entity.damage();
-					if (entity.getHealth() == 0)
+					IHasHealth* healthEntity = (IHasHealth*)entity;
+					healthEntity->damage();
+					if (healthEntity->getHealth() == 0)
 						done = true;
 				}
 			}

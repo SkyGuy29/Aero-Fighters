@@ -6,6 +6,8 @@
 unsigned int Entity::next_uuid = 0;
 unsigned int* Entity::currentTick;
 std::unordered_map<unsigned int, sf::Sprite> Entity::spriteMap;
+sf::View* Entity::view = nullptr;
+float* Entity::backgroundSpeed = nullptr;
 
 
 // spawns on the current tick.

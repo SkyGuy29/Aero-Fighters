@@ -44,7 +44,8 @@ void Level::load(const short country,
 	this->country = country;
 	levelEditorActive = levelEditor;
 	Entity::setCurrentTick(currentTick);
-	Entity::setViewport(view);
+	Entity::setViewport(&view);
+	Entity::setBackgroundSpeed(&backgroundSpeed);
 
 	// setting up the background
 	backgroundImg.loadFromFile("res/"  + mapStrings[map] + "/" + mapStrings[map] + ".png");

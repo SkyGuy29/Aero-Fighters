@@ -36,14 +36,9 @@ public:
 	// Entity holder used for when entities need to check for collision themselves
 	virtual TickData tick() = 0;
 
-	// Sets the variable used by entity for the size of the window.
-	// Should only ever be called once, giving a variable held
-	// before level is instantiated.
-	static void setWinSize(WindowSize* winSiz) { winSize = winSiz; };
+	static void setViewport(sf::View* vie) { view = vie; }
 
-	static void setViewport(sf::View& vie) { view = vie; }
-
-	static void setBackgroundSpeed(float& speed) { backgroundSpeed = speed; }
+	static void setBackgroundSpeed(float* speed) { backgroundSpeed = speed; }
 
 	static void setCurrentTick(unsigned int& ct) { currentTick = &ct; }
 
@@ -66,9 +61,9 @@ public:
 	 */
 	EntityObjectAction getEntityAction() noexcept;
 
-	sf::View& getView() { return view; }
+	sf::View* getView() { return view; }
 
-	float getBackgroundSpeed() { return backgroundSpeed; }
+	static float getBackgroundSpeed() { return *backgroundSpeed; }
 
 	unsigned int getUUID() const { return UUID; }
 
@@ -76,7 +71,6 @@ public:
 
 	sf::Vector2f getPosition() const { return pos; }
 
-	WindowSize getWinSize() { return *winSize; }
 protected:
 	Entity(sf::Vector2f pos, EntityID ID);
 
@@ -111,15 +105,15 @@ protected:
 
 	unsigned int spawnTick;
 	sf::Vector2f pos;
+
 private:
 
 	// The size of the window
 	// THESE ARE ASSUMED TO BE SET, PROGRAM WILL SEGFAULT IF NOT SET
 	static unsigned int* currentTick;
-	static sf::View& view;
-	static float& backgroundSpeed;
-	static WindowSize* winSize;
 	static std::unordered_map<std::string, std::vector<ProjectilePrototype>>& attackMap; // todo set this
+	static sf::View* view;
+	static float* backgroundSpeed;
 
 
 	// The next UUID that will be assigned.
