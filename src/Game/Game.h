@@ -3,6 +3,7 @@
 #include "../Cutscene/VideoCutscene.h"
 #include <cmath>
 #include "../Level/Level.h"
+#include "../Utility/WindowSize.h"
 
 
 /*
@@ -102,12 +103,9 @@ private:
 	// The game window
 	sf::RenderWindow window;
 
-	// The size of the window
-	sf::Vector2f winSize = sf::Vector2f(224.f, 320.f);
-
 	// The in game view area
 	sf::View view;
-	float viewportScroll = winSize.y / 2.f;
+	float viewportScroll = windowSize.height / 2.f;
 
 	// Deltatime clock
 	sf::Clock clock;

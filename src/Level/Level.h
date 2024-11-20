@@ -27,8 +27,8 @@ public:
 
 	float getBackgroundSpeed() const;
 
-	void load(sf::Vector2f& winSize, short country, Map map, bool levelEditor);
-	bool update(sf::Vector2f winSize);
+	void load(short country, Map map, bool levelEditor);
+	bool update();
 
 	void debugMode() const;
 	int skipToBoss();
@@ -68,7 +68,6 @@ private:
 	int player1Score = 0, player2Score = 0;
 	unsigned int currentTick = 0;
 
-	sf::Vector2f winSize;
 	bool bossSpawned = false, levelEditor = false, bossBackgroundSet = false;
 
 	bool playerShootLast[2] = { false, false };
