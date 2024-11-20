@@ -16,7 +16,7 @@
     <ClCompile Include="src\Level\Level.cpp" />
     <ClCompile Include="src\Main.cpp" />
     <ClCompile Include="src\Entities\TileEntity\TileEntity.cpp" />
-    <ClCompile Include="src\Sprites\SpriteType.cpp" />
+    <ClCompile Include="src\Entities\Animation\Animation.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Cutscene\Cutscene.h" />
@@ -48,6 +48,8 @@
     <ClInclude Include="src\Utility\Array\StaticArray.h" />
     <ClInclude Include="src\Utility\WindowSize.h" />
     <ClInclude Include="src\Utility\Array\VariableArray.h" />
+    <ClInclude Include="src\Cutscene\VisualElement.h" />
+    <ClInclude Include="src\Entities\Animation\Animation.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lib\SFML64\lib\sfml-audio-s-d.pdb" />
@@ -75,5 +77,38 @@
     <Text Include="src\Cutscene\swedenDialog.txt" />
     <Text Include="res\attacks example.txt" />
     <Text Include="res\attacks.txt" />
+    <Text Include="res\Dialog\englandDialog.txt" />
+    <Text Include="res\Dialog\japanDialog.txt" />
+    <Text Include="res\Dialog\statesDialog.txt" />
+    <Text Include="res\Dialog\swedenDialog.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\Dialog\Explosion0.png" />
+    <Image Include="res\Dialog\Explosion1.png" />
+    <Image Include="res\Dialog\Explosion10.png" />
+    <Image Include="res\Dialog\Explosion11.png" />
+    <Image Include="res\Dialog\Explosion12.png" />
+    <Image Include="res\Dialog\Explosion13.png" />
+    <Image Include="res\Dialog\Explosion14.png" />
+    <Image Include="res\Dialog\Explosion15.png" />
+    <Image Include="res\Dialog\Explosion2.png" />
+    <Image Include="res\Dialog\Explosion3.png" />
+    <Image Include="res\Dialog\Explosion4.png" />
+    <Image Include="res\Dialog\Explosion5.png" />
+    <Image Include="res\Dialog\Explosion6.png" />
+    <Image Include="res\Dialog\Explosion7.png" />
+    <Image Include="res\Dialog\Explosion8.png" />
+    <Image Include="res\Dialog\Explosion9.png" />
+    <Image Include="res\Dialog\hein.png" />
+    <Image Include="res\Dialog\keath.png" />
+    <Image Include="res\Dialog\keaton.png" />
+    <Image Include="res\Dialog\kohful.png" />
+    <Image Include="res\Dialog\lord white.png" />
+    <Image Include="res\Dialog\mao.png" />
+    <Image Include="res\Dialog\target1.png" />
+    <Image Include="res\Dialog\target2.png" />
+    <Image Include="res\Dialog\tee-bee.png" />
+    <Image Include="res\Dialog\villiam.png" />
+    <Image Include="res\Misc\enemies.png" />
   </ItemGroup>
 </Project>
