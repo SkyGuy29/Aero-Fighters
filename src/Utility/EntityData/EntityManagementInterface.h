@@ -87,6 +87,7 @@ private:
 
 	static void deleteVector(std::vector<void*>& a);
 
+	// converts a string a player country
 	static PlayerCountry strtoPC(std::string s);
 
 	// helper function for splitting a string of doubles delimited by spaces
@@ -157,7 +158,7 @@ void EntityManagementInterface::generalTick(std::vector<T*>& entities, sf::Rende
 			action = Entity::EntityObjectAction::NOTHING;
 			break;
 		}
-
+		 // todo add draw/ define action / stuff (tick dont tick)
 		if (action != Entity::EntityObjectAction::DELETE && action != Entity::EntityObjectAction::NOTHING)
 		{
 			ICollidable* icCast = dynamic_cast<ICollidable*>(entities.at(i));

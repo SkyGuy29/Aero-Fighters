@@ -140,7 +140,7 @@ inline void EntityManagementInterface::loadAttacks()
 		else if (input.starts_with("PROJ"))
 		{
 			input = "";
-			while(!input.starts_with("PROJ") && !f.eof())
+			while(!input.starts_with("NEW") && !input.starts_with("PROJ") && !f.eof())
 			{
 				std::getline(f, input);
 				line++;
@@ -175,7 +175,7 @@ inline void EntityManagementInterface::loadAttacks()
 			}
 			line = 0;
 			if(!f.eof())
-				f.seekg(-5, std::ios_base::cur); // setup for next read
+				f.seekg((long long)-1 * (signed long long)input.size()-2, std::ios_base::cur); // setup for next read
 
 			// id is an offset from the projectile start entity id
 			Entity::attackMap[attackName].emplace_back(tempData.spawnPos,
@@ -199,7 +199,7 @@ inline void EntityManagementInterface::loadAttacks()
 		if (!(it.first.starts_with("O0") || it.first.starts_with("O1") ||
 			it.first.starts_with("O2") || it.first.starts_with("O3"))
 			) // we must do all cause what if an attack just starts with O w/o being a player attack
-			return;
+			continue;
 		const std::string& attack = it.first;
 		short powerLevel = (short)strtol(attack.substr(1, 1).c_str(), nullptr, 0);
 		assert(powerLevel <= 3 && powerLevel >= 0);
@@ -207,9 +207,9 @@ inline void EntityManagementInterface::loadAttacks()
 		bool isPlayerTwo;
 		std::string split;
 
-		for(int i = 3; i < attack.size(); i++)
+		for(int i = 3; i <= attack.size(); i++)
 		{
-			if (attack[i] == '_')
+			if (attack[i] == '_' || i == attack.size())
 			{
 				assert(split.substr(1, 1) == "1" || split.substr(1, 1) == "2");
 				if (split.substr(1, 1) == "1")
@@ -217,14 +217,25 @@ inline void EntityManagementInterface::loadAttacks()
 				else
 					isPlayerTwo = true;
 				country = strtoPC(split.substr(2, std::string::npos));
-				Entity::playerAttackTree.at(powerLevel).at(isPlayerTwo).at(country) = attack; // todo: ensure this works without using heap data
+				// std::unordered_map<unsigned short, std::unordered_map<bool, std::unordered_map<PlayerCountry, std::string>>>
+				if(!Entity::playerAttackTree.contains(powerLevel))
+				{
+					Entity::playerAttackTree[powerLevel] = std::unordered_map<bool, std::unordered_map<PlayerCountry, std::string>>();
+				}
+
+				if(!Entity::playerAttackTree.at(powerLevel).contains(isPlayerTwo))
+				{
+					Entity::playerAttackTree[powerLevel][isPlayerTwo] = std::unordered_map<PlayerCountry, std::string>();
+				}
+
+				Entity::playerAttackTree.at(powerLevel).at(isPlayerTwo)[country] = attack; // todo: ensure this works without using heap data
 				split.clear();
 			}
 			else
 				split.push_back(attack[i]);
 		}
-
 	}
+	if (true) {};
 }
 /*
 Work for importing attack data:
@@ -442,6 +453,7 @@ void EntityManagementInterface::deleteVector(std::vector<void*>& a)
 PlayerCountry EntityManagementInterface::strtoPC(std::string s)
 {
 	PlayerCountry ret;
+
 
 	if (s == "AMERICA")
 		ret = PlayerCountry::AMERICA;

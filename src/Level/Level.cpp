@@ -78,6 +78,7 @@ void Level::load(const short country,
 	p1Score.setCharacterSize(16);
 	p2Score.setCharacterSize(16);
 
+	EntityManagementInterface::unload();
 	EntityManagementInterface::load(map);
 
 	// just a test to try out the moved animator to object

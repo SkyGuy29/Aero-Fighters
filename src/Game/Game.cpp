@@ -314,7 +314,8 @@ bool Game::changeMenu(Menu newMenu)
 			break;
 		case Menu::LEVEL:
 			//load new level, make sure things that need to be reset are reset
-			level->load(country, currentLevel, false);
+			//level->load(country, currentLevel, false); // todo replace below
+			level->load(country, Map::England, false);
 			cutscene.levelBeat(currentLevel);
 			break;
 		case Menu::MISSION:
@@ -436,7 +437,7 @@ void Game::updateSelectMenu()
 		// Reset player choose, load the respective level, and early escape
 		countryChoose.reset();
 		changeMenu(Menu::MISSION);
-		level->load(country, Map::England, levelEditor); // Set the last param for loading the correct map
+		//level->load(country, Map::England, levelEditor); // Set the last param for loading the correct map
 
 		if (debugSkipToBoss)
 			viewportScroll = level->skipToBoss();

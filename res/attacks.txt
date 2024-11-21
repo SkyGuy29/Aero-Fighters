@@ -128,7 +128,7 @@ PROJ  // Power level 3 Sweden P1 (cases 7,22)
 0
 64 48
 
-NEW O0_P1JAPAN 
+NEW O0_P1JAPAN
 PROJ // Base power Japan P1 (case 8)
 0 -16
 0 -15
@@ -137,7 +137,7 @@ PROJ // Base power Japan P1 (case 8)
 0
 15 29
 
-NEW O1_P1JAPAN 
+NEW O1_P1JAPAN
 PROJ // Power level 1 Japan P1 (case 10)
 0 -16
 0 -15
@@ -146,7 +146,7 @@ PROJ // Power level 1 Japan P1 (case 10)
 0
 15 29
 
-NEW O2_P1JAPAN 
+NEW O2_P1JAPAN
 PROJ // Power level 2 Japan P1 (case 12)
 0 -16
 0 -15
@@ -155,7 +155,7 @@ PROJ // Power level 2 Japan P1 (case 12)
 0
 15 29
 
-NEW O3_P1JAPAN 
+NEW O3_P1JAPAN
 PROJ // Power level 3 Japan P1 Kunai (case 14)
 0 -16
 0 -15
@@ -182,7 +182,7 @@ PROJ  // Power level 1 England P1 (case 26)
 0
 16 31
 
-NEW O2_P1ENGLAND 
+NEW O2_P1ENGLAND
 PROJ // Center shot // Power level 2 England P1 with spread (case 28)
 0 -16
 0 -10
@@ -205,7 +205,7 @@ PROJ // Right diagonal
 0
 9 31
 
-NEW O3_P1ENGLAND 
+NEW O3_P1ENGLAND
 PROJ // Center shot // Power level 3 England P1 with spread (case 30)
 0 -16
 0 -10
