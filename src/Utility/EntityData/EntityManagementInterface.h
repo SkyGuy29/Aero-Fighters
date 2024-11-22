@@ -156,10 +156,6 @@ void EntityManagementInterface::generalTick(std::vector<T*>& entities, sf::Rende
 		case Entity::EntityObjectAction::DRAW:
 		case Entity::EntityObjectAction::NOTHING:
 			break;
-
-		case Entity::EntityObjectAction::DRAW: // draw the entity's sprite
-			action = Entity::EntityObjectAction::DRAW;
-			break;
 		}
 
 		 // todo add draw/ define action / stuff (tick dont tick)
