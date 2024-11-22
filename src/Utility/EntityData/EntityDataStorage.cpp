@@ -789,6 +789,52 @@ EntityDataStorage::EntityData const EntityDataStorage::EntityDataTable[static_ca
 		0,
 		0b00000000
 	},
+	// PROJECTILE_START, (null)
+	EntityData{
+			EntityData::SpriteData {
+				sf::IntRect {
+					0,16,32,32
+				},
+				16,
+				5,
+				true,
+				EntityData::SpriteData::TextureType::PROJECTILE
+			},
+			Vec2f { 0, 0 },
+			3,
+			0,
+			0b00000000
+	},
+	// O0_P1AMERICA_P2OTHER,
+	EntityData{ // todo add projectile data from spreadsheet then test projectiles then fix enemy spawnign
+				EntityData::SpriteData {
+					sf::IntRect {
+						0,0,32,32
+					},
+					16,
+					5,
+					true,
+					EntityData::SpriteData::TextureType::PROJECTILE
+				},
+				Vec2f { 0, 0 },
+				3,
+				0,
+				0b00000000
+	},
+	// O0_P1SWEDEN_P2AMERICA,
+	// O1_P1AMERICA,
+	// O1_P1SWEDEN,
+	// O2_P1AMERICA,
+	// O2_P1SWEDEN,
+	// O3_P1AMERICA,
+	// O3_P1SWEDEN,
+	// O0_P1JAPAN,
+	// O1_P1JAPAN,
+	// O3_P1JAPAN,
+	// O0_P1ENGLAND,
+	// O1_P1ENGLAND,
+	// ENEMY_PROJECTILE_1,
+	// PROJECTILE_COUNT,
 };
 // Generic entity
 /*

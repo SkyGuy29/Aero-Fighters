@@ -1,5 +1,7 @@
 #include "Entity.h"
 
+#include <cassert>
+
 #include "../ControllerStuff.hpp"
 
 // Static member must be defined outside the class definition.
@@ -31,17 +33,20 @@ void Entity::setPosition(sf::Vector2f pos)
 }
 
 
-Entity::EntityObjectAction Entity::getEntityAction() noexcept
+Entity::EntityObjectAction Entity::getEntityAction(bool ignoreDeletion) noexcept
 {
 	const sf::Vector2f pos = getPosition();
 	auto ret = EntityObjectAction::NOTHING;
 	const auto& entityData = EntityDataStorage::getData(ID);
-
+	const float viewLeftBound = view->getCenter().x - view->getSize().x / 2,
+		viewRightBound = view->getCenter().x + view->getSize().x/2,
+		viewTopBound = view->getCenter().y - view->getSize().y/2,
+		viewBottomBound = view->getCenter().y + view->getSize().y/2;
 	// If on screen
-	if (!(pos.x + entityData.spriteData.getBounds().width / 2.f < 0 ||              // Off the left
-		  pos.y + entityData.spriteData.getBounds().height / 2.f < 0 ||              // Off the top
-		  pos.x - entityData.spriteData.getBounds().width / 2.f >= windowSize.width || // Off the right
-		  pos.y - entityData.spriteData.getBounds().height / 2.f >= windowSize.height)) // Off the bottom
+	if (!(pos.x + entityData.spriteData.getBounds().width / 2.f < viewLeftBound ||              // Off the left
+		pos.y + entityData.spriteData.getBounds().height / 2.f < viewTopBound ||              // Off the top
+		pos.x - entityData.spriteData.getBounds().width / 2.f >= viewRightBound || // Off the right
+		pos.y - entityData.spriteData.getBounds().height / 2.f >= viewBottomBound)) // Off the bottom
 	{
 		if ((entityFlags & 0b00000001) != 0b00000001) // If not spawned
 		{
@@ -64,7 +69,7 @@ Entity::EntityObjectAction Entity::getEntityAction() noexcept
 		// ^ WHY??? they are insta deleted first tick of game LOL. Moved down to outer if - ninjune
 	}
 	// If not on screen and has spawned
-	else if ((entityFlags & 0b00000001) == 0b00000001 && !levelEditorActive)
+	else if ((entityFlags & 0b00000001) == 0b00000001 && !levelEditorActive && !ignoreDeletion)
 		// Not on screen, please delete.
 		ret = EntityObjectAction::DELETE;
 
@@ -74,7 +79,7 @@ Entity::EntityObjectAction Entity::getEntityAction() noexcept
 
 void Entity::move() noexcept
 {
-	pos += sf::Vector2f(vel.x*(*currentTick-spawnTick), vel.y*(*currentTick-spawnTick));
+	pos += sf::Vector2f(vel.x, vel.y);
 	if (sprite != nullptr)
 		sprite->setPosition(pos);
 }

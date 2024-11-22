@@ -145,19 +145,19 @@ void EntityManagementInterface::generalTick(std::vector<T*>& entities, sf::Rende
 	// For every entity in the vector
 	for (unsigned short i = 0; i < entities.size(); i++)
 	{
-		switch(entities.at(i)->getEntityAction())
+		action = entities.at(i)->getEntityAction();
+		switch(action)
 		{
 		case Entity::EntityObjectAction::DELETE:
 			delete entities.at(i);
 			entities.erase(entities.begin()+i);
 			i--;
-			action = Entity::EntityObjectAction::DELETE;
 			break;
-
+		case Entity::EntityObjectAction::DRAW:
 		case Entity::EntityObjectAction::NOTHING:
-			action = Entity::EntityObjectAction::NOTHING;
 			break;
 		}
+
 		 // todo add draw/ define action / stuff (tick dont tick)
 		if (action != Entity::EntityObjectAction::DELETE && action != Entity::EntityObjectAction::NOTHING)
 		{
@@ -234,6 +234,8 @@ bool EntityManagementInterface::collide(std::vector<Projectile*>& entities, T* e
 			entities.erase(entities.begin() + index);
 			done = true;
 		}
+
+		index++;
 	}
 	return done;
 }

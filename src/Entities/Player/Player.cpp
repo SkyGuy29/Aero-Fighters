@@ -9,6 +9,7 @@ Player::Player(sf::Vector2f pos, PlayerCountry country, bool isPlayerTwo) :
 	this->country = country;
 }
 
+
 void Player::move()
 {
 	/*if (vel.x > 0)
@@ -44,7 +45,6 @@ void Player::move()
 		pos.y = getView()->getCenter().y + getView()->getSize().y / 2.f - getBounds().height / 2.f;
 
 	getBounds().intersects(sf::IntRect(0,0, windowSize.width, windowSize.height));
-	vel.y -= getBackgroundSpeed();
 
 	Entity::move();
 }
@@ -104,6 +104,8 @@ Entity::TickData Player::tick()
 		spawn = key(isPlayerTwo, Controls::Spawn);
 	}
 	vel = moveOffset * 5.f;
+	//vel.y += getBackgroundSpeed();
+	
 	TickData tickData;
 	
 	if (shoot)
@@ -126,6 +128,11 @@ Entity::TickData Player::tick()
 	move();
 
 	return tickData;
+}
+
+Entity::EntityObjectAction Player::getEntityAction(bool ignoreDeletion) noexcept
+{
+	return Entity::getEntityAction(true);
 }
 
 

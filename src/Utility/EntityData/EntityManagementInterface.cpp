@@ -219,14 +219,10 @@ inline void EntityManagementInterface::loadAttacks()
 				country = strtoPC(split.substr(2, std::string::npos));
 				// std::unordered_map<unsigned short, std::unordered_map<bool, std::unordered_map<PlayerCountry, std::string>>>
 				if(!Entity::playerAttackTree.contains(powerLevel))
-				{
 					Entity::playerAttackTree[powerLevel] = std::unordered_map<bool, std::unordered_map<PlayerCountry, std::string>>();
-				}
 
 				if(!Entity::playerAttackTree.at(powerLevel).contains(isPlayerTwo))
-				{
 					Entity::playerAttackTree[powerLevel][isPlayerTwo] = std::unordered_map<PlayerCountry, std::string>();
-				}
 
 				Entity::playerAttackTree.at(powerLevel).at(isPlayerTwo)[country] = attack; // todo: ensure this works without using heap data
 				split.clear();

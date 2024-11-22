@@ -11,7 +11,7 @@ enum class PlayerCountry : uint8_t
 	SWEDEN,
 	ENGLAND
 };
-
+class Player;
 
 class Entity
 {
@@ -68,7 +68,7 @@ public:
 	 * @retval EntityObjectAction::DELETE The entity has been 'spawned', however
 	 *		   it has just left the screen and thus should be deleted.
 	 */
-	EntityObjectAction getEntityAction() noexcept;
+	EntityObjectAction virtual getEntityAction(bool ignoreDeletion = false) noexcept;
 
 	sf::View* getView() { return view; }
 

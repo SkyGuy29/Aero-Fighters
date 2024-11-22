@@ -14,6 +14,7 @@ public:
 		CHILD
 	};
 
+	// these should be overriden
 	virtual const CollisionType collidesWith(ICollidable* other) const
 	{
 		throw std::runtime_error("Default method called - ICollidable::collidesWith");

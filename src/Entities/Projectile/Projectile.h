@@ -27,7 +27,7 @@ public:
 		// Default to miss, only change if has collided in a different way
 		CollisionType ret = CollisionType::MISS;
 
-		if (other->getBounds().intersects(getBounds()))
+		if (other != this && other->getBounds().intersects(getBounds()))
 			ret = CollisionType::HIT;
 
 		return ret;

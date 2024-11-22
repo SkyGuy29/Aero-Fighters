@@ -22,6 +22,10 @@ public:
 	{
 		return sprite->getTextureRect();
 	}
+	const CollisionType collidesWith(ICollidable* other) const override
+	{
+		return CollisionType::MISS;
+	}
 
 	unsigned int getLine() { return line; }
 protected:
