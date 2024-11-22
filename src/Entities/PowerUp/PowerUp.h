@@ -1,6 +1,7 @@
 #pragma once
 #include "../Entity.h"
 #include "../Interfaces/ICollidable.h"
+#include "../Player/Player.h"
 
 
 // TODO
@@ -16,6 +17,7 @@ public:
 
     TickData tick() override;
 
+	const CollisionType collidesWith(ICollidable* other) const noexcept override;
 
 	sf::IntRect getBounds() const noexcept override
 	{
@@ -26,3 +28,4 @@ private:
 	short bounces = 0;
 };
 
+//to do, implement collides with into entity management interface. talk with ricky about this.
