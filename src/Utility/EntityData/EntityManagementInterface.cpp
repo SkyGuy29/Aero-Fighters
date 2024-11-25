@@ -156,7 +156,7 @@ inline void EntityManagementInterface::loadAttacks()
 				case 2:
 					splitVec = split_(input);
 					assert(splitVec.size() == 2);
-					tempData.spawnVelocity = sf::Vector2f(splitVec[0], splitVec[1]);
+					tempData.spawnVelocity = sf::Vector2f(splitVec[0], splitVec[1]); // here checky why velocity dont work
 					break;
 				case 3:
 					tempData.id = EntityID((int)EntityID::PROJECTILE_START + atoi(input.c_str()) + 1);
