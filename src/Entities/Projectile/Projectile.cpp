@@ -20,6 +20,9 @@ Projectile::Projectile(ProjectilePrototype prototype, Entity* owner)
 
 	this->owner = owner;
 	ownerType = prototype.OWNER;
+	float spawnX = prototype.SPAWN_POS.x + owner->getPosition().x;
+	float spawnY = prototype.SPAWN_POS.y + owner->getPosition().y;
+	setPosition(sf::Vector2f(spawnX, spawnY));
 }
 
 

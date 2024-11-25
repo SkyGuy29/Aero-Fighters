@@ -9,7 +9,7 @@ unsigned int Entity::next_uuid = 0;
 unsigned int* Entity::currentTick;
 std::unordered_map<unsigned int, sf::Sprite> Entity::spriteMap;
 std::unordered_map<std::string, std::vector<ProjectilePrototype>> Entity::attackMap;
-// todo: change later ??? I didn't like the triple nested map
+// todo: change later ??? I don't like the triple nested map
 std::unordered_map<unsigned short, std::unordered_map<bool, std::unordered_map<PlayerCountry, std::string>>> Entity::playerAttackTree;
 sf::View* Entity::view = nullptr;
 float* Entity::backgroundSpeed = nullptr;
@@ -59,6 +59,7 @@ Entity::EntityObjectAction Entity::getEntityAction(bool ignoreDeletion) noexcept
 			// Set this entities sprite address
 			sprite = &spriteMap.at(UUID);
 
+			sprite->setPosition(pos);
 			sprite->setTextureRect(entityData.spriteData.getBounds());
 			vel = entityData.velocity;
 		}

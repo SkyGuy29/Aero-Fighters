@@ -182,7 +182,9 @@ void EntityManagementInterface::generalTick(std::vector<T*>& entities, sf::Rende
 					hCast->damage();
 			}
 
-			data = entities.at(i)->tick();
+			data = Entity::TickData(false, "");
+			if(!entities.empty())
+				data = entities.at(i)->tick();
 
 			if (data.hasAttacked)
 			{
@@ -200,7 +202,10 @@ void EntityManagementInterface::processAttack(std::string ID, T& entity)
 	std::vector<ProjectilePrototype> prototypes = Entity::attackMap[ID];
 
 	for (unsigned int i = 0; i < prototypes.size(); i++)
+	{
 		projectiles.push_back(new Projectile(prototypes[i], &entity));
+		projectiles[projectiles.size() - 1]->getEntityAction(); // force it to generate velocity, sprite, etc.
+	}
 }
 
 
