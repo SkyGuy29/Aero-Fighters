@@ -156,7 +156,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\Entities\Animation\Animation.cpp" />
     <ClCompile Include="src\Cutscene\Cutscene.cpp" />
     <ClCompile Include="src\Cutscene\VideoCutscene.cpp" />
     <ClCompile Include="src\Entities\Projectile\Missile\Missile.cpp" />
@@ -174,7 +173,6 @@
     <ClCompile Include="src\Entities\TileEntity\TileEntity.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Entities\Animation\Animation.h" />
     <ClInclude Include="src\Cutscene\Cutscene.h" />
     <ClInclude Include="src\Cutscene\VideoCutscene.h" />
     <ClInclude Include="src\Entities\Projectile\Missile\Missile.h" />

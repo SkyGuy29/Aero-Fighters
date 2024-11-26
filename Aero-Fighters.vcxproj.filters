@@ -16,7 +16,6 @@
     <ClCompile Include="src\Level\Level.cpp" />
     <ClCompile Include="src\Main.cpp" />
     <ClCompile Include="src\Entities\TileEntity\TileEntity.cpp" />
-    <ClCompile Include="src\Entities\Animation\Animation.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Cutscene\Cutscene.h" />
@@ -49,7 +48,6 @@
     <ClInclude Include="src\Utility\WindowSize.h" />
     <ClInclude Include="src\Utility\Array\VariableArray.h" />
     <ClInclude Include="src\Cutscene\VisualElement.h" />
-    <ClInclude Include="src\Entities\Animation\Animation.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lib\SFML64\lib\sfml-audio-s-d.pdb" />
