@@ -150,7 +150,7 @@ NEW O2_P1JAPAN
 PROJ // Power level 2 Japan P1 (case 12)
 0 -16
 0 -15
-9
+10
 0
 0
 15 29
@@ -159,7 +159,7 @@ NEW O3_P1JAPAN
 PROJ // Power level 3 Japan P1 Kunai (case 14)
 0 -16
 0 -15
-10
+11
 0
 0
 9 31
@@ -168,7 +168,7 @@ NEW O0_P1ENGLAND
 PROJ  // Base power England P1 (case 24)
 0 -16
 0 -10
-11
+12
 0
 0
 9 31
@@ -177,7 +177,7 @@ NEW O1_P1ENGLAND
 PROJ  // Power level 1 England P1 (case 26)
 0 -16
 0 -10
-12
+13
 0
 0
 16 31
@@ -186,21 +186,21 @@ NEW O2_P1ENGLAND
 PROJ // Center shot // Power level 2 England P1 with spread (case 28)
 0 -16
 0 -10
-11
+12
 0
 0
 9 31
 PROJ // Left diagonal
 0 -16
 -3.4 -9.4
-11
+12
 0
 0
 9 31
 PROJ // Right diagonal
 0 -16
 3.4 -9.4
-11
+12
 0
 0
 9 31
@@ -209,21 +209,21 @@ NEW O3_P1ENGLAND
 PROJ // Center shot // Power level 3 England P1 with spread (case 30)
 0 -16
 0 -10
-12
+13
 0
 0
 16 31
 PROJ // Left diagonal
 0 -16
 -3.4 -9.4
-12
+13
 0
 0
 16 31
 PROJ // Right diagonal
 0 -16
 3.4 -9.4
-12
+13
 0
 0
 16 31
@@ -232,7 +232,7 @@ NEW TANK_SHOOT
 PROJ // Targets player
 0 0
 0 0
-13
+14
 0
 1
 10 10
