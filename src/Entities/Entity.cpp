@@ -61,7 +61,10 @@ Entity::EntityObjectAction Entity::getEntityAction(bool ignoreDeletion) noexcept
 
 			sprite->setPosition(pos);
 			sprite->setTextureRect(entityData.spriteData.getBounds());
-			vel = entityData.velocity;
+			sprite->setOrigin(entityData.spriteData.getBounds().width / 2, entityData.spriteData.getBounds().height / 2);
+
+			if(vel == sf::Vector2f(0,0)) // if velocity is not already set
+				vel = entityData.velocity;
 		}
 		// Is on screen, do not delete.
 		ret = EntityObjectAction::DRAW;

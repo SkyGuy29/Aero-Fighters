@@ -22,10 +22,10 @@ unsigned int EntityManagementInterface::lastTick = -1; // max int (unsigned)
 
 
 
-void EntityManagementInterface::load(Map map)
+void EntityManagementInterface::load(Map map, PlayerCountry country)
 {
-	players.push_back(new Player(sf::Vector2f(100, 100), PlayerCountry::AMERICA, false));
-	players.push_back(new Player(sf::Vector2f(150, 100), PlayerCountry::AMERICA, true));
+	players.push_back(new Player(sf::Vector2f(100, 100), country, false));
+	players.push_back(new Player(sf::Vector2f(150, 100), country, true));
 	loadAttacks();
 	loadEnemies(map);
 	//Entity::setAttackMap(attackData);
@@ -311,7 +311,7 @@ inline void EntityManagementInterface::loadEnemies(Map map)
 	{
 		input.clear();
 		std::getline(f, input);
-		// TODO: verify that enemies.txt is valid (I dont think 0 or 1 id is right cause it is child!) (check coords of spawns)
+
 		if(input.starts_with("NEW"))
 		{
 			f >> tempData.id >> tempData.pos.x >> tempData.pos.y >> tempData.vel.x >> tempData.vel.y;
@@ -329,7 +329,7 @@ inline void EntityManagementInterface::loadEnemies(Map map)
 			spawnMap[tempData.spawnTick].push_back(new EntityPrototype(tempData.pos, tempData.vel, (EntityID)tempData.id, 0, tempData.line));
 		}
 		else if (input == "NEW TILE")
-			spawnMap[0].push_back(new EntityPrototype(tempData.pos, tempData.vel, (EntityID)((int)EntityID::ENEMY_COUNT + tempData.id + 1), 0, tempData.line));
+			spawnMap[0].push_back(new EntityPrototype(tempData.pos, tempData.vel, (EntityID)((int)EntityID::ENEMY_COUNT + tempData.id + 2), 0, tempData.line));
 	}
 }
 
@@ -419,6 +419,9 @@ inline void EntityManagementInterface::loadChildren(VariableArray<EntityDataStor
 	unsigned short currentChild = 0;
 
 	// Place every single child here
+	// theres a word for this, nursery I think. could be daycare
+	// make sure all children are cared for, no more piles, Ricky.
+	// next time I will call CPS
 	for (unsigned char i = 0; i < childData.families.size(); i++)
 	{
 		spacing[i] = SpacingElement(childData.families.at(i).childStartingIndex, childData.families.at(i).childStartingIndex + childData.families.at(i).childCount);

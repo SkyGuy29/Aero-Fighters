@@ -228,6 +228,7 @@
     <Text Include="res\Dialog\japanDialog.txt" />
     <Text Include="res\Dialog\statesDialog.txt" />
     <Text Include="res\Dialog\swedenDialog.txt" />
+    <Text Include="res\England\enemies.txt" />
     <Text Include="src\Cutscene\englandDialog.txt" />
     <Text Include="src\Cutscene\japanDialog.txt" />
     <Text Include="src\Cutscene\statesDialog.txt" />

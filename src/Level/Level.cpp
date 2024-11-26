@@ -38,7 +38,7 @@ float Level::getBackgroundSpeed() const
 /// <param name="country"></param>
 /// <param name="map"></param>
 /// <param name="levelEditor">Whether or not the levelEditor is active.</param>
-void Level::load(const short country,
+void Level::load(PlayerCountry country,
 	const Map map, const bool levelEditor)
 {
 	this->country = country;
@@ -79,7 +79,7 @@ void Level::load(const short country,
 	p2Score.setCharacterSize(16);
 
 	EntityManagementInterface::unload();
-	EntityManagementInterface::load(map);
+	EntityManagementInterface::load(map, country);
 
 	// just a test to try out the moved animator to object
 	/*objects.at(0)->setTexture(&playerImg, sf::Vector2i(32, 32),
