@@ -80,6 +80,7 @@ public:
 
 	sf::Vector2f getPosition() const { return pos; }
 
+	void setTexture(sf::Texture* texPtr, int frameCount, bool horizontal);
 
 	// public because I am lazy TODO: make getters/setters for this
 	static std::unordered_map<unsigned short, std::unordered_map<bool, std::unordered_map<PlayerCountry, std::string>>> playerAttackTree;
@@ -118,6 +119,7 @@ protected:
 
 	unsigned int spawnTick;
 	sf::Vector2f pos;
+	
 private:
 
 	// The size of the window
@@ -136,7 +138,7 @@ private:
 	const unsigned int UUID;
 
 	// Texture specific data members //
-	short currentFrame = 0;
+	short currentFrame = 0, frameCount = 0;
 	bool animationFinished = false, verticalAnimation = false;
 
 	// null / null / null / null / null / null / null / hasSpawned

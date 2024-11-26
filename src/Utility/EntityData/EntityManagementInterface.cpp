@@ -168,7 +168,7 @@ inline void EntityManagementInterface::loadAttacks()
 					tempData.spawnVelocity = sf::Vector2f(splitVec[0], splitVec[1]); // here checky why velocity dont work
 					break;
 				case 3:
-					tempData.id = EntityID((int)EntityID::PROJECTILE_START + atoi(input.c_str()) + 1);
+					tempData.id = EntityID((int)EntityID::PROJECTILE_START + atoi(input.c_str()) + 1 );
 					break;
 				case 4:
 					tempData.tickOffset = atoi(input.c_str());
