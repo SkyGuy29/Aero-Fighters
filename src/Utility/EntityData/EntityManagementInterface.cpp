@@ -65,16 +65,25 @@ void EntityManagementInterface::tick(sf::RenderWindow& win, unsigned int current
 	generalTick<PowerUp>(powerUps, win);
 }
 
+// Draw order
+// Last = top
+// First = bottom or covered
 void EntityManagementInterface::draw(sf::RenderWindow& win)
 {
 	generalDraw<Enemy>(landEnemies, win);
-	generalDraw<Projectile>(projectiles, win);
-	generalDraw<Player>(players, win);
-	generalDraw<Enemy>(airEnemies, win);
 	generalDraw<Enemy>(waterEnemies, win);
-	generalDraw<Boss>(bossEnemies, win);
+
+	// These are like buildings, right?
 	generalDraw<TileEntity>(tileEntities, win);
+
 	generalDraw<PowerUp>(powerUps, win);
+	generalDraw<Projectile>(projectiles, win);
+
+	generalDraw<Boss>(bossEnemies, win);
+	generalDraw<Enemy>(airEnemies, win);
+
+	// Player most important
+	generalDraw<Player>(players, win);
 }
 
 
