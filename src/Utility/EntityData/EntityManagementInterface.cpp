@@ -76,14 +76,12 @@ void EntityManagementInterface::draw(sf::RenderWindow& win)
 	// These are like buildings, right?
 	generalDraw<TileEntity>(tileEntities, win);
 
-	generalDraw<PowerUp>(powerUps, win);
-	generalDraw<Projectile>(projectiles, win);
-
 	generalDraw<Boss>(bossEnemies, win);
 	generalDraw<Enemy>(airEnemies, win);
 
-	// Player most important
+	generalDraw<PowerUp>(powerUps, win);
 	generalDraw<Player>(players, win);
+	generalDraw<Projectile>(projectiles, win);
 }
 
 
