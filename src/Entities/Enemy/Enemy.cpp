@@ -81,6 +81,7 @@ Entity::TickData Enemy::tick()
 		case EntityID::ENEMY_LAND_CHILD_TANK_STRONG_TOP_GREEN:
 			break;
 		case EntityID::ENEMY_LAND_TANK_BOTTOM_GREEN:
+			
 			break;
 		case EntityID::ENEMY_LAND_CHILD_TANK_WEAK_TOP_YELLOW:
 			break;
