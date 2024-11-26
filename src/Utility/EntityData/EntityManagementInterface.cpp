@@ -311,7 +311,7 @@ inline void EntityManagementInterface::loadEnemies(Map map)
 	{
 		input.clear();
 		std::getline(f, input);
-		// TODO: verify that enemies.txt is valid (I dont think 0 or 1 id is right cause it is child!) (check coords of spawns)
+
 		if(input.starts_with("NEW"))
 		{
 			f >> tempData.id >> tempData.pos.x >> tempData.pos.y >> tempData.vel.x >> tempData.vel.y;
