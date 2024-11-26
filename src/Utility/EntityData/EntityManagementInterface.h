@@ -204,7 +204,7 @@ void EntityManagementInterface::processAttack(std::string ID, T& entity)
 
 	for (unsigned int i = 0; i < prototypes.size(); i++)
 	{
-		projectiles.push_back(new Projectile(prototypes[i], &entity));
+		projectiles.push_back(new Projectile(prototypes[i], &entity, players[0]));
 		projectiles[projectiles.size() - 1]->getEntityAction(); // force it to generate velocity, sprite, etc.
 	}
 }

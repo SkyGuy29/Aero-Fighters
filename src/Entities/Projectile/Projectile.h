@@ -10,7 +10,7 @@ class Projectile :
 	public Entity, public ICollidable
 {
 public:
-	Projectile(const ProjectilePrototype prototype, Entity* owner);
+	Projectile(const ProjectilePrototype prototype, Entity* owner, Entity* target = nullptr);
 
 	TickData tick() override;
 

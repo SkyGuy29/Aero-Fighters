@@ -115,6 +115,7 @@ public:
 			const unsigned char flags;
 			const TextureType texture;
 		};
+
 		bool hasChildren() const noexcept
 		{
 			return CHILD_DATA << 31 != 0;

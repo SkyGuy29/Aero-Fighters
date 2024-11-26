@@ -818,7 +818,7 @@ EntityDataStorage::EntityData const EntityDataStorage::EntityDataTable[static_ca
 		},
 		Vec2f { 0, 0 },
 		1,
-		0,
+		4,
 		0b00000000
 	},
 	// O0_P1SWEDEN_P2AMERICA,
@@ -1014,6 +1014,21 @@ EntityDataStorage::EntityData const EntityDataStorage::EntityDataTable[static_ca
 		0b00000000
 	},
 	// ENEMY_PROJECTILE_1,
+	EntityData{
+		EntityData::SpriteData {
+			sf::IntRect {
+				0,0, 8,8
+			},
+			1,
+			1,
+			true,
+			EntityData::SpriteData::TextureType::ENEMY_PROJECTILE
+		},
+		Vec2f { 0, 0 },
+		1,
+		15,
+		0b00000000
+	},
 	// PROJECTILE_COUNT,
 };
 // Generic entity
