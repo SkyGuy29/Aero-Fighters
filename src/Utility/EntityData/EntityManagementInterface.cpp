@@ -22,10 +22,10 @@ unsigned int EntityManagementInterface::lastTick = -1; // max int (unsigned)
 
 
 
-void EntityManagementInterface::load(Map map)
+void EntityManagementInterface::load(Map map, PlayerCountry country)
 {
-	players.push_back(new Player(sf::Vector2f(100, 100), PlayerCountry::AMERICA, false));
-	players.push_back(new Player(sf::Vector2f(150, 100), PlayerCountry::AMERICA, true));
+	players.push_back(new Player(sf::Vector2f(100, 100), country, false));
+	players.push_back(new Player(sf::Vector2f(150, 100), country, true));
 	loadAttacks();
 	loadEnemies(map);
 	//Entity::setAttackMap(attackData);

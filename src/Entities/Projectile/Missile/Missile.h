@@ -13,7 +13,7 @@ public:
 		this->target = target;
 	}
 
-	void move() override;
+	void move();
 private:
 	Entity* target;
 	int magnitude; // Do something with this andrew
