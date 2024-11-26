@@ -58,7 +58,7 @@ PROJ 7
 
 NEW O0_P1AMERICA_P2ENGLAND_P2JAPAN_P2SWEDEN
 PROJ // Base power level USA P1 and P2s other than america (cases 0,9,17,25)
-0 -16
+10 -16
 0 -10
 0
 0

@@ -315,7 +315,7 @@ bool Game::changeMenu(Menu newMenu)
 		case Menu::LEVEL:
 			//load new level, make sure things that need to be reset are reset
 			//level->load(country, currentLevel, false); // todo replace below
-			level->load(country, Map::England, false);
+			level->load((PlayerCountry)country, England, false);
 			cutscene.levelBeat(currentLevel);
 			break;
 		case Menu::MISSION:

@@ -807,32 +807,212 @@ EntityDataStorage::EntityData const EntityDataStorage::EntityDataTable[static_ca
 	},
 	// O0_P1AMERICA_P2OTHER,
 	EntityData{ // todo add projectile data from spreadsheet then test projectiles then fix enemy spawnign
-				EntityData::SpriteData {
-					sf::IntRect {
-						0,0,32,32
-					},
-					16,
-					5,
-					true,
-					EntityData::SpriteData::TextureType::PROJECTILE
-				},
-				Vec2f { 0, 0 },
-				3,
-				0,
-				0b00000000
+		EntityData::SpriteData {
+			sf::IntRect {
+				0,0,11,18
+			},
+			3,
+			1,
+			true,
+			EntityData::SpriteData::TextureType::PROJECTILE
+		},
+		Vec2f { 0, 0 },
+		1,
+		0,
+		0b00000000
 	},
 	// O0_P1SWEDEN_P2AMERICA,
+	EntityData{
+		EntityData::SpriteData {
+			sf::IntRect {
+				0,128, 9,28
+			},
+			3,
+			1,
+			true,
+			EntityData::SpriteData::TextureType::PROJECTILE
+		},
+		Vec2f { 0, 0 },
+		1,
+		0,
+		0b00000000
+	},
 	// O1_P1AMERICA,
+	EntityData{
+		EntityData::SpriteData {
+			sf::IntRect {
+				0,19, 16,30
+			},
+			3,
+			1,
+			true,
+			EntityData::SpriteData::TextureType::PROJECTILE
+		},
+		Vec2f { 0, 0 },
+		1,
+		0,
+		0b00000000
+	},
 	// O1_P1SWEDEN,
+	EntityData{
+		EntityData::SpriteData {
+			sf::IntRect {
+				0,157, 16,32
+			},
+			3,
+			1,
+			true,
+			EntityData::SpriteData::TextureType::PROJECTILE
+		},
+		Vec2f { 0, 0 },
+		1,
+		0,
+		0b00000000
+	},
 	// O2_P1AMERICA,
+	EntityData{
+			EntityData::SpriteData {
+				sf::IntRect {
+					0,50, 31,30
+				},
+				3,
+				1,
+				true,
+				EntityData::SpriteData::TextureType::PROJECTILE
+			},
+			Vec2f { 0, 0 },
+			1,
+			0,
+			0b00000000
+	},
 	// O2_P1SWEDEN,
+	EntityData{
+		EntityData::SpriteData {
+			sf::IntRect {
+				0,190, 41,44
+			},
+			3,
+			1,
+			true,
+			EntityData::SpriteData::TextureType::PROJECTILE
+		},
+		Vec2f { 0, 0 },
+		1,
+		0,
+		0b00000000
+	},
 	// O3_P1AMERICA,
+	EntityData{
+		EntityData::SpriteData {
+			sf::IntRect {
+				0,81, 47,46
+			},
+			3,
+			1,
+			true,
+			EntityData::SpriteData::TextureType::PROJECTILE
+		},
+		Vec2f { 0, 0 },
+		1,
+		0,
+		0b00000000
+	},
 	// O3_P1SWEDEN,
+	EntityData{
+		EntityData::SpriteData {
+			sf::IntRect {
+				0,235, 64,48
+			},
+			3,
+			1,
+			true,
+			EntityData::SpriteData::TextureType::PROJECTILE
+		},
+		Vec2f { 0, 0 },
+		1,
+		0,
+		0b00000000
+	},
 	// O0_P1JAPAN,
+	EntityData{
+		EntityData::SpriteData {
+			sf::IntRect {
+				0,284, 15,29
+			},
+			3,
+			1,
+			true,
+			EntityData::SpriteData::TextureType::PROJECTILE
+		},
+		Vec2f { 0, 0 },
+		1,
+		0,
+		0b00000000
+	},
 	// O1_P1JAPAN,
+	EntityData{
+		EntityData::SpriteData {
+			sf::IntRect {
+				0,284, 15,29
+			},
+			3,
+			1,
+			true,
+			EntityData::SpriteData::TextureType::PROJECTILE
+		},
+		Vec2f { 0, 0 },
+		1,
+		0,
+		0b00000000
+	},
 	// O3_P1JAPAN,
+	EntityData{
+		EntityData::SpriteData {
+			sf::IntRect {
+				0,284, 15,29
+			},
+			3,
+			1,
+			true,
+			EntityData::SpriteData::TextureType::PROJECTILE
+		},
+		Vec2f { 0, 0 },
+		1,
+		0,
+		0b00000000
+	},
 	// O0_P1ENGLAND,
+	EntityData{
+		EntityData::SpriteData {
+			sf::IntRect {
+				0,314, 9,31
+			},
+			3,
+			1,
+			true,
+			EntityData::SpriteData::TextureType::PROJECTILE
+		},
+		Vec2f { 0, 0 },
+		1,
+		0,
+		0b00000000
+	},
 	// O1_P1ENGLAND,
+	EntityData{
+		EntityData::SpriteData {
+			sf::IntRect {
+				0,378, 16,31
+			},
+			3,
+			1,
+			true,
+			EntityData::SpriteData::TextureType::PROJECTILE
+		},
+		Vec2f { 0, 0 },
+		1,
+		0,
+		0b00000000
+	},
 	// ENEMY_PROJECTILE_1,
 	// PROJECTILE_COUNT,
 };

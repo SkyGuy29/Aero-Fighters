@@ -28,11 +28,6 @@ Projectile::Projectile(ProjectilePrototype prototype, Entity* owner)
 
 Entity::TickData Projectile::tick()
 {
+	move();
 	return TickData();
-}
-
-
-void Projectile::move()
-{
-	setPosition(getPosition() + vel);
 }

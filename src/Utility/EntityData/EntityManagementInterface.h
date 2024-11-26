@@ -46,7 +46,7 @@ public:
 	~EntityManagementInterface() = delete;
 
 
-	static void load(Map map);
+	static void load(Map map, PlayerCountry country);
 	static void tick(sf::RenderWindow& win, unsigned int currentTick);
 	static void draw(sf::RenderWindow& win);
 	static void updateLevelEditor();
@@ -96,10 +96,13 @@ private:
 		std::vector<float> ret;
 		std::string temp;
 
-		for (int i = 0; i < s.size(); i++)
+		for (unsigned int i = 0; i < s.size(); i++)
 		{
 			if (s[i] == ' ')
+			{
 				ret.push_back(strtof(temp.c_str(), nullptr));
+				temp.clear();
+			}
 			else
 				temp += s[i];
 		}
@@ -187,9 +190,7 @@ void EntityManagementInterface::generalTick(std::vector<T*>& entities, sf::Rende
 				data = entities.at(i)->tick();
 
 			if (data.hasAttacked)
-			{
 				processAttack<T>(data.attack, *entities.at(i));
-			}
 		}
 			
 	}

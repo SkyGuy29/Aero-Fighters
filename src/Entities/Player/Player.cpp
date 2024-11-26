@@ -7,6 +7,7 @@ Player::Player(sf::Vector2f pos, PlayerCountry country, bool isPlayerTwo) :
 	setHealth(3);
 	this->isPlayerTwo = isPlayerTwo;
 	this->country = country;
+	baseCooldown = 4;
 }
 
 
@@ -45,6 +46,8 @@ void Player::move()
 		pos.y = getView()->getCenter().y + getView()->getSize().y / 2.f - getBounds().height / 2.f;
 
 	getBounds().intersects(sf::IntRect(0,0, windowSize.width, windowSize.height));
+	if(curCooldown != 0)
+		curCooldown--;
 
 	Entity::move();
 }
@@ -54,6 +57,7 @@ Entity::TickData Player::shoot()
 {
 	if (curCooldown != 0)
 		return TickData(false, "");
+	curCooldown = baseCooldown;
 	return TickData(true, playerAttackTree[powerLevel][isPlayerTwo][country]); // todo player attack tree is loaded
 }
 
