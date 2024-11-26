@@ -88,6 +88,13 @@ void Entity::move() noexcept
 		sprite->setPosition(pos);
 }
 
+void Entity::setTexture(sf::Texture* texPtr, int frameCount, bool horizontal)
+{
+	sprite->setTexture(*texPtr);
+	this->frameCount = frameCount;
+	verticalAnimation = !horizontal;
+	nextFrame(2);
+}
 
 /// <summary>
 /// This animator allows for different frame changes.
@@ -98,7 +105,6 @@ void Entity::nextFrame(const int frameRate)
 	// Increases the image rectangle by its height and loops back when 
 	//it reaches the end
 	currentFrame++;
-	const short frameCount = EntityDataStorage::getData(ID).spriteData.getCount();
 
 	if (currentFrame >= frameCount * frameRate)
 	{

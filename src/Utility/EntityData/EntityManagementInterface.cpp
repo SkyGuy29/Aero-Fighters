@@ -65,16 +65,25 @@ void EntityManagementInterface::tick(sf::RenderWindow& win, unsigned int current
 	generalTick<PowerUp>(powerUps, win);
 }
 
+// Draw order
+// Last = top
+// First = bottom or covered
 void EntityManagementInterface::draw(sf::RenderWindow& win)
 {
 	generalDraw<Enemy>(landEnemies, win);
-	generalDraw<Projectile>(projectiles, win);
-	generalDraw<Player>(players, win);
-	generalDraw<Enemy>(airEnemies, win);
 	generalDraw<Enemy>(waterEnemies, win);
-	generalDraw<Boss>(bossEnemies, win);
+
+	// These are like buildings, right?
 	generalDraw<TileEntity>(tileEntities, win);
+
 	generalDraw<PowerUp>(powerUps, win);
+	generalDraw<Projectile>(projectiles, win);
+
+	generalDraw<Boss>(bossEnemies, win);
+	generalDraw<Enemy>(airEnemies, win);
+
+	// Player most important
+	generalDraw<Player>(players, win);
 }
 
 
@@ -159,7 +168,7 @@ inline void EntityManagementInterface::loadAttacks()
 					tempData.spawnVelocity = sf::Vector2f(splitVec[0], splitVec[1]); // here checky why velocity dont work
 					break;
 				case 3:
-					tempData.id = EntityID((int)EntityID::PROJECTILE_START + atoi(input.c_str()) + 1);
+					tempData.id = EntityID((int)EntityID::PROJECTILE_START + atoi(input.c_str()) + 1 );
 					break;
 				case 4:
 					tempData.tickOffset = atoi(input.c_str());
