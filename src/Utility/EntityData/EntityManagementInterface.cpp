@@ -329,7 +329,7 @@ inline void EntityManagementInterface::loadEnemies(Map map)
 			spawnMap[tempData.spawnTick].push_back(new EntityPrototype(tempData.pos, tempData.vel, (EntityID)tempData.id, 0, tempData.line));
 		}
 		else if (input == "NEW TILE")
-			spawnMap[0].push_back(new EntityPrototype(tempData.pos, tempData.vel, (EntityID)((int)EntityID::ENEMY_COUNT + tempData.id + 1), 0, tempData.line));
+			spawnMap[0].push_back(new EntityPrototype(tempData.pos, tempData.vel, (EntityID)((int)EntityID::ENEMY_COUNT + tempData.id + 2), 0, tempData.line));
 	}
 }
 
@@ -419,6 +419,7 @@ inline void EntityManagementInterface::loadChildren(VariableArray<EntityDataStor
 	unsigned short currentChild = 0;
 
 	// Place every single child here
+	// theres a word for this, nursery I think. could be daycare
 	for (unsigned char i = 0; i < childData.families.size(); i++)
 	{
 		spacing[i] = SpacingElement(childData.families.at(i).childStartingIndex, childData.families.at(i).childStartingIndex + childData.families.at(i).childCount);
