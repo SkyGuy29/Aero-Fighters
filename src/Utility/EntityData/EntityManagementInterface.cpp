@@ -420,6 +420,8 @@ inline void EntityManagementInterface::loadChildren(VariableArray<EntityDataStor
 
 	// Place every single child here
 	// theres a word for this, nursery I think. could be daycare
+	// make sure all children are cared for, no more piles, Ricky.
+	// next time I will call CPS
 	for (unsigned char i = 0; i < childData.families.size(); i++)
 	{
 		spacing[i] = SpacingElement(childData.families.at(i).childStartingIndex, childData.families.at(i).childStartingIndex + childData.families.at(i).childCount);
