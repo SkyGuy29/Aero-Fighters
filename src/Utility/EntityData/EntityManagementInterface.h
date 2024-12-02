@@ -134,8 +134,8 @@ void EntityManagementInterface::generalDraw(std::vector<T*>& entities, sf::Rende
 {
 	for (unsigned short i = 0; i < entities.size(); i++)
 	{
-		if ((*(Entity*)entities.at(i)).getSprite())
-			win.draw(*(*(Entity*)entities.at(i)).getSprite()); // TODO: ENSURE NO OUT OF BOUNDS
+		if (entities.at(i)->getSprite() != nullptr)
+			win.draw(*entities.at(i)->getSprite()); // TODO: ENSURE NO OUT OF BOUNDS
 	}
 }
 
