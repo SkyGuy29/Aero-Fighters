@@ -20,19 +20,6 @@ Entity::TickData Enemy::tick()
 	// Process next animation frame - subject to change
 	nextFrame(3);
 
-		/*
-		hello this is Christian I STILL have no clue what I am doing
-		once again I don't even know what the old enemy system does so this is going to be rough
-		right now im just spamming what I think needs to be done in here because "make enemy move and shoot" isn't enough
-
-		first how do we even determine what enemy it is
-		second what attack pattern is needed and how do I code that
-		land.cpp and air.cpp in old should have some stuff
-
-	Ricky or Andrew if you see this: HELP I HAVE NO IDEA WHAT TO DO HERE HOW DO I USE YOUR CODE
-
-
-	*/
 	TickData td;
 
 	switch (ID)
@@ -135,7 +122,7 @@ void Enemy::enemyUpdate(const sf::Vector2f winSize, std::vector<Object*>* object
 	if ((outOfTopBounds(winSize) == false && outOfBottomBounds(winSize) == false)  || levelEditor)
 		entered = true;
 
-	//Delete an enemy when it goes off screen
+	//Delete an enemy when it goes off-screen
 	if (outOfBottomBounds(winSize) == true)
 		del = true;
 
