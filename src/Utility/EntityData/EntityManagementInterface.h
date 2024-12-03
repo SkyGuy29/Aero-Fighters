@@ -223,6 +223,7 @@ bool EntityManagementInterface::collide(std::vector<Projectile*>& entities, T* e
 
 		if (collision != ICollidable::CollisionType::MISS)
 		{
+			std::cout << "WAH\n";
 			if (collision == ICollidable::CollisionType::HIT)
 			{
 				if (dynamic_cast<IHasHealth*>(entity) == nullptr)

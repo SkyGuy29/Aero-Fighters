@@ -84,42 +84,7 @@ void Game::run()
 		}
 
 #ifdef _DEBUG
-		// Debug code to allow for speeding up the game
-		if (key(0, Controls::FastForward) || button(0, Controller::X))
-		{
-			level->debugMode();
-			ticksPerSec = 600;
-		}
-		else
-			ticksPerSec = 30;
-
-		if(sf::Keyboard::isKeyPressed(sf::Keyboard::B) && !levelEditor &&
-			sf::Keyboard::isKeyPressed(sf::Keyboard::LControl) && !countryChoose.isDone())
-		{
-			levelEditorActive = true;
-			// static casts are annyoing to look at
-			window.setSize(sf::Vector2u(
-				static_cast<unsigned int>(windowSize.width) * 4,
-				static_cast<unsigned int>(windowSize.height) * 2)
-			);
-		}
-
-		//switching menus with equals hotkey
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Equal))
-		{
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num0))
-				changeMenu(Menu::INTRO);
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1))
-				changeMenu(Menu::SELECT);
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num2))
-				changeMenu(Menu::LEVEL);
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num3))
-				changeMenu(Menu::MISSION);
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num4))
-				changeMenu(Menu::LEADERBOARD);
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num5))
-				changeMenu(Menu::END);
-		}
+		debugTick();
 #endif
 
 		// Keeps constant update rate.
@@ -389,6 +354,47 @@ bool Game::changeMenu(Menu newMenu)
 	return false;
 }
 
+#ifdef _DEBUG
+void Game::debugTick()
+{
+	// Debug code to allow for speeding up the game
+	if (key(0, Controls::FastForward) || button(0, Controller::X))
+	{
+		level->debugMode();
+		ticksPerSec = 600;
+	}
+	else
+		ticksPerSec = 30;
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::B) && !levelEditor &&
+		sf::Keyboard::isKeyPressed(sf::Keyboard::LControl) && !countryChoose.isDone())
+	{
+		levelEditorActive = true;
+		// static casts are annyoing to look at
+		window.setSize(sf::Vector2u(
+			static_cast<unsigned int>(windowSize.width) * 4,
+			static_cast<unsigned int>(windowSize.height) * 2)
+		);
+	}
+
+	//switching menus with equals hotkey
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Equal))
+	{
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num0))
+			changeMenu(Menu::INTRO);
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1))
+			changeMenu(Menu::SELECT);
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num2))
+			changeMenu(Menu::LEVEL);
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num3))
+			changeMenu(Menu::MISSION);
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num4))
+			changeMenu(Menu::LEADERBOARD);
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num5))
+			changeMenu(Menu::END);
+	}
+}
+#endif // _DEBUG
 
 /// <summary>
 /// Updates the country select menu.
