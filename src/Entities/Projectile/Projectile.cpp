@@ -9,9 +9,9 @@ Projectile::Projectile(ProjectilePrototype prototype, Entity* owner, Entity* tar
 	{
 		float dx = target->getPosition().x - owner->getPosition().x;
 		float dy = target->getPosition().y - owner->getPosition().y;
-		// todo fix ts
-		vel.x = dx*target->getPosition().x/hypot(dx,dy);
-		vel.y = dy*target->getPosition().y/hypotf(dx,dy);
+		
+		//vel.x = dx/hypotf(dx,dy);
+		//vel.y = dy/hypotf(dx,dy);
 	}
 	else
 	{
