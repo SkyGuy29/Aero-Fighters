@@ -23,12 +23,12 @@ Entity::TickData Enemy::tick()
 		nextFrame(3);
 
 		/*
-		hello this is Christian i STILL have no clue what i am doing
-		once again i dont even know what the old enemy system does so this is gonna be rough
-		right now im just spamming what i think needs to be done in here because "make enemy move and shoot" isnt enough
+		hello this is Christian I STILL have no clue what I am doing
+		once again I don't even know what the old enemy system does so this is going to be rough
+		right now im just spamming what I think needs to be done in here because "make enemy move and shoot" isn't enough
 
 		first how do we even determine what enemy it is
-		second what attack pattern is needed and how do i code that
+		second what attack pattern is needed and how do I code that
 		land.cpp and air.cpp in old should have some stuff
 
 		Ricky or Andrew if you see this: HELP I HAVE NO IDEA WHAT TO DO HERE HOW DO I USE YOUR CODE
