@@ -162,11 +162,16 @@ void EntityManagementInterface::generalTick(std::vector<T*>& entities, sf::Rende
 		}
 
 		 // todo add draw/ define action / stuff (tick dont tick)
+		 // 
+		 // ToDo make conform with contract that collide specifies;
+		 //      The entities themselves and their children are killed by collide;
+		 //      The only remaining entity to be killed is the projectiles, not the entities
+
 		if (action != Entity::EntityObjectAction::DELETE && action != Entity::EntityObjectAction::NOTHING)
 		{
 			ICollidable* icCast = dynamic_cast<ICollidable*>(entities.at(i));
 
-			if (icCast != nullptr && 
+			if (projectiles.size() != 0 && icCast != nullptr && 
 				collide(projectiles, icCast)
 				)
 			{
@@ -213,38 +218,46 @@ void EntityManagementInterface::processAttack(std::string ID, T& entity)
 template <typename T> requires std::derived_from<T, ICollidable>
 bool EntityManagementInterface::collide(std::vector<Projectile*>& entities, T* entity)
 {
-	bool done = false;
+	// Kill / Done
+	uint8_t completion_flags = 0b00000000;
 	size_t index = 0;
 	ICollidable::CollisionType collision;
 
-	while (!done && index < entities.size())
+	while (!(completion_flags & 0b00000001) && index < entities.size())
 	{
 		collision = dynamic_cast<ICollidable*>(entity)->collidesWith(entities[index]);
 
 		if (collision != ICollidable::CollisionType::MISS)
 		{
-			std::cout << "WAH\n";
+			// Set 'Done' flag
+			completion_flags |= 0b00000001;
+
+			// If we hit it
 			if (collision == ICollidable::CollisionType::HIT)
 			{
-				if (dynamic_cast<IHasHealth*>(entity) == nullptr)
-					done = true;
-				else
+				// If this entity has health, just damage it, else kill it.
+				if (dynamic_cast<IHasHealth*>(entity) != nullptr)
 				{
 					IHasHealth* healthEntity = (IHasHealth*)entity;
 					healthEntity->damage();
 					if (healthEntity->getHealth() == 0)
-						done = true;
+						completion_flags |= 0b00000010;
 				}
-			}
+				else
+					completion_flags |= 0b00000010;
 
-			delete entities[index];
-			entities.erase(entities.begin() + index);
-			done = true;
+				// If we need to kill
+				if (completion_flags & 0b00000010)
+				{
+					delete entities[index];
+					entities.erase(entities.begin() + index);
+				}
+			} // Otherwise the child was handled by the parent
 		}
 
 		index++;
 	}
-	return done;
+	return (completion_flags & 0b00000001);
 }
 
 

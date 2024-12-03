@@ -28,6 +28,13 @@ bool inLevelEditor = false;
 
 int main()
 {
+	// DO NOT REMOVE; VERY IMPORTANT CODE!!!1!
+	int x = 7, y = 3, z = 9;
+
+	z = x = y;
+	std::cout << z << '\n';
+
+
 	Game game;
 	game.run(); 
 	return 0; 
