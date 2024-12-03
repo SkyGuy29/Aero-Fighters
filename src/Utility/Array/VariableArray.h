@@ -18,7 +18,7 @@
  *
  * @warning Can only be initialized as a compile-time constant.
  */
-template<typename RAW_TYPE, unsigned char TOTAL_ELEMENTS, unsigned char TOTAL_UNIQUE_OBJECTS>
+template<typename RAW_TYPE>
 class VariableArray
 {
 public:
@@ -29,10 +29,10 @@ public:
 	 *	@param rawData A reference to the internal object array.
 	 *	@param spacings A reference to the internal spacing array.
 	 */
-	constexpr VariableArray(
-		const RAW_TYPE(&rawData)[TOTAL_UNIQUE_OBJECTS],
-		const SpacingElement(&spacings)[TOTAL_ELEMENTS]
-							) : SPACING(spacings), DATA(rawData) {}
+	VariableArray(const RAW_TYPE*       const rawData,
+	              const SpacingElement* const spacings,
+                  const unsigned char         elementCount
+	              ) : DATA(rawData), SPACING(spacings), ELEMENT_COUNT(elementCount) {}
 
 	/**
 	 * Array accessor method for retrieving
@@ -44,7 +44,7 @@ public:
 	const ReturnData<RAW_TYPE> at(unsigned char index) const
 	{
 		// If we are accessing an element out of the bounds of the array
-		if (index < 0 || index > TOTAL_ELEMENTS)
+		if (index < 0 || index > ELEMENT_COUNT)
 			throw std::out_of_range("Invalid Element Specified!");
 
 		// Return reference to array index & the number of elements it holds.
@@ -54,11 +54,13 @@ public:
 		);
 	}
 
-
 private:
+	// The total elements for spacing
+	const unsigned char ELEMENT_COUNT;
+
 	// Internal object array
-	const RAW_TYPE(&DATA)[TOTAL_UNIQUE_OBJECTS];
+	const RAW_TYPE* const DATA;
 
 	// Internal object array element bound data
-	const SpacingElement(&SPACING)[TOTAL_ELEMENTS];
+	const SpacingElement* const SPACING;
 };

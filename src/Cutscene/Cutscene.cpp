@@ -54,6 +54,8 @@ Cutscene::Cutscene()
 	textDia[2].setPosition(23, 281);
 	textDia[5].setPosition(23, 281);
 
+	explosion.setPosition(-100, -100);
+
 	txtMap.loadFromFile("res/Misc/menuMap.png");
 	sprMap.setTexture(txtMap);
 	lvlBeatTxt.loadFromFile("res/Misc/lvlBeat.png");

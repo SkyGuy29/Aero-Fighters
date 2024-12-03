@@ -1,11 +1,18 @@
 #include "Entity.h"
 
+#include <cassert>
+
 #include "../ControllerStuff.hpp"
 
 // Static member must be defined outside the class definition.
 unsigned int Entity::next_uuid = 0;
 unsigned int* Entity::currentTick;
 std::unordered_map<unsigned int, sf::Sprite> Entity::spriteMap;
+std::unordered_map<std::string, std::vector<ProjectilePrototype>> Entity::attackMap;
+// todo: change later ??? I don't like the triple nested map
+std::unordered_map<unsigned short, std::unordered_map<bool, std::unordered_map<PlayerCountry, std::string>>> Entity::playerAttackTree;
+sf::View* Entity::view = nullptr;
+float* Entity::backgroundSpeed = nullptr;
 
 
 // spawns on the current tick.
@@ -26,17 +33,20 @@ void Entity::setPosition(sf::Vector2f pos)
 }
 
 
-Entity::EntityObjectAction Entity::getEntityAction() noexcept
+Entity::EntityObjectAction Entity::getEntityAction(bool ignoreDeletion) noexcept
 {
 	const sf::Vector2f pos = getPosition();
 	auto ret = EntityObjectAction::NOTHING;
 	const auto& entityData = EntityDataStorage::getData(ID);
-
+	const float viewLeftBound = view->getCenter().x - view->getSize().x / 2,
+		viewRightBound = view->getCenter().x + view->getSize().x/2,
+		viewTopBound = view->getCenter().y - view->getSize().y/2,
+		viewBottomBound = view->getCenter().y + view->getSize().y/2;
 	// If on screen
-	if (!(pos.x + entityData.spriteData.getBounds().width / 2.f < 0 ||              // Off the left
-		  pos.y + entityData.spriteData.getBounds().height / 2.f < 0 ||              // Off the top
-		  pos.x - entityData.spriteData.getBounds().width / 2.f >= windowSize.width || // Off the right
-		  pos.y - entityData.spriteData.getBounds().height / 2.f >= windowSize.height)) // Off the bottom
+	if (!(pos.x + entityData.spriteData.getBounds().width / 2.f < viewLeftBound ||              // Off the left
+		pos.y + entityData.spriteData.getBounds().height / 2.f < viewTopBound ||              // Off the top
+		pos.x - entityData.spriteData.getBounds().width / 2.f >= viewRightBound || // Off the right
+		pos.y - entityData.spriteData.getBounds().height / 2.f >= viewBottomBound)) // Off the bottom
 	{
 		if ((entityFlags & 0b00000001) != 0b00000001) // If not spawned
 		{
@@ -49,8 +59,12 @@ Entity::EntityObjectAction Entity::getEntityAction() noexcept
 			// Set this entities sprite address
 			sprite = &spriteMap.at(UUID);
 
+			sprite->setPosition(pos);
 			sprite->setTextureRect(entityData.spriteData.getBounds());
-			vel = entityData.velocity;
+			sprite->setOrigin(entityData.spriteData.getBounds().width / 2, entityData.spriteData.getBounds().height / 2);
+
+			if(vel == sf::Vector2f(0,0)) // if velocity is not already set
+				vel = entityData.velocity;
 		}
 		// Is on screen, do not delete.
 		ret = EntityObjectAction::DRAW;
@@ -59,7 +73,7 @@ Entity::EntityObjectAction Entity::getEntityAction() noexcept
 		// ^ WHY??? they are insta deleted first tick of game LOL. Moved down to outer if - ninjune
 	}
 	// If not on screen and has spawned
-	else if ((entityFlags & 0b00000001) == 0b00000001 && !levelEditorActive)
+	else if ((entityFlags & 0b00000001) == 0b00000001 && !levelEditorActive && !ignoreDeletion)
 		// Not on screen, please delete.
 		ret = EntityObjectAction::DELETE;
 
@@ -69,11 +83,18 @@ Entity::EntityObjectAction Entity::getEntityAction() noexcept
 
 void Entity::move() noexcept
 {
-	pos += sf::Vector2f(vel.x*(*currentTick-spawnTick), vel.y*(*currentTick-spawnTick));
+	pos += sf::Vector2f(vel.x, vel.y);
 	if (sprite != nullptr)
 		sprite->setPosition(pos);
 }
 
+void Entity::setTexture(sf::Texture* texPtr, int frameCount, bool horizontal)
+{
+	sprite->setTexture(*texPtr);
+	this->frameCount = frameCount;
+	verticalAnimation = !horizontal;
+	nextFrame(2);
+}
 
 /// <summary>
 /// This animator allows for different frame changes.
@@ -84,7 +105,6 @@ void Entity::nextFrame(const int frameRate)
 	// Increases the image rectangle by its height and loops back when 
 	//it reaches the end
 	currentFrame++;
-	const short frameCount = EntityDataStorage::getData(ID).spriteData.getCount();
 
 	if (currentFrame >= frameCount * frameRate)
 	{

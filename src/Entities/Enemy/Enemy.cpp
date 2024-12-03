@@ -16,11 +16,9 @@ Enemy::~Enemy()
 
 Entity::TickData Enemy::tick()
 {
-	if (hasSpawned())
-	{
-		move();
-		// Process next animation frame - subject to change
-		nextFrame(3);
+	move();
+	// Process next animation frame - subject to change
+	nextFrame(3);
 
 		/*
 		hello this is Christian I STILL have no clue what I am doing
@@ -31,89 +29,99 @@ Entity::TickData Enemy::tick()
 		second what attack pattern is needed and how do I code that
 		land.cpp and air.cpp in old should have some stuff
 
-		Ricky or Andrew if you see this: HELP I HAVE NO IDEA WHAT TO DO HERE HOW DO I USE YOUR CODE
-		*/
+	Ricky or Andrew if you see this: HELP I HAVE NO IDEA WHAT TO DO HERE HOW DO I USE YOUR CODE
 
-		switch (ID)
+
+	*/
+	TickData td;
+
+	switch (ID)
+	{
+	case EntityID::ENEMY_AIR_THICK_HELI_GREEN:
+		break;
+	case EntityID::ENEMY_AIR_THICK_HELI_RED:
+		break;
+	case EntityID::ENEMY_AIR_THIN_HELI_GREEN:
+		break;
+	case EntityID::ENEMY_AIR_THIN_HELI_RED:
+		break;
+	case EntityID::ENEMY_AIR_PLANE_1_GREEN:
+		break;
+	case EntityID::ENEMY_AIR_PLANE_1_RED:
+		break;
+	case EntityID::ENEMY_AIR_PLANE_2_BLUE:
+		break;
+	case EntityID::ENEMY_AIR_PLANE_2_GREEN:
+		break;
+	case EntityID::ENEMY_AIR_PLANE_2_RED:
+		break;
+	case EntityID::ENEMY_AIR_CHILD_CHOPPER_BLADES_SMALL:
+		break;
+	case EntityID::ENEMY_AIR_CHILD_CHOPPER_BLADES_BIG:
+		break;
+	case EntityID::ENEMY_AIR_ADVANCED_MEGACOPTOR:
+		break;
+	case EntityID::ENEMY_AIR_BIG_HELICOPTOR:
+		break;
+	case EntityID::ENEMY_AIR_BIG_PLANE_ANGLED:
+		break;
+	case EntityID::ENEMY_AIR_BIG_PLANE_STRAIGHT:
+		break;
+	case EntityID::ENEMY_AIR_PLANE_SPIN_SIDE_GREEN:
+		break;
+	case EntityID::ENEMY_AIR_PLANE_SPIN_SIDE_RED:
+		break;
+	case EntityID::ENEMY_AIR_PLANE_BACKFLIP_GREEN:
+		break;
+	case EntityID::ENEMY_AIR_PLANE_BACKFLIP_RED:
+		break;
+	case EntityID::ENEMY_AIR_COUNT:
+		break;
+	case EntityID::ENEMY_LAND_CHILD_TANK_WEAK_TOP_GREEN:
+		baseCooldown = 15;
+		if (curCooldown == 0)
 		{
-		case EntityID::ENEMY_AIR_THICK_HELI_GREEN:
-			break;
-		case EntityID::ENEMY_AIR_THICK_HELI_RED:
-			break;
-		case EntityID::ENEMY_AIR_THIN_HELI_GREEN:
-			break;
-		case EntityID::ENEMY_AIR_THIN_HELI_RED:
-			break;
-		case EntityID::ENEMY_AIR_PLANE_1_GREEN:
-			break;
-		case EntityID::ENEMY_AIR_PLANE_1_RED:
-			break;
-		case EntityID::ENEMY_AIR_PLANE_2_BLUE:
-			break;
-		case EntityID::ENEMY_AIR_PLANE_2_GREEN:
-			break;
-		case EntityID::ENEMY_AIR_PLANE_2_RED:
-			break;
-		case EntityID::ENEMY_AIR_CHILD_CHOPPER_BLADES_SMALL:
-			break;
-		case EntityID::ENEMY_AIR_CHILD_CHOPPER_BLADES_BIG:
-			break;
-		case EntityID::ENEMY_AIR_ADVANCED_MEGACOPTOR:
-			break;
-		case EntityID::ENEMY_AIR_BIG_HELICOPTOR:
-			break;
-		case EntityID::ENEMY_AIR_BIG_PLANE_ANGLED:
-			break;
-		case EntityID::ENEMY_AIR_BIG_PLANE_STRAIGHT:
-			break;
-		case EntityID::ENEMY_AIR_PLANE_SPIN_SIDE_GREEN:
-			break;
-		case EntityID::ENEMY_AIR_PLANE_SPIN_SIDE_RED:
-			break;
-		case EntityID::ENEMY_AIR_PLANE_BACKFLIP_GREEN:
-			break;
-		case EntityID::ENEMY_AIR_PLANE_BACKFLIP_RED:
-			break;
-		case EntityID::ENEMY_AIR_COUNT:
-			break;
-		case EntityID::ENEMY_LAND_CHILD_TANK_WEAK_TOP_GREEN:
-			break;
-		case EntityID::ENEMY_LAND_CHILD_TANK_STRONG_TOP_GREEN:
-			break;
-		case EntityID::ENEMY_LAND_TANK_BOTTOM_GREEN:
-			break;
-		case EntityID::ENEMY_LAND_CHILD_TANK_WEAK_TOP_YELLOW:
-			break;
-		case EntityID::ENEMY_LAND_CHILD_TANK_STRONG_TOP_YELLOW:
-			break;
-		case EntityID::ENEMY_LAND_TANK_BOTTOM_YELLOW:
-			break;
-		case EntityID::ENEMY_LAND_TURRET_GREEN:
-			break;
-		case EntityID::ENEMY_LAND_TURRET_BLUE:
-			break;
-		case EntityID::ENEMY_LAND_TURRET_GRAY:
-			break;
-		case EntityID::ENEMY_LAND_SPACE_MINE:
-			break;
-		case EntityID::ENEMY_LAND_DESTROYED_TANK_GREEN:
-			break;
-		case EntityID::ENEMY_LAND_DESTROYED_TANK_YELLOW:
-			break;
-		case EntityID::ENEMY_LAND_COUNT:
-			break;
-		case EntityID::ENEMY_WATER_COUNT:
-			break;
-		case EntityID::ENEMY_COUNT:
-			break;
-		default:
-			break;
+			td = TickData(true, "TANK_SHOOT");
+			curCooldown = baseCooldown;
 		}
-
-		if (curCooldown > 0)
-			--curCooldown;
+		break;
+	case EntityID::ENEMY_LAND_CHILD_TANK_STRONG_TOP_GREEN:
+		break;
+	case EntityID::ENEMY_LAND_TANK_BOTTOM_GREEN:
+		
+		break;
+	case EntityID::ENEMY_LAND_CHILD_TANK_WEAK_TOP_YELLOW:
+		break;
+	case EntityID::ENEMY_LAND_CHILD_TANK_STRONG_TOP_YELLOW:
+		break;
+	case EntityID::ENEMY_LAND_TANK_BOTTOM_YELLOW:
+		break;
+	case EntityID::ENEMY_LAND_TURRET_GREEN:
+		
+		break;
+	case EntityID::ENEMY_LAND_TURRET_BLUE:
+		break;
+	case EntityID::ENEMY_LAND_TURRET_GRAY:
+		break;
+	case EntityID::ENEMY_LAND_SPACE_MINE:
+		break;
+	case EntityID::ENEMY_LAND_DESTROYED_TANK_GREEN:
+		break;
+	case EntityID::ENEMY_LAND_DESTROYED_TANK_YELLOW:
+		break;
+	case EntityID::ENEMY_LAND_COUNT:
+		break;
+	case EntityID::ENEMY_WATER_COUNT:
+		break;
+	case EntityID::ENEMY_COUNT:
+		break;
+	default:
+		break;
 	}
-	return TickData();
+
+	if (curCooldown > 0)
+		--curCooldown;
+	return td;
 }
 
 /*

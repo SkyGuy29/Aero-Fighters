@@ -77,6 +77,9 @@ enum class EntityID : unsigned char
 	ENEMY_PROJECTILE_1,
 	PROJECTILE_COUNT,
 	// ----- DO NOT CHANGE ANYTHING BETWEEN THESE LINES WITHOUT ALSO CHANGING ATTACKS.TXT
+	POWERUP_MONEY,
+	POWERUP_CHARGES,
+	POWERUP_LEVELS,
 
 	// DO NOT USE
 	// MUST BE AT THE END OF THE ENUM
@@ -90,4 +93,10 @@ struct EntityTypeCounts
 	EntityTypeCounts() = delete;
 
 	static constexpr unsigned char TOTAL_CHILD_HOLDERS = 1;
+};
+
+union IDRead
+{
+	EntityID parent;
+	unsigned char in;
 };

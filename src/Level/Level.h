@@ -27,8 +27,9 @@ public:
 
 	float getBackgroundSpeed() const;
 
-	void load(short country, Map map, bool levelEditor);
+	void load(PlayerCountry country, Map map, bool levelEditor);
 	bool update();
+	void draw();
 
 	void debugMode() const;
 	int skipToBoss();
@@ -62,7 +63,8 @@ private:
 
 	sf::IntRect rect;
 	float backgroundSpeed = 1, backgroundDist = 0;
-	short country, orient = 0;
+	short orient = 0;
+	PlayerCountry country;
 	//float backgroundSpeedup = 0.f;
 	//float backgroundSpeedupMax = 2.f;
 	int player1Score = 0, player2Score = 0;

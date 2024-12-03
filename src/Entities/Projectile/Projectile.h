@@ -10,11 +10,9 @@ class Projectile :
 	public Entity, public ICollidable
 {
 public:
-	Projectile(const ProjectilePrototype prototype, Entity* owner);
+	Projectile(const ProjectilePrototype prototype, Entity* owner, Entity* target = nullptr);
 
 	TickData tick() override;
-	virtual void move();
-
 
 	sf::IntRect getBounds() const noexcept override
 	{
@@ -27,8 +25,8 @@ public:
 		// Default to miss, only change if has collided in a different way
 		CollisionType ret = CollisionType::MISS;
 
-		if (other->getBounds().intersects(getBounds()))
-			ret = CollisionType::HIT;
+		//if (other != this && other->getBounds().intersects(getBounds()))
+		//	ret = CollisionType::HIT;
 
 		return ret;
 	}

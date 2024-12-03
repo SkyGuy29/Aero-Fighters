@@ -46,8 +46,9 @@ public:
 	~EntityManagementInterface() = delete;
 
 
-	static void load(Map map);
+	static void load(Map map, PlayerCountry country);
 	static void tick(sf::RenderWindow& win, unsigned int currentTick);
+	static void draw(sf::RenderWindow& win);
 	static void updateLevelEditor();
 	static std::vector<Player*>& getPlayers() { return players; }
 	
@@ -66,10 +67,13 @@ public:
 private:
 	static inline void loadAttacks();
 	static inline void loadEnemies(Map map);
-	static inline void loadChildren();
+	static inline void loadChildren(VariableArray<EntityDataStorage::ChildTemplete> * arr);
 
 	template<typename T> requires std::derived_from<T, Entity> 
 	static void generalTick(std::vector<T*>& entities, sf::RenderWindow& win);
+
+	template<typename T> requires std::derived_from<T, Entity>
+	static void generalDraw(std::vector<T*>& entities, sf::RenderWindow& win);
 
 	// note: attack strings can be found in attacks.txt after the NEW decleration for each attack
 	template<typename T> requires std::derived_from<T, Entity>
@@ -83,16 +87,22 @@ private:
 
 	static void deleteVector(std::vector<void*>& a);
 
+	// converts a string a player country
+	static PlayerCountry strtoPC(std::string s);
+
 	// helper function for splitting a string of doubles delimited by spaces
 	static std::vector<float> split_(std::string s)
 	{
 		std::vector<float> ret;
 		std::string temp;
 
-		for (int i = 0; i < s.size(); i++)
+		for (unsigned int i = 0; i < s.size(); i++)
 		{
 			if (s[i] == ' ')
+			{
 				ret.push_back(strtof(temp.c_str(), nullptr));
+				temp.clear();
+			}
 			else
 				temp += s[i];
 		}
@@ -111,10 +121,23 @@ private:
 	static std::vector<Boss*> bossEnemies; // ?
 	static std::vector<TileEntity*> tileEntities; // spawned at start (spawnMap:0)
 	static std::vector<PowerUp*> powerUps; // spawned dynamically by enemies
-	static std::unordered_map<std::string, std::vector<ProjectilePrototype>> attackData;
+	//  map[powerLevel][player1/2][country]->string(full string)
+	// subsequent maps must be pointers or else they die with the function call (maybe)
+	// ^ for attacktree
 
 	static unsigned int lastTick;
 };
+
+
+template <typename T> requires std::derived_from<T, Entity>
+void EntityManagementInterface::generalDraw(std::vector<T*>& entities, sf::RenderWindow& win)
+{
+	for (unsigned short i = 0; i < entities.size(); i++)
+	{
+		if (entities.at(i)->getSprite() != nullptr)
+			win.draw(*entities.at(i)->getSprite()); // TODO: ENSURE NO OUT OF BOUNDS
+	}
+}
 
 template <typename T> requires std::derived_from<T, Entity>
 void EntityManagementInterface::generalTick(std::vector<T*>& entities, sf::RenderWindow& win)
@@ -125,25 +148,20 @@ void EntityManagementInterface::generalTick(std::vector<T*>& entities, sf::Rende
 	// For every entity in the vector
 	for (unsigned short i = 0; i < entities.size(); i++)
 	{
-		switch(entities.at(i)->getEntityAction())
+		action = entities.at(i)->getEntityAction();
+		switch(action)
 		{
 		case Entity::EntityObjectAction::DELETE:
 			delete entities.at(i);
 			entities.erase(entities.begin()+i);
 			i--;
-			action = Entity::EntityObjectAction::DELETE;
 			break;
-
-		case Entity::EntityObjectAction::DRAW: // draw the entity's sprite
-			win.draw(*entities.at(i)->getSprite()); // TODO: ENSURE NO OUT OF BOUNDS
-			action = Entity::EntityObjectAction::DRAW;
-			break;
-
+		case Entity::EntityObjectAction::DRAW:
 		case Entity::EntityObjectAction::NOTHING:
-			action = Entity::EntityObjectAction::NOTHING;
 			break;
 		}
 
+		 // todo add draw/ define action / stuff (tick dont tick)
 		if (action != Entity::EntityObjectAction::DELETE && action != Entity::EntityObjectAction::NOTHING)
 		{
 			ICollidable* icCast = dynamic_cast<ICollidable*>(entities.at(i));
@@ -167,12 +185,12 @@ void EntityManagementInterface::generalTick(std::vector<T*>& entities, sf::Rende
 					hCast->damage();
 			}
 
-			data = entities.at(i)->tick();
+			data = Entity::TickData(false, "");
+			if(!entities.empty())
+				data = entities.at(i)->tick();
 
 			if (data.hasAttacked)
-			{
 				processAttack<T>(data.attack, *entities.at(i));
-			}
 		}
 			
 	}
@@ -182,10 +200,13 @@ void EntityManagementInterface::generalTick(std::vector<T*>& entities, sf::Rende
 template <typename T> requires std::derived_from<T, Entity>
 void EntityManagementInterface::processAttack(std::string ID, T& entity)
 {
-	std::vector<ProjectilePrototype> prototypes = attackData[ID];
+	std::vector<ProjectilePrototype> prototypes = Entity::attackMap[ID];
 
 	for (unsigned int i = 0; i < prototypes.size(); i++)
-		projectiles.push_back(new Projectile(prototypes[i], &entity));
+	{
+		projectiles.push_back(new Projectile(prototypes[i], &entity, players[0]));
+		projectiles[projectiles.size() - 1]->getEntityAction(); // force it to generate velocity, sprite, etc.
+	}
 }
 
 
@@ -202,14 +223,16 @@ bool EntityManagementInterface::collide(std::vector<Projectile*>& entities, T* e
 
 		if (collision != ICollidable::CollisionType::MISS)
 		{
+			std::cout << "WAH\n";
 			if (collision == ICollidable::CollisionType::HIT)
 			{
 				if (dynamic_cast<IHasHealth*>(entity) == nullptr)
 					done = true;
 				else
 				{
-					entity.damage();
-					if (entity.getHealth() == 0)
+					IHasHealth* healthEntity = (IHasHealth*)entity;
+					healthEntity->damage();
+					if (healthEntity->getHealth() == 0)
 						done = true;
 				}
 			}
@@ -218,6 +241,8 @@ bool EntityManagementInterface::collide(std::vector<Projectile*>& entities, T* e
 			entities.erase(entities.begin() + index);
 			done = true;
 		}
+
+		index++;
 	}
 	return done;
 }

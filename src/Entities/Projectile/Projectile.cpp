@@ -1,16 +1,17 @@
 #include "Projectile.h"
 
 
-Projectile::Projectile(ProjectilePrototype prototype, Entity* owner)
+Projectile::Projectile(ProjectilePrototype prototype, Entity* owner, Entity* target)
 	: Entity(owner->getPosition() + prototype.SPAWN_POS, prototype.ID)
 { 
 	// The projectile's velocity is set as it's spawned to move towards the nearest player
-	if (prototype.FLAGS & 1)
+	if (prototype.FLAGS & 1 && target != nullptr)
 	{
-		float dx = prototype.SPAWN_POS.x - owner->getPosition().x;
-		float dy = prototype.SPAWN_POS.y - owner->getPosition().y;
-		vel.x = dx*prototype.SPAWN_VELOCITY.x/hypot(dx,dy);
-		vel.y = dy*prototype.SPAWN_VELOCITY.y/hypotf(dx,dy);
+		float dx = target->getPosition().x - owner->getPosition().x;
+		float dy = target->getPosition().y - owner->getPosition().y;
+		
+		//vel.x = dx/hypotf(dx,dy);
+		//vel.y = dy/hypotf(dx,dy);
 	}
 	else
 	{
@@ -20,16 +21,14 @@ Projectile::Projectile(ProjectilePrototype prototype, Entity* owner)
 
 	this->owner = owner;
 	ownerType = prototype.OWNER;
+	float spawnX = prototype.SPAWN_POS.x + owner->getPosition().x;
+	float spawnY = prototype.SPAWN_POS.y + owner->getPosition().y;
+	setPosition(sf::Vector2f(spawnX, spawnY));
 }
 
 
 Entity::TickData Projectile::tick()
 {
+	move();
 	return TickData();
-}
-
-
-void Projectile::move()
-{
-	setPosition(getPosition() + vel);
 }

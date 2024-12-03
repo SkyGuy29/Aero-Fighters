@@ -22,20 +22,33 @@ static void setWindowTopmost(sf::RenderWindow& window)
 }
 */
 
-
+// Wrapper for countdown operations
 class Countdown
 {
 public:
-	unsigned getTime()
+	/**
+	 * Gets the remaining time left for the countdown
+	 * 
+	 * @returns Time remaining
+	 */
+	unsigned int getTime()
 	{
 		return seconds;
 	}
 
+	/**
+	 * Predicate method for countdown completion
+	 * 
+	 * @returns Completion state
+	 */
 	bool isDone()
 	{
 		return (seconds == 0);
 	}
 
+	/**
+	 * Ticks the countdown timer
+	 */
 	void tick()
 	{
 		if (seconds > 0)
@@ -47,6 +60,9 @@ public:
 		}
 	}
 
+	/**
+	 * Sets the countdown timer
+	 */
 	void set(unsigned seconds, unsigned ticksPerSec)
 	{
 		this->seconds = seconds;
@@ -54,6 +70,9 @@ public:
 		this->progress = ticksPerSec;
 	}
 
+	/**
+	 * Resets the countdown to a blank state
+	 */
 	void reset()
 	{
 		this->seconds = 0;
@@ -97,6 +116,11 @@ public:
 private:
 	//returns true if changes were made
 	bool changeMenu(Menu newMenu);
+
+#ifdef _DEBUG
+	// Debug helper method for handling debug ticking
+	void debugTick();
+#endif // _DEBUG
 
 	void updateSelectMenu();
 	void resize();

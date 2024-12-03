@@ -4,7 +4,14 @@
 #include "../Utility/EntityData/EntityDataStorage.h"
 #include "../Utility/WindowSize.h"
 #include "../Utility/EntityID.h"
-
+enum class PlayerCountry : uint8_t
+{
+	AMERICA,
+	JAPAN,
+	SWEDEN,
+	ENGLAND
+};
+class Player;
 
 class Entity
 {
@@ -36,16 +43,13 @@ public:
 	// Entity holder used for when entities need to check for collision themselves
 	virtual TickData tick() = 0;
 
-	// Sets the variable used by entity for the size of the window.
-	// Should only ever be called once, giving a variable held
-	// before level is instantiated.
-	static void setWinSize(WindowSize* winSiz) { winSize = winSiz; };
+	static void setViewport(sf::View* vie) { view = vie; }
 
-	static void setViewport(sf::View& vie) { view = vie; }
-
-	static void setBackgroundSpeed(float& speed) { backgroundSpeed = speed; }
+	static void setBackgroundSpeed(float* speed) { backgroundSpeed = speed; }
 
 	static void setCurrentTick(unsigned int& ct) { currentTick = &ct; }
+
+	//static void setAttackMap(std::unordered_map<std::string, std::vector<ProjectilePrototype>>& map) { attackMap = map; }
 
 	void setPosition(sf::Vector2f pos);
 
@@ -64,11 +68,11 @@ public:
 	 * @retval EntityObjectAction::DELETE The entity has been 'spawned', however
 	 *		   it has just left the screen and thus should be deleted.
 	 */
-	EntityObjectAction getEntityAction() noexcept;
+	EntityObjectAction virtual getEntityAction(bool ignoreDeletion = false) noexcept;
 
-	sf::View& getView() { return view; }
+	sf::View* getView() { return view; }
 
-	float getBackgroundSpeed() { return backgroundSpeed; }
+	static float getBackgroundSpeed() { return *backgroundSpeed; }
 
 	unsigned int getUUID() const { return UUID; }
 
@@ -76,7 +80,11 @@ public:
 
 	sf::Vector2f getPosition() const { return pos; }
 
-	WindowSize getWinSize() { return *winSize; }
+	void setTexture(sf::Texture* texPtr, int frameCount, bool horizontal);
+
+	// public because I am lazy TODO: make getters/setters for this
+	static std::unordered_map<unsigned short, std::unordered_map<bool, std::unordered_map<PlayerCountry, std::string>>> playerAttackTree;
+	static std::unordered_map<std::string, std::vector<ProjectilePrototype>> attackMap;
 protected:
 	Entity(sf::Vector2f pos, EntityID ID);
 
@@ -111,15 +119,14 @@ protected:
 
 	unsigned int spawnTick;
 	sf::Vector2f pos;
+	
 private:
 
 	// The size of the window
 	// THESE ARE ASSUMED TO BE SET, PROGRAM WILL SEGFAULT IF NOT SET
 	static unsigned int* currentTick;
-	static sf::View& view;
-	static float& backgroundSpeed;
-	static WindowSize* winSize;
-	static std::unordered_map<std::string, std::vector<ProjectilePrototype>>& attackMap; // todo set this
+	static sf::View* view;
+	static float* backgroundSpeed;
 
 
 	// The next UUID that will be assigned.
@@ -131,7 +138,7 @@ private:
 	const unsigned int UUID;
 
 	// Texture specific data members //
-	short currentFrame = 0;
+	short currentFrame = 0, frameCount = 0;
 	bool animationFinished = false, verticalAnimation = false;
 
 	// null / null / null / null / null / null / null / hasSpawned
