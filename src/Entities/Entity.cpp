@@ -38,15 +38,22 @@ Entity::EntityObjectAction Entity::getEntityAction(bool ignoreDeletion) noexcept
 	const sf::Vector2f pos = getPosition();
 	auto ret = EntityObjectAction::NOTHING;
 	const auto& entityData = EntityDataStorage::getData(ID);
-	const float viewLeftBound = view->getCenter().x - view->getSize().x / 2,
-		viewRightBound = view->getCenter().x + view->getSize().x/2,
-		viewTopBound = view->getCenter().y - view->getSize().y/2,
-		viewBottomBound = view->getCenter().y + view->getSize().y/2;
+	const float
+		viewLeftBound     = view->getCenter().x - view->getSize().x / 2,
+		viewTopBound      = view->getCenter().y - view->getSize().y / 2,
+		viewRightBound    = view->getCenter().x + view->getSize().x / 2,
+		viewBottomBound   = view->getCenter().y + view->getSize().y / 2,
+
+		entityLeftBound   = pos.x + entityData.spriteData.getBounds().width / 2.f,
+		entityTopBound    = pos.y + entityData.spriteData.getBounds().height / 2.f,
+		entityRightBound  = pos.x - entityData.spriteData.getBounds().width / 2.f,
+		entityBottomBound = pos.y - entityData.spriteData.getBounds().height / 2.f;
+
 	// If on screen
-	if (!(pos.x + entityData.spriteData.getBounds().width / 2.f < viewLeftBound ||              // Off the left
-		pos.y + entityData.spriteData.getBounds().height / 2.f < viewTopBound ||              // Off the top
-		pos.x - entityData.spriteData.getBounds().width / 2.f >= viewRightBound || // Off the right
-		pos.y - entityData.spriteData.getBounds().height / 2.f >= viewBottomBound)) // Off the bottom
+	if (entityLeftBound   >= viewLeftBound  && // Off the left
+		entityTopBound    >= viewTopBound   && // Off the top
+		entityRightBound  <= viewRightBound && // Off the right
+		entityBottomBound <= viewBottomBound)  // Off the bottom
 	{
 		if ((entityFlags & 0b00000001) != 0b00000001) // If not spawned
 		{
