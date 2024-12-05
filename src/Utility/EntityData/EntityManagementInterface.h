@@ -155,60 +155,61 @@ private:
 	template<typename T> requires std::derived_from<T, Entity>
 	static void generalDraw(std::vector<T*>& entities, sf::RenderWindow& win);
 
-	// note: attack strings can be found in attacks.txt after the NEW decleration for each attack
 	/**
+	 * Spawns all projectiles for the specified attack
 	 *
+	 * @note attack strings can be found in attacks.txt after the NEW declaration for each attack
 	 *
-	 * @tparam T 
-	 * @param ID 
-	 * @param entity 
+	 * @tparam T The type for the entity
+	 * @param ID The attack ID
+	 * @param entity The attacking entity
 	 */
 	template<typename T> requires std::derived_from<T, Entity>
 	static void processAttack(std::string ID, T& entity);
 
 	/**
+	 * General level editor update for the specified entities
 	 *
-	 *
-	 *
-	 * @tparam T 
-	 * @param entities 
+	 * @tparam T The type for the entities being passed
+	 * @param entities The vector of entities being processed
 	 */
 	template<typename T> requires std::derived_from<T, Entity>
 	static void generalLevelEditorUpdate(std::vector<T*> entities);
 
 	/**
+	 * Handles collision between a specified entity and all projectiles
+	 * @warning Will kill the projectile that was collided with
 	 *
-	 *
-	 * @tparam T 
-	 * @param entities 
-	 * @param entity 
-	 * @return 
+	 * @tparam T The type of the entity being passed
+	 * @param entities The Projectiles being passed
+	 * @param entity The entity being checked
+	 * @return If the entity has been collided with
 	 */
 	template <typename T> requires std::derived_from<T, ICollidable>
 	static bool collide(std::vector<Projectile*>& entities, T* entity);
 
 	/**
+	 * Deleted all objects pointed to in the vector and clears it
 	 *
-	 *
-	 * @param a 
+	 * @param a The vector being passed
 	 */
 	static void deleteVector(std::vector<void*>& a);
 
-	// converts a string a player country
+	// 
 	/**
+	 * Converts a string a player country
 	 *
-	 *
-	 * @param s 
-	 * @return 
+	 * @param s The string being converted
+	 * @return a PlayerCountry with the generated country
 	 */
 	static PlayerCountry strtoPC(std::string s);
 
-	// helper function for splitting a string of doubles delimited by spaces
 	/**
+	 * @todo returns floats? not doubles?
+	 * helper function for splitting a string of doubles delimited by spaces
 	 *
-	 *
-	 * @param s 
-	 * @return 
+	 * @param s The string being processed
+	 * @return A vector of all the floats
 	 */
 	static std::vector<float> split_(std::string s)
 	{
