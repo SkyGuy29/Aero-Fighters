@@ -66,7 +66,7 @@ void Level::load(PlayerCountry country,
 	bossBackground.setPosition(0, 0);
 
 	// Seperate player texture for drawing lives
-	playerImgRepeat = playerImg;
+	playerImgRepeat.loadFromFile("res/Misc/players.png");
 	playerImgRepeat.setRepeated(true);
 
 	p1Score.setFont(font);
