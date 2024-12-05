@@ -3,6 +3,7 @@
 
 Cutscene::Cutscene()
 {
+	//loads all possible cutscene dialog for the england cahracters
 	std::ifstream englandFile;
 	englandFile.open("res/Dialog/englandDialog.txt");
 	if (englandFile.is_open())
@@ -12,6 +13,7 @@ Cutscene::Cutscene()
 					std::getline(englandFile, dialog[ENGLAND][l][p][d]);
 	englandFile.close();
 
+	//loads all possible cutscene dialog for the japan characters
 	std::ifstream japanFile;
 	japanFile.open("res/Dialog/japanDialog.txt");
 	if (japanFile.is_open())
@@ -21,6 +23,7 @@ Cutscene::Cutscene()
 					std::getline(japanFile, dialog[JAPAN][l][p][d]);
 	japanFile.close();
 
+	//loads all possible cutscene dialog for states characters
 	std::ifstream statesFile;
 	statesFile.open("res/Dialog/statesDialog.txt");
 	if (statesFile.is_open())
@@ -30,6 +33,7 @@ Cutscene::Cutscene()
 					std::getline(statesFile, dialog[STATES][l][p][d]);
 	statesFile.close();
 
+	//loads all possible cutscene dialog for the sweden characters
 	std::ifstream swedenFile;
 	swedenFile.open("res/Dialog/swedenDialog.txt");
 	if (swedenFile.is_open())
@@ -39,6 +43,7 @@ Cutscene::Cutscene()
 					std::getline(swedenFile, dialog[SWEDEN][l][p][d]);
 	swedenFile.close();
 
+	//sets the fonts, charcters size, color, and scale for the cutscene dialog nad dont forget position 
 	font.loadFromFile("res/aero-fighters.ttf");
 	for (int i = 0; i < 6; i++)
 	{
@@ -54,13 +59,17 @@ Cutscene::Cutscene()
 	textDia[2].setPosition(23, 281);
 	textDia[5].setPosition(23, 281);
 
+	//makes sure no explosions happen going into in the first level
 	explosion.setPosition(-100, -100);
 
+	//loads background map
 	txtMap.loadFromFile("res/Misc/menuMap.png");
 	sprMap.setTexture(txtMap);
+	//loads thing that signifies if a level has been previously beat
 	lvlBeatTxt.loadFromFile("res/Misc/lvlBeat.png");
 	lvlBeatSprite.setTexture(lvlBeatTxt);
 
+	//loads all textures for possible characters
 	playersText[ENGLAND][0].loadFromFile("res/Dialog/villiam.png");
 	playersText[ENGLAND][1].loadFromFile("res/Dialog/lord white.png");
 	playersText[JAPAN][0].loadFromFile("res/Dialog/hein.png");
@@ -70,12 +79,15 @@ Cutscene::Cutscene()
 	playersText[SWEDEN][0].loadFromFile("res/Dialog/kohful.png");
 	playersText[SWEDEN][1].loadFromFile("res/Dialog/tee-bee.png");
 
+	//sets the positions where player 1 and 2 will be in cutscenes
 	playersSprite[0].setPosition(24, 112);
 	playersSprite[1].setPosition(120, 112);
 
+	//sets the indicater for the next targeted location on the map
 	targetText[0].loadFromFile("res/Dialog/target1.png");
 	targetText[1].loadFromFile("res/Dialog/target2.png");
 
+	//loads lots of explosions
 	for (int i = 0; i < 16; i++)
 		explosionTxt[i].loadFromFile("res/Dialog/Explosion" + std::to_string(i) + ".png");
 }
@@ -88,14 +100,18 @@ Cutscene::~Cutscene()
 
 void Cutscene::draw(int country, int level, int player, sf::RenderWindow& window)
 {
+	//sets the textures of the country that is being played as
 	playersSprite[0].setTexture(playersText[country][0]);
 	playersSprite[1].setTexture(playersText[country][1]);
+	//sets dialog of the given cutscene first loop for first level the rest for every other level
 	if (!lvlBeat[0] && !lvlBeat[1] && !lvlBeat[2] && !lvlBeat[3] && !lvlBeat[4] && !lvlBeat[5] && !lvlBeat[6])
 		for (int i = 0; i < 6; i++)
 			textDia[i].setString(dialog[country][8][player][i]);
 	else
 		for (int i = 0; i < 6; i++)
 			textDia[i].setString(dialog[country][level][player][i]);
+
+	//draws level being previously beat indicator
 	if (timer.getElapsedTime().asSeconds() < 5)
 	{
 		window.draw(sprMap);
@@ -135,6 +151,7 @@ void Cutscene::draw(int country, int level, int player, sf::RenderWindow& window
 			window.draw(lvlBeatSprite);
 		}
 
+		//draws the players
 		switch (player)
 		{
 		case 0:
@@ -149,6 +166,7 @@ void Cutscene::draw(int country, int level, int player, sf::RenderWindow& window
 			break;
 		}
 
+		//set the position for the explosion indicating the last level beat
 		switch (lastLvl)
 		{
 		case England:
@@ -174,6 +192,7 @@ void Cutscene::draw(int country, int level, int player, sf::RenderWindow& window
 			break;
 		}
 
+		//sets the positon of the target level indicator
 		switch (level)
 		{
 		case England:
@@ -202,13 +221,15 @@ void Cutscene::draw(int country, int level, int player, sf::RenderWindow& window
 			break;
 		}
 
-
+		//flashes and draws the next level indicator
 		int temp = timer.getElapsedTime().asSeconds() * 3;
 		targetSprite.setTexture(targetText[temp % 2]);
 		window.draw(targetSprite);
 
+		//more timer stuff
 		double otherTemp = timer.getElapsedTime().asSeconds();
 
+		//draws explosion
 		if (otherTemp < 1.)
 		{
 			window.draw(explosion);
@@ -217,6 +238,7 @@ void Cutscene::draw(int country, int level, int player, sf::RenderWindow& window
 					explosion.setTexture(explosionTxt[i-1]);
 		}
 
+		//draws first set of dialog and second after 2.5 seconds
 		if (timer.getElapsedTime().asSeconds() < 2.5)
 		{
 			for (int i = 0; i < 3; i++)
@@ -230,19 +252,20 @@ void Cutscene::draw(int country, int level, int player, sf::RenderWindow& window
 	}
 }
 
-
+//starts timer so everything in the cutscene is timed correctly
 void Cutscene::startTimer()
 {
 	timer.restart();
 }
 
-
+//indicates which level was just beat assinging the lastlvl beat and indicating which levels have been beaton so far
 void Cutscene::levelBeat(int level)
 {
 	lvlBeat[level] = true;
 	lastLvl = level;
 }
 
+//checks if cutscene is done
 bool Cutscene::isDone()
 {
 	return timer.getElapsedTime().asSeconds() > 5.;
