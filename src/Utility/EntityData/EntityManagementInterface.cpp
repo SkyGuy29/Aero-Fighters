@@ -364,7 +364,7 @@ inline void EntityManagementInterface::loadChildren(VariableArray<EntityDataStor
 		{
 			IDRead parent;
 			unsigned char childCount = 0;
-			unsigned short childStartingIndex = 0;
+			unsigned char childStartingIndex = 0;
 			EntityDataStorage::ChildTemplete* children = nullptr;
 		};
 

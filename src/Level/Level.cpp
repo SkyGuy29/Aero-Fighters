@@ -51,7 +51,7 @@ void Level::load(PlayerCountry country,
 	backgroundImg.loadFromFile("res/"  + mapStrings[map] + "/" + mapStrings[map] + ".png");
 
 	background.setSize(sf::Vector2f(backgroundImg.getSize()));
-	background.setPosition(0, 0 - 2240 + windowSize.height);
+	background.setPosition(0, (float)(0 - 2240 + windowSize.height));
 	
 	bossBackground.setSize(sf::Vector2f(windowSize.width, windowSize.height));
 	bossBackground.setPosition(0, 0 - 2240 + 320);
@@ -139,7 +139,7 @@ void Level::debugMode() const
 int Level::skipToBoss()
 {
 	int offset = 200;
-	backgroundDist = -offset;
+	backgroundDist = (float)-offset;
 	return offset-backgroundImg.getSize().y;
 }
 
@@ -157,13 +157,6 @@ void Level::respawnPlayers() const
 /// <returns></returns>
 bool Level::update()
 {
-	// Just for debugging
-	// The bug where holding enter freezes the background, 
-	// but not the enemies is caused by this
-	// We don't really need this anymore anyways
-	//if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter) && infScrollInPos)
-		//setInfScroll(false);
-
 	if(levelEditorActive)
 		updateLevelEditor();
 
@@ -172,7 +165,7 @@ bool Level::update()
 		backgroundDist -= backgroundSpeed;
 	else
 		bossBackground.setTextureRect(sf::IntRect(
-			0, view.getCenter().y - windowSize.height / 2.f, windowSize.width, windowSize.height));
+			0, (int)(view.getCenter().y - windowSize.height / 2.f), windowSize.width, windowSize.height));
 
 	// There was a gap, 7 worked perfect on the 5th try
 	// There is still some weird jumpyness when: 
