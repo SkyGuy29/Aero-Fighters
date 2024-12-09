@@ -345,31 +345,31 @@ inline void EntityManagementInterface::loadEnemies(Map map)
  * Loads children from children.txt with the following line based structure
  * 
  * ln# | Data
- * ----+--------------------------+
- *  #1 | NEW comment              |
- *  #2 | Parent EntityID          |
- *  #3 | Total Stages (uint8_t)   |
- *     +------- STAGE ARRAY --------------+
- *     |                          |       |
- *     +------- START STAGE ------------+ |
- *  #4 | Total Children (uint8_t) |     | |
- *     +------- CHILD ARRAY ----------+ | |
- *     |                          |   | | |
- *     +------- START CHILD --------+ | | |
- *  #5 | Child EntityID           | | | | |
- *  #6 | Child:Parent X offset    | | | | |
- *  #7 | Child:Parent Y offset    | | | | |
- *     |                          | | | | |
- *     +-------- END CHILD ---------+ | | |
- * ... | ... More children        |   | | |
- *     |                          |   | | |
- *     +----- END CHILD ARRAY --------+ | |
- *     +-------- END STAGE -------------+ |
- * ... | ... More stages          |       |
- *     |                          |       |
- *     +----- END STAGE ARRAY ------------+
- * ... | ... More parents         |
- * ----+--------------------------+
+ * ----+------------------------------------+
+ *  #1 | 'NEW' comment                      |
+ *  #2 | Parent EntityID                    |
+ *  #3 | Total Stages (uint8_t)             |
+ *     +------- STAGE ARRAY --------------+ |
+ *     |                                  | |
+ *     +------- START STAGE ------------+ | |
+ *  #4 | Total Children (uint8_t)       | | |
+ *     +------- CHILD ARRAY ----------+ | | |
+ *     |                              | | | |
+ *     +------- START CHILD --------+ | | | |
+ *  #5 | Child EntityID             | | | | |
+ *  #6 | Child:Parent X offset      | | | | |
+ *  #7 | Child:Parent Y offset      | | | | |
+ *     |                            | | | | |
+ *     +-------- END CHILD ---------+ | | | |
+ * ... | ... More children            | | | |
+ *     |                              | | | |
+ *     +----- END CHILD ARRAY --------+ | | |
+ *     +-------- END STAGE -------------+ | |
+ * ... | ... More stages                  | |
+ *     |                                  | |
+ *     +----- END STAGE ARRAY ------------+ |
+ * ... | ... More parents                   |
+ * ----+------------------------------------+
  */
 /*
 inline void EntityManagementInterface::loadChildren(VariableArray<VariableArray<EntityDataStorage::ChildTemplete>>* arr)
