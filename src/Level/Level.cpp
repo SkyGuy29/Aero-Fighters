@@ -49,6 +49,7 @@ void Level::load(PlayerCountry country,
 
 	// setting up the background
 	backgroundImg.loadFromFile("res/"  + mapStrings[map] + "/" + mapStrings[map] + ".png");
+	bossBackgroundImg.loadFromFile("res/" + mapStrings[map] + "/Front" + mapStrings[map] + ".png");
 
 	background.setSize(sf::Vector2f(backgroundImg.getSize()));
 	background.setPosition(0, (float)(0 - 2240 + windowSize.height));
@@ -173,7 +174,7 @@ bool Level::update()
 	//		fastforwarding moves the boss background down to a third of the screen.
 	// Doesn't speed up yet, only uses view instead of backgroundSpeed,
 	// I just wanted to get this sort of working. - Ben
-	bossBackground.setPosition(0, view.getCenter().y - windowSize.height / 2.f);
+	bossBackground.setPosition(0, view.getCenter().y - windowSize.height / 2.f - 7);
 
 	// for smoothing out background. 
 	// Take the decimal, leave the whole number
@@ -220,6 +221,10 @@ bool Level::update()
 
 void Level::draw()
 {
+	if (bossBackgroundSet == true)
+		window.draw(bossBackground);
+	std::cout << backgroundDist << std::endl;
+
 	window.draw(background);
 
 	EntityManagementInterface::draw(window);
