@@ -1,7 +1,7 @@
 #include "Projectile.h"
 
 
-Projectile::Projectile(ProjectilePrototype prototype, Entity* owner, Entity* target)
+Projectile::Projectile(ProjectilePrototype prototype, Entity* owner, Entity* target, ProjectilePrototype::Owner ownerType)
 	: Entity(owner->getPosition() + prototype.SPAWN_POS, prototype.ID)
 { 
 	// The projectile's velocity is set as it's spawned to move towards the nearest player
@@ -10,8 +10,8 @@ Projectile::Projectile(ProjectilePrototype prototype, Entity* owner, Entity* tar
 		float dx = target->getPosition().x - owner->getPosition().x;
 		float dy = target->getPosition().y - owner->getPosition().y;
 		
-		//vel.x = dx/hypotf(dx,dy);
-		//vel.y = dy/hypotf(dx,dy);
+		vel.x = dx/hypotf(dx,dy);
+		vel.y = dy/hypotf(dx,dy);
 	}
 	else
 	{
@@ -20,7 +20,7 @@ Projectile::Projectile(ProjectilePrototype prototype, Entity* owner, Entity* tar
 	}
 
 	this->owner = owner;
-	ownerType = prototype.OWNER;
+	this->ownerType = ownerType;
 	float spawnX = prototype.SPAWN_POS.x + owner->getPosition().x;
 	float spawnY = prototype.SPAWN_POS.y + owner->getPosition().y;
 	setPosition(sf::Vector2f(spawnX, spawnY));

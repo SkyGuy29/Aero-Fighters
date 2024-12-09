@@ -6,6 +6,7 @@ Enemy::Enemy(sf::Vector2f pos, sf::Vector2f vel,
 	Entity(pos, ID), IHasHealth(ID)
 {
 	this->line = line;
+	health = 1;
 }
 
 
@@ -65,11 +66,10 @@ Entity::TickData Enemy::tick()
 	case EntityID::ENEMY_AIR_COUNT:
 		break;
 	case EntityID::ENEMY_LAND_CHILD_TANK_WEAK_TOP_GREEN:
-		baseCooldown = 15;
 		if (curCooldown == 0)
 		{
 			td = TickData(true, "TANK_SHOOT");
-			curCooldown = baseCooldown;
+			curCooldown = 100 + rand() % 50;
 		}
 		break;
 	case EntityID::ENEMY_LAND_CHILD_TANK_STRONG_TOP_GREEN:
@@ -108,7 +108,8 @@ Entity::TickData Enemy::tick()
 
 	if (curCooldown > 0)
 		--curCooldown;
-	return td;
+	//return td;
+	return TickData();
 }
 
 /*

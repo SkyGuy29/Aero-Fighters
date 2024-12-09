@@ -3,6 +3,7 @@
 #include "../Interfaces/IHasHealth.h"
 #include "../../Utility/EntityData/EntityPrototype.h"
 #include "../Interfaces/ICollidable.h"
+#include "../Projectile/Projectile.h"
 #include <cmath>
 
 // Primarily used by 
@@ -18,12 +19,21 @@ public:
 	~Enemy() override;
 
 	TickData tick() override;
-	sf::IntRect getBounds() const noexcept override
+	sf::FloatRect getBounds() const noexcept override
 	{
-		return sprite->getTextureRect();
+		return sprite->getGlobalBounds();
 	}
 	const CollisionType collidesWith(ICollidable* other) const override
 	{
+		Projectile* projCast = dynamic_cast<Projectile*>(other);
+		if (projCast == nullptr)
+			return CollisionType::MISS;
+
+		sf::FloatRect thisBounds = getBounds(), otherBounds = other->getBounds();
+		if (projCast->getOwnerType() != ProjectilePrototype::Owner::ENEMY && 
+			otherBounds.intersects(thisBounds)
+			)
+			return CollisionType::HIT;
 		return CollisionType::MISS;
 	}
 

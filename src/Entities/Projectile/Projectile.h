@@ -10,13 +10,15 @@ class Projectile :
 	public Entity, public ICollidable
 {
 public:
-	Projectile(const ProjectilePrototype prototype, Entity* owner, Entity* target = nullptr);
+	Projectile(const ProjectilePrototype prototype, Entity* owner, Entity* target = nullptr, ProjectilePrototype::Owner ownerType = ProjectilePrototype::Owner::ENEMY);
 
 	TickData tick() override;
 
-	sf::IntRect getBounds() const noexcept override
+	sf::FloatRect getBounds() const noexcept override
 	{
-		return sprite->getTextureRect();
+		if(sprite != nullptr)
+			return sprite->getGlobalBounds();
+		return sf::FloatRect(0,0,0,0);
 	}
 
 	// The overridden collision method for enemies to handle children
@@ -29,6 +31,11 @@ public:
 		//	ret = CollisionType::HIT;
 
 		return ret;
+	}
+
+	ProjectilePrototype::Owner getOwnerType() const
+	{
+		return ownerType;
 	}
 
 	// The overridden collision method for enemies to handle children
