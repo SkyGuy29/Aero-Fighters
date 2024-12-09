@@ -345,15 +345,22 @@ inline void EntityManagementInterface::loadEnemies(Map map)
  * Loads children from children.txt with the following line based structure
  * 
  * ln# | Data
- * ----+-------------------------
- *  #1 | NEW comment
- *  #2 | Parent EntityID
- *  #3 | Total Children (uint8_t)
- *     +------ CHILD ARRAY ------
- *  #4 | Child EntityID
- *  #5 | Child:Parent X offset
- *  #6 | Child:Parent Y offset
+ * ----+--------------------------+
+ *  #1 | NEW comment              |
+ *  #2 | Parent EntityID          |
+ *  #3 | Total Stages (uint8_t)   |
+ *     +------ STAGE ARRAY -------+
+ *  #4 | Total Children (uint8_t) |
+ *     +------ CHILD ARRAY -------+
+ *  #5 | Child EntityID           |
+ *  #6 | Child:Parent X offset    |
+ *  #7 | Child:Parent Y offset    |
  * ... | ...
+ *     +---- END CHILD ARRAY -----+
+ * ... | ...
+ *     +---- END STAGE ARRAY -----+
+ * ... | ...
+ * ----+--------------------------+
  */
 inline void EntityManagementInterface::loadChildren(VariableArray<EntityDataStorage::ChildTemplete>* arr)
 {
@@ -394,7 +401,7 @@ inline void EntityManagementInterface::loadChildren(VariableArray<EntityDataStor
 		if (input.starts_with("NEW"))
 		{
 			// Create a new parent
-			childData.families.push_back(ChildBuildData::ParentBlock());
+			childData.families.emplace_back(ChildBuildData::ParentBlock());
 
 			// Reference for brevity
 			ChildBuildData::ParentBlock* back = &(childData.families.back());
@@ -419,7 +426,7 @@ inline void EntityManagementInterface::loadChildren(VariableArray<EntityDataStor
 		}
 	}
 
-	// Convert to variable array //
+	//##### Convert to variable array #####//
 	
 	// Allocate data for raw children
 	auto* rawData = new EntityDataStorage::ChildTemplete[childData.totalChildren];
