@@ -138,7 +138,7 @@ private:
 	// Menu Font
 	sf::Font font;
 
-	// Text used to diaplay the menu countdown
+	// Text used to display the menu countdown
 	sf::Text menuCountdown;
 
 	// Menu Map texture, unsure what it does? - Ricky
@@ -150,7 +150,7 @@ private:
 	sf::RectangleShape
 		// The naming scheme is misleading, this appears to be the background of the menu? - ricky
 		menuMapRect,
-		// Used for chosing the country? - ricky
+		// Used for choosing the country? - ricky
 		menuFlagsRect,
 		// Only ever declared, never used... Delete it - Ricky
 		menuCountDownRect,

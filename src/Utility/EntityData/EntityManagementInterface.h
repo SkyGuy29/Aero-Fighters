@@ -253,10 +253,8 @@ template <typename T> requires std::derived_from<T, Entity>
 void EntityManagementInterface::generalDraw(std::vector<T*>& entities, sf::RenderWindow& win)
 {
 	for (unsigned short i = 0; i < entities.size(); i++)
-	{
 		if (entities.at(i)->getSprite() != nullptr)
 			win.draw(*entities.at(i)->getSprite()); // TODO: ENSURE NO OUT OF BOUNDS
-	}
 }
 
 template <typename T> requires std::derived_from<T, Entity>
@@ -274,7 +272,7 @@ void EntityManagementInterface::generalTick(std::vector<T*>& entities, sf::Rende
 		// If this entity needs to be deleted
 		if (action == Entity::EntityObjectAction::DELETE)
 		{
-			std::cout << "WE DIE\n";
+			std::cout << "WE DIE - DEL?\n";
 			// Delete it
 			delElement(i, entities);
 		}

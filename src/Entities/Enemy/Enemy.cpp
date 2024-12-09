@@ -18,7 +18,7 @@ Entity::TickData Enemy::tick()
 {
 	move();
 	// Process next animation frame - subject to change
-	nextFrame(3);
+	//nextFrame(3);
 
 	TickData td;
 
