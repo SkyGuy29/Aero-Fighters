@@ -1,6 +1,7 @@
 #include "Entity.h"
 
 #include <cassert>
+#include <iostream>
 
 #include "../ControllerStuff.hpp"
 
@@ -50,15 +51,28 @@ Entity::EntityObjectAction Entity::getEntityAction(bool ignoreDeletion) noexcept
 		entityBottomBound = pos.y - entityData.spriteData.getBounds().height / 2.f;
 
 	// If on screen
+
+	if (spawned)
+	{
+		if (!(entityLeftBound >= viewLeftBound))
+			std::cout << "ELB: " << entityLeftBound << " >= " << "VLB: " << viewLeftBound << '\n';
+		if (!(entityTopBound >= viewTopBound))
+			std::cout << "ETB: " << entityTopBound << " >= " << "VTB: " << viewTopBound << '\n';
+		if (!(entityRightBound <= viewRightBound))
+			std::cout << "ERB: " << entityRightBound << " <= " << "VRB: " << viewRightBound << '\n';
+		if (!(entityBottomBound <= viewBottomBound))
+			std::cout << "EBB: " << entityBottomBound << " <= " << "VBB: " << viewBottomBound << '\n';
+	}
+
 	if (entityLeftBound   >= viewLeftBound  && // Off the left
 		entityTopBound    >= viewTopBound   && // Off the top
 		entityRightBound  <= viewRightBound && // Off the right
 		entityBottomBound <= viewBottomBound)  // Off the bottom
 	{
-		if ((entityFlags & 0b00000001) != 0b00000001) // If not spawned
+		if (!spawned) // If not spawned
 		{
 			// Set the hasSpawned flag
-			entityFlags |= 0b00000001;
+			spawned = true;
 
 			// Generate a new sprite
 			spriteMap.emplace(UUID, sf::Sprite(*entityData.spriteData.getTexture()));
@@ -80,7 +94,7 @@ Entity::EntityObjectAction Entity::getEntityAction(bool ignoreDeletion) noexcept
 		// ^ WHY??? they are insta deleted first tick of game LOL. Moved down to outer if - ninjune
 	}
 	// If not on screen and has spawned
-	else if ((entityFlags & 0b00000001) == 0b00000001 && !levelEditorActive && !ignoreDeletion)
+	else if (spawned && !levelEditorActive && !ignoreDeletion)
 		// Not on screen, please delete.
 		ret = EntityObjectAction::DELETE;
 

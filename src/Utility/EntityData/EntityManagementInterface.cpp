@@ -96,6 +96,7 @@ void EntityManagementInterface::updateLevelEditor()
 
 void EntityManagementInterface::unload()
 {
+	std::cout << "UNLOADING!\n";
 	deleteVector((std::vector<void*>&)landEnemies);
 	deleteVector((std::vector<void*>&)airEnemies);
 	deleteVector((std::vector<void*>&)waterEnemies);
@@ -451,6 +452,8 @@ inline void EntityManagementInterface::loadChildren(VariableArray<EntityDataStor
 
 void EntityManagementInterface::deleteVector(std::vector<void*>& a)
 {
+	std::cout << "WE DIE - DVEC\n";
+
 	for (int i = 0; i < a.size(); i++)
 		delete a[i];
 	a.clear();
