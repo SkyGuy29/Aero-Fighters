@@ -112,11 +112,12 @@ private:
 	static inline void loadEnemies(Map map);
 
 	/**
+	 *@todo finish updating to handle stages
 	 * Loads all the parent to child array mappings
 	 *
 	 * @param arr An array of all child templates
 	 */
-	static inline void loadChildren(VariableArray<EntityDataStorage::ChildTemplete> * arr);
+	//static inline void loadChildren(VariableArray<EntityDataStorage::ChildTemplete> * arr);
 
 
 	/**

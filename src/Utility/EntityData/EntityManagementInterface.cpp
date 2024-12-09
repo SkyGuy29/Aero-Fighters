@@ -349,31 +349,30 @@ inline void EntityManagementInterface::loadEnemies(Map map)
  *  #1 | NEW comment              |
  *  #2 | Parent EntityID          |
  *  #3 | Total Stages (uint8_t)   |
- *     +------- STAGE ARRAY ------+-------+
+ *     +------- STAGE ARRAY --------------+
  *     |                          |       |
- *     +------- START STAGE ------+-----+ |
+ *     +------- START STAGE ------------+ |
  *  #4 | Total Children (uint8_t) |     | |
- *     +------- CHILD ARRAY ------+---+ | |
+ *     +------- CHILD ARRAY ----------+ | |
  *     |                          |   | | |
- *     +------- START CHILD ------+-+ | | |
+ *     +------- START CHILD --------+ | | |
  *  #5 | Child EntityID           | | | | |
  *  #6 | Child:Parent X offset    | | | | |
  *  #7 | Child:Parent Y offset    | | | | |
  *     |                          | | | | |
- *     +-------- END CHILD -------+-+ | | |
+ *     +-------- END CHILD ---------+ | | |
  * ... | ... More children        |   | | |
  *     |                          |   | | |
- *     +----- END CHILD ARRAY ----+---+ | |
- * ... | ... More child arrays    |     | |
- *     |                          |     | |
- *     +-------- END STAGE -------+-----+ |
+ *     +----- END CHILD ARRAY --------+ | |
+ *     +-------- END STAGE -------------+ |
  * ... | ... More stages          |       |
  *     |                          |       |
- *     +----- END STAGE ARRAY ----+-------+
+ *     +----- END STAGE ARRAY ------------+
  * ... | ... More parents         |
  * ----+--------------------------+
  */
-inline void EntityManagementInterface::loadChildren(VariableArray<EntityDataStorage::ChildTemplete>* arr)
+/*
+inline void EntityManagementInterface::loadChildren(VariableArray<VariableArray<EntityDataStorage::ChildTemplete>>* arr)
 {
 	// Stores the data needed to build the variable array of child data at runtime
 	struct ChildBuildData
@@ -381,10 +380,14 @@ inline void EntityManagementInterface::loadChildren(VariableArray<EntityDataStor
 		// ID of the parent and the children it owns
 		struct ParentBlock
 		{
+			struct StageData
+			{
+				unsigned char childCount = 0;
+				unsigned char childStartingIndex = 0;
+				EntityDataStorage::ChildTemplete* children = nullptr;
+			};
+
 			IDRead parent;
-			unsigned char childCount = 0;
-			unsigned char childStartingIndex = 0;
-			EntityDataStorage::ChildTemplete* children = nullptr;
 		};
 
 		// The total children found
@@ -465,7 +468,7 @@ inline void EntityManagementInterface::loadChildren(VariableArray<EntityDataStor
 	{
 		delete parent.children;
 	}
-}
+}*/
 
 
 void EntityManagementInterface::deleteVector(std::vector<void*>& a)
