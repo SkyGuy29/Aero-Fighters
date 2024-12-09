@@ -96,6 +96,7 @@ void EntityManagementInterface::updateLevelEditor()
 
 void EntityManagementInterface::unload()
 {
+	std::cout << "UNLOADING!\n";
 	deleteVector((std::vector<void*>&)landEnemies);
 	deleteVector((std::vector<void*>&)airEnemies);
 	deleteVector((std::vector<void*>&)waterEnemies);
@@ -344,17 +345,34 @@ inline void EntityManagementInterface::loadEnemies(Map map)
  * Loads children from children.txt with the following line based structure
  * 
  * ln# | Data
- * ----+-------------------------
- *  #1 | NEW comment
- *  #2 | Parent EntityID
- *  #3 | Total Children (uint8_t)
- *     +------ CHILD ARRAY ------
- *  #4 | Child EntityID
- *  #5 | Child:Parent X offset
- *  #6 | Child:Parent Y offset
- * ... | ...
+ * ----+------------------------------------+
+ *  #1 | 'NEW' comment                      |
+ *  #2 | Parent EntityID                    |
+ *  #3 | Total Stages (uint8_t)             |
+ *     +------- STAGE ARRAY --------------+ |
+ *     |                                  | |
+ *     +------- START STAGE ------------+ | |
+ *  #4 | Total Children (uint8_t)       | | |
+ *     +------- CHILD ARRAY ----------+ | | |
+ *     |                              | | | |
+ *     +------- START CHILD --------+ | | | |
+ *  #5 | Child EntityID             | | | | |
+ *  #6 | Child:Parent X offset      | | | | |
+ *  #7 | Child:Parent Y offset      | | | | |
+ *     |                            | | | | |
+ *     +-------- END CHILD ---------+ | | | |
+ * ... | ... More children            | | | |
+ *     |                              | | | |
+ *     +----- END CHILD ARRAY --------+ | | |
+ *     +-------- END STAGE -------------+ | |
+ * ... | ... More stages                  | |
+ *     |                                  | |
+ *     +----- END STAGE ARRAY ------------+ |
+ * ... | ... More parents                   |
+ * ----+------------------------------------+
  */
-inline void EntityManagementInterface::loadChildren(VariableArray<EntityDataStorage::ChildTemplete>* arr)
+/*
+inline void EntityManagementInterface::loadChildren(VariableArray<VariableArray<EntityDataStorage::ChildTemplete>>* arr)
 {
 	// Stores the data needed to build the variable array of child data at runtime
 	struct ChildBuildData
@@ -362,10 +380,14 @@ inline void EntityManagementInterface::loadChildren(VariableArray<EntityDataStor
 		// ID of the parent and the children it owns
 		struct ParentBlock
 		{
+			struct StageData
+			{
+				unsigned char childCount = 0;
+				unsigned char childStartingIndex = 0;
+				EntityDataStorage::ChildTemplete* children = nullptr;
+			};
+
 			IDRead parent;
-			unsigned char childCount = 0;
-			unsigned char childStartingIndex = 0;
-			EntityDataStorage::ChildTemplete* children = nullptr;
 		};
 
 		// The total children found
@@ -393,7 +415,7 @@ inline void EntityManagementInterface::loadChildren(VariableArray<EntityDataStor
 		if (input.starts_with("NEW"))
 		{
 			// Create a new parent
-			childData.families.push_back(ChildBuildData::ParentBlock());
+			childData.families.emplace_back(ChildBuildData::ParentBlock());
 
 			// Reference for brevity
 			ChildBuildData::ParentBlock* back = &(childData.families.back());
@@ -418,7 +440,7 @@ inline void EntityManagementInterface::loadChildren(VariableArray<EntityDataStor
 		}
 	}
 
-	// Convert to variable array //
+	//##### Convert to variable array #####//
 	
 	// Allocate data for raw children
 	auto* rawData = new EntityDataStorage::ChildTemplete[childData.totalChildren];
@@ -446,11 +468,13 @@ inline void EntityManagementInterface::loadChildren(VariableArray<EntityDataStor
 	{
 		delete parent.children;
 	}
-}
+}*/
 
 
 void EntityManagementInterface::deleteVector(std::vector<void*>& a)
 {
+	std::cout << "WE DIE - DVEC\n";
+
 	for (int i = 0; i < a.size(); i++)
 		delete a[i];
 	a.clear();

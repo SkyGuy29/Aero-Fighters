@@ -14,8 +14,9 @@ public:
 	~PowerUp() override = default;
 
 	void interceptBarrier();
-
-    TickData tick() override;
+	
+    
+	TickData tick() override;
 
 	const CollisionType collidesWith(ICollidable* other) const noexcept override;
 
@@ -24,7 +25,7 @@ public:
 		return sprite->getGlobalBounds();
 	}
 private:
-	sf::Vector2f vel;
+	sf::Vector2f vel = sf::Vector2f(1, 1);
 	short bounces = 0;
 };
 

@@ -112,11 +112,12 @@ private:
 	static inline void loadEnemies(Map map);
 
 	/**
+	 *@todo finish updating to handle stages
 	 * Loads all the parent to child array mappings
 	 *
 	 * @param arr An array of all child templates
 	 */
-	static inline void loadChildren(VariableArray<EntityDataStorage::ChildTemplete> * arr);
+	//static inline void loadChildren(VariableArray<EntityDataStorage::ChildTemplete> * arr);
 
 
 	/**
@@ -272,7 +273,7 @@ void EntityManagementInterface::generalTick(std::vector<T*>& entities, sf::Rende
 		// If this entity needs to be deleted
 		if (action == Entity::EntityObjectAction::DELETE)
 		{
-			std::cout << "WE DIE\n";
+			std::cout << "WE DIE - DEL?\n";
 			// Delete it
 			delElement(i, entities);
 		}

@@ -1,12 +1,6 @@
 #include "PowerUp.h"
 
 
-PowerUp::PowerUp(sf::Vector2f spawnPos, EntityID id) : Entity(spawnPos, id)
-{
-
-}
-
-
 void PowerUp::interceptBarrier()
 {
     sf::Vector2f pos = getPosition();
@@ -26,6 +20,7 @@ void PowerUp::interceptBarrier()
 
 Entity::TickData PowerUp::tick()
 {
+    move();
     if (bounces < 9)
         interceptBarrier();
 
