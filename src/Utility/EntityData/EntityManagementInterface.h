@@ -352,7 +352,7 @@ bool EntityManagementInterface::collide(std::vector<Projectile*>& entities, T* e
 
 	while (!(completion_flags & 0b00000001) && index < entities.size())
 	{
-		collision = dynamic_cast<ICollidable*>(entity)->collidesWith(entities[index]); // TODO fix collision (errors)
+		collision = dynamic_cast<ICollidable*>(entity)->collidesWith(entities[index]); // TODO fix collision (errors) note: enemy shooting is disabled, also work on that colission
 
 		if (collision != ICollidable::CollisionType::MISS)
 		{
