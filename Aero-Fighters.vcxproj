@@ -224,6 +224,7 @@
     <None Include="lib\SFML64\lib\sfml-window.pdb" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="res\children.txt" />
     <Text Include="res\Dialog\englandDialog.txt" />
     <Text Include="res\Dialog\japanDialog.txt" />
     <Text Include="res\Dialog\statesDialog.txt" />

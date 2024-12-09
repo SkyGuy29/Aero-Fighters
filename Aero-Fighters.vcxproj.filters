@@ -80,6 +80,7 @@
     <Text Include="res\Dialog\statesDialog.txt" />
     <Text Include="res\Dialog\swedenDialog.txt" />
     <Text Include="res\England\enemies.txt" />
+    <Text Include="res\children.txt" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\Dialog\Explosion0.png" />

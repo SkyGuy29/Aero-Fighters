@@ -112,11 +112,12 @@ private:
 	static inline void loadEnemies(Map map);
 
 	/**
+	 *@todo finish updating to handle stages
 	 * Loads all the parent to child array mappings
 	 *
 	 * @param arr An array of all child templates
 	 */
-	static inline void loadChildren(VariableArray<EntityDataStorage::ChildTemplete> * arr);
+	//static inline void loadChildren(VariableArray<EntityDataStorage::ChildTemplete> * arr);
 
 
 	/**
@@ -300,7 +301,7 @@ void EntityManagementInterface::generalTick(std::vector<T*>& entities, sf::Rende
 			ICollidable* icCast = dynamic_cast<ICollidable*>(entities.at(i));
 
 			// If there are projectiles, this entity is collidable, and it is colliding with any projectiles
-			if (projectiles.size() != 0 && icCast != nullptr && 
+			if (!projectiles.empty() && icCast != nullptr &&
 				collide(projectiles, icCast)
 				)
 			{
@@ -336,10 +337,18 @@ template <typename T> requires std::derived_from<T, Entity>
 void EntityManagementInterface::processAttack(std::string ID, T& entity)
 {
 	std::vector<ProjectilePrototype> prototypes = Entity::attackMap[ID];
+	Player* pCast = dynamic_cast<Player*>(&entity);
+	ProjectilePrototype::Owner ownerType;
+	if (pCast != nullptr && pCast->getIsPlayerTwo())
+		ownerType = ProjectilePrototype::Owner::PLAYER2;
+	else if (pCast != nullptr)
+		ownerType = ProjectilePrototype::Owner::PLAYER1;
+	else
+		ownerType = ProjectilePrototype::Owner::ENEMY;
 
 	for (unsigned int i = 0; i < prototypes.size(); i++)
 	{
-		projectiles.push_back(new Projectile(prototypes[i], &entity, players[0]));
+		projectiles.push_back(new Projectile(prototypes[i], &entity, players[0], ownerType));
 		projectiles[projectiles.size() - 1]->getEntityAction(); // force it to generate velocity, sprite, etc.
 	}
 }
@@ -355,7 +364,7 @@ bool EntityManagementInterface::collide(std::vector<Projectile*>& entities, T* e
 
 	while (!(completion_flags & 0b00000001) && index < entities.size())
 	{
-		collision = dynamic_cast<ICollidable*>(entity)->collidesWith(entities[index]);
+		collision = dynamic_cast<ICollidable*>(entity)->collidesWith(entities[index]); // TODO fix collision (errors) note: enemy shooting is disabled, also work on that colission
 
 		if (collision != ICollidable::CollisionType::MISS)
 		{

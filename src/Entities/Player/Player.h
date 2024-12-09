@@ -22,10 +22,13 @@ public:
     void setHealth(short h) { health = h; }
     void increasePower();
     void increaseSpecial();
-
-    sf::IntRect getBounds() const noexcept override
+    bool getIsPlayerTwo() const
     {
-        return sf::IntRect((int)getPosition().x + 10, (int)getPosition().y + 16, 20, 32);
+        return isPlayerTwo;
+    }
+    sf::FloatRect getBounds() const noexcept override
+    {
+        return sf::FloatRect((int)getPosition().x + 10, (int)getPosition().y + 16, 20, 32);
     }
 
     const CollisionType collidesWith(ICollidable* other) const override

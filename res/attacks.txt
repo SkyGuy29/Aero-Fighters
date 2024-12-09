@@ -232,7 +232,7 @@ NEW TANK_SHOOT
 PROJ // Targets player
 0 0
 0 0
-14
+13
 0
 1
 10 10

@@ -45,7 +45,7 @@ void Player::move()
 	if (pos.y + getBounds().height / 2.f >= getView()->getCenter().y + getView()->getSize().y / 2.f)
 		pos.y = getView()->getCenter().y + getView()->getSize().y / 2.f - getBounds().height / 2.f;
 
-	getBounds().intersects(sf::IntRect(0,0, windowSize.width, windowSize.height));
+	getBounds().intersects(sf::FloatRect(0,0, windowSize.width, windowSize.height));
 	if(curCooldown != 0)
 		curCooldown--;
 

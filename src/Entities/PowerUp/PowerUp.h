@@ -14,17 +14,18 @@ public:
 	~PowerUp() override = default;
 
 	void interceptBarrier();
-
-    TickData tick() override;
+	
+    
+	TickData tick() override;
 
 	const CollisionType collidesWith(ICollidable* other) const noexcept override;
 
-	sf::IntRect getBounds() const noexcept override
+	sf::FloatRect getBounds() const noexcept override
 	{
-		return sprite->getTextureRect();
+		return sprite->getGlobalBounds();
 	}
 private:
-	sf::Vector2f vel;
+	sf::Vector2f vel = sf::Vector2f(1, 1);
 	short bounces = 0;
 };
 

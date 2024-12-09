@@ -5,6 +5,9 @@ Entity::TickData Boss::tick()
 	// Perform basic movement & animation
 	Enemy::tick();
 
+	//attack area
+	Boss::attack();
+
 	for (auto& child : children)
 	{
 		child.tick();
@@ -15,5 +18,6 @@ Entity::TickData Boss::tick()
 
 Entity::TickData Boss::attack()
 {
+
 	return Enemy::attack();
 }
