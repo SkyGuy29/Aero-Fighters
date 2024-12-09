@@ -9,6 +9,11 @@ public:
 
 	TickData tick() override;
 	TickData attack() override;
+	//Boss(short id, bool left, sf::Vector2f pos, sf::Vector2f vel,
+		//std::vector<Object*>* objects, bool levelEditor);
+
+	//void update(sf::Vector2f winSize, std::vector<Object*>* objects,
+		//bool time, int& p1Score, int& p2Score) override;
 
 	// The overridden collision method for enemies to handle children
 	const CollisionType collidesWith(ICollidable* other) const noexcept override
@@ -36,5 +41,11 @@ public:
 
 private:
 	std::vector<Enemy> children;
-
+	Boss* bossPiece1 = nullptr;
+	Boss* bossPiece2 = nullptr;
+	Boss* bossPiece3 = nullptr;
+	short pattern = 0;
+	short cooldown2 = 250;
+	short cooldown3 = 0;
+	short timer = 0;
 };
