@@ -80,7 +80,7 @@ public:
 
 	sf::Vector2f getPosition() const { return pos; }
 
-	void setTexture(sf::Texture* texPtr, int frameCount, bool horizontal);
+	void setTexture(sf::Texture* texPtr);
 
 	// public because I am lazy TODO: make getters/setters for this
 	static std::unordered_map<unsigned short, std::unordered_map<bool, std::unordered_map<PlayerCountry, std::string>>> playerAttackTree;

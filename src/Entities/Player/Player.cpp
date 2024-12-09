@@ -108,7 +108,8 @@ Entity::TickData Player::tick()
 		spawn = key(isPlayerTwo, Controls::Spawn);
 	}
 	vel = moveOffset * 5.f;
-	//vel.y += getBackgroundSpeed();
+	vel.y -= getBackgroundSpeed();
+	
 	
 	TickData tickData;
 	

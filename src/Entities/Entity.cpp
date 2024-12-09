@@ -108,11 +108,11 @@ void Entity::move() noexcept
 		sprite->setPosition(pos);
 }
 
-void Entity::setTexture(sf::Texture* texPtr, int frameCount, bool horizontal)
+void Entity::setTexture(sf::Texture* texPtr)
 {
 	sprite->setTexture(*texPtr);
-	this->frameCount = frameCount;
-	verticalAnimation = !horizontal;
+	this->frameCount = EntityDataStorage::getData(ID).spriteData.getCount();
+	verticalAnimation = !EntityDataStorage::getData(ID).spriteData.isEntityAnimatedHorizontally();
 	nextFrame(2);
 }
 
