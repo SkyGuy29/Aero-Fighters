@@ -253,10 +253,8 @@ template <typename T> requires std::derived_from<T, Entity>
 void EntityManagementInterface::generalDraw(std::vector<T*>& entities, sf::RenderWindow& win)
 {
 	for (unsigned short i = 0; i < entities.size(); i++)
-	{
 		if (entities.at(i)->getSprite() != nullptr)
 			win.draw(*entities.at(i)->getSprite()); // TODO: ENSURE NO OUT OF BOUNDS
-	}
 }
 
 template <typename T> requires std::derived_from<T, Entity>

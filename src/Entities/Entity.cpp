@@ -39,11 +39,13 @@ Entity::EntityObjectAction Entity::getEntityAction(bool ignoreDeletion) noexcept
 	const sf::Vector2f pos = getPosition();
 	auto ret = EntityObjectAction::NOTHING;
 	const auto& entityData = EntityDataStorage::getData(ID);
+	// view: starts at 224, goes in negative direction to < -1000 
+	const sf::Vector2f viewCenter = sf::Vector2f(view->getCenter().x, view->getCenter().y), viewSize = view->getSize();
 	const float
-		viewLeftBound     = view->getCenter().x - view->getSize().x / 2,
-		viewTopBound      = view->getCenter().y - view->getSize().y / 2,
-		viewRightBound    = view->getCenter().x + view->getSize().x / 2,
-		viewBottomBound   = view->getCenter().y + view->getSize().y / 2,
+		viewLeftBound = viewCenter.x - viewSize.x / 2,
+		viewTopBound = viewCenter.y - viewSize.y / 2,
+		viewRightBound = viewCenter.x + viewSize.x / 2,
+		viewBottomBound   = viewCenter.y + viewSize.y / 2,
 
 		entityLeftBound   = pos.x + entityData.spriteData.getBounds().width / 2.f,
 		entityTopBound    = pos.y + entityData.spriteData.getBounds().height / 2.f,
@@ -89,9 +91,6 @@ Entity::EntityObjectAction Entity::getEntityAction(bool ignoreDeletion) noexcept
 		}
 		// Is on screen, do not delete.
 		ret = EntityObjectAction::DRAW;
-
-		// Maintains action of "NOTHING" if it has been 'spawned' and is still on screen.
-		// ^ WHY??? they are insta deleted first tick of game LOL. Moved down to outer if - ninjune
 	}
 	// If not on screen and has spawned
 	else if (spawned && !levelEditorActive && !ignoreDeletion)
