@@ -225,7 +225,6 @@ void Level::draw()
 {
 	if (bossBackgroundSet == true)
 		window.draw(bossBackground);
-	std::cout << backgroundSpeed << std::endl;
 
 	window.draw(background);
 

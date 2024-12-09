@@ -63,6 +63,17 @@ void EntityManagementInterface::tick(sf::RenderWindow& win, unsigned int current
 	generalTick<Boss>(bossEnemies, win);
 	generalTick<TileEntity>(tileEntities, win);
 	generalTick<PowerUp>(powerUps, win);
+
+	size_t count = 0;
+	count += landEnemies.size();
+	count += projectiles.size();
+	count += players.size();
+	count += airEnemies.size();
+	count += waterEnemies.size();
+	count += bossEnemies.size();
+	count += tileEntities.size();
+	count += powerUps.size();
+	std::cout << "Entity Count:" << count << std::endl;
 }
 
 // Draw order
@@ -452,7 +463,7 @@ inline void EntityManagementInterface::loadChildren(VariableArray<EntityDataStor
 
 void EntityManagementInterface::deleteVector(std::vector<void*>& a)
 {
-	std::cout << "WE DIE - DVEC\n";
+	//std::cout << "WE DIE - DVEC\n";
 
 	for (int i = 0; i < a.size(); i++)
 		delete a[i];
