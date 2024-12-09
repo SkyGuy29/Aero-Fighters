@@ -30,5 +30,8 @@ Projectile::Projectile(ProjectilePrototype prototype, Entity* owner, Entity* tar
 Entity::TickData Projectile::tick()
 {
 	move();
+	pos.y -= getBackgroundSpeed();
+	if (sprite != nullptr)
+		sprite->setPosition(pos);
 	return TickData();
 }

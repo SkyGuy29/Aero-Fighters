@@ -88,7 +88,7 @@ public:
 protected:
 	Entity(sf::Vector2f pos, EntityID ID);
 
-	inline bool hasSpawned() noexcept { return entityFlags & 0b0000001; }
+	inline bool hasSpawned() noexcept { return spawned & 0b0000001; }
 
 	void nextFrame(const int frameRate = 15);
 
@@ -142,5 +142,5 @@ private:
 	bool animationFinished = false, verticalAnimation = false;
 
 	// null / null / null / null / null / null / null / hasSpawned
-	bool entityFlags = 0b00000000;
+	bool spawned = 0b00000000;
 };

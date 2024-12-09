@@ -25,7 +25,7 @@ public:
 
     sf::IntRect getBounds() const noexcept override
     {
-        return sf::IntRect(getPosition().x + 10, getPosition().y + 16, 20, 32);
+        return sf::IntRect((int)getPosition().x + 10, (int)getPosition().y + 16, 20, 32);
     }
 
     const CollisionType collidesWith(ICollidable* other) const override

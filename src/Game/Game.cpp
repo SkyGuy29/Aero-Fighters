@@ -446,7 +446,7 @@ void Game::updateSelectMenu()
 		//level->load(country, Map::England, levelEditor); // Set the last param for loading the correct map
 
 		if (debugSkipToBoss)
-			viewportScroll = level->skipToBoss();
+			viewportScroll = (float)level->skipToBoss();
 	}
 }
 
