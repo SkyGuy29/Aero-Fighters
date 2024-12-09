@@ -349,24 +349,28 @@ inline void EntityManagementInterface::loadEnemies(Map map)
  *  #1 | NEW comment              |
  *  #2 | Parent EntityID          |
  *  #3 | Total Stages (uint8_t)   |
- *     +------- STAGE ARRAY ------+
- *     |                          |
- *     +------- START STAGE ------+
- *  #4 | Total Children (uint8_t) |
- *     +------- CHILD ARRAY ------+
- *     |                          |
- *     +------- START CHILD ------+
- *  #5 | Child EntityID           |
- *  #6 | Child:Parent X offset    |
- *  #7 | Child:Parent Y offset    |
- *     +-------- END CHILD -------+
- * ... | ...
- *     +----- END CHILD ARRAY ----+
- * ... | ...
- *     +-------- END STAGE -------+
- * ... | ...
- *     +----- END STAGE ARRAY ----+
- * ... | ...
+ *     +------- STAGE ARRAY ------+-------+
+ *     |                          |       |
+ *     +------- START STAGE ------+-----+ |
+ *  #4 | Total Children (uint8_t) |     | |
+ *     +------- CHILD ARRAY ------+---+ | |
+ *     |                          |   | | |
+ *     +------- START CHILD ------+-+ | | |
+ *  #5 | Child EntityID           | | | | |
+ *  #6 | Child:Parent X offset    | | | | |
+ *  #7 | Child:Parent Y offset    | | | | |
+ *     |                          | | | | |
+ *     +-------- END CHILD -------+-+ | | |
+ * ... | ... More children        |   | | |
+ *     |                          |   | | |
+ *     +----- END CHILD ARRAY ----+---+ | |
+ * ... | ... More child arrays    |     | |
+ *     |                          |     | |
+ *     +-------- END STAGE -------+-----+ |
+ * ... | ... More stages          |       |
+ *     |                          |       |
+ *     +----- END STAGE ARRAY ----+-------+
+ * ... | ... More parents         |
  * ----+--------------------------+
  */
 inline void EntityManagementInterface::loadChildren(VariableArray<EntityDataStorage::ChildTemplete>* arr)
