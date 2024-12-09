@@ -165,7 +165,7 @@ PROJ // Power level 3 Japan P1 Kunai (case 14)
 9 31
 
 NEW O0_P1ENGLAND
-PROJ  // Base power England P1 (case 24)
+PROJ  // Base power England P1 (case 24) not done
 0 -16
 0 -10
 12
