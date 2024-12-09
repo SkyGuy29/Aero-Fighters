@@ -195,7 +195,7 @@ bool Level::update()
 	// delete first, then erase
 
 	englandUpdate();
-
+	Entity::setBackgroundSpeed(&backgroundSpeed);
 	// Update scores and stuff after update,
 	// so the game over screen doesn't freeze it with one life left
 	p1Score.setString(std::to_string(player1Score));
@@ -225,7 +225,7 @@ void Level::draw()
 {
 	if (bossBackgroundSet == true)
 		window.draw(bossBackground);
-	std::cout << backgroundDist << std::endl;
+	std::cout << backgroundSpeed << std::endl;
 
 	window.draw(background);
 
