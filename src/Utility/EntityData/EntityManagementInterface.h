@@ -253,8 +253,19 @@ template <typename T> requires std::derived_from<T, Entity>
 void EntityManagementInterface::generalDraw(std::vector<T*>& entities, sf::RenderWindow& win)
 {
 	for (unsigned short i = 0; i < entities.size(); i++)
+	{
 		if (entities.at(i)->getSprite() != nullptr)
+		{
 			win.draw(*entities.at(i)->getSprite()); // TODO: ENSURE NO OUT OF BOUNDS
+
+			sf::RectangleShape hitbox(entities.at(i)->getSprite()->getLocalBounds().getSize());
+			hitbox.setPosition(entities.at(i)->getPosition() - hitbox.getSize() / 2.f);
+			hitbox.setFillColor(sf::Color::Transparent);
+			hitbox.setOutlineColor(sf::Color::Red);
+			hitbox.setOutlineThickness(1);
+			win.draw(hitbox);
+		}
+	}
 }
 
 template <typename T> requires std::derived_from<T, Entity>
