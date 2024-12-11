@@ -41,9 +41,9 @@ public:
 
 private:
 	std::vector<Enemy> children;
-	Boss* bossPiece1 = nullptr;
-	Boss* bossPiece2 = nullptr;
-	Boss* bossPiece3 = nullptr;
+	//Boss* bossPiece1 = nullptr;
+	//Boss* bossPiece2 = nullptr;
+	//Boss* bossPiece3 = nullptr;
 	short pattern = 0;
 	short cooldown2 = 250;
 	short cooldown3 = 0;
