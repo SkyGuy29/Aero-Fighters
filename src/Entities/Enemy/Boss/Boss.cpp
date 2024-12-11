@@ -18,6 +18,7 @@ Entity::TickData Boss::tick()
 
 Entity::TickData Boss::attack()
 {
-
+	if ()
+		vel.y -= getBackgroundSpeed();
 	return Enemy::attack();
 }

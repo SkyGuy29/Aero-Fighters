@@ -236,3 +236,183 @@ PROJ // Targets player
 0
 1
 10 10
+
+
+
+
+NEW BOSS_ONE
+PROJ //
+50 0
+3 0
+11
+0
+0
+16 31
+PROJ // Left diagonal
+50 0
+0 3
+11
+0
+0
+16 31
+PROJ // Right diagonal
+50 0
+-3 0
+11
+0
+0
+16 31
+PROJ // Targets player
+50 0
+0 -3
+11
+0
+0
+16 31
+
+PROJ //
+-50 0
+3 0
+11
+0
+0
+16 31
+PROJ // Left diagonal
+-50 0
+0 3
+11
+0
+0
+16 31
+PROJ // Right diagonal
+-50 0
+-3 0
+11
+0
+0
+16 31
+PROJ // Targets player
+-50 0
+0 -3
+11
+0
+0
+16 31
+
+
+PROJ //
+50 0
+.707 .707
+11
+0
+0
+16 31
+PROJ // Left diagonal
+50 0
+-.707 .707
+11
+0
+0
+16 31
+PROJ // Right diagonal
+50 0
+.707 -.707
+11
+0
+0
+16 31
+PROJ // Targets player
+50 0
+-.707 -.707
+11
+0
+0
+16 31
+
+PROJ //
+-50 0
+.707 .707
+11
+0
+0
+16 31
+PROJ // Left diagonal
+-50 0
+-.707 .707
+11
+0
+0
+16 31
+PROJ // Right diagonal
+-50 0
+.707 -.707
+11
+0
+0
+16 31
+PROJ // Targets player
+-50 0
+-.707 -.707
+11
+0
+0
+16 31
+
+
+PROJ // need to finish
+50 0
+.866 .5
+11
+0
+0
+16 31
+PROJ // Left diagonal
+50 0
+.866 .5
+11
+0
+0
+16 31
+PROJ // Right diagonal
+50 0
+.866 .5
+11
+0
+0
+16 31
+PROJ // Targets player
+50 0
+.866 .5
+11
+0
+0
+16 31
+
+PROJ //
+-50 0
+.866 .5
+11
+0
+0
+16 31
+PROJ // Left diagonal
+-50 0
+-.707 .707
+11
+0
+0
+16 31
+PROJ // Right diagonal
+-50 0
+.707 -.707
+11
+0
+0
+16 31
+PROJ // Targets player
+-50 0
+-.707 -.707
+11
+0
+0
+16 31
