@@ -28,11 +28,14 @@ public:
     }
     sf::FloatRect getBounds() const noexcept override
     {
-        return sf::FloatRect((int)getPosition().x + 10, (int)getPosition().y + 16, 20, 32);
+        // TODO fix hitboxes (this is way off) make sure to update debug renderer
+        return sprite->getGlobalBounds();
     }
 
     const CollisionType collidesWith(ICollidable* other) const override
     {
+        if (other->getBounds().intersects(getBounds()))
+            return CollisionType::HIT;
         return CollisionType::MISS;
     }
 private:

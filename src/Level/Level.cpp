@@ -200,9 +200,15 @@ bool Level::update()
 	// so the game over screen doesn't freeze it with one life left
 	p1Score.setString(std::to_string(player1Score));
 	p2Score.setString(std::to_string(player2Score));
+	
+	auto players = EntityManagementInterface::getPlayers();
 
-	p1LivesRect.setSize(sf::Vector2f(16.f * EntityManagementInterface::getPlayers()[0]->getHealth(), 16));
-	p2LivesRect.setSize(sf::Vector2f(16.f * EntityManagementInterface::getPlayers()[1]->getHealth(), 16));
+	const float livesSize = 16.f * players[0]->getHealth(),
+		livesSize2 = 16.f * players[1]->getHealth();
+
+	p1LivesRect.setSize(sf::Vector2f(livesSize, 16));
+	p2LivesRect.setSize(sf::Vector2f(livesSize2, 16));
+
 	p1LivesRect.setTextureRect(sf::IntRect(0, 16, 32 * EntityManagementInterface::getPlayers()[0]->getHealth(), 32));
 	p2LivesRect.setTextureRect(sf::IntRect(0, 16, 32 * EntityManagementInterface::getPlayers()[1]->getHealth(), 32));
 	p1LivesRect.setPosition(sf::Vector2f(0, view.getCenter().y - view.getSize().y / 2.f));

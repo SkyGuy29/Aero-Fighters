@@ -108,8 +108,8 @@ Entity::TickData Enemy::tick()
 
 	if (curCooldown > 0)
 		--curCooldown;
-	//return td;
-	return TickData();
+	return td;
+	//return TickData();
 }
 
 /*

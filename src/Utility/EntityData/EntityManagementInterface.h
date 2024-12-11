@@ -309,13 +309,15 @@ void EntityManagementInterface::generalTick(std::vector<T*>& entities, sf::Rende
 					// Try to cast it to check if it has health
 					auto hCast = dynamic_cast<IHasHealth*>(entities.at(i));
 
+					// damages/kills the entity
 					// If it doesnt have health or it does and its health is at 0
 					if (hCast == nullptr ||
 						(hCast != nullptr && hCast->getHealth() == 0))
 					{
 						// Kill it
 						std::cout << "WE DIE3\n";
-						delElement(i, entities);
+						if(dynamic_cast<Player*>(entities.at(i)) == nullptr) // players SHOULD NOT be deleted.
+							delElement(i, entities);
 					} // Else damage it; It logically must have health
 					else
 						hCast->damage();

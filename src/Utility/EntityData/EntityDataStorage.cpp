@@ -43,8 +43,10 @@ void EntityDataStorage::loadTextures()
 void EntityDataStorage::unloadTextures()
 {
 	std::unordered_map<EntityData::SpriteData::TextureType, sf::Texture*>& textureMap = EntityData::getTextureMap();
+	int i = 0;
+
 	for (auto& texture : textureMap)
-		delete texture.second;
+		delete texture.second; // TODO fix this + htiboxes
 }
 
 /*
