@@ -1,5 +1,6 @@
 #pragma once
 
+#include <cassert>
 #include <iostream>
 #include <fstream>
 #include "EntityDataStorage.h"
@@ -301,24 +302,29 @@ void EntityManagementInterface::generalTick(std::vector<T*>& entities, sf::Rende
 			ICollidable* icCast = dynamic_cast<ICollidable*>(entities.at(i));
 
 			// If there are projectiles, this entity is collidable, and it is colliding with any projectiles
-			if (!projectiles.empty() && icCast != nullptr &&
-				collide(projectiles, icCast)
-				)
+			if (!projectiles.empty() && icCast != nullptr)
 			{
-				// Try to cast it to check if it has health
-				auto hCast = dynamic_cast<IHasHealth*>(entities.at(i));
-
-				// If it doesnt have health or it does and its health is at 0
-				if (hCast == nullptr ||
-				   (hCast != nullptr && hCast->getHealth() == 0))
+				if (collide(projectiles, icCast))
 				{
-					// Kill it
-					std::cout << "WE DIE3\n";
-					delElement(i, entities);
-				} // Else damage it; It logically must have health
-				else
-					hCast->damage();
+					// Try to cast it to check if it has health
+					auto hCast = dynamic_cast<IHasHealth*>(entities.at(i));
+
+					// If it doesnt have health or it does and its health is at 0
+					if (hCast == nullptr ||
+						(hCast != nullptr && hCast->getHealth() == 0))
+					{
+						// Kill it
+						std::cout << "WE DIE3\n";
+						delElement(i, entities);
+					} // Else damage it; It logically must have health
+					else
+						hCast->damage();
+				}
 			}
+			// delElement decrements i, if we are at the start of the vector, this will make it overflow,
+			// if it overflows, ignore this run
+			if (i == 65535) 
+				continue;
 
 			// Default data
 			data = Entity::TickData(false, "");
@@ -364,7 +370,8 @@ bool EntityManagementInterface::collide(std::vector<Projectile*>& entities, T* e
 
 	while (!(completion_flags & 0b00000001) && index < entities.size())
 	{
-		collision = dynamic_cast<ICollidable*>(entity)->collidesWith(entities[index]); // TODO fix collision (errors) note: enemy shooting is disabled, also work on that colission
+		assert(entity != nullptr);
+		collision = entity->collidesWith(entities[index]); // TODO fix collision (errors) note: enemy shooting is disabled, also work on that colission
 
 		if (collision != ICollidable::CollisionType::MISS)
 		{
@@ -374,31 +381,17 @@ bool EntityManagementInterface::collide(std::vector<Projectile*>& entities, T* e
 			// If we hit it
 			if (collision == ICollidable::CollisionType::HIT)
 			{
-				// If this entity has health, just damage it, else kill it.
-				if (dynamic_cast<IHasHealth*>(entity) != nullptr)
-				{
-					IHasHealth* healthEntity = (IHasHealth*)entity;
-					healthEntity->damage();
-					if (healthEntity->getHealth() == 0)
-						completion_flags |= 0b00000010;
-				}
-				else
-					completion_flags |= 0b00000010;
-
-				// If we need to kill the projectile
-				if (completion_flags & 0b00000010)
-				{
-					std::cout << "WE DIE2\n";
-					delete entities[index];
-					entities.erase(entities.begin() + index);
-					--index;
-				}
+				// kill the projectile
+				std::cout << "WE DIE2\n";
+				delete entities[index];
+				entities.erase(entities.begin() + index);
+				--index;
 			} // Otherwise the child was handled by the parent
 		}
 
 		index++;
 	}
-	return (completion_flags & 0b00000001);
+	return completion_flags & 0b00000001;
 }
 
 
