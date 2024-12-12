@@ -46,7 +46,11 @@ void EntityDataStorage::unloadTextures()
 	int i = 0;
 
 	for (auto& texture : textureMap)
+	{
 		delete texture.second; // TODO fix this + htiboxes
+		texture.second = nullptr; // to ensure we aren't pointing to garbage
+	}
+	textureMap.clear();
 }
 
 /*

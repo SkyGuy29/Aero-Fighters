@@ -120,8 +120,15 @@ void EntityManagementInterface::unload()
 
 	// deletes the prototypes in the spawn map
 	for (auto& val : spawnMap | std::views::values)
+	{
 		for (auto pPrototype : val)
+		{
 			delete pPrototype;
+			pPrototype = nullptr;
+		}
+		val.clear(); // to ensure not using garbage data
+	}
+		
 }
 
 

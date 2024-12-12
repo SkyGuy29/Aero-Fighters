@@ -18,7 +18,7 @@ Entity::TickData Boss::tick()
 
 Entity::TickData Boss::attack()
 {
-	if () //this got left unfinished, the urge to put if (false) again... -Christian
-		vel.y -= getBackgroundSpeed();
+	//if () //this got left unfinished, the urge to put if (false) again... -Christian
+	//	vel.y -= getBackgroundSpeed();
 	return Enemy::attack();
 }
