@@ -174,7 +174,7 @@ void Game::run()
 			break;
 		case Menu::MISSION:
 			//update mission cutscenes for timing animations
-			//if (cutscene.isDone()) UNCOMMENT OUT TO SEE CUTSCENES
+			if (cutscene.isDone()) // UNCOMMENT OUT TO SEE CUTSCENES
 				changeMenu(Menu::LEVEL);
 			break;
 		case Menu::LEADERBOARD:

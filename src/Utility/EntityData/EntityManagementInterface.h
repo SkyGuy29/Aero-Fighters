@@ -261,7 +261,8 @@ void EntityManagementInterface::generalDraw(std::vector<T*>& entities, sf::Rende
 			win.draw(*entities.at(i)->getSprite()); // TODO: ENSURE NO OUT OF BOUNDS
 
 			auto* icCast = dynamic_cast<ICollidable*>(entities.at(i));
-			if(icCast != nullptr)
+
+			/*if(icCast != nullptr)
 			{
 				sf::RectangleShape hitbox(icCast->getBounds().getSize());
 				hitbox.setPosition(entities.at(i)->getPosition() - hitbox.getSize() / 2.f);
@@ -269,7 +270,7 @@ void EntityManagementInterface::generalDraw(std::vector<T*>& entities, sf::Rende
 				hitbox.setOutlineColor(sf::Color::Red);
 				hitbox.setOutlineThickness(1);
 				win.draw(hitbox);
-			}
+			}*/
 		}
 	}
 }
