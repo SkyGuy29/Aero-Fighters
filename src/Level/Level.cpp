@@ -12,7 +12,6 @@ Level::Level(sf::RenderWindow& window) :
 
 Level::~Level()
 {
-	std::cout << "DESTRUCTION!";
 	EntityManagementInterface::unload();
 }
 

@@ -29,7 +29,13 @@ public:
     sf::FloatRect getBounds() const noexcept override
     {
         // TODO fix hitboxes (this is way off) make sure to update debug renderer
-        return sprite->getGlobalBounds();
+        sf::FloatRect base = sprite->getLocalBounds();
+        float modifier = 4;
+        base.width /= modifier;
+        base.height /= modifier;
+        base.left += base.width / modifier;
+        base.top += base.height / modifier;
+        return base;
     }
 
     const CollisionType collidesWith(ICollidable* other) const override
