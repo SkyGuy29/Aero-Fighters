@@ -6,7 +6,7 @@ Enemy::Enemy(sf::Vector2f pos, sf::Vector2f vel,
 	Entity(pos, ID), IHasHealth(ID)
 {
 	this->line = line;
-	health = 1;
+	health = 0;
 }
 
 

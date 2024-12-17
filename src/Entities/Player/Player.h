@@ -29,8 +29,8 @@ public:
     sf::FloatRect getBounds() const noexcept override
     {
         // TODO fix hitboxes (this is way off) make sure to update debug renderer
-        sf::FloatRect base = sprite->getLocalBounds();
-        float modifier = 4;
+        sf::FloatRect base = sprite->getGlobalBounds();
+        float modifier = 2;
         base.width /= modifier;
         base.height /= modifier;
         base.left += base.width / modifier;

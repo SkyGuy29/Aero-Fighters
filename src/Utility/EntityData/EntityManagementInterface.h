@@ -318,10 +318,9 @@ void EntityManagementInterface::generalTick(std::vector<T*>& entities, sf::Rende
 					if (hCast == nullptr ||
 						(hCast != nullptr && hCast->getHealth() == 0))
 					{
-						// Kill it
-						std::cout << "WE DIE3\n";
 						if(dynamic_cast<Player*>(entities.at(i)) == nullptr) // players SHOULD NOT be deleted.
 							delElement(i, entities);
+						
 					} // Else damage it; It logically must have health
 					else
 						hCast->damage();
@@ -377,7 +376,7 @@ bool EntityManagementInterface::collide(std::vector<Projectile*>& entities, T* e
 	while (!(completion_flags & 0b00000001) && index < entities.size())
 	{
 		assert(entity != nullptr);
-		collision = entity->collidesWith(entities[index]); // TODO fix collision (errors) note: enemy shooting is disabled, also work on that colission
+		collision = entity->collidesWith(entities[index]);
 
 		if (collision != ICollidable::CollisionType::MISS)
 		{
