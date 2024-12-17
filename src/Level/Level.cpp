@@ -79,7 +79,6 @@ void Level::load(PlayerCountry country,
 	p1Score.setCharacterSize(16);
 	p2Score.setCharacterSize(16);
 
-	std::cout << "LOAD??";
 	EntityManagementInterface::unload();
 	EntityManagementInterface::load(map, country);
 
