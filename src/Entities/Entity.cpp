@@ -53,19 +53,6 @@ Entity::EntityObjectAction Entity::getEntityAction(bool ignoreDeletion) noexcept
 		entityBottomBound = pos.y - entityData.spriteData.getBounds().height / 2.f;
 
 	// If on screen
-
-	if (spawned)
-	{
-		if (!(entityLeftBound >= viewLeftBound))
-			std::cout << "ELB: " << entityLeftBound << " >= " << "VLB: " << viewLeftBound << '\n';
-		if (!(entityTopBound >= viewTopBound))
-			std::cout << "ETB: " << entityTopBound << " >= " << "VTB: " << viewTopBound << '\n';
-		if (!(entityRightBound <= viewRightBound))
-			std::cout << "ERB: " << entityRightBound << " <= " << "VRB: " << viewRightBound << '\n';
-		if (!(entityBottomBound <= viewBottomBound))
-			std::cout << "EBB: " << entityBottomBound << " <= " << "VBB: " << viewBottomBound << '\n';
-	}
-
 	if (entityLeftBound   >= viewLeftBound  && // Off the left
 		entityTopBound    >= viewTopBound   && // Off the top
 		entityRightBound  <= viewRightBound && // Off the right

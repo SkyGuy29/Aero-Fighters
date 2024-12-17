@@ -289,7 +289,6 @@ void EntityManagementInterface::generalTick(std::vector<T*>& entities, sf::Rende
 		// If this entity needs to be deleted
 		if (action == Entity::EntityObjectAction::DELETE)
 		{
-			std::cout << "WE DIE - DEL?\n";
 			// Delete it
 			delElement(i, entities);
 		}
@@ -319,7 +318,6 @@ void EntityManagementInterface::generalTick(std::vector<T*>& entities, sf::Rende
 						(hCast != nullptr && hCast->getHealth() == 0))
 					{
 						// Kill it
-						std::cout << "WE DIE3\n";
 						if(dynamic_cast<Player*>(entities.at(i)) == nullptr) // players SHOULD NOT be deleted.
 							delElement(i, entities);
 					} // Else damage it; It logically must have health
@@ -388,7 +386,6 @@ bool EntityManagementInterface::collide(std::vector<Projectile*>& entities, T* e
 			if (collision == ICollidable::CollisionType::HIT)
 			{
 				// kill the projectile
-				std::cout << "WE DIE2\n";
 				delete entities[index];
 				entities.erase(entities.begin() + index);
 				--index;
